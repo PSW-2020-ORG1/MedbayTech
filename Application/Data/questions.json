@@ -1,0 +1,128 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Model.Users.Question, SimsProjekat]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "Model.Users.Question, SimsProjekat",
+      "Date": "2020-06-28T00:00:00+02:00",
+      "FrequentlyAsked": false,
+      "Author": {
+        "$type": "Model.Users.Patient, SimsProjekat",
+        "IsGuestAccount": false,
+        "ChosenDoctor": null,
+        "IdentificationNumber": null,
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "mirko12",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "PostContent": {
+        "$type": "Model.Users.PostContent, SimsProjekat",
+        "Content": "novo pitanje",
+        "ContentTitle": "Ovo je novo pitanje",
+        "Id": 0
+      },
+      "QuestionReply": {
+        "$type": "Model.Users.QuestionReply, SimsProjekat",
+        "author": null,
+        "Date": "0001-01-01T00:00:00",
+        "Content": null,
+        "Author": null,
+        "Id": 0
+      },
+      "Id": 6
+    },
+    {
+      "$type": "Model.Users.Question, SimsProjekat",
+      "Date": "2020-06-28T00:00:00+02:00",
+      "FrequentlyAsked": false,
+      "Author": {
+        "$type": "Model.Users.Patient, SimsProjekat",
+        "IsGuestAccount": false,
+        "ChosenDoctor": null,
+        "IdentificationNumber": null,
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "mirko12",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "PostContent": {
+        "$type": "Model.Users.PostContent, SimsProjekat",
+        "Content": "hej hej novo pitanje",
+        "ContentTitle": "novo pitanje",
+        "Id": 0
+      },
+      "QuestionReply": {
+        "$type": "Model.Users.QuestionReply, SimsProjekat",
+        "author": null,
+        "Date": "0001-01-01T00:00:00",
+        "Content": null,
+        "Author": null,
+        "Id": 0
+      },
+      "Id": 7
+    },
+    {
+      "$type": "Model.Users.Question, SimsProjekat",
+      "Date": "2020-06-28T00:00:00+02:00",
+      "FrequentlyAsked": false,
+      "Author": {
+        "$type": "Model.Users.Patient, SimsProjekat",
+        "IsGuestAccount": false,
+        "ChosenDoctor": null,
+        "IdentificationNumber": null,
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "mirko12",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "PostContent": {
+        "$type": "Model.Users.PostContent, SimsProjekat",
+        "Content": "novo pitanje",
+        "ContentTitle": "novo pitanje",
+        "Id": 0
+      },
+      "QuestionReply": {
+        "$type": "Model.Users.QuestionReply, SimsProjekat",
+        "author": null,
+        "Date": "0001-01-01T00:00:00",
+        "Content": null,
+        "Author": null,
+        "Id": 0
+      },
+      "Id": 3
+    }
+  ]
+}

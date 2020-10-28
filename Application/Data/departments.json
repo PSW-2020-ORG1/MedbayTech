@@ -1,0 +1,131 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Model.Rooms.Department, SimsProjekat]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "Model.Rooms.Department, SimsProjekat",
+      "Name": "Neurologija",
+      "Floor": 1,
+      "DepartmentID": 1,
+      "Hospital": {
+        "$type": "Model.Users.Hospital, SimsProjekat",
+        "Description": null,
+        "Name": null,
+        "Id": 1,
+        "Address": null
+      },
+      "Id": 1
+    },
+    {
+      "$type": "Model.Rooms.Department, SimsProjekat",
+      "Name": "Kardiologija",
+      "Floor": 1,
+      "DepartmentID": 2,
+      "Hospital": {
+        "$type": "Model.Users.Hospital, SimsProjekat",
+        "Description": null,
+        "Name": null,
+        "Id": 1,
+        "Address": null
+      },
+      "Id": 2
+    },
+    {
+      "$type": "Model.Rooms.Department, SimsProjekat",
+      "Name": "Ginekologija",
+      "Floor": 2,
+      "DepartmentID": 3,
+      "Hospital": {
+        "$type": "Model.Users.Hospital, SimsProjekat",
+        "Description": null,
+        "Name": null,
+        "Id": 1,
+        "Address": null
+      },
+      "Id": 3
+    },
+    {
+      "$type": "Model.Rooms.Department, SimsProjekat",
+      "Name": "ORL",
+      "Floor": 0,
+      "DepartmentID": 4,
+      "Hospital": {
+        "$type": "Model.Users.Hospital, SimsProjekat",
+        "Description": null,
+        "Name": null,
+        "Id": 1,
+        "Address": null
+      },
+      "Id": 4
+    },
+    {
+      "$type": "Model.Rooms.Department, SimsProjekat",
+      "Name": "Dermatologija",
+      "Floor": 2,
+      "DepartmentID": 5,
+      "Hospital": {
+        "$type": "Model.Users.Hospital, SimsProjekat",
+        "Description": null,
+        "Name": null,
+        "Id": 1,
+        "Address": null
+      },
+      "Id": 5
+    },
+    {
+      "$type": "Model.Rooms.Department, SimsProjekat",
+      "Name": "Plastična hirurgija",
+      "Floor": 2,
+      "DepartmentID": 6,
+      "Hospital": {
+        "$type": "Model.Users.Hospital, SimsProjekat",
+        "Description": null,
+        "Name": null,
+        "Id": 1,
+        "Address": null
+      },
+      "Id": 6
+    },
+    {
+      "$type": "Model.Rooms.Department, SimsProjekat",
+      "Name": "Opšta hirurgija",
+      "Floor": 1,
+      "DepartmentID": 7,
+      "Hospital": {
+        "$type": "Model.Users.Hospital, SimsProjekat",
+        "Description": null,
+        "Name": null,
+        "Id": 1,
+        "Address": null
+      },
+      "Id": 7
+    },
+    {
+      "$type": "Model.Rooms.Department, SimsProjekat",
+      "Name": "Psihijatrija",
+      "Floor": 1,
+      "DepartmentID": 8,
+      "Hospital": {
+        "$type": "Model.Users.Hospital, SimsProjekat",
+        "Description": null,
+        "Name": null,
+        "Id": 1,
+        "Address": null
+      },
+      "Id": 8
+    },
+    {
+      "$type": "Model.Rooms.Department, SimsProjekat",
+      "Name": "Opšta praksa",
+      "Floor": 1,
+      "DepartmentID": 9,
+      "Hospital": {
+        "$type": "Model.Users.Hospital, SimsProjekat",
+        "Description": null,
+        "Name": null,
+        "Id": 1,
+        "Address": null
+      },
+      "Id": 9
+    }
+  ]
+}

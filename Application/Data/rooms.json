@@ -1,0 +1,187 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Model.Rooms.Room, SimsProjekat]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "Model.Rooms.Room, SimsProjekat",
+      "RoomID": 1,
+      "RoomNumber": 2,
+      "RoomType": 1,
+      "Department": {
+        "$type": "Model.Rooms.Department, SimsProjekat",
+        "Name": null,
+        "Floor": 0,
+        "DepartmentID": 9,
+        "Hospital": null,
+        "Id": 9
+      }
+    },
+    {
+      "$type": "Model.Rooms.Room, SimsProjekat",
+      "RoomID": 2,
+      "RoomNumber": 3,
+      "RoomType": 1,
+      "Department": {
+        "$type": "Model.Rooms.Department, SimsProjekat",
+        "Name": null,
+        "Floor": 0,
+        "DepartmentID": 1,
+        "Hospital": null,
+        "Id": 1
+      }
+    },
+    {
+      "$type": "Model.Rooms.Room, SimsProjekat",
+      "RoomID": 3,
+      "RoomNumber": 10,
+      "RoomType": 0,
+      "Department": {
+        "$type": "Model.Rooms.Department, SimsProjekat",
+        "Name": null,
+        "Floor": 0,
+        "DepartmentID": 2,
+        "Hospital": null,
+        "Id": 2
+      }
+    },
+    {
+      "$type": "Model.Rooms.Room, SimsProjekat",
+      "RoomID": 4,
+      "RoomNumber": 8,
+      "RoomType": 0,
+      "Department": {
+        "$type": "Model.Rooms.Department, SimsProjekat",
+        "Name": null,
+        "Floor": 0,
+        "DepartmentID": 1,
+        "Hospital": null,
+        "Id": 1
+      }
+    },
+    {
+      "$type": "Model.Rooms.Room, SimsProjekat",
+      "RoomID": 5,
+      "RoomNumber": 6,
+      "RoomType": 2,
+      "Department": {
+        "$type": "Model.Rooms.Department, SimsProjekat",
+        "Name": null,
+        "Floor": 0,
+        "DepartmentID": 1,
+        "Hospital": null,
+        "Id": 1
+      }
+    },
+    {
+      "$type": "Model.Rooms.Room, SimsProjekat",
+      "RoomID": 6,
+      "RoomNumber": 3,
+      "RoomType": 2,
+      "Department": {
+        "$type": "Model.Rooms.Department, SimsProjekat",
+        "Name": null,
+        "Floor": 0,
+        "DepartmentID": 2,
+        "Hospital": null,
+        "Id": 2
+      }
+    },
+    {
+      "$type": "Model.Rooms.Room, SimsProjekat",
+      "RoomID": 7,
+      "RoomNumber": 2,
+      "RoomType": 2,
+      "Department": {
+        "$type": "Model.Rooms.Department, SimsProjekat",
+        "Name": null,
+        "Floor": 0,
+        "DepartmentID": 2,
+        "Hospital": null,
+        "Id": 2
+      }
+    },
+    {
+      "$type": "Model.Rooms.Room, SimsProjekat",
+      "RoomID": 8,
+      "RoomNumber": 1,
+      "RoomType": 2,
+      "Department": {
+        "$type": "Model.Rooms.Department, SimsProjekat",
+        "Name": null,
+        "Floor": 0,
+        "DepartmentID": 2,
+        "Hospital": null,
+        "Id": 2
+      }
+    },
+    {
+      "$type": "Model.Rooms.Room, SimsProjekat",
+      "RoomID": 9,
+      "RoomNumber": 4,
+      "RoomType": 2,
+      "Department": {
+        "$type": "Model.Rooms.Department, SimsProjekat",
+        "Name": null,
+        "Floor": 0,
+        "DepartmentID": 1,
+        "Hospital": null,
+        "Id": 1
+      }
+    },
+    {
+      "$type": "Model.Rooms.Room, SimsProjekat",
+      "RoomID": 10,
+      "RoomNumber": 3,
+      "RoomType": 2,
+      "Department": {
+        "$type": "Model.Rooms.Department, SimsProjekat",
+        "Name": null,
+        "Floor": 0,
+        "DepartmentID": 1,
+        "Hospital": null,
+        "Id": 1
+      }
+    },
+    {
+      "$type": "Model.Rooms.Room, SimsProjekat",
+      "RoomID": 11,
+      "RoomNumber": 2,
+      "RoomType": 2,
+      "Department": {
+        "$type": "Model.Rooms.Department, SimsProjekat",
+        "Name": null,
+        "Floor": 0,
+        "DepartmentID": 1,
+        "Hospital": null,
+        "Id": 1
+      }
+    },
+    {
+      "$type": "Model.Rooms.Room, SimsProjekat",
+      "RoomID": 12,
+      "RoomNumber": 1,
+      "RoomType": 2,
+      "Department": {
+        "$type": "Model.Rooms.Department, SimsProjekat",
+        "Name": null,
+        "Floor": 0,
+        "DepartmentID": 1,
+        "Hospital": null,
+        "Id": 1
+      }
+    },
+    {
+      "$type": "Model.Rooms.Room, SimsProjekat",
+      "RoomID": 0,
+      "RoomNumber": 10,
+      "RoomType": 1,
+      "Department": {
+        "$type": "Model.Rooms.Department, SimsProjekat",
+        "Name": null,
+        "Floor": 0,
+        "DepartmentID": 9,
+        "Hospital": null,
+        "Id": 9
+      }
+    }
+  ]
+}

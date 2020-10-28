@@ -1,0 +1,13 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Model.Medications.MedicationCategory, SimsProjekat]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "Model.Medications.MedicationCategory, SimsProjekat",
+      "CategoryName": "kardio-vaskularni",
+      "Specialization": {
+        "$type": "Model.Users.Specialization, SimsProjekat",
+        "SpecializationName": "kardiologija"
+      }
+    }
+  ]
+}

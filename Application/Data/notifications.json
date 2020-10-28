@@ -1,0 +1,1305 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Model.Users.Notification, SimsProjekat]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 1,
+      "ContentOfNotification": "Neka notificatija",
+      "NotificationCategory": 2,
+      "NotificationFrom": null,
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "123464895",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          },
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "4511131",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 2,
+      "ContentOfNotification": "Neka notificatija",
+      "NotificationCategory": 2,
+      "NotificationFrom": null,
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "123464895",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          },
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "4511131",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 3,
+      "ContentOfNotification": "Neka notificatija",
+      "NotificationCategory": 2,
+      "NotificationFrom": null,
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "123464895",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          },
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "4511131",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 4,
+      "ContentOfNotification": "Neka notificatija",
+      "NotificationCategory": 2,
+      "NotificationFrom": null,
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "123464895",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          },
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "4511131",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 5,
+      "ContentOfNotification": "Neka notificatija",
+      "NotificationCategory": 2,
+      "NotificationFrom": null,
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "123464895",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          },
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "4511131",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 6,
+      "ContentOfNotification": "Imate novi zakazan pregled od strane Mirko Cutura",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": "1234567890124",
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "drjelena",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "123464895",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 7,
+      "ContentOfNotification": "Imate novi zakazan pregled kod  ",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": "123464895",
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "drjelena",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "1234567890124",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 8,
+      "ContentOfNotification": "Imate novi zakazan pregled od strane Milan Momčilović",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": "11111111",
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "drjelena",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "123464895",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 9,
+      "ContentOfNotification": "Imate novi zakazan pregled kod  ",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": "123464895",
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "drjelena",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "11111111",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 10,
+      "ContentOfNotification": "Imate novi zakazan pregled od strane Milan Momčilović",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": "11111111",
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "drjelena",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "123464895",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 11,
+      "ContentOfNotification": "Imate novi zakazan pregled kod  ",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": "123464895",
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "drjelena",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "11111111",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 12,
+      "ContentOfNotification": "Imate novi zakazan pregled od strane Milan Momčilović",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": "11111111",
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "drjelena",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "123464895",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 13,
+      "ContentOfNotification": "Imate novi zakazan pregled kod  ",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": "123464895",
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "drjelena",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "11111111",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 14,
+      "ContentOfNotification": "Novo renoviranje je zakazano!",
+      "NotificationCategory": 4,
+      "NotificationFrom": null,
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": "111222333",
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 15,
+      "ContentOfNotification": "Imate novi zakazan pregled od strane Marko Markovic",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": null,
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "markoo",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 16,
+      "ContentOfNotification": "Imate novi zakazan pregled kod  ",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": null,
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "drjelena",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "markoo",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 17,
+      "ContentOfNotification": "Novo pitanje je postavljeno na blogu!",
+      "NotificationCategory": 2,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": null,
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "mirko12",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          },
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjovanovic",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 18,
+      "ContentOfNotification": "Imate novi zakazan pregled od strane Mirko Cutura",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": null,
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "mirko12",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjovanovic",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 19,
+      "ContentOfNotification": "Imate novi zakazan pregled kod  ",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": null,
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "drjovanovic",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "mirko12",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 20,
+      "ContentOfNotification": "Imate novi zakazan pregled od strane Mirko Cutura",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": null,
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "mirko12",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjovanovic",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 21,
+      "ContentOfNotification": "Imate novi zakazan pregled kod  ",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": null,
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "drjovanovic",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "mirko12",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 22,
+      "ContentOfNotification": "Novo pitanje je postavljeno na blogu!",
+      "NotificationCategory": 2,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": null,
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "mirko12",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          },
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjovanovic",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 23,
+      "ContentOfNotification": "Vaš pregled je obrisan! Za više informacija pozovite sekretara.",
+      "NotificationCategory": 1,
+      "NotificationFrom": null,
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "mirko12",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 24,
+      "ContentOfNotification": "Novo pitanje je postavljeno na blogu!",
+      "NotificationCategory": 2,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": null,
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "mirko12",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjelena",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          },
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjovanovic",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 25,
+      "ContentOfNotification": "Imate novi zakazan pregled od strane Mirko Cutura",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": null,
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "mirko12",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "drjovanovic",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Model.Users.Notification, SimsProjekat",
+      "Id": 26,
+      "ContentOfNotification": "Imate novi zakazan pregled kod  ",
+      "NotificationCategory": 1,
+      "NotificationFrom": {
+        "$type": "Model.Users.RegisteredUser, SimsProjekat",
+        "IdentificationNumber": null,
+        "Name": null,
+        "Surname": null,
+        "DateOfBirth": "0001-01-01T00:00:00",
+        "Phone": null,
+        "Email": null,
+        "Username": "drjovanovic",
+        "Password": null,
+        "DateOfCreation": "0001-01-01T00:00:00",
+        "EducationLevel": 0,
+        "Profession": null,
+        "ProfileImage": null,
+        "PlaceOfBirth": null,
+        "CurrResidence": null,
+        "InsurancePolicy": null,
+        "Gender": 0
+      },
+      "NotificationTo": {
+        "$type": "System.Collections.Generic.List`1[[Model.Users.RegisteredUser, SimsProjekat]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "Model.Users.RegisteredUser, SimsProjekat",
+            "IdentificationNumber": null,
+            "Name": null,
+            "Surname": null,
+            "DateOfBirth": "0001-01-01T00:00:00",
+            "Phone": null,
+            "Email": null,
+            "Username": "mirko12",
+            "Password": null,
+            "DateOfCreation": "0001-01-01T00:00:00",
+            "EducationLevel": 0,
+            "Profession": null,
+            "ProfileImage": null,
+            "PlaceOfBirth": null,
+            "CurrResidence": null,
+            "InsurancePolicy": null,
+            "Gender": 0
+          }
+        ]
+      }
+    }
+  ]
+}
