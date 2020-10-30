@@ -5,340 +5,98 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicEditor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Canvas>
-        <Canvas>
+              Title="Hospital floor plan" Height="720" Width="1024" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" BorderBrush="#FFC13939">
 
-            <Rectangle Fill="AliceBlue" Height="394" Width="624" HorizontalAlignment="Stretch" Canvas.Left="167" Canvas.Top="26" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="-0.022"/>
-                        <RotateTransform Angle="-0.161"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FF74002A" Stroke="Black" StrokeThickness="3" Height="139" Width="194" Canvas.Left="186" Canvas.Top="257" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="-0.022"/>
-                        <RotateTransform Angle="-0.161"/>
-                        <TranslateTransform X="0.363" Y="0.555"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3"  Height="665" Width="51" Canvas.Left="428" Canvas.Top="-246" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-89.726"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FF74002A" Stroke="Black" StrokeThickness="3" Height="236" Width="143" Canvas.Left="580" Canvas.Top="188" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="0.123"/>
-                        <RotateTransform Angle="90.193"/>
-                        <TranslateTransform X="0.25" Y="-0.628"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="227" Width="15" Canvas.Left="462" Canvas.Top="213" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-89.726"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="99" Width="15" Canvas.Left="270" Canvas.Top="169" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-0.04"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="175" Width="15" Canvas.Left="462" Canvas.Top="174" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-0.04"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="489" Width="15" Canvas.Left="470" Canvas.Top="-56" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-90.196"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="121" Width="15" Canvas.Left="654" Canvas.Top="107" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-0.04"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FF3DAE12" Height="307" Width="17" Canvas.Left="304" Canvas.Top="-116" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-89.726"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FF3DAE12" Height="307" Width="17" Canvas.Left="585" Canvas.Top="-115" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-89.726"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FF3DAE12" Height="196" Width="37" Canvas.Left="356" Canvas.Top="51" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-89.726"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FF3DAE12" Height="157" Width="54" Canvas.Left="201" Canvas.Top="107" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-180.014"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FF3DAE12" Height="202" Width="35" Canvas.Left="548" Canvas.Top="49" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-269.584"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="82" Width="15" Canvas.Left="462" Canvas.Top="109" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-0.04"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="82" Width="15" Canvas.Left="270" Canvas.Top="107" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-0.04"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FF3DAE12" Height="196" Width="37" Canvas.Left="359" Canvas.Top="131" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-89.726"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="110" Width="15" Canvas.Left="462" Canvas.Top="322" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-0.04"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="29" Width="15" Canvas.Left="267" Canvas.Top="395" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-0.04"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="29" Width="15" Canvas.Left="644" Canvas.Top="394" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-0.04"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="98" Width="15" Canvas.Left="746" Canvas.Top="41" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-89.443"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="60" Width="15" Canvas.Left="761" Canvas.Top="276" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-89.443"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="155" Width="15" Canvas.Left="724" Canvas.Top="111" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-89.726"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="22" Width="15" Canvas.Left="169" Canvas.Top="313" RenderTransformOrigin="0.922,0.469">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="88.408"/>
-                        <TranslateTransform X="-5.837" Y="8.391"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="39" Width="15" Canvas.Left="173" Canvas.Top="70" RenderTransformOrigin="0.922,0.469">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="90.584"/>
-                        <TranslateTransform X="-5.837" Y="8.391"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FF3DAE12" Height="137" Width="35" Canvas.Left="715" Canvas.Top="82" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-269.584"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FF3DAE12" Height="137" Width="35" Canvas.Left="715" Canvas.Top="82" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-269.584"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3"  Height="145" Width="51" Canvas.Left="494" Canvas.Top="190" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-179.734"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FFC3C3C3" Height="39" Width="15" Canvas.Left="453" Canvas.Top="14" RenderTransformOrigin="0.922,0.469">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="0.508"/>
-                        <TranslateTransform X="-5.837" Y="8.391"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-            <Rectangle Fill="#FF3DAE12" Height="85" Width="53" Canvas.Left="492" Canvas.Top="335" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
-                        <SkewTransform AngleY="-0.152"/>
-                        <RotateTransform Angle="-180.796"/>
-                        <TranslateTransform X="-0.46" Y="-0.522"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-        </Canvas>
-        <TextBox Height="45" Canvas.Left="403" Text="Parking " FontSize="25" Canvas.Top="64" Width="107" Background="#FFC3C3C3" BorderBrush="{x:Null}"/>
-        <TextBox Height="34" Canvas.Left="317" Text="Greenery" FontSize="22" Canvas.Top="131" Width="114" Background="#FF3DAE12" BorderBrush="{x:Null}"/>
-        <TextBox Height="77" Canvas.Left="213" Text="Secondary &#xD;&#xA;hospital" FontSize="25" Canvas.Top="287" Width="143" Background="#FF74002A" BorderBrush="{x:Null}"/>
-        <TextBox Height="77" Canvas.Left="601" Text="Primary&#xA;hospital" FontSize="25" Canvas.Top="265" Width="102" Background="#FF74002A" BorderBrush="{x:Null}"/>
-        <TextBox Height="45" Canvas.Left="472" Text="Parking " FontSize="25" Canvas.Top="238" Width="92" Background="#FFC3C3C3" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5">
-            <TextBox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="89.761"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </TextBox.RenderTransform>
-        </TextBox>
-        <TextBox Height="57" Canvas.Left="374" Text="Parking " FontSize="25" Canvas.Top="348" Width="88" Background="#FFC3C3C3" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5">
-            <TextBox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="89.761"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </TextBox.RenderTransform>
-        </TextBox>
-        <TextBox Height="101" Canvas.Left="10" Text="ovde ce biti polje&#xD;&#xA; za biranje daljih &#xD;&#xA;funkcionalnosti" FontSize="12" Canvas.Top="27" Width="133" Background="#FFC3C3C3" BorderBrush="{x:Null}"/>
-        <!--<Rectangle Height="145" Width="180" Canvas.Left="310" Canvas.Top="135">
-            <Rectangle.Fill>
-                <SolidColorBrush Color="Green" />
-            </Rectangle.Fill>
-        </Rectangle>-->
-    </Canvas>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="251*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Height="68" VerticalAlignment="Top" Background="#006481" Grid.ColumnSpan="2">
+            <Label Content="Hospital map" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="White"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Height="650" VerticalAlignment="Top" Background="SteelBlue" Margin="0,68,742,0" Grid.ColumnSpan="2">
+            <Label Content="Informations" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White"/>
+            <TabControl Height="281" Margin="0,0,18,0">
+                <TabItem Header="Map" MouseLeftButtonDown="ShowHospitalMap">
+                    <Grid Background="#FFE5E5E5">
+                        <Label Content="Wards:" HorizontalAlignment="Left" Margin="132,-7,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="110" Height="35"/>
+                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="132,28,0,0">
+                            <ComboBoxItem Content="Radiology"/>
+                            <ComboBoxItem Content="Neurology"/>
+                            <ComboBoxItem Content="Oncology"/>
+                            <ComboBoxItem Content="Cardiology"/>
+                            <ComboBoxItem Content="Intesive care"/>
+                            <ComboBoxItem Content="Gastroenterology"/>
+                            <ComboBoxItem Content="Hematology"/>
+                            <ComboBoxItem Content="Dialysis"/>
+                            <ComboBoxItem Content="Rheumatology"/>
+                            <ComboBoxItem Content="Infectous Diseases"/>
+                        </ComboBox>
+                        <Label Content="H1 Floors:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="120" Margin="0,-7,0,0"/>
+                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,28,0,0">
+                            <ComboBoxItem MouseLeftButtonDown="ShowBuilding1Floor" IsSelected="True" Content="Ground level"/>
+                            <ComboBoxItem Content="First floor"/>
+                            <ComboBoxItem Content="Secod floor"/>
+                            <ComboBoxItem Content="Third floor"/>
+                        </ComboBox>
+                        <Label Content="H2 Floors:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="120" Margin="0,109,0,0"/>
+                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,143,0,0">
+                            <ComboBoxItem MouseLeftButtonDown="ShowBuilding2Floor" IsSelected="True" Content="Ground level"/>
+                            <ComboBoxItem Content="First floor"/>
+                            <ComboBoxItem Content="Secod floor"/>
+                            <ComboBoxItem Content="Third floor"/>
+                            <ComboBoxItem Content="Forth floor"/>
+                        </ComboBox>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="H1" MouseLeftButtonDown="ShowBuilding1Floor">
+                    <Grid Background="#FFE5E5E5">
+                        <Label Content="Floors:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="120" Margin="0,-7,0,0"/>
+                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,28,0,0">
+                            <ComboBoxItem MouseLeftButtonDown="ShowBuilding1Floor" IsSelected="True">Ground level</ComboBoxItem>
+                            <ComboBoxItem>First floor</ComboBoxItem>
+                            <ComboBoxItem>Secod floor</ComboBoxItem>
+                            <ComboBoxItem>Third floor</ComboBoxItem>
+                        </ComboBox>
+                        <Label Content="Wards:" HorizontalAlignment="Left" Margin="132,-7,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="110" Height="35"/>
+                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="132,28,0,0">
+                            <ComboBoxItem Content="Radiology"/>
+                            <ComboBoxItem Content="Neurology"/>
+                            <ComboBoxItem Content="Oncology"/>
+                            <ComboBoxItem Content="Cardiology"/>
+                            <ComboBoxItem Content="Intesive care"/>
+                        </ComboBox>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="H2" MouseLeftButtonDown="ShowBuilding2Floor" >
+                    <Grid Background="#FFE5E5E5">
+                        <Label Content="Floors:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="120" Margin="0,-7,0,0"/>
+                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,28,0,0">
+                            <ComboBoxItem MouseLeftButtonDown="ShowBuilding2Floor" IsSelected="True">Ground level</ComboBoxItem>
+                            <ComboBoxItem>First floor</ComboBoxItem>
+                            <ComboBoxItem>Secod floor</ComboBoxItem>
+                            <ComboBoxItem>Third floor</ComboBoxItem>
+                            <ComboBoxItem>Forth floor</ComboBoxItem>
+                        </ComboBox>
+                        <Label Content="Wards:" HorizontalAlignment="Left" Margin="132,-7,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="110" Height="35"/>
+                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="132,28,0,0">
+                            <ComboBoxItem Content="Gastroenterology"/>
+                            <ComboBoxItem Content="Hematology"/>
+                            <ComboBoxItem Content="Dialysis"/>
+                            <ComboBoxItem Content="Rheumatology"/>
+                            <ComboBoxItem Content="Infectous Diseases"/>
+                        </ComboBox>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="254,68,0,0" Grid.Column="1"/>
+
+        <Frame Name="MainFrame" Margin="254,68,0,0" NavigationUIVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1"/>
+    </Grid>
+
 </Window>
