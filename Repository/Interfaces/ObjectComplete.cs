@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SimsProjekat.Repository
 {
-    interface ObjectComplete<T>
+    public interface ObjectComplete<T>
     {
         void SetMissingValues(T entity);
         void CompleteObject(T entity);

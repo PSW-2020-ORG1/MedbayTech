@@ -14,6 +14,20 @@
         "Id": 0
       },
       "Id": 1
+    },
+    {
+      "$type": "Model.Users.Address, Model",
+      "Street": "rand",
+      "Number": 1,
+      "Apartment": 1,
+      "Floor": 1,
+      "City": {
+        "$type": "Model.Users.City, Model",
+        "Name": null,
+        "State": null,
+        "Id": 0
+      },
+      "Id": 2
     }
   ]
 }
