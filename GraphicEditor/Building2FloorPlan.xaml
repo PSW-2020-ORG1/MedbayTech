@@ -1,0 +1,27 @@
+﻿<Page x:Class="GraphicEditor.Building2FloorPlan"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GraphicEditor"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Building2FloorPlan">
+
+    <Grid>
+        <Canvas x:Name="canvas"  Margin="0,0,0,0" Background="MintCream">
+            <Label Content="H2" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="324" Canvas.Top="36"/>
+            <Rectangle Fill="White" Stroke="Black" StrokeThickness="3" Height="800" Width="200" Canvas.Left="275" Canvas.Top="-152" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
+                        <SkewTransform AngleY="-0.152"/>
+                        <RotateTransform Angle="-89.936"/>
+                        <TranslateTransform X="-0.46" Y="-0.522"/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle Fill="White" Height="93" Canvas.Left="62" Stroke="Black" StrokeThickness="3" Canvas.Top="280" Width="161"/>
+        </Canvas>
+    </Grid>
+</Page>

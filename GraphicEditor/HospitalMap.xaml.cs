@@ -83,7 +83,7 @@ namespace GraphicEditor
 
         private void ShowBuilding1FloorPlan(object sender, MouseButtonEventArgs e)
         {
-            //window.MainFrame.Content = new Building1FloorPlan();
+            window.MainFrame.Content = new Building1FloorPlan();
             Storyboard storyboard = new Storyboard();
             DoubleAnimation doubleAnimation = new DoubleAnimation();
             doubleAnimation.From = 0;
@@ -99,6 +99,7 @@ namespace GraphicEditor
 
         private void ShowBuilding2FloorPlan(object sender, MouseButtonEventArgs e)
         {
+            window.MainFrame.Content = new Building2FloorPlan();
             Storyboard storyboard = new Storyboard();
             DoubleAnimation doubleAnimation = new DoubleAnimation();
             doubleAnimation.From = 0;
@@ -108,7 +109,6 @@ namespace GraphicEditor
             Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
             Storyboard.SetTargetName(doubleAnimation, window.MainFrame.Name);
             storyboard.Begin(window);
-            //window.MainFrame.Content = new Building2FloorPlan();
         }
     }
 }
