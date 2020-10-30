@@ -1,7 +1,6 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29905.134
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{607E2436-344C-4F9D-B234-F1F58CD91B97}"
 EndProject
@@ -15,7 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{F41753A5-81D0-4944-95A9-D3F6EC7ABEFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileRepository", "FileRepository\FileRepository.csproj", "{9155F657-849E-4919-8BB0-E3B29BE0CD56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileRepository", "FileRepository\FileRepository.csproj", "{9155F657-849E-4919-8BB0-E3B29BE0CD56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicEditor", "GraphicEditor\GraphicEditor.csproj", "{C24D880D-C07D-4FAA-B68A-24C2EF5595BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +52,10 @@ Global
 		{9155F657-849E-4919-8BB0-E3B29BE0CD56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9155F657-849E-4919-8BB0-E3B29BE0CD56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9155F657-849E-4919-8BB0-E3B29BE0CD56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C24D880D-C07D-4FAA-B68A-24C2EF5595BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C24D880D-C07D-4FAA-B68A-24C2EF5595BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C24D880D-C07D-4FAA-B68A-24C2EF5595BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C24D880D-C07D-4FAA-B68A-24C2EF5595BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
