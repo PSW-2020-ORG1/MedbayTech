@@ -1,0 +1,33 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Model.Users.InsurancePolicy, SimsProjekat]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "Model.Users.InsurancePolicy, SimsProjekat",
+      "Company": "DUNAV OSIGURANJE",
+      "PersonalInsuranceNumber": "ABC123456",
+      "PolicyStartDate": "2020-12-11T00:00:00",
+      "PolicyEndDate": "2025-12-11T00:00:00"
+    },
+    {
+      "$type": "Model.Users.InsurancePolicy, SimsProjekat",
+      "Company": "DUNAV OSIGURANJE",
+      "PersonalInsuranceNumber": "AHSK123A",
+      "PolicyStartDate": "2019-08-10T00:00:00",
+      "PolicyEndDate": "2025-08-10T00:00:00"
+    },
+    {
+      "$type": "Model.Users.InsurancePolicy, SimsProjekat",
+      "Company": "DUNAV OSIGURANJE",
+      "PersonalInsuranceNumber": "KAZX236S",
+      "PolicyStartDate": "2019-08-10T00:00:00",
+      "PolicyEndDate": "2025-08-10T00:00:00"
+    },
+    {
+      "$type": "Model.Users.InsurancePolicy, SimsProjekat",
+      "Company": "DUNAV OSIGURANJE",
+      "PersonalInsuranceNumber": "SADS1345",
+      "PolicyStartDate": "2019-08-10T00:00:00",
+      "PolicyEndDate": "2025-08-10T00:00:00"
+    }
+  ]
+}

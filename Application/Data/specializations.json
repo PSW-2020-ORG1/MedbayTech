@@ -1,0 +1,17 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Model.Users.Specialization, SimsProjekat]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "Model.Users.Specialization, SimsProjekat",
+      "SpecializationName": "kardiologija"
+    },
+    {
+      "$type": "Model.Users.Specialization, SimsProjekat",
+      "SpecializationName": "opšta hirurgija"
+    },
+    {
+      "$type": "Model.Users.Specialization, SimsProjekat",
+      "SpecializationName": "opšta praksa"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Model.Rooms.Renovation, SimsProjekat]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "Model.Rooms.Renovation, SimsProjekat",
+      "RenovationId": 1,
+      "StartDate": "2011-11-11T00:00:00",
+      "EndDate": "0001-01-01T00:00:00",
+      "MoveEquipment": false,
+      "Room": null
+    },
+    {
+      "$type": "Model.Rooms.Renovation, SimsProjekat",
+      "RenovationId": 2,
+      "StartDate": "2011-11-11T00:00:00",
+      "EndDate": "2011-11-11T00:00:00",
+      "MoveEquipment": true,
+      "Room": null
+    },
+    {
+      "$type": "Model.Rooms.Renovation, SimsProjekat",
+      "RenovationId": 3,
+      "StartDate": "2011-11-11T00:00:00",
+      "EndDate": "2011-11-11T00:00:00",
+      "MoveEquipment": true,
+      "Room": null
+    },
+    {
+      "$type": "Model.Rooms.Renovation, SimsProjekat",
+      "RenovationId": 4,
+      "StartDate": "2011-11-11T00:00:00",
+      "EndDate": "2011-11-11T00:00:00",
+      "MoveEquipment": true,
+      "Room": null
+    },
+    {
+      "$type": "Model.Rooms.Renovation, SimsProjekat",
+      "RenovationId": 5,
+      "StartDate": "2011-11-11T00:00:00",
+      "EndDate": "2011-11-11T00:00:00",
+      "MoveEquipment": true,
+      "Room": {
+        "$type": "Model.Rooms.Room, SimsProjekat",
+        "RoomID": 0,
+        "RoomNumber": 0,
+        "RoomType": 0,
+        "Department": null
+      }
+    },
+    {
+      "$type": "Model.Rooms.Renovation, SimsProjekat",
+      "RenovationId": 6,
+      "StartDate": "2011-11-11T00:00:00",
+      "EndDate": "2011-11-11T00:00:00",
+      "MoveEquipment": true,
+      "Room": {
+        "$type": "Model.Rooms.Room, SimsProjekat",
+        "RoomID": 0,
+        "RoomNumber": 0,
+        "RoomType": 0,
+        "Department": null
+      }
+    },
+    {
+      "$type": "Model.Rooms.Renovation, SimsProjekat",
+      "RenovationId": 7,
+      "StartDate": "2020-07-06T00:00:00+02:00",
+      "EndDate": "2020-07-11T00:00:00+02:00",
+      "MoveEquipment": false,
+      "Room": {
+        "$type": "Model.Rooms.Room, SimsProjekat",
+        "RoomID": 1,
+        "RoomNumber": 0,
+        "RoomType": 0,
+        "Department": null
+      }
+    }
+  ]
+}

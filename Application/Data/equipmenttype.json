@@ -1,0 +1,33 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Model.Rooms.EquipmentType, SimsProjekat]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "Model.Rooms.EquipmentType, SimsProjekat",
+      "Name": "gaze"
+    },
+    {
+      "$type": "Model.Rooms.EquipmentType, SimsProjekat",
+      "Name": "kreveti"
+    },
+    {
+      "$type": "Model.Rooms.EquipmentType, SimsProjekat",
+      "Name": "injekcije"
+    },
+    {
+      "$type": "Model.Rooms.EquipmentType, SimsProjekat",
+      "Name": "flasteri"
+    },
+    {
+      "$type": "Model.Rooms.EquipmentType, SimsProjekat",
+      "Name": "stolice"
+    },
+    {
+      "$type": "Model.Rooms.EquipmentType, SimsProjekat",
+      "Name": "stolovi"
+    },
+    {
+      "$type": "Model.Rooms.EquipmentType, SimsProjekat",
+      "Name": "operacioni stolovi"
+    }
+  ]
+}

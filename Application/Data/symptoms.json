@@ -1,0 +1,9 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Model.MedicalRecord.Symptoms, SimsProjekat]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "Model.MedicalRecord.Symptoms, SimsProjekat",
+      "Name": "kašalj"
+    }
+  ]
+}

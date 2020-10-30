@@ -1,0 +1,61 @@
+Git komande: 
+
+nakon sto inicijalizujete git repozitorijum kod vas i clonujete projekat treba da kreirate vase grane za vase funkcionalnosti
+
+koriscenjem komande:
+	git branch <naziv grane> 
+kreira se grana sa nazivom koji stavite u <>, a sadrzaj te grane ce biti identican grani sa koje kreirate granu.
+pozicionirati se na develop granu sa:
+	git checkout develop
+i odatle kucati:
+	git branch <feature1>
+kreiracete granu sa identicnim sadrzajem kao na develop grani
+
+feature1 grana je zapravo grana na kojoj cete razvijati neku funkcionalnost koja se od vas trazi
+
+svaki put se morate pozicionirati na tu granu prilikom rada, dakle ako na git bash-u pise u zagradi master ili develop, morate ici sa komandom checkout do vase grane.
+
+kad hocete da commitujete i pushujete vase izmene sa vase grane, koristite sledece komande:
+
+	git add .
+
+	git commit -m " poruka "
+
+nakon sto commitujete lokalno vase izmene, prebacite se na develop granu:
+
+	git checkout develop
+
+proverite da li je neko u tom periodu radio na develop grani, to cete postici sa:
+	git pull origin develop
+
+nakon toga vratite se na vasu feature granu:
+	git checkout feature1
+
+i pokusajte da merge-ujete develop granu u vasu feature1 granu:
+	git merge develop
+
+sa ovom komandom mozda budete imali konflikte, resite konflikte, git bash ce vam izbaciti tacne lokacije konflikta
+
+	nakon toga ponovite iste korake: 
+
+	git add .
+
+	git commit -m "Poruka"
+
+i nakon toga ukucate 
+
+	git push --set-upstream origin <naziv grane>
+
+time ste vase promene postavi na remote repozitorijum.
+
+
+
+kada mislite da ste zavrsili sta ste hteli, morate te promene da mergujete na develop granu
+
+to mozete preko githuba da odradite, kao sto je prikazano u snimku na linku: 
+https://www.youtube.com/watch?v=oFYyTZwMyAg&fbclid=IwAR1J7OpoFwnUZf2JXu-1nbKMebNFMPYZTbby9TMqx51F5KMDca2g6YN33Vc 
+
+obavezno, pogledajte u gornjem delu prozora prilikom kreiranja pull requesta sta je base grana, tu obavezno stavljate develop, nikako master.
+
+ostatak pameti pull requestova mozete pogledati na snimku, i takodje testirati u repozitorijumu koji sam kreirala samo za te svrhe (TestRepo). trebalo bi da mozete da vidite i koristite
+

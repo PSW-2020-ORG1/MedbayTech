@@ -1,0 +1,9 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Model.Medications.Allergens, SimsProjekat]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "Model.Medications.Allergens, SimsProjekat",
+      "Allergen": "penicilin"
+    }
+  ]
+}
