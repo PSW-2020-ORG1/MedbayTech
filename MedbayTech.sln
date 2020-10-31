@@ -18,7 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileRepository", "FileRepos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicEditor", "GraphicEditor\GraphicEditor.csproj", "{C24D880D-C07D-4FAA-B68A-24C2EF5595BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{3894E9E7-4951-4BFC-9B71-5ADBD7EE30AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplication\WebApplication.csproj", "{3894E9E7-4951-4BFC-9B71-5ADBD7EE30AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{A62B638F-3D19-41CD-A816-C95AE820A99D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{3894E9E7-4951-4BFC-9B71-5ADBD7EE30AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3894E9E7-4951-4BFC-9B71-5ADBD7EE30AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3894E9E7-4951-4BFC-9B71-5ADBD7EE30AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A62B638F-3D19-41CD-A816-C95AE820A99D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A62B638F-3D19-41CD-A816-C95AE820A99D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A62B638F-3D19-41CD-A816-C95AE820A99D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A62B638F-3D19-41CD-A816-C95AE820A99D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
