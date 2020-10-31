@@ -4,7 +4,8 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Repository;
+using Model;
+
 
 namespace Database
 {
@@ -14,8 +15,8 @@ namespace Database
         public static IServiceCollection RegisterMySQLDataServices(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddDbContext<MySQLContext>(options =>
-                options.UseMySql(configuration.GetConnectionString("MySQLConnectionString")));
+            services.AddDbContext<MySqlContext>(options =>
+                options.UseMySql(configuration.GetConnectionString("MySqlConnectionString")));
 
             return services;
         }
