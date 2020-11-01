@@ -14,6 +14,8 @@ namespace Model.Users
         private string additionalNotes;
        // private Grade softwareGrade;
         private Grade everythingInGoodPlace;
+        private Boolean approved;
+        private Boolean anonymous;
 
        // public RegisteredUser registeredUser;
 
@@ -24,13 +26,15 @@ namespace Model.Users
             Id = id;
         }
 
-        public Feedback(DateTime date, string additionalNotes, Grade everythingInGoodPlace) // Grade softwareGrade   RegisteredUser user)
+        public Feedback(DateTime date, string additionalNotes, Grade everythingInGoodPlace, Boolean anonymous) // Grade softwareGrade   RegisteredUser user)
         {
             Date = date;
             AdditionalNotes = additionalNotes;
          //   SoftwareGrade = softwareGrade;
             EverythingInGoodPlace = everythingInGoodPlace;
-         //   RegisteredUser = user;
+            //   RegisteredUser = user;
+            Anonymous = anonymous;
+            Approved = false;
         }
 
         public DateTime Date { get => date; set => date = value; }
@@ -39,6 +43,9 @@ namespace Model.Users
         public Grade EverythingInGoodPlace { get => everythingInGoodPlace; set => everythingInGoodPlace = value; }
      //   public RegisteredUser RegisteredUser { get => registeredUser; set => registeredUser = value; }
         public int Id { get => id; set => id = value; }
+        public Boolean Anonymous { get => anonymous; set => anonymous = value; }
+        public Boolean Approved { get => approved; set => approved = value; }
+
 
     }
 }

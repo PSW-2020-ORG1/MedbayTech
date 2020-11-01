@@ -20,7 +20,7 @@ namespace Model
             );
 
             modelBuilder.Entity<Feedback>().HasData(
-                    new Feedback { Id = 1, AdditionalNotes = "dada", Date = new DateTime(2020, 10, 31), EverythingInGoodPlace = Grade.veryGood, }
+                    new Feedback { Id = 1, AdditionalNotes = "dada", Date = new DateTime(2020, 10, 31), EverythingInGoodPlace = Grade.veryGood, Anonymous = true, Approved = true }
                 );
         }
     }
