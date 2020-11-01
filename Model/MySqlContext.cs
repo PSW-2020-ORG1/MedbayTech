@@ -11,6 +11,11 @@ namespace Model
     {
         private DbSet<Treatment> Treatments { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<RegisteredUser> RegisteredUsers { get; set; }
+        public DbSet<InsurancePolicy> InsurancePolicies { get; set; }
         public MySqlContext(DbContextOptions<MySqlContext> options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

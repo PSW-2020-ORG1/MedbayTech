@@ -15,7 +15,7 @@ namespace Model.Users
         private string name;
         private string surname;
         private DateTime dateOfBirth;
-        private string identificationNumber;
+        private string id;
         private string phone;
         private string email;
         private string username;
@@ -41,7 +41,7 @@ namespace Model.Users
         {
             Name = name;
             Surname = surname;
-            IdentificationNumber = identificationNumber;
+            Id = identificationNumber;
             Phone = phone;
         }
 
@@ -54,7 +54,7 @@ namespace Model.Users
             Name = name;
             Surname = surname;
             DateOfBirth = dateOfBirth;
-            IdentificationNumber = identificationNumber;
+            Id = identificationNumber;
             Email = email;
             Username = username;
             Password = password;
@@ -67,7 +67,7 @@ namespace Model.Users
 
         }
 
-        public string IdentificationNumber { get => identificationNumber; set => identificationNumber = value; }
+        public string Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public string Surname { get => surname; set => surname = value; }
         public DateTime DateOfBirth { get => dateOfBirth; set => dateOfBirth = value; }

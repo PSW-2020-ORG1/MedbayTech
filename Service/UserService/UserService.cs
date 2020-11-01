@@ -44,7 +44,7 @@ namespace Service.UserService
 
         private bool IsIdentificationNumberUnique(RegisteredUser user)
         {
-            var exists = userRepository.GetAll().SingleOrDefault(entity => entity.IdentificationNumber.Equals(user.IdentificationNumber));
+            var exists = userRepository.GetAll().SingleOrDefault(entity => entity.Id.Equals(user.Id));
             if (exists != null)
             {
                 var userType = user.GetType();

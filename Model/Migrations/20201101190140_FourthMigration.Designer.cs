@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Model;
 
 namespace Model.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    partial class MySqlContextModelSnapshot : ModelSnapshot
+    [Migration("20201101190140_FourthMigration")]
+    partial class FourthMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,7 +73,7 @@ namespace Model.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("Model.Users.City", b =>
@@ -90,7 +92,7 @@ namespace Model.Migrations
 
                     b.HasIndex("StateId");
 
-                    b.ToTable("Cities");
+                    b.ToTable("City");
                 });
 
             modelBuilder.Entity("Model.Users.Feedback", b =>
@@ -151,7 +153,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("InsurancePolicies");
+                    b.ToTable("InsurancePolicy");
                 });
 
             modelBuilder.Entity("Model.Users.RegisteredUser", b =>
@@ -212,7 +214,7 @@ namespace Model.Migrations
 
                     b.HasIndex("PlaceOfBirthId");
 
-                    b.ToTable("RegisteredUsers");
+                    b.ToTable("RegisteredUser");
                 });
 
             modelBuilder.Entity("Model.Users.State", b =>
@@ -226,7 +228,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("States");
+                    b.ToTable("State");
                 });
 
             modelBuilder.Entity("Model.Users.Address", b =>

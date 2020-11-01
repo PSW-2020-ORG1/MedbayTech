@@ -54,7 +54,7 @@ namespace Repository.UserRepository
 
         public IEnumerable<WorkDay> GetWorkTimeForEmployee(Employee employee)
         {
-            var allWorkDays = base.GetAll().ToList().Where(day => day.Employee.IdentificationNumber.Equals(employee.IdentificationNumber));
+            var allWorkDays = base.GetAll().ToList().Where(day => day.Employee.Id.Equals(employee.Id));
             List<WorkDay> WorkTimeForEmployee = new List<WorkDay>();
             foreach(WorkDay workDay in allWorkDays)
             {

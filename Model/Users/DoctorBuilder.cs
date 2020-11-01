@@ -84,7 +84,7 @@ namespace Model.Users
 
         public void SetIDNumber(string id)
         {
-            doctor.IdentificationNumber = id;
+            doctor.Id = id;
         }
 
         public void SetPhone(string phone)

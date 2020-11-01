@@ -58,7 +58,7 @@ namespace Repository.ExaminationRepository
 
         public IEnumerable<ExaminationSurgery> GetAllByDoctor(Doctor doctor)
         {
-            var allExaminations = stream.GetAll().Where(item => item.Doctor.IdentificationNumber.Equals(doctor.IdentificationNumber)).ToList();
+            var allExaminations = stream.GetAll().Where(item => item.Doctor.Id.Equals(doctor.Id)).ToList();
             foreach(ExaminationSurgery examintion in allExaminations)
             {
                 CompleteObject(examintion);

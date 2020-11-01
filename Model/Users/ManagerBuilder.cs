@@ -48,7 +48,7 @@ namespace Model.Users
 
         public void SetIDNumber(string id)
         {
-            manager.IdentificationNumber = id;
+            manager.Id = id;
         }
 
         public void SetInsurancePolicy(InsurancePolicy policy)
