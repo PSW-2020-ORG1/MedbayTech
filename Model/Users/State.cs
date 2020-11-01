@@ -13,15 +13,16 @@ namespace Model.Users
    public class State
    {
         public long Id { get; set; }
-        private string name;
+        public string Name { get; set; }
 
-        public State(string name, long id)
+        public State () { }
+        public State(long id, string name)
         {
             Name = name;
-            Id = Id;
+            Id = id;
         }
 
-        public string Name { get => name; set => name = value; }
+      
         
     }
 }

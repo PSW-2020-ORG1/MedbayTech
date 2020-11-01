@@ -25,10 +25,15 @@ namespace Model.Users
         private string profession;
         private string profileImage;
         private Gender gender;
-      
-        private City placeOfBirth;
-        private Address currResidence;
-        private InsurancePolicy insurancePolicy;
+
+        public int PlaceOfBirthId { get; set; }
+        public virtual City PlaceOfBirth { get; set; }
+
+        public int CurrResidenceId { get; set; }
+        public virtual Address CurrResidence { get; set; }
+
+        public string InsurancePolicyId { get; set; }
+        public virtual InsurancePolicy InsurancePolicy { get; set; }
 
         public RegisteredUser() { }
 
@@ -79,9 +84,7 @@ namespace Model.Users
         public EducationLevel EducationLevel { get => educationLevel; set => educationLevel = value; }
         public string Profession { get => profession; set => profession = value; }
         public string ProfileImage { get => profileImage; set => profileImage = value; }
-        public City PlaceOfBirth { get => placeOfBirth; set => placeOfBirth = value; }
-        public Address CurrResidence { get => currResidence; set => currResidence = value; }
-        public InsurancePolicy InsurancePolicy { get => insurancePolicy; set => insurancePolicy = value; }
+        
         public Gender Gender { get => gender; set => gender = value; }
 
         public string GetId()

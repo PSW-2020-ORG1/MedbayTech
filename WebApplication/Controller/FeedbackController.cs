@@ -23,9 +23,14 @@ namespace WebApplication
         [HttpGet]       // GET /api/feedback
         public IActionResult Get()
         {
-            List<Feedback> result = new List<Feedback>();
-            mySqlContext.Feedbacks.ToList().ForEach(feedback  => result.Add(feedback));
-            return Ok(result);
+            RegisteredUser registeredUser =
+                mySqlContext.RegisteredUsers.FirstOrDefault(registeredUser =>
+                    registeredUser.Id.Equals("2406978890045"));
+
+            City city = registeredUser.CurrResidence.City;
+
+            Feedback feedback = mySqlContext.Feedbacks.FirstOrDefault();
+            return Ok(feedback);
         }
     }
 

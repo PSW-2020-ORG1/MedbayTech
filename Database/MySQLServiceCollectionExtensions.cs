@@ -16,7 +16,7 @@ namespace Database
             IConfiguration configuration)
         {
             services.AddDbContext<MySqlContext>(options =>
-                options.UseMySql(configuration.GetConnectionString("MySqlConnectionString")));
+                options.UseMySql(configuration.GetConnectionString("MySqlConnectionString")).UseLazyLoadingProxies());
 
             return services;
         }

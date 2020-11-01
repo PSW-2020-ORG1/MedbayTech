@@ -9,12 +9,15 @@ namespace Model.Users
 {
    public class Address
    {
-        int id;
-        private string street;
-        private int number;
-        private int apartment;
-        private int floor;
-        private City city;
+       public int Id { get; set; } 
+       public string Street { get; set; }
+        public int Number { get; set; }
+        public int Apartment { get; set; }
+
+        public int Floor { get; set; }
+
+        public int CityId { get; set; }
+        public virtual City City { get; set; }
 
 
         public Address() { }
@@ -33,11 +36,6 @@ namespace Model.Users
         }
 
             
-        public string Street { get => street; set => street = value; }
-        public int Number { get => number; set => number = value; }
-        public int Apartment { get => apartment; set => apartment = value; }
-        public int Floor { get => floor; set => floor = value; }
-        public City City { get => city; set => city = value; }
-        public int Id { get => id; set => id = value; }
+     
     }
 }

@@ -9,15 +9,15 @@ namespace Model.Users
 {
    public class Feedback
    {
-        private int id;
-        private DateTime date;
-        private string additionalNotes;
-       // private Grade softwareGrade;
-        private Grade everythingInGoodPlace;
-        private Boolean approved;
-        private Boolean anonymous;
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public string AdditionalNotes { get; set; }
+        public Boolean Approved { get; set; }
+        private Boolean Anonymous { get; set; }
 
-       public RegisteredUser registeredUser;
+        public string RegisteredUserId { get; set; }
+
+       public virtual RegisteredUser RegisteredUser { get; set; }
 
         public Feedback() { }
 
@@ -26,25 +26,16 @@ namespace Model.Users
             Id = id;
         }
 
-        public Feedback(DateTime date, string additionalNotes, Grade everythingInGoodPlace, Boolean anonymous, RegisteredUser user) // Grade softwareGrade )
+        public Feedback(DateTime date, string additionalNotes, Grade everythingInGoodPlace, Boolean anonymous, RegisteredUser user) 
         {
             Date = date;
             AdditionalNotes = additionalNotes;
-         //   SoftwareGrade = softwareGrade;
-            EverythingInGoodPlace = everythingInGoodPlace;
             RegisteredUser = user;
             Anonymous = anonymous;
             Approved = false;
         }
 
-        public DateTime Date { get => date; set => date = value; }
-        public string AdditionalNotes { get => additionalNotes; set => additionalNotes = value; }
-     //   public Grade SoftwareGrade { get => softwareGrade; set => softwareGrade = value; }
-        public Grade EverythingInGoodPlace { get => everythingInGoodPlace; set => everythingInGoodPlace = value; }
-        public RegisteredUser RegisteredUser { get => registeredUser; set => registeredUser = value; }
-        public int Id { get => id; set => id = value; }
-        public Boolean Anonymous { get => anonymous; set => anonymous = value; }
-        public Boolean Approved { get => approved; set => approved = value; }
+        
 
 
     }
