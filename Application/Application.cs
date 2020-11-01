@@ -125,7 +125,7 @@ namespace SimsProjekat
             var articleRepository = new ArticleRepository(userRepository, new Stream<Article>(ARTICLE_FILE));
             var questionRepository = new QuestionRepository(userRepository, new Stream<Question>(QUESTIONS_FILE));
             var doctorReviewsRepository = new DoctorReviewRepository(userRepository, new Stream<DoctorReview>(DOCTOR_REVIEWS_FILE));
-            var feedbackRepository = new FeedbackRepository(userRepository, new Stream<Feedback>(FEEDBACK_FILE));
+ //           var feedbackRepository = new FeedbackRepository(userRepository, new Stream<Feedback>(FEEDBACK_FILE));
             var surveyRepository = new SurveyRepository(userRepository, new Stream<Survey>(SURVEY_FILE));
             var appointmentsRepository = new AppointmentRepository(userRepository, medicalRecordRepository, roomRepository, new Stream<Appointment>(APPOINTMENTS_FILE));
             var workDayRepository = new WorkDayRepository(userRepository, new Stream<WorkDay>(WORK_DAY_FILE));
@@ -158,7 +158,7 @@ namespace SimsProjekat
             var articleService = new ArticleService(articleRepository);
             var questionService = new QuestionService(questionRepository, notificationService);
             var doctorsReviewService = new DoctorReviewService(doctorReviewsRepository);
-            var feedbackService = new FeedbackService(feedbackRepository);
+     //       var feedbackService = new FeedbackService(feedbackRepository);
             var surveyService = new SurveyService(surveyRepository);
             var userService = new UserService(userRepository, medicalRecordService);
             var workDayService = new WorkDayService(workDayRepository, MAX_HOURS_PER_WEEK);
@@ -199,7 +199,7 @@ namespace SimsProjekat
             questionController = new QuestionController(questionService);
             doctorReviewController = new DoctorReviewController(doctorsReviewService);
             surveyController = new SurveyController(surveyService);
-            feedbackController = new FeedbackController(feedbackService);
+ //           feedbackController = new FeedbackController(feedbackService);
             workDayController = new WorkDayController(workDayService);
             reportController = new ReportController(reportsService);
             validationMedicationController = new ValidationMedicationController(validationMedicationService);

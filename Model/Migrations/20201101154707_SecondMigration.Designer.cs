@@ -9,8 +9,8 @@ using Model;
 namespace Model.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201031152729_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20201101154707_SecondMigration")]
+    partial class SecondMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,7 +36,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Treatment");
+                    b.ToTable("Treatments");
 
                     b.HasData(
                         new
@@ -45,6 +45,35 @@ namespace Model.Migrations
                             AdditionalNotes = "dada",
                             Date = new DateTime(2020, 10, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Type = 1
+                        });
+                });
+
+            modelBuilder.Entity("Model.Users.Feedback", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("AdditionalNotes")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("EverythingInGoodPlace")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Feedbacks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AdditionalNotes = "dada",
+                            Date = new DateTime(2020, 10, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EverythingInGoodPlace = 2
                         });
                 });
 #pragma warning restore 612, 618

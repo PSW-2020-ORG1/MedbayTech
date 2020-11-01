@@ -12,10 +12,10 @@ namespace Model.Users
         private int id;
         private DateTime date;
         private string additionalNotes;
-        private Grade softwareGrade;
+       // private Grade softwareGrade;
         private Grade everythingInGoodPlace;
 
-        public RegisteredUser registeredUser;
+       // public RegisteredUser registeredUser;
 
         public Feedback() { }
 
@@ -24,20 +24,20 @@ namespace Model.Users
             Id = id;
         }
 
-        public Feedback(DateTime date, string additionalNotes, Grade softwareGrade, Grade everythingInGoodPlace, RegisteredUser user)
+        public Feedback(DateTime date, string additionalNotes, Grade everythingInGoodPlace) // Grade softwareGrade   RegisteredUser user)
         {
             Date = date;
             AdditionalNotes = additionalNotes;
-            SoftwareGrade = softwareGrade;
+         //   SoftwareGrade = softwareGrade;
             EverythingInGoodPlace = everythingInGoodPlace;
-            RegisteredUser = user;
+         //   RegisteredUser = user;
         }
 
         public DateTime Date { get => date; set => date = value; }
         public string AdditionalNotes { get => additionalNotes; set => additionalNotes = value; }
-        public Grade SoftwareGrade { get => softwareGrade; set => softwareGrade = value; }
+     //   public Grade SoftwareGrade { get => softwareGrade; set => softwareGrade = value; }
         public Grade EverythingInGoodPlace { get => everythingInGoodPlace; set => everythingInGoodPlace = value; }
-        public RegisteredUser RegisteredUser { get => registeredUser; set => registeredUser = value; }
+     //   public RegisteredUser RegisteredUser { get => registeredUser; set => registeredUser = value; }
         public int Id { get => id; set => id = value; }
 
     }
