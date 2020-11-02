@@ -21,6 +21,9 @@
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
+            <Rectangle Stroke="Black" Fill="Beige" Height="245" Width="230" Canvas.Left="460" Canvas.Top="125"></Rectangle>
+            <Rectangle Stroke="Black" Fill="Beige" Height="165" Width="190" Canvas.Left="270" Canvas.Top="125"></Rectangle>
+            <Rectangle Stroke="Black" Fill="Beige" Height="165" Width="206" Canvas.Left="65" Canvas.Top="125"/>
         </Canvas>
     </Grid>
 </Page>

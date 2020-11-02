@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:GraphicEditor"
         mc:Ignorable="d"
               Title="Hospital floor plan" Height="720" Width="1024" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" BorderBrush="#FFC13939">
-    
     <Window.Triggers>
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>
