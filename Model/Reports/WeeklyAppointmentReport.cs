@@ -11,16 +11,15 @@ namespace Model.Reports
 {
    public class WeeklyAppointmentReport : Report
    {
-        private DateTime startWeekDay;
-        private List<Appointment> appointments;
-
-        public WeeklyAppointmentReport(DateTime startDate, List<Appointment> appointments, DateTime date, string content) : base(date, content)
+        public DateTime StartWeekDay { get; set; }
+        public virtual List<Appointment> Appointments { get; set; }
+        public WeeklyAppointmentReport() { }
+        public WeeklyAppointmentReport(DateTime startWeekDay, List<Appointment> appointments, DateTime date, string content) : base(date, content)
         {
-            StartWeekDay = startDate;
+            StartWeekDay = startWeekDay;
             Appointments = appointments;
         }
 
-        public DateTime StartWeekDay { get => startWeekDay; set => startWeekDay = value; }
-        public List<Appointment> Appointments { get => appointments; set => appointments = value; }
+       
     }
 }
