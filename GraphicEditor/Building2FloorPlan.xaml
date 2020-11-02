@@ -11,7 +11,7 @@
     <Grid>
         <Canvas x:Name="canvas"  Margin="0,0,0,0" Background="MintCream">
             <Label Content="H2" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="324" Canvas.Top="36"/>
-            <Rectangle Fill="White" Stroke="Black" StrokeThickness="3" Height="766" Width="200" Canvas.Left="262" Canvas.Top="-135" RenderTransformOrigin="0.5,0.5">
+            <Rectangle Fill="White" Stroke="Black" StrokeThickness="3" Height="758" Width="200" Canvas.Left="259" Canvas.Top="-131" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
@@ -25,16 +25,16 @@
             <Rectangle Fill="White" Height="100" Width="100" Canvas.Left="61" Stroke="Black" StrokeThickness="3" Canvas.Top="123" />
             <Rectangle Fill="White" Height="100" Width="100" Canvas.Left="161" Stroke="Black" StrokeThickness="3" Canvas.Top="271" />
             <Rectangle Fill="White" Height="100" Width="100" Canvas.Left="261" Stroke="Black" StrokeThickness="3" Canvas.Top="271" />
-            <Rectangle Fill="White" Height="100" Width="100" Canvas.Left="563" Stroke="Black" StrokeThickness="3" Canvas.Top="124" />
-            <Rectangle Fill="White" Height="100" Width="100" Canvas.Left="563" Stroke="Black" StrokeThickness="3" Canvas.Top="273" />
-            <Rectangle Fill="White" Height="100" Width="100" Canvas.Left="463" Stroke="Black" StrokeThickness="3" Canvas.Top="124" />
-            <Rectangle Fill="White" Height="100" Width="100" Canvas.Left="463" Stroke="Black" StrokeThickness="3" Canvas.Top="273" />
+            <Rectangle Fill="White" Height="100" Width="100" Canvas.Left="556" Stroke="Black" StrokeThickness="3" Canvas.Top="124" />
+            <Rectangle Fill="White" Height="100" Width="100" Canvas.Left="556" Stroke="Black" StrokeThickness="3" Canvas.Top="273" />
+            <Rectangle Fill="White" Height="100" Width="100" Canvas.Left="456" Stroke="Black" StrokeThickness="3" Canvas.Top="124" />
+            <Rectangle Fill="White" Height="100" Width="100" Canvas.Left="456" Stroke="Black" StrokeThickness="3" Canvas.Top="273" />
             <Rectangle Fill="White" Height="100" Width="100" Canvas.Left="261" Stroke="Black" StrokeThickness="3" Canvas.Top="123" />
             <Rectangle Fill="White" Height="100" Width="100" Canvas.Left="161" Stroke="Black" StrokeThickness="3" Canvas.Top="124" />
-            <Rectangle Fill="White" Height="50" Width="50" Canvas.Left="415" Stroke="Black" StrokeThickness="3" Canvas.Top="273" />
-            <Rectangle Fill="White" Height="50" Width="50" Canvas.Left="415" Stroke="Black" StrokeThickness="3" Canvas.Top="322" />
-            <Rectangle Fill="White" Height="50" Width="50" Canvas.Left="413" Stroke="Black" StrokeThickness="3" Canvas.Top="124" />
-            <Rectangle Fill="White" Height="50" Width="50" Canvas.Left="413" Stroke="Black" StrokeThickness="3" Canvas.Top="173" />
+            <Rectangle Fill="White" Height="50" Width="50" Canvas.Left="408" Stroke="Black" StrokeThickness="3" Canvas.Top="273" />
+            <Rectangle Fill="White" Height="50" Width="50" Canvas.Left="408" Stroke="Black" StrokeThickness="3" Canvas.Top="322" />
+            <Rectangle Fill="White" Height="50" Width="50" Canvas.Left="406" Stroke="Black" StrokeThickness="3" Canvas.Top="124" />
+            <Rectangle Fill="White" Height="50" Width="50" Canvas.Left="406" Stroke="Black" StrokeThickness="3" Canvas.Top="173" />
         </Canvas>
     </Grid>
 </Page>
