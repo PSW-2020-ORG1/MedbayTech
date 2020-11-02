@@ -11,7 +11,6 @@ namespace Model.ExaminationSurgery
 {
    public class Prescription : Treatment
    {
-        public int Id { get; set; }
         public bool Reserved { get; set; }
         public DateTime ReservedFrom { get; set; }
         public DateTime ReservedTo { get; set; }
