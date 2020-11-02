@@ -10,6 +10,8 @@ namespace Model
 {
     public class MySqlContext : DbContext
     {
+        public DbSet<LabTesting> LabTestings { get; set; }
+        public DbSet<LabTestType> LabTestTypes { get; set; }
         private DbSet<Treatment> Treatments { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Address> Addresses { get; set; }
@@ -21,7 +23,12 @@ namespace Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<LabTesting>().HasData(
+                new LabTesting{Id=1, LabTestTypes = new List<LabTestType>()}
+                );
+            modelBuilder.Entity<LabTestType>().HasData(
+                new LabTestType {Id=1,TestName = "LDL", LabTestingId = 1}
+                );
             modelBuilder.Entity<City>().HasData(
                 
                 new City {Id = 21000, Name = "Novi Sad", StateId = 1},

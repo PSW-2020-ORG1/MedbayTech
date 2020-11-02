@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Model;
 
 namespace Model.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    partial class MySqlContextModelSnapshot : ModelSnapshot
+    [Migration("20201102223054_trecaMigracija")]
+    partial class trecaMigracija
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,15 +25,10 @@ namespace Model.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("LabTestingId")
-                        .HasColumnType("int");
-
                     b.Property<string>("TestName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LabTestingId");
 
                     b.ToTable("LabTestTypes");
 
@@ -39,8 +36,7 @@ namespace Model.Migrations
                         new
                         {
                             Id = 1,
-                            LabTestingId = 1,
-                            TestName = "LDL"
+                            TestName = "LDL i HDL"
                         });
                 });
 
@@ -56,18 +52,12 @@ namespace Model.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("Treatments");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Treatment");
                 });
 
             modelBuilder.Entity("Model.Users.Address", b =>
@@ -319,30 +309,6 @@ namespace Model.Migrations
                             Id = 1L,
                             Name = "Serbia"
                         });
-                });
-
-            modelBuilder.Entity("Model.ExaminationSurgery.LabTesting", b =>
-                {
-                    b.HasBaseType("Model.ExaminationSurgery.Treatment");
-
-                    b.HasDiscriminator().HasValue("LabTesting");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Type = 0
-                        });
-                });
-
-            modelBuilder.Entity("Model.ExaminationSurgery.LabTestType", b =>
-                {
-                    b.HasOne("Model.ExaminationSurgery.LabTesting", "LabTesting")
-                        .WithMany("LabTestTypes")
-                        .HasForeignKey("LabTestingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Model.Users.Address", b =>

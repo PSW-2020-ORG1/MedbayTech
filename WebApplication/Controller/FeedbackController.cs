@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
+using Model.ExaminationSurgery;
 using Model.Users;
 
 namespace WebApplication
@@ -30,6 +31,8 @@ namespace WebApplication
             City city = registeredUser.CurrResidence.City;
 
             Feedback feedback = mySqlContext.Feedbacks.FirstOrDefault();
+            LabTesting labTesting = mySqlContext.LabTestings.FirstOrDefault();
+
             return Ok(feedback);
         }
     }

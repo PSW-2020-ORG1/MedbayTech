@@ -11,12 +11,12 @@ namespace Model.ExaminationSurgery
 {
    public class Prescription : Treatment
    {
-
+        public int Id { get; set; }
         public bool Reserved { get; set; }
         public DateTime ReservedFrom { get; set; }
         public DateTime ReservedTo { get; set; }
         public int HourlyIntake { get; set; }
-        public List<Medication> Medications { get; set; }
+        public virtual List<Medication> Medications { get; set; }
 
         public Prescription()
         {

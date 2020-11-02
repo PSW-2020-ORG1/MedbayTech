@@ -10,10 +10,12 @@ namespace Model.ExaminationSurgery
 {
    public class HospitalTreatment : Treatment
    {
-        private DateTime startDate;
-        private DateTime endDate;
-        private bool approved = false;
-        private Department department;
+        public int Id { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public bool Approved { get; set; } = false;
+        public int DepartmentId { get; set; }
+        public virtual Department Department{ get; set; }
 
         public HospitalTreatment(string additionalNotes, DateTime start, DateTime end, Department department) 
             : base(start, additionalNotes, TreatmentType.hospitalTreatment)
@@ -27,9 +29,5 @@ namespace Model.ExaminationSurgery
 
         public HospitalTreatment() { }
 
-        public DateTime StartDate { get => startDate; set => startDate = value; }
-        public DateTime EndDate { get => endDate; set => endDate = value; }
-        public bool Approved { get => approved; set => approved = value; }
-        public Department Department { get => department; set => department = value; }
     }
 }
