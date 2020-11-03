@@ -9,19 +9,21 @@ namespace Model.MedicalRecord
 {
     public class LabResults
     {
+        private int id;
         private string resultType;
         private double value;
         private double maxRefValue;
         private double minRefValue;
 
+        public LabResults() {}
         public LabResults(string resultType, double value, double refValue, double minRef)
-        {
+        { 
             ResultType = resultType;
             Value = value;
             MaxRefValue = refValue;
             MinRefValue = minRef;
         }
-
+        public int Id { get => id; set => id = value; }
         public string ResultType { get => resultType; set => resultType = value; }
         public double Value { get => value; set => this.value = value; }
         public double MaxRefValue { get => maxRefValue; set => maxRefValue = value; }

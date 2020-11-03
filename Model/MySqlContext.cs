@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Model.ExaminationSurgery;
+using Model.MedicalRecord;
 using Model.Users;
 using ZdravoKorporacija.Model.Users;
 
@@ -17,7 +18,17 @@ namespace Model
         public DbSet<State> States { get; set; }
         public DbSet<RegisteredUser> RegisteredUsers { get; set; }
         public DbSet<InsurancePolicy> InsurancePolicies { get; set; }
+        public DbSet<Symptoms> Symptoms { get; set; }
+        public DbSet<Diagnosis> Diagnoses { get; set; }
+        public DbSet<FamilyIllnessHistory> FamilyIllnessHistories { get; set; }
+        public DbSet<LabResults> LabResults { get; set; }
+        public DbSet<ListOfResults> ListOfResults { get; set; }
+        public DbSet<Model.MedicalRecord.MedicalRecord> MedicalRecords { get; set; }
+        public DbSet<Therapy> Therapies { get; set; }
+        public DbSet<Vaccines> Vaccines { get; set; }
+
         public MySqlContext(DbContextOptions<MySqlContext> options) : base(options) {}
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,6 +51,22 @@ namespace Model
             modelBuilder.Entity<InsurancePolicy>().HasData(
                 new InsurancePolicy {Company = "Dunav osiguranje d.o.o", Id = "policy1", PolicyStartDate = new DateTime(2020, 11, 1), PolicyEndDate = new DateTime(2022, 11, 1)}
             );
+
+            modelBuilder.Entity<Symptoms>().HasData(
+                new Symptoms { Id = 1, Name = "Dunav osiguranje d.o.o" }
+            );
+
+            modelBuilder.Entity<Symptoms>().HasData(
+                new Symptoms { Id = 2, Name = "Dunav  d.o.o"}
+            );
+
+           
+
+            modelBuilder.Entity<Diagnosis>().HasData(
+                new Diagnosis { Id = 1, Name = "Dunav osiguranje d.o.o", Symptoms = new List<Symptoms>()}
+            );
+
+          
 
             modelBuilder.Entity<RegisteredUser>().HasData(
                 new RegisteredUser

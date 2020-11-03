@@ -9,13 +9,17 @@ namespace Model.MedicalRecord
 {
    public class Symptoms
    {
-        private string name;
+        public int Id { get; set; }
+        public string Name { get; set; }
 
+        public Symptoms() {
+            
+        }
         public Symptoms(string name)
         {
             this.Name = name;
         }
 
-        public string Name { get => name; set => name = value; }
+        
     }
 }

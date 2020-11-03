@@ -65,7 +65,7 @@ namespace Repository.ExaminationRepository
             }
             return allExaminations;
         }
-        public IEnumerable<ExaminationSurgery> GetAllByRecord(MedicalRecord record) => stream.GetAll().Where(item => item.MedicalRecord.IdRecord.Equals(record.IdRecord)).ToList();
+        public IEnumerable<ExaminationSurgery> GetAllByRecord(MedicalRecord record) => stream.GetAll().Where(item => item.MedicalRecord.Id.Equals(record.Id)).ToList();
  
         public new ExaminationSurgery GetObject(int id)
         {
@@ -96,7 +96,7 @@ namespace Repository.ExaminationRepository
 
         private void SetMedicalRecord(ExaminationSurgery entity)
         {
-            entity.MedicalRecord = new MedicalRecord(entity.MedicalRecord.IdRecord);
+            entity.MedicalRecord = new MedicalRecord(entity.MedicalRecord.Id);
         }
 
         private void SetTreatmentIDs(ExaminationSurgery entity)
@@ -132,7 +132,7 @@ namespace Repository.ExaminationRepository
 
         private void CompleteMedicalRecord(ExaminationSurgery examination)
         {
-            examination.MedicalRecord = medicalRecordRepository.GetObject(examination.MedicalRecord.IdRecord);
+            examination.MedicalRecord = medicalRecordRepository.GetObject(examination.MedicalRecord.Id);
         }
 
         private void CompleteTreatments(ExaminationSurgery examination)

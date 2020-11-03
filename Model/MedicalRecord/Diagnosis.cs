@@ -11,39 +11,38 @@ namespace Model.MedicalRecord
 {
    public class Diagnosis : IIdentifiable<int>
    {
-        private string name;
-        private int code;
-        private List<Symptoms> symptoms;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        
+        public virtual List<Symptoms> Symptoms {get; set; }
 
+       
         public Diagnosis() 
         {
-            Symptoms = new List<Symptoms>();
+            
         }
 
         public Diagnosis(int code) 
         {
-            Code = code;
+            Id = code;
         }
 
         public Diagnosis(string name, int code, List<Symptoms> symptoms)
         {
             Name = name;
-            Code = code;
+            Id = code;
             Symptoms = symptoms;
         }
 
-        public string Name { get => name; set => name = value; }
-        public int Code { get => code; set => code = value; }
-        public List<Symptoms> Symptoms { get => symptoms; set => symptoms = value; }
-
+      
         public int GetId()
         {
-            return Code;
+            return Id;
         }
 
         public void SetId(int id)
         {
-            Code = id;
+            Id = id;
         }
     }
 }

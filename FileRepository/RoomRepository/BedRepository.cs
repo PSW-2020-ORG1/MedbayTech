@@ -78,7 +78,7 @@ namespace Repository.RoomRepository
 
             foreach (Occupation occupation in entity.Occupations)
             {
-                occupation.Patient = medicalRecordRepository.GetObject(occupation.Patient.IdRecord);
+                occupation.Patient = medicalRecordRepository.GetObject(occupation.Patient.Id);
             }
         }
     }

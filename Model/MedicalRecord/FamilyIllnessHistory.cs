@@ -10,16 +10,17 @@ namespace Model.MedicalRecord
 {
    public class FamilyIllnessHistory
    {
-        private Relative relativeMember;
-        private List<Diagnosis> diagnosis;
+        public int Id { get; set; }
+        public Relative RelativeMember { get; set; }
+        public virtual List<Diagnosis> Diagnosis { get; set; }
 
+        public FamilyIllnessHistory() {}
         public FamilyIllnessHistory(Relative relative)
         {
             RelativeMember = relative;
             Diagnosis = new List<Diagnosis>();
         }
 
-        public Relative RelativeMember { get => relativeMember; set => relativeMember = value; }
-        public List<Diagnosis> Diagnosis { get => diagnosis; set => diagnosis = value; }
+       
     }
 }

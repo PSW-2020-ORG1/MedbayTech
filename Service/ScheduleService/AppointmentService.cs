@@ -74,7 +74,7 @@ namespace Service.ScheduleService
         public Appointment GetCurrentAppointment(Doctor doctor, MedicalRecord medicalRecord)
         {
             var doctorsDay = GetScheduledByDoctorForOneDay(doctor, DateTime.Today);
-            return doctorsDay.SingleOrDefault(entity => entity.MedicalRecord.IdRecord == medicalRecord.IdRecord);
+            return doctorsDay.SingleOrDefault(entity => entity.MedicalRecord.Id == medicalRecord.Id);
         }
         public Appointment ChangeDoctorForAppointment(Doctor doctor, Appointment appointment)
         {
