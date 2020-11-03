@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace Database
 {
@@ -9,7 +10,7 @@ namespace Database
         private static Connection instance = null;
         private Connection() {}
 
-
+        
         
 
     }

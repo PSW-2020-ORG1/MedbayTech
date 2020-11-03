@@ -38,9 +38,15 @@ namespace Model
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             /*This is not good solution, must be refactored*/
-            optionsBuilder.UseMySql(@"server=" + mySqlHostAddress + ";port=" + mySqlConnectionPort + ";database=" + mySqlDatabaseName + ";uid=" + mySqlConnectionUid + ";password=" + mySqlConnectionPassword);
+            //optionsBuilder.UseMySql(@"server=" + mySqlHostAddress + ";port=" + mySqlConnectionPort + ";database=" + mySqlDatabaseName + ";uid=" + mySqlConnectionUid + ";password=" + mySqlConnectionPassword);
+            //optionsBuilder.UseLazyLoadingProxies(true);
 
-            optionsBuilder.UseLazyLoadingProxies(true);
+            //Refactored previous solution, note tested for multiple projects
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
+
+            optionsBuilder.UseMySql(configuration.GetConnectionString("MySqlConnectionString")).UseLazyLoadingProxies();
+            
 
            
 
