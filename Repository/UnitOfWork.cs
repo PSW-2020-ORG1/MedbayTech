@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Model;
-using Repository.Interfaces.General;
+using Repository.GeneralRepository;
 
 namespace Repository
 {
@@ -21,7 +21,7 @@ namespace Repository
                 if (this.feedbackRepository == null)
                 {
                     this.feedbackRepository = new FeedbackRepository(context);
-                    ;
+                    
 
                 }
 
@@ -29,14 +29,33 @@ namespace Repository
             }
         }
 
+        public void Save()
+        {
+            context.SaveChanges();
+        }
 
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+
+            this.disposed = true;
+        }
 
 
 
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

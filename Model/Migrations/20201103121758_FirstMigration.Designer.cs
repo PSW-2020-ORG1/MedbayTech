@@ -9,8 +9,8 @@ using Model;
 namespace Model.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201101212750_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20201103121758_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

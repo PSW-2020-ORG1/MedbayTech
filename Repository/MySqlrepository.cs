@@ -29,10 +29,9 @@ namespace Repository
                 dbSet.Add(entity);
                 return entity;
             }
-            else
-            {
-                return null;
-            }
+           
+            return null;
+            
         }
 
         public bool Delete(T entity)
@@ -51,14 +50,21 @@ namespace Repository
 
         }
 
+       
+
         public bool ExistsInSystem(ID id)
         {
-            return dbSet.Any(entity => entity.GetId().CompareTo(id) == 0);
+            if (dbSet.Find(id) == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public IEnumerable<T> GetAll()
         {
-            return dbSet.ToList();
+            return dbSet;
         }
 
         public T GetObject(ID id)

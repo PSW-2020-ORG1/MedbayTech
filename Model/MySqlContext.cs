@@ -1,16 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Model.ExaminationSurgery;
 using Model.Users;
+using MySql.Data.MySqlClient;
 using ZdravoKorporacija.Model.Users;
 
 namespace Model
 {
     public class MySqlContext : DbContext
     {
-        
+
+        private int mySqlConnectionPort = 3306;
+        private string mySqlConnectionUid = "root";
+        private string mySqlConnectionPassword = "root";
+        private string mySqlDatabaseName = "newdb";
+        private string mySqlHostAddress = "localhost";
+
+
         private DbSet<Treatment> Treatments { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Address> Addresses { get; set; }
@@ -19,15 +29,20 @@ namespace Model
         public DbSet<RegisteredUser> RegisteredUsers { get; set; }
         public DbSet<InsurancePolicy> InsurancePolicies { get; set; }
 
-        public MySqlContext() : base()
+        public MySqlContext(DbContextOptions<MySqlContext> options) : base(options)
         {
             
         }
 
+        public MySqlContext() {}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql(@"server=localhost;port=" + 3306 + ";database=newdb;uid=root;password=root");
+            /*This is not good solution, must be refactored*/
+            optionsBuilder.UseMySql(@"server=" + mySqlHostAddress + ";port=" + mySqlConnectionPort + ";database=" + mySqlDatabaseName + ";uid=" + mySqlConnectionUid + ";password=" + mySqlConnectionPassword);
+
             optionsBuilder.UseLazyLoadingProxies(true);
+
+           
 
         }
 

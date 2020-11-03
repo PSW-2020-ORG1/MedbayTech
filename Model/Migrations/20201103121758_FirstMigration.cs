@@ -143,12 +143,10 @@ namespace Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    RegisteredUserId = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     AdditionalNotes = table.Column<string>(nullable: true),
-                    EverythingInGoodPlace = table.Column<int>(nullable: false),
-                    Anonymous = table.Column<bool>(nullable: false),
-                    Approved = table.Column<bool>(nullable: false)
+                    Approved = table.Column<bool>(nullable: false),
+                    RegisteredUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -195,6 +193,11 @@ namespace Model.Migrations
                 table: "RegisteredUsers",
                 columns: new[] { "Id", "CurrResidenceId", "DateOfBirth", "DateOfCreation", "EducationLevel", "Email", "Gender", "InsurancePolicyId", "Name", "Password", "Phone", "PlaceOfBirthId", "Profession", "ProfileImage", "Surname", "Username" },
                 values: new object[] { "2406978890045", 1, new DateTime(1978, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "marko@gmail.com", 0, "policy1", "Marko", "marko1978", "065/123-4554", 11000, "vodoinstalater", ".", "Markovic", "markic" });
+
+            migrationBuilder.InsertData(
+                table: "Feedbacks",
+                columns: new[] { "Id", "AdditionalNotes", "Approved", "Date", "RegisteredUserId" },
+                values: new object[] { 1, "Sve je super!", true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2406978890045" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_CityId",
