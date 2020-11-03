@@ -10,11 +10,15 @@ namespace Model.Medications
    public class Allergens
    {
         private string allergen;
+        private int id;
+
+        public Allergens() { }
         public Allergens(string allergen)
         {
             this.Allergen = allergen;
         }
 
         public string Allergen { get => allergen; set => allergen = value; }
+        public int Id { get; set; }
     }
 }

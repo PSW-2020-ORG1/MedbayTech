@@ -8,11 +8,11 @@ using System;
 
 namespace Model.Rooms
 {
-   public enum RoomType
-   {
-      Or,
-      Examr,
-      Patientroom,
-      storage
-   }
+    public enum RoomType
+    {
+        Or,
+        Examr,
+        Patientroom,
+        storage
+    }
 }

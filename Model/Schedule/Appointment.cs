@@ -12,7 +12,7 @@ namespace Model.Schedule
 {
    public class Appointment :  IIdentifiable<int>
    {
-        private int idAppointment;
+        private int id;
         private DateTime startTime;
         private DateTime endTime;
         private TypeOfAppointment typeOfAppointment;
@@ -23,7 +23,10 @@ namespace Model.Schedule
         private Room room;
         private MedicalRecord.MedicalRecord medicalRecord;
         private Doctor doctor;
-
+        private string doctorId;
+        private int roomId;
+        private int medicalRecordId;
+        
         public Appointment() { }
 
         public Appointment(DateTime startTime, DateTime endTime, Doctor doctor, TypeOfAppointment type)
@@ -38,7 +41,7 @@ namespace Model.Schedule
 
         public Appointment(int id)
         {
-            IdAppointment = id;
+            Id = id;
         }
 
         public Appointment(DateTime startTime, DateTime endTime, TypeOfAppointment type, string shortDescription,
@@ -56,17 +59,20 @@ namespace Model.Schedule
             Doctor = doctor;
         }
 
-        public int IdAppointment { get => idAppointment; set => idAppointment = value; }
+        public int Id { get => id; set => id = value; }
         public TypeOfAppointment TypeOfAppointment { get => typeOfAppointment; set => typeOfAppointment = value; }
         public string ShortDescription { get => shortDescription; set => shortDescription = value; }
         public bool Urgent { get => urgent; set => urgent = value; }
         public bool Deleted { get => deleted; set => deleted = value; }
-        public Room Room { get => room; set => room = value; }
-        public MedicalRecord.MedicalRecord MedicalRecord { get => medicalRecord; set => medicalRecord = value; }
-        public Doctor Doctor { get => doctor; set => doctor = value; }
+        public virtual Room Room { get => room; set => room = value; }
+        public virtual MedicalRecord.MedicalRecord MedicalRecord { get => medicalRecord; set => medicalRecord = value; }
+        public virtual Doctor Doctor { get => doctor; set => doctor = value; }
         public DateTime StartTime { get => startTime; set => startTime = value; }
         public DateTime EndTime { get => endTime; set => endTime = value; }
         public bool Finished { get => finished; set => finished = value; }
+        public string DoctorId { get => doctorId; set => doctorId = value; }
+        public int RoomId { get => roomId; set => roomId = value; }
+        public int MedicalRecordId { get => medicalRecordId; set => medicalRecordId = value; }
 
         public override int GetHashCode()
         {
@@ -76,12 +82,12 @@ namespace Model.Schedule
 
         public int GetId()
         {
-            return IdAppointment;
+            return Id;
         }
 
         public void SetId(int id)
         {
-            IdAppointment = id;
+            Id = id;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Model.ExaminationSurgery;
+using Model.Medications;
 using Model.Users;
 using ZdravoKorporacija.Model.Users;
 
@@ -19,10 +20,20 @@ namespace Model
         public DbSet<State> States { get; set; }
         public DbSet<RegisteredUser> RegisteredUsers { get; set; }
         public DbSet<InsurancePolicy> InsurancePolicies { get; set; }
+        public DbSet<Allergens> Allergens { get; set; }
+        public DbSet<MedicationIngredient> Ingredients { get; set; }
         public MySqlContext(DbContextOptions<MySqlContext> options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<MedicationIngredient>().HasData(
+                new MedicationIngredient { Name = "Amoksicilin", Id = 1 },
+                new MedicationIngredient { Name = "Kikiriki", Id = 2}
+                );
+            modelBuilder.Entity<Allergens>().HasData(
+                new Allergens { Allergen = "Amoksicilin", Id = 1 }
+                );
+
             modelBuilder.Entity<LabTesting>().HasData(
                 new LabTesting{Id=1, LabTestTypes = new List<LabTestType>()}
                 );

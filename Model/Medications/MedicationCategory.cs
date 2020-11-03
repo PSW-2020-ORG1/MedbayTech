@@ -12,6 +12,8 @@ namespace Model.Medications
    {
         private string categoryName;
         private Specialization specialization;
+        private int id;
+        private int specializationId;
 
         public MedicationCategory(string categoryName, Specialization specialization)
         {
@@ -21,5 +23,7 @@ namespace Model.Medications
 
         public string CategoryName { get => categoryName; set => categoryName = value; }
         public Specialization Specialization { get => specialization; set => specialization = value; }
+        public int Id { get => id; set => id = value; }
+        public int SpecializationId { get => specializationId; set => SpecializationId = value; }
     }
 }

@@ -7,15 +7,18 @@ using System;
 
 namespace Model.Rooms
 {
-   public class EquipmentType
-   {
-        private string name;
-   
-        public EquipmentType(string name)
+    public class EquipmentType
+    {
+        public string Name { get; set; }
+        public int Id { get; set; }
+
+        public EquipmentType ( string name )
         {
-            this.name = name;
+            this.Name = name;
         }
 
-        public string Name { get => name; set => name = value; }
-   }
+        public EquipmentType ( )
+        {
+        }
+    }
 }

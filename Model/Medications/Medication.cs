@@ -28,11 +28,11 @@ namespace Model.Medications
         public MedStatus Status { get => status; set => status = value; }
         public string Company { get => company; set => company = value; }
         public int Quantity { get => quantity; set => quantity = value; }
-        public List<DosageOfIngredient> MedicationContent { get => medicationContent; set => medicationContent = value; }
-        public List<MedicationCategory> MedicationCategory { get => medicationCategory; set => medicationCategory = value; }
-        public List<Allergens> Allergens { get => allergens; set => allergens = value; }
-        public List<Medication> AlternativeMedication { get => alternativeMedication; set => alternativeMedication = value; }
-        public List<SideEffect> SideEffects { get => sideEffects; set => sideEffects = value; }
+        public virtual List<DosageOfIngredient> MedicationContent { get => medicationContent; set => medicationContent = value; }
+        public virtual List<MedicationCategory> MedicationCategory { get => medicationCategory; set => medicationCategory = value; }
+        public virtual List<Allergens> Allergens { get => allergens; set => allergens = value; }
+        public virtual List<Medication> AlternativeMedication { get => alternativeMedication; set => alternativeMedication = value; }
+        public virtual List<SideEffect> SideEffects { get => sideEffects; set => sideEffects = value; }
 
         public Medication() 
         {

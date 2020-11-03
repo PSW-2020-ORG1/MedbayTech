@@ -11,42 +11,39 @@ using SimsProjekat.Repository;
 
 namespace Model.Rooms
 {
-   public class Bed : IIdentifiable<int>
-   {
-        private int bedId;
-        private bool currentlyFree;
+    public class Bed : IIdentifiable<int>
+    {
+        public int Id { get; set; }
+        public bool CurrentlyFree { get; set; }
 
-        private Room room;
-        private List<Occupation> occupations;
+        public virtual Room Room { get; set; }
+        public int RoomID { get; set; }
+        public virtual List<Occupation> Occupations { get; set; }
 
-        public Bed(Room room)
+        public Bed ( Room room )
         {
             Room = room;
             CurrentlyFree = true;
             Occupations = new List<Occupation>();
         }
 
-        public int BedId { get { return bedId; } set { bedId = value; } }
-
-        public bool CurrentlyFree { get { return currentlyFree; } set { currentlyFree = value; } }
-
-        public Room Room { get { return room; } set { room = value; } }
-
-        public List<Occupation> Occupations { get => occupations; set => occupations = value; }
-
-        public int GetId()
+        public Bed ( )
         {
-            return BedId;
         }
 
-        public void SetId(int id)
+        public void AddOccupation ( Occupation occupation )
         {
-            BedId = id;
+            this.Occupations.Add(occupation);
         }
 
-        public void AddOccupation(Occupation occupation)
+        public int GetId ( )
         {
-            this.occupations.Add(occupation);
+            return Id;
+        }
+
+        public void SetId ( int id )
+        {
+            this.Id = id;
         }
     }
 }
