@@ -10,16 +10,18 @@ namespace Model.Medications
 {
    public class SideEffect
    {
-        private SideEffectFrequency frequency;
+        public int Id { get; set; }
+        public SideEffectFrequency Frequency { get; set; }
+        public int SideEffectsId { get; set; }
+        public virtual Symptoms SideEffects { get; set; }
 
-        private Symptoms sideEffects;
+        public SideEffect() {}
         public SideEffect(SideEffectFrequency frequency, Symptoms symptoms)
         {
             this.SideEffects = symptoms;
             this.Frequency = frequency;
         }
 
-        public SideEffectFrequency Frequency { get => frequency; set => frequency = value; }
-        public Symptoms SideEffects { get => sideEffects; set => sideEffects = value; }
+        
     }
 }

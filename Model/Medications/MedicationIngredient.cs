@@ -20,6 +20,6 @@ namespace Model.Medications
         }
 
         public string Name { get => name; set => name = value; }
-        public int Id { get; set; }
+        public int Id { get => id; set => id = value; }
     }
 }

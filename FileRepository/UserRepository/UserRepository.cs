@@ -68,9 +68,9 @@ namespace Repository.UserRepository
         public void SetDoctorMissing(RegisteredUser entity)
         {
             Doctor doctor = (Doctor)entity;
-            doctor.OperationRoom = doctor.OperationRoom == null ? null : new Room(doctor.OperationRoom.RoomID);
-            doctor.ExaminationRoom = doctor.ExaminationRoom == null ? null : new Room(doctor.ExaminationRoom.RoomID);
-            doctor.Department = doctor.Department == null ? null : new Department(doctor.Department.DepartmentID);
+            doctor.OperationRoom = doctor.OperationRoom == null ? null : new Room(doctor.OperationRoom.Id);
+            doctor.ExaminationRoom = doctor.ExaminationRoom == null ? null : new Room(doctor.ExaminationRoom.Id);
+            doctor.Department = doctor.Department == null ? null : new Department(doctor.Department.Id);
         }
 
         public new IEnumerable<RegisteredUser> GetAll()
@@ -190,9 +190,9 @@ namespace Repository.UserRepository
         public void CompleteDoctorObject(RegisteredUser user)
         {
             Doctor doctor = (Doctor)user;
-            doctor.ExaminationRoom = doctor.ExaminationRoom == null ? null : roomRepository.GetObject(doctor.ExaminationRoom.RoomID);
-            doctor.OperationRoom = doctor.OperationRoom == null ? null : roomRepository.GetObject(doctor.OperationRoom.RoomID);
-            doctor.Department = doctor.Department == null ? null : departmentRepository.GetObject(doctor.Department.DepartmentID);
+            doctor.ExaminationRoom = doctor.ExaminationRoom == null ? null : roomRepository.GetObject(doctor.ExaminationRoom.Id);
+            doctor.OperationRoom = doctor.OperationRoom == null ? null : roomRepository.GetObject(doctor.OperationRoom.Id);
+            doctor.Department = doctor.Department == null ? null : departmentRepository.GetObject(doctor.Department.Id);
         }
 
         public new RegisteredUser Update(RegisteredUser entity)
@@ -234,7 +234,7 @@ namespace Repository.UserRepository
         public IEnumerable<Doctor> GetDoctorsFromDepartment(Department department)
         {
             var doctors = GetAllDoctors().Where(entity => entity.Department != null);
-            return doctors.Where(entity => entity.Department.DepartmentID == department.DepartmentID);
+            return doctors.Where(entity => entity.Department.Id == department.Id);
         }
     }
 }

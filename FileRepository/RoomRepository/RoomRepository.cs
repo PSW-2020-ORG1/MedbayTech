@@ -31,7 +31,7 @@ namespace Repository.RoomRepository
         }
         public new Room Create(Room entity)
         {
-            entity.RoomID = GetNextID();
+            entity.Id = GetNextID();
             SetMissingValues(entity);
             return base.Create(entity);
         }

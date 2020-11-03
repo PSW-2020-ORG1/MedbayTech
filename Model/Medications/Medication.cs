@@ -6,12 +6,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using SimsProjekat.Repository;
 
 namespace Model.Medications
 {
    public class Medication : IIdentifiable<int>
    {
+
         private int medId;
         private string med;
         private MedStatus status;
@@ -23,6 +25,7 @@ namespace Model.Medications
         private List<Medication> alternativeMedication;
         private List<SideEffect> sideEffects;
 
+        [Key]
         public int MedId { get => medId; set => medId = value; }
         public string Med { get => med; set => med = value; }
         public MedStatus Status { get => status; set => status = value; }

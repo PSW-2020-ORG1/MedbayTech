@@ -88,7 +88,7 @@ namespace Repository.ScheduleRepository
 
         public void SetMissingValues(Appointment entity)
         {
-            entity.Room = new Room(entity.Room.RoomID);
+            entity.Room = new Room(entity.Room.Id);
             entity.MedicalRecord = new MedicalRecord(entity.MedicalRecord.Id);
             entity.Doctor = new Doctor(entity.Doctor.Username);
         }
@@ -98,7 +98,7 @@ namespace Repository.ScheduleRepository
 
         public void CompleteObject(Appointment entity)
         {
-            entity.Room = roomRepository.GetObject(entity.Room.RoomID);
+            entity.Room = roomRepository.GetObject(entity.Room.Id);
             entity.MedicalRecord = medicalRecordRepository.GetObject(entity.MedicalRecord.Id);
             entity.Doctor = (Doctor)doctorRepository.GetObject(entity.Doctor.Username);
         }

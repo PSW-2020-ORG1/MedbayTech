@@ -16,16 +16,16 @@ namespace Model.Rooms
         public int QuantityInStorage { get; set; }
         public int RoomNumberIn { get; set; }
 
-        public EquipmentType EquipmentType { get; set; }
+        public virtual EquipmentType EquipmentType { get; set; }
         public int EquipmentTypeId { get; set; }
 
-        public HospitalEquipment ( int quantityInRoom, int quantityinStorage, EquipmentType et )
+        public HospitalEquipment (int roomNumberIn, int quantityInRoom, int quantityinStorage, EquipmentType et )
         {
             QuantityInRoom = quantityInRoom;
             QuantityInStorage = quantityinStorage;
-            //      RoomNumberIn = roomNumberIn;
+            RoomNumberIn = roomNumberIn;
             EquipmentType = et;
-            //    Room = room;
+            
         }
 
         public HospitalEquipment ( )

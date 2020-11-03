@@ -9,17 +9,19 @@ namespace Model.Medications
 {
    public class DosageOfIngredient
    {
-        private double amount;
+        public int Id { get; set; }
+        public double Amount { get; set; }
+        public int MedicationIngredientId { get; set; }
 
-        private MedicationIngredient medicationIngredient;
+        public virtual MedicationIngredient MedicationIngredient { get; set;}
 
+        public DosageOfIngredient() {}
         public DosageOfIngredient(MedicationIngredient ingredient, double amount)
         {
             this.MedicationIngredient = ingredient;
             this.Amount = amount;
         }
 
-        public double Amount { get => amount; set => amount = value; }
-        public MedicationIngredient MedicationIngredient { get => medicationIngredient; set => medicationIngredient = value; }
+        
     }
 }
