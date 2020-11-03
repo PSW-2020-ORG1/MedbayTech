@@ -4,10 +4,12 @@
 // Purpose: Definition of Class Feedback
 
 using System;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using SimsProjekat.Repository;
 
 namespace Model.Users
 {
-   public class Feedback
+   public class Feedback : IIdentifiable<int>
    {
         public int Id { get; set; }
         public DateTime Date { get; set; }
@@ -35,8 +37,14 @@ namespace Model.Users
             Approved = false;
         }
 
-        
+        public int GetId()
+        {
+            return Id;
+        }
 
-
+        public void SetId(int id)
+        {
+            Id = id;
+        }
     }
 }

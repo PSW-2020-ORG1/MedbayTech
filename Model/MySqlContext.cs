@@ -10,6 +10,7 @@ namespace Model
 {
     public class MySqlContext : DbContext
     {
+        
         private DbSet<Treatment> Treatments { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Address> Addresses { get; set; }
@@ -17,7 +18,19 @@ namespace Model
         public DbSet<State> States { get; set; }
         public DbSet<RegisteredUser> RegisteredUsers { get; set; }
         public DbSet<InsurancePolicy> InsurancePolicies { get; set; }
-        public MySqlContext(DbContextOptions<MySqlContext> options) : base(options) {}
+
+        public MySqlContext() : base()
+        {
+            
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseMySql(@"server=localhost;port=" + 3306 + ";database=newdb;uid=root;password=root");
+            optionsBuilder.UseLazyLoadingProxies(true);
+
+        }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

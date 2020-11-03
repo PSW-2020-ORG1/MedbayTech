@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Model.Users;
+using Repository;
+using Repository.GeneralRepository;
 
 namespace WebApplication
 {
@@ -15,22 +17,25 @@ namespace WebApplication
     {
         private readonly MySqlContext mySqlContext;
 
-        public FeedbackController(MySqlContext context)
+        public FeedbackController()
         {
-            this.mySqlContext = context;
+            
         }
 
         [HttpGet]       // GET /api/feedback
         public IActionResult Get()
         {
-            RegisteredUser registeredUser =
+           /* RegisteredUser registeredUser =
                 mySqlContext.RegisteredUsers.FirstOrDefault(registeredUser =>
                     registeredUser.Id.Equals("2406978890045"));
 
             City city = registeredUser.CurrResidence.City;
 
-            Feedback feedback = mySqlContext.Feedbacks.FirstOrDefault();
-            return Ok(feedback);
+            Feedback feedback = mySqlContext.Feedbacks.FirstOrDefault();*/
+
+            UnitOfWork uo = new UnitOfWork();
+            Feedback fb = uo.FeedBackRepository.GetObject(1);
+            return Ok(fb);
         }
     }
 
