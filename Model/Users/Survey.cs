@@ -17,6 +17,8 @@ namespace Model.Users
 
         private Patient patient;
         private List<SurveyQuestion> surveyQuestions;
+
+        public string patientId;
       
         public Survey() { }
         public Survey(int id)
@@ -37,7 +39,7 @@ namespace Model.Users
         public string AdditionalNotes { get => additionalNotes; set => additionalNotes = value; }
         public Grade AverageGrade { get => averageGrade; set => averageGrade = value; }
         public int Id { get => id; set => id = value; }
-        public Patient Patient { get => patient; set => patient = value; }
-        public List<SurveyQuestion> SurveyQuestions { get => surveyQuestions; set => surveyQuestions = value; }
+        public virtual Patient Patient { get => patient; set => patient = value; }
+        public virtual List<SurveyQuestion> SurveyQuestions { get => surveyQuestions; set => surveyQuestions = value; }
     }
 }

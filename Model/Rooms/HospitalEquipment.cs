@@ -11,38 +11,35 @@ namespace Model.Rooms
 {
     public class HospitalEquipment : IIdentifiable<int>
     {
-        private int id;
-        private int quantityInRoom;
-        private int quantityInStorage;
-        private int roomNumberIn;
+        public int Id { get; set; }
+        public int QuantityInRoom { get; set; }
+        public int QuantityInStorage { get; set; }
+        public int RoomNumberIn { get; set; }
 
-        private EquipmentType equipmentType;
-     //   private Room room;
+        public EquipmentType EquipmentType { get; set; }
+        public int EquipmentTypeId { get; set; }
 
-        public int HospitalEquipmentID { get => id; set => id = value; }
-        public int QuantityInRoom { get => quantityInRoom; set => quantityInRoom = value; }
-        public int QuantityInStorage { get => quantityInStorage; set => quantityInStorage= value; }
-    //    public int RoomNumberIn { get => roomNumberIn; set => roomNumberIn = value; }
-        public EquipmentType EquipmentType { get => equipmentType; set => equipmentType= value; }
-     //   public Room Room { get => room; set => room = value; }
-
-        public HospitalEquipment(int quantityInRoom, int quantityinStorage,  EquipmentType et)
+        public HospitalEquipment ( int quantityInRoom, int quantityinStorage, EquipmentType et )
         {
             QuantityInRoom = quantityInRoom;
-            QuantityInStorage = quantityInStorage;
-      //      RoomNumberIn = roomNumberIn;
+            QuantityInStorage = quantityinStorage;
+            //      RoomNumberIn = roomNumberIn;
             EquipmentType = et;
-        //    Room = room;
+            //    Room = room;
         }
 
-        public int GetId()
+        public HospitalEquipment ( )
         {
-            return HospitalEquipmentID;
         }
 
-        public void SetId(int id)
+        public int GetId ( )
         {
-            HospitalEquipmentID = id;
+            return Id;
+        }
+
+        public void SetId ( int id )
+        {
+            this.Id = id;
         }
     }
 }

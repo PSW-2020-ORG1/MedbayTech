@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Model.ExaminationSurgery;
 using Model.MedicalRecord;
+using Model.Medications;
 using Model.Users;
 using ZdravoKorporacija.Model.Users;
 
@@ -11,6 +12,8 @@ namespace Model
 {
     public class MySqlContext : DbContext
     {
+        public DbSet<LabTesting> LabTestings { get; set; }
+        public DbSet<LabTestType> LabTestTypes { get; set; }
         private DbSet<Treatment> Treatments { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Address> Addresses { get; set; }
@@ -26,13 +29,28 @@ namespace Model
         public DbSet<Model.MedicalRecord.MedicalRecord> MedicalRecords { get; set; }
         public DbSet<Therapy> Therapies { get; set; }
         public DbSet<Vaccines> Vaccines { get; set; }
+        public DbSet<Allergens> Allergens { get; set; }
+        public DbSet<MedicationIngredient> Ingredients { get; set; }
 
         public MySqlContext(DbContextOptions<MySqlContext> options) : base(options) {}
         
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<MedicationIngredient>().HasData(
+                new MedicationIngredient { Name = "Amoksicilin", Id = 1 },
+                new MedicationIngredient { Name = "Kikiriki", Id = 2}
+                );
+            modelBuilder.Entity<Allergens>().HasData(
+                new Allergens { Allergen = "Amoksicilin", Id = 1 }
+                );
 
+            modelBuilder.Entity<LabTesting>().HasData(
+                new LabTesting{Id=1, LabTestTypes = new List<LabTestType>()}
+                );
+            modelBuilder.Entity<LabTestType>().HasData(
+                new LabTestType {Id=1,TestName = "LDL", LabTestingId = 1}
+                );
             modelBuilder.Entity<City>().HasData(
                 
                 new City {Id = 21000, Name = "Novi Sad", StateId = 1},

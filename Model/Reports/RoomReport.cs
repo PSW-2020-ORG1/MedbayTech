@@ -15,6 +15,8 @@ namespace Model.Reports
         private int floor;
         private RoomType roomType;
 
+        public RoomReport() { 
+        }
         public RoomReport(DateTime date, DateTime startDate, DateTime endDate, 
             int floor, RoomType type, string content) : base(date, content)
         {

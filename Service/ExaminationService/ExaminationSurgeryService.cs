@@ -74,7 +74,7 @@ namespace Service.ExaminationService
 
         public ExaminationSurgery UpdateTreatment(ExaminationSurgery examinationSurgery, Treatment treatment)
         {
-            ExaminationSurgery examinationToUdate = examinationSurgeryRepository.GetObject(examinationSurgery.IdNumber);
+            ExaminationSurgery examinationToUdate = examinationSurgeryRepository.GetObject(examinationSurgery.Id);
             examinationToUdate.Treatments.Add(treatment);
             return examinationSurgeryRepository.Update(examinationToUdate);
         }

@@ -18,7 +18,8 @@ namespace Model.Medications
         private bool reviewed;
         private Medication medication;
         private Model.Users.Doctor doctor;
-
+        private int medicationId;
+        private string doctorId;
         public ValidationMed() { }
 
         public ValidationMed(string sideNotes, bool approved, Medication medication, Doctor doctor)
@@ -39,8 +40,10 @@ namespace Model.Medications
         public DateTime DateOfValidation { get => dateOfValidation; set => dateOfValidation = value; }
         public bool Approved { get => approved; set => approved = value; }
         public bool Reviewed { get => reviewed; set => reviewed = value; }
-        public Medication Medication { get => medication; set => medication = value; }
-        public Doctor Doctor { get => doctor; set => doctor = value; }
+        public virtual Medication Medication { get => medication; set => medication = value; }
+        public int MedicationId { get => medicationId; set => medicationId = value; }
+        public virtual Doctor Doctor { get => doctor; set => doctor = value; }
+        public string DoctorId { get => doctorId; set => doctorId = value; }
 
         public int GetId()
         {

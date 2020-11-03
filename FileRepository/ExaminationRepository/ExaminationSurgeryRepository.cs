@@ -39,7 +39,7 @@ namespace Repository.ExaminationRepository
 
         public new ExaminationSurgery Create(ExaminationSurgery entity)
         {
-            entity.IdNumber = GetNextID();
+            entity.Id = GetNextID();
             SetMissingValues(entity);
             return base.Create(entity);
         }

@@ -13,6 +13,8 @@ namespace Model.Users
         int id;
         private DateTime date;
         private string image;
+        public string doctorId;
+        public int postContentId;
 
         public PostContent postContent;
         public Doctor author;
@@ -35,8 +37,8 @@ namespace Model.Users
         public int Id { get => id; set => id = value; }
         public DateTime Date { get => date; set => date = value; }
         public string Image { get => image; set => image = value; }
-        public PostContent PostContent { get => postContent; set => postContent = value; }
-        public Doctor Author { get => author; set => author = value; }
+        public virtual PostContent PostContent { get => postContent; set => postContent = value; }
+        public virtual Doctor Author { get => author; set => author = value; }
 
         public int GetId()
         {

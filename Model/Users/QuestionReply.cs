@@ -15,6 +15,8 @@ namespace Model.Users
       
         public Doctor author;
 
+        public string authorId;
+
         public QuestionReply() { }
         public QuestionReply(int id)
         {
@@ -31,7 +33,7 @@ namespace Model.Users
 
         public DateTime Date { get => date; set => date = value; }
         public string Content { get => content; set => content = value; }
-        public Doctor Author { get => author; set => author = value; }
+        public virtual Doctor Author { get => author; set => author = value; }
         public int Id { get => id; set => id = value; }
     }
 }

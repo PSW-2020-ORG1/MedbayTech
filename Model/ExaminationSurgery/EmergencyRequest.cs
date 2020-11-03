@@ -13,16 +13,18 @@ namespace Model.ExaminationSurgery
    public class EmergencyRequest : IIdentifiable<int>
    {
         public TypeOfAppointment TypeOfAppointment { get; set; }
-        public int RequestId { get; set; }
+        public int Id { get; set; }
         public string SideNotes { get; set; }
-        public Specialization Specialization { get; set; }
-        public MedicalRecord.MedicalRecord MedicalRecord { get; set; }
+        public int SpecializationId { get; set; }
+        public virtual Specialization Specialization { get; set; }
+        public int MedicalRecordId { get; set; }
+        public virtual MedicalRecord.MedicalRecord MedicalRecord { get; set; }
         public bool Scheduled { get; set; }
 
         public EmergencyRequest() { }
         public EmergencyRequest(int id)
         {
-            RequestId = id;
+            Id = id;
         }
 
         public EmergencyRequest(TypeOfAppointment typeOfAppointment, string sideNotes, Specialization specialization, MedicalRecord.MedicalRecord medicalRecord)
@@ -36,12 +38,12 @@ namespace Model.ExaminationSurgery
 
         public int GetId()
         {
-            return RequestId;
+            return Id;
         }
 
         public void SetId(int id)
         {
-            RequestId = id;
+            Id = id;
         }
     }
 }

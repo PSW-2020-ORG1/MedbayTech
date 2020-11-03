@@ -41,7 +41,7 @@ namespace Repository.ScheduleRepository
 
         public new Appointment Create(Appointment entity)
         {
-            entity.IdAppointment = GetNextID();
+            entity.Id = GetNextID();
             SetMissingValues(entity);
             return base.Create(entity);
         }

@@ -13,7 +13,7 @@ namespace Model.Users
         public DateTime Date { get; set; }
         public string AdditionalNotes { get; set; }
         public Boolean Approved { get; set; }
-        private Boolean Anonymous { get; set; }
+        public Boolean Anonymous { get; set; }
 
         public string RegisteredUserId { get; set; }
 
