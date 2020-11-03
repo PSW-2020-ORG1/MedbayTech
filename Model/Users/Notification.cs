@@ -15,6 +15,8 @@ namespace Model.Users
         private NotificationCategory notificationCategory;
         private RegisteredUser notificationFrom;
         private List<RegisteredUser> notificationTo;
+        public int notificationCategoryId;
+        public string notificationFromRegisteredUserId;
 
 
         public Notification() { }
@@ -29,9 +31,9 @@ namespace Model.Users
 
         public int Id { get => id; set => id = value; }
         public string ContentOfNotification { get => contentOfNotification; set => contentOfNotification = value; }
-        public NotificationCategory NotificationCategory { get => notificationCategory; set => notificationCategory = value; }
-        public RegisteredUser NotificationFrom { get => notificationFrom; set => notificationFrom = value; }
-        public List<RegisteredUser> NotificationTo { get => notificationTo; set => notificationTo = value; }
+        public virtual NotificationCategory NotificationCategory { get => notificationCategory; set => notificationCategory = value; }
+        public virtual RegisteredUser NotificationFrom { get => notificationFrom; set => notificationFrom = value; }
+        public virtual List<RegisteredUser> NotificationTo { get => notificationTo; set => notificationTo = value; }
 
         public int GetId()
         {

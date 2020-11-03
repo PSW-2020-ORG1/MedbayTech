@@ -12,6 +12,8 @@ namespace Model.Users
         private int id;
         private DateTime dateOfReview;
         private Grade grade;
+        public string patiendId;
+        public string DoctrorId;
 
         private Patient patient;
         private Doctor doctor;
@@ -34,8 +36,8 @@ namespace Model.Users
         public int Id { get => id; set => id = value; }
         public DateTime DateOfReview { get => dateOfReview; set => dateOfReview = value; }
         public Grade Grade { get => grade; set => grade = value; }
-        public Patient Patient { get => patient; set => patient = value; }
-        public Doctor Doctor { get => doctor; set => doctor = value; }
+        public virtual Patient Patient { get => patient; set => patient = value; }
+        public virtual Doctor Doctor { get => doctor; set => doctor = value; }
 
     }
 }

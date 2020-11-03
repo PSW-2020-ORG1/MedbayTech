@@ -18,6 +18,10 @@ namespace Model.Users
       private PostContent postContent;
       private QuestionReply questionReply;
 
+      public string authorId;
+      public int postContentId;
+      public int questionReplyId;
+
         public Question() 
         {
             PostContent = new PostContent();
@@ -42,9 +46,9 @@ namespace Model.Users
 
         public DateTime Date { get => date; set => date = value; }
         public bool FrequentlyAsked { get => frequentlyAsked; set => frequentlyAsked = value; }
-        public Patient Author { get => author; set => author = value; }
-        public PostContent PostContent { get => postContent; set => postContent = value; }
-        public QuestionReply QuestionReply { get => questionReply; set => questionReply = value; }
+        public virtual Patient Author { get => author; set => author = value; }
+        public virtual PostContent PostContent { get => postContent; set => postContent = value; }
+        public virtual QuestionReply QuestionReply { get => questionReply; set => questionReply = value; }
         public int Id { get => id; set => id = value; }
 
         public int GetId()

@@ -15,6 +15,7 @@ namespace Model.Users
         private string name;
         private int id;
         private Address address;
+        public int addressId;
 
         public Hospital() { }
 
@@ -33,7 +34,7 @@ namespace Model.Users
         public string Description { get => description; set => description = value; }
         public string Name { get => name; set => name = value; }
         public int Id { get => id; set => id = value; }
-        public Address Address { get => address; set => address = value; }
+        public virtual Address Address { get => address; set => address = value; }
 
         public int GetId()
         {

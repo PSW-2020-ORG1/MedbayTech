@@ -12,6 +12,7 @@ namespace Model.Users
    {
         private bool isGuestAccount = false;
         private Doctor chosenDoctor;
+        public string chosenDoctorId;
 
         public Patient(string name, string surname, DateTime dateOfBirth,
             string identificationNumber, string email, string username,
@@ -30,6 +31,6 @@ namespace Model.Users
 
         public Patient(string name, string surname, string idNumber, string phone) : base(name, surname, idNumber, phone) { } 
         public bool IsGuestAccount { get => isGuestAccount; set => isGuestAccount = value; }
-        public Doctor ChosenDoctor { get => chosenDoctor; set => chosenDoctor = value; }
+        public virtual Doctor ChosenDoctor { get => chosenDoctor; set => chosenDoctor = value; }
     }
 }

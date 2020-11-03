@@ -18,12 +18,14 @@ namespace Model.Users
       
       public Employee employee;
 
+        public string employeeId;
+
         public int Id { get => id; set => id = value; }
         public DateTime FromDate { get => fromDate; set => fromDate = value; }
         public DateTime ToDate { get => toDate; set => toDate= value; }
         public string ReasonForVacation { get => reasonForVacation; set => reasonForVacation = value; }
         public bool Approved { get => approved; set => approved = value; }
-        public Employee Employee { get => employee; set => employee = value; }
+        public virtual Employee Employee { get => employee; set => employee = value; }
 
         public VacationRequest() { }
 

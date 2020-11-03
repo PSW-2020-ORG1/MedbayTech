@@ -20,6 +20,11 @@ namespace Model.Users
         private Department department;
         private Room examinationRoom;
         private Room operationRoom;
+
+        public int departmentId;
+        public int examinationRoomId;
+        public int operationRoomId;
+
         public Doctor() 
         {
             Specializations = new List<Specialization>();
@@ -46,9 +51,9 @@ namespace Model.Users
         public string LicenseNumber { get => licenseNumber; set => licenseNumber = value; }
         public bool OnCall { get => onCall; set => onCall = value; }
         public double PatientReview { get => patientReview; set => patientReview = value; }
-        public List<Specialization> Specializations { get => specializations; set => specializations = value; }
-        public Department Department { get => department; set => department = value; }
-        public Room ExaminationRoom { get => examinationRoom; set => examinationRoom = value; }
-        public Room OperationRoom { get => operationRoom; set => operationRoom = value; }
+        public virtual List<Specialization> Specializations { get => specializations; set => specializations = value; }
+        public virtual Department Department { get => department; set => department = value; }
+        public virtual Room ExaminationRoom { get => examinationRoom; set => examinationRoom = value; }
+        public virtual Room OperationRoom { get => operationRoom; set => operationRoom = value; }
     }
 }
