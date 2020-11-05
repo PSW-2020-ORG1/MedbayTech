@@ -14,6 +14,9 @@ namespace Model.ExaminationSurgery
         public int Id { get; set; }
         public string TestName { get; set; }
 
+        public int TreatmentFormId { get; set; }
+        public virtual TreatmentForm TreatmentForm { get; set; }
+
         public LabTestType()
         {
 

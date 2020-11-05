@@ -15,6 +15,7 @@ namespace Model
     public class MySqlContext : DbContext
     {
         public DbSet<WeeklyAppointmentReport> WeeklyAppointmentReports { get; set; }
+        public DbSet<Specialization> Specializations { get; set; }
         public DbSet<LabTesting> LabTestings { get; set; }
         public DbSet<LabTestType> LabTestTypes { get; set; }
         private DbSet<Treatment> Treatments { get; set; }
@@ -50,6 +51,10 @@ namespace Model
                     Id = 1
                 }
                 ) ;
+
+            modelBuilder.Entity<Specialization>().HasData(
+                    new Specialization { Id = 1, SpecializationName = "Specijalista hirurgije" }
+                );
             modelBuilder.Entity<MedicationIngredient>().HasData(
                 new MedicationIngredient { Name = "Amoksicilin", Id = 1 },
                 new MedicationIngredient { Name = "Kikiriki", Id = 2}

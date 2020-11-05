@@ -9,12 +9,14 @@ namespace Model.MedicalRecord
 {
     public class LabResults
     {
-        private int id;
-        private string resultType;
-        private double value;
-        private double maxRefValue;
-        private double minRefValue;
+        public int Id { get; set; }
+        public string ResultType { get; set; }
+        public  double Value { get; set; }
+        public double MaxRefValue { get; set; }
+        public double MinRefValue { get; set; }
 
+        public int ListOfResultsId { get; set; }
+        public virtual ListOfResults ListOfResults { get; set; }
         public LabResults() {}
         public LabResults(string resultType, double value, double refValue, double minRef)
         { 
@@ -23,10 +25,6 @@ namespace Model.MedicalRecord
             MaxRefValue = refValue;
             MinRefValue = minRef;
         }
-        public int Id { get => id; set => id = value; }
-        public string ResultType { get => resultType; set => resultType = value; }
-        public double Value { get => value; set => this.value = value; }
-        public double MaxRefValue { get => maxRefValue; set => maxRefValue = value; }
-        public double MinRefValue { get => minRefValue; set => minRefValue = value; }
+        
     }
 }

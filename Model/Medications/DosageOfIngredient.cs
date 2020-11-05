@@ -7,14 +7,16 @@ using System;
 
 namespace Model.Medications
 {
-   public class DosageOfIngredient
-   {
+    public class DosageOfIngredient
+    {
         public int Id { get; set; }
         public double Amount { get; set; }
         public int MedicationIngredientId { get; set; }
 
-        public virtual MedicationIngredient MedicationIngredient { get; set;}
+        public virtual MedicationIngredient MedicationIngredient { get; set; }
 
+        public int MedicationId { get; set; }
+        public virtual Medication Medication { get; set; }
         public DosageOfIngredient() {}
         public DosageOfIngredient(MedicationIngredient ingredient, double amount)
         {

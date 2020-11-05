@@ -4,21 +4,28 @@
 // Purpose: Definition of Class Allergens
 
 using System;
+using Model.MedicalRecord;
+
 
 namespace Model.Medications
 {
-   public class Allergens
-   {
-        private string allergen;
-        private int id;
+    public class Allergens
+    {
+
+        public int Id { get; set; }
+        public string Allergen { get; set; }
+
+        public int MedicalRecordId { get; set; }
+        public virtual MedicalRecord.MedicalRecord MedicalRecord { get; set; }
+        
+        public int MedicationId { get; set; }
+        public virtual Medication Medication { get; set; }
 
         public Allergens() { }
         public Allergens(string allergen)
         {
-            this.Allergen = allergen;
+            Allergen = allergen;
         }
 
-        public string Allergen { get => allergen; set => allergen = value; }
-        public int Id { get; set; }
     }
 }

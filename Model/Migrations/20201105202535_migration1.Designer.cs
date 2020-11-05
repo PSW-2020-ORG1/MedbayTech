@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Model;
 
 namespace Model.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    partial class MySqlContextModelSnapshot : ModelSnapshot
+    [Migration("20201105202535_migration1")]
+    partial class migration1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -601,9 +603,6 @@ namespace Model.Migrations
                     b.Property<string>("AdditionalNotes")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<bool>("Anonymous")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<bool>("Approved")
                         .HasColumnType("tinyint(1)");
 
@@ -624,7 +623,6 @@ namespace Model.Migrations
                         {
                             Id = 1,
                             AdditionalNotes = "Sve je super!",
-                            Anonymous = false,
                             Approved = true,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisteredUserId = "2406978890045"
@@ -785,14 +783,7 @@ namespace Model.Migrations
 
                     b.HasIndex("DoctorId");
 
-                    b.ToTable("Specializations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            SpecializationName = "Specijalista hirurgije"
-                        });
+                    b.ToTable("Specialization");
                 });
 
             modelBuilder.Entity("Model.Users.State", b =>

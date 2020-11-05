@@ -15,6 +15,8 @@ namespace Model.Medications
         public int Id { get; set; }
         public int SpecializationId { get; set; }
 
+        public int MedicationId { get; set; }
+        public virtual Medication Medication { get; set; }
         public MedicationCategory() {}
         public MedicationCategory(string categoryName, Specialization specialization)
         {
