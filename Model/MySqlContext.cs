@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Model.ExaminationSurgery;
 using Model.MedicalRecord;
 using Model.Medications;
+using Model.Reports;
+using Model.Schedule;
 using Model.Users;
 using ZdravoKorporacija.Model.Users;
 
@@ -12,6 +14,7 @@ namespace Model
 {
     public class MySqlContext : DbContext
     {
+        public DbSet<WeeklyAppointmentReport> WeeklyAppointmentReports { get; set; }
         public DbSet<LabTesting> LabTestings { get; set; }
         public DbSet<LabTestType> LabTestTypes { get; set; }
         private DbSet<Treatment> Treatments { get; set; }
@@ -37,6 +40,16 @@ namespace Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<WeeklyAppointmentReport>().HasData(
+                new WeeklyAppointmentReport
+                {
+                    StartWeekDay = DateTime.Now,
+                    Appointments = new List<Appointment>(),
+                    Content = "Some content",
+                    Date = DateTime.Now,
+                    Id = 1
+                }
+                ) ;
             modelBuilder.Entity<MedicationIngredient>().HasData(
                 new MedicationIngredient { Name = "Amoksicilin", Id = 1 },
                 new MedicationIngredient { Name = "Kikiriki", Id = 2}

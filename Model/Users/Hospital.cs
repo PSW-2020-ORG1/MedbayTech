@@ -11,11 +11,12 @@ namespace Model.Users
 {
    public class Hospital : IIdentifiable<int>
    {
-        private string description;
-        private string name;
-        private int id;
-        private Address address;
-        public int addressId;
+
+        public string Description { get; set; }
+        public string Name { get; set; }
+        public int Id { get; set; }
+        public virtual Address Address { get; set; }
+        public int AddressId { get; set; }
 
         public Hospital() { }
 
@@ -31,10 +32,6 @@ namespace Model.Users
             Address = address;
         }
 
-        public string Description { get => description; set => description = value; }
-        public string Name { get => name; set => name = value; }
-        public int Id { get => id; set => id = value; }
-        public virtual Address Address { get => address; set => address = value; }
 
         public int GetId()
         {

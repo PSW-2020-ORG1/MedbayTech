@@ -14,7 +14,8 @@ namespace Model.Rooms
         public int Id { get; set; }
         public int QuantityInRoom { get; set; }
         public int QuantityInStorage { get; set; }
-        public int RoomNumberIn { get; set; }
+        public int RoomId { get; set; }
+        public virtual Room Room { get; set; }
 
         public virtual EquipmentType EquipmentType { get; set; }
         public int EquipmentTypeId { get; set; }
@@ -23,7 +24,7 @@ namespace Model.Rooms
         {
             QuantityInRoom = quantityInRoom;
             QuantityInStorage = quantityinStorage;
-            RoomNumberIn = roomNumberIn;
+            RoomId = roomNumberIn;
             EquipmentType = et;
             
         }

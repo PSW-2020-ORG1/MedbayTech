@@ -17,7 +17,7 @@ namespace Model.Rooms
         public bool CurrentlyFree { get; set; }
 
         public virtual Room Room { get; set; }
-        public int RoomID { get; set; }
+        public int RoomId { get; set; }
         public virtual List<Occupation> Occupations { get; set; }
 
         public Bed ( Room room )

@@ -10,10 +10,10 @@ namespace Model.Reports
 {
    public class RoomReport : Report
    {
-        private DateTime startDate;
-        private DateTime endDate;
-        private int floor;
-        private RoomType roomType;
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public int Floor { get; set; }
+        public RoomType RoomType { get; set; }
 
         public RoomReport() { 
         }
@@ -26,9 +26,5 @@ namespace Model.Reports
             RoomType = type;
         }
 
-        public RoomType RoomType { get => roomType; set => roomType = value; }
-        public DateTime EndDate { get => endDate; set => endDate = value; }
-        public int Floor { get => floor; set => floor = value; }
-        public DateTime StartDate { get => startDate; set => startDate = value; }
     }
 }

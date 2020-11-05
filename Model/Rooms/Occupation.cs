@@ -13,6 +13,9 @@ namespace Model.Rooms
         public DateTime OccupiedFromDate { get; set; }
         public DateTime OccupiedToDate { get; set; }
 
+        public int BedId { get; set; }
+        public virtual Bed Bed { get; set; }
+        public int PatientId { get; set; }
         public virtual MedicalRecord.MedicalRecord Patient { get; set; }
 
         public Occupation ( DateTime startDate, DateTime endDate, MedicalRecord.MedicalRecord patient )

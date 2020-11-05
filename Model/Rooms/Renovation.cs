@@ -15,7 +15,7 @@ namespace Model.Rooms
         public DateTime EndDate { get; set; }
         public bool MoveEquipment { get; set; }
         public virtual Room Room { get; set; }
-        public int RoomID { get; set; }
+        public int RoomId { get; set; }
 
         public Renovation ( )
         {
