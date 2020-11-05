@@ -10,17 +10,16 @@ namespace Model.Users
 {
    public class Question : IIdentifiable<int>
    {
-      private int id;
-      private DateTime date;
-      private bool frequentlyAsked;
-      
-      private Patient author;
-      private PostContent postContent;
-      private QuestionReply questionReply;
 
-      public string authorId;
-      public int postContentId;
-      public int questionReplyId;
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public bool FrequentlyAsked { get; set; }
+        public virtual Patient Author { get; set; }
+        public string AuthorId { get; set; }
+        public virtual PostContent PostContent { get; set; }
+        public int PostContentId { get; set; }
+        public QuestionReply QuestionReply { get; set; }
+        public int QuestionReplyId { get; set; }
 
         public Question() 
         {
@@ -42,14 +41,6 @@ namespace Model.Users
             PostContent = postContent;
             QuestionReply = new QuestionReply();
         }
-
-
-        public DateTime Date { get => date; set => date = value; }
-        public bool FrequentlyAsked { get => frequentlyAsked; set => frequentlyAsked = value; }
-        public virtual Patient Author { get => author; set => author = value; }
-        public virtual PostContent PostContent { get => postContent; set => postContent = value; }
-        public virtual QuestionReply QuestionReply { get => questionReply; set => questionReply = value; }
-        public int Id { get => id; set => id = value; }
 
         public int GetId()
         {

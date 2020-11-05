@@ -9,8 +9,8 @@ namespace Model.Users
 {
    public class Shift
    {
-        private int startHour;
-        private int endHour;
+        public int StartHour { get; set; }
+        public int EndHour { get; set; }
 
         public Shift(int startHour, int endHour)
         {
@@ -18,7 +18,5 @@ namespace Model.Users
             EndHour = endHour;
         }
 
-        public int StartHour { get => startHour; set => startHour = value; }
-        public int EndHour { get => endHour; set => endHour = value; }
     }
 }

@@ -10,13 +10,14 @@ namespace Model.Users
 {
     public class Notification : IIdentifiable<int>
     {
-        private int id;
-        private string contentOfNotification;
-        private NotificationCategory notificationCategory;
-        private RegisteredUser notificationFrom;
-        private List<RegisteredUser> notificationTo;
-        public int notificationCategoryId;
-        public string notificationFromRegisteredUserId;
+
+        public int Id { get; set; }
+        public string ContentOfNotification { get; set; }
+        public int NotificationCategoryId { get; set; }
+        public virtual NotificationCategory NotificationCategory { get; set; }
+        public string NotificationFromRegisteredUserId { get; set; }
+        public virtual RegisteredUser NotificationFrom { get; set; }
+        public virtual List<RegisteredUser> NotificationTo { get; set; }
 
 
         public Notification() { }
@@ -28,12 +29,6 @@ namespace Model.Users
             NotificationTo = notificationTo;
             NotificationFrom = notificationFrom;
         }
-
-        public int Id { get => id; set => id = value; }
-        public string ContentOfNotification { get => contentOfNotification; set => contentOfNotification = value; }
-        public virtual NotificationCategory NotificationCategory { get => notificationCategory; set => notificationCategory = value; }
-        public virtual RegisteredUser NotificationFrom { get => notificationFrom; set => notificationFrom = value; }
-        public virtual List<RegisteredUser> NotificationTo { get => notificationTo; set => notificationTo = value; }
 
         public int GetId()
         {
