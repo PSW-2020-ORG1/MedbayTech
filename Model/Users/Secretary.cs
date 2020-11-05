@@ -10,6 +10,7 @@ namespace Model.Users
 {
    public class Secretary : Employee
    {
+        public Secretary() { }
         public Secretary(string name, string surname, DateTime dateOfBirth,
             string identificationNumber, string email, string username, string phone,
             string password, EducationLevel educationLevel, Gender gender,

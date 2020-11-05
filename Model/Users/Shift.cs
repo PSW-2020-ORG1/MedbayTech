@@ -12,6 +12,7 @@ namespace Model.Users
         public int StartHour { get; set; }
         public int EndHour { get; set; }
 
+        public Shift() { }
         public Shift(int startHour, int endHour)
         {
             StartHour = startHour;
