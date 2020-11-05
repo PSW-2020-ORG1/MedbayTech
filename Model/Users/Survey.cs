@@ -10,16 +10,15 @@ namespace Model.Users
 {
    public class Survey
    {
+
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public string AdditionalNotes { get; set; }
         public Grade AverageGrade { get; set; }
-
-        public int PatientId { get; set; }
         public virtual Patient Patient { get; set; }
+        public string PatientId { get; set; }
         public virtual List<SurveyQuestion> SurveyQuestions { get; set; }
-
-        public string patientId;
+        
       
         public Survey() { }
         public Survey(int id)

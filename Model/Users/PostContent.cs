@@ -9,9 +9,10 @@ namespace Model.Users
 {
    public class PostContent
    {
-        private int id;
-      private string content;
-      private string contentTitle;
+
+        public int Id { get; set; }
+        public string Content { get; set; }
+        public string ContentTitle { get; set; }
 
         public PostContent() { }
         public PostContent(int id)
@@ -24,9 +25,5 @@ namespace Model.Users
             Content = content;
             ContentTitle = contentTitle;
         }
-
-        public string Content { get => content; set => content = value; }
-        public string ContentTitle{ get => contentTitle; set => contentTitle = value; }
-        public int Id { get => id; set => id = value; }
     }
 }
