@@ -1,5 +1,5 @@
-
 import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
@@ -17,8 +17,6 @@ export class FeedbackComponent implements OnInit {
         console.log(response);
       });
   }
-
-
 
   ngOnInit(): void {
   }
