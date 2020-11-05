@@ -20,12 +20,12 @@ namespace Model.Medications
         public MedStatus Status { get; set; }
         public string Company { get; set; }
         public int Quantity { get; set; }
-        public List<DosageOfIngredient> MedicationContent { get; set; }
-        public List<MedicationCategory> MedicationCategory { get; set; }
-        private List<Allergens> Allergens { get; set; }
+        public virtual List<DosageOfIngredient> MedicationContent { get; set; }
+        public virtual List<MedicationCategory> MedicationCategory { get; set; }
+        public virtual List<Allergens> Allergens { get; set; }
 
-        public List<Medication> AlternativeMedication { get; set; }
-        public List<SideEffect> SideEffects { get; set; }
+        public virtual List<Medication> AlternativeMedication { get; set; }
+        public virtual List<SideEffect> SideEffects { get; set; }
 
         public int PerscriptionId { get; set; }
         public virtual Prescription Prescription { get; set; }
@@ -60,7 +60,7 @@ namespace Model.Medications
 
         public void SetId(int id)
         {
-            MedId = id;
+            Id = id;
         }
     }
 }

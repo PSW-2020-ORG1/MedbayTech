@@ -71,7 +71,7 @@ namespace Model
         public DbSet<Allergens> Allergens { get; set; }
         public DbSet<MedicationIngredient> Ingredients { get; set; }
 
-        public MySqlContext(DbContextOptions<MySqlContext> options) : base(options) {}
+       
         
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
