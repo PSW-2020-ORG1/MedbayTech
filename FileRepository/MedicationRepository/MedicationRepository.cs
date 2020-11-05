@@ -29,7 +29,7 @@ namespace Repository.MedicationRepository
 
         public new Medication Create(Medication entity)
         {
-            entity.MedId = GetNextID();
+            entity.Id = GetNextID();
             return base.Create(entity);
         }
 

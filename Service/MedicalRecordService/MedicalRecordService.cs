@@ -76,7 +76,7 @@ namespace Service.MedicalRecordService
         public MedicalRecord UpdateTherapy(Therapy therapy, MedicalRecord medicalRecord)
         {
             MedicalRecord medicalRecordToUpdate = medicalRecordRepository.GetObject(medicalRecord.Id);
-            if (!medicalRecordToUpdate.Therapies.Any(entity => entity.Medication.MedId == therapy.Medication.MedId))
+            if (!medicalRecordToUpdate.Therapies.Any(entity => entity.Medication.Id == therapy.Medication.Id))
                 medicalRecordToUpdate.Therapies.Add(therapy);
             return medicalRecordRepository.Update(medicalRecordToUpdate);
         }

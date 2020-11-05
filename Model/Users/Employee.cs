@@ -10,10 +10,11 @@ namespace Model.Users
 {
    public class Employee : RegisteredUser
    {
-        private int workersID;
-        private bool vacationLeave;
-        private bool currentlyWorking;
-        private string biography;
+
+        public int WorkersID { get; set; }
+        public bool VacationLeave { get; set; }
+        public bool CurrentlyWorking { get; set; }
+        public string Biography { get; set; }
 
         public Employee() { }
 
@@ -30,11 +31,6 @@ namespace Model.Users
             CurrentlyWorking = true;
             Biography = biography;
         }
-
-        public int WorkersID { get => workersID; set => workersID = value; }
-        public bool VacationLeave { get => vacationLeave; set => vacationLeave = value; }
-        public bool CurrentlyWorking { get => currentlyWorking; set => currentlyWorking = value; }
-        public string Biography { get => biography; set => biography = value; }
 
         //  public Hospital hospital;
 

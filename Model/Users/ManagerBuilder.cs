@@ -9,91 +9,92 @@ namespace Model.Users
 {
    public class ManagerBuilder : UserBuilder
    {
-        public Manager manager;
+        public string ManagerId { get; set; }
+        public virtual Manager Manager { get; set; }
 
         public ManagerBuilder()
         {
-            manager = new Manager();
+            Manager = new Manager();
         }
 
         public Manager BuildManager()
         {
-            return manager;
+            return Manager;
         }
 
         public void SetCurrentResidence(Address address)
         {
-            manager.CurrResidence = address;
+            Manager.CurrResidence = address;
         }
 
         public void SetDateOfBirth(DateTime date)
         {
-            manager.DateOfBirth = date;
+            Manager.DateOfBirth = date;
         }
 
         public void SetDateOfCreation(DateTime date)
         {
-            manager.DateOfCreation = date;
+            Manager.DateOfCreation = date;
         }
 
         public void SetEducationLevel(EducationLevel eduLvl)
         {
-            manager.EducationLevel = eduLvl;
+            Manager.EducationLevel = eduLvl;
         }
 
         public void SetEmail(string email)
         {
-            manager.Email = email;
+            Manager.Email = email;
         }
 
         public void SetIDNumber(string id)
         {
-            manager.Id = id;
+            Manager.Id = id;
         }
 
         public void SetInsurancePolicy(InsurancePolicy policy)
         {
-            manager.InsurancePolicy = policy;
+            Manager.InsurancePolicy = policy;
         }
 
         public void SetName(string name)
         {
-            manager.Name = name;
+            Manager.Name = name;
         }
 
         public void SetPassword(string password)
         {
-            manager.Password = password;
+            Manager.Password = password;
         }
 
         public void SetPhone(string phone)
         {
-            manager.Phone = phone;
+            Manager.Phone = phone;
         }
 
         public void SetPlaceOfBirth(City city)
         {
-            manager.PlaceOfBirth = city;
+            Manager.PlaceOfBirth = city;
         }
 
         public void SetProfession(string profession)
         {
-            manager.Profession = profession;
+            Manager.Profession = profession;
         }
 
         public void SetProfilePicture(string image)
         {
-            manager.ProfileImage = image;
+            Manager.ProfileImage = image;
         }
 
         public void SetSurname(string surname)
         {
-            manager.Surname = surname;
+            Manager.Surname = surname;
         }
 
         public void SetUsername(string username)
         {
-            manager.Username = username;
+            Manager.Username = username;
         }
     }
 }
