@@ -14,23 +14,24 @@ namespace Model.MedicalRecord
 {
    public class MedicalRecord : IIdentifiable<int>
    {
-        private int idRecord;
-        private PatientCondition currHealthState;
-        private BloodType bloodType;
 
-        private List<Allergens> allergies;
-        private List<Vaccines> vaccines;
-        private List<Diagnosis> illnessHistory;
-        private List<FamilyIllnessHistory> familyIllnessHistory;
-        private Patient patient;
-        private List<ListOfResults> listOfResults;
-        private List<Therapy> therapies;
+        public int Id { get; set; }
+        public PatientCondition CurrHealthState { get; set; }
+        public BloodType BloodType { get; set; }
+        public virtual List<Allergens> Allergies { get; set; }
+        public virtual List<Vaccines> Vaccines { get; set; }
+        public virtual List<Diagnosis> IllnessHistory { get; set; }
+        public virtual List<FamilyIllnessHistory> FamilyIllnessHistory { get; set; }
+        public int PatientId { get; set; }
+        public virtual Patient Patient { get; set; }
+        public virtual List<ListOfResults> ListOfResults { get; set; }
+        public virtual List<Therapy> Therapies { get; set; }
 
         public MedicalRecord() { }
 
         public MedicalRecord(int id)
         {
-            IdRecord = id;
+            Id = id;
         }
 
         public MedicalRecord(BloodType bloodType, Patient patient, PatientCondition patientCondition)
@@ -46,25 +47,16 @@ namespace Model.MedicalRecord
             Vaccines = new List<Vaccines>();
         }
 
-        public int IdRecord { get => idRecord; set => idRecord = value; }
-        public PatientCondition CurrHealthState { get => currHealthState; set => currHealthState = value; }
-        public BloodType BloodType { get => bloodType; set => bloodType = value; }
-        public List<Allergens> Allergies { get => allergies; set => allergies = value; }
-        public List<Vaccines> Vaccines { get => vaccines; set => vaccines = value; }
-        public List<Diagnosis> IllnessHistory { get => illnessHistory; set => illnessHistory = value; }
-        public List<FamilyIllnessHistory> FamilyIllnessHistory { get => familyIllnessHistory; set => familyIllnessHistory = value; }
-        public Patient Patient { get => patient; set => patient = value; }
-        public List<ListOfResults> ListOfResults { get => listOfResults; set => listOfResults = value; }
-        public List<Therapy> Therapies { get => therapies; set => therapies = value; }
+       
 
         public int GetId()
         {
-            return IdRecord;
+            return Id;
         }
 
         public void SetId(int id)
         {
-            IdRecord = id;
+            Id = id;
         }
     }
 }

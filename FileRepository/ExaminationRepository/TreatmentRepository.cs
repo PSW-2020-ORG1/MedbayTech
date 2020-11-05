@@ -166,7 +166,7 @@ namespace Repository.ExaminationRepository
         private void CompleteHospitalTreatment(Treatment entity)
         {
             HospitalTreatment treatment = (HospitalTreatment)entity;
-            treatment.Department = departmentRepository.GetObject(treatment.Department.DepartmentID);
+            treatment.Department = departmentRepository.GetObject(treatment.Department.Id);
         }
     }
 }

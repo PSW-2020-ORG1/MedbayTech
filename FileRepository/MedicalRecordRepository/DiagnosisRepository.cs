@@ -20,7 +20,7 @@ namespace Repository.MedicalRecordRepository
 
         public new Diagnosis Create(Diagnosis entity)
         {
-            entity.Code = GetNextID();
+            entity.Id = GetNextID();
             return base.Create(entity);
         }
 

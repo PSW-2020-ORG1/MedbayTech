@@ -10,9 +10,9 @@ namespace Model.Reports
 {
    public abstract class Report : IIdentifiable<int>
    {
-        private DateTime date;
-        private string content;
-        private int id;
+        public DateTime Date { get; set; }
+        public string Content { get; set; }
+        public int Id { get; set; }
 
         public Report() { }
 
@@ -26,10 +26,6 @@ namespace Model.Reports
             Date = date;
             Content = content;
         }
-
-        public DateTime Date { get => date; set => date = value; }
-        public string Content { get => content; set => content = value; }
-        public int Id { get => id; set => id = value; }
 
         public int GetId()
         {

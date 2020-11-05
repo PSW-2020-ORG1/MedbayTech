@@ -127,7 +127,7 @@ namespace SimsProjekat.Repository.ScheduleRepository
                 foreach (Appointment availableAppointment in availableAppointments.Values)
                 {
                     if (appointment.StartTime.CompareTo(availableAppointment.StartTime) >= 0 && appointment.StartTime.CompareTo(availableAppointment.EndTime) < 0
-                        && appointment.Room.RoomID == availableAppointment.Room.RoomID)
+                        && appointment.Room.Id == availableAppointment.Room.Id)
                     {
                         availableAppointments.Remove(availableAppointment.GetHashCode());
                     }

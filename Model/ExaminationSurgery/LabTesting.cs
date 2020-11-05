@@ -10,7 +10,7 @@ namespace Model.ExaminationSurgery
 {
    public class LabTesting : Treatment
    {
-        private List<LabTestType> labTestTypes;
+        public virtual List<LabTestType> LabTestTypes { get; set; }
 
         public LabTesting(DateTime date, List<LabTestType> labTypes) 
             : base (date, "", TreatmentType.labTestType)
@@ -21,6 +21,5 @@ namespace Model.ExaminationSurgery
         public LabTesting(int id) : base(id) { }
         public LabTesting() { }
 
-        public List<LabTestType> LabTestTypes { get => labTestTypes; set => labTestTypes = value; }
     }
 }

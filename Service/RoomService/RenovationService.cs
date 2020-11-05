@@ -44,9 +44,9 @@ namespace Service.RoomService
         public Renovation GetRenovation(int id) => renovationRepository.GetObject(id);
         public void MoveAllToStorage(Renovation renovation)
         {
-            Room roomToUpdate = roomService.GetRoom(renovation.Room.RoomID);
+            Room roomToUpdate = roomService.GetRoom(renovation.Room.Id);
             var storages = roomService.GetAllRoomsFromOneType(RoomType.storage).ToList();
-            foreach(HospitalEquipment equipment in hospitalEquipmentService.GetEquipmentByRoomNumber(roomToUpdate.RoomID))
+            foreach(HospitalEquipment equipment in hospitalEquipmentService.GetEquipmentByRoomNumber(roomToUpdate.Id))
             {
            //     equipment.Room = storages[0];
              //   equipment.RoomNumberIn = storages[0].RoomNumber;
@@ -70,10 +70,10 @@ namespace Service.RoomService
         private bool CheckIfHasNewAppointments(Renovation renovation)
         {
             var allAppointments = appointmentRepository.GetScheduledFromToday();
-            if (allAppointments.Any(ent => ent.Value.Room.RoomID == renovation.Room.RoomID)
+            if (allAppointments.Any(ent => ent.Value.Room.Id == renovation.Room.Id)
                 && allAppointments.Any(ent2 => ent2.Value.StartTime.Date.CompareTo(renovation.StartDate.Date) >= 0 
                 && allAppointments.Any(ent1 => ent1.Value.StartTime.Date.CompareTo(renovation.EndDate.Date) <= 0)))
-                throw new RoomHasAppointments(string.Format(HAS_APPOINTMENTS, renovation.Room.RoomID));
+                throw new RoomHasAppointments(string.Format(HAS_APPOINTMENTS, renovation.Room.Id));
             return true;
         }
         public Renovation EditRenovation(Renovation renovation)

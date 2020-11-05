@@ -11,36 +11,36 @@ namespace Model.Medications
 {
    public class ValidationMed : IIdentifiable<int>
    {
-        private int id;
-        private string sideNotes;
-        private DateTime dateOfValidation;
-        private bool approved;
-        private bool reviewed;
-        private Medication medication;
-        private Model.Users.Doctor doctor;
+        public int Id { get; set; }
+        public  string SideNotes { get; set; }
+        public  DateTime DateOfValidation { get; set; }
+        public  bool Approved { get; set; }
+        public  bool Reviewed { get; set; }
 
+        public int MedicationId { get; set; }
+        public  Medication Medication { get; set; }
+
+        public string DoctorId { get; set; }
+
+        public  Model.Users.Doctor Doctor { get; set; }
+       
+       
         public ValidationMed() { }
 
         public ValidationMed(string sideNotes, bool approved, Medication medication, Doctor doctor)
         {
-            this.sideNotes = sideNotes;
-            this.approved = approved;
-            this.medication = medication;
-            this.doctor = doctor;
+            this.SideNotes = sideNotes;
+            this.Approved = approved;
+            this.Medication = medication;
+            this.Doctor = doctor;
         }
         public ValidationMed(string sideNotes, bool approved, Medication medication)
         {
-            this.sideNotes = sideNotes;
-            this.approved = approved;
-            this.medication = medication;
+            this.SideNotes = sideNotes;
+            this.Approved = approved;
+            this.Medication = medication;
         }
-        public int Id { get => id; set => id = value; }
-        public string SideNotes { get => sideNotes; set => sideNotes = value; }
-        public DateTime DateOfValidation { get => dateOfValidation; set => dateOfValidation = value; }
-        public bool Approved { get => approved; set => approved = value; }
-        public bool Reviewed { get => reviewed; set => reviewed = value; }
-        public Medication Medication { get => medication; set => medication = value; }
-        public Doctor Doctor { get => doctor; set => doctor = value; }
+     
 
         public int GetId()
         {

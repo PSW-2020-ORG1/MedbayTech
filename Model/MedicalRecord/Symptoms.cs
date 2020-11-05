@@ -9,13 +9,20 @@ namespace Model.MedicalRecord
 {
    public class Symptoms
    {
-        private string name;
+        public int Id { get; set; }
+        public string Name { get; set; }
 
+        public int DiagnosisId { get; set; }
+
+        public virtual Diagnosis Diagnosis { get; set; }
+        public Symptoms() {
+            
+        }
         public Symptoms(string name)
         {
             this.Name = name;
         }
 
-        public string Name { get => name; set => name = value; }
+        
     }
 }

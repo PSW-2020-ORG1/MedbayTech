@@ -8,8 +8,20 @@ using System;
 namespace Model.ExaminationSurgery
 {
    public class LabTestType
-    {
+    {   
+        public int LabTestingId { get; set; }
+        public virtual LabTesting LabTesting { get; set; }
+        public int Id { get; set; }
         public string TestName { get; set; }
+
+        public int TreatmentFormId { get; set; }
+        public virtual TreatmentForm TreatmentForm { get; set; }
+
+        public LabTestType()
+        {
+
+        }
+
         public LabTestType(string name)
         {
             TestName = name;

@@ -62,7 +62,7 @@ namespace Service.GeneralService
             Notification notification = new Notification();
             notification.NotificationFrom = appointement.Doctor;
             List<RegisteredUser> notificationTo = new List<RegisteredUser>();
-            notificationTo.Add((medicalRecordRepository.GetObject(appointement.MedicalRecord.IdRecord).Patient));
+            notificationTo.Add((medicalRecordRepository.GetObject(appointement.MedicalRecord.Id).Patient));
             notification.NotificationTo = notificationTo;
             notification.ContentOfNotification = "Imate novi zakazan pregled kod " + appointement.Doctor.Name + " " + appointement.Doctor.Surname;
             notification.NotificationCategory = NotificationCategory.SCHEDULE;
@@ -72,7 +72,7 @@ namespace Service.GeneralService
         public Notification AppointmentNotifyForDoctors(Appointment appointement)
         {
             Notification notification = new Notification();
-            Patient patient = medicalRecordRepository.GetObject(appointement.MedicalRecord.IdRecord).Patient;
+            Patient patient = medicalRecordRepository.GetObject(appointement.MedicalRecord.Id).Patient;
             notification.NotificationFrom = patient;
             List<RegisteredUser> notificationTo = new List<RegisteredUser>();
             notificationTo.Add(appointement.Doctor);

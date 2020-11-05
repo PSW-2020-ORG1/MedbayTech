@@ -10,13 +10,14 @@ namespace Model.Reports
 {
    public class DoctorsAppointmentReport : Report
    {
-        private ExaminationSurgery.ExaminationSurgery examinationSurgery;
+        public int ExaminationSurgeryId { get; set; }
+        public virtual ExaminationSurgery.ExaminationSurgery ExaminationSurgery { get; set; }
 
         public DoctorsAppointmentReport(ExaminationSurgery.ExaminationSurgery examinationSurgery, DateTime date) : base(date, "")
         {
             ExaminationSurgery = examinationSurgery;
         }
 
-        public ExaminationSurgery.ExaminationSurgery ExaminationSurgery { get => examinationSurgery; set => examinationSurgery = value; }
+       
     }
 }

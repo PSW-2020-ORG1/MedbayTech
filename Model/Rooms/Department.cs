@@ -5,43 +5,40 @@
 
 using Model.Users;
 using System;
-using SimsProjekat.Repository; 
+using SimsProjekat.Repository;
 
 namespace Model.Rooms
 {
-   public class Department : IIdentifiable<int>
-   {
-        private int id;
-        private string name;
-        private int floor;
-        private Hospital hospital;
+    public class Department : IIdentifiable<int>
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Floor { get; set; }
+        public virtual Hospital Hospital { get; set; }
+        public int HospitalId { get; set; }
 
-        public Department(string name, int floor, Hospital hospital)
+        public Department ( string name, int floor, Hospital hospital )
         {
             Name = name;
             Floor = floor;
             Hospital = hospital;
         }
-        
-        public Department(int id)
+
+        public Department ( int id )
         {
-            Id = id;
+            this.Id = id;
         }
 
-        public Department() { }
+        public Department ( )
+        {
+        }
 
-        public string Name{ get => name; set => name = value;}
-        public int Floor { get => floor; set => floor = value; }
-        public int DepartmentID { get => Id; set => Id = value; }
-        public Hospital Hospital { get => hospital; set => hospital = value; }
-        public int Id { get => id; set => id = value; }
-
-        public int GetId()
+        public int GetId ( )
         {
             return Id;
         }
 
-        public void SetId(int id)
+        public void SetId ( int id )
         {
             Id = id;
         }
