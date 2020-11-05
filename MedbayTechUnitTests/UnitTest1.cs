@@ -1,7 +1,6 @@
-﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MedbayTests
+namespace MedbayTechUnitTests
 {
     [TestClass]
     public class UnitTest1
