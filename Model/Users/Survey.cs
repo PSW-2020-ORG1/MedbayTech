@@ -10,13 +10,14 @@ namespace Model.Users
 {
    public class Survey
    {
-        private int id;
-        private DateTime date;
-        private string additionalNotes;
-        private Grade averageGrade;
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public string AdditionalNotes { get; set; }
+        public Grade AverageGrade { get; set; }
 
-        private Patient patient;
-        private List<SurveyQuestion> surveyQuestions;
+        public int PatientId { get; set; }
+        public virtual Patient Patient { get; set; }
+        public virtual List<SurveyQuestion> SurveyQuestions { get; set; }
 
         public string patientId;
       
@@ -34,12 +35,5 @@ namespace Model.Users
             SurveyQuestions = surveyQuestions;
         }
 
-
-        public DateTime Date { get => date; set => date = value; }
-        public string AdditionalNotes { get => additionalNotes; set => additionalNotes = value; }
-        public Grade AverageGrade { get => averageGrade; set => averageGrade = value; }
-        public int Id { get => id; set => id = value; }
-        public virtual Patient Patient { get => patient; set => patient = value; }
-        public virtual List<SurveyQuestion> SurveyQuestions { get => surveyQuestions; set => surveyQuestions = value; }
     }
 }

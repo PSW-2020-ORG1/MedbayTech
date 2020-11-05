@@ -9,11 +9,13 @@ namespace Model.Users
 {
    public class SurveyQuestion
    {
-        private int id;
-        private string question;
-        private Grade grade;
+        public int Id { get; set; }
+        public string Question { get; set; }
+        public Grade grade { get; set; }
 
         public int gradeId;
+
+        public virtual Survey Survey { get; set; }
 
         public SurveyQuestion() { }
         public SurveyQuestion(int id)
@@ -28,9 +30,7 @@ namespace Model.Users
         }
 
 
-        public string Question { get => question; set => question = value; }
         public virtual Grade Grade { get => grade; set => grade = value; }
-        public int Id { get => id; set => id = value; }
 
     }
 }
