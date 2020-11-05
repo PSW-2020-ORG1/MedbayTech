@@ -55,19 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Building1FloorPlan.xaml">
+    <Page Include="View\Building1\Building1FloorPlan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Building2FloorPlan.xaml">
+    <Page Include="View\Building2\Building2FloorPlan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FloorsMap.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="HospitalMap.xaml">
+    <Page Include="View\HospitalMap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -79,16 +75,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Building1FloorPlan.xaml.cs">
+    <Compile Include="View\Building1\Building1FloorPlan.xaml.cs">
       <DependentUpon>Building1FloorPlan.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Building2FloorPlan.xaml.cs">
+    <Compile Include="View\Building2\Building2FloorPlan.xaml.cs">
       <DependentUpon>Building2FloorPlan.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FloorsMap.xaml.cs">
-      <DependentUpon>FloorsMap.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="HospitalMap.xaml.cs">
+    <Compile Include="View\HospitalMap.xaml.cs">
       <DependentUpon>HospitalMap.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
