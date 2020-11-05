@@ -11,12 +11,10 @@ namespace Model.Users
    {
         public int Id { get; set; }
         public string Question { get; set; }
-        public Grade grade { get; set; }
+        public Grade Grade { get; set; }
 
         public virtual Survey Survey { get; set; }
         public int SurveyId { get; set; }
-
-        public virtual Survey Survey { get; set; }
 
         public SurveyQuestion() { }
         public SurveyQuestion(int id)

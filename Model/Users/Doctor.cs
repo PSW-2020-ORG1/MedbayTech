@@ -21,9 +21,9 @@ namespace Model.Users
         public int DepartmentId { get; set; }
         public virtual Department Department { get; set; }
         public int ExaminationRoomId { get; set; }
-        public Room ExaminationRoom { get; set; }
+        public virtual Room ExaminationRoom { get; set; }
         public int OperationRoomId { get; set; }
-        public Room OperationRoom { get; set; }
+        public virtual Room OperationRoom { get; set; }
 
         public Doctor() 
         {
