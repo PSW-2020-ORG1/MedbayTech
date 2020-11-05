@@ -1,20 +1,21 @@
-﻿<Page x:Class="GraphicEditor.Building1FloorPlan"
+﻿<Page x:Class="GraphicEditor.View.Building1.Building1FirstFloorPlan"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:GraphicEditor"
+      xmlns:local="clr-namespace:GraphicEditor.View.Building1"
       mc:Ignorable="d" 
       d:DesignHeight="652" d:DesignWidth="766"
-      Title="Building1FloorPlan">
+      Title="Building1FirstFloorPlan">
 
     <Grid>
         <Canvas x:Name="canvasBuild1fl1" Background="MintCream">
             <Label Content="Hospital 1" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="249" Canvas.Top="36"/>
             <Button Content="Up" Canvas.Left="249" Canvas.Top="127" Height="35" Width="268" Click="buttonUp"/>
+            <Button Content="DOWN" Canvas.Left="249" Canvas.Top="530" Height="35" Width="268" Click="buttonDown"/>
             <Rectangle Fill="White" Stroke="Black" StrokeThickness="3" Height="260" Width="595" Canvas.Left="86"  Canvas.Top="196"/>
             <Rectangle Fill="White" Height="100" Width="50" Stroke="Black" StrokeThickness="3" Canvas.Left="86" Canvas.Top="196" />
-            <Rectangle Fill="White" Height="100" Width="50" Stroke="Black" StrokeThickness="3" Canvas.Top="356" Canvas.Left="136" />
+            <Rectangle Fill="White" Height="100" Width="50" Stroke="Black" StrokeThickness="3" Canvas.Top="356" Canvas.Left="86" />
             <Rectangle Fill="White" Height="100" Width="50" Canvas.Left="186" Stroke="Black" StrokeThickness="3" Canvas.Top="196" />
             <Rectangle Fill="White" Height="100" Width="50" Canvas.Left="236" Stroke="Black" StrokeThickness="3" Canvas.Top="196" />
             <Rectangle Fill="White" Height="100" Width="50" Canvas.Left="186" Stroke="Black" StrokeThickness="3" Canvas.Top="356" />
@@ -64,6 +65,11 @@
             <Rectangle Fill="White" Height="50" Width="50" Canvas.Left="236" Stroke="Black" StrokeThickness="3" Canvas.Top="356" RenderTransformOrigin="0.948,0.611"/>
             <Rectangle Fill="White" Height="50" Width="50" Canvas.Left="136" Stroke="Black" StrokeThickness="3" Canvas.Top="196"/>
             <Rectangle Fill="White" Height="50" Width="50" Canvas.Left="136" Stroke="Black" StrokeThickness="3" Canvas.Top="246"/>
+            <Rectangle Fill="White" Height="100" Width="100" Canvas.Left="281" Stroke="Black" StrokeThickness="3" Canvas.Top="196" />
+            <Rectangle Fill="White" Height="100" Width="50" Canvas.Left="336" Stroke="Black" StrokeThickness="3" Canvas.Top="356" />
+            <Rectangle Fill="White" Height="100" Width="50" Canvas.Left="286" Stroke="Black" StrokeThickness="3" Canvas.Top="356" />
+            <Rectangle Fill="White" Height="50" Width="50" Canvas.Left="136" Stroke="Black" StrokeThickness="3" Canvas.Top="356"/>
+            <Rectangle Fill="White" Height="50" Width="50" Canvas.Left="136" Stroke="Black" StrokeThickness="3" Canvas.Top="406"/>
         </Canvas>
     </Grid>
 </Page>

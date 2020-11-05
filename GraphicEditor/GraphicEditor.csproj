@@ -55,7 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\Building1\Building1FirstFloorPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Building1\Building1GroundFloorPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Building1\Building1SecondFloorPlan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -75,8 +83,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="View\Building1\Building1FirstFloorPlan.xaml.cs">
+      <DependentUpon>Building1FirstFloorPlan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Building1\Building1GroundFloorPlan.xaml.cs">
       <DependentUpon>Building1GroundFloorPlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Building1\Building1SecondFloorPlan.xaml.cs">
+      <DependentUpon>Building1SecondFloorPlan.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Building2\Building2GroundFloorPlan.xaml.cs">
       <DependentUpon>Building2GroundFloorPlan.xaml</DependentUpon>

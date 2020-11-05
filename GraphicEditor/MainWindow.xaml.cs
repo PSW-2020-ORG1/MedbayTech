@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraphicEditor.View.Building1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -46,7 +47,7 @@ namespace GraphicEditor
             storyboard.Begin(this);
         }
 
-        private void ShowBuilding1Floor(object sender, MouseButtonEventArgs e)
+        private void ShowBuilding1GroundFloor(object sender, MouseButtonEventArgs e)
         {
             MainFrame.Content = new Building1FloorPlan(this);
             Storyboard storyboard = new Storyboard();
@@ -59,8 +60,33 @@ namespace GraphicEditor
             Storyboard.SetTargetName(doubleAnimation, MainFrame.Name);
             storyboard.Begin(this);
         }
-
-        private void ShowBuilding2Floor(object sender, MouseButtonEventArgs e)
+        private void ShowBuilding1FirstFloor(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Content = new Building1FirstFloorPlan(this);
+            Storyboard storyboard = new Storyboard();
+            DoubleAnimation doubleAnimation = new DoubleAnimation();
+            doubleAnimation.From = 0;
+            doubleAnimation.To = 1;
+            doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
+            storyboard.Children.Add(doubleAnimation);
+            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
+            Storyboard.SetTargetName(doubleAnimation, MainFrame.Name);
+            storyboard.Begin(this);
+        }
+        private void ShowBuilding1SecondFloor(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Content = new Building1SecondFloorPlan(this);
+            Storyboard storyboard = new Storyboard();
+            DoubleAnimation doubleAnimation = new DoubleAnimation();
+            doubleAnimation.From = 0;
+            doubleAnimation.To = 1;
+            doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
+            storyboard.Children.Add(doubleAnimation);
+            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
+            Storyboard.SetTargetName(doubleAnimation, MainFrame.Name);
+            storyboard.Begin(this);
+        }
+        private void ShowBuilding2GroundFloor(object sender, MouseButtonEventArgs e)
         {
             MainFrame.Content = new Building2FloorPlan(this);
             Storyboard storyboard = new Storyboard();
@@ -86,56 +112,95 @@ namespace GraphicEditor
             }
             if (MAP.IsSelected)
             {
+                comboBoxH1.SelectedItem = null;
+                comboBoxH2.SelectedItem = null;
                 ShowHospitalMap(null, null);
             }
             else if (H1.IsSelected)
             {
-                ShowBuilding1Floor(null, null);
+                ShowBuilding1GroundFloor(null, null);
+                comboBoxHospital1.SelectedIndex = 0;
             }
             else if(H2.IsSelected)
             {
-                ShowBuilding2Floor(null, null);
+                ShowBuilding2GroundFloor(null, null);
+                comboBoxHospital2.SelectedIndex = 0;
             }
         }
         private void comboBoxH1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (dontRefreshMap == true) return;
             dontRefreshMap = true;
+            comboBoxH2.SelectedItem = null;
             if (comboBoxH1.SelectedIndex == 0)
             {
-                ShowBuilding1Floor(null, null);
+                dontRefreshMap = true;
+                ShowBuilding1GroundFloor(null, null);
             }
             else if (comboBoxH1.SelectedIndex == 1)
             {
-                MessageBox.Show("Floor 1");
+                dontRefreshMap = true;
+                ShowBuilding1FirstFloor(null, null);
             }
             else if (comboBoxH1.SelectedIndex == 2)
             {
-                MessageBox.Show("Floor 2");
+                dontRefreshMap = true;
+                ShowBuilding1SecondFloor(null, null);
             }
-            else if (comboBoxH1.SelectedIndex == 3)
+        }
+
+        private void comboBoxHospital1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dontRefreshMap = true;
+            if (comboBoxHospital1.SelectedIndex == 0)
             {
-                MessageBox.Show("Floor 3");
+                ShowBuilding1GroundFloor(null, null);
+            }
+            else if (comboBoxHospital1.SelectedIndex == 1)
+            {
+                ShowBuilding1FirstFloor(null, null);
+            }
+            else if (comboBoxHospital1.SelectedIndex == 2)
+            {
+                ShowBuilding1SecondFloor(null, null);
             }
         }
 
         private void comboBoxH2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (dontRefreshMap == true) return;
             dontRefreshMap = true;
+            comboBoxH1.SelectedItem = null;
             if (comboBoxH2.SelectedIndex == 0)
             {
-                ShowBuilding2Floor(null, null);
+                dontRefreshMap = true;
+                ShowBuilding2GroundFloor(null, null);
             }
             else if (comboBoxH2.SelectedIndex == 1)
             {
+                dontRefreshMap = true;
                 MessageBox.Show("Floor 1");
             }
             else if (comboBoxH2.SelectedIndex == 2)
             {
+                dontRefreshMap = true;
                 MessageBox.Show("Floor 2");
             }
-            else if (comboBoxH2.SelectedIndex == 3)
+        }
+        private void comboBoxHospital2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dontRefreshMap = true;
+            if (comboBoxHospital2.SelectedIndex == 0)
             {
-                MessageBox.Show("Floor 3");
+                ShowBuilding2GroundFloor(null, null);
+            }
+            else if (comboBoxHospital2.SelectedIndex == 1)
+            {
+                MessageBox.Show("Floor 1");
+            }
+            else if (comboBoxHospital2.SelectedIndex == 2)
+            {
+                MessageBox.Show("Floor 2");
             }
         }
     }

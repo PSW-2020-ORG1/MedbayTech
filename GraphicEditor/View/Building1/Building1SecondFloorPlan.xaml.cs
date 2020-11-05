@@ -1,5 +1,4 @@
-﻿using GraphicEditor.View.Building1;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,21 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GraphicEditor
+namespace GraphicEditor.View.Building1
 {
     /// <summary>
-    /// Interaction logic for Building1FloorPlan.xaml
+    /// Interaction logic for Building1SecondFloorPlan.xaml
     /// </summary>
-    public partial class Building1FloorPlan : Page
+    public partial class Building1SecondFloorPlan : Page
     {
         private MainWindow mainWindow;
-        public Building1FloorPlan(MainWindow mainWindow)
+        public Building1SecondFloorPlan(MainWindow mainWindow)
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
         }
 
-        private void buttonUp(object sender, RoutedEventArgs e)
+        private void buttonDown(object sender, RoutedEventArgs e)
         {
             mainWindow.MainFrame.Content = new Building1FirstFloorPlan(mainWindow);
             if (mainWindow.tabControl.SelectedIndex == 0)

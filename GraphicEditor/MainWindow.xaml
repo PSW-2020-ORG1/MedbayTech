@@ -25,7 +25,7 @@
                 <Label DockPanel.Dock="Top" Content="Legend:" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White"/>
                 <TextBox DockPanel.Dock="Bottom" Text="Bojana treba da uradi." Height="250"/>
             </DockPanel>
-            <TabControl SelectionChanged="TabControl_SelectionChanged">
+            <TabControl SelectionChanged="TabControl_SelectionChanged" x:Name="tabControl">
                 <TabItem x:Name="MAP" Header="Map">
                     <Grid Background="#FFE5E5E5">
                         <Label Content="Wards:" HorizontalAlignment="Left" Margin="132,-7,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="110" Height="35"/>
@@ -45,30 +45,26 @@
                         <ComboBox SelectionChanged="comboBoxH1_SelectionChanged"  x:Name="comboBoxH1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,28,0,0">
                             <ComboBoxItem Content="Ground level"/>
                             <ComboBoxItem Content="First floor" />
-                            <ComboBoxItem Content="Secod floor" />
-                            <ComboBoxItem Content="Third floor" />
+                            <ComboBoxItem Content="Second floor" />
                         </ComboBox>
                         <Label Content="H2 Floors:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="120" Margin="0,109,0,0"/>
                         <ComboBox SelectionChanged="comboBoxH2_SelectionChanged" x:Name="comboBoxH2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,143,0,0">
                             <ComboBoxItem Content="Ground level"/>
                             <ComboBoxItem Content="First floor"/>
                             <ComboBoxItem Content="Secod floor"/>
-                            <ComboBoxItem Content="Third floor"/>
-                            <ComboBoxItem Content="Forth floor"/>
                         </ComboBox>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="H1" Header="H1">
                     <Grid Background="#FFE5E5E5">
-                        <Label Content="Floors:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="120" Margin="0,-7,0,0"/>
-                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,28,0,0">
-                            <ComboBoxItem MouseLeftButtonDown="ShowBuilding1Floor" IsSelected="True">Ground level</ComboBoxItem>
+                        <Label Content="Floors:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="120" Margin="0,-7,0,0" Grid.ColumnSpan="3"/>
+                        <ComboBox SelectionChanged="comboBoxHospital1_SelectionChanged" x:Name="comboBoxHospital1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,28,0,0" Grid.ColumnSpan="3">
+                            <ComboBoxItem>Ground level</ComboBoxItem>
                             <ComboBoxItem>First floor</ComboBoxItem>
-                            <ComboBoxItem>Secod floor</ComboBoxItem>
-                            <ComboBoxItem>Third floor</ComboBoxItem>
+                            <ComboBoxItem>Second floor</ComboBoxItem>
                         </ComboBox>
-                        <Label Content="Wards:" HorizontalAlignment="Left" Margin="132,-7,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="110" Height="35"/>
-                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="132,28,0,0">
+                        <Label Content="Wards:" HorizontalAlignment="Left" Margin="132,-7,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="110" Height="35" Grid.Column="2"/>
+                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="132,28,0,0" Grid.Column="2">
                             <ComboBoxItem Content="Radiology"/>
                             <ComboBoxItem Content="Neurology"/>
                             <ComboBoxItem Content="Oncology"/>
@@ -80,12 +76,10 @@
                 <TabItem x:Name="H2" Header="H2">
                     <Grid Background="#FFE5E5E5">
                         <Label Content="Floors:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="120" Margin="0,-7,0,0"/>
-                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,28,0,0">
-                            <ComboBoxItem MouseLeftButtonDown="ShowBuilding2Floor" IsSelected="True">Ground level</ComboBoxItem>
+                        <ComboBox HorizontalAlignment="Left" SelectionChanged="comboBoxHospital2_SelectionChanged" x:Name="comboBoxHospital2" VerticalAlignment="Top" Width="120" Margin="0,28,0,0">
+                            <ComboBoxItem>Ground level</ComboBoxItem>
                             <ComboBoxItem>First floor</ComboBoxItem>
-                            <ComboBoxItem>Secod floor</ComboBoxItem>
-                            <ComboBoxItem>Third floor</ComboBoxItem>
-                            <ComboBoxItem>Forth floor</ComboBoxItem>
+                            <ComboBoxItem>Second floor</ComboBoxItem>
                         </ComboBox>
                         <Label Content="Wards:" HorizontalAlignment="Left" Margin="132,-7,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="110" Height="35"/>
                         <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="132,28,0,0">
