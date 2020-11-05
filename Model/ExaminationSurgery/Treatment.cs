@@ -15,6 +15,8 @@ namespace Model.ExaminationSurgery
         public string AdditionalNotes { get; set; }
         public TreatmentType Type { get; set; }
 
+        public int ExaminationSurgeryId { get; set; }
+        public virtual ExaminationSurgery ExaminationSurgery { get; set; }
         public Treatment() { }
 
         public Treatment(int id)

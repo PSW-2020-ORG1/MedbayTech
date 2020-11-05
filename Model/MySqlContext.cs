@@ -12,6 +12,7 @@ namespace Model
 {
     public class MySqlContext : DbContext
     {
+        public DbSet<Specialization> Specializations { get; set; }
         public DbSet<LabTesting> LabTestings { get; set; }
         public DbSet<LabTestType> LabTestTypes { get; set; }
         private DbSet<Treatment> Treatments { get; set; }
@@ -37,6 +38,11 @@ namespace Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Specialization>().HasData(
+                    new Specialization { Id = 1, SpecializationName = "Specijalista hirurgije" }
+                );
+            
             modelBuilder.Entity<MedicationIngredient>().HasData(
                 new MedicationIngredient { Name = "Amoksicilin", Id = 1 },
                 new MedicationIngredient { Name = "Kikiriki", Id = 2}

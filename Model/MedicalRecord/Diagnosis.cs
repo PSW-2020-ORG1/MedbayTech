@@ -9,14 +9,20 @@ using SimsProjekat.Repository;
 
 namespace Model.MedicalRecord
 {
-   public class Diagnosis : IIdentifiable<int>
-   {
+    public class Diagnosis : IIdentifiable<int>
+    {
         public int Id { get; set; }
         public string Name { get; set; }
-        
-        public virtual List<Symptoms> Symptoms {get; set; }
 
+        public virtual List<Symptoms> Symptoms { get; set; }
+
+        public int FamilyIllnessHistoryId { get; set; }
+        public virtual FamilyIllnessHistory FamilyIllnessHistory  { get; set; }
+        public int MedicalRecordId { get; set; }
+        public virtual MedicalRecord MedicalRecord { get; set; }
        
+        public int ExaminationSurgeryId { get; set; }
+        public virtual ExaminationSurgery.ExaminationSurgery ExaminationSurgery { get; set; }
         public Diagnosis() 
         {
             

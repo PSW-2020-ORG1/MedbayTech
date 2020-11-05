@@ -15,6 +15,9 @@ namespace Model.Medications
         public int SideEffectsId { get; set; }
         public virtual Symptoms SideEffects { get; set; }
 
+        public int MedicationId { get; set; }
+        public virtual Medication Medication { get; set; }
+
         public SideEffect() {}
         public SideEffect(SideEffectFrequency frequency, Symptoms symptoms)
         {

@@ -14,6 +14,7 @@ namespace Model.MedicalRecord
 {
    public class MedicalRecord : IIdentifiable<int>
    {
+
         public int Id { get; set; }
         public PatientCondition CurrHealthState { get; set; }
         public BloodType BloodType { get; set; }

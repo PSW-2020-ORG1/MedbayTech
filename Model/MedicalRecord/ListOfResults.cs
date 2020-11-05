@@ -10,9 +10,10 @@ namespace Model.MedicalRecord
 {
     public class ListOfResults
     {
-        private int id;
-        private DateTime dateOfTesting;
-        private List<LabResults> labResults;
+        public int Id { get; set; }
+        public DateTime DateOfTesting { get; set; }
+
+        public virtual List<LabResults> LabResults { get; set }
 
         public ListOfResults() {}
         public ListOfResults(DateTime dateOfTesting)
@@ -21,8 +22,6 @@ namespace Model.MedicalRecord
             LabResults = new List<LabResults>();
         }
 
-        public int Id { get => id; set => id = value; }
-        public DateTime DateOfTesting { get => dateOfTesting; set => dateOfTesting = value; }
-        public virtual List<LabResults> LabResults { get => labResults; set => labResults = value; }
+   
     }
 }

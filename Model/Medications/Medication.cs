@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Model.ExaminationSurgery;
 using SimsProjekat.Repository;
 
 namespace Model.Medications
@@ -14,36 +15,28 @@ namespace Model.Medications
    public class Medication : IIdentifiable<int>
    {
 
-        private int medId;
-        private string med;
-        private MedStatus status;
-        private string company;
-        private int quantity;
-        private List<DosageOfIngredient> medicationContent;
-        private List<MedicationCategory> medicationCategory;
-        private List<Allergens> allergens;
-        private List<Medication> alternativeMedication;
-        private List<SideEffect> sideEffects;
+        public int Id { get; set;  }
+        public string Med { get; set; }
+        public MedStatus Status { get; set; }
+        public string Company { get; set; }
+        public int Quantity { get; set; }
+        public List<DosageOfIngredient> MedicationContent { get; set; }
+        public List<MedicationCategory> MedicationCategory { get; set; }
+        private List<Allergens> Allergens { get; set; }
 
-        [Key]
-        public int MedId { get => medId; set => medId = value; }
-        public string Med { get => med; set => med = value; }
-        public MedStatus Status { get => status; set => status = value; }
-        public string Company { get => company; set => company = value; }
-        public int Quantity { get => quantity; set => quantity = value; }
-        public virtual List<DosageOfIngredient> MedicationContent { get => medicationContent; set => medicationContent = value; }
-        public virtual List<MedicationCategory> MedicationCategory { get => medicationCategory; set => medicationCategory = value; }
-        public virtual List<Allergens> Allergens { get => allergens; set => allergens = value; }
-        public virtual List<Medication> AlternativeMedication { get => alternativeMedication; set => alternativeMedication = value; }
-        public virtual List<SideEffect> SideEffects { get => sideEffects; set => sideEffects = value; }
+        public List<Medication> AlternativeMedication { get; set; }
+        public List<SideEffect> SideEffects { get; set; }
 
-        public Medication() 
-        {
-            Allergens = new List<Allergens>();
-            SideEffects = new List<SideEffect>();
-            MedicationCategory = new List<MedicationCategory>();
-            MedicationContent = new List<DosageOfIngredient>();
-        }
+        public int PerscriptionId { get; set; }
+        public virtual Prescription Prescription { get; set; }
+
+        public int TreatmentFormId { get; set; }
+
+        public virtual TreatmentForm TreatmentForm { get; set; }
+        
+        
+        public Medication() { }
+
         public Medication(string name, string company, List<DosageOfIngredient> ingredients, List<MedicationCategory> category, List<Allergens> allergens, List<SideEffect> sideEffects)
         {
             Med = name;
@@ -57,12 +50,12 @@ namespace Model.Medications
 
         public Medication(int id)
         {
-            MedId = id;
+            Id = id;
         }
 
         public int GetId()
         {
-            return MedId;
+            return Id;
         }
 
         public void SetId(int id)
