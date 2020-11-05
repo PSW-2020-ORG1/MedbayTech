@@ -5,32 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicEditor"
         mc:Ignorable="d"
-              Title="Hospital floor plan" Height="720" Width="1024" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" BorderBrush="#FFC13939">
+              Title="Hospital map plan" Height="720" Width="1024" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" BorderBrush="#FFC13939" ResizeMode="NoResize">
     <Window.Triggers>
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>
                 <Storyboard>
-                    <DoubleAnimation From="0" To="1" Duration="0:0:1" Storyboard.TargetProperty="Opacity">
-
-                    </DoubleAnimation>
+                    <DoubleAnimation From="0" To="1" Duration="0:0:1" Storyboard.TargetProperty="Opacity"/>
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
     </Window.Triggers>
-
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="251*"/>
-        </Grid.ColumnDefinitions>
-
-        <StackPanel Orientation="Horizontal" Height="68" VerticalAlignment="Top" Background="#006481" Grid.ColumnSpan="2">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="68" VerticalAlignment="Top" Background="#006481" Grid.ColumnSpan="2">
             <Label Content="Hospital map" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="White"/>
         </StackPanel>
-
-        <StackPanel Orientation="Vertical" Height="650" VerticalAlignment="Top" Background="SteelBlue" Margin="0,68,742,0" Grid.ColumnSpan="2">
-            <Label Content="Informations" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White"/>
-            <TabControl Height="281" Margin="0,0,18,0" SelectionChanged="TabControl_SelectionChanged">
+        <DockPanel DockPanel.Dock="Left" Background="SteelBlue">
+            <Label DockPanel.Dock="Top" Content="Informations:" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White"/>
+            <DockPanel DockPanel.Dock="Bottom">
+                <Label DockPanel.Dock="Top" Content="Legend:" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White"/>
+                <TextBox DockPanel.Dock="Bottom" Text="Bojana treba da uradi." Height="250"/>
+            </DockPanel>
+            <TabControl SelectionChanged="TabControl_SelectionChanged">
                 <TabItem x:Name="MAP" Header="Map">
                     <Grid Background="#FFE5E5E5">
                         <Label Content="Wards:" HorizontalAlignment="Left" Margin="132,-7,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="110" Height="35"/>
@@ -103,10 +98,7 @@
                     </Grid>
                 </TabItem>
             </TabControl>
-        </StackPanel>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="254,68,0,0" Grid.Column="1"/>
-
-        <Frame Name="MainFrame" Margin="254,68,0,0" NavigationUIVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1"/>
-    </Grid>
-
+        </DockPanel>
+        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+    </DockPanel>
 </Window>

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GraphicEditor"
       mc:Ignorable="d" 
-      d:DesignHeight="652" d:DesignWidth="750"
+      d:DesignHeight="652" d:DesignWidth="766"
       Title="HospitalMap">
 
     <Grid>
@@ -14,7 +14,7 @@
             <RowDefinition Height="19*"/>
         </Grid.RowDefinitions>
         <Canvas x:Name="HMapCanvas"  Margin="0,0,0,0" Background="Beige" Grid.RowSpan="2">
-            <Rectangle Fill="LightSlateGray" Height="826" Width="50" Canvas.Left="55" Canvas.Top="-85" RenderTransformOrigin="0.5,0.5">
+            <Rectangle Fill="LightSlateGray" Height="828" Width="50" Canvas.Left="55" Canvas.Top="-87" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
@@ -24,7 +24,7 @@
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <Rectangle Fill="LightSlateGray" Height="950" Width="50" Canvas.Left="351" Canvas.Top="60" RenderTransformOrigin="0.5,0.5">
+            <Rectangle Fill="LightSlateGray" Height="970" Width="50" Canvas.Left="359" Canvas.Top="50" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
@@ -114,7 +114,7 @@
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <Rectangle Fill="LightSlateGray" Height="35" Width="509" Canvas.Left="172" Canvas.Top="17" RenderTransformOrigin="0.5,0.5">
+            <Rectangle Fill="LightSlateGray" Height="35" Width="523" Canvas.Left="174" Canvas.Top="17" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="0.788" ScaleX="1.27"/>
