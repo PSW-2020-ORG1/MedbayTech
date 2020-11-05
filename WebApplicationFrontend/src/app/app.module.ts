@@ -10,10 +10,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatList, MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+
+import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-feedback/approved-feedback.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ApprovedFeedbackComponent
    
   ],
   imports: [
@@ -21,7 +27,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatCheckboxModule
+    MatListModule,
+    MatCardModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
