@@ -126,7 +126,7 @@ namespace Repository.MedicalRecordRepository
         {
             for (int i = 0; i < entity.Therapies.Count; i++)
             {
-                entity.Therapies[i].Medication = new Medication(entity.Therapies[i].Medication.MedId);
+                entity.Therapies[i].Medication = new Medication(entity.Therapies[i].Medication.Id);
             }
         }
 
@@ -146,7 +146,7 @@ namespace Repository.MedicalRecordRepository
         {
             for (int i = 0; i < entity.Therapies.Count; i++)
             {
-                entity.Therapies[i].Medication = therapyRepository.GetObject(entity.Therapies[i].Medication.MedId);
+                entity.Therapies[i].Medication = therapyRepository.GetObject(entity.Therapies[i].Medication.Id);
             }
         }
 

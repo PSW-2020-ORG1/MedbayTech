@@ -60,7 +60,7 @@ namespace Model.Medications
 
         public void SetId(int id)
         {
-            MedId = id;
+            Id = id;
         }
     }
 }

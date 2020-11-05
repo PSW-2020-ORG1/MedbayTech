@@ -9,14 +9,14 @@ namespace Model.Users
 {
    public class DoctorReview
    {
-        private int id;
-        private DateTime dateOfReview;
-        private Grade grade;
-        public string patiendId;
-        public string DoctrorId;
+        public string PatientId { get; set;}
+        public string DoctorId { get; set; }
+        public int Id { get; set; }
+        public DateTime DateOfReview { get; set; }
+        public Grade Grade { get; set; }
 
-        private Patient patient;
-        private Doctor doctor;
+        public virtual Patient Patient { get; set; }
+        public virtual Doctor Doctor { get; set; }
 
         public DoctorReview() { }
 
@@ -32,12 +32,6 @@ namespace Model.Users
             Patient = patient;
             Doctor = doctor;
         }
-
-        public int Id { get => id; set => id = value; }
-        public DateTime DateOfReview { get => dateOfReview; set => dateOfReview = value; }
-        public Grade Grade { get => grade; set => grade = value; }
-        public virtual Patient Patient { get => patient; set => patient = value; }
-        public virtual Doctor Doctor { get => doctor; set => doctor = value; }
 
     }
 }

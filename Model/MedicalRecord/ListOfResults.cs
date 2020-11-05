@@ -13,7 +13,7 @@ namespace Model.MedicalRecord
         public int Id { get; set; }
         public DateTime DateOfTesting { get; set; }
 
-        public virtual List<LabResults> LabResults { get; set }
+        public virtual List<LabResults> LabResults { get; set; }
 
         public ListOfResults() {}
         public ListOfResults(DateTime dateOfTesting)

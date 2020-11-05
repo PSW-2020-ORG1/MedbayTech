@@ -79,7 +79,7 @@ namespace Service.MedicationService
                 for (int i = 0; i < validations.Count; i++)
                 {
                     Medication medication = validations[i];
-                    if (medication.MedId == validation.Medication.MedId && doctor.Username.Equals(validation.Doctor.Username))
+                    if (medication.Id == validation.Medication.Id && doctor.Username.Equals(validation.Doctor.Username))
                     {
                         validations.Remove(medication);
                     }
