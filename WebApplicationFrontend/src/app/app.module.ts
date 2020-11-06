@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import {MatButtonModule} from '@angular/material/button'; 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatList, MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
@@ -16,6 +16,7 @@ import {MatDividerModule} from '@angular/material/divider';
 
 import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-feedback/approved-feedback.component';
 import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.compo
     BrowserAnimationsModule,
     MatListModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

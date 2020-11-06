@@ -5,13 +5,17 @@
                 <mat-list-item *ngFor="let feedback of allFeedback">  
                     
                     <mat-card>
-                        <mat-card-title>
-                            <p class="title-paragraph">{{ feedback.Id }}</p>
-                        </mat-card-title>
-                        <mat-divider></mat-divider>
-                        <mat-card-subtitle>
-                            <p class="subtitle-paragraph">{{ feedback.Username }}</p>
-                        </mat-card-subtitle>
+                        <mat-card-header> 
+                            <mat-card-title>
+                                <p class="title-paragraph">{{ feedback.Username }} </p>
+                                
+                               
+                            </mat-card-title>
+                            <mat-divider></mat-divider>
+                            <mat-card-subtitle>
+                                <p class="subtitle-paragraph">{{ feedback.Date | date: 'dd/MM/yyyy'}}</p>
+                            </mat-card-subtitle>
+                        </mat-card-header>
                         <mat-divider></mat-divider>
                         <mat-card-content>
                             <p class="content-paragraph">{{ feedback.AdditionalNotes }}</p>
@@ -19,14 +23,16 @@
                         <mat-divider></mat-divider>
                         
                         <mat-card-content>
-                            <p class="content-paragraph" *ngIf="feedback.Approved">Approved</p>
+                            <p class="content-paragraph" *ngIf="feedback.Approved">Status: Approved</p>
                             <p class="content-paragraph" *ngIf="!feedback.Approved">Not Approved</p>
                             
                         </mat-card-content>
                            
-                        <mat-card-footer>
-                            <p class="date-paragraph">{{ feedback.Date | date: 'dd/MM/yyyy'}}</p>
-                        </mat-card-footer>
+                        <mat-card-actions>
+                            <button mat-raised-button id="button" *ngIf="feedback.Approved">Approve</button>
+                            <button mat-raised-button id="button" *ngIf="!feedback.Approved">Deny</button>
+
+                        </mat-card-actions>
                     </mat-card>
                 </mat-list-item>
                 
