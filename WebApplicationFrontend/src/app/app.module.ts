@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import {RouterModule} from '@angular/router'
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -33,7 +35,10 @@ import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.compo
     MatListModule,
     MatCardModule,
     MatDividerModule,
-    MatButtonModule
+    RouterModule.forRoot([
+      {path: 'allFeedback', component: AllFeedbackComponent},
+      {path:'approvedFeedback', component: ApprovedFeedbackComponent}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
