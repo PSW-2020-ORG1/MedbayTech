@@ -61,12 +61,12 @@ namespace Repository.UserRepository
         
         public void SetMissingValues(VacationRequest vacationRequest)
         {
-            vacationRequest.employee = new Employee(vacationRequest.employee.Username);
+            vacationRequest.Employee = new Employee(vacationRequest.Employee.Username);
         }
 
         public void CompleteObject(VacationRequest vacationRequest)
         {
-            vacationRequest.employee = (Employee)employeeRepository.GetObject(vacationRequest.employee.Username);
+            vacationRequest.Employee = (Employee)employeeRepository.GetObject(vacationRequest.Employee.Username);
         }
     }
 }

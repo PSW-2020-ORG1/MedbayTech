@@ -66,7 +66,7 @@ namespace Service.UserService
         {
             VacationRequest fullRequest = request;
             vacationRequestRepository.Create(request);
-            notificationService.NewVacationRequest(fullRequest.employee);
+            notificationService.NewVacationRequest(fullRequest.Employee);
             return request;
         }
       
