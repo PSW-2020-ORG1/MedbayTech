@@ -11,12 +11,13 @@ namespace WebApplication.DTO
         public string AdditionalNotes { get; set; }
         public string Username { get; set; }
 
-        public ApprovedFeedbackDTO(DateTime date, string additionalNotes, string username)
+        public bool Anonymous { get; set; }
+        public ApprovedFeedbackDTO(DateTime date, string additionalNotes, string username, bool anonymous)
         {
             Date = date;
             AdditionalNotes = additionalNotes;
             Username = username;
-
+            Anonymous = anonymous;
         }
     }
 }
