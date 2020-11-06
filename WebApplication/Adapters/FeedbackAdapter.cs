@@ -1,4 +1,5 @@
 ﻿using Model.Users;
+using SimsProjekat.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +34,14 @@ namespace WebApplication.Adapters
                 int id = feedbackIt.Id;
                 DateTime date = feedbackIt.Date;
                 string additionalNotes = feedbackIt.AdditionalNotes;
-                string username = feedbackIt.RegisteredUser.Username;
+                string username = "";
+                if (feedbackIt.RegisteredUser != null)
+                {
+                    username = feedbackIt.RegisteredUser.Username;
+                }
                 Boolean approved = feedbackIt.Approved;
-                allFeedbackList.Add(new AllFeedbackDTO(id, date, additionalNotes, username, approved));
+                Boolean anonymous = feedbackIt.Anonymous;
+                allFeedbackList.Add(new AllFeedbackDTO(id, date, additionalNotes, username, approved, anonymous));
             }
 
             return allFeedbackList;
