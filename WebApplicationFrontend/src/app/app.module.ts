@@ -15,11 +15,13 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 
 import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-feedback/approved-feedback.component';
+import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ApprovedFeedbackComponent
+    ApprovedFeedbackComponent,
+    AllFeedbackComponent
    
   ],
   imports: [

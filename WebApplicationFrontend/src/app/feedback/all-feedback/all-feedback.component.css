@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding-top: 5vw;
+  }
+
+
+mat-card {
+    width: 300px;
+    padding-bottom: 20px;
+    background-color : #f2f2f2;
+    
+}
+
+mat-card-content {
+    padding-top: 10px;
+}
+
+.content-paragraph {
+    font-size: 20px;
+}
+
+.title-paragraph {
+    font-size: 16px;
+    
+}
+
+.date-paragraph {
+    font-size: 14px;
+    padding-left: 18px;
+}

@@ -24,5 +24,25 @@ namespace WebApplication.Adapters
                
 
         }
+
+        public static List<AllFeedbackDTO> ListAllFeedbackToListAllFeedbackDTO(List<Feedback> allFeedback)
+        {
+            List<AllFeedbackDTO> allFeedbackList = new List<AllFeedbackDTO>();
+            foreach (Feedback feedbackIt in allFeedback)
+            {
+                int id = feedbackIt.Id;
+                DateTime date = feedbackIt.Date;
+                string additionalNotes = feedbackIt.AdditionalNotes;
+                string username = feedbackIt.RegisteredUser.Username;
+                Boolean approved = feedbackIt.Approved;
+                allFeedbackList.Add(new AllFeedbackDTO(id, date, additionalNotes, username, approved));
+            }
+
+            return allFeedbackList;
+
+
+        }
+
+
     }
 }

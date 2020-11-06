@@ -11,6 +11,7 @@ using Repository.GeneralRepository;
 using WebApplication.DTO;
 using WebApplicationService.GeneralService;
 using WebApplication.Adapters;
+using System.Security.Cryptography.Xml;
 
 namespace WebApplication
 {
@@ -18,18 +19,19 @@ namespace WebApplication
     [ApiController]
     public class FeedbackController : ControllerBase
     {
+        private FeedbackService feedbackService;
        
 
         public FeedbackController()
         {
-            
+            feedbackService = new FeedbackService();
         }
 
         [HttpGet]       // GET /api/feedback
         public IActionResult Get()
         {
 
-            FeedbackService feedbackService = new FeedbackService();
+            
 
 
             List<Feedback> approvedFeedback = feedbackService.GetAllApprovedFeedback().ToList();
@@ -37,6 +39,17 @@ namespace WebApplication
 
             
             return Ok(approvedFeedbackDTOs);
+        }
+
+        [HttpGet("allFeedback")]
+        public IActionResult GetAllFeedback() {
+
+            List<Feedback> allFeedback = feedbackService.GetAll().ToList();
+            List<AllFeedbackDTO> allFeedbackDTOs = FeedbackAdapter.ListAllFeedbackToListAllFeedbackDTO(allFeedback);
+
+            return Ok(allFeedbackDTOs);
+
+
         }
     }
 
