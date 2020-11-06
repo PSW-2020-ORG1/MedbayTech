@@ -1,14 +1,11 @@
-.container {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    padding-top: 5vw;
+.row {
+    padding-top: 20px;
   }
 
 
 mat-card {
-    max-width: 300px;
-    padding-bottom: 20px;
+    min-width:  40vw;
+    max-width: 40vw;
     background-color: #f2f2f2;
    
 }
@@ -41,5 +38,9 @@ mat-card-actions{
     text-align: center;
     font-size: 40px;
     padding-top: 10px;
+}
+
+.limit {
+    word-wrap: break-word;
 }
 
