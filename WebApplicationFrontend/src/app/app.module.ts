@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -15,11 +16,14 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 
 import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-feedback/approved-feedback.component';
+import { PostFeedbackComponent } from './feedback/post-feedback/post-feedback.component';
+import { FeedbackService } from './service/feedback/feedback.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ApprovedFeedbackComponent
+    ApprovedFeedbackComponent,
+    PostFeedbackComponent
    
   ],
   imports: [
@@ -29,9 +33,11 @@ import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-
     BrowserAnimationsModule,
     MatListModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [FeedbackService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
