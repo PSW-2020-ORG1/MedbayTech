@@ -51,6 +51,13 @@ namespace WebApplication
 
 
         }
+
+        [HttpPost]
+        public IActionResult UpdateFeedbackStatus(UpdateFeedbackStatusDTO updateFeedbackStatusDTO)
+        {
+            feedbackService.UpdateStatus(updateFeedbackStatusDTO.Id, updateFeedbackStatusDTO.Approved);
+            return Ok(updateFeedbackStatusDTO);
+        }
     }
 
 

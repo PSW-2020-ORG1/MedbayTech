@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AllFeedback } from 'src/app/model/allFeedBack';
+import { UpdateFeedbackStatus } from 'src/app/model/updateFeedbackStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,9 @@ export class FeedbackService {
 
     return this.http.get<AllFeedback[]>(`${environment.baseUrl}/${environment.fedback}/${environment.allFeedback}`)
 
+  }
+
+  updateFeedbackStatus(data: UpdateFeedbackStatus) : Observable<UpdateFeedbackStatus>{
+    return this.http.post<UpdateFeedbackStatus>(`${environment.baseUrl}/${environment.fedback}/${environment.allFeedback}/update`, data)
   }
 }

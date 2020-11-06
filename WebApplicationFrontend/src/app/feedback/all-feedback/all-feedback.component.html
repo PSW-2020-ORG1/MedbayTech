@@ -29,8 +29,8 @@
                         </mat-card-content>
                            
                         <mat-card-actions>
-                            <button mat-raised-button id="button" *ngIf="feedback.Approved">Approve</button>
-                            <button mat-raised-button id="button" *ngIf="!feedback.Approved">Deny</button>
+                            <button mat-raised-button id="button", (click)="updateStatus(feedback.Id, feedback.Approved)" *ngIf="!feedback.Approved">Approve</button>
+                            <button mat-raised-button id="button", (click)="updateStatus(feedback.Id, feedback.Approved)" *ngIf="feedback.Approved">Deny</button>
 
                         </mat-card-actions>
                     </mat-card>

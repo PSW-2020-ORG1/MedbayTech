@@ -24,4 +24,8 @@ export class AllFeedbackComponent implements OnInit {
       });
   }
 
+  updateStatus(feedbackId, feedbackStatus) {
+    console.log(feedbackId);
+  }
+
 }
