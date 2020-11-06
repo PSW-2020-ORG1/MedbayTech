@@ -115,17 +115,32 @@ namespace GraphicEditor
                 comboBoxH1.SelectedItem = null;
                 comboBoxH2.SelectedItem = null;
                 ShowHospitalMap(null, null);
+                DisableActiveUserControl(legenda);
             }
             else if (H1.IsSelected)
             {
                 ShowBuilding1GroundFloor(null, null);
                 comboBoxHospital1.SelectedIndex = 0;
+                SetActiveUserControl(legenda);
             }
             else if(H2.IsSelected)
             {
                 ShowBuilding2GroundFloor(null, null);
                 comboBoxHospital2.SelectedIndex = 0;
+                SetActiveUserControl(legenda);
             }
+        }
+
+        private void SetActiveUserControl(UserControl control)
+        {
+            legenda.Visibility = Visibility.Visible;
+
+        }
+
+        private void DisableActiveUserControl(UserControl control)
+        {
+           legenda.Visibility = Visibility.Collapsed;
+
         }
         private void comboBoxH1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -22,8 +22,7 @@
         <DockPanel DockPanel.Dock="Left" Background="SteelBlue">
             <Label DockPanel.Dock="Top" Content="Informations:" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White"/>
             <DockPanel DockPanel.Dock="Bottom">
-                <Label DockPanel.Dock="Top" Content="Legend:" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White"/>
-                <TextBox DockPanel.Dock="Bottom" Text="Bojana treba da uradi." Height="250"/>
+                <local:Legend  x:Name="legenda"  VerticalAlignment="Center" HorizontalAlignment="Center"   Visibility="Collapsed" Height="372" Width="244"></local:Legend>
             </DockPanel>
             <TabControl SelectionChanged="TabControl_SelectionChanged" x:Name="tabControl">
                 <TabItem x:Name="MAP" Header="Map">
