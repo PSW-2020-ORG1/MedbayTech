@@ -28,7 +28,7 @@ namespace GraphicEditor.View.Building1
             this.mainWindow = mainWindow;
         }
 
-        private void buttonDown(object sender, RoutedEventArgs e)
+        private void mouseClickArrowDown(object sender, RoutedEventArgs e)
         {
             mainWindow.MainFrame.Content = new Building1FirstFloorPlan(mainWindow);
             if (mainWindow.tabControl.SelectedIndex == 0)

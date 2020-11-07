@@ -27,11 +27,10 @@ namespace GraphicEditor.View.Building1
             InitializeComponent();
             this.mainWindow = mainWindow;
         }
-
-        private void buttonUp(object sender, RoutedEventArgs e)
+        private void mouseClickArrowUp(object sender, MouseButtonEventArgs e)
         {
             mainWindow.MainFrame.Content = new Building1SecondFloorPlan(mainWindow);
-            if(mainWindow.tabControl.SelectedIndex==0)
+            if (mainWindow.tabControl.SelectedIndex == 0)
             {
                 mainWindow.comboBoxH1.SelectedIndex = 2;
             }
@@ -40,8 +39,7 @@ namespace GraphicEditor.View.Building1
                 mainWindow.comboBoxHospital1.SelectedIndex = 2;
             }
         }
-
-        private void buttonDown(object sender, RoutedEventArgs e)
+        private void mouseClickArrowDown(object sender, MouseButtonEventArgs e)
         {
             mainWindow.MainFrame.Content = new Building1FloorPlan(mainWindow);
             if (mainWindow.tabControl.SelectedIndex == 0)

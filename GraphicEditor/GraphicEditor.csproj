@@ -55,31 +55,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AdditionalInformationOperaingRoom.xaml">
+    <Page Include="View\AdditionalInformationOperaingRoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AdditionalInformationPatientRoom.xaml">
+    <Page Include="View\AdditionalInformationPatientRoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Legend.xaml">
+    <Page Include="View\Legend.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PopupAuxiliaryRoom.xaml">
+    <Page Include="View\PopupAuxiliaryRoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PopupExaminationRoom.xaml">
+    <Page Include="View\PopupExaminationRoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PopupOperatingRoom.xaml">
+    <Page Include="View\PopupOperatingRoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PopupPatientRoom.xaml">
+    <Page Include="View\PopupPatientRoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -107,29 +107,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AdditionalInformationOperaingRoom.xaml.cs">
+    <Compile Include="View\AdditionalInformationOperaingRoom.xaml.cs">
       <DependentUpon>AdditionalInformationOperaingRoom.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AdditionalInformationPatientRoom.xaml.cs">
+    <Compile Include="View\AdditionalInformationPatientRoom.xaml.cs">
       <DependentUpon>AdditionalInformationPatientRoom.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Legend.xaml.cs">
+    <Compile Include="View\Legend.xaml.cs">
       <DependentUpon>Legend.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PopupAuxiliaryRoom.xaml.cs">
+    <Compile Include="View\PopupAuxiliaryRoom.xaml.cs">
       <DependentUpon>PopupAuxiliaryRoom.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PopupExaminationRoom.xaml.cs">
+    <Compile Include="View\PopupExaminationRoom.xaml.cs">
       <DependentUpon>PopupExaminationRoom.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PopupOperatingRoom.xaml.cs">
+    <Compile Include="View\PopupOperatingRoom.xaml.cs">
       <DependentUpon>PopupOperatingRoom.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PopupPatientRoom.xaml.cs">
+    <Compile Include="View\PopupPatientRoom.xaml.cs">
       <DependentUpon>PopupPatientRoom.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Building1\Building1FirstFloorPlan.xaml.cs">
@@ -177,6 +177,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Building1\arrowUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Building1\arrowDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

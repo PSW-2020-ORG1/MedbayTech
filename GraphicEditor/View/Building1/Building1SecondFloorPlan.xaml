@@ -11,7 +11,7 @@
     <Grid>
         <Canvas x:Name="canvasBuild1fl1" Background="MintCream">
             <Label Content="Hospital 1" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="249" Canvas.Top="36"/>
-            <Button Content="DOWN" Canvas.Left="249" Canvas.Top="530" Height="35" Width="268" Click="buttonDown"/>
+            <Image Source="arrowDown.png" Width="60" Canvas.Left="348" Canvas.Top="495" MouseLeftButtonDown="mouseClickArrowDown"/>
             <Rectangle Fill="White" Stroke="Black" StrokeThickness="3" Height="260" Width="595" Canvas.Left="86"  Canvas.Top="196"/>
             <Rectangle Fill="White" Height="100" Width="50" Stroke="Black" StrokeThickness="3" Canvas.Left="86" Canvas.Top="196" MouseEnter="PatientRoom_MouseEnter" MouseLeave="PatientRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationPatientRoom" />
             <Rectangle Fill="White" Height="100" Width="50" Stroke="Black" StrokeThickness="3" Canvas.Top="356" Canvas.Left="136" />

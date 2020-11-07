@@ -29,7 +29,7 @@ namespace GraphicEditor
             this.mainWindow = mainWindow;
         }
 
-        private void buttonUp(object sender, RoutedEventArgs e)
+        private void mouseClickArrowUp(object sender, RoutedEventArgs e)
         {
             mainWindow.MainFrame.Content = new Building1FirstFloorPlan(mainWindow);
             if (mainWindow.tabControl.SelectedIndex == 0)
