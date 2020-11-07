@@ -17,8 +17,16 @@ namespace WebApplication.Adapters
             {
                 DateTime date = feedbackIt.Date;
                 string additionalNotes = feedbackIt.AdditionalNotes;
-                string username = feedbackIt.RegisteredUser.Username;
-                approvedFeedbackList.Add(new ApprovedFeedbackDTO(date, additionalNotes, username));
+                string name = "";
+                string surname = "";
+                if(feedbackIt.RegisteredUser != null)
+                {
+                    name = feedbackIt.RegisteredUser.Name;
+                    surname = feedbackIt.RegisteredUser.Surname;
+                }
+                bool anonymous = feedbackIt.Anonymous;
+                bool allowedForPublishing = feedbackIt.AllowedForPublishing;
+                approvedFeedbackList.Add(new ApprovedFeedbackDTO(date, additionalNotes, name, surname, allowedForPublishing, anonymous));
             }
 
             return approvedFeedbackList;

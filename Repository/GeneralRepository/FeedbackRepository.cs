@@ -20,12 +20,13 @@ namespace Repository.GeneralRepository
                 return true;
             }
 
+            
             return false;
         }
 
         public IEnumerable<Feedback> GetAllApprovedFeedback()
         {
-            return GetAll().Where(feedback => feedback.Approved == true);
+            return GetAll().Where(feedback => feedback.Approved == true && feedback.AllowedForPublishing);
 
         }
     }

@@ -9,8 +9,8 @@ using SimsProjekat.Repository;
 
 namespace Model.Users
 {
-   public class Feedback : IIdentifiable<int>
-   {
+    public class Feedback : IIdentifiable<int>
+    {
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public string AdditionalNotes { get; set; }
@@ -19,7 +19,7 @@ namespace Model.Users
         public Boolean AllowedForPublishing { get; set; }
         public string RegisteredUserId { get; set; }
 
-       public virtual RegisteredUser RegisteredUser { get; set; }
+        public virtual RegisteredUser RegisteredUser { get; set; }
 
         public Feedback() { }
 
