@@ -11,6 +11,7 @@ namespace Repository.GeneralRepository
     {
         public FeedbackRepository(MySqlContext context) : base(context) { }
 
+        /// <summary>This method changes the status of a feedback to approved or denied, depending on what the system administrator selected</summary>
         public bool UpdateStatus(int feedbackId, bool status)
         {
             if (ExistsInSystem(feedbackId))
@@ -23,6 +24,7 @@ namespace Repository.GeneralRepository
             return false;
         }
 
+        /// <summary>This method returns all feedback that is approved to be published by the system administrator</summary>
         public IEnumerable<Feedback> GetAllApprovedFeedback()
         {
             return GetAll().Where(feedback => feedback.Approved == true);
