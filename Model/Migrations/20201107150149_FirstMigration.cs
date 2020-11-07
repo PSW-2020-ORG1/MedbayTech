@@ -36,21 +36,6 @@ namespace Model.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Treatments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Date = table.Column<DateTime>(nullable: false),
-                    AdditionalNotes = table.Column<string>(nullable: true),
-                    Type = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Treatments", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Cities",
                 columns: table => new
                 {
@@ -98,9 +83,6 @@ namespace Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    PlaceOfBirthId = table.Column<int>(nullable: false),
-                    CurrResidenceId = table.Column<int>(nullable: false),
-                    InsurancePolicyId = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Surname = table.Column<string>(nullable: true),
                     DateOfBirth = table.Column<DateTime>(nullable: false),
@@ -112,7 +94,10 @@ namespace Model.Migrations
                     EducationLevel = table.Column<int>(nullable: false),
                     Profession = table.Column<string>(nullable: true),
                     ProfileImage = table.Column<string>(nullable: true),
-                    Gender = table.Column<int>(nullable: false)
+                    Gender = table.Column<int>(nullable: false),
+                    PlaceOfBirthId = table.Column<int>(nullable: false),
+                    CurrResidenceId = table.Column<int>(nullable: false),
+                    InsurancePolicyId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -146,6 +131,8 @@ namespace Model.Migrations
                     Date = table.Column<DateTime>(nullable: false),
                     AdditionalNotes = table.Column<string>(nullable: true),
                     Approved = table.Column<bool>(nullable: false),
+                    Anonymous = table.Column<bool>(nullable: false),
+                    AllowedForPublishing = table.Column<bool>(nullable: false),
                     RegisteredUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -196,8 +183,14 @@ namespace Model.Migrations
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
-                columns: new[] { "Id", "AdditionalNotes", "Approved", "Date", "RegisteredUserId" },
-                values: new object[] { 1, "Sve je super!", true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2406978890045" });
+                columns: new[] { "Id", "AdditionalNotes", "AllowedForPublishing", "Anonymous", "Approved", "Date", "RegisteredUserId" },
+                values: new object[,]
+                {
+                    { 1, "Sve je super!", true, false, true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2406978890045" },
+                    { 2, "Bolnica je veoma losa, bas sam razocaran! Rupe u zidovima, voda curi na sve strane, treba vas zatvoriti!!!", true, false, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2406978890045" },
+                    { 3, "Predivno, ali i ruzno! Sramite se! Cestitke... <3", false, false, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2406978890045" },
+                    { 4, "Odlicno!", false, false, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2406978890045" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_CityId",
@@ -234,9 +227,6 @@ namespace Model.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Feedbacks");
-
-            migrationBuilder.DropTable(
-                name: "Treatments");
 
             migrationBuilder.DropTable(
                 name: "RegisteredUsers");

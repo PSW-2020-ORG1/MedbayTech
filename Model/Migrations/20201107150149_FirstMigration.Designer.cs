@@ -9,8 +9,8 @@ using Model;
 namespace Model.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201106210911_Hope")]
-    partial class Hope
+    [Migration("20201107150149_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,26 +18,6 @@ namespace Model.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("Model.ExaminationSurgery.Treatment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("AdditionalNotes")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Treatments");
-                });
 
             modelBuilder.Entity("Model.Users.Address", b =>
                 {
@@ -129,6 +109,9 @@ namespace Model.Migrations
                     b.Property<string>("AdditionalNotes")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<bool>("AllowedForPublishing")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<bool>("Anonymous")
                         .HasColumnType("tinyint(1)");
 
@@ -152,6 +135,7 @@ namespace Model.Migrations
                         {
                             Id = 1,
                             AdditionalNotes = "Sve je super!",
+                            AllowedForPublishing = true,
                             Anonymous = false,
                             Approved = true,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -161,6 +145,7 @@ namespace Model.Migrations
                         {
                             Id = 2,
                             AdditionalNotes = "Bolnica je veoma losa, bas sam razocaran! Rupe u zidovima, voda curi na sve strane, treba vas zatvoriti!!!",
+                            AllowedForPublishing = true,
                             Anonymous = false,
                             Approved = false,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -170,6 +155,7 @@ namespace Model.Migrations
                         {
                             Id = 3,
                             AdditionalNotes = "Predivno, ali i ruzno! Sramite se! Cestitke... <3",
+                            AllowedForPublishing = false,
                             Anonymous = false,
                             Approved = false,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -179,6 +165,7 @@ namespace Model.Migrations
                         {
                             Id = 4,
                             AdditionalNotes = "Odlicno!",
+                            AllowedForPublishing = false,
                             Anonymous = false,
                             Approved = false,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),

@@ -17,10 +17,11 @@ namespace Model.ExaminationSurgery
         public int HourlyIntake { get; set; }
         public virtual List<Medication> Medications { get; set; }
 
-        public Prescription()
+        public Prescription() { }
+     /*   public Prescription()
         {
             Medications = new List<Medication>();
-        }
+        } */
         public Prescription(DateTime dateOfPrescription, bool reserved, int hourlyIntake, string additionalNotes, List<Medication> medications)
             : base(dateOfPrescription, additionalNotes, TreatmentType.prescription)
         {

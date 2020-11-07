@@ -35,11 +35,11 @@ namespace WebApplication
             
 
 
-            List<Feedback> approvedFeedback = feedbackService.GetAllApprovedFeedback().ToList();
-            List<ApprovedFeedbackDTO> approvedFeedbackDTOs = FeedbackAdapter.ListApprovedFeedbackToListApprovedFeedbackDTO(approvedFeedback);
+           // List<Feedback> approvedFeedback = feedbackService.GetAllApprovedFeedback().ToList();
+          //  List<ApprovedFeedbackDTO> approvedFeedbackDTOs = FeedbackAdapter.ListApprovedFeedbackToListApprovedFeedbackDTO(approvedFeedback);
 
             
-            return Ok(approvedFeedbackDTOs);
+            return Ok();
         }
 
         [HttpGet("allFeedback")]

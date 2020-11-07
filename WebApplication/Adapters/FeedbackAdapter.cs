@@ -10,7 +10,7 @@ namespace WebApplication.Adapters
 {
     public class FeedbackAdapter
     {
-        public static List<ApprovedFeedbackDTO> ListApprovedFeedbackToListApprovedFeedbackDTO(List<Feedback> approvedFeedback)
+      public static List<ApprovedFeedbackDTO> ListApprovedFeedbackToListApprovedFeedbackDTO(List<Feedback> approvedFeedback)
         {
             List<ApprovedFeedbackDTO> approvedFeedbackList = new List<ApprovedFeedbackDTO>();
             foreach(Feedback feedbackIt in approvedFeedback) 
@@ -24,7 +24,7 @@ namespace WebApplication.Adapters
             return approvedFeedbackList;
                
 
-        }
+        } 
 
         public static List<AllFeedbackDTO> ListAllFeedbackToListAllFeedbackDTO(List<Feedback> allFeedback)
         {

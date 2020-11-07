@@ -19,7 +19,7 @@ namespace Model.MedicalRecord
         public PatientCondition CurrHealthState { get; set; }
         public BloodType BloodType { get; set; }
         public virtual List<Allergens> Allergies { get; set; }
-        public virtual List<Vaccines> Vaccines { get; set; }
+        public virtual List<Vaccines> Vaccines { get; set; } 
         public virtual List<Diagnosis> IllnessHistory { get; set; }
         public virtual List<FamilyIllnessHistory> FamilyIllnessHistory { get; set; }
         public int PatientId { get; set; }

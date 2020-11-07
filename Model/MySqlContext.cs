@@ -25,11 +25,11 @@ namespace Model
         private string mySqlHostAddress = "localhost";
 
 
-        public DbSet<WeeklyAppointmentReport> WeeklyAppointmentReports { get; set; }
+   /*     public DbSet<WeeklyAppointmentReport> WeeklyAppointmentReports { get; set; }
         public DbSet<Specialization> Specializations { get; set; }
         public DbSet<LabTesting> LabTestings { get; set; }
         public DbSet<LabTestType> LabTestTypes { get; set; }
-        private DbSet<Treatment> Treatments { get; set; }
+    //    private DbSet<Treatment> Treatments { get; set; } */
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<City> Cities { get; set; }
@@ -59,24 +59,24 @@ namespace Model
            
 
         }
-
+/*
         public DbSet<Symptoms> Symptoms { get; set; }
         public DbSet<Diagnosis> Diagnoses { get; set; }
         public DbSet<FamilyIllnessHistory> FamilyIllnessHistories { get; set; }
         public DbSet<LabResults> LabResults { get; set; }
         public DbSet<ListOfResults> ListOfResults { get; set; }
-        public DbSet<Model.MedicalRecord.MedicalRecord> MedicalRecords { get; set; }
+     //   public DbSet<Model.MedicalRecord.MedicalRecord> MedicalRecords { get; set; }
         public DbSet<Therapy> Therapies { get; set; }
         public DbSet<Vaccines> Vaccines { get; set; }
-        public DbSet<Allergens> Allergens { get; set; }
+    //     public DbSet<Allergens> Allergens { get; set; }
         public DbSet<MedicationIngredient> Ingredients { get; set; }
 
-       
+       */
         
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<WeeklyAppointmentReport>().HasData(
+        /*    modelBuilder.Entity<WeeklyAppointmentReport>().HasData(
                 new WeeklyAppointmentReport
                 {
                     StartWeekDay = DateTime.Now,
@@ -103,7 +103,7 @@ namespace Model
                 );
             modelBuilder.Entity<LabTestType>().HasData(
                 new LabTestType {Id=1,TestName = "LDL", LabTestingId = 1}
-                );
+                ); */
             modelBuilder.Entity<City>().HasData(
                 
                 new City {Id = 21000, Name = "Novi Sad", StateId = 1},
@@ -123,7 +123,7 @@ namespace Model
                 new InsurancePolicy {Company = "Dunav osiguranje d.o.o", Id = "policy1", PolicyStartDate = new DateTime(2020, 11, 1), PolicyEndDate = new DateTime(2022, 11, 1)}
             );
 
-            modelBuilder.Entity<Symptoms>().HasData(
+          /*  modelBuilder.Entity<Symptoms>().HasData(
                 new Symptoms { Id = 1, Name = "Dunav osiguranje d.o.o" }
             );
 
@@ -135,7 +135,7 @@ namespace Model
 
             modelBuilder.Entity<Diagnosis>().HasData(
                 new Diagnosis { Id = 1, Name = "Dunav osiguranje d.o.o", Symptoms = new List<Symptoms>()}
-            );
+            ); */
 
           
 
