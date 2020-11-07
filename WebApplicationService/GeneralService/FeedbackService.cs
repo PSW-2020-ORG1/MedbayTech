@@ -31,7 +31,39 @@ namespace WebApplicationService.GeneralService
 
             return statusUpdated;
         }
-        
+
+        public bool CreateFeedback(string userId, string additionalNotes, Boolean anonymous, Boolean allowed)
+        {
+
+            int feedbackId = GenerateFeedbackId();
+            Feedback feedback = new Feedback();
+            feedback.Id = feedbackId;
+            feedback.AdditionalNotes = additionalNotes;
+            feedback.Anonymous = anonymous;
+            feedback.AllowedForPublishing = allowed;
+            if (!anonymous)
+            {
+                feedback.RegisteredUserId = userId;
+            }
+
+            Feedback createdFeedback = unitOfWork.FeedBackRepository.Create(feedback);
+            if(createdFeedback == null)
+            {
+                return false;
+            }
+            unitOfWork.Save();
+            return true;
+
+        }
+
+        public int GenerateFeedbackId()
+        {
+            int id;
+            id = unitOfWork.FeedBackRepository.GetLastId();
+            return ++id;
+        }
+
+
 
     }
 }

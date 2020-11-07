@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { ToastrModule} from 'ngx-toastr';
 
 
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -36,6 +37,9 @@ import { FeedbackService } from './service/feedback/feedback.service';
     MatDividerModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
+
+    
   ],
   providers: [FeedbackService],
   bootstrap: [AppComponent]

@@ -5,7 +5,10 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:8080',
-  fedback: 'api/feedback'
+  fedback: 'api/feedback',
+  allFeedback: 'allFeedback',
+  updateFeedbackStatus: 'updateFeedbackStatus',
+  createFeedback : 'createFeedback'
 };
 
 /*

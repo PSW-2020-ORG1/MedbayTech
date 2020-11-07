@@ -1,17 +1,15 @@
 export class PostFeedback {
 
-    public Date : number;
     public AdditionalNotes : string;
-    public Username : string;
     public Anonymous : boolean;
-    public Approved : boolean;
+    public AllowedForPublishing : boolean;
+    public UserId : string;
 
-    constructor(date : number, additionalNotes : string, username : string, anonymous : boolean, approved : boolean) {
-        this.Date = date;
+    constructor(additionalNotes : string,  anonymous : boolean, allowed : boolean, userid:string) {
         this.AdditionalNotes = additionalNotes;
-        this.Username = username;
         this.Anonymous = anonymous;
-        this.Approved = approved;
+        this.AllowedForPublishing = allowed;
+        this.UserId = userid;
     }
 
 }

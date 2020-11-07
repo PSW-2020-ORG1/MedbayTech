@@ -12,7 +12,7 @@ namespace WebApplication.Adapters
         public static List<ApprovedFeedbackDTO> ListApprovedFeedbackToListApprovedFeedbackDTO(List<Feedback> approvedFeedback)
         {
             List<ApprovedFeedbackDTO> approvedFeedbackList = new List<ApprovedFeedbackDTO>();
-            foreach(Feedback feedbackIt in approvedFeedback) 
+            foreach (Feedback feedbackIt in approvedFeedback)
             {
                 DateTime date = feedbackIt.Date;
                 string additionalNotes = feedbackIt.AdditionalNotes;
@@ -21,8 +21,9 @@ namespace WebApplication.Adapters
             }
 
             return approvedFeedbackList;
-               
+
 
         }
+
     }
 }

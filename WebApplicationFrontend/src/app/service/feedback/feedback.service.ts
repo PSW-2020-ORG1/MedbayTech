@@ -10,7 +10,8 @@ import { PostFeedback } from 'src/app/model/postFeedback';
 })
 export class FeedbackService {
 
-  formData : PostFeedback;
+  
+
   constructor(private http : HttpClient) { 
     
   }
@@ -20,4 +21,11 @@ export class FeedbackService {
     return this.http.get<ApprovedFeedback[]>(`${environment.baseUrl}/${environment.fedback}`)
 
   }
+
+  createFeedback(feedback:PostFeedback){
+    return this.http.post(`${environment.baseUrl}/${environment.fedback}/${environment.createFeedback}`, feedback, {responseType:'text'})
+  }
+
+ 
+  
 }

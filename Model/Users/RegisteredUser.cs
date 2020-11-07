@@ -10,21 +10,21 @@ using ZdravoKorporacija.Model.Users;
 
 namespace Model.Users
 {
-   public class RegisteredUser : IIdentifiable<string>
-   {
-        private string name;
-        private string surname;
-        private DateTime dateOfBirth;
-        private string id;
-        private string phone;
-        private string email;
-        private string username;
-        private string password;
-        private DateTime dateOfCreation;
-        private EducationLevel educationLevel;
-        private string profession;
-        private string profileImage;
-        private Gender gender;
+    public class RegisteredUser : IIdentifiable<string>
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string Id { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public DateTime DateOfCreation { get; set; }
+        public EducationLevel EducationLevel { get; set; }
+        public string Profession { get; set; }
+        public string ProfileImage { get; set; }
+        public Gender Gender { get; set; }
 
         public int PlaceOfBirthId { get; set; }
         public virtual City PlaceOfBirth { get; set; }
@@ -50,7 +50,7 @@ namespace Model.Users
             Phone = phone;
         }
 
-        public RegisteredUser(string name, string surname, DateTime dateOfBirth, 
+        public RegisteredUser(string name, string surname, DateTime dateOfBirth,
             string identificationNumber, string email, string username, string phone,
             string password, EducationLevel educationLevel, Gender gender,
             string profession, City city, Address currResidence, InsurancePolicy insurancePolicy)
@@ -71,21 +71,6 @@ namespace Model.Users
             Phone = phone;
 
         }
-
-        public string Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
-        public string Surname { get => surname; set => surname = value; }
-        public DateTime DateOfBirth { get => dateOfBirth; set => dateOfBirth = value; }
-        public string Phone { get => phone; set => phone = value; }
-        public string Email { get => email; set => email = value; }
-        public string Username { get => username; set => username = value; }
-        public string Password { get => password; set => password = value; }
-        public DateTime DateOfCreation { get => dateOfCreation; set => dateOfCreation = value; }
-        public EducationLevel EducationLevel { get => educationLevel; set => educationLevel = value; }
-        public string Profession { get => profession; set => profession = value; }
-        public string ProfileImage { get => profileImage; set => profileImage = value; }
-        
-        public Gender Gender { get => gender; set => gender = value; }
 
         public string GetId()
         {
