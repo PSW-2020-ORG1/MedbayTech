@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Model;
 
 namespace Model.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    partial class MySqlContextModelSnapshot : ModelSnapshot
+    [Migration("20201107135340_FifthMigration")]
+    partial class FifthMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,7 +167,7 @@ namespace Model.Migrations
                             AdditionalNotes = "Bolnica je veoma losa, bas sam razocaran! Rupe u zidovima, voda curi na sve strane, treba vas zatvoriti!!!",
                             AllowedForPublishing = true,
                             Anonymous = false,
-                            Approved = true,
+                            Approved = false,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisteredUserId = "2406978890045"
                         },
@@ -175,7 +177,7 @@ namespace Model.Migrations
                             AdditionalNotes = "Predivno, ali i ruzno! Sramite se! Cestitke... <3",
                             AllowedForPublishing = false,
                             Anonymous = false,
-                            Approved = true,
+                            Approved = false,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisteredUserId = "2406978890045"
                         },
@@ -185,7 +187,7 @@ namespace Model.Migrations
                             AdditionalNotes = "Odlicno!",
                             AllowedForPublishing = false,
                             Anonymous = false,
-                            Approved = true,
+                            Approved = false,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisteredUserId = "2406978890045"
                         });
