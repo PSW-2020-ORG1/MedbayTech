@@ -52,11 +52,11 @@ namespace WebApplication
 
         }
 
-        [HttpPost]
+        [HttpPost("updateFeedbackStatus")]
         public IActionResult UpdateFeedbackStatus(UpdateFeedbackStatusDTO updateFeedbackStatusDTO)
         {
-            feedbackService.UpdateStatus(updateFeedbackStatusDTO.Id, updateFeedbackStatusDTO.Approved);
-            return Ok(updateFeedbackStatusDTO);
+            bool updatedStatus = feedbackService.UpdateStatus(updateFeedbackStatusDTO.Id, updateFeedbackStatusDTO.Approved);
+            return Ok(updatedStatus);
         }
     }
 

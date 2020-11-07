@@ -28,6 +28,6 @@ export class FeedbackService {
   }
 
   updateFeedbackStatus(data: UpdateFeedbackStatus) : Observable<UpdateFeedbackStatus>{
-    return this.http.post<UpdateFeedbackStatus>(`${environment.baseUrl}/${environment.fedback}/${environment.allFeedback}/update`, data)
+    return this.http.post<UpdateFeedbackStatus>(`${environment.baseUrl}/${environment.fedback}/${environment.updateFeedbackStatus}`, data)
   }
 }

@@ -12,7 +12,7 @@ const routes: Routes = [
     component : ApprovedFeedbackComponent
   },
   {
-    path: 'allFeedbacks',
+    path: 'allFeedback',
     component : AllFeedbackComponent
   },
   {
