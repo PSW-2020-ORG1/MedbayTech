@@ -20,8 +20,8 @@ namespace WebApplication
     [ApiController]
     public class FeedbackController : ControllerBase
     {
+
         private FeedbackService feedbackService;
-       
 
         public FeedbackController()
         {
@@ -31,26 +31,17 @@ namespace WebApplication
         [HttpGet]       // GET /api/feedback
         public IActionResult Get()
         {
-
-            
-
-
-           // List<Feedback> approvedFeedback = feedbackService.GetAllApprovedFeedback().ToList();
-          //  List<ApprovedFeedbackDTO> approvedFeedbackDTOs = FeedbackAdapter.ListApprovedFeedbackToListApprovedFeedbackDTO(approvedFeedback);
-
-            
-            return Ok();
+            List<Feedback> approvedFeedback = feedbackService.GetAllApprovedFeedback().ToList();
+            List<ApprovedFeedbackDTO> approvedFeedbackDTOs = FeedbackAdapter.ListApprovedFeedbackToListApprovedFeedbackDTO(approvedFeedback);
+            return Ok(approvedFeedbackDTOs);
         }
 
         [HttpGet("allFeedback")]
-        public IActionResult GetAllFeedback() {
-
+        public IActionResult GetAllFeedback() 
+        {
             List<Feedback> allFeedback = feedbackService.GetAll().ToList();
             List<AllFeedbackDTO> allFeedbackDTOs = FeedbackAdapter.ListAllFeedbackToListAllFeedbackDTO(allFeedback);
-
             return Ok(allFeedbackDTOs);
-
-
         }
 
         [HttpPost("updateFeedbackStatus")]

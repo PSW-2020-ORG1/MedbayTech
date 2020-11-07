@@ -9,7 +9,7 @@ using Model;
 namespace Model.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201107150149_FirstMigration")]
+    [Migration("20201107151631_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

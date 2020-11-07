@@ -13,7 +13,9 @@ namespace Repository
         where T : class, IIdentifiable<ID>
         where ID : IComparable
     {
+
         protected MySqlContext context;
+
         internal DbSet<T> dbSet;
         
         public  MySqlrepository() {}
@@ -29,9 +31,7 @@ namespace Repository
                 dbSet.Add(entity);
                 return entity;
             }
-           
             return null;
-            
         }
 
         public bool Delete(T entity)
@@ -45,9 +45,7 @@ namespace Repository
                 dbSet.Remove(entity);
                 return true;
             }
-
             return false;
-
         }
 
        
@@ -83,7 +81,5 @@ namespace Repository
 
             return null;
         }
-        
-        
     }
 }

@@ -21,13 +21,14 @@ namespace Repository.GeneralRepository
                 return true;
             }
 
+            
             return false;
         }
 
         /// <summary>This method returns all feedback that is approved to be published by the system administrator</summary>
         public IEnumerable<Feedback> GetAllApprovedFeedback()
         {
-            return GetAll().Where(feedback => feedback.Approved == true);
+            return GetAll().Where(feedback => feedback.Approved == true && feedback.AllowedForPublishing);
 
         }
     }
