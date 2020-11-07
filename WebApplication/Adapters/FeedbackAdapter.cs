@@ -10,6 +10,11 @@ namespace WebApplication.Adapters
 {
     public class FeedbackAdapter
     {
+        /// <summary>
+        /// Adapter method that transforms a list of approved feedback to the list of approved feedback dto
+        /// </summary>
+        /// <param name="approvedFeedback"></param>
+        /// <returns>list of approved feedback dto that contains date, additional notes, name, surname, anonymous status and allowed for publishing status</returns>
       public static List<ApprovedFeedbackDTO> ListApprovedFeedbackToListApprovedFeedbackDTO(List<Feedback> approvedFeedback)
         {
             List<ApprovedFeedbackDTO> approvedFeedbackList = new List<ApprovedFeedbackDTO>();
@@ -33,7 +38,11 @@ namespace WebApplication.Adapters
                
 
         } 
-
+        /// <summary>
+        /// Adapter method that transforms a list of all feedback to the list of all feedback dto
+        /// </summary>
+        /// <param name="allFeedback"></param>
+        /// <returns>list of feedback dto that contains id, date, additional notes, name, surname, approved status, anonymous status and allowed for publishing status</returns>
         public static List<AllFeedbackDTO> ListAllFeedbackToListAllFeedbackDTO(List<Feedback> allFeedback)
         {
             List<AllFeedbackDTO> allFeedbackList = new List<AllFeedbackDTO>();

@@ -27,7 +27,10 @@ namespace WebApplication
         {
             feedbackService = new FeedbackService();
         }
-
+        /// <summary>
+        /// GET method for feedback that is approved by the system administrator
+        /// </summary>
+        /// <returns>list of approved feedback</returns>
         [HttpGet]       // GET /api/feedback
         public IActionResult Get()
         {
@@ -36,6 +39,10 @@ namespace WebApplication
             return Ok(approvedFeedbackDTOs);
         }
 
+        /// <summary>
+        /// GET method for all feedback
+        /// </summary>
+        /// <returns>list of all feedback</returns>
         [HttpGet("allFeedback")]
         public IActionResult GetAllFeedback() 
         {
@@ -44,6 +51,11 @@ namespace WebApplication
             return Ok(allFeedbackDTOs);
         }
 
+        /// <summary>
+        /// POST method for changing the status of a feedback, depending on what the system administrator approved or denied
+        /// </summary>
+        /// <param name="updateFeedbackStatusDTO"></param>
+        /// <returns>boolean that shows that feedback status was changed</returns>
         [HttpPost("updateFeedbackStatus")]
         public IActionResult UpdateFeedbackStatus(UpdateFeedbackStatusDTO updateFeedbackStatusDTO)
         {

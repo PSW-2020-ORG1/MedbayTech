@@ -7,7 +7,7 @@ using Repository.GeneralRepository;
 
 namespace Repository
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IDisposable 
     {
 
         private MySqlContext context = new MySqlContext();
