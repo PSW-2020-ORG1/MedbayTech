@@ -24,6 +24,12 @@ namespace Repository
             this.context = mySqlContext;
             this.dbSet = context.Set<T>();
         }
+
+        /// <summary>
+        /// Create <typeparamref name="T"/>
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>T entity or null</returns>
         public T Create(T entity)
         {
             if (!ExistsInSystem(entity.GetId()))
@@ -34,6 +40,11 @@ namespace Repository
             return null;
         }
 
+        /// <summary>
+        /// Delete <typeparamref name="T"/> from database
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>bool</returns>
         public bool Delete(T entity)
         {
             if (ExistsInSystem(entity.GetId()))
@@ -48,8 +59,11 @@ namespace Repository
             return false;
         }
 
-       
-
+       /// <summary>
+       /// Checks if entity exists in database
+       /// </summary>
+       /// <param name="id"></param>
+       /// <returns>bool</returns>
         public bool ExistsInSystem(ID id)
         {
             if (dbSet.Find(id) == null)
@@ -60,16 +74,30 @@ namespace Repository
             return true;
         }
 
+        /// <summary>
+        /// Return all elements from database
+        /// </summary>
+        /// <returns>IEnumerable <typeparamref name="T"/></returns>
         public IEnumerable<T> GetAll()
         {
             return dbSet;
         }
 
+        /// <summary>
+        /// Return object from database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns><typeparamref name="T"/> or null</returns>
         public T GetObject(ID id)
         {
             return dbSet.Find(id);
         }
 
+        /// <summary>
+        /// Update existing object
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns><typeparamref name="T"/> or null</returns>
         public T Update(T entity)
         {
             if (ExistsInSystem(entity.GetId()))
