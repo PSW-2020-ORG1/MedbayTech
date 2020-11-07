@@ -21,10 +21,8 @@ namespace Repository
                 if (this.feedbackRepository == null)
                 {
                     this.feedbackRepository = new FeedbackRepository(context);
-                    
 
                 }
-
                 return this.feedbackRepository;
             }
         }
@@ -48,9 +46,6 @@ namespace Repository
 
             this.disposed = true;
         }
-
-
-
 
         public void Dispose()
         {

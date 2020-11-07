@@ -9,8 +9,8 @@ using Model;
 namespace Model.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201107140157_SixthMigration")]
-    partial class SixthMigration
+    [Migration("20201107151631_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,26 +18,6 @@ namespace Model.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("Model.ExaminationSurgery.Treatment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("AdditionalNotes")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Treatments");
-                });
 
             modelBuilder.Entity("Model.Users.Address", b =>
                 {
@@ -167,7 +147,7 @@ namespace Model.Migrations
                             AdditionalNotes = "Bolnica je veoma losa, bas sam razocaran! Rupe u zidovima, voda curi na sve strane, treba vas zatvoriti!!!",
                             AllowedForPublishing = true,
                             Anonymous = false,
-                            Approved = true,
+                            Approved = false,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisteredUserId = "2406978890045"
                         },
@@ -177,7 +157,7 @@ namespace Model.Migrations
                             AdditionalNotes = "Predivno, ali i ruzno! Sramite se! Cestitke... <3",
                             AllowedForPublishing = false,
                             Anonymous = false,
-                            Approved = true,
+                            Approved = false,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisteredUserId = "2406978890045"
                         },
@@ -187,7 +167,7 @@ namespace Model.Migrations
                             AdditionalNotes = "Odlicno!",
                             AllowedForPublishing = false,
                             Anonymous = false,
-                            Approved = true,
+                            Approved = false,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisteredUserId = "2406978890045"
                         });
