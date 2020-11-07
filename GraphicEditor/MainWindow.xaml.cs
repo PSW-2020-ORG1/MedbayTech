@@ -1,4 +1,5 @@
 ﻿using GraphicEditor.View.Building1;
+using GraphicEditor.View.Building2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,6 +100,33 @@ namespace GraphicEditor
             Storyboard.SetTargetName(doubleAnimation, MainFrame.Name);
             storyboard.Begin(this);
         }
+
+        private void ShowBuilding2FirstFloor(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Content = new Building2FirstFloorPlan(this);
+            Storyboard storyboard = new Storyboard();
+            DoubleAnimation doubleAnimation = new DoubleAnimation();
+            doubleAnimation.From = 0;
+            doubleAnimation.To = 1;
+            doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
+            storyboard.Children.Add(doubleAnimation);
+            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
+            Storyboard.SetTargetName(doubleAnimation, MainFrame.Name);
+            storyboard.Begin(this);
+        }
+        private void ShowBuilding2SecondFloor(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Content = new Building2SecondFloorPlan(this);
+            Storyboard storyboard = new Storyboard();
+            DoubleAnimation doubleAnimation = new DoubleAnimation();
+            doubleAnimation.From = 0;
+            doubleAnimation.To = 1;
+            doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
+            storyboard.Children.Add(doubleAnimation);
+            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
+            Storyboard.SetTargetName(doubleAnimation, MainFrame.Name);
+            storyboard.Begin(this);
+        }
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(dontRefreshMap == true)
@@ -186,20 +214,20 @@ namespace GraphicEditor
             if (dontRefreshMap == true) return;
             dontRefreshMap = true;
             comboBoxH1.SelectedItem = null;
-            if (comboBoxH2.SelectedIndex == 0)
+            if (comboBoxHospital2.SelectedIndex == 0)
             {
                 dontRefreshMap = true;
                 ShowBuilding2GroundFloor(null, null);
             }
-            else if (comboBoxH2.SelectedIndex == 1)
+            else if (comboBoxHospital2.SelectedIndex == 1)
             {
                 dontRefreshMap = true;
-                MessageBox.Show("Floor 1");
+                ShowBuilding2FirstFloor(null, null);
             }
-            else if (comboBoxH2.SelectedIndex == 2)
+            else if (comboBoxHospital2.SelectedIndex == 2)
             {
                 dontRefreshMap = true;
-                MessageBox.Show("Floor 2");
+                ShowBuilding2SecondFloor(null, null);
             }
         }
         private void comboBoxHospital2_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -211,11 +239,11 @@ namespace GraphicEditor
             }
             else if (comboBoxHospital2.SelectedIndex == 1)
             {
-                MessageBox.Show("Floor 1");
+                ShowBuilding2FirstFloor(null, null);
             }
             else if (comboBoxHospital2.SelectedIndex == 2)
             {
-                MessageBox.Show("Floor 2");
+                ShowBuilding2SecondFloor(null, null);
             }
         }
     }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -24,5 +25,8 @@ namespace GraphicEditor
         {
             InitializeComponent();
         }
+
+        public static bool IsOpen { get; internal set; }
+        public static PlacementMode Placement { get; internal set; }
     }
 }

@@ -63,6 +63,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Building2\Building2FirstFloorPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Building2\Building2SecondFloorPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Legend.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,6 +124,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\Building2\Building2FirstFloorPlan.xaml.cs">
+      <DependentUpon>Building2FirstFloorPlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Building2\Building2SecondFloorPlan.xaml.cs">
+      <DependentUpon>Building2SecondFloorPlan.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Legend.xaml.cs">
       <DependentUpon>Legend.xaml</DependentUpon>
@@ -189,6 +203,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Building2\arrowDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Building2\arrowUp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
