@@ -1,3 +1,4 @@
+import { PostFeedbackComponent } from './feedback/post-feedback/post-feedback.component';
 import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-feedback/approved-feedback.component';
 import { AppComponent } from './app.component';
 
@@ -12,8 +13,12 @@ const routes: Routes = [
     component : ApprovedFeedbackComponent
   },
   {
-    path: 'allFeedback',
+    path : 'allFeedback',
     component : AllFeedbackComponent
+  },
+  {
+    path : 'createFeedback',
+    component : PostFeedbackComponent
   },
   {
     path : "**",
