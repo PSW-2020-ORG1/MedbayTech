@@ -43,38 +43,48 @@ namespace WebApplicationService.GeneralService
             return statusUpdated;
         }
 
+        /// <summary>
+        /// Method saves data to database
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="additionalNotes"></param>
+        /// <param name="anonymous"></param>
+        /// <param name="allowed"></param>
+        /// <returns>boolean which tells us if feedback was saved successfully or not</returns>
         public bool CreateFeedback(string userId, string additionalNotes, Boolean anonymous, Boolean allowed)
         {
-
             int feedbackId = GenerateFeedbackId();
             Feedback feedback = new Feedback();
             feedback.Id = feedbackId;
             feedback.AdditionalNotes = additionalNotes;
             feedback.Anonymous = anonymous;
             feedback.AllowedForPublishing = allowed;
+
             if (!anonymous)
             {
                 feedback.RegisteredUserId = userId;
             }
 
             Feedback createdFeedback = unitOfWork.FeedBackRepository.Create(feedback);
+
             if(createdFeedback == null)
             {
                 return false;
             }
+
             unitOfWork.Save();
             return true;
-
         }
 
+        /// <summary>
+        /// Method for generating next id needed for posting feedback and saving to database
+        /// </summary>
+        /// <returns>integer id of the last feedback entity in database incremented by one</returns>
         public int GenerateFeedbackId()
         {
             int id;
             id = unitOfWork.FeedBackRepository.GetLastId();
             return ++id;
         }
-
-
-
     }
 }

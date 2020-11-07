@@ -63,16 +63,21 @@ namespace WebApplication
             return Ok(updatedStatus);
         }
 
+        /// <summary>
+        /// POST method for posting feedback
+        /// </summary>
+        /// <param name="postFeedbackDTO"></param>
+        /// <returns>returns string message which tells whether posting feedback was successful or not</returns>
         [HttpPost("createFeedback")]
-        public IActionResult Post(PostFeedbackDTO dto)
+        public IActionResult Post(PostFeedbackDTO postFeedbackDTO)
         {
-            if(dto.AdditionalNotes.Length <= 0)
+            if(postFeedbackDTO.AdditionalNotes.Length <= 0)
             {
                 return BadRequest("Failed to post feedback");
             }
-            FeedbackService feedbackService = new FeedbackService();
 
-            bool feedbackSuccessfullyCreated = feedbackService.CreateFeedback(dto.UserId, dto.AdditionalNotes, dto.Anonymous, dto.AllowedForPublishing);
+            FeedbackService feedbackService = new FeedbackService();
+            bool feedbackSuccessfullyCreated = feedbackService.CreateFeedback(postFeedbackDTO.UserId, postFeedbackDTO.AdditionalNotes, postFeedbackDTO.Anonymous, postFeedbackDTO.AllowedForPublishing);
 
             if (!feedbackSuccessfullyCreated)
             {
@@ -81,6 +86,4 @@ namespace WebApplication
             return Ok("Feedback posted successfully");
         }
     }
-
-
 }

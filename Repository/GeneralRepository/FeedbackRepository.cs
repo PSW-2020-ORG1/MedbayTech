@@ -40,6 +40,10 @@ namespace Repository.GeneralRepository
 
         }
 
+        /// <summary>
+        /// Method for getting id of the last feedback entity in database
+        /// </summary>
+        /// <returns>integer id of the last entity in database</returns>
         public int GetLastId()
         {
             Feedback feedback = GetAll().Last();

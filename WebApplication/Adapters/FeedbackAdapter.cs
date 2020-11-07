@@ -65,9 +65,6 @@ namespace WebApplication.Adapters
             }
 
             return allFeedbackList;
-
-
         }
-
     }
 }
