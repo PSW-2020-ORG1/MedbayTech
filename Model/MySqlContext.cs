@@ -24,12 +24,12 @@ namespace Model
         private string mySqlDatabaseName = "newdb";
         private string mySqlHostAddress = "localhost";
 
-
-   /*     public DbSet<WeeklyAppointmentReport> WeeklyAppointmentReports { get; set; }
+   /*   public DbSet<WeeklyAppointmentReport> WeeklyAppointmentReports { get; set; }
         public DbSet<Specialization> Specializations { get; set; }
         public DbSet<LabTesting> LabTestings { get; set; }
         public DbSet<LabTestType> LabTestTypes { get; set; }
-    //    private DbSet<Treatment> Treatments { get; set; } */
+        private DbSet<Treatment> Treatments { get; set; } 
+   */
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<City> Cities { get; set; }
@@ -41,7 +41,6 @@ namespace Model
         {
 
         }
-
         public MySqlContext() { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -54,25 +53,19 @@ namespace Model
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
 
             optionsBuilder.UseMySql(configuration.GetConnectionString("MySqlConnectionString")).UseLazyLoadingProxies();
-
-
-
-
         }
-/*
+        /*
         public DbSet<Symptoms> Symptoms { get; set; }
         public DbSet<Diagnosis> Diagnoses { get; set; }
         public DbSet<FamilyIllnessHistory> FamilyIllnessHistories { get; set; }
         public DbSet<LabResults> LabResults { get; set; }
         public DbSet<ListOfResults> ListOfResults { get; set; }
-     //   public DbSet<Model.MedicalRecord.MedicalRecord> MedicalRecords { get; set; }
+        public DbSet<Model.MedicalRecord.MedicalRecord> MedicalRecords { get; set; }
         public DbSet<Therapy> Therapies { get; set; }
         public DbSet<Vaccines> Vaccines { get; set; }
-    //     public DbSet<Allergens> Allergens { get; set; }
+        public DbSet<Allergens> Allergens { get; set; }
         public DbSet<MedicationIngredient> Ingredients { get; set; }
-
-       */
-        
+        */
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -168,8 +161,6 @@ namespace Model
                 new Feedback { Id = 3, AdditionalNotes = "Predivno, ali i ruzno! Sramite se! Cestitke... <3", Approved = false, Date = new DateTime(), RegisteredUserId = "2406978890045", Anonymous = false, AllowedForPublishing = false },
                 new Feedback { Id = 4, AdditionalNotes = "Odlicno!", Approved = false, Date = new DateTime(), RegisteredUserId = "2406978890045", Anonymous = false, AllowedForPublishing = false }
             );
-
-
         }
     }
 }

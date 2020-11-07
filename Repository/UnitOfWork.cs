@@ -26,7 +26,9 @@ namespace Repository
                 return this.feedbackRepository;
             }
         }
-
+        /// <summary>
+        /// Saves all changes to database
+        /// </summary>
         public void Save()
         {
             context.SaveChanges();
