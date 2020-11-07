@@ -11,19 +11,21 @@ namespace WebApplication.DTO
          public DateTime Date { get; set; }
          public string AdditionalNotes { get; set; }
          public Boolean Approved { get; set; }
-         public String Username { get; set; }
-
+         public String Name { get; set; }
+         public String Surname { get; set; }
          public Boolean Anonymous { get; set; }
+         public Boolean AllowedForPublishing { get; set; }
             
-         public AllFeedbackDTO(int id, DateTime date, string additionalNotes, string username, Boolean approved, Boolean anonymous)
+         public AllFeedbackDTO(int id, DateTime date, string additionalNotes, string name, string surname, Boolean approved, Boolean anonymous , Boolean allowedForPublishing)
         {
             Id = id;
             Date = date;
             AdditionalNotes = additionalNotes;
-            Username = username;
+            Name = name;
+            Surname = surname;
             Approved = approved;
             Anonymous = anonymous;
-            
+            AllowedForPublishing = allowedForPublishing;
         }        
     }
 }

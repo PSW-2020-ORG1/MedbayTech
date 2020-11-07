@@ -34,14 +34,17 @@ namespace WebApplication.Adapters
                 int id = feedbackIt.Id;
                 DateTime date = feedbackIt.Date;
                 string additionalNotes = feedbackIt.AdditionalNotes;
-                string username = "";
+                string name = "";
+                string surname = "";
                 if (feedbackIt.RegisteredUser != null)
                 {
-                    username = feedbackIt.RegisteredUser.Username;
+                    name = feedbackIt.RegisteredUser.Name;
+                    surname = feedbackIt.RegisteredUser.Surname;
                 }
                 Boolean approved = feedbackIt.Approved;
                 Boolean anonymous = feedbackIt.Anonymous;
-                allFeedbackList.Add(new AllFeedbackDTO(id, date, additionalNotes, username, approved, anonymous));
+                Boolean allowedForPublishing = feedbackIt.AllowedForPublishing;
+                allFeedbackList.Add(new AllFeedbackDTO(id, date, additionalNotes, name, surname, approved, anonymous, allowedForPublishing));
             }
 
             return allFeedbackList;

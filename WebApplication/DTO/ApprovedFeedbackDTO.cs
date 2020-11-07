@@ -16,7 +16,6 @@ namespace WebApplication.DTO
             Date = date;
             AdditionalNotes = additionalNotes;
             Username = username;
-
         }
     }
 }

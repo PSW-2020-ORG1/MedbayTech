@@ -35,10 +35,7 @@ import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.compo
     MatListModule,
     MatCardModule,
     MatDividerModule,
-    RouterModule.forRoot([
-      {path: 'allFeedback', component: AllFeedbackComponent},
-      {path:'approvedFeedback', component: ApprovedFeedbackComponent}
-    ])
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

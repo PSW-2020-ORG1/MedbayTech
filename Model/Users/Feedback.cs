@@ -16,7 +16,7 @@ namespace Model.Users
         public string AdditionalNotes { get; set; }
         public Boolean Approved { get; set; }
         public Boolean Anonymous { get; set; }
-
+        public Boolean AllowedForPublishing { get; set; }
         public string RegisteredUserId { get; set; }
 
        public virtual RegisteredUser RegisteredUser { get; set; }
@@ -28,13 +28,14 @@ namespace Model.Users
             Id = id;
         }
 
-        public Feedback(DateTime date, string additionalNotes, Grade everythingInGoodPlace, Boolean anonymous, RegisteredUser user) 
+        public Feedback(DateTime date, string additionalNotes, Grade everythingInGoodPlace, Boolean anonymous, Boolean allowedForPublishing, RegisteredUser user) 
         {
             Date = date;
             AdditionalNotes = additionalNotes;
             RegisteredUser = user;
             Anonymous = anonymous;
             Approved = false;
+            AllowedForPublishing = allowedForPublishing;
         }
 
         public int GetId()
