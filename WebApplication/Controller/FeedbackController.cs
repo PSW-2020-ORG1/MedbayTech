@@ -9,7 +9,10 @@ using Model.ExaminationSurgery;
 using Model.Users;
 using Repository;
 using Repository.GeneralRepository;
+using WebApplication.DTO;
 using WebApplicationService.GeneralService;
+using WebApplication.Adapters;
+using System.Security.Cryptography.Xml;
 
 namespace WebApplication
 {
@@ -17,64 +20,44 @@ namespace WebApplication
     [ApiController]
     public class FeedbackController : ControllerBase
     {
-        private readonly MySqlContext mySqlContext;
+        private FeedbackService feedbackService;
+       
 
         public FeedbackController()
         {
-            
+            feedbackService = new FeedbackService();
         }
 
         [HttpGet]       // GET /api/feedback
         public IActionResult Get()
         {
-           /* RegisteredUser registeredUser =
-                mySqlContext.RegisteredUsers.FirstOrDefault(registeredUser =>
-                    registeredUser.Id.Equals("2406978890045"));
-
-            City city = registeredUser.CurrResidence.City;
-
-            Feedback feedback = mySqlContext.Feedbacks.FirstOrDefault();*/
-
-            
-            UnitOfWork uo = new UnitOfWork();
-            Feedback feedback = uo.FeedBackRepository.GetObject(1);
-            /*uo.FeedBackRepository.UpdateStatus(1, true);
-            uo.Save();*/
-
-            
-            /*uo.FeedBackRepository.UpdateStatus(1, false);
-            Feedback feedback2 = uo.FeedBackRepository.GetObject(1);
-            RegisteredUser registeredUser = feedback2.RegisteredUser;
-            Feedback newFeedback = new Feedback { Id = 2, Approved = false, Date = new DateTime(), AdditionalNotes = "Web sajt je super!", RegisteredUserId = registeredUser.Id };
-
-            uo.FeedBackRepository.Create(newFeedback);
-            uo.Save();
-            Feedback feedbackToUpdate = uo.FeedBackRepository.GetObject(2);
-          
-            feedbackToUpdate.AdditionalNotes = "Web sajt je super";
-
-            Feedback feedbackToDelete = new Feedback { Id = 23};
-            
-
-            List<Feedback> feedbacks = uo.FeedBackRepository.GetAll().ToList();*/
-
 
             
 
-            FeedbackService service = new FeedbackService();
 
-            service.UpdateStatus(1, true);
-
-            
-
-            List<Feedback> approvedFeedbacks = service.GetAllApprovedFeedback().ToList();
+            List<Feedback> approvedFeedback = feedbackService.GetAllApprovedFeedback().ToList();
+            List<ApprovedFeedbackDTO> approvedFeedbackDTOs = FeedbackAdapter.ListApprovedFeedbackToListApprovedFeedbackDTO(approvedFeedback);
 
             
+            return Ok(approvedFeedbackDTOs);
+        }
 
-            
+        [HttpGet("allFeedback")]
+        public IActionResult GetAllFeedback() {
 
-            
-            return Ok(approvedFeedbacks);
+            List<Feedback> allFeedback = feedbackService.GetAll().ToList();
+            List<AllFeedbackDTO> allFeedbackDTOs = FeedbackAdapter.ListAllFeedbackToListAllFeedbackDTO(allFeedback);
+
+            return Ok(allFeedbackDTOs);
+
+
+        }
+
+        [HttpPost("updateFeedbackStatus")]
+        public IActionResult UpdateFeedbackStatus(UpdateFeedbackStatusDTO updateFeedbackStatusDTO)
+        {
+            bool updatedStatus = feedbackService.UpdateStatus(updateFeedbackStatusDTO.Id, updateFeedbackStatusDTO.Approved);
+            return Ok(updatedStatus);
         }
     }
 
