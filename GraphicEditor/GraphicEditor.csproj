@@ -55,7 +55,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AdditionalInformationOperaingRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdditionalInformationPatientRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Legend.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PopupAuxiliaryRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PopupExaminationRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PopupOperatingRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PopupPatientRoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -83,12 +107,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AdditionalInformationOperaingRoom.xaml.cs">
+      <DependentUpon>AdditionalInformationOperaingRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdditionalInformationPatientRoom.xaml.cs">
+      <DependentUpon>AdditionalInformationPatientRoom.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Legend.xaml.cs">
       <DependentUpon>Legend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopupAuxiliaryRoom.xaml.cs">
+      <DependentUpon>PopupAuxiliaryRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopupExaminationRoom.xaml.cs">
+      <DependentUpon>PopupExaminationRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopupOperatingRoom.xaml.cs">
+      <DependentUpon>PopupOperatingRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopupPatientRoom.xaml.cs">
+      <DependentUpon>PopupPatientRoom.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Building1\Building1FirstFloorPlan.xaml.cs">
       <DependentUpon>Building1FirstFloorPlan.xaml</DependentUpon>
