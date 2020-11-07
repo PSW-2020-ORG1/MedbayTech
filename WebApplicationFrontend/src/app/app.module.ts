@@ -3,8 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ToastrModule} from 'ngx-toastr';
 
 
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -20,12 +22,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-feedback/approved-feedback.component';
 import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
 
+import { PostFeedbackComponent } from './feedback/post-feedback/post-feedback.component';
+import { FeedbackService } from './service/feedback/feedback.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ApprovedFeedbackComponent,
-    AllFeedbackComponent
+    AllFeedbackComponent,
+    PostFeedbackComponent
    
   ],
   imports: [
@@ -36,9 +41,14 @@ import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.compo
     MatListModule,
     MatCardModule,
     MatDividerModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+
+    
   ],
-  providers: [],
+  providers: [FeedbackService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

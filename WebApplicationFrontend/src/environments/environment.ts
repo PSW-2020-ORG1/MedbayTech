@@ -7,7 +7,8 @@ export const environment = {
   baseUrl: 'http://localhost:8080',
   fedback: 'api/feedback',
   allFeedback: 'allFeedback',
-  updateFeedbackStatus: 'updateFeedbackStatus'
+  updateFeedbackStatus: 'updateFeedbackStatus',
+  createFeedback : 'createFeedback'
 };
 
 /*

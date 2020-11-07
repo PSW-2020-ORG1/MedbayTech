@@ -50,7 +50,7 @@ namespace Model.Users
             Phone = phone;
         }
 
-        public RegisteredUser(string name, string surname, DateTime dateOfBirth, 
+        public RegisteredUser(string name, string surname, DateTime dateOfBirth,
             string identificationNumber, string email, string username, string phone,
             string password, EducationLevel educationLevel, Gender gender,
             string profession, City city, Address currResidence, InsurancePolicy insurancePolicy)

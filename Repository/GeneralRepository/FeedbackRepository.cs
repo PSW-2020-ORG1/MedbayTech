@@ -39,5 +39,11 @@ namespace Repository.GeneralRepository
             return GetAll().Where(feedback => feedback.Approved == true && feedback.AllowedForPublishing);
 
         }
+
+        public int GetLastId()
+        {
+            Feedback feedback = GetAll().Last();
+            return feedback.Id;
+        }
     }
 }

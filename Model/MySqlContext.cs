@@ -39,10 +39,10 @@ namespace Model
 
         public MySqlContext(DbContextOptions<MySqlContext> options) : base(options)
         {
-            
+
         }
 
-        public MySqlContext() {}
+        public MySqlContext() { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             /*This is not good solution, must be refactored*/
@@ -54,9 +54,9 @@ namespace Model
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
 
             optionsBuilder.UseMySql(configuration.GetConnectionString("MySqlConnectionString")).UseLazyLoadingProxies();
-            
 
-           
+
+
 
         }
 /*
@@ -105,22 +105,22 @@ namespace Model
                 new LabTestType {Id=1,TestName = "LDL", LabTestingId = 1}
                 ); */
             modelBuilder.Entity<City>().HasData(
-                
-                new City {Id = 21000, Name = "Novi Sad", StateId = 1},
-                new City {Id = 11000, Name = "Beograd", StateId = 1}
+
+                new City { Id = 21000, Name = "Novi Sad", StateId = 1 },
+                new City { Id = 11000, Name = "Beograd", StateId = 1 }
                 );
 
             modelBuilder.Entity<State>().HasData(
-                new State {Id = 1, Name = "Serbia"}
+                new State { Id = 1, Name = "Serbia" }
             );
 
             modelBuilder.Entity<Address>().HasData(
-                new Address {Id = 1, Street = "Radnicka", Number = 4, CityId = 21000},
-                new Address {Id = 2, Street = "Gospodara Vucica", Number = 5, CityId = 11000}
+                new Address { Id = 1, Street = "Radnicka", Number = 4, CityId = 21000 },
+                new Address { Id = 2, Street = "Gospodara Vucica", Number = 5, CityId = 11000 }
                 );
 
             modelBuilder.Entity<InsurancePolicy>().HasData(
-                new InsurancePolicy {Company = "Dunav osiguranje d.o.o", Id = "policy1", PolicyStartDate = new DateTime(2020, 11, 1), PolicyEndDate = new DateTime(2022, 11, 1)}
+                new InsurancePolicy { Company = "Dunav osiguranje d.o.o", Id = "policy1", PolicyStartDate = new DateTime(2020, 11, 1), PolicyEndDate = new DateTime(2022, 11, 1) }
             );
 
           /*  modelBuilder.Entity<Symptoms>().HasData(

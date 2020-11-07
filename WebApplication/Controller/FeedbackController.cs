@@ -61,6 +61,33 @@ namespace WebApplication
         {
             bool updatedStatus = feedbackService.UpdateStatus(updateFeedbackStatusDTO.Id, updateFeedbackStatusDTO.Approved);
             return Ok(updatedStatus);
+
+           FeedbackService feedbackService = new FeedbackService();
+
+           List<Feedback> approvedFeedback = feedbackService.GetAllApprovedFeedback().ToList();
+           List<ApprovedFeedbackDTO> approvedFeedbackDTOs = FeedbackAdapter.ListApprovedFeedbackToListApprovedFeedbackDTO(approvedFeedback);
+
+            
+            return Ok(approvedFeedbackDTOs);
+        }
+
+        [HttpPost("createFeedback")]
+        public IActionResult Post(PostFeedbackDTO dto)
+        {
+            if(dto.AdditionalNotes.Length <= 0)
+            {
+                return BadRequest("Failed to post feedback");
+            }
+            FeedbackService feedbackService = new FeedbackService();
+
+            bool feedbackSuccessfullyCreated = feedbackService.CreateFeedback(dto.UserId, dto.AdditionalNotes, dto.Anonymous, dto.AllowedForPublishing);
+
+            if (!feedbackSuccessfullyCreated)
+            {
+                return BadRequest("Failed to post feedback");
+            }
+            return Ok("Feedback posted successfully");
+
         }
     }
 
