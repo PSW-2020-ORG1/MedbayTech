@@ -85,6 +85,7 @@ namespace GraphicEditor
         {
             window.MainFrame.Content = new Building1FloorPlan(window);
             window.comboBoxH1.SelectedIndex = 0;
+            window.SetActiveUserControl(window.legenda);
             Storyboard storyboard = new Storyboard();
             DoubleAnimation doubleAnimation = new DoubleAnimation();
             doubleAnimation.From = 0;
@@ -99,6 +100,8 @@ namespace GraphicEditor
         private void ShowBuilding2FloorPlan(object sender, MouseButtonEventArgs e)
         {
             window.MainFrame.Content = new Building2FloorPlan(window);
+            window.comboBoxH2.SelectedIndex = 0;
+            window.SetActiveUserControl(window.legenda);
             Storyboard storyboard = new Storyboard();
             DoubleAnimation doubleAnimation = new DoubleAnimation();
             doubleAnimation.From = 0;

@@ -159,13 +159,12 @@ namespace GraphicEditor
             }
         }
 
-        private void SetActiveUserControl(UserControl control)
+        public void SetActiveUserControl(UserControl control)
         {
             legenda.Visibility = Visibility.Visible;
-
         }
 
-        private void DisableActiveUserControl(UserControl control)
+        public void DisableActiveUserControl(UserControl control)
         {
            legenda.Visibility = Visibility.Collapsed;
 
