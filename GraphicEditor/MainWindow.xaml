@@ -23,7 +23,7 @@
         <DockPanel DockPanel.Dock="Left" Background="SteelBlue">
             <Label DockPanel.Dock="Top" Content="Informations:" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White"/>
             <DockPanel DockPanel.Dock="Bottom">
-                <local:Legend  x:Name="legenda"  VerticalAlignment="Center" HorizontalAlignment="Center"   Visibility="Collapsed" Height="220" Width="250"></local:Legend>
+                <local:Legend  x:Name="legenda"  VerticalAlignment="Center" HorizontalAlignment="Center"   Visibility="Visible" Height="300" Width="250"></local:Legend>
             </DockPanel>
             <TabControl SelectionChanged="TabControl_SelectionChanged" x:Name="tabControl">
                 <TabItem x:Name="MAP" Header="Map">
