@@ -94,8 +94,6 @@ namespace GraphicEditor
             Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
             Storyboard.SetTargetName(doubleAnimation, window.MainFrame.Name);
             storyboard.Begin(window);
-
-
         }
 
         private void ShowBuilding2FloorPlan(object sender, MouseButtonEventArgs e)

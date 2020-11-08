@@ -179,16 +179,19 @@ namespace GraphicEditor
             {
                 dontRefreshMap = true;
                 ShowBuilding1GroundFloor(null, null);
+                SetActiveUserControl(legenda);
             }
             else if (comboBoxH1.SelectedIndex == 1)
             {
                 dontRefreshMap = true;
                 ShowBuilding1FirstFloor(null, null);
+                SetActiveUserControl(legenda);
             }
             else if (comboBoxH1.SelectedIndex == 2)
             {
                 dontRefreshMap = true;
                 ShowBuilding1SecondFloor(null, null);
+                SetActiveUserControl(legenda);
             }
         }
 
@@ -198,14 +201,17 @@ namespace GraphicEditor
             if (comboBoxHospital1.SelectedIndex == 0)
             {
                 ShowBuilding1GroundFloor(null, null);
+                SetActiveUserControl(legenda);
             }
             else if (comboBoxHospital1.SelectedIndex == 1)
             {
                 ShowBuilding1FirstFloor(null, null);
+                SetActiveUserControl(legenda);
             }
             else if (comboBoxHospital1.SelectedIndex == 2)
             {
                 ShowBuilding1SecondFloor(null, null);
+                SetActiveUserControl(legenda);
             }
         }
 
@@ -214,17 +220,17 @@ namespace GraphicEditor
             if (dontRefreshMap == true) return;
             dontRefreshMap = true;
             comboBoxH1.SelectedItem = null;
-            if (comboBoxHospital2.SelectedIndex == 0)
+            if (comboBoxH2.SelectedIndex == 0)
             {
                 dontRefreshMap = true;
                 ShowBuilding2GroundFloor(null, null);
             }
-            else if (comboBoxHospital2.SelectedIndex == 1)
+            else if (comboBoxH2.SelectedIndex == 1)
             {
                 dontRefreshMap = true;
                 ShowBuilding2FirstFloor(null, null);
             }
-            else if (comboBoxHospital2.SelectedIndex == 2)
+            else if (comboBoxH2.SelectedIndex == 2)
             {
                 dontRefreshMap = true;
                 ShowBuilding2SecondFloor(null, null);
