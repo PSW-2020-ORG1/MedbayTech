@@ -67,12 +67,6 @@ namespace GraphicEditor
             PopupPatientRoom.IsOpen = false;
         }
 
-        private void AdditionalInformationPatientRoom(object sender, MouseButtonEventArgs e)
-        {
-            AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom();
-            additionalInformation.ShowDialog();
-        }
-
         private void AuxiliaryRoom_MouseLeave(object sender, MouseEventArgs e)
         {
             PopupAuxiliaryRoom.Visibility = Visibility.Collapsed;
@@ -96,9 +90,27 @@ namespace GraphicEditor
             PopupOperatingRoom.IsOpen = false;
         }
 
+        private void AdditionalInformationPatientRoom(object sender, MouseButtonEventArgs e)
+        {
+            AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom();
+            additionalInformation.ShowDialog();
+        }
+
         private void AdditionalInformationOperatingRoom(object sender, MouseButtonEventArgs e)
         {
             AdditionalInformationOperaingRoom additionalInformation = new AdditionalInformationOperaingRoom();
+            additionalInformation.ShowDialog();
+        }
+
+        private void AdditionalInformationExaminationRoom(object sender, MouseButtonEventArgs e)
+        {
+            AdditionalInformationExaminationRoom additionalInformation = new AdditionalInformationExaminationRoom();
+            additionalInformation.ShowDialog();
+        }
+
+        private void AdditionalInformationAuxiliaryRoom(object sender, MouseButtonEventArgs e)
+        {
+            AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom();
             additionalInformation.ShowDialog();
         }
 

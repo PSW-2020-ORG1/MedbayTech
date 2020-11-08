@@ -38,17 +38,17 @@
                    Panel.ZIndex="1"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center" Height="65" Width="175">
-            <Run BaselineAlignment="Bottom" Text="Oznaka prostorije:" Foreground="White" FontWeight="DemiBold"/>
+            <Run BaselineAlignment="Bottom" Text="Room label:" Foreground="White" FontWeight="DemiBold"/>
             <InlineUIContainer BaselineAlignment="Bottom">
-                <TextBox Height="18" TextWrapping="Wrap" Text="S2-G2" Width="85" TextAlignment="Left" FontSize="11" FontWeight="DemiBold"/>
+                <TextBox Height="18" TextWrapping="Wrap" Text="S2-G2" Width="66" TextAlignment="Center" FontSize="11" FontWeight="DemiBold"/>
             </InlineUIContainer>
-            <Run BaselineAlignment="Bottom" Text="&#x0a;Namena:" Foreground="White" FontWeight="SemiBold"/>
+            <Run BaselineAlignment="Bottom" Text="&#x0a;Room use:" Foreground="White" FontWeight="SemiBold"/>
             <InlineUIContainer BaselineAlignment="Center">
-                <TextBox Height="22" TextWrapping="Wrap" Text="Kancelarija" Width="115" TextAlignment="Center" FontSize="12" FontWeight="SemiBold"  BorderBrush="#3A6180"/>
+                <TextBox Height="22" TextWrapping="Wrap" Text="Office" Width="75" TextAlignment="Center" FontSize="12" FontWeight="SemiBold"  BorderBrush="#3A6180"/>
             </InlineUIContainer>
-            <Run BaselineAlignment="Bottom" Text="&#x0a;Stanje inventara:" Foreground="White" FontWeight="Medium"/>
+            <Run BaselineAlignment="Bottom" Text="&#x0a;Inventory:" Foreground="White" FontWeight="Medium"/>
             <InlineUIContainer BaselineAlignment="Center">
-                <TextBox Height="20" TextWrapping="Wrap" Text="Deficitno" Width="66" TextAlignment="Left" FontSize="13" FontWeight="Medium" BorderBrush="#3A6180"/>
+                <TextBox Height="20" TextWrapping="Wrap" Text="In demand" Width="78" TextAlignment="Left" FontSize="13" FontWeight="Medium" BorderBrush="#3A6180"/>
             </InlineUIContainer>
         </TextBlock>
     </Grid>

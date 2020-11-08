@@ -101,5 +101,17 @@ namespace GraphicEditor
             AdditionalInformationOperaingRoom additionalInformation = new AdditionalInformationOperaingRoom();
             additionalInformation.ShowDialog();
         }
+
+        private void AdditionalInformationExaminationRoom(object sender, MouseButtonEventArgs e)
+        {
+            AdditionalInformationExaminationRoom additionalInformation = new AdditionalInformationExaminationRoom();
+            additionalInformation.ShowDialog();
+        }
+
+        private void AdditionalInformationAuxiliaryRoom(object sender, MouseButtonEventArgs e)
+        {
+            AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom();
+            additionalInformation.ShowDialog();
+        }
     }
 }

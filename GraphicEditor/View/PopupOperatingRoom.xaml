@@ -38,17 +38,17 @@
                    Panel.ZIndex="1"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center" Height="65" Width="175">
-            <Run BaselineAlignment="Bottom" Text="Oznaka sale:" Foreground="White" FontWeight="DemiBold"/>
+            <Run BaselineAlignment="Bottom" Text="Operating room lbl:" Foreground="White" FontWeight="DemiBold"/>
             <InlineUIContainer BaselineAlignment="Bottom">
-                <TextBox Height="18" TextWrapping="Wrap" Text="S1-C4" Width="93" TextAlignment="Left" FontSize="11" FontWeight="DemiBold"/>
+                <TextBox Height="18" TextWrapping="Wrap" Text="S1-C4" Width="46" TextAlignment="Center" FontSize="11" FontWeight="DemiBold"/>
             </InlineUIContainer>
-            <Run BaselineAlignment="Bottom" Text="&#x0a;Stanje inventara:" Foreground="White" FontWeight="SemiBold"/>
+            <Run BaselineAlignment="Bottom" Text="&#x0a;Available appointments:" Foreground="White" FontWeight="SemiBold"/>
             <InlineUIContainer BaselineAlignment="Center">
-                <TextBox Height="21" TextWrapping="Wrap" Text="Redovnono" Width="66" TextAlignment="Center" FontSize="13" FontWeight="SemiBold" BorderBrush="#3A6180"/>
+                <TextBox Height="18" TextWrapping="Wrap" Text="18" Width="22" TextAlignment="Left"  FontSize="10" FontWeight="Heavy" Foreground="White" Background="#3A6180" BorderBrush="#3A6180"/>
             </InlineUIContainer>
-            <Run BaselineAlignment="Bottom" Text="&#x0a;Broj slobodnih termina:" Foreground="White" FontWeight="Medium"/>
+            <Run BaselineAlignment="Center" Text="&#x0a;Inventory:" Foreground="White" FontWeight="Medium"/>
             <InlineUIContainer BaselineAlignment="Center">
-                <TextBox Height="21" TextWrapping="Wrap" Text="8" Width="22" TextAlignment="Left" FontSize="13" FontWeight="Heavy" Foreground="White" Background="#3A6180" BorderBrush="#3A6180"/>
+                <TextBox Height="22" TextWrapping="Wrap" Text="Stocked" Width="86" FontWeight="Medium" TextAlignment="Center"/>
             </InlineUIContainer>
         </TextBlock>
     </Grid>
