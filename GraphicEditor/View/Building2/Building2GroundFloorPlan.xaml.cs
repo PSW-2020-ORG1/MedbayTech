@@ -43,22 +43,10 @@ namespace GraphicEditor
             }
         }
 
-        private void ExaminationRoom_MouseEnter(object sender, MouseEventArgs e)
-        {
-            PopupExaminationRoom.Placement = PlacementMode.MousePoint;
-            PopupExaminationRoom.IsOpen = true;
-        }
-
         private void PatientRoom_MouseEnter(object sender, MouseEventArgs e)
         {
-            PopupPatientRoom.Visibility = Visibility.Collapsed;
-            PopupPatientRoom.IsOpen = false;
-        }
-
-        private void AuxiliaryRoom_MouseEnter(object sender, MouseEventArgs e)
-        {
-            PopupAuxiliaryRoom.Placement = PlacementMode.MousePoint;
-            PopupAuxiliaryRoom.IsOpen = true;
+            PopupPatientRoom.Placement = PlacementMode.MousePoint;
+            PopupPatientRoom.IsOpen = true;
         }
 
         private void PatientRoom_MouseLeave(object sender, MouseEventArgs e)
@@ -67,10 +55,10 @@ namespace GraphicEditor
             PopupPatientRoom.IsOpen = false;
         }
 
-        private void AuxiliaryRoom_MouseLeave(object sender, MouseEventArgs e)
+        private void ExaminationRoom_MouseEnter(object sender, MouseEventArgs e)
         {
-            PopupAuxiliaryRoom.Visibility = Visibility.Collapsed;
-            PopupAuxiliaryRoom.IsOpen = false;
+            PopupExaminationRoom.Placement = PlacementMode.MousePoint;
+            PopupExaminationRoom.IsOpen = true;
         }
 
         private void ExaminationRoom_MouseLeave(object sender, MouseEventArgs e)
@@ -78,6 +66,7 @@ namespace GraphicEditor
             PopupExaminationRoom.Visibility = Visibility.Collapsed;
             PopupExaminationRoom.IsOpen = false;
         }
+
         private void OperatingRoom_MouseEnter(object sender, MouseEventArgs e)
         {
             PopupOperatingRoom.Placement = PlacementMode.MousePoint;
@@ -88,6 +77,18 @@ namespace GraphicEditor
         {
             PopupOperatingRoom.Visibility = Visibility.Collapsed;
             PopupOperatingRoom.IsOpen = false;
+        }
+
+        private void AuxiliaryRoom_MouseEnter(object sender, MouseEventArgs e)
+        {
+            PopupAuxiliaryRoom.Placement = PlacementMode.MousePoint;
+            PopupAuxiliaryRoom.IsOpen = true;
+        }
+
+        private void AuxiliaryRoom_MouseLeave(object sender, MouseEventArgs e)
+        {
+            PopupAuxiliaryRoom.Visibility = Visibility.Collapsed;
+            PopupAuxiliaryRoom.IsOpen = false;
         }
 
         private void AdditionalInformationPatientRoom(object sender, MouseButtonEventArgs e)
