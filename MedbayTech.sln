@@ -22,6 +22,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTechUnitTests", "Medb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphicEditor", "GraphicEditor\GraphicEditor.csproj", "{741B9260-05DC-49F6-BFC4-155A54110B95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyIntegration", "PharmacyIntegration\PharmacyIntegration.csproj", "{26BDF43A-2396-41AF-A220-DC7AB197F158}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{741B9260-05DC-49F6-BFC4-155A54110B95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{741B9260-05DC-49F6-BFC4-155A54110B95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{741B9260-05DC-49F6-BFC4-155A54110B95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26BDF43A-2396-41AF-A220-DC7AB197F158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26BDF43A-2396-41AF-A220-DC7AB197F158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26BDF43A-2396-41AF-A220-DC7AB197F158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26BDF43A-2396-41AF-A220-DC7AB197F158}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
