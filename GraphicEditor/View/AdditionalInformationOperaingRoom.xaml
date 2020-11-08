@@ -1,0 +1,32 @@
+﻿<Window x:Class="GraphicEditor.AdditionalInformationOperaingRoom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GraphicEditor"
+        mc:Ignorable="d"
+        Title="AdditionalInformationOperaingRoom" Height="450" Width="500" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" BorderBrush="Black">
+    <Grid>
+        <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Top" Background="#006481">
+            <Image Width="60" Margin="5,0,0,0" Source="GraphicEditor/WhiteLogo.png"/>
+            <Label Content="Additiondal information" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="25" Foreground="White" Width="327" Height="40"/>
+        </StackPanel>
+        <Label Content="Room label" HorizontalAlignment="Left" Margin="107,45,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+        <Label Content="Floor" HorizontalAlignment="Left" Margin="128,77,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+        <Label Content="Ward" HorizontalAlignment="Left" Margin="128,110,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+        <Label Content="Inventory" HorizontalAlignment="Left" Margin="113,142,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+        <Label Content="Available appointments:" HorizontalAlignment="Left" Margin="66,174,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32" RenderTransformOrigin="0.487,0.623" Width="188"/>
+        <Label Content="Scheduled appointments:" HorizontalAlignment="Left" Margin="254,174,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32" Width="195"/>
+        <TextBox HorizontalAlignment="Left" Height="22" Margin="262,51,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Height="24" Margin="262,81,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Height="24" Margin="262,148,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Height="22" Margin="262,116,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
+        <Button x:Name="Ok" Content="Ok" HorizontalAlignment="Left" Height="30" Margin="187,382,0,0" VerticalAlignment="Top" Width="130" Foreground="White" Background="#2B78E4" FontSize="20" Click="Ok_Click" />
+        <ListBox HorizontalAlignment="Left" Height="120" Margin="93,211,0,0" VerticalAlignment="Top" Width="140"/>
+        <ListBox HorizontalAlignment="Left" Height="120" Margin="271,211,0,0" VerticalAlignment="Top" Width="140"/>
+        <Button Content="Schedule" HorizontalAlignment="Left" Height="30" Margin="113,335,0,0" VerticalAlignment="Top" Width="99" Foreground="White" Background="RoyalBlue" FontSize="20" />
+        <Button Content="Cancel" HorizontalAlignment="Left" Height="30" Margin="308,335,0,0" VerticalAlignment="Top" Width="76" Foreground="White" Background="Tomato" FontSize="20" Click="Ok_Click" />
+
+
+    </Grid>
+</Window>

@@ -23,6 +23,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{A62B638F-3D19-41CD-A816-C95AE820A99D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationService", "WebApplicationService\WebApplicationService.csproj", "{67B631E9-1FB2-41C5-8D89-2867864D2117}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedbayTests", "MedbayTests\MedbayTests.csproj", "{2642B7C8-837E-4286-B09F-650A27A6B1AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTechUnitTests", "MedbayTechUnitTests\MedbayTechUnitTests.csproj", "{E0D6C7CE-574F-4415-B59D-F525A2C11309}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphicEditor", "GraphicEditor\GraphicEditor.csproj", "{12DFA33A-4658-4F4F-A8D0-07E8B3266430}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
