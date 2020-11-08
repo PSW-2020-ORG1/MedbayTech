@@ -1,14 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Exceptions\Exceptions.csproj" />
     <ProjectReference Include="..\FileRepository\FileRepository.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
+<<<<<<< HEAD
     <ProjectReference Include="..\Repository\Repository.csproj" />
+=======
+>>>>>>> develop
   </ItemGroup>
 
 </Project>
