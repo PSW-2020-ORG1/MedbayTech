@@ -26,13 +26,13 @@ namespace Service.ExaminationService
             if (!CheckIfAlreadyStartedExamining(examinationSurgery))
                 return examinationSurgeryRepository.Create(examinationSurgery);
             else
-                return GetCurrentExamination(examinationSurgery.MedicalRecord.IdRecord);
+                return GetCurrentExamination(examinationSurgery.MedicalRecord.Id);
         }
 
         public bool CheckIfAlreadyStartedExamining(ExaminationSurgery examinationSurgery)
         {
             return examinationSurgeryRepository.GetAll().ToList().Any(entity => entity.StartTime.Date.CompareTo(DateTime.Today.Date) == 0
-                && entity.MedicalRecord.IdRecord == examinationSurgery.MedicalRecord.IdRecord);
+                && entity.MedicalRecord.Id == examinationSurgery.MedicalRecord.Id);
         }
 
         public ExaminationSurgery GetExaminationSurgery(int id) => examinationSurgeryRepository.GetObject(id);
@@ -55,7 +55,7 @@ namespace Service.ExaminationService
         public ExaminationSurgery GetCurrentExamination(int idRecord)
         {
             return examinationSurgeryRepository.GetAll().SingleOrDefault(entity =>
-                entity.MedicalRecord.IdRecord == idRecord &&
+                entity.MedicalRecord.Id == idRecord &&
                 entity.StartTime.Date.CompareTo(DateTime.Today.Date) == 0);
         }
 
@@ -74,7 +74,7 @@ namespace Service.ExaminationService
 
         public ExaminationSurgery UpdateTreatment(ExaminationSurgery examinationSurgery, Treatment treatment)
         {
-            ExaminationSurgery examinationToUdate = examinationSurgeryRepository.GetObject(examinationSurgery.IdNumber);
+            ExaminationSurgery examinationToUdate = examinationSurgeryRepository.GetObject(examinationSurgery.Id);
             examinationToUdate.Treatments.Add(treatment);
             return examinationSurgeryRepository.Update(examinationToUdate);
         }

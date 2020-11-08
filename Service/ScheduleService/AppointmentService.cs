@@ -50,7 +50,7 @@ namespace Service.ScheduleService
         }
         public Appointment ChangeRoomForAppointment(Appointment appointment, Room room)
         {
-            Appointment appointmentToUpdate = appointmentRepository.GetObject(appointment.IdAppointment);
+            Appointment appointmentToUpdate = appointmentRepository.GetObject(appointment.Id);
             appointmentToUpdate.Room = room;
             return appointmentRepository.Update(appointmentToUpdate);
         }
@@ -74,18 +74,18 @@ namespace Service.ScheduleService
         public Appointment GetCurrentAppointment(Doctor doctor, MedicalRecord medicalRecord)
         {
             var doctorsDay = GetScheduledByDoctorForOneDay(doctor, DateTime.Today);
-            return doctorsDay.SingleOrDefault(entity => entity.MedicalRecord.IdRecord == medicalRecord.IdRecord);
+            return doctorsDay.SingleOrDefault(entity => entity.MedicalRecord.Id == medicalRecord.Id);
         }
         public Appointment ChangeDoctorForAppointment(Doctor doctor, Appointment appointment)
         {
-            Appointment appointmentToUpdate = appointmentRepository.GetObject(appointment.IdAppointment);
+            Appointment appointmentToUpdate = appointmentRepository.GetObject(appointment.Id);
             appointmentToUpdate.Doctor = doctor;
             return appointmentRepository.Update(appointmentToUpdate);
         }
       
         public Appointment ChangeDateTimeOfAppointment(Appointment appointment, DateTime termOfAppointmetn)
         {
-            Appointment appointmentToUpdate = appointmentRepository.GetObject(appointment.IdAppointment);
+            Appointment appointmentToUpdate = appointmentRepository.GetObject(appointment.Id);
             appointmentToUpdate.StartTime = termOfAppointmetn;
             int ifSurgeryMultiply = appointment.TypeOfAppointment == TypeOfAppointment.surgery ? 5 : 1;
             appointmentToUpdate.EndTime = termOfAppointmetn.AddMinutes(appointmentTimePeriod * ifSurgeryMultiply);

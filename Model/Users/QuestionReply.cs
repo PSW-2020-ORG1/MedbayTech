@@ -9,11 +9,12 @@ namespace Model.Users
 {
    public class QuestionReply
    {
-        private int id;
-        private DateTime date;
-        private string content;
-      
-        public Doctor author;
+
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public string Content { get; set; }
+        public virtual Doctor Author { get; set; }
+        public string AuthorId { get; set; }
 
         public QuestionReply() { }
         public QuestionReply(int id)
@@ -28,10 +29,5 @@ namespace Model.Users
             Author = author;
         }
 
-
-        public DateTime Date { get => date; set => date = value; }
-        public string Content { get => content; set => content = value; }
-        public Doctor Author { get => author; set => author = value; }
-        public int Id { get => id; set => id = value; }
     }
 }

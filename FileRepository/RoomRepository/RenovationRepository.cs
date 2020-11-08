@@ -31,7 +31,7 @@ namespace Repository.RoomRepository
 
         public new Renovation Create(Renovation entity)
         {
-            entity.RenovationId = GetNextID();
+            entity.Id = GetNextID();
             SetMissingValues(entity);
             return base.Create(entity);
         }
@@ -66,11 +66,11 @@ namespace Repository.RoomRepository
 
         public void SetMissingValues(Renovation entity)
         {
-            entity.Room = new Room(entity.Room.RoomID);
+            entity.Room = new Room(entity.Room.Id);
         }
         public void CompleteObject(Renovation entity)
         {
-            entity.Room = roomRepository.GetObject(entity.Room.RoomID);
+            entity.Room = roomRepository.GetObject(entity.Room.Id);
         }
     }
 }

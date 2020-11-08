@@ -60,7 +60,7 @@ namespace Model.Users
 
         public void SetIDNumber(string id)
         {
-            employee.IdentificationNumber = id;
+            employee.Id = id;
         }
 
         public void SetPhone(string phone)

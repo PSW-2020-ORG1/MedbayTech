@@ -30,7 +30,7 @@ namespace Service.ReportService
         }
         public MedicationConsumptionReport GenerateMedicalConsumptionReport(DateTime startDate, DateTime endDate, Medication medication)
         {
-            var allPrescriptions = treatmentRepository.GetAllPrescriptions().ToList().Where(entity => entity.Medications.Any(entity1 => entity1.MedId == medication.MedId)).ToList();
+            var allPrescriptions = treatmentRepository.GetAllPrescriptions().ToList().Where(entity => entity.Medications.Any(entity1 => entity1.Id == medication.Id)).ToList();
             var inPeriodOfTime = allPrescriptions.Where(entity => entity.Date.CompareTo(startDate) >= 0 && entity.Date.CompareTo(endDate) <= 0).ToList();
             MedicationConsumptionReport report = new MedicationConsumptionReport(DateTime.Today, startDate, endDate, inPeriodOfTime);
             return report;

@@ -60,7 +60,7 @@ namespace Service.RoomService
         {
             if (CheckIfOccupationDatesAreValid(occupation))
             {
-                Bed bedForOccupation = bedRepository.GetObject(bed.BedId);
+                Bed bedForOccupation = bedRepository.GetObject(bed.Id);
                 if (!CheckIfOccupationsOverlap(bedForOccupation, occupation))
                 {
                     bedForOccupation.AddOccupation(occupation);
@@ -74,7 +74,7 @@ namespace Service.RoomService
 
         public bool FreeBed(Bed bed, DateTime startDate, DateTime endDate)
         {
-            Bed freeBed = bedRepository.GetObject(bed.BedId);
+            Bed freeBed = bedRepository.GetObject(bed.Id);
             List<Occupation> newOccupationList = new List<Occupation>();
             foreach (Occupation occupation in freeBed.Occupations)
             {

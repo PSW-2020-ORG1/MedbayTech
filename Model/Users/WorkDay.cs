@@ -4,24 +4,25 @@
 // Purpose: Definition of Class WorkDay
 
 using System;
+using System.Security.Policy;
 using SimsProjekat.Repository;
 
 namespace Model.Users
 {
    public class WorkDay : IIdentifiable<int>
    {
-        private int id;
-        private Days day;
-        private DateTime date;
+        public int Id { get; set; }
+        public Days Day { get; set; }
+        public DateTime Date { get; set; }
 
-        private Shift shift;
-        private Employee employee;
+        public virtual Shift Shift { get; set; }
+
+        public int EmployeeId { get; set; }
+        public virtual Employee Employee { get; set; }
+
+        public int shiftId;
+        public string employeeId;
       
-        public int Id { get => id; set => id = value; }
-        public Days Day { get => day; set => day= value; }
-        public DateTime Date { get => date; set => date = value; }
-        public Shift Shift { get => shift; set => shift= value; }
-        public Employee Employee { get => employee; set => employee = value; }
 
         public WorkDay() { }
         

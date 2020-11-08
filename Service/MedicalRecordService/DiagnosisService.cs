@@ -25,7 +25,7 @@ namespace Service.MedicalRecordService
 
         public Diagnosis AddSymptom(Diagnosis diagnosis, Symptoms symptom)
         {
-            Diagnosis diagnosisToUpdate = diagnosisRepository.GetObject(diagnosis.Code);
+            Diagnosis diagnosisToUpdate = diagnosisRepository.GetObject(diagnosis.Id);
             diagnosisToUpdate.Symptoms.Add(symptom);
             return diagnosisRepository.Update(diagnosisToUpdate);
         }

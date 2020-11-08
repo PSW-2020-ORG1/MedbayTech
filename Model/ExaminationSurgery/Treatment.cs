@@ -10,11 +10,13 @@ namespace Model.ExaminationSurgery
 {
    public class Treatment : IIdentifiable<int>
    {
-        private int id;
-        private DateTime date;
-        private string additionalNotes;
-        private TreatmentType type;
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public string AdditionalNotes { get; set; }
+        public TreatmentType Type { get; set; }
 
+        public int ExaminationSurgeryId { get; set; }
+        public virtual ExaminationSurgery ExaminationSurgery { get; set; }
         public Treatment() { }
 
         public Treatment(int id)
@@ -29,11 +31,7 @@ namespace Model.ExaminationSurgery
             Type = type;
         }
 
-        public int Id { get => id; set => id = value; }
-        public DateTime Date { get => date; set => date = value; }
-        public string AdditionalNotes { get => additionalNotes; set => additionalNotes = value; }
-        public TreatmentType Type { get => type; set => type = value; }
-
+        
         public int GetId()
         {
             return Id;

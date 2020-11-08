@@ -31,7 +31,7 @@ namespace Repository.RoomRepository
 
         public new Bed Create(Bed entity)
         {
-            entity.BedId = GetNextId();
+            entity.Id = GetNextId();
             SetMissingValues(entity);
             return base.Create(entity); 
         }
@@ -69,16 +69,16 @@ namespace Repository.RoomRepository
 
         public void SetMissingValues(Bed entity)
         {
-            entity.Room = new Room(entity.Room.RoomID);
+            entity.Room = new Room(entity.Room.Id);
         }
 
         public void CompleteObject(Bed entity)
         {
-            entity.Room = roomRepository.GetObject(entity.Room.RoomID);
+            entity.Room = roomRepository.GetObject(entity.Room.Id);
 
             foreach (Occupation occupation in entity.Occupations)
             {
-                occupation.Patient = medicalRecordRepository.GetObject(occupation.Patient.IdRecord);
+                occupation.Patient = medicalRecordRepository.GetObject(occupation.Patient.Id);
             }
         }
     }

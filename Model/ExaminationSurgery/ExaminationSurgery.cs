@@ -14,13 +14,15 @@ namespace Model.ExaminationSurgery
 {
    public class ExaminationSurgery : IIdentifiable<int>
    {
-        private DateTime startTime;
-        private TypeOfAppointment type;
-        private int idNumber;
-        private List<Treatment> treatments;
-        private List<Diagnosis> diagnoses;
-        private Doctor doctor;
-        private MedicalRecord.MedicalRecord medicalRecord;
+        public DateTime StartTime { get; set; }
+        public TypeOfAppointment Type { get; set; }
+        public int Id { get; set; }
+        public virtual List<Treatment> Treatments { get; set; }
+        public virtual List<Diagnosis> Diagnoses { get; set; }
+        public int DoctorId { get; set; }
+        public virtual Doctor Doctor { get; set; }
+        public int MedicalRecordId { get; set; }
+        public virtual MedicalRecord.MedicalRecord MedicalRecord { get; set; }
 
         public ExaminationSurgery() 
         {
@@ -29,7 +31,7 @@ namespace Model.ExaminationSurgery
         }
         public ExaminationSurgery(int id)
         {
-            IdNumber = id; 
+            Id = id; 
         }
 
         public ExaminationSurgery(DateTime startTime, TypeOfAppointment type, Doctor doctor, MedicalRecord.MedicalRecord record)
@@ -42,22 +44,15 @@ namespace Model.ExaminationSurgery
             Diagnoses = new List<Diagnosis>();
         }
 
-        public DateTime StartTime { get => startTime; set => startTime = value; }
-        public TypeOfAppointment Type { get => type; set => type = value; }
-        public int IdNumber { get => idNumber; set => idNumber = value; }
-        public List<Treatment> Treatments { get => treatments; set => treatments = value; }
-        public List<Diagnosis> Diagnoses { get => diagnoses; set => diagnoses = value; }
-        public Doctor Doctor { get => doctor; set => doctor = value; }
-        public MedicalRecord.MedicalRecord MedicalRecord { get => medicalRecord; set => medicalRecord = value; }
 
         public int GetId()
         {
-            return IdNumber;
+            return Id;
         }
 
         public void SetId(int id)
         {
-            IdNumber = id;
+            Id = id;
         }
     }
 }

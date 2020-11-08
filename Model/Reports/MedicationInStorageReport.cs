@@ -11,13 +11,14 @@ namespace Model.Reports
 {
    public class MedicationInStorageReport : Report
    {
-        private List<Medication> medications;
+        public virtual List<Medication> Medications { get; set; }
 
+        public MedicationInStorageReport() { }
         public MedicationInStorageReport(DateTime date, string content, List<Medication> medications) : base(date, content)
         {
             Medications = medications;
         }
 
-        public List<Medication> Medications { get => medications; set => medications = value; }
+        
     }
 }

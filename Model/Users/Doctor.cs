@@ -13,13 +13,18 @@ namespace Model.Users
 {
    public class Doctor : Employee
    {
-        private string licenseNumber;
-        private bool onCall;
-        private double patientReview;
-        private List<Specialization> specializations;
-        private Department department;
-        private Room examinationRoom;
-        private Room operationRoom;
+        public string LicenseNumber { get; set; }
+        public bool OnCall { get; set; }
+        public double PatientReview { get; set; }
+        // TODO(Jovan): Does Specialization need a Doctor reference?
+        public virtual List<Specialization> Specializations { get; set; }
+        public int DepartmentId { get; set; }
+        public virtual Department Department { get; set; }
+        public int ExaminationRoomId { get; set; }
+        public virtual Room ExaminationRoom { get; set; }
+        public int OperationRoomId { get; set; }
+        public virtual Room OperationRoom { get; set; }
+
         public Doctor() 
         {
             Specializations = new List<Specialization>();
@@ -43,12 +48,5 @@ namespace Model.Users
             ExaminationRoom = patientRoom;
             OperationRoom = operationRoom;
         }
-        public string LicenseNumber { get => licenseNumber; set => licenseNumber = value; }
-        public bool OnCall { get => onCall; set => onCall = value; }
-        public double PatientReview { get => patientReview; set => patientReview = value; }
-        public List<Specialization> Specializations { get => specializations; set => specializations = value; }
-        public Department Department { get => department; set => department = value; }
-        public Room ExaminationRoom { get => examinationRoom; set => examinationRoom = value; }
-        public Room OperationRoom { get => operationRoom; set => operationRoom = value; }
     }
 }

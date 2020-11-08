@@ -11,8 +11,10 @@ namespace Model.Users
    public class City
    {
         private string name;
-        private State state;
-        private int id;
+
+        public long StateId { get; set; }
+        public virtual State State {get; set; }
+        public int Id { get; set; }
 
         public City() { }
 
@@ -28,7 +30,5 @@ namespace Model.Users
         }
 
         public string Name { get => name; set => name = value; }
-        public State State { get => state; set => state = value; }
-        public int Id { get => id; set => id = value; }
     }
 }

@@ -35,7 +35,7 @@ namespace Model.Users
 
         public void SetIDNumber(string id)
         {
-            patient.IdentificationNumber = id;
+            patient.Id = id;
         }
 
         public void SetPhone(string phone)

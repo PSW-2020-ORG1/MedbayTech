@@ -1,0 +1,46 @@
+.row {
+    padding-top: 20px;
+  }
+
+
+mat-card {
+    min-width:  40vw;
+    max-width: 40vw;
+    background-color: #f2f2f2;
+   
+}
+
+mat-card-content {
+    padding-top: 10px;
+}
+mat-card-actions{
+    text-align: right;
+}
+
+
+.content-paragraph {
+    font-size: 20px;
+}
+
+.title-paragraph {
+    font-size: 25px;
+    text-align: left;
+    
+}
+
+.subtitle-paragraph {
+    font-size: 13x;
+    padding-left: 0px;
+    
+}
+
+#id {
+    text-align: center;
+    font-size: 40px;
+    padding-top: 10px;
+}
+
+.limit {
+    word-wrap: break-word;
+}
+

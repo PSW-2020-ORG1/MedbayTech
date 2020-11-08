@@ -4,26 +4,23 @@
 // Purpose: Definition of Class VacationRequest
 
 using System;
+using System.Runtime.CompilerServices;
 using SimsProjekat.Repository;
 
 namespace Model.Users
 {
    public class VacationRequest : IIdentifiable<int>
    {
-      private int id;
-      private DateTime fromDate;
-      private DateTime toDate;
-      private string reasonForVacation;
-      private bool approved;
+      public int Id { get; set; }
+      public  DateTime FromDate { get; set; }
+      public DateTime ToDate { get; set; }
+      public string ReasonForVacation { get; set; }
+      public bool Approved { get; set; }
       
-      public Employee employee;
+      public int EmployeeId { get; set; }
+      public virtual Employee Employee { get; set; }
 
-        public int Id { get => id; set => id = value; }
-        public DateTime FromDate { get => fromDate; set => fromDate = value; }
-        public DateTime ToDate { get => toDate; set => toDate= value; }
-        public string ReasonForVacation { get => reasonForVacation; set => reasonForVacation = value; }
-        public bool Approved { get => approved; set => approved = value; }
-        public Employee Employee { get => employee; set => employee = value; }
+
 
         public VacationRequest() { }
 
