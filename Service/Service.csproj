@@ -8,6 +8,10 @@
     <ProjectReference Include="..\Exceptions\Exceptions.csproj" />
     <ProjectReference Include="..\FileRepository\FileRepository.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
+<<<<<<< HEAD
+    <ProjectReference Include="..\Repository\Repository.csproj" />
+=======
+>>>>>>> develop
   </ItemGroup>
 
 </Project>
