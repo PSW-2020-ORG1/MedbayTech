@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace PharmacyIntegration.Model
 {
     public class Pharmacy
     {
-        private string _id {get; set;}
-        private string _api_key { get; set;}
 
-        public Pharmacy() 
-        { 
-        }
+        // TODO(Jovan): Use Identifiable interface
+        public string Id { get; set; }
+        public string APIKey { get; set; }
 
-        public Pharmacy(string id, string api_key)
+        public Pharmacy() { }
+        public Pharmacy(string Id, string APIKey)
         {
-            this._id = id;
-            this._api_key = _api_key;
+            this.Id = Id;
+            this.APIKey = APIKey;
         }
 
 

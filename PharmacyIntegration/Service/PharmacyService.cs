@@ -10,6 +10,7 @@ namespace PharmacyIntegration.Service
     {
         public static string GetPharmacyAPIById(string id)
         {
+
             return "key123";
         }
 
