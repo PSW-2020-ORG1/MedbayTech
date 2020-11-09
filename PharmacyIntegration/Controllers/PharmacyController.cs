@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyIntegration.Model;
+using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
 
 namespace PharmacyIntegration.Controllers
@@ -13,34 +14,37 @@ namespace PharmacyIntegration.Controllers
     [ApiController]
     public class PharmacyController : ControllerBase
     {
-        [HttpGet("{id?}")]
-        public IActionResult GetPharmacyAPIKeyById(string id)
+        private MySqlDbContext Context;
+        private PharmacyDAO pharmacyDAO;
+        public PharmacyController(MySqlDbContext Context)
         {
-            string api_key = PharmacyService.GetPharmacyAPIById(id);
-            if (api_key.Equals(""))
-                return NotFound();
-            else
-                return Ok(api_key);
+            this.Context = Context;
+            this.pharmacyDAO = new PharmacyDAO(Context);
+        }
+
+        [HttpGet("{id?}")]
+        public IActionResult Get(string id)
+        {
+            
+            return Ok(pharmacyDAO.Get(id));
+
+        }
+
+        [HttpGet]
+        public IEnumerable<Pharmacy> Get()
+        {
+            return pharmacyDAO.GetAll();
         }
 
         [HttpPost]
         public IActionResult AddNewPharmacyAPIKey(Pharmacy pharmacy)
         {
-            bool isSuccessfullyAdded = PharmacyService.AddPharmacyAPIKey(pharmacy);
+            bool isSuccessfullyAdded = pharmacyDAO.Add(pharmacy);
+
             if (isSuccessfullyAdded)
                 return Ok();
             else
                 return BadRequest();
         }
-        /*
-        [HttpGet]
-        public IActionResult GetAllPharmaciesAPIkeys()
-        {
-            List<Pharmacy> pharmacies = PharmacyService.GetAllPharmaciesAPIKeys();
-            if (pharmacies.Count < 1)
-                return NotFound();
-            else
-                return Ok(pharmacies);
-        }*/
     }
 }

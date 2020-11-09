@@ -52,9 +52,12 @@ namespace PharmacyIntegration.Repository
             return true;
         }
 
-        public Pharmacy Get(int Id)
+        public Pharmacy Get(string Id)
         {
-            return this.GetAll().FirstOrDefault(p => p.Id.Equals(Id));
+            Pharmacy p = this.GetAll().FirstOrDefault(p => p.Id.Equals(Id));
+            
+            return p;
+            //  return this.GetAll().FirstOrDefault(p => p.Id.Equals(Id));
         }
 
         public List<Pharmacy> GetAll()
