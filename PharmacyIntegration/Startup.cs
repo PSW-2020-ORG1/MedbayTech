@@ -30,6 +30,17 @@ namespace PharmacyIntegration
             services.AddDbContext<MySqlContext>(options =>
                     options.UseMySql(ConfigurationExtensions.GetConnectionString(Configuration, "MySqlConnectionString")).UseLazyLoadingProxies());
             services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
+            services.AddCors(options =>
+            {
+                options.AddPolicy("VueCorsPolicy", builder =>
+                {
+                    builder
+                      .AllowAnyHeader()
+                      .AllowAnyMethod()
+                      .AllowCredentials()
+                      .WithOrigins("http://localhost:50202");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +75,7 @@ namespace PharmacyIntegration
                     spa.UseVueDevelopmentServer();
                 }
             });
+            app.UseCors("VueCorsPolicy");
         }
     }
 }

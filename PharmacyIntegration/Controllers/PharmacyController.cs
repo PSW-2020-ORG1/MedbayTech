@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyIntegration.Model;
+using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
 
 namespace PharmacyIntegration.Controllers
@@ -13,41 +14,47 @@ namespace PharmacyIntegration.Controllers
     [ApiController]
     public class PharmacyController : ControllerBase
     {
-        private readonly MySqlContext dbContext;
-
-        public PharmacyController(MySqlContext dbContext)
+        private MySqlContext Context;
+        private PharmacyRepository pharmacyDAO;
+        public PharmacyController(MySqlContext Context)
         {
-            this.dbContext = dbContext;
+            this.Context = Context;
+            this.pharmacyDAO = new PharmacyRepository(Context);
         }
 
         [HttpGet("{id?}")]
-        public IActionResult GetPharmacyAPIKeyById(string id)
+        public IActionResult Get(string id)
         {
-            string api_key = PharmacyService.GetPharmacyAPIById(id);
-            if (api_key.Equals(""))
-                return NotFound();
-            else
-                return Ok(api_key);
+            
+            return Ok(pharmacyDAO.Get(id));
+
+        }
+
+        [HttpGet]
+        public IEnumerable<Pharmacy> Get()
+        {
+            return pharmacyDAO.GetAll();
         }
 
         [HttpPost]
-        public IActionResult AddNewPharmacyAPIKey(Pharmacy pharmacy)
+        public IActionResult Post(Pharmacy pharmacy)
         {
-            bool isSuccessfullyAdded = PharmacyService.AddPharmacyAPIKey(pharmacy);
+            bool isSuccessfullyAdded = pharmacyDAO.Add(pharmacy);
+
             if (isSuccessfullyAdded)
                 return Ok();
             else
                 return BadRequest();
         }
-        /*
-        [HttpGet]
-        public IActionResult GetAllPharmaciesAPIkeys()
+
+        [HttpDelete]
+        public IActionResult Delete(string id)
         {
-            List<Pharmacy> pharmacies = PharmacyService.GetAllPharmaciesAPIKeys();
-            if (pharmacies.Count < 1)
-                return NotFound();
-            else
-                return Ok(pharmacies);
-        }*/
+            if(pharmacyDAO.Remove(id))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
     }
 }

@@ -32,7 +32,7 @@ namespace PharmacyIntegration.Repository
             return true;
         }
 
-        public bool Remove(int Id)
+        public bool Remove(string Id)
         {
             Pharmacy p = Context.Pharmacies.FirstOrDefault(p => p.Id.Equals(Id));
             if (p == null)
@@ -56,9 +56,12 @@ namespace PharmacyIntegration.Repository
             return true;
         }
 
-        public Pharmacy Get(int Id)
+        public Pharmacy Get(string Id)
         {
-            return this.GetAll().FirstOrDefault(p => p.Id.Equals(Id));
+            Pharmacy p = this.GetAll().FirstOrDefault(p => p.Id.Equals(Id));
+            
+            return p;
+            //  return this.GetAll().FirstOrDefault(p => p.Id.Equals(Id));
         }
 
         public List<Pharmacy> GetAll()

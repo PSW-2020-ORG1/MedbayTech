@@ -54,7 +54,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="vueclient\src\components\" />
   </ItemGroup>
 
 
