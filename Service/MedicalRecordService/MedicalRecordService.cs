@@ -30,7 +30,7 @@ namespace Service.MedicalRecordService
         public MedicalRecord GetMedicalRecord(int recordNumber) => medicalRecordRepository.GetObject(recordNumber);
         public ListOfResults GetLastLabResult(MedicalRecord medicalRecord)
         {
-            var record = medicalRecordRepository.GetObject(medicalRecord.IdRecord);
+            var record = medicalRecordRepository.GetObject(medicalRecord.Id);
             ListOfResults lastResult = null;
             if (medicalRecord.ListOfResults.Count > 0)
                 lastResult = medicalRecord.ListOfResults[0];
@@ -51,7 +51,7 @@ namespace Service.MedicalRecordService
 
         public MedicalRecord UpdateAllergies(Allergens allergy, MedicalRecord medicalRecord)
         {
-            MedicalRecord medicalRecordToUpdate = medicalRecordRepository.GetObject(medicalRecord.IdRecord);
+            MedicalRecord medicalRecordToUpdate = medicalRecordRepository.GetObject(medicalRecord.Id);
             if (!medicalRecordToUpdate.Allergies.Any(entity => entity.Allergen.Equals(allergy.Allergen)))
                 medicalRecordToUpdate.Allergies.Add(allergy);
             return medicalRecordRepository.Update(medicalRecordToUpdate);
@@ -59,15 +59,15 @@ namespace Service.MedicalRecordService
       
         public MedicalRecord UpdateIllnessHistory(Diagnosis diagnosis, MedicalRecord medicalRecord)
         {
-            MedicalRecord medicalRecordToUpdate = medicalRecordRepository.GetObject(medicalRecord.IdRecord);
+            MedicalRecord medicalRecordToUpdate = medicalRecordRepository.GetObject(medicalRecord.Id);
             medicalRecordToUpdate.IllnessHistory.Add(diagnosis);
             return medicalRecordRepository.Update(medicalRecordToUpdate);
         }
       
         public MedicalRecord UpdateFamilyIllnessHistory(FamilyIllnessHistory diagnosis, MedicalRecord medicalRecord)
         {
-            MedicalRecord medicalRecordToUpdate = medicalRecordRepository.GetObject(medicalRecord.IdRecord);
-            if (!medicalRecordToUpdate.FamilyIllnessHistory.Any(entity => entity.Diagnosis.Any(diag => diag.Code == diag.Code) && 
+            MedicalRecord medicalRecordToUpdate = medicalRecordRepository.GetObject(medicalRecord.Id);
+            if (!medicalRecordToUpdate.FamilyIllnessHistory.Any(entity => entity.Diagnosis.Any(diag => diag.Id == diag.Id) && 
                 entity.RelativeMember == diagnosis.RelativeMember))
                 medicalRecordToUpdate.FamilyIllnessHistory.Add(diagnosis);
             return medicalRecordRepository.Update(medicalRecordToUpdate);
@@ -75,15 +75,15 @@ namespace Service.MedicalRecordService
       
         public MedicalRecord UpdateTherapy(Therapy therapy, MedicalRecord medicalRecord)
         {
-            MedicalRecord medicalRecordToUpdate = medicalRecordRepository.GetObject(medicalRecord.IdRecord);
-            if (!medicalRecordToUpdate.Therapies.Any(entity => entity.Medication.MedId == therapy.Medication.MedId))
+            MedicalRecord medicalRecordToUpdate = medicalRecordRepository.GetObject(medicalRecord.Id);
+            if (!medicalRecordToUpdate.Therapies.Any(entity => entity.Medication.Id == therapy.Medication.Id))
                 medicalRecordToUpdate.Therapies.Add(therapy);
             return medicalRecordRepository.Update(medicalRecordToUpdate);
         }
       
         public MedicalRecord UpdateVaccines(Vaccines vaccine, MedicalRecord medicalRecord)
         {
-            MedicalRecord medicalRecordToUpdate = medicalRecordRepository.GetObject(medicalRecord.IdRecord);
+            MedicalRecord medicalRecordToUpdate = medicalRecordRepository.GetObject(medicalRecord.Id);
             if (!medicalRecordToUpdate.Vaccines.Any(entity => entity.Name.Equals(vaccine.Name)))
                 medicalRecordToUpdate.Vaccines.Add(vaccine);
             return medicalRecordRepository.Update(medicalRecordToUpdate);
@@ -91,7 +91,7 @@ namespace Service.MedicalRecordService
       
         public MedicalRecord UpdateLabResults(ListOfResults labResult, MedicalRecord medicalRecord)
         {
-            MedicalRecord medicalRecordToUpdate = medicalRecordRepository.GetObject(medicalRecord.IdRecord);
+            MedicalRecord medicalRecordToUpdate = medicalRecordRepository.GetObject(medicalRecord.Id);
             if (!medicalRecordToUpdate.ListOfResults.Any(entity => entity.Id == labResult.Id))
                 medicalRecordToUpdate.ListOfResults.Add(labResult);
             return medicalRecordRepository.Update(medicalRecordToUpdate);

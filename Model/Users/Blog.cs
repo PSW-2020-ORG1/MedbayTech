@@ -9,6 +9,7 @@ namespace Model.Users
 {
    public class Blog
    {
+        // TODO(Jovan): Author should refactor this!
       private string nameOfBlog;
       
       public System.Collections.ArrayList article;

@@ -10,13 +10,16 @@ namespace Model.Medications
 {
    public class MedicationIngredient
    {
-        private string name;
+        public  string Name { get; set; }
+        public int Id { get; set; }
 
+        public MedicationIngredient() { }
         public MedicationIngredient(string name)
         {
             this.Name = name;
         }
 
-        public string Name { get => name; set => name = value; }
+        
+        
     }
 }

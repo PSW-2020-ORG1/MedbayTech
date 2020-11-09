@@ -9,13 +9,15 @@ namespace Model.Users
 {
    public class Specialization
    {
-        private string specialization;
-        
+        public int Id { get; set; }
+        public string SpecializationName { get; set; }
+
+        public Specialization() {}
         public Specialization(string specialization)
         {
             this.SpecializationName = specialization;
         }
 
-        public string SpecializationName { get => specialization; set => specialization = value; }
+       
     }
 }

@@ -10,12 +10,13 @@ namespace Model.Users
 {
    public class Article : IIdentifiable<int>
    {
-        int id;
-        private DateTime date;
-        private string image;
-
-        public PostContent postContent;
-        public Doctor author;
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public string Image { get; set; }
+        public string DoctorId { get; set; }
+        public int PostContentId { get; set; }
+        public virtual PostContent PostContent { get; set; }
+        public virtual Doctor Doctor { get; set; }
 
         public Article() 
         {
@@ -29,14 +30,9 @@ namespace Model.Users
         {
             Date = date;
             PostContent = postContent;
-            Author = author;
+            Doctor = author;
         }
 
-        public int Id { get => id; set => id = value; }
-        public DateTime Date { get => date; set => date = value; }
-        public string Image { get => image; set => image = value; }
-        public PostContent PostContent { get => postContent; set => postContent = value; }
-        public Doctor Author { get => author; set => author = value; }
 
         public int GetId()
         {

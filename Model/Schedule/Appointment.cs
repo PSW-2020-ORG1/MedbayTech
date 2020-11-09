@@ -7,22 +7,30 @@ using Model.Rooms;
 using Model.Users;
 using System;
 using SimsProjekat.Repository;
+using Model.Reports;
 
 namespace Model.Schedule
 {
-   public class Appointment :  IIdentifiable<int>
-   {
-        private int idAppointment;
-        private DateTime startTime;
-        private DateTime endTime;
-        private TypeOfAppointment typeOfAppointment;
-        private string shortDescription;
-        private bool urgent = false;
-        private bool deleted = false;
-        private bool finished = false;
-        private Room room;
-        private MedicalRecord.MedicalRecord medicalRecord;
-        private Doctor doctor;
+    public class Appointment : IIdentifiable<int>
+    {
+
+        public int Id { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public TypeOfAppointment TypeOfAppointment { get; set; }
+        public string ShortDescription { get; set; }
+        public bool Urgent { get; set; }
+        public bool Deleted { get; set; }
+        public bool Finished { get; set; }
+        public int RoomId { get; set; }
+        public virtual Room Room { get; set; }
+        public int MedicalRecordId { get; set; }
+        public virtual MedicalRecord.MedicalRecord MedicalRecord { get; set; }
+        public int DoctorId { get; set; }
+        public virtual Doctor Doctor { get; set; }
+
+        public int WeeklyAppointmentReportId { get; set; }
+        public virtual WeeklyAppointmentReport WeeklyAppointmentReport { get; set; }
 
         public Appointment() { }
 
@@ -38,7 +46,7 @@ namespace Model.Schedule
 
         public Appointment(int id)
         {
-            IdAppointment = id;
+            Id = id;
         }
 
         public Appointment(DateTime startTime, DateTime endTime, TypeOfAppointment type, string shortDescription,
@@ -56,18 +64,7 @@ namespace Model.Schedule
             Doctor = doctor;
         }
 
-        public int IdAppointment { get => idAppointment; set => idAppointment = value; }
-        public TypeOfAppointment TypeOfAppointment { get => typeOfAppointment; set => typeOfAppointment = value; }
-        public string ShortDescription { get => shortDescription; set => shortDescription = value; }
-        public bool Urgent { get => urgent; set => urgent = value; }
-        public bool Deleted { get => deleted; set => deleted = value; }
-        public Room Room { get => room; set => room = value; }
-        public MedicalRecord.MedicalRecord MedicalRecord { get => medicalRecord; set => medicalRecord = value; }
-        public Doctor Doctor { get => doctor; set => doctor = value; }
-        public DateTime StartTime { get => startTime; set => startTime = value; }
-        public DateTime EndTime { get => endTime; set => endTime = value; }
-        public bool Finished { get => finished; set => finished = value; }
-
+     
         public override int GetHashCode()
         {
             return (StartTime.Year + 76) * ( StartTime.Day + 13) * ( StartTime.Hour + 17 )  * ( StartTime.Minute + 21) * ( StartTime.Second  + 15) * ( StartTime.Month + 47)
@@ -76,12 +73,12 @@ namespace Model.Schedule
 
         public int GetId()
         {
-            return IdAppointment;
+            return Id;
         }
 
         public void SetId(int id)
         {
-            IdAppointment = id;
+            Id = id;
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Repository.MedicationRepository
         {
             foreach (ValidationMed validation in validations)
             {
-                validation.Medication = medicationRepository.GetObject(validation.Medication.MedId);
+                validation.Medication = medicationRepository.GetObject(validation.Medication.Id);
                 validation.Doctor = (Doctor)userRepository.GetObject(validation.Doctor.Username);
             }
         }
@@ -67,7 +67,7 @@ namespace Repository.MedicationRepository
 
         public void CompleteObject(ValidationMed validation)
         {
-            validation.Medication = medicationRepository.GetObject(validation.Medication.MedId);
+            validation.Medication = medicationRepository.GetObject(validation.Medication.Id);
             validation.Doctor = (Doctor)userRepository.GetObject(validation.Doctor.Username);
         }
 
@@ -79,7 +79,7 @@ namespace Repository.MedicationRepository
 
         public void SetMissingValues(ValidationMed entity)
         {
-            int MedId = entity.Medication.MedId;
+            int MedId = entity.Medication.Id;
             entity.Medication = new Medication(MedId);
             entity.Doctor = new Doctor(entity.Doctor.Username);
         }

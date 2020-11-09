@@ -42,7 +42,7 @@ namespace Service.RoomService
         public Room UpdateRoom(Room room) => roomRepository.Update(room);
         public Room AddRoomToDepartment(Room room, Department department)
         {
-            var roomForChange = roomRepository.GetObject(room.RoomID);
+            var roomForChange = roomRepository.GetObject(room.Id);
             roomForChange.Department = department;
             roomRepository.Update(room);
             return room;
@@ -55,7 +55,7 @@ namespace Service.RoomService
 
         public Room ChangeRoomType(Room room, RoomType type)
         {
-            var roomForChange = roomRepository.GetObject(room.RoomID);
+            var roomForChange = roomRepository.GetObject(room.Id);
             roomForChange.RoomType = type;
             return roomRepository.Update(roomForChange);
         }
@@ -63,7 +63,7 @@ namespace Service.RoomService
         public bool DeleteRoom(Room room)
         {
             var allAppointements = appointmentRepository.GetScheduledFromToday();
-            if (allAppointements.Any(ent => ent.Value.Room.RoomID == room.GetId()))
+            if (allAppointements.Any(ent => ent.Value.Room.Id == room.GetId()))
                 throw new RoomHasAppointmentsScheduled(APPOINTMENTS_SCHEDULED);
             return roomRepository.Delete(room);
             }
@@ -96,7 +96,7 @@ namespace Service.RoomService
         }
         public Room AddHospitalEquipmentToRoom(Room room, HospitalEquipment hospitalEquipment)
         {
-            var roomForChange = roomRepository.GetObject(room.RoomID);
+            var roomForChange = roomRepository.GetObject(room.Id);
             roomForChange.HospitalEquipment.Add(hospitalEquipment);
             roomRepository.Update(roomForChange);
             return room;
@@ -104,7 +104,7 @@ namespace Service.RoomService
         }
         public Room UpdateDepartment(Department department, Room room)
         {
-            var roomToChange = roomRepository.GetObject(room.RoomID);
+            var roomToChange = roomRepository.GetObject(room.Id);
             roomToChange.Department = department;
             return roomRepository.Update(room);
 

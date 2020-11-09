@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +15,18 @@ using System.Windows.Shapes;
 namespace GraphicEditor
 {
     /// <summary>
-    /// Interaction logic for FloorsMap.xaml
+    /// Interaction logic for AdditionalInformationPatientRoom.xaml
     /// </summary>
-    public partial class FloorsMap : Window
+    public partial class AdditionalInformationPatientRoom : Window
     {
-        public FloorsMap()
+        public AdditionalInformationPatientRoom()
         {
             InitializeComponent();
         }
+
+        private void Ok_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
-

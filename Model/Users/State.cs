@@ -5,18 +5,24 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Users
 {
    public class State
    {
-        private string name;
+        public long Id { get; set; }
+        public string Name { get; set; }
 
-        public State(string name)
+        public State () { }
+        public State(long id, string name)
         {
             Name = name;
+            Id = id;
         }
 
-        public string Name { get => name; set => name = value; }
+      
+        
     }
 }

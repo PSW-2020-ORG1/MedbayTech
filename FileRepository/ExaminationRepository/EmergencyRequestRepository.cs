@@ -73,12 +73,12 @@ namespace Repository.ExaminationRepository
         }
         public void SetMissingValues(EmergencyRequest entity)
         {
-            entity.MedicalRecord = new MedicalRecord(entity.MedicalRecord.IdRecord);
+            entity.MedicalRecord = new MedicalRecord(entity.MedicalRecord.Id);
         }
 
         public void CompleteObject(EmergencyRequest entity)
         {
-            entity.MedicalRecord = medicalRecordRepository.GetObject(entity.MedicalRecord.IdRecord);
+            entity.MedicalRecord = medicalRecordRepository.GetObject(entity.MedicalRecord.Id);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace Repository.MedicalRecordRepository
 
         public new MedicalRecord Create(MedicalRecord entity)
         {
-            entity.IdRecord = GetNextID();
+            entity.Id = GetNextID();
             SetMissingValues(entity);
             return base.Create(entity);
         }
@@ -107,7 +107,7 @@ namespace Repository.MedicalRecordRepository
         {
             for (int i = 0; i < entity.IllnessHistory.Count; i++)
             {
-                entity.IllnessHistory[i] = new Diagnosis(entity.IllnessHistory[i].Code);
+                entity.IllnessHistory[i] = new Diagnosis(entity.IllnessHistory[i].Id);
             }
         }
 
@@ -117,7 +117,7 @@ namespace Repository.MedicalRecordRepository
             {
                 for (int j = 0; j < entity.FamilyIllnessHistory[i].Diagnosis.Count; j++)
                 {
-                    entity.FamilyIllnessHistory[i].Diagnosis[j] = new Diagnosis(entity.FamilyIllnessHistory[i].Diagnosis[j].Code);
+                    entity.FamilyIllnessHistory[i].Diagnosis[j] = new Diagnosis(entity.FamilyIllnessHistory[i].Diagnosis[j].Id);
                 }
             }
         }
@@ -126,7 +126,7 @@ namespace Repository.MedicalRecordRepository
         {
             for (int i = 0; i < entity.Therapies.Count; i++)
             {
-                entity.Therapies[i].Medication = new Medication(entity.Therapies[i].Medication.MedId);
+                entity.Therapies[i].Medication = new Medication(entity.Therapies[i].Medication.Id);
             }
         }
 
@@ -146,7 +146,7 @@ namespace Repository.MedicalRecordRepository
         {
             for (int i = 0; i < entity.Therapies.Count; i++)
             {
-                entity.Therapies[i].Medication = therapyRepository.GetObject(entity.Therapies[i].Medication.MedId);
+                entity.Therapies[i].Medication = therapyRepository.GetObject(entity.Therapies[i].Medication.Id);
             }
         }
 
@@ -160,7 +160,7 @@ namespace Repository.MedicalRecordRepository
         {
             for (int i = 0; i < entity.IllnessHistory.Count; i++)
             {
-                entity.IllnessHistory[i] = illnessesRepository.GetObject(entity.IllnessHistory[i].Code);
+                entity.IllnessHistory[i] = illnessesRepository.GetObject(entity.IllnessHistory[i].Id);
             }
         }
 
@@ -170,7 +170,7 @@ namespace Repository.MedicalRecordRepository
             {
                 for (int j = 0; j < entity.FamilyIllnessHistory[i].Diagnosis.Count; j++)
                 {
-                    entity.FamilyIllnessHistory[i].Diagnosis[j] = illnessesRepository.GetObject(entity.FamilyIllnessHistory[i].Diagnosis[j].Code);
+                    entity.FamilyIllnessHistory[i].Diagnosis[j] = illnessesRepository.GetObject(entity.FamilyIllnessHistory[i].Diagnosis[j].Id);
                 }
             }
         }

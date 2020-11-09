@@ -10,8 +10,9 @@ namespace Model.Users
 {
    public class Patient : RegisteredUser
    {
-        private bool isGuestAccount = false;
-        private Doctor chosenDoctor;
+        public bool IsGuestAccount { get; set; }
+        public string ChosenDoctorId { get; set; }
+        public virtual Doctor ChosenDoctor { get; set; }
 
         public Patient(string name, string surname, DateTime dateOfBirth,
             string identificationNumber, string email, string username,
@@ -21,7 +22,7 @@ namespace Model.Users
                 educationLevel, gender, profession, city, currResidence, insurancePolicy)
         {
             IsGuestAccount = guestAccount;
-            chosenDoctor = null;
+            ChosenDoctor = null;
         }
 
         public Patient(string username) : base(username) { }
@@ -29,7 +30,5 @@ namespace Model.Users
         public Patient() { }
 
         public Patient(string name, string surname, string idNumber, string phone) : base(name, surname, idNumber, phone) { } 
-        public bool IsGuestAccount { get => isGuestAccount; set => isGuestAccount = value; }
-        public Doctor ChosenDoctor { get => chosenDoctor; set => chosenDoctor = value; }
     }
 }

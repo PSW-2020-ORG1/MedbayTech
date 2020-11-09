@@ -10,5 +10,6 @@ namespace Repository.GeneralRepository
 {
    public interface IFeedbackRepository : ICreate<Feedback>, IGetAll<Feedback>
    {
+
    }
 }

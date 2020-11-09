@@ -39,7 +39,7 @@ namespace Repository.ExaminationRepository
 
         public new ExaminationSurgery Create(ExaminationSurgery entity)
         {
-            entity.IdNumber = GetNextID();
+            entity.Id = GetNextID();
             SetMissingValues(entity);
             return base.Create(entity);
         }
@@ -58,14 +58,14 @@ namespace Repository.ExaminationRepository
 
         public IEnumerable<ExaminationSurgery> GetAllByDoctor(Doctor doctor)
         {
-            var allExaminations = stream.GetAll().Where(item => item.Doctor.IdentificationNumber.Equals(doctor.IdentificationNumber)).ToList();
+            var allExaminations = stream.GetAll().Where(item => item.Doctor.Id.Equals(doctor.Id)).ToList();
             foreach(ExaminationSurgery examintion in allExaminations)
             {
                 CompleteObject(examintion);
             }
             return allExaminations;
         }
-        public IEnumerable<ExaminationSurgery> GetAllByRecord(MedicalRecord record) => stream.GetAll().Where(item => item.MedicalRecord.IdRecord.Equals(record.IdRecord)).ToList();
+        public IEnumerable<ExaminationSurgery> GetAllByRecord(MedicalRecord record) => stream.GetAll().Where(item => item.MedicalRecord.Id.Equals(record.Id)).ToList();
  
         public new ExaminationSurgery GetObject(int id)
         {
@@ -96,7 +96,7 @@ namespace Repository.ExaminationRepository
 
         private void SetMedicalRecord(ExaminationSurgery entity)
         {
-            entity.MedicalRecord = new MedicalRecord(entity.MedicalRecord.IdRecord);
+            entity.MedicalRecord = new MedicalRecord(entity.MedicalRecord.Id);
         }
 
         private void SetTreatmentIDs(ExaminationSurgery entity)
@@ -132,7 +132,7 @@ namespace Repository.ExaminationRepository
 
         private void CompleteMedicalRecord(ExaminationSurgery examination)
         {
-            examination.MedicalRecord = medicalRecordRepository.GetObject(examination.MedicalRecord.IdRecord);
+            examination.MedicalRecord = medicalRecordRepository.GetObject(examination.MedicalRecord.Id);
         }
 
         private void CompleteTreatments(ExaminationSurgery examination)

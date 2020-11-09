@@ -12,17 +12,19 @@ using Model.Rooms;
 namespace Model.ExaminationSurgery
 {
    public class TreatmentForm
-   {
-        private TreatmentType treatmentType;
-        private DateTime dateOfExamination;
-        private DateTime startDate;
-        private DateTime endDate;
-        private bool flag;
-        private int intake;
-        private List<LabTestType> labTestTypes;
-        private string additionalNotes;
-        private List<Medication> medication;
-        private Department department;
+    {
+        public int Id { get; set; }
+        public TreatmentType TreatmentType { get; set; }
+        public DateTime DateOfExamination { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public bool Flag { get; set; }
+        public int Intake { get; set; }
+        public virtual List<LabTestType> LabTestTypes { get; set; }
+        public string AdditionalNotes { get; set; }
+        public virtual List<Medication> Medications { get; set; }
+        public int DepartmentId { get; set; }
+        public virtual Department Department { get; set; }
 
         public TreatmentForm() 
         {
@@ -45,15 +47,6 @@ namespace Model.ExaminationSurgery
             Department = department;
         }
 
-        public TreatmentType TreatmentType { get => treatmentType; set => treatmentType = value; }
-        public DateTime StartDate { get => startDate; set => startDate = value; }
-        public DateTime EndDate { get => endDate; set => endDate = value; }
-        public List<LabTestType> LabTestTypes { get => labTestTypes; set => labTestTypes = value; }
-        public List<Medication> Medications { get => medication; set => medication = value; }
-        public DateTime DateOfExamination { get => dateOfExamination; set => dateOfExamination = value; }
-        public bool Flag { get => flag; set => flag = value; }
-        public int Intake { get => intake; set => intake = value; }
-        public string AdditionalNotes { get => additionalNotes; set => additionalNotes = value; }
-        public Department Department { get => department; set => department = value; }
+        
     }
 }

@@ -12,9 +12,9 @@ namespace Model.Reports
 {
    public class MedicationConsumptionReport : Report
    {
-        private DateTime startTime;
-        private DateTime endTime;
-        private List<Prescription> prescriptions;
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public virtual List<Prescription> Prescriptions { get; set; }
 
 
         public MedicationConsumptionReport(DateTime date, DateTime startDate, DateTime endDate, 
@@ -25,8 +25,7 @@ namespace Model.Reports
             Prescriptions = medications;
         }
 
-        public DateTime StartTime { get => startTime; set => startTime = value; }
-        public DateTime EndTime { get => endTime; set => endTime = value; }
-        public List<Prescription> Prescriptions { get => prescriptions; set => prescriptions = value; }
+    
+       
     }
 }

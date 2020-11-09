@@ -8,27 +8,25 @@ using SimsProjekat.Repository;
 
 namespace Model.Rooms
 {
-   public class Renovation : IIdentifiable<int>
-   {
-        private int renovationId;
-        private DateTime startDate;
-        private DateTime endDate;
-        private bool moveEquipment = false;
-        private Room room;
+    public class Renovation : IIdentifiable<int>
+    {
+        public int Id { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public bool MoveEquipment { get; set; }
+        public virtual Room Room { get; set; }
+        public int RoomId { get; set; }
 
-        public int RenovationId { get => renovationId; set => renovationId = value; }
-        public DateTime StartDate{ get => startDate; set => startDate = value; }
-        public DateTime EndDate { get => endDate; set => endDate = value; }
-        public bool MoveEquipment { get => moveEquipment; set => moveEquipment=value; }
-        public Room Room { get => room; set => room = value; }
-
-        public Renovation() { }
-        public Renovation(int id) 
+        public Renovation ( )
         {
-            RenovationId = id;
         }
 
-        public Renovation(DateTime startDate, DateTime endDate, bool moveEquipment, Room room)
+        public Renovation ( int id )
+        {
+            Id = id;
+        }
+
+        public Renovation ( DateTime startDate, DateTime endDate, bool moveEquipment, Room room )
         {
             Room = room;
             StartDate = startDate;
@@ -36,14 +34,14 @@ namespace Model.Rooms
             MoveEquipment = moveEquipment;
         }
 
-        public int GetId()
+        public int GetId ( )
         {
-            return RenovationId;
+            return Id;
         }
 
-        public void SetId(int id)
+        public void SetId ( int id )
         {
-            RenovationId = id;
+            Id = id;
         }
     }
 }

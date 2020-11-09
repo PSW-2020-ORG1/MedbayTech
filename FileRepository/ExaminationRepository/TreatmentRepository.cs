@@ -132,7 +132,7 @@ namespace Repository.ExaminationRepository
             Prescription prescription = (Prescription)entity;
             for (int i = 0; i < prescription.Medications.Count; i++)
             {
-                prescription.Medications[i] = new Medication(prescription.Medications[i].MedId);
+                prescription.Medications[i] = new Medication(prescription.Medications[i].Id);
             }
         }
 
@@ -159,14 +159,14 @@ namespace Repository.ExaminationRepository
             Prescription treatment = (Prescription)entity;
             for (int i = 0; i < treatment.Medications.Count; i++)
             {
-                treatment.Medications[i] = medicationRepository.GetObject(treatment.Medications[i].MedId);
+                treatment.Medications[i] = medicationRepository.GetObject(treatment.Medications[i].Id);
             }
         }
 
         private void CompleteHospitalTreatment(Treatment entity)
         {
             HospitalTreatment treatment = (HospitalTreatment)entity;
-            treatment.Department = departmentRepository.GetObject(treatment.Department.DepartmentID);
+            treatment.Department = departmentRepository.GetObject(treatment.Department.Id);
         }
     }
 }

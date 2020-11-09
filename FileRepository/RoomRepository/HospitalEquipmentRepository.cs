@@ -27,12 +27,12 @@ namespace Repository.RoomRepository
         }
         public new HospitalEquipment Create(HospitalEquipment entity)
         {
-            entity.HospitalEquipmentID = GetNextID();
+            entity.Id = GetNextID();
             return base.Create(entity);
         }
         public int GetNextID() => stream.GetAll().ToList().Count + 1;
         
-        public IEnumerable<HospitalEquipment> GetEquipmentByRoomNumber(int id) => base.GetAll().Where(hospitalEquipment => hospitalEquipment.HospitalEquipmentID == id);
+        public IEnumerable<HospitalEquipment> GetEquipmentByRoomNumber(int id) => base.GetAll().Where(hospitalEquipment => hospitalEquipment.Id == id);
   
         public IEnumerable<HospitalEquipment> GetEquipmentByType(EquipmentType type) => base.GetAll().Where(hospitalEquipment => hospitalEquipment.EquipmentType.Name.Equals(type.Name));
         

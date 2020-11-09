@@ -1,9 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
-
+  <ItemGroup>
+    <Resource Include="View\Building1\arrowUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Building1\arrowDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Building2\arrowDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Building2\arrowUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+  </ItemGroup>
 </Project>

@@ -4,18 +4,22 @@
 // Purpose: Definition of Class Feedback
 
 using System;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using SimsProjekat.Repository;
 
 namespace Model.Users
 {
-   public class Feedback
-   {
-        private int id;
-        private DateTime date;
-        private string additionalNotes;
-        private Grade softwareGrade;
-        private Grade everythingInGoodPlace;
+    public class Feedback : IIdentifiable<int>
+    {
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public string AdditionalNotes { get; set; }
+        public Boolean Approved { get; set; }
+        public Boolean Anonymous { get; set; }
+        public Boolean AllowedForPublishing { get; set; }
+        public string RegisteredUserId { get; set; }
 
-        public RegisteredUser registeredUser;
+        public virtual RegisteredUser RegisteredUser { get; set; }
 
         public Feedback() { }
 
@@ -24,21 +28,24 @@ namespace Model.Users
             Id = id;
         }
 
-        public Feedback(DateTime date, string additionalNotes, Grade softwareGrade, Grade everythingInGoodPlace, RegisteredUser user)
+        public Feedback(DateTime date, string additionalNotes, Grade everythingInGoodPlace, Boolean anonymous, Boolean allowedForPublishing, RegisteredUser user) 
         {
             Date = date;
             AdditionalNotes = additionalNotes;
-            SoftwareGrade = softwareGrade;
-            EverythingInGoodPlace = everythingInGoodPlace;
             RegisteredUser = user;
+            Anonymous = anonymous;
+            Approved = false;
+            AllowedForPublishing = allowedForPublishing;
         }
 
-        public DateTime Date { get => date; set => date = value; }
-        public string AdditionalNotes { get => additionalNotes; set => additionalNotes = value; }
-        public Grade SoftwareGrade { get => softwareGrade; set => softwareGrade = value; }
-        public Grade EverythingInGoodPlace { get => everythingInGoodPlace; set => everythingInGoodPlace = value; }
-        public RegisteredUser RegisteredUser { get => registeredUser; set => registeredUser = value; }
-        public int Id { get => id; set => id = value; }
+        public int GetId()
+        {
+            return Id;
+        }
 
+        public void SetId(int id)
+        {
+            Id = id;
+        }
     }
 }

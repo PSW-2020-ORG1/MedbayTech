@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace Repository.GeneralRepository
 {
-   public class FeedbackRepository : IFeedbackRepository, ObjectComplete<Feedback>
+    public class FeedbackRepository : IFeedbackRepository, ObjectComplete<Feedback>
     {
         public IUserRepository userRepository;
         public Stream<Feedback> stream;
@@ -78,10 +78,13 @@ namespace Repository.GeneralRepository
             var allAddresses = stream.GetAll().ToList();
             return allAddresses.Any(item => item.Id == id);
         }
-        private bool UserReviewAlreadyExist(Feedback entity) {
+        private bool UserReviewAlreadyExist(Feedback entity)
+        {
             var allFeedbacks = stream.GetAll().ToList();
-            foreach (Feedback f in allFeedbacks) {
-                if (f.RegisteredUser.Username.Equals(entity.RegisteredUser.Username)) {
+            foreach (Feedback f in allFeedbacks)
+            {
+                if (f.RegisteredUser.Username.Equals(entity.RegisteredUser.Username))
+                {
                     return true;
                 }
             }

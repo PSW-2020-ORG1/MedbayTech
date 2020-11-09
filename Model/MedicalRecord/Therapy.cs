@@ -9,17 +9,18 @@ namespace Model.MedicalRecord
 {
    public class Therapy
    {
-        private int hourConsumption;
-      
-        private Medication medication;
+        public int Id { get; set; }
+        public int HourConsumption { get; set; }
+        public int MedicationId { get; set; }
+        public virtual Medication Medication { get; set; }
 
+        public Therapy() {}
         public Therapy(int hourConsumption, Medication medication)
         {
             HourConsumption = hourConsumption;
             Medication = medication;
         }
 
-        public int HourConsumption { get => hourConsumption; set => hourConsumption = value; }
-        public Medication Medication { get => medication; set => medication = value; }
+       
     }
 }

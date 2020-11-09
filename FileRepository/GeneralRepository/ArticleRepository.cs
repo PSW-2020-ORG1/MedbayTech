@@ -48,7 +48,7 @@ namespace Repository.GeneralRepository
 
         public IEnumerable<Article> GetArticlesWroteByDoctor(Doctor doctor)
         {
-            var articlesByDcotor = stream.GetAll().Where(article => article.author.Username.Equals(doctor.Username)).ToList();
+            var articlesByDcotor = stream.GetAll().Where(article => article.Doctor.Username.Equals(doctor.Username)).ToList();
             foreach (Article article in articlesByDcotor)
             {
                 CompleteObject(article);
@@ -72,12 +72,12 @@ namespace Repository.GeneralRepository
         
         public void CompleteObject(Article article)
         {
-            article.Author = (Doctor) userRepository.GetObject(article.Author.Username);
+            article.Doctor = (Doctor) userRepository.GetObject(article.Doctor.Username);
         }
         
         public void SetMissingValues(Article entity)
         {
-            entity.Author = new Doctor(entity.Author.Username);
+            entity.Doctor = new Doctor(entity.Doctor.Username);
         }
 
     }
