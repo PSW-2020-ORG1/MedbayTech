@@ -7,7 +7,7 @@ using PharmacyIntegration.Model;
 
 namespace PharmacyIntegration.Migrations
 {
-    [DbContext(typeof(MySqlDbContext))]
+    [DbContext(typeof(MySqlContext))]
     [Migration("20201108203005_migration0")]
     partial class migration0
     {

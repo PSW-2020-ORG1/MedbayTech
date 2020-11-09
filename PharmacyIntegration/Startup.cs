@@ -27,8 +27,9 @@ namespace PharmacyIntegration
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<MySqlDbContext>(options =>
+            services.AddDbContext<MySqlContext>(options =>
                     options.UseMySql(ConfigurationExtensions.GetConnectionString(Configuration, "MySqlConnectionString")).UseLazyLoadingProxies());
+            services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +47,22 @@ namespace PharmacyIntegration
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
+            // add following statements
+            app.UseSpaStaticFiles();
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "client-app";
+                if (env.IsDevelopment())
+                {
+                    // Launch development server for Vue.js
+                    spa.UseVueDevelopmentServer();
+                }
             });
         }
     }

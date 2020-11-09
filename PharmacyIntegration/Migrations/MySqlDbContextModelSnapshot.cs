@@ -6,7 +6,7 @@ using PharmacyIntegration.Model;
 
 namespace PharmacyIntegration.Migrations
 {
-    [DbContext(typeof(MySqlDbContext))]
+    [DbContext(typeof(MySqlContext))]
     partial class MySqlDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -13,6 +13,13 @@ namespace PharmacyIntegration.Controllers
     [ApiController]
     public class PharmacyController : ControllerBase
     {
+        private readonly MySqlContext dbContext;
+
+        public PharmacyController(MySqlContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         [HttpGet("{id?}")]
         public IActionResult GetPharmacyAPIKeyById(string id)
         {
