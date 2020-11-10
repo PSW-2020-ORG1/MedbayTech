@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicEditor"
         mc:Ignorable="d"
-        Title="AdditionalInformationPatientRoom" Height="350" Width="400" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" BorderBrush="Black">
+        Title="AdditionalInformationPatientRoom" Height="350" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" BorderBrush="Black">
     <Grid>
         <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Top" Background="#006481">
-            <Image Width="60" Margin="5,0,0,0" Source="GraphicEditor/WhiteLogo.png"/>
+            <Image Width="60" Margin="5,0,0,0" Source="/WhiteLogo.png"/>
             <Label Content="Additiondal information" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="25" Foreground="White" Width="327" Height="40"/>
         </StackPanel>
         <Label Content="Floor" HorizontalAlignment="Left" Margin="98,61,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
