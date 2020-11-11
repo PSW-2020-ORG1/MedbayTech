@@ -9,7 +9,7 @@ using Service.RoomService;
 using System;
 using System.Collections.Generic;
 
-namespace Backend.Examination.Controller.RoomController
+namespace Backend.Examinations.Controller.RoomController
 {
    public class HospitalEquipmentController
    {

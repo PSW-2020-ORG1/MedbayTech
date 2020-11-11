@@ -14,10 +14,7 @@ namespace Backend.Examinations.Model
         public int Id { get; set; }
         public string TestName { get; set; }
 
-        public LabTestType()
-        {
-
-        }
+        public LabTestType() { }
 
         public LabTestType(string name)
         {

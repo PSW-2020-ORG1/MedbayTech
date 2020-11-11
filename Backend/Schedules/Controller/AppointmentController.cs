@@ -11,7 +11,7 @@ using Service.ScheduleService;
 using System;
 using System.Collections.Generic;
 
-namespace Backend.Examination.Controller.ScheduleController
+namespace Backend.Examinations.Controller.ScheduleController
 {
    public class AppointmentController
    {

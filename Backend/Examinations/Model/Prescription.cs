@@ -19,7 +19,11 @@ namespace Backend.Examinations.Model
         public int HourlyIntake { get; set; }
         public virtual Medication Medication { get; set; }
         public int MedicationId { get; set; }
-        public Prescription() { }
+
+        public Prescription() : base(TreatmentType.Prescription)
+        {
+            Date = DateTime.Today;
+        }
 
         public Prescription(DateTime dateOfPrescription, bool reserved, int hourlyIntake, string additionalNotes, Medication medication)
             : base(dateOfPrescription, additionalNotes, TreatmentType.Prescription)

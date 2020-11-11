@@ -8,7 +8,7 @@ using Backend.Examinations.Service;
 using System;
 using System.Collections.Generic;
 
-namespace Backend.Examination.Controller.ExaminationController
+namespace Backend.Examinations.Controller
 {
    public class EmergencyRequestController
    {
@@ -19,12 +19,16 @@ namespace Backend.Examination.Controller.ExaminationController
 
         public EmergencyRequest CreateEmergencyRequest(EmergencyRequest request) => 
             emergencyRequestService.CreateEmergencyRequest(request);
+
         public IEnumerable<EmergencyRequest> GetAllUnscheduled() => 
             emergencyRequestService.GetAllUnscheduled();
+
         public EmergencyRequest GetEmergencyRequest(int id) => 
             emergencyRequestService.GetEmergencyRequest(id);
+
         public EmergencyRequest UpdateEmergencyRequest(EmergencyRequest request) => 
             emergencyRequestService.UpdateEmergencyRequest(request);
+
         public bool DeleteEmergencyRequest(EmergencyRequest request) => 
             emergencyRequestService.DeleteEmergencyRequest(request);
 

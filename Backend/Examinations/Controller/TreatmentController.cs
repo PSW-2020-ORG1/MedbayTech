@@ -8,7 +8,7 @@ using Backend.Examinations.Service;
 using System;
 using System.Collections.Generic;
 
-namespace Backend.Examination.Controller.ExaminationController
+namespace Backend.Examinations.Controller
 {
    public class TreatmentController
    {
@@ -17,13 +17,26 @@ namespace Backend.Examination.Controller.ExaminationController
             this.treatmentService = treatmentService;
         }
 
-        public Treatment CreateTreatment(Treatment treatment) => treatmentService.CreateTreatment(treatment);
-        public Treatment UpdateTreatment(Treatment treatment) => treatmentService.UpdateTreatment(treatment);
-        public bool DeleteTreatment(Treatment treatment) => treatmentService.DeleteTreatment(treatment);
-        public IEnumerable<HospitalTreatment> GetUnapprovedHospitalTreatments() => treatmentService.GetUnapprovedHospitalTreatments();
-        public IEnumerable<Prescription> GetAllPrescriptions() => treatmentService.GetAllPrescriptions();
-        public IEnumerable<Prescription> GetPrescriptionsInPeriod(DateTime startDate, DateTime endDate) => treatmentService.GetAllPrescriptionsInPeriodOfTime(startDate, endDate);
-        public HospitalTreatment ApproveHospitalTreatment(HospitalTreatment hospitalTreatment) => treatmentService.ApproveHospitalTreatment(hospitalTreatment);
+        public Treatment CreateTreatment(Treatment treatment) => 
+            treatmentService.CreateTreatment(treatment);
+
+        public Treatment UpdateTreatment(Treatment treatment) => 
+            treatmentService.UpdateTreatment(treatment);
+
+        public bool DeleteTreatment(Treatment treatment) => 
+            treatmentService.DeleteTreatment(treatment);
+
+        public IEnumerable<HospitalTreatment> GetUnapprovedHospitalTreatments() => 
+            treatmentService.GetUnapprovedHospitalTreatments();
+
+        public IEnumerable<Prescription> GetAllPrescriptions() => 
+            treatmentService.GetAllPrescriptions();
+
+        public IEnumerable<Prescription> GetPrescriptionsInPeriod(DateTime startDate, DateTime endDate) => 
+            treatmentService.GetAllPrescriptionsInPeriodOfTime(startDate, endDate);
+
+        public HospitalTreatment ApproveHospitalTreatment(HospitalTreatment hospitalTreatment) => 
+            treatmentService.ApproveHospitalTreatment(hospitalTreatment);
 
         public TreatmentService treatmentService;
    

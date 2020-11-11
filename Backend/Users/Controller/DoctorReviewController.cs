@@ -7,7 +7,7 @@ using Model.Users;
 using Service.GeneralService;
 using System;
 
-namespace Backend.Examination.Controller.GeneralController
+namespace Backend.Examinations.Controller.GeneralController
 {
    public class DoctorReviewController
    {

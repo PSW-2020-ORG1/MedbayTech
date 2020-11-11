@@ -10,7 +10,7 @@ using Model.Rooms;
 using Service.ReportService;
 using System;
 
-namespace Backend.Examination.Controller.ReportController
+namespace Backend.Examinations.Controller.ReportController
 {
    public class ReportController
    {

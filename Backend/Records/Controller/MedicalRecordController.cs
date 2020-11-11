@@ -11,7 +11,7 @@ using Service.MedicalRecordService;
 using System;
 using System.Collections.Generic;
 
-namespace Backend.Examination.Controller.MedicalRecordController
+namespace Backend.Examinations.Controller.MedicalRecordController
 {
    public class MedicalRecordController
    {

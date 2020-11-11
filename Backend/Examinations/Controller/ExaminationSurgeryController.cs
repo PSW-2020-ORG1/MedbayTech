@@ -10,7 +10,7 @@ using Backend.Examinations.Service;
 using System;
 using System.Collections.Generic;
 
-namespace Backend.Examination.Controller.ExaminationController
+namespace Backend.Examinations.Controller
 {
    public class ExaminationSurgeryController
    {
@@ -19,14 +19,29 @@ namespace Backend.Examination.Controller.ExaminationController
             this.examinationSurgeryService = examinationSurgeryService;
         }
 
-        public ExaminationSurgery CreateExaminationSurgery(ExaminationSurgery examinationSurgery) => examinationSurgeryService.CreateExaminationSurgery(examinationSurgery);
-        public ExaminationSurgery GetExaminationSurgery(int id) => examinationSurgeryService.GetExaminationSurgery(id);
-        public IEnumerable<ExaminationSurgery> GetAllBy(Doctor doctor) => examinationSurgeryService.GetAllBy(doctor);
-        public IEnumerable<ExaminationSurgery> GetAllBy(MedicalRecord record) => examinationSurgeryService.GetAllBy(record);
-        public ExaminationSurgery GetLastExamination(MedicalRecord medicalRecord) => examinationSurgeryService.GetLastExamination(medicalRecord);
-        public ExaminationSurgery UpdateTreatment(ExaminationSurgery examinationSurgery, Treatment treatment) => examinationSurgeryService.UpdateTreatment(examinationSurgery, treatment);
-        public ExaminationSurgery FinishExamination(ExaminationSurgery examinationSurgery) => examinationSurgeryService.FinishExamination(examinationSurgery);
-        public ExaminationSurgery GetCurrentExamination(int idRecord) => examinationSurgeryService.GetCurrentExamination(idRecord);
+        public ExaminationSurgery CreateExaminationSurgery(ExaminationSurgery examinationSurgery) => 
+            examinationSurgeryService.CreateExaminationSurgery(examinationSurgery);
+
+        public ExaminationSurgery GetExaminationSurgery(int id) => 
+            examinationSurgeryService.GetExaminationSurgery(id);
+
+        public IEnumerable<ExaminationSurgery> GetAllBy(Doctor doctor) => 
+            examinationSurgeryService.GetAllBy(doctor);
+
+        public IEnumerable<ExaminationSurgery> GetAllBy(MedicalRecord record) => 
+            examinationSurgeryService.GetAllBy(record);
+
+        public ExaminationSurgery GetLastExamination(MedicalRecord medicalRecord) =>
+            examinationSurgeryService.GetLastExamination(medicalRecord);
+
+        public ExaminationSurgery UpdateTreatment(ExaminationSurgery examinationSurgery, Treatment treatment) => 
+            examinationSurgeryService.UpdateTreatment(examinationSurgery, treatment);
+
+        public ExaminationSurgery FinishExamination(ExaminationSurgery examinationSurgery) => 
+            examinationSurgeryService.FinishExamination(examinationSurgery);
+
+        public ExaminationSurgery GetCurrentExamination(int idRecord) => 
+            examinationSurgeryService.GetCurrentExamination(idRecord);
 
         public ExaminationSurgeryService examinationSurgeryService;
      

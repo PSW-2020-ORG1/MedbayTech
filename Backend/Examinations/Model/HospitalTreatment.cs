@@ -29,9 +29,7 @@ namespace Backend.Examinations.Model
         {
         }
 
-        public HospitalTreatment()
-        {
-        }
+        public HospitalTreatment() : base(TreatmentType.HospitalTreatment) { }
 
         public bool IsApproved()
         {

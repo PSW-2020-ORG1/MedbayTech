@@ -20,8 +20,7 @@ namespace Backend.Medications.Model
         public  Medication Medication { get; set; }
         public string DoctorId { get; set; }
         public  Doctor Doctor { get; set; }
-       
-       
+
         public ValidationMed() { }
 
         public ValidationMed(string sideNotes, bool approved, Medication medication, Doctor doctor)
