@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Rooms\" />
+    <Compile Remove="Rooms\**" />
+    <EmbeddedResource Remove="Rooms\**" />
+    <None Remove="Rooms\**" />
   </ItemGroup>
 
 </Project>
