@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Exceptions\Exceptions.csproj" />
-    <ProjectReference Include="..\Service\Service.csproj" />
   </ItemGroup>
 
 </Project>
