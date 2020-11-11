@@ -26,10 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Repository\Repository.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Examinations\Repository\MySqlRepository\" />
     <Folder Include="Medications\Repository\MySqlRepository\" />
     <Folder Include="Records\Repository\MySqlRepository\" />

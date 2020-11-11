@@ -10,7 +10,7 @@ namespace SimsProjekat.Repository
     public class JSONRepository<T, ID> : IRepository<T, ID>
         where T : IIdentifiable<ID>
         where ID : IComparable
-    {
+    { 
         public Stream<T> stream;
         private string entityName;
 
