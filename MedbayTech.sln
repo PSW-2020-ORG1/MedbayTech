@@ -22,11 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Databa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplicationService", "WebApplicationService\WebApplicationService.csproj", "{67B631E9-1FB2-41C5-8D89-2867864D2117}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedbayTests", "MedbayTests\MedbayTests.csproj", "{2642B7C8-837E-4286-B09F-650A27A6B1AF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTechUnitTests", "MedbayTechUnitTests\MedbayTechUnitTests.csproj", "{E0D6C7CE-574F-4415-B59D-F525A2C11309}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend", "Backend\Backend.csproj", "{93C92C42-324A-47C2-A593-778053E59F17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "Backend\Backend.csproj", "{93C92C42-324A-47C2-A593-778053E59F17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
