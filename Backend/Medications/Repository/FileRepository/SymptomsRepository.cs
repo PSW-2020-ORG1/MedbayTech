@@ -8,9 +8,10 @@ using Model.MedicalRecord;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Repository;
 using SimsProjekat.SIMS.Exceptions;
 
-namespace Repository.MedicationRepository
+namespace Backend.Medications.Repository.FileRepository
 {
    public class SymptomsRepository : ISymptomsRepository
    {
@@ -37,7 +38,8 @@ namespace Repository.MedicationRepository
             }
         }
 
-        public IEnumerable<Symptoms> GetAll() => stream.GetAll();
+        public IEnumerable<Symptoms> GetAll() => 
+            stream.GetAll();
         
         public bool ExistsInSystem(Symptoms symptoms)
         {

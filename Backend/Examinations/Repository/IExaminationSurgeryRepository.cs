@@ -8,14 +8,15 @@ using Model.MedicalRecord;
 using Model.Users;
 using System;
 using System.Collections.Generic;
+using Repository;
 
-namespace Repository.ExaminationRepository
+namespace Backend.Examinations.Repository
 {
    public interface IExaminationSurgeryRepository : IRepository<ExaminationSurgery,int>
    {
       IEnumerable<ExaminationSurgery> GetAllByDoctor(Doctor doctor);
       
       IEnumerable<ExaminationSurgery> GetAllByRecord(MedicalRecord record);
-   
-   }
+      ExaminationSurgery UpdateTreatment(ExaminationSurgery examinationSurgery, Treatment treatment);
+    }
 }

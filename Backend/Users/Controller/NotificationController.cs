@@ -3,13 +3,14 @@
 // Created: Wednesday, May 20, 2020 2:58:59 AM
 // Purpose: Definition of Class NotificationController
 
+using Backend.Medications.Model;
 using Model.Schedule;
 using Model.Users;
 using Service.GeneralService;
 using System;
 using System.Collections.Generic;
 
-namespace Controller.GeneralController
+namespace Backend.Examination.Controller.GeneralController
 {
    public class NotificationController
    {
@@ -24,7 +25,7 @@ namespace Controller.GeneralController
         public Notification AppointmentNotifyForPatients(Appointment appointment) => notificationService.AppointmentNotifyForPatients(appointment);
         public Notification AppointmentNotifyForDoctors(Appointment appointment) => notificationService.AppointmentNotifyForDoctors(appointment);
         public Notification RenovationNotification() => notificationService.RenovationNotification();
-        public Notification MedForValidationNotification(Specialization specialization) => notificationService.MedForValidationNotification(specialization);
+        public Notification MedForValidationNotification(Medication medication) => notificationService.MedForValidationNotification(medication);
         public Notification MedicationValidatedNotification(Doctor doctor) => notificationService.MedicationValidatedNotification(doctor);
         public Notification DeletedAppointment(Appointment appointment) => notificationService.DeletedAppointment(appointment);
         public IEnumerable<Notification> GetNotificationsForUser(string username) => notificationService.GetNotificationsForUser(username);

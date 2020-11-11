@@ -8,7 +8,7 @@ using Service.MedicalRecordService;
 using System;
 using System.Collections.Generic;
 
-namespace Controller.MedicalRecordController
+namespace Backend.Examination.Controller.MedicalRecordController
 {
    public class DiagnosisController
    {

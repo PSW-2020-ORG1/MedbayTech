@@ -8,7 +8,7 @@ using Service.RoomService;
 using System;
 using System.Collections.Generic;
 
-namespace Controller.RoomController
+namespace Backend.Examination.Controller.RoomController
 {
    public class RoomController
    {

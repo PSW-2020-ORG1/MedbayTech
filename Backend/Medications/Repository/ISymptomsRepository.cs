@@ -5,8 +5,9 @@
 
 using Model.MedicalRecord;
 using System;
+using Repository;
 
-namespace Repository.MedicationRepository
+namespace Backend.Medications.Repository.FileRepository
 {
    public interface ISymptomsRepository : ICreate<Symptoms>, IGetAll<Symptoms>
    {

@@ -5,11 +5,11 @@
  ***********************************************************************/
 
 using Backend.Examinations.Model;
-using Repository.ExaminationRepository;
+using Backend.Examinations.Repository;
 using System;
 using System.Collections.Generic;
 
-namespace Service.ExaminationService
+namespace Backend.Examinations.Service
 {
    public class LabTestTypeService
    {

@@ -4,13 +4,13 @@
 // Purpose: Definition of Class ReportController
 
 using Backend.Examinations.Model;
-using Model.Medications;
+using Backend.Medications.Model;
 using Model.Reports;
 using Model.Rooms;
 using Service.ReportService;
 using System;
 
-namespace Controller.ReportController
+namespace Backend.Examination.Controller.ReportController
 {
    public class ReportController
    {

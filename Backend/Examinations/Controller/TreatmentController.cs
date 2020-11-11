@@ -4,11 +4,11 @@
 // Purpose: Definition of Class TreatmentController
 
 using Backend.Examinations.Model;
-using Service.ExaminationService;
+using Backend.Examinations.Service;
 using System;
 using System.Collections.Generic;
 
-namespace Controller.ExaminationController
+namespace Backend.Examination.Controller.ExaminationController
 {
    public class TreatmentController
    {

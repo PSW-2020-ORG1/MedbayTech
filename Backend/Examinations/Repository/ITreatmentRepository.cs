@@ -6,16 +6,16 @@
 using Backend.Examinations.Model;
 using System;
 using System.Collections.Generic;
+using Repository;
 
-namespace Repository.ExaminationRepository
+namespace Backend.Examinations.Repository
 {
    public interface ITreatmentRepository : IRepository<Treatment, int>
    {
-      IEnumerable<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate);
-      
-      IEnumerable<Prescription> GetAllPrescriptions();
-      
-      IEnumerable<HospitalTreatment> GetAllHospitalTreatments();
-   
-   }
+        IEnumerable<Prescription> GetAllPrescriptionsInPeriod(DateTime startDate, DateTime endDate);
+        IEnumerable<Prescription> GetAllPrescriptions();
+        IEnumerable<HospitalTreatment> GetAllHospitalTreatments();
+        HospitalTreatment ApproveTreatment(HospitalTreatment hospitalTreatment);
+        Prescription ReserveMedication(Prescription treatment);
+    }
 }

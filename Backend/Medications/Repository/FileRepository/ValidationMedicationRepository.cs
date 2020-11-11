@@ -4,7 +4,7 @@
  * Purpose: Definition of the Class Repository.ValidationMedRepository
  ***********************************************************************/
 
-using Model.Medications;
+using Backend.Medications.Model;
 using Model.Users;
 using Repository.ReportRepository;
 using Repository.UserRepository;
@@ -12,8 +12,9 @@ using SimsProjekat.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Repository;
 
-namespace Repository.MedicationRepository
+namespace Backend.Medications.Repository.FileRepository
 {
    public class ValidationMedicationRepository :JSONRepository<ValidationMed, int>,
         IValidationMedicationRepository, ObjectComplete<ValidationMed>
@@ -41,15 +42,6 @@ namespace Repository.MedicationRepository
             return validations;
         }
 
-        public void BindWithMedication(IEnumerable<ValidationMed> validations)
-        {
-            foreach (ValidationMed validation in validations)
-            {
-                validation.Medication = medicationRepository.GetObject(validation.Medication.Id);
-                validation.Doctor = (Doctor)userRepository.GetObject(validation.Doctor.Username);
-            }
-        }
-
         public IEnumerable<ValidationMed> GetAllUnreviewed()
         {
 
@@ -65,11 +57,6 @@ namespace Repository.MedicationRepository
             return validation;
         }
 
-        public void CompleteObject(ValidationMed validation)
-        {
-            validation.Medication = medicationRepository.GetObject(validation.Medication.Id);
-            validation.Doctor = (Doctor)userRepository.GetObject(validation.Doctor.Username);
-        }
 
         public new ValidationMed Update(ValidationMed entity)
         {
@@ -77,13 +64,37 @@ namespace Repository.MedicationRepository
             return base.Update(entity);
         }
 
+
+        public int GetNextID() => 
+            stream.GetAll().ToList().Count + 1;
+
+        public ValidationMed ReviewMedication(ValidationMed validation)
+        {
+            validation.Reviewed = true;
+            return base.Update(validation);
+        }
+
         public void SetMissingValues(ValidationMed entity)
         {
-            int MedId = entity.Medication.Id;
-            entity.Medication = new Medication(MedId);
+            int medId = entity.Medication.Id;
+            entity.Medication = new Medication(medId);
             entity.Doctor = new Doctor(entity.Doctor.Username);
         }
 
-        public int GetNextID() => stream.GetAll().ToList().Count + 1;
+        public void CompleteObject(ValidationMed validation)
+        {
+            validation.Medication = medicationRepository.GetObject(validation.Medication.Id);
+            validation.Doctor = (Doctor)userRepository.GetObject(validation.Doctor.Username);
+        }
+
+        public void BindWithMedication(IEnumerable<ValidationMed> validations)
+        {
+            foreach (ValidationMed validation in validations)
+            {
+                validation.Medication = medicationRepository.GetObject(validation.Medication.Id);
+                validation.Doctor = (Doctor)userRepository.GetObject(validation.Doctor.Username);
+            }
+        }
+
     }
 }

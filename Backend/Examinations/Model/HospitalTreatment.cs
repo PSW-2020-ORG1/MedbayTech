@@ -5,7 +5,6 @@
 
 using System;
 using Backend.Examinations.Model.Enums;
-using Backend.Examinations.Model.Model.Enums;
 using Backend.Utils;
 using Model.Rooms;
 

@@ -55,7 +55,7 @@ namespace Backend.Examinations.Model
             Id = id;
         }
         
-        public bool IfAlreadyStarted()
+        public bool IsAlreadyStarted()
         {
             return StartTime.Date.CompareTo((DateTime.Today).Date) == 0;
         }

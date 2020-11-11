@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using Backend.Examinations.Model.Enums;
 using Backend.Utils;
-using Model.Medications;
+using Backend.Medications.Model;
 
 namespace Backend.Examinations.Model
 {
@@ -40,6 +40,12 @@ namespace Backend.Examinations.Model
         {
             if (Reserved) 
                 ReservationPeriod = new Period(DateTime.Today, DateTime.Today.AddDays(RESERVATION_DAYS));
+        }
+
+        public bool IsStillActive(DateTime startDate, DateTime endDate)
+        {
+            return Date.CompareTo(startDate) > 0 &&
+                   Date.CompareTo(endDate) < 0;
         }
     }
 }

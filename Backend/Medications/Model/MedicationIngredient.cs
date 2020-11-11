@@ -6,7 +6,7 @@
 
 using System;
 
-namespace Model.Medications
+namespace Backend.Medications.Model
 {
    public class MedicationIngredient
    {
@@ -16,7 +16,7 @@ namespace Model.Medications
         public MedicationIngredient() { }
         public MedicationIngredient(string name)
         {
-            this.Name = name;
+            Name = name;
         }
 
         

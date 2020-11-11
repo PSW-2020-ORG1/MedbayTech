@@ -9,7 +9,7 @@ using Service.UserService;
 using System;
 using System.Collections.Generic;
 
-namespace Controller.UserController
+namespace Backend.Examination.Controller.UserController
 {
     public class UserController
     {

@@ -48,5 +48,20 @@ namespace Model.Users
             ExaminationRoom = patientRoom;
             OperationRoom = operationRoom;
         }
+
+        internal bool IsMySpecialization(Specialization toCheck)
+        {
+            if (Specializations.Count > 0)
+            {
+                foreach (Specialization specialization in  Specializations) 
+                {
+                    if (specialization.SpecializationName.Equals(toCheck.SpecializationName))
+                        return true;
+                    
+                }
+            }
+
+            return false;
+        }
     }
 }

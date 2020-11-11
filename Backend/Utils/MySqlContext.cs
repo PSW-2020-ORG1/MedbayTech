@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Backend.Examinations.Model;
 using Model.MedicalRecord;
-using Model.Medications;
+using Backend.Medications.Model;
 using Model.Reports;
 using Model.Schedule;
 using Model.Users;

@@ -4,13 +4,14 @@
  * Purpose: Definition of the Class Repository.MedicationIngredient
  ***********************************************************************/
 
-using Model.Medications;
+using Backend.Medications.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Repository;
 using SimsProjekat.SIMS.Exceptions;
 
-namespace Repository.MedicationRepository
+namespace Backend.Medications.Repository.FileRepository
 {
    public class MedicationIngredientRepository : IMedicationIngredientRepository
    {
@@ -37,7 +38,8 @@ namespace Repository.MedicationRepository
             }
         }
 
-        public IEnumerable<MedicationIngredient> GetAll() => stream.GetAll();
+        public IEnumerable<MedicationIngredient> GetAll() => 
+            stream.GetAll();
     
         public bool ExistsInSystem(MedicationIngredient ingredient)
         {

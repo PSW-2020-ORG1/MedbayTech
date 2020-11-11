@@ -3,11 +3,12 @@
 // Created: Friday, May 22, 2020 4:40:36 AM
 // Purpose: Definition of Interface IMedicationRepository
 
-using Model.Medications;
+using Backend.Medications.Model;
 using System;
 using System.Collections.Generic;
+using Repository;
 
-namespace Repository.MedicationRepository
+namespace Backend.Medications.Repository.FileRepository
 {
    public interface IMedicationRepository : IRepository<Medication, int>
    {
@@ -19,7 +20,7 @@ namespace Repository.MedicationRepository
 
         bool ExistsInSystem(int id);
         int GetNextID();
-
-
+        Medication RejectMedication(Medication medication);
+        Medication ApproveMedication(Medication medication);
     }
 }

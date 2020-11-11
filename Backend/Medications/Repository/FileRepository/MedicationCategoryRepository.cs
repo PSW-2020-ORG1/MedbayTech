@@ -4,13 +4,14 @@
  * Purpose: Definition of the Class Repository.MedicationCategoryRepository
  ***********************************************************************/
 
-using Model.Medications;
+using Backend.Medications.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Repository;
 using SimsProjekat.SIMS.Exceptions;
 
-namespace Repository.MedicationRepository
+namespace Backend.Medications.Repository.FileRepository
 {
    public class MedicationCategoryRepository : IMedicationCategoryRepository
    {

@@ -7,9 +7,10 @@ using Backend.Examinations.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Repository;
 using SimsProjekat.SIMS.Exceptions;
 
-namespace Repository.ExaminationRepository
+namespace Backend.Examinations.Repository
 {
    public class LabTestTypeRepository : ILabTestTypeRepository
    {
@@ -31,10 +32,8 @@ namespace Repository.ExaminationRepository
                 stream.SaveAll(allTypes);
                 return entity;
             }
-            else
-            {
-                throw new EntityAlreadyExists(ALREADY_EXISTS);
-            }
+            throw new EntityAlreadyExists(ALREADY_EXISTS);
+            
         }
 
         public IEnumerable<LabTestType> GetAll() => stream.GetAll();

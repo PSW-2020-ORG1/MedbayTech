@@ -5,13 +5,13 @@
  ***********************************************************************/
 
 using Model.MedicalRecord;
-using Model.Medications;
+using Backend.Medications.Model;
 using Model.Users;
 using Service.MedicalRecordService;
 using System;
 using System.Collections.Generic;
 
-namespace Controller.MedicalRecordController
+namespace Backend.Examination.Controller.MedicalRecordController
 {
    public class MedicalRecordController
    {

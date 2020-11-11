@@ -13,6 +13,7 @@ using Repository.UserRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Backend.Medications.Model;
 
 namespace Service.GeneralService
 {
@@ -93,8 +94,9 @@ namespace Service.GeneralService
 
         }
       
-        public Notification MedForValidationNotification(Specialization specialization)
+        public Notification MedForValidationNotification(Medication medication)
         {
+            Specialization specialization = medication.MedicationCategory.Specialization;
             Notification notification = new Notification();
             notification.NotificationTo = MakeListOfDoctors(userRepository.GetAllDoctorsBySpecialization(specialization)).ToList();
             notification.NotificationFrom = null;

@@ -4,7 +4,7 @@
 // Purpose: Definition of Class MedicationConsumptionReport
 
 using Backend.Examinations.Model;
-using Model.Medications;
+using Backend.Medications.Model;
 using System;
 using System.Collections.Generic;
 

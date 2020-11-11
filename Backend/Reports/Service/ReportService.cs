@@ -4,11 +4,11 @@
 // Purpose: Definition of Class ReportService
 
 using Backend.Examinations.Model;
-using Model.Medications;
+using Backend.Medications.Model;
 using Model.Reports;
 using Model.Rooms;
-using Repository.ExaminationRepository;
-using Repository.MedicationRepository;
+using Backend.Examinations.Repository;
+using Backend.Medications.Repository.FileRepository;
 using Repository.ReportRepository;
 using Repository.RoomRepository;
 using System;

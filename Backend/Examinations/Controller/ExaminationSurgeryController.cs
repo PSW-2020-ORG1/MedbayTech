@@ -6,11 +6,11 @@
 using Backend.Examinations.Model;
 using Model.MedicalRecord;
 using Model.Users;
-using Service.ExaminationService;
+using Backend.Examinations.Service;
 using System;
 using System.Collections.Generic;
 
-namespace Controller.ExaminationController
+namespace Backend.Examination.Controller.ExaminationController
 {
    public class ExaminationSurgeryController
    {
