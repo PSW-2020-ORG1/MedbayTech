@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using Model.Medications;
 
-namespace Model.ExaminationSurgery
+namespace Examinations
 {
    public class Prescription : Treatment
    {

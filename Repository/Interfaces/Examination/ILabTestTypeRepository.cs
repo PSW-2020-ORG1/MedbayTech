@@ -4,7 +4,7 @@
 // Purpose: Definition of Interface ILabTestTypeRepository
 
 using System;
-using Model.ExaminationSurgery;
+using Examinations;
 
 namespace Repository.ExaminationRepository
 {

@@ -10,7 +10,7 @@ using Model.Schedule;
 using Model.Users;
 using SimsProjekat.Repository;
 
-namespace Model.ExaminationSurgery
+namespace Examinations
 {
    public class ExaminationSurgery : IIdentifiable<int>
    {
@@ -22,7 +22,7 @@ namespace Model.ExaminationSurgery
         public int DoctorId { get; set; }
         public virtual Doctor Doctor { get; set; }
         public int MedicalRecordId { get; set; }
-        public virtual MedicalRecord.MedicalRecord MedicalRecord { get; set; }
+        public virtual MedicalRecord MedicalRecord { get; set; }
 
         public ExaminationSurgery() 
         {
@@ -34,7 +34,7 @@ namespace Model.ExaminationSurgery
             Id = id; 
         }
 
-        public ExaminationSurgery(DateTime startTime, TypeOfAppointment type, Doctor doctor, MedicalRecord.MedicalRecord record)
+        public ExaminationSurgery(DateTime startTime, TypeOfAppointment type, Doctor doctor, MedicalRecord record)
         {
             StartTime = startTime;
             Type = type;

@@ -3,7 +3,7 @@
 // Created: Monday, June 01, 2020 10:34:45 PM
 // Purpose: Definition of Class TreatmentService
 
-using Model.ExaminationSurgery;
+using Examinations;
 using Model.Users;
 using Repository.ExaminationRepository;
 using Service.GeneralService;

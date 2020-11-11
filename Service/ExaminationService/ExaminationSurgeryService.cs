@@ -4,7 +4,7 @@
  * Purpose: Definition of the Class Service.ExaminationService
  ***********************************************************************/
 
-using Model.ExaminationSurgery;
+using Examinations;
 using Model.MedicalRecord;
 using Model.Users;
 using Repository.ExaminationRepository;

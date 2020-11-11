@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Model.ExaminationSurgery
+namespace Examinations
 {
    public class TreatmentFactory
    {

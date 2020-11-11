@@ -7,7 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Model.ExaminationSurgery;
+using Examinations;
 using SimsProjekat.Repository;
 
 namespace Model.Medications

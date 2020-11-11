@@ -6,7 +6,7 @@
 using System;
 using Model.Rooms;
 
-namespace Model.ExaminationSurgery
+namespace Examinations
 {
    public class HospitalTreatment : Treatment
    {

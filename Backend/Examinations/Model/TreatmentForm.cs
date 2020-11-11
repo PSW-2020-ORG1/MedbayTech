@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using Model.Rooms;
 
-namespace Model.ExaminationSurgery
+namespace Examinations
 {
    public class TreatmentForm
     {

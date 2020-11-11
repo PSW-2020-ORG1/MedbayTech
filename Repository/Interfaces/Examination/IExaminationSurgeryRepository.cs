@@ -3,7 +3,7 @@
 // Created: Friday, May 22, 2020 4:08:24 AM
 // Purpose: Definition of Interface IExaminationSurgeryRepository
 
-using Model.ExaminationSurgery;
+using Examinations;
 using Model.MedicalRecord;
 using Model.Users;
 using System;

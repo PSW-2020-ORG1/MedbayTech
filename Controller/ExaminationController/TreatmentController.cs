@@ -3,7 +3,7 @@
 // Created: Wednesday, May 20, 2020 3:29:31 AM
 // Purpose: Definition of Class TreatmentController
 
-using Model.ExaminationSurgery;
+using Examinations;
 using Service.ExaminationService;
 using System;
 using System.Collections.Generic;

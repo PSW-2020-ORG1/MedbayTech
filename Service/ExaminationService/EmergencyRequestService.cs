@@ -3,7 +3,7 @@
 // Created: Monday, May 18, 2020 1:37:20 AM
 // Purpose: Definition of Class EmergencyRequestService
 
-using Model.ExaminationSurgery;
+using Examinations;
 using Repository.ExaminationRepository;
 using Service.GeneralService;
 using System;

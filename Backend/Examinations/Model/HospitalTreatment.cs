@@ -4,14 +4,17 @@
 // Purpose: Definition of Class HospitalTreatment
 
 using System;
+using Backend.Utils;
 using Model.Rooms;
 
-namespace Model.ExaminationSurgery
+namespace Examinations
 {
    public class HospitalTreatment : Treatment
    {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
+        public Period Period { get; set; }
         public bool Approved { get; set; } = false;
         public int DepartmentId { get; set; }
         public virtual Department Department{ get; set; }

@@ -3,7 +3,7 @@
 // Created: Friday, May 22, 2020 4:29:27 AM
 // Purpose: Definition of Class LabTestTypeRepository
 
-using Model.ExaminationSurgery;
+using Examinations;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -6,7 +6,7 @@
 using System;
 using SimsProjekat.Repository;
 
-namespace Model.ExaminationSurgery
+namespace Examinations
 {
    public class Treatment : IIdentifiable<int>
    {

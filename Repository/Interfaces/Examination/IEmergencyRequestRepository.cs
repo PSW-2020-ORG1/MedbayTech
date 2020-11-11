@@ -3,7 +3,7 @@
 // Created: Friday, May 22, 2020 4:26:11 AM
 // Purpose: Definition of Interface IEmergencyRequestRepository
 
-using Model.ExaminationSurgery;
+using Examinations;
 using System;
 using System.Collections.Generic;
 

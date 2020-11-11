@@ -3,7 +3,7 @@
 // Created: Friday, May 29, 2020 7:03:27 AM
 // Purpose: Definition of Class ReportService
 
-using Model.ExaminationSurgery;
+using Examinations;
 using Model.Medications;
 using Model.Reports;
 using Model.Rooms;

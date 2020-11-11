@@ -4,16 +4,16 @@
 // Purpose: Definition of Class DoctorsAppointmentReport
 
 using System;
-using Model.ExaminationSurgery;
+using Examinations;
 
 namespace Model.Reports
 {
    public class DoctorsAppointmentReport : Report
    {
         public int ExaminationSurgeryId { get; set; }
-        public virtual ExaminationSurgery.ExaminationSurgery ExaminationSurgery { get; set; }
+        public virtual Examinations.ExaminationSurgery ExaminationSurgery { get; set; }
 
-        public DoctorsAppointmentReport(ExaminationSurgery.ExaminationSurgery examinationSurgery, DateTime date) : base(date, "")
+        public DoctorsAppointmentReport(Examinations.ExaminationSurgery examinationSurgery, DateTime date) : base(date, "")
         {
             ExaminationSurgery = examinationSurgery;
         }

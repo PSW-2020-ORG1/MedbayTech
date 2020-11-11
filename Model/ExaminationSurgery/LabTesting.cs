@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Model.ExaminationSurgery
+namespace Examinations
 {
    public class LabTesting : Treatment
    {

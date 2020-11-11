@@ -22,7 +22,7 @@ namespace Model.MedicalRecord
         public virtual MedicalRecord MedicalRecord { get; set; }
        
         public int ExaminationSurgeryId { get; set; }
-        public virtual ExaminationSurgery.ExaminationSurgery ExaminationSurgery { get; set; }
+        public virtual Examinations.ExaminationSurgery ExaminationSurgery { get; set; }
         public Diagnosis() 
         {
             
