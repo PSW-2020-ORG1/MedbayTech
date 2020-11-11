@@ -6,7 +6,7 @@
 using System;
 using SimsProjekat.Repository;
 
-namespace Examinations
+namespace Backend.Examinations.Model
 {
    public class Treatment : IIdentifiable<int>
    {

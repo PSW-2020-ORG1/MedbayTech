@@ -5,34 +5,31 @@
 
 using System;
 using System.Collections.Generic;
+using Backend.Utils;
 using Model.Medications;
 
-namespace Examinations
+namespace Backend.Examinations.Model
 {
    public class Prescription : Treatment
-   {
+    {
+        private const int RESERVATION_DAYS = 10;
         public bool Reserved { get; set; }
-        public DateTime ReservedFrom { get; set; }
-        public DateTime ReservedTo { get; set; }
+        public Period ReservationPeriod { get; set; }
         public int HourlyIntake { get; set; }
-        public virtual List<Medication> Medications { get; set; }
-
+        public virtual Medication Medication { get; set; }
+        public int MedicationId { get; set; }
         public Prescription() { }
-     /*   public Prescription()
-        {
-            Medications = new List<Medication>();
-        } */
-        public Prescription(DateTime dateOfPrescription, bool reserved, int hourlyIntake, string additionalNotes, List<Medication> medications)
+
+        public Prescription(DateTime dateOfPrescription, bool reserved, int hourlyIntake, string additionalNotes, Medication medication)
             : base(dateOfPrescription, additionalNotes, TreatmentType.prescription)
         {
             Reserved = reserved;
             if (Reserved)
             {
-                ReservedFrom = DateTime.Today.Date;
-                ReservedTo = DateTime.Today.Date.AddDays(10);
+                ReservationPeriod = new Period(DateTime.Today, DateTime.Today.AddDays(RESERVATION_DAYS));
             }
             HourlyIntake = hourlyIntake;
-            Medications = medications;
+            Medication = medication;
         }
 
         public Prescription(int id) : base(id) { }

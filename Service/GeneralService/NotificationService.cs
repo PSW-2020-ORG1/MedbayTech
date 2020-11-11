@@ -3,7 +3,7 @@
 // Created: Thursday, May 14, 2020 12:13:58 AM
 // Purpose: Definition of Class NotificationService
 
-using Examinations;
+using Backend.Examinations.Model;
 using Model.Rooms;
 using Model.Schedule;
 using Model.Users;

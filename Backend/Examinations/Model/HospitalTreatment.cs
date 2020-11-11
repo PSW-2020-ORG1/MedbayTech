@@ -4,27 +4,25 @@
 // Purpose: Definition of Class HospitalTreatment
 
 using System;
+using Backend.Examinations.Model.Model.Enums;
 using Backend.Utils;
 using Model.Rooms;
 
-namespace Examinations
+namespace Backend.Examinations.Model
 {
    public class HospitalTreatment : Treatment
    {
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-
         public Period Period { get; set; }
-        public bool Approved { get; set; } = false;
+        public Status Status { get; set; }
         public int DepartmentId { get; set; }
         public virtual Department Department{ get; set; }
 
         public HospitalTreatment(string additionalNotes, DateTime start, DateTime end, Department department) 
             : base(start, additionalNotes, TreatmentType.hospitalTreatment)
         {
-            StartDate = start;
-            EndDate = end;
+            this.Period = new Period(start, end);
             Department = department;
+            Status = Status.Created;
         }
 
         public HospitalTreatment(int id) : base(id) { }

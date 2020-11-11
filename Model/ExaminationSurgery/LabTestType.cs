@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Examinations
+namespace Backend.Examinations.Model
 {
    public class LabTestType
     {   

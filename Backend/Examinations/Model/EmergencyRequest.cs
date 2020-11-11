@@ -4,13 +4,13 @@
 // Purpose: Definition of Class EmergencyRequest
 
 using System;
-using Backend.Examinations.Model.Enums;
+using Backend.Examinations.Model.Model.Enums;
 using Model.MedicalRecord;
 using Model.Schedule;
 using Model.Users;
 using SimsProjekat.Repository;
 
-namespace Examinations
+namespace Backend.Examinations.Model
 {
    public class EmergencyRequest : IIdentifiable<int>
    {

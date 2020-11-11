@@ -4,11 +4,12 @@
 // Purpose: Definition of Class EmergencyRequest
 
 using System;
+using Model.MedicalRecord;
 using Model.Schedule;
 using Model.Users;
 using SimsProjekat.Repository;
 
-namespace Model.ExaminationSurgery
+namespace Backend.Examinations.Model
 {
    public class EmergencyRequest : IIdentifiable<int>
    {
@@ -18,7 +19,7 @@ namespace Model.ExaminationSurgery
         public int SpecializationId { get; set; }
         public virtual Specialization Specialization { get; set; }
         public int MedicalRecordId { get; set; }
-        public virtual MedicalRecord.MedicalRecord MedicalRecord { get; set; }
+        public virtual MedicalRecord MedicalRecord { get; set; }
         public bool Scheduled { get; set; }
 
         public EmergencyRequest() { }
@@ -27,7 +28,7 @@ namespace Model.ExaminationSurgery
             Id = id;
         }
 
-        public EmergencyRequest(TypeOfAppointment typeOfAppointment, string sideNotes, Specialization specialization, MedicalRecord.MedicalRecord medicalRecord)
+        public EmergencyRequest(TypeOfAppointment typeOfAppointment, string sideNotes, Specialization specialization, MedicalRecord medicalRecord)
         {
             TypeOfAppointment = typeOfAppointment;
             SideNotes = sideNotes;

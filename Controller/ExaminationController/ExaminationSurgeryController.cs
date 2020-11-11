@@ -3,7 +3,7 @@
 // Created: Wednesday, May 20, 2020 3:29:30 AM
 // Purpose: Definition of Class ExaminationSurgeryController
 
-using Examinations;
+using Backend.Examinations.Model;
 using Model.MedicalRecord;
 using Model.Users;
 using Service.ExaminationService;

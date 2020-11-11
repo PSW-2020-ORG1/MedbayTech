@@ -3,7 +3,7 @@
 // Created: Saturday, May 30, 2020 11:32:49 PM
 // Purpose: Definition of Class ReportController
 
-using Examinations;
+using Backend.Examinations.Model;
 using Model.Medications;
 using Model.Reports;
 using Model.Rooms;

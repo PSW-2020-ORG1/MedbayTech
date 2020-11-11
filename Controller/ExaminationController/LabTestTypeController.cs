@@ -4,7 +4,7 @@
  * Purpose: Definition of the Class Repository.ExaminationRepository.LabTestTypeRepository
  ***********************************************************************/
 
-using Examinations;
+using Backend.Examinations.Model;
 using Service.ExaminationService;
 using System;
 using System.Collections.Generic;

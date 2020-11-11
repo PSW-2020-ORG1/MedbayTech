@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Backend.Examinations.Model.Enums
+namespace Backend.Examinations.Model.Model.Enums
 {
    
     public enum Status
