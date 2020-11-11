@@ -10,7 +10,7 @@ using Model.Schedule;
 using Model.Users;
 using SimsProjekat.Repository;
 
-namespace Examinations
+namespace Backend.Examinations.Model
 {
    public class ExaminationSurgery : IIdentifiable<int>
    {

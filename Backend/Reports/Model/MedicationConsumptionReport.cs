@@ -3,7 +3,7 @@
 // Created: Wednesday, May 20, 2020 4:20:29 AM
 // Purpose: Definition of Class MedicationConsumptionReport
 
-using Examinations;
+using Backend.Examinations.Model;
 using Model.Medications;
 using System;
 using System.Collections.Generic;

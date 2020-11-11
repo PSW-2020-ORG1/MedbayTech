@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using Model.Rooms;
 
-namespace Examinations
+namespace Backend.Examinations.Model
 {
    public class TreatmentForm
     {

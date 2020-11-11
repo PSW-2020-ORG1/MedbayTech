@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
-using Examinations;
+using Backend.Examinations.Model;
 using Model.Users;
 using Repository;
 using Repository.GeneralRepository;

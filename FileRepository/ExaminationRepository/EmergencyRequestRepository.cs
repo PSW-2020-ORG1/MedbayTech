@@ -3,7 +3,7 @@
 // Created: Friday, May 22, 2020 4:29:24 AM
 // Purpose: Definition of Class EmergencyRequestRepository
 
-using Model.ExaminationSurgery;
+using Backend.Examinations.Model;
 using Repository.ReportRepository;
 using System;
 using System.Collections.Generic;

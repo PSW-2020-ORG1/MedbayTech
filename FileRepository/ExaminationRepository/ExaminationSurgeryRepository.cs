@@ -3,7 +3,7 @@
 // Created: Friday, May 22, 2020 4:29:27 AM
 // Purpose: Definition of Class ExaminationSurgeryRepository
 
-using Examinations;
+using Backend.Examinations.Model;
 using Model.MedicalRecord;
 using Repository.UserRepository;
 using Repository.MedicalRecordRepository;

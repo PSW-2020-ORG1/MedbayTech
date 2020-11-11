@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Examinations;
+using Backend.Examinations.Model;
 using Model.MedicalRecord;
 using Model.Medications;
 using Model.Reports;

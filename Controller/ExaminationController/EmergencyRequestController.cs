@@ -3,7 +3,7 @@
 // Created: Wednesday, May 20, 2020 3:29:31 AM
 // Purpose: Definition of Class EmergencyRequestController
 
-using Examinations;
+using Backend.Examinations.Model;
 using Service.ExaminationService;
 using System;
 using System.Collections.Generic;

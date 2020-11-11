@@ -11,10 +11,10 @@ namespace Backend.Utils
 
         public Period() {}
 
-        public Period(DateTime StartTime, DateTime EndTime)
+        public Period(DateTime startTime, DateTime endTime)
         {
-            this.StartTime = StartTime;
-            this.EndTime = EndTime;
+            StartTime = startTime; 
+            EndTime = endTime;
         }
     }
 }

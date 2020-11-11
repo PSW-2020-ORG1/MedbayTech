@@ -3,7 +3,7 @@
 // Created: Friday, May 22, 2020 4:29:28 AM
 // Purpose: Definition of Class TreatmentRepository
 
-using Examinations;
+using Backend.Examinations.Model;
 using Model.Users;
 using Repository.ReportRepository;
 using System;

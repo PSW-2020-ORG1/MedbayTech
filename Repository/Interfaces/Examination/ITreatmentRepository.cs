@@ -3,7 +3,7 @@
 // Created: Friday, May 22, 2020 4:08:25 AM
 // Purpose: Definition of Interface ITreatmentRepository
 
-using Examinations;
+using Backend.Examinations.Model;
 using System;
 using System.Collections.Generic;
 

@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Examinations
+namespace Backend.Examinations.Model
 {
    public class LabTestType
     {   
@@ -13,9 +13,6 @@ namespace Examinations
         public virtual LabTesting LabTesting { get; set; }
         public int Id { get; set; }
         public string TestName { get; set; }
-
-        public int TreatmentFormId { get; set; }
-        public virtual TreatmentForm TreatmentForm { get; set; }
 
         public LabTestType()
         {
