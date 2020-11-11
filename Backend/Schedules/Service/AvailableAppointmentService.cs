@@ -3,10 +3,11 @@ using Model.Users;
 using Repository.ScheduleRepository;
 using Service.ScheduleService;
 using Service.UserService;
-using SimsProjekat.Exceptions;
+using Backend.Exceptions.IncorrectEmailAddress;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SimsProjekat.SIMS.Exceptions;
 
 namespace SimsProjekat.Repository.ScheduleRepository
 {
@@ -217,7 +218,7 @@ namespace SimsProjekat.Repository.ScheduleRepository
             SwitchStrategy(parameters.Priority);
             Appointment toRecommend = strategy.Recommend(parameters);
             if (toRecommend == null)
-                throw new AppointmentNotFound(CANT_RECOMMEND);
+                throw new EntityNotFound(CANT_RECOMMEND);
             return toRecommend;
         }
 

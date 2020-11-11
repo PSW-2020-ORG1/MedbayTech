@@ -33,11 +33,11 @@ namespace Repository.MedicationRepository
             return base.Create(entity);
         }
 
-        public IEnumerable<Medication> GetAllApproved() => stream.GetAll().Where(medication => medication.Status == MedStatus.approved).ToList();
+        public IEnumerable<Medication> GetAllApproved() => stream.GetAll().Where(medication => medication.Status == MedStatus.Approved).ToList();
         
-        public IEnumerable<Medication> GetAllOnValidation() => stream.GetAll().Where(medication => medication.Status == MedStatus.validation).ToList();
+        public IEnumerable<Medication> GetAllOnValidation() => stream.GetAll().Where(medication => medication.Status == MedStatus.Validation).ToList();
     
-        public IEnumerable<Medication> GetAllRejected() => stream.GetAll().Where(medication => medication.Status == MedStatus.rejected).ToList();
+        public IEnumerable<Medication> GetAllRejected() => stream.GetAll().Where(medication => medication.Status == MedStatus.Rejected).ToList();
         
         public int GetNextID() => stream.GetAll().ToList().Count + 1;
         

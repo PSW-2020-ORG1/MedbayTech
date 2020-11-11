@@ -6,7 +6,7 @@
 
 using Model.Rooms;
 using Model.Users;
-using Repository.GeneralRepository;
+using Backend.Users.Repository.MySqlRepository;
 using Repository.ReportRepository;
 using SimsProjekat.Repository;
 using SimsProjekat.SIMS.Exceptions;

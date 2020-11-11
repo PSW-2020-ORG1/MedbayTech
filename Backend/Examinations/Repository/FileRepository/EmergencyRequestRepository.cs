@@ -8,8 +8,10 @@ using Repository.ReportRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Backend.Examinations.Model.Model.Enums;
 using SimsProjekat.SIMS.Exceptions;
 using Model.MedicalRecord;
+using Model.Medications;
 using SimsProjekat.Repository;
 using Repository.MedicalRecordRepository;
 
@@ -64,7 +66,7 @@ namespace Repository.ExaminationRepository
 
         public IEnumerable<EmergencyRequest> GetAllUnScheduled()
         {
-             var allUnscheduled = stream.GetAll().Where(request => request.Scheduled == false).ToList();
+             var allUnscheduled = stream.GetAll().Where(request => request.Status == Status.Rejected).ToList();
             foreach (EmergencyRequest request in allUnscheduled)
             {
                 CompleteObject(request);

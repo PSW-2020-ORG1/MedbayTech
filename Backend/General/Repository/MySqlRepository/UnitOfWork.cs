@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Model;
-using Repository.GeneralRepository;
+using Backend.Users.Repository.MySqlRepository;
 
 namespace Repository
 {
@@ -12,15 +12,15 @@ namespace Repository
 
         private MySqlContext context = new MySqlContext();
 
-        private FeedbackRepository feedbackRepository;
+        private FeedbackSqlRepository feedbackRepository;
 
-        public FeedbackRepository FeedBackRepository
+        public FeedbackSqlRepository FeedBackRepository
         {
             get
             {
                 if (this.feedbackRepository == null)
                 {
-                    this.feedbackRepository = new FeedbackRepository(context);
+                    this.feedbackRepository = new FeedbackSqlRepository(context);
 
                 }
                 return this.feedbackRepository;

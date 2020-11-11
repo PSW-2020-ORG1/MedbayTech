@@ -11,7 +11,8 @@ using Repository.ExaminationRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Backend.Exceptions.EntityNotFound;
+using Backend.Exceptions;
+using SimsProjekat.SIMS.Exceptions;
 
 namespace Service.ExaminationService
 {
@@ -47,7 +48,7 @@ namespace Service.ExaminationService
             var allForOneRecord = GetAllBy(medicalRecord).ToList();
             if (allForOneRecord.Count > 0)
                 return FindLast(allForOneRecord);
-            throw new ExaminationNotFound();
+            throw new EntityNotFound();
         }
         public ExaminationSurgery GetCurrentExamination(int idRecord)
         {

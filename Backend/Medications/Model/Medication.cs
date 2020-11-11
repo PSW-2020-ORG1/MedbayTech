@@ -30,9 +30,6 @@ namespace Model.Medications
         public int PerscriptionId { get; set; }
         public virtual Prescription Prescription { get; set; }
 
-        public int TreatmentFormId { get; set; }
-
-        public virtual TreatmentForm TreatmentForm { get; set; }
         
         
         public Medication() { }

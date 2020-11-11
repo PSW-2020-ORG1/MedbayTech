@@ -9,7 +9,7 @@ using Model.Users;
 using Repository.ReportRepository;
 using Repository.ScheduleRepository;
 using Repository.UserRepository;
-using SimsProjekat.Exceptions;
+using Backend.Exceptions.IncorrectEmailAddress;
 using SimsProjekat.Repository;
 using SimsProjekat.SIMS.Exceptions;
 using System;

@@ -27,13 +27,13 @@ namespace Service.MedicationService
       
         public Medication RejectMedication(Medication medication)
         {
-            medication.Status = MedStatus.rejected;
+            medication.Status = MedStatus.Rejected;
             return medicationRepository.Update(medication);
         }
       
         public Medication ApproveMedication(Medication medication)
         {
-            medication.Status = MedStatus.approved;
+            medication.Status = MedStatus.Approved;
             return medicationRepository.Update(medication);
         }
 

@@ -10,7 +10,7 @@ using Service.GeneralService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SimsProjekat.Exceptions;
+using Backend.Exceptions.IncorrectEmailAddress;
 
 namespace Service.RoomService
 {

@@ -10,8 +10,9 @@ using SimsProjekat.SIMS.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Repository;
 
-namespace Repository.GeneralRepository
+namespace Backend.Users.Repository.MySqlRepository
 {
    public class SurveyRepository : ISurveyRepository, ObjectComplete<Survey>
     {

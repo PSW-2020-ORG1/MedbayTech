@@ -11,7 +11,7 @@ using Model.Users;
 using Repository.ScheduleRepository;
 using Service.GeneralService;
 using Service.UserService;
-using SimsProjekat.Exceptions;
+using Backend.Exceptions.IncorrectEmailAddress;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -133,7 +133,7 @@ namespace Service.ScheduleService
         {
             var appointmentsForPatient = GetScheduledForPatient(appointment.MedicalRecord.Patient);
             if (appointmentsForPatient != null && !ifUrgent)
-                throw new AppointmentAlreadyScheduledForPatient(PATIENT_ALREADY_HAS_SCHEDULED);
+                throw new AlreadyOccupied(PATIENT_ALREADY_HAS_SCHEDULED);
             return true;
         }
         private bool CheckIfTooEarlyToSchedule(Appointment appointment, bool ifUrgent)
@@ -146,7 +146,7 @@ namespace Service.ScheduleService
         private bool CheckIfAlreadyScheduled(Appointment appointment)
         {
             if (appointmentRepository.GetAll().Any(ent => ent.StartTime.CompareTo(appointment.StartTime) == 0 && ent.Doctor.Username.Equals(appointment.Doctor.Username)))
-                throw new AppointmentAlreadyScheduled(string.Format(ALREADY_SCHEDULED, appointment.StartTime.ToString("dd.MM.yyyy. HH:mm")));
+                throw new AlreadyOccupied(string.Format(ALREADY_SCHEDULED, appointment.StartTime.ToString("dd.MM.yyyy. HH:mm")));
             return true;
         }
 

@@ -14,7 +14,7 @@ using System.Linq;
 using SimsProjekat.SIMS.Exceptions;
 using Model.Medications;
 using SimsProjekat.Repository;
-using SimsProjekat.Exceptions;
+using Backend.Exceptions.IncorrectEmailAddress;
 
 namespace Repository.MedicalRecordRepository
 {
@@ -75,7 +75,7 @@ namespace Repository.MedicalRecordRepository
             if (record != null)
                 CompleteObject(record);
             else
-                throw new MedicalRecordNotFound();
+                throw new EntityNotFound();
             return record;
         }
         public IEnumerable<MedicalRecord> GetRecordsForDoctor(Doctor doctor)

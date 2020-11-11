@@ -6,7 +6,7 @@
 using Model.MedicalRecord;
 using Model.Rooms;
 using Repository.RoomRepository;
-using SimsProjekat.Exceptions;
+using Backend.Exceptions.IncorrectEmailAddress;
 using SimsProjekat.SIMS.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -107,7 +107,7 @@ namespace Service.RoomService
             {
                 if (CheckIfDatesOverlap(occup.OccupiedFromDate, occup.OccupiedToDate, occupation))
                 {
-                    throw new BedAlreadyOccupied(string.Format(ALREADY_OCCUPIED, occupation.OccupiedFromDate.ToString("dd.MM.yyyy."), occupation.OccupiedToDate.ToString("dd.MM.yyyy.")));
+                    throw new AlreadyOccupied(string.Format(ALREADY_OCCUPIED, occupation.OccupiedFromDate.ToString("dd.MM.yyyy."), occupation.OccupiedToDate.ToString("dd.MM.yyyy.")));
                 }
             }
             return false;

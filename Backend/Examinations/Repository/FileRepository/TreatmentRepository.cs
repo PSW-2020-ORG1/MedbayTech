@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using Repository.MedicationRepository;
 using Repository.RoomRepository;
 using System.Linq;
-using SimsProjekat.SIMS.Exceptions;
+using Backend.Examinations.Model.Enums;
 using Model.Medications;
 using Model.Rooms;
 using SimsProjekat.Repository;
@@ -73,7 +73,7 @@ namespace Repository.ExaminationRepository
             List<HospitalTreatment> treatments = new List<HospitalTreatment>();
             foreach (Treatment treatment in allTreatment)
             {
-                if (treatment.Type == TreatmentType.hospitalTreatment)
+                if (treatment.Type == TreatmentType.HospitalTreatment)
                 {
                     CompleteObject(treatment);
                     treatments.Add((HospitalTreatment)treatment);
@@ -89,7 +89,7 @@ namespace Repository.ExaminationRepository
             List<Prescription> treatments = new List<Prescription>();
             foreach (Treatment treatment in allTreatment)
             {
-                if (treatment.Type == TreatmentType.prescription)
+                if (treatment.Type == TreatmentType.Prescription)
                 {
                     CompleteObject(treatment);
                     treatments.Add((Prescription)treatment);
@@ -117,11 +117,11 @@ namespace Repository.ExaminationRepository
 
         public void SetMissingValues(Treatment entity)
         {
-            if (entity.Type == TreatmentType.prescription)
+            if (entity.Type == TreatmentType.Prescription)
             {
                 SetPrescription(entity);
             }
-            else if (entity.Type == TreatmentType.hospitalTreatment)
+            else if (entity.Type == TreatmentType.HospitalTreatment)
             {
                 SetHospitalTreatment(entity);
             }
@@ -130,10 +130,7 @@ namespace Repository.ExaminationRepository
         public void SetPrescription(Treatment entity)
         {
             Prescription prescription = (Prescription)entity;
-            for (int i = 0; i < prescription.Medications.Count; i++)
-            {
-                prescription.Medications[i] = new Medication(prescription.Medications[i].Id);
-            }
+            prescription.Medication = medicationRepository.GetObject(prescription.Medication.Id);
         }
 
         public void SetHospitalTreatment(Treatment entity)
@@ -144,11 +141,11 @@ namespace Repository.ExaminationRepository
 
         public void CompleteObject(Treatment entity)
         {
-            if (entity.Type == TreatmentType.hospitalTreatment)
+            if (entity.Type == TreatmentType.HospitalTreatment)
             {
                 CompleteHospitalTreatment(entity);
             }
-            else if (entity.Type == TreatmentType.prescription)
+            else if (entity.Type == TreatmentType.Prescription)
             {
                 CompletePrescription(entity);
             }
@@ -157,10 +154,7 @@ namespace Repository.ExaminationRepository
         private void CompletePrescription(Treatment entity)
         {
             Prescription treatment = (Prescription)entity;
-            for (int i = 0; i < treatment.Medications.Count; i++)
-            {
-                treatment.Medications[i] = medicationRepository.GetObject(treatment.Medications[i].Id);
-            }
+            treatment.Medication = medicationRepository.GetObject(treatment.Medication.Id);
         }
 
         private void CompleteHospitalTreatment(Treatment entity)

@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Folder Include="Examinations\Repository\MySqlRepository\" />
+    <Folder Include="Exceptions\Examinations\" />
     <Folder Include="Medications\Repository\MySqlRepository\" />
     <Folder Include="Records\Repository\MySqlRepository\" />
   </ItemGroup>

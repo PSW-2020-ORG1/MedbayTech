@@ -12,8 +12,9 @@ using SimsProjekat.SIMS.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Repository;
 
-namespace Repository.GeneralRepository
+namespace Backend.Users.Repository.MySqlRepository
 {
    public class QuestionRepository : JSONRepository<Question, int>,
         IQuestionRepository, ObjectComplete<Question>

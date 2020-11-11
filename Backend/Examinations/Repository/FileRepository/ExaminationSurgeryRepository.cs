@@ -12,6 +12,7 @@ using Repository.ReportRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Backend.Examinations.Model.Enums;
 using SimsProjekat.SIMS.Exceptions;
 using SimsProjekat.Repository;
 
@@ -103,15 +104,15 @@ namespace Repository.ExaminationRepository
         {
             for (int i = 0; i < entity.Treatments.Count; i++)
             {
-                if (entity.Treatments[i].Type == TreatmentType.hospitalTreatment)
+                if (entity.Treatments[i].Type == TreatmentType.HospitalTreatment)
                 {
                     entity.Treatments[i] = new HospitalTreatment(entity.Treatments[i].Id);
                 }
-                else if (entity.Treatments[i].Type == TreatmentType.prescription)
+                else if (entity.Treatments[i].Type == TreatmentType.Prescription)
                 {
                     entity.Treatments[i] = new Prescription(entity.Treatments[i].Id);
                 }
-                else if (entity.Treatments[i].Type == TreatmentType.labTestType)
+                else if (entity.Treatments[i].Type == TreatmentType.LabTest)
                 {
                     entity.Treatments[i] = new LabTesting(entity.Treatments[i].Id);
                 }

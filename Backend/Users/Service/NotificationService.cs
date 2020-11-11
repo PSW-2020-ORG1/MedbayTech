@@ -7,7 +7,7 @@ using Backend.Examinations.Model;
 using Model.Rooms;
 using Model.Schedule;
 using Model.Users;
-using Repository.GeneralRepository;
+using Backend.Users.Repository.MySqlRepository;
 using Repository.MedicalRecordRepository;
 using Repository.UserRepository;
 using System;

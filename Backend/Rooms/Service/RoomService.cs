@@ -6,7 +6,7 @@
 using Model.Rooms;
 using Repository.RoomRepository;
 using Repository.ScheduleRepository;
-using SimsProjekat.Exceptions;
+using Backend.Exceptions.IncorrectEmailAddress;
 using System;
 using System.Collections.Generic;
 using System.Linq;

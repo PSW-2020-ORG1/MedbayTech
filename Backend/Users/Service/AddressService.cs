@@ -4,7 +4,7 @@
 // Purpose: Definition of Class AddressService
 
 using Model.Users;
-using Repository.GeneralRepository;
+using Backend.Users.Repository.MySqlRepository;
 using System;
 using System.Collections.Generic;
 

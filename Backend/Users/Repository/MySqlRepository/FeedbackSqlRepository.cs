@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using Model;
 using Model.Users;
+using Repository;
 
-namespace Repository.GeneralRepository
+namespace Backend.Users.Repository.MySqlRepository
 {
-    public class FeedbackRepository : MySqlrepository<Feedback, int>
+    public class FeedbackSqlRepository : MySqlrepository<Feedback, int>
     {
-        public FeedbackRepository(MySqlContext context) : base(context) { }
+        public FeedbackSqlRepository(MySqlContext context) : base(context) { }
 
         /// <summary>
         /// Function that changes the status of an existing feedback

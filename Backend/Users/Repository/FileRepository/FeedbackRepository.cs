@@ -1,7 +1,7 @@
 /***********************************************************************
- * Module:  FeedbackRepository.cs
+ * Module:  FeedbackSqlRepository.cs
  * Author:  Vlajkov
- * Purpose: Definition of the Class Repository.FeedbackRepository
+ * Purpose: Definition of the Class Repository.FeedbackSqlRepository
  ***********************************************************************/
 
 using Model.Users;
@@ -11,8 +11,9 @@ using SimsProjekat.SIMS.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Repository;
 
-namespace Repository.GeneralRepository
+namespace Backend.Users.Repository.MySqlRepository
 {
     public class FeedbackRepository : IFeedbackRepository, ObjectComplete<Feedback>
     {

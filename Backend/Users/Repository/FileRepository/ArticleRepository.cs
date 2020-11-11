@@ -10,10 +10,11 @@ using System;
 using System.Collections.Generic;
 using Repository.UserRepository;
 using System.Linq;
+using Repository;
 using SimsProjekat.SIMS.Exceptions;
 using SimsProjekat.Repository;
 
-namespace Repository.GeneralRepository
+namespace Backend.Users.Repository.MySqlRepository
 {
    public class ArticleRepository : JSONRepository<Article, int>,
         IArticleRepository, ObjectComplete<Article>

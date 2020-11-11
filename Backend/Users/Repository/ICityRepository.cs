@@ -6,8 +6,9 @@
 using Model.Users;
 using System;
 using System.Collections.Generic;
+using Repository;
 
-namespace Repository.GeneralRepository
+namespace Backend.Users.Repository.MySqlRepository
 {
    public interface ICityRepository : ICreate<City>, IGetAll<City>, IGet<City, int>
    {

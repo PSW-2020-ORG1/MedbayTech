@@ -6,12 +6,12 @@
 
 using Model.Users;
 using Repository.ReportRepository;
-using SimsProjekat.Exceptions;
+using Backend.Exceptions.IncorrectEmailAddress;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using SimsProjekat.SIMS.Exceptions;
-using Repository.GeneralRepository;
+using Backend.Users.Repository.MySqlRepository;
 using Model.Rooms;
 using Repository.RoomRepository;
 using SimsProjekat.Repository;
