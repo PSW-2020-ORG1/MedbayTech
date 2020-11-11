@@ -2,18 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-<<<<<<< HEAD
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{6F6EEF34-8842-46F6-85DC-61A2EDF25415}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controller", "Controller\Controller.csproj", "{A6A0720F-4FA9-4934-9DDB-228FEDBD79BD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{F41753A5-81D0-4944-95A9-D3F6EC7ABEFB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileRepository", "FileRepository\FileRepository.csproj", "{9155F657-849E-4919-8BB0-E3B29BE0CD56}"
-=======
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exceptions", "Exceptions\Exceptions.csproj", "{F5D1B15E-E300-457E-9DA0-916F0C20D122}"
->>>>>>> 864960a1578e1be839da545bdb6a272b04d779d7
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphicEditor", "GraphicEditor\GraphicEditor.csproj", "{C24D880D-C07D-4FAA-B68A-24C2EF5595BC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplication\WebApplication.csproj", "{3894E9E7-4951-4BFC-9B71-5ADBD7EE30AF}"
@@ -32,29 +20,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-<<<<<<< HEAD
-		{6F6EEF34-8842-46F6-85DC-61A2EDF25415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F6EEF34-8842-46F6-85DC-61A2EDF25415}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F6EEF34-8842-46F6-85DC-61A2EDF25415}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F6EEF34-8842-46F6-85DC-61A2EDF25415}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A6A0720F-4FA9-4934-9DDB-228FEDBD79BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A6A0720F-4FA9-4934-9DDB-228FEDBD79BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A6A0720F-4FA9-4934-9DDB-228FEDBD79BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A6A0720F-4FA9-4934-9DDB-228FEDBD79BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F41753A5-81D0-4944-95A9-D3F6EC7ABEFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F41753A5-81D0-4944-95A9-D3F6EC7ABEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F41753A5-81D0-4944-95A9-D3F6EC7ABEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F41753A5-81D0-4944-95A9-D3F6EC7ABEFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9155F657-849E-4919-8BB0-E3B29BE0CD56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9155F657-849E-4919-8BB0-E3B29BE0CD56}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9155F657-849E-4919-8BB0-E3B29BE0CD56}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9155F657-849E-4919-8BB0-E3B29BE0CD56}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
 		{F5D1B15E-E300-457E-9DA0-916F0C20D122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F5D1B15E-E300-457E-9DA0-916F0C20D122}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5D1B15E-E300-457E-9DA0-916F0C20D122}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5D1B15E-E300-457E-9DA0-916F0C20D122}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> 864960a1578e1be839da545bdb6a272b04d779d7
 		{C24D880D-C07D-4FAA-B68A-24C2EF5595BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C24D880D-C07D-4FAA-B68A-24C2EF5595BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C24D880D-C07D-4FAA-B68A-24C2EF5595BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
