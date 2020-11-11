@@ -75,7 +75,7 @@ namespace Repository.MedicalRecordRepository
             if (record != null)
                 CompleteObject(record);
             else
-                throw new NoMedicalRecord();
+                throw new MedicalRecordNotFound();
             return record;
         }
         public IEnumerable<MedicalRecord> GetRecordsForDoctor(Doctor doctor)

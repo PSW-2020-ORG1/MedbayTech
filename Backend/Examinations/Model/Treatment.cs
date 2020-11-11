@@ -4,6 +4,8 @@
 // Purpose: Definition of Class Treatment
 
 using System;
+using Backend.Examinations.Model.Enums;
+using Backend.Utils;
 using SimsProjekat.Repository;
 
 namespace Backend.Examinations.Model
@@ -41,5 +43,19 @@ namespace Backend.Examinations.Model
         {
             Id = id;
         }
+
+        public bool IsPrescription()
+        {
+            return Type == TreatmentType.Prescription;
+        }
+        public bool IsHospitalTreatment()
+        {
+            return Type == TreatmentType.HospitalTreatment;
+        }
+        public bool IsLabTest()
+        {
+            return Type == TreatmentType.LabTest;
+        }
+
     }
 }

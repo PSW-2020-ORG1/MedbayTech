@@ -217,7 +217,7 @@ namespace SimsProjekat.Repository.ScheduleRepository
             SwitchStrategy(parameters.Priority);
             Appointment toRecommend = strategy.Recommend(parameters);
             if (toRecommend == null)
-                throw new CantFindAppointment(CANT_RECOMMEND);
+                throw new AppointmentNotFound(CANT_RECOMMEND);
             return toRecommend;
         }
 

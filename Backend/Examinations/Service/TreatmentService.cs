@@ -9,6 +9,8 @@ using Repository.ExaminationRepository;
 using Service.GeneralService;
 using System;
 using System.Collections.Generic;
+using Backend.Examinations.Model.Enums;
+using Backend.Examinations.Model.Model.Enums;
 
 namespace Service.ExaminationService
 {
@@ -22,12 +24,14 @@ namespace Service.ExaminationService
 
         public Treatment CreateTreatment(Treatment treatment)
         {
-            if (treatment is Prescription)
+            if (treatment.IsPrescription())
             {
                 return ReserveMedication(treatment);
-            } else if (treatment is HospitalTreatment)
+            }
+
+            if (treatment.IsHospitalTreatment())
             {
-                notificationService.NewHospitalTreatment((HospitalTreatment)treatment);
+                notificationService.NewHospitalTreatment((HospitalTreatment) treatment);
             }
 
             return treatmentRepository.Create(treatment);
@@ -36,11 +40,7 @@ namespace Service.ExaminationService
         private Treatment ReserveMedication(Treatment treatment)
         {
             Prescription prescription = (Prescription)treatment;
-            if (prescription.Reserved)
-            {
-                prescription.ReservedFrom = DateTime.Today.Date;
-                prescription.ReservedTo = DateTime.Today.Date;
-            }
+            prescription.InitializeReservationDates();
             return treatmentRepository.Create(prescription);
         }
 
@@ -52,7 +52,7 @@ namespace Service.ExaminationService
             List<HospitalTreatment> unapprovedTreatments = new List<HospitalTreatment>();
             foreach (HospitalTreatment hospitalTreatment in allHospitalTreatments)
             {
-                if (!hospitalTreatment.Approved)
+                if (!hospitalTreatment.IsApproved())
                 {
                     unapprovedTreatments.Add(hospitalTreatment);
                 }
@@ -65,7 +65,7 @@ namespace Service.ExaminationService
         public HospitalTreatment ApproveHospitalTreatment(HospitalTreatment hospitalTreatment)
         {
             HospitalTreatment treatmentToUpdate = (HospitalTreatment)treatmentRepository.GetObject(hospitalTreatment.Id);
-            treatmentToUpdate.Approved = true;
+            treatmentToUpdate.Status = Status.Approved;
             return (HospitalTreatment)treatmentRepository.Update(treatmentToUpdate);
         }
 

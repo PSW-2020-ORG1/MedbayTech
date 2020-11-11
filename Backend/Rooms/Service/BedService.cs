@@ -107,7 +107,7 @@ namespace Service.RoomService
             {
                 if (CheckIfDatesOverlap(occup.OccupiedFromDate, occup.OccupiedToDate, occupation))
                 {
-                    throw new AlreadyOccupied(string.Format(ALREADY_OCCUPIED, occupation.OccupiedFromDate.ToString("dd.MM.yyyy."), occupation.OccupiedToDate.ToString("dd.MM.yyyy.")));
+                    throw new BedAlreadyOccupied(string.Format(ALREADY_OCCUPIED, occupation.OccupiedFromDate.ToString("dd.MM.yyyy."), occupation.OccupiedToDate.ToString("dd.MM.yyyy.")));
                 }
             }
             return false;

@@ -54,5 +54,20 @@ namespace Backend.Examinations.Model
         {
             Id = id;
         }
-    }
+        
+        public bool IfAlreadyStarted()
+        {
+            return StartTime.Date.CompareTo((DateTime.Today).Date) == 0;
+        }
+
+        public bool IsBeforeToday()
+        {
+            return StartTime.Date.CompareTo(DateTime.Today.Date) < 0;
+        }
+
+        public bool IsExaminationBefore(DateTime date)
+        {
+            return StartTime.Date.CompareTo(date.Date) > 0;
+        }
+   }
 }

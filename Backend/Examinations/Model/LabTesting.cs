@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using Backend.Examinations.Model.Enums;
 
 namespace Backend.Examinations.Model
 {
@@ -13,9 +14,10 @@ namespace Backend.Examinations.Model
         public virtual List<LabTestType> LabTestTypes { get; set; }
 
         public LabTesting(DateTime date, List<LabTestType> labTypes) 
-            : base (date, "", TreatmentType.labTestType)
+            : base (date, "", TreatmentType.LabTest)
         {
             LabTestTypes = labTypes;
+            
         }
 
         public LabTesting(int id) : base(id) { }

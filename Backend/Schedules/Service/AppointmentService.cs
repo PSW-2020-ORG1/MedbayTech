@@ -133,7 +133,7 @@ namespace Service.ScheduleService
         {
             var appointmentsForPatient = GetScheduledForPatient(appointment.MedicalRecord.Patient);
             if (appointmentsForPatient != null && !ifUrgent)
-                throw new PatientAlreadyHasAnAppointment(PATIENT_ALREADY_HAS_SCHEDULED);
+                throw new AppointmentAlreadyScheduledForPatient(PATIENT_ALREADY_HAS_SCHEDULED);
             return true;
         }
         private bool CheckIfTooEarlyToSchedule(Appointment appointment, bool ifUrgent)
@@ -146,7 +146,7 @@ namespace Service.ScheduleService
         private bool CheckIfAlreadyScheduled(Appointment appointment)
         {
             if (appointmentRepository.GetAll().Any(ent => ent.StartTime.CompareTo(appointment.StartTime) == 0 && ent.Doctor.Username.Equals(appointment.Doctor.Username)))
-                throw new AlreadyScheduled(string.Format(ALREADY_SCHEDULED, appointment.StartTime.ToString("dd.MM.yyyy. HH:mm")));
+                throw new AppointmentAlreadyScheduled(string.Format(ALREADY_SCHEDULED, appointment.StartTime.ToString("dd.MM.yyyy. HH:mm")));
             return true;
         }
 

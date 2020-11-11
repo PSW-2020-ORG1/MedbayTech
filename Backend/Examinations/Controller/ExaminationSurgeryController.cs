@@ -21,8 +21,8 @@ namespace Controller.ExaminationController
 
         public ExaminationSurgery CreateExaminationSurgery(ExaminationSurgery examinationSurgery) => examinationSurgeryService.CreateExaminationSurgery(examinationSurgery);
         public ExaminationSurgery GetExaminationSurgery(int id) => examinationSurgeryService.GetExaminationSurgery(id);
-        public IEnumerable<ExaminationSurgery> GetAllByDoctor(Doctor doctor) => examinationSurgeryService.GetAllByDoctor(doctor);
-        public IEnumerable<ExaminationSurgery> GetAllByRecord(MedicalRecord record) => examinationSurgeryService.GetAllByRecord(record);
+        public IEnumerable<ExaminationSurgery> GetAllBy(Doctor doctor) => examinationSurgeryService.GetAllBy(doctor);
+        public IEnumerable<ExaminationSurgery> GetAllBy(MedicalRecord record) => examinationSurgeryService.GetAllBy(record);
         public ExaminationSurgery GetLastExamination(MedicalRecord medicalRecord) => examinationSurgeryService.GetLastExamination(medicalRecord);
         public ExaminationSurgery UpdateTreatment(ExaminationSurgery examinationSurgery, Treatment treatment) => examinationSurgeryService.UpdateTreatment(examinationSurgery, treatment);
         public ExaminationSurgery FinishExamination(ExaminationSurgery examinationSurgery) => examinationSurgeryService.FinishExamination(examinationSurgery);

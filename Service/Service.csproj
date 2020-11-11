@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Exceptions\Exceptions.csproj" />
     <ProjectReference Include="..\FileRepository\FileRepository.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>

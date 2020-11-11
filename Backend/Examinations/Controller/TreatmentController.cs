@@ -22,7 +22,7 @@ namespace Controller.ExaminationController
         public bool DeleteTreatment(Treatment treatment) => treatmentService.DeleteTreatment(treatment);
         public IEnumerable<HospitalTreatment> GetUnapprovedHospitalTreatments() => treatmentService.GetUnapprovedHospitalTreatments();
         public IEnumerable<Prescription> GetAllPrescriptions() => treatmentService.GetAllPrescriptions();
-        public IEnumerable<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate) => treatmentService.GetAllPrescriptionsInPeriodOfTime(startDate, endDate);
+        public IEnumerable<Prescription> GetPrescriptionsInPeriod(DateTime startDate, DateTime endDate) => treatmentService.GetAllPrescriptionsInPeriodOfTime(startDate, endDate);
         public HospitalTreatment ApproveHospitalTreatment(HospitalTreatment hospitalTreatment) => treatmentService.ApproveHospitalTreatment(hospitalTreatment);
 
         public TreatmentService treatmentService;

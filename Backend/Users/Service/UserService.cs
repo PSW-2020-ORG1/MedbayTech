@@ -39,7 +39,7 @@ namespace Service.UserService
                     medicalRecordService.CreateNewRecord(new MedicalRecord(BloodType.abNeg, (Patient)user, PatientCondition.stable));
                 return userRepository.Create(user);
             }
-            throw new UserNotUnique(USER_ALREADY_EXISTS);
+            throw new UsernameNotUnique(USER_ALREADY_EXISTS);
         }
 
         private bool IsIdentificationNumberUnique(RegisteredUser user)

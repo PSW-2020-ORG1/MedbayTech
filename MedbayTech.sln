@@ -6,8 +6,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controller", "Controller\Controller.csproj", "{A6A0720F-4FA9-4934-9DDB-228FEDBD79BD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exceptions", "Exceptions\Exceptions.csproj", "{F5D1B15E-E300-457E-9DA0-916F0C20D122}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{F41753A5-81D0-4944-95A9-D3F6EC7ABEFB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileRepository", "FileRepository\FileRepository.csproj", "{9155F657-849E-4919-8BB0-E3B29BE0CD56}"
@@ -38,10 +36,6 @@ Global
 		{A6A0720F-4FA9-4934-9DDB-228FEDBD79BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6A0720F-4FA9-4934-9DDB-228FEDBD79BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6A0720F-4FA9-4934-9DDB-228FEDBD79BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5D1B15E-E300-457E-9DA0-916F0C20D122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5D1B15E-E300-457E-9DA0-916F0C20D122}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5D1B15E-E300-457E-9DA0-916F0C20D122}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5D1B15E-E300-457E-9DA0-916F0C20D122}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F41753A5-81D0-4944-95A9-D3F6EC7ABEFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F41753A5-81D0-4944-95A9-D3F6EC7ABEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F41753A5-81D0-4944-95A9-D3F6EC7ABEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
