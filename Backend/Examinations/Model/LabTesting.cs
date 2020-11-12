@@ -13,15 +13,14 @@ namespace Backend.Examinations.Model
    {
         public virtual List<LabTestType> LabTestTypes { get; set; }
 
-        public LabTesting(DateTime date, List<LabTestType> labTypes) 
-            : base (date, "", TreatmentType.LabTest)
+        public LabTesting() 
+            : base (TreatmentType.LabTest)
         {
-            LabTestTypes = labTypes;
-            
+            LabTestTypes = new List<LabTestType>();
+            Date = DateTime.Today;
         }
 
         public LabTesting(int id) : base(id) { }
-        public LabTesting() { }
 
     }
 }

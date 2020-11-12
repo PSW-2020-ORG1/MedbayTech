@@ -3,10 +3,11 @@
 // Created: Friday, May 22, 2020 4:40:35 AM
 // Purpose: Definition of Interface IMedicationCategoryRepository
 
-using Model.Medications;
+using Backend.Medications.Model;
 using System;
+using Repository;
 
-namespace Repository.MedicationRepository
+namespace Backend.Medications.Repository.FileRepository
 {
    public interface IMedicationCategoryRepository : ICreate<MedicationCategory>, IGetAll<MedicationCategory>
    {

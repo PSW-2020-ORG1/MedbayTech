@@ -3,7 +3,7 @@
 // Created: Friday, May 22, 2020 4:36:48 AM
 // Purpose: Definition of Interface IAllergensRepository
 
-using Model.Medications;
+using Backend.Medications.Model;
 using System;
 
 namespace Repository.MedicalRecordRepository

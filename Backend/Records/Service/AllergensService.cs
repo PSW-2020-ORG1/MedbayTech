@@ -3,7 +3,7 @@
 // Created: Tuesday, May 19, 2020 10:44:37 PM
 // Purpose: Definition of Class AllergensService
 
-using Model.Medications;
+using Backend.Medications.Model;
 using Repository.MedicalRecordRepository;
 using System;
 using System.Collections.Generic;

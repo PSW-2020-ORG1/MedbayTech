@@ -3,12 +3,12 @@
 // Created: Wednesday, May 20, 2020 2:45:01 AM
 // Purpose: Definition of Class MedicationCategoryController
 
-using Model.Medications;
+using Backend.Medications.Model;
 using System;
 using System.Collections.Generic;
-using Service.MedicationService;
+using Backend.Medications.Service;
 
-namespace Controller.MedicationController
+namespace Backend.Medications.Controller
 {
    public class MedicationCategoryController
    {
@@ -18,8 +18,10 @@ namespace Controller.MedicationController
             this.medicationCategoryService = medicationCategoryService;
         }
 
-        public MedicationCategory AddCategory(MedicationCategory category) => medicationCategoryService.AddCategory(category);
-        public IEnumerable<MedicationCategory> GetAllCategories() => medicationCategoryService.GetAllCategories();
+        public MedicationCategory AddCategory(MedicationCategory category) => 
+            medicationCategoryService.AddCategory(category);
+        public IEnumerable<MedicationCategory> GetAllCategories() => 
+            medicationCategoryService.GetAllCategories();
       
         public MedicationCategoryService medicationCategoryService;
    

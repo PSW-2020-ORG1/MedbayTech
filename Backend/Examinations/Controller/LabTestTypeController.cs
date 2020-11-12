@@ -5,11 +5,11 @@
  ***********************************************************************/
 
 using Backend.Examinations.Model;
-using Service.ExaminationService;
+using Backend.Examinations.Service;
 using System;
 using System.Collections.Generic;
 
-namespace Controller.ExaminationController
+namespace Backend.Examinations.Controller
 {
    public class LabTestTypeController
    {
@@ -18,8 +18,11 @@ namespace Controller.ExaminationController
             this.labTestTypeService = labTestTypeService;
         }
 
-        public IEnumerable<LabTestType> GetAllTestTypes() => labTestTypeService.GetAllTestTypes();
-        public LabTestType CreateLabTestType(LabTestType type) => labTestTypeService.CreateLabTestType(type);
+        public IEnumerable<LabTestType> GetAllTestTypes() => 
+            labTestTypeService.GetAllTestTypes();
+
+        public LabTestType CreateLabTestType(LabTestType type) => 
+            labTestTypeService.CreateLabTestType(type);
       
         public LabTestTypeService labTestTypeService;
    

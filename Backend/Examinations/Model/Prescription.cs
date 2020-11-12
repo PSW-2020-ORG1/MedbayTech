@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using Backend.Examinations.Model.Enums;
 using Backend.Utils;
-using Model.Medications;
+using Backend.Medications.Model;
 
 namespace Backend.Examinations.Model
 {
@@ -19,7 +19,11 @@ namespace Backend.Examinations.Model
         public int HourlyIntake { get; set; }
         public virtual Medication Medication { get; set; }
         public int MedicationId { get; set; }
-        public Prescription() { }
+
+        public Prescription() : base(TreatmentType.Prescription)
+        {
+            Date = DateTime.Today;
+        }
 
         public Prescription(DateTime dateOfPrescription, bool reserved, int hourlyIntake, string additionalNotes, Medication medication)
             : base(dateOfPrescription, additionalNotes, TreatmentType.Prescription)
@@ -40,6 +44,12 @@ namespace Backend.Examinations.Model
         {
             if (Reserved) 
                 ReservationPeriod = new Period(DateTime.Today, DateTime.Today.AddDays(RESERVATION_DAYS));
+        }
+
+        public bool IsStillActive(DateTime startDate, DateTime endDate)
+        {
+            return Date.CompareTo(startDate) > 0 &&
+                   Date.CompareTo(endDate) < 0;
         }
     }
 }

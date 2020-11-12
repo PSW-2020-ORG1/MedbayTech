@@ -6,7 +6,7 @@
 using System;
 using Model.Users;
 
-namespace Model.Medications
+namespace Backend.Medications.Model
 {
     public class MedicationCategory
     {
@@ -20,8 +20,8 @@ namespace Model.Medications
         public MedicationCategory() {}
         public MedicationCategory(string categoryName, Specialization specialization)
         {
-            this.CategoryName = categoryName;
-            this.Specialization = specialization;
+            CategoryName = categoryName;
+            Specialization = specialization;
         }
 
         

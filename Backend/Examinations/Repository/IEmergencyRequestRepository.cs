@@ -6,8 +6,9 @@
 using Backend.Examinations.Model;
 using System;
 using System.Collections.Generic;
+using Repository;
 
-namespace Repository.ExaminationRepository
+namespace Backend.Examinations.Repository
 {
    public interface IEmergencyRequestRepository : IRepository<EmergencyRequest,int>
    {

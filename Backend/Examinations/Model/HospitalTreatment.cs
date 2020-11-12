@@ -5,7 +5,6 @@
 
 using System;
 using Backend.Examinations.Model.Enums;
-using Backend.Examinations.Model.Model.Enums;
 using Backend.Utils;
 using Model.Rooms;
 
@@ -30,9 +29,7 @@ namespace Backend.Examinations.Model
         {
         }
 
-        public HospitalTreatment()
-        {
-        }
+        public HospitalTreatment() : base(TreatmentType.HospitalTreatment) { }
 
         public bool IsApproved()
         {

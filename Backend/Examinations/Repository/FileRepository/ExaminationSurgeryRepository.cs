@@ -12,10 +12,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Backend.Examinations.Model.Enums;
+using Repository;
 using SimsProjekat.SIMS.Exceptions;
 using SimsProjekat.Repository;
 
-namespace Repository.ExaminationRepository
+namespace Backend.Examinations.Repository
 {
    public class ExaminationSurgeryRepository : JSONRepository<ExaminationSurgery, int>,
         IExaminationSurgeryRepository, ObjectComplete<ExaminationSurgery>
@@ -29,8 +30,8 @@ namespace Repository.ExaminationRepository
 
 
         public ExaminationSurgeryRepository(ITreatmentRepository treatmentRepository, 
-            MedicalRecordRepository.IMedicalRecordRepository medicalRecordRepository, 
-            UserRepository.UserRepository doctorRepository, Stream<ExaminationSurgery> stream) : base(stream, "Examination")
+            IMedicalRecordRepository medicalRecordRepository, 
+            UserRepository doctorRepository, Stream<ExaminationSurgery> stream) : base(stream, "Examination")
         {
             this.treatmentRepository = treatmentRepository;
             this.medicalRecordRepository = medicalRecordRepository;
@@ -141,6 +142,13 @@ namespace Repository.ExaminationRepository
             {
                 examination.Treatments[i] = treatmentRepository.GetObject(examination.Treatments[i].Id);
             }
+        }
+
+        public ExaminationSurgery UpdateTreatment(ExaminationSurgery examinationSurgery, Treatment treatment)
+        {
+            Prescription prescription = (Prescription) treatment;
+            prescription.InitializeReservationDates();
+            return base.Update(examinationSurgery);
         }
     }
 }

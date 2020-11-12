@@ -4,7 +4,7 @@
 // Purpose: Definition of Class Therapy
 
 using System;
-using Model.Medications;
+using Backend.Medications.Model;
 namespace Model.MedicalRecord
 {
    public class Therapy

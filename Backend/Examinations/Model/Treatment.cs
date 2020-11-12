@@ -26,6 +26,11 @@ namespace Backend.Examinations.Model
             Id = id;
         }
 
+        public Treatment(TreatmentType type)
+        {
+            Type = type;
+        }
+
         public Treatment(DateTime date, String additionalNotes, TreatmentType type)
         {
             Date = date.Date;

@@ -7,7 +7,7 @@ using Model.Users;
 using System;
 using SimsProjekat.Repository;
 
-namespace Model.Medications
+namespace Backend.Medications.Model
 {
    public class ValidationMed : IIdentifiable<int>
    {
@@ -16,29 +16,25 @@ namespace Model.Medications
         public  DateTime DateOfValidation { get; set; }
         public  bool Approved { get; set; }
         public  bool Reviewed { get; set; }
-
         public int MedicationId { get; set; }
         public  Medication Medication { get; set; }
-
         public string DoctorId { get; set; }
+        public  Doctor Doctor { get; set; }
 
-        public  Model.Users.Doctor Doctor { get; set; }
-       
-       
         public ValidationMed() { }
 
         public ValidationMed(string sideNotes, bool approved, Medication medication, Doctor doctor)
         {
-            this.SideNotes = sideNotes;
-            this.Approved = approved;
-            this.Medication = medication;
-            this.Doctor = doctor;
+            SideNotes = sideNotes;
+            Approved = approved;
+            Medication = medication;
+            Doctor = doctor;
         }
         public ValidationMed(string sideNotes, bool approved, Medication medication)
         {
-            this.SideNotes = sideNotes;
-            this.Approved = approved;
-            this.Medication = medication;
+            SideNotes = sideNotes;
+            Approved = approved;
+            Medication = medication;
         }
      
 

@@ -4,7 +4,7 @@
 // Purpose: Definition of Class EmergencyRequest
 
 using System;
-using Backend.Examinations.Model.Model.Enums;
+using Backend.Examinations.Model.Enums;
 using Model.MedicalRecord;
 using Model.Schedule;
 using Model.Users;

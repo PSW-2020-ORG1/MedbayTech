@@ -5,11 +5,11 @@
  ***********************************************************************/
 
 using Model.MedicalRecord;
-using Repository.MedicationRepository;
+using Backend.Medications.Repository.FileRepository;
 using System;
 using System.Collections.Generic;
 
-namespace Service.MedicationService
+namespace Backend.Medications.Service
 {
    public class SymptomsService
    {
@@ -18,9 +18,11 @@ namespace Service.MedicationService
             this.symptomsRepository = symptomsRepository;
         }
 
-        public Symptoms AddSymptom(Symptoms symptom) => symptomsRepository.Create(symptom);
+        public Symptoms AddSymptom(Symptoms symptom) => 
+            symptomsRepository.Create(symptom);
 
-        public IEnumerable<Symptoms> GetAllSymptoms() => symptomsRepository.GetAll();
+        public IEnumerable<Symptoms> GetAllSymptoms() => 
+            symptomsRepository.GetAll();
 
       
         public ISymptomsRepository symptomsRepository;

@@ -6,7 +6,7 @@
 using System;
 using Model.MedicalRecord;
 
-namespace Model.Medications
+namespace Backend.Medications.Model
 {
    public class SideEffect
    {
@@ -21,8 +21,8 @@ namespace Model.Medications
         public SideEffect() {}
         public SideEffect(SideEffectFrequency frequency, Symptoms symptoms)
         {
-            this.SideEffects = symptoms;
-            this.Frequency = frequency;
+            SideEffects = symptoms;
+            Frequency = frequency;
         }
 
         

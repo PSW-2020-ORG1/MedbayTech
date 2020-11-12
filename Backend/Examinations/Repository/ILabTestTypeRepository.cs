@@ -5,8 +5,9 @@
 
 using System;
 using Backend.Examinations.Model;
+using Repository;
 
-namespace Repository.ExaminationRepository
+namespace Backend.Examinations.Repository
 {
    public interface ILabTestTypeRepository : IGetAll<LabTestType>, ICreate<LabTestType>
    {

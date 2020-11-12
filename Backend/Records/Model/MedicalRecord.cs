@@ -4,7 +4,7 @@
  * Purpose: Definition of the Class HealthCorporation.DoctorPatient.MedicalRecord
  ***********************************************************************/
 
-using Model.Medications;
+using Backend.Medications.Model;
 using Model.Users;
 using System;
 using System.Collections.Generic;

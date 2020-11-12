@@ -6,7 +6,7 @@
 using Model.Users;
 using System;
 
-namespace Model.Medications
+namespace Backend.Medications.Model
 {
    public enum MedStatus
    {

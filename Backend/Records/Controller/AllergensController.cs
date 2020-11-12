@@ -3,12 +3,12 @@
 // Created: Wednesday, May 20, 2020 2:50:31 AM
 // Purpose: Definition of Class AllergensController
 
-using Model.Medications;
+using Backend.Medications.Model;
 using Service.MedicalRecordService;
 using System;
 using System.Collections.Generic;
 
-namespace Controller.MedicalRecordController
+namespace Backend.Examinations.Controller.MedicalRecordController
 {
    public class AllergensController
    {

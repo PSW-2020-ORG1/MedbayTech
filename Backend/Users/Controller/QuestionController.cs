@@ -8,7 +8,7 @@ using Service.GeneralService;
 using System;
 using System.Collections.Generic;
 
-namespace Controller.GeneralController
+namespace Backend.Examinations.Controller.GeneralController
 {
    public class QuestionController
    {

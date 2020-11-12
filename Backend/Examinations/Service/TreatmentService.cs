@@ -5,14 +5,14 @@
 
 using Backend.Examinations.Model;
 using Model.Users;
-using Repository.ExaminationRepository;
+using Backend.Examinations.Repository;
 using Service.GeneralService;
 using System;
 using System.Collections.Generic;
 using Backend.Examinations.Model.Enums;
-using Backend.Examinations.Model.Model.Enums;
+using Backend.Users.Repository.MySqlRepository;
 
-namespace Service.ExaminationService
+namespace Backend.Examinations.Service
 {
    public class TreatmentService
    {
@@ -25,49 +25,34 @@ namespace Service.ExaminationService
         public Treatment CreateTreatment(Treatment treatment)
         {
             if (treatment.IsPrescription())
-            {
-                return ReserveMedication(treatment);
-            }
-
+                return treatmentRepository.ReserveMedication((Prescription) treatment);
             if (treatment.IsHospitalTreatment())
-            {
                 notificationService.NewHospitalTreatment((HospitalTreatment) treatment);
-            }
-
             return treatmentRepository.Create(treatment);
         }
-
-        private Treatment ReserveMedication(Treatment treatment)
-        {
-            Prescription prescription = (Prescription)treatment;
-            prescription.InitializeReservationDates();
-            return treatmentRepository.Create(prescription);
-        }
-
-        public Treatment UpdateTreatment(Treatment treatment) => treatmentRepository.Update(treatment);
-        public bool DeleteTreatment(Treatment treatment) => treatmentRepository.Delete(treatment);
+        public Treatment UpdateTreatment(Treatment treatment) => 
+            treatmentRepository.Update(treatment);
+        public bool DeleteTreatment(Treatment treatment) => 
+            treatmentRepository.Delete(treatment);
         public IEnumerable<HospitalTreatment> GetUnapprovedHospitalTreatments()
         {
-            var allHospitalTreatments = treatmentRepository.GetAllHospitalTreatments();
+            List<HospitalTreatment> allHospitalTreatments = (new List<HospitalTreatment>(treatmentRepository.GetAllHospitalTreatments()));
             List<HospitalTreatment> unapprovedTreatments = new List<HospitalTreatment>();
             foreach (HospitalTreatment hospitalTreatment in allHospitalTreatments)
             {
                 if (!hospitalTreatment.IsApproved())
-                {
                     unapprovedTreatments.Add(hospitalTreatment);
-                }
             }
             return unapprovedTreatments;
         }
-        public IEnumerable<Prescription> GetAllPrescriptions() => treatmentRepository.GetAllPrescriptions();
+        public IEnumerable<Prescription> GetAllPrescriptions() => 
+            treatmentRepository.GetAllPrescriptions();
 
-        public IEnumerable<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate) => treatmentRepository.GetAllPrescriptionsInPeriodOfTime(startDate, endDate);   
-        public HospitalTreatment ApproveHospitalTreatment(HospitalTreatment hospitalTreatment)
-        {
-            HospitalTreatment treatmentToUpdate = (HospitalTreatment)treatmentRepository.GetObject(hospitalTreatment.Id);
-            treatmentToUpdate.Status = Status.Approved;
-            return (HospitalTreatment)treatmentRepository.Update(treatmentToUpdate);
-        }
+        public IEnumerable<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate) => 
+            treatmentRepository.GetAllPrescriptionsInPeriod(startDate, endDate);
+
+        public HospitalTreatment ApproveHospitalTreatment(HospitalTreatment hospitalTreatment) =>
+            treatmentRepository.ApproveTreatment(hospitalTreatment);
 
         public NotificationService notificationService;
         public ITreatmentRepository treatmentRepository;

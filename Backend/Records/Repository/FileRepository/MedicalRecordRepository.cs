@@ -7,11 +7,11 @@ using Model.MedicalRecord;
 using Model.Users;
 using System;
 using System.Collections.Generic;
-using Repository.MedicationRepository;
+using Backend.Medications.Repository.FileRepository;
 using Repository.UserRepository;
 using System.Linq;
 using SimsProjekat.SIMS.Exceptions;
-using Model.Medications;
+using Backend.Medications.Model;
 using SimsProjekat.Repository;
 using Backend.Exceptions.IncorrectEmailAddress;
 

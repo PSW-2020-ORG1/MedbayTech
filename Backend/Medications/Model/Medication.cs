@@ -10,31 +10,23 @@ using System.ComponentModel.DataAnnotations;
 using Backend.Examinations.Model;
 using SimsProjekat.Repository;
 
-namespace Model.Medications
+namespace Backend.Medications.Model
 {
    public class Medication : IIdentifiable<int>
    {
-
-        public int Id { get; set;  }
+       public int Id { get; set;  }
         public string Med { get; set; }
         public MedStatus Status { get; set; }
         public string Company { get; set; }
         public int Quantity { get; set; }
         public virtual List<DosageOfIngredient> MedicationContent { get; set; }
-        public virtual List<MedicationCategory> MedicationCategory { get; set; }
+        public virtual MedicationCategory MedicationCategory { get; set; }
         public virtual List<Allergens> Allergens { get; set; }
-
         public virtual List<Medication> AlternativeMedication { get; set; }
         public virtual List<SideEffect> SideEffects { get; set; }
-
-        public int PerscriptionId { get; set; }
-        public virtual Prescription Prescription { get; set; }
-
-        
-        
         public Medication() { }
 
-        public Medication(string name, string company, List<DosageOfIngredient> ingredients, List<MedicationCategory> category, List<Allergens> allergens, List<SideEffect> sideEffects)
+        public Medication(string name, string company, List<DosageOfIngredient> ingredients, MedicationCategory category, List<Allergens> allergens, List<SideEffect> sideEffects)
         {
             Med = name;
             Company = company;
@@ -58,6 +50,11 @@ namespace Model.Medications
         public void SetId(int id)
         {
             Id = id;
+        }
+
+        public bool IsOnValidation()
+        {
+            return Status == MedStatus.Validation;
         }
     }
 }

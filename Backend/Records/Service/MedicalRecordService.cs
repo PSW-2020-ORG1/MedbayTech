@@ -5,7 +5,7 @@
  ***********************************************************************/
 
 using Model.MedicalRecord;
-using Model.Medications;
+using Backend.Medications.Model;
 using Model.Users;
 using Repository.MedicalRecordRepository;
 using System;

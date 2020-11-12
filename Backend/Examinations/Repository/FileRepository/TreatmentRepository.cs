@@ -7,15 +7,16 @@ using Backend.Examinations.Model;
 using Model.Users;
 using System;
 using System.Collections.Generic;
-using Repository.MedicationRepository;
+using Backend.Medications.Repository.FileRepository;
 using Repository.RoomRepository;
 using System.Linq;
 using Backend.Examinations.Model.Enums;
-using Model.Medications;
+using Backend.Medications.Model;
 using Model.Rooms;
+using Repository;
 using SimsProjekat.Repository;
 
-namespace Repository.ExaminationRepository
+namespace Backend.Examinations.Repository
 {
     public class TreatmentRepository : JSONRepository<Treatment, int>,
         ITreatmentRepository, ObjectComplete<Treatment>
@@ -36,7 +37,7 @@ namespace Repository.ExaminationRepository
 
         public new Treatment Create(Treatment entity)
         {
-            entity.Id = GetNextID();
+            entity.Id = GetNextId();
             SetMissingValues(entity);
             return base.Create(entity);
         }
@@ -97,14 +98,13 @@ namespace Repository.ExaminationRepository
             return treatments;
         }
 
-        public IEnumerable<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate)
+        public IEnumerable<Prescription> GetAllPrescriptionsInPeriod(DateTime startDate, DateTime endDate)
         {
-            var allPrescriptions = GetAllPrescriptions();
+            List<Prescription> allPrescriptions = (List<Prescription>) GetAllPrescriptions();
             List<Prescription> prescriptions = new List<Prescription>();
             foreach (Prescription prescription in allPrescriptions)
             {
-                if (prescription.Date.CompareTo(startDate) > 0 && 
-                    prescription.Date.CompareTo(endDate) < 0)
+                if (prescription.IsStillActive(startDate, endDate))
                 {
                     prescriptions.Add(prescription);
                 }
@@ -112,7 +112,19 @@ namespace Repository.ExaminationRepository
             return prescriptions;
         }
 
-        public int GetNextID() => stream.GetAll().ToList().Count + 1;
+        public HospitalTreatment ApproveTreatment(HospitalTreatment hospitalTreatment)
+        {
+            hospitalTreatment.Status = Status.Approved;
+            return (HospitalTreatment)base.Update(hospitalTreatment);
+        }
+
+        public Prescription ReserveMedication(Prescription treatment)
+        {
+            treatment.InitializeReservationDates();
+            return (Prescription)base.Update(treatment);
+        }
+
+        public int GetNextId() => stream.GetAll().ToList().Count + 1;
 
         public void SetMissingValues(Treatment entity)
         {
@@ -161,5 +173,6 @@ namespace Repository.ExaminationRepository
             HospitalTreatment treatment = (HospitalTreatment)entity;
             treatment.Department = departmentRepository.GetObject(treatment.Department.Id);
         }
+
     }
 }

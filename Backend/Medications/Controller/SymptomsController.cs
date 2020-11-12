@@ -6,9 +6,9 @@
 using Model.MedicalRecord;
 using System;
 using System.Collections.Generic;
-using Service.MedicationService;
+using Backend.Medications.Service;
 
-namespace Controller.MedicationController
+namespace Backend.Medications.Controller
 {
    public class SymptomsController
    {
@@ -17,8 +17,10 @@ namespace Controller.MedicationController
         {
             this.symptomsService = symptomsService;
         }
-        public Symptoms AddSymptom(Symptoms symptom) => symptomsService.AddSymptom(symptom);    
-        public IEnumerable<Symptoms> GetAllSymptoms() => symptomsService.GetAllSymptoms();
+        public Symptoms AddSymptom(Symptoms symptom) => 
+            symptomsService.AddSymptom(symptom);    
+        public IEnumerable<Symptoms> GetAllSymptoms() => 
+            symptomsService.GetAllSymptoms();
 
         public SymptomsService symptomsService;
    

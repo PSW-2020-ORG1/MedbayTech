@@ -3,12 +3,12 @@
 // Created: Tuesday, May 19, 2020 10:56:43 PM
 // Purpose: Definition of Class MedicationCategoryService
 
-using Model.Medications;
-using Repository.MedicationRepository;
+using Backend.Medications.Model;
+using Backend.Medications.Repository.FileRepository;
 using System;
 using System.Collections.Generic;
 
-namespace Service.MedicationService
+namespace Backend.Medications.Service
 {
    public class MedicationCategoryService
    {
@@ -17,9 +17,11 @@ namespace Service.MedicationService
             this.medicationCategoryRepository = medicationCategoryRepository;
         }
 
-        public MedicationCategory AddCategory(MedicationCategory category) => medicationCategoryRepository.Create(category);
+        public MedicationCategory AddCategory(MedicationCategory category) => 
+            medicationCategoryRepository.Create(category);
 
-        public IEnumerable<MedicationCategory> GetAllCategories() => medicationCategoryRepository.GetAll();
+        public IEnumerable<MedicationCategory> GetAllCategories() => 
+            medicationCategoryRepository.GetAll();
 
         public IMedicationCategoryRepository medicationCategoryRepository;
    
