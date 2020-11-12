@@ -4,7 +4,7 @@
 // Purpose: Definition of Class RenovationRepository
 
 using Model.Rooms;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 using SimsProjekat.SIMS.Exceptions;
 using System;
 using System.Collections.Generic;

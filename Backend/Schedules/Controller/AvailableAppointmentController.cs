@@ -1,7 +1,7 @@
 ﻿using Model.Schedule;
 using Model.Users;
 using Service.ScheduleService;
-using SimsProjekat.Repository.ScheduleRepository;
+using Backend.General.Model.ScheduleRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;

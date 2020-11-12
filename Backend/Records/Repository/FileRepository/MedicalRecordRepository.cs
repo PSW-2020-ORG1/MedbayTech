@@ -12,7 +12,7 @@ using Repository.UserRepository;
 using System.Linq;
 using SimsProjekat.SIMS.Exceptions;
 using Backend.Medications.Model;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 using Backend.Exceptions.IncorrectEmailAddress;
 using Backend.Records.Model;
 

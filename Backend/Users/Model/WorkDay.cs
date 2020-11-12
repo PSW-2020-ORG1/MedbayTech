@@ -7,7 +7,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Policy;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 
 namespace Model.Users
 {

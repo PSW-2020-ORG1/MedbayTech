@@ -13,7 +13,7 @@ using SimsProjekat.SIMS.Exceptions;
 using Backend.Records.Model;
 using Backend.Medications.Model;
 using Repository;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 using Repository.MedicalRecordRepository;
 
 namespace Backend.Examinations.Repository

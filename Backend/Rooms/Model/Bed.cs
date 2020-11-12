@@ -4,7 +4,7 @@
  * Purpose: Definition of the Class HealthCorporation.ExaminationSurgery.RoomBed
  ***********************************************************************/
 
-using SimsProjekat.Repository;
+using Backend.General.Model;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

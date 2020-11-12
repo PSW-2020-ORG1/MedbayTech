@@ -7,7 +7,7 @@
 using Backend.Medications.Model;
 using Model.Users;
 using Repository.UserRepository;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

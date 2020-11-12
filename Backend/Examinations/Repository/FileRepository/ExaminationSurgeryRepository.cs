@@ -15,7 +15,7 @@ using System.Linq;
 using Backend.Examinations.Model.Enums;
 using Repository;
 using SimsProjekat.SIMS.Exceptions;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 using Repository.MedicalRecordRepository;
 
 namespace Backend.Examinations.Repository

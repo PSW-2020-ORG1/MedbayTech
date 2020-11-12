@@ -7,7 +7,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Examinations.Model.Enums;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 
 namespace Backend.Examinations.Model
 {

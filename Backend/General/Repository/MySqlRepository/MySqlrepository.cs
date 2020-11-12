@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Model;
 using Model.Users;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 
 namespace Repository
 {

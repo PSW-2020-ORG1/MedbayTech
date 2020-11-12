@@ -14,7 +14,7 @@ using Backend.Examinations.Model.Enums;
 using Backend.Medications.Model;
 using Model.Rooms;
 using Repository;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 
 namespace Backend.Examinations.Repository
 {

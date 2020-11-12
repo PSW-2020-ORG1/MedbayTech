@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimsProjekat.Repository
+namespace Backend.General.Model
 {
     public interface IIdentifiable<ID>
     {

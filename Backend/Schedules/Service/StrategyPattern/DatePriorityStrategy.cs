@@ -4,7 +4,7 @@
 // Purpose: Definition of Class DatePriorityStrategy
 
 using Model.Schedule;
-using SimsProjekat.Repository.ScheduleRepository;
+using Backend.General.Model.ScheduleRepository;
 using System;
 using System.Collections.Generic;
 using Backend.Utils;

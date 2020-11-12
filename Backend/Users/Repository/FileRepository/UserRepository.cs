@@ -13,7 +13,7 @@ using SimsProjekat.SIMS.Exceptions;
 using Backend.Users.Repository.MySqlRepository;
 using Model.Rooms;
 using Repository.RoomRepository;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 
 namespace Repository.UserRepository
 {

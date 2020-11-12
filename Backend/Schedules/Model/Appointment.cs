@@ -6,7 +6,7 @@
 using Model.Rooms;
 using Model.Users;
 using System;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 using Backend.Records.Model;
 using Backend.Utils;
 using System.ComponentModel.DataAnnotations;

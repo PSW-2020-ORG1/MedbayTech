@@ -7,7 +7,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 using ZdravoKorporacija.Model.Users;
 
 namespace Model.Users

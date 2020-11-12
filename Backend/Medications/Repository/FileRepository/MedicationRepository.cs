@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Repository;
 using SimsProjekat.SIMS.Exceptions;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 using Backend.Medications.Model;
 
 namespace Backend.Medications.Repository.FileRepository

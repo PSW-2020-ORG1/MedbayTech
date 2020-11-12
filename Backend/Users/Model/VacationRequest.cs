@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 using Backend.Utils;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 
 namespace Model.Users
 {

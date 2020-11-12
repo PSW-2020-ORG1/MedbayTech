@@ -6,7 +6,7 @@
 using Backend.Records.Model;
 using System;
 using System.Linq;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 
 namespace Repository.MedicalRecordRepository
 {

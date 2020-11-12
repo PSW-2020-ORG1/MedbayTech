@@ -6,7 +6,7 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 
 namespace Backend.Medications.Model
 {

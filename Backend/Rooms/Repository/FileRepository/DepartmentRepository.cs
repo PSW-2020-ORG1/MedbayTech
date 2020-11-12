@@ -7,7 +7,7 @@
 using Model.Rooms;
 using Model.Users;
 using Backend.Users.Repository.MySqlRepository;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 using SimsProjekat.SIMS.Exceptions;
 using System;
 using System.Collections.Generic;

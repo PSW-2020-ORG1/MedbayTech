@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Backend.Examinations.Model;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 
 namespace Backend.Medications.Model
 {

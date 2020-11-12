@@ -3,7 +3,7 @@
 // Created: Friday, May 22, 2020 4:03:04 AM
 // Purpose: Definition of Interface IRepository
 
-using SimsProjekat.Repository;
+using Backend.General.Model;
 using System;
 
 namespace Repository

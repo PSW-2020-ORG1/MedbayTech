@@ -10,7 +10,7 @@ using Backend.Examinations.Model.Enums;
 using Backend.Records.Model;
 using Model.Schedule;
 using Model.Users;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 
 namespace Backend.Examinations.Model
 {

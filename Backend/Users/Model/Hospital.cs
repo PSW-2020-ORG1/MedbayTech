@@ -3,7 +3,7 @@
 // Created: Friday, April 10, 2020 1:34:17 AM
 // Purpose: Definition of Class Hospital
 
-using SimsProjekat.Repository;
+using Backend.General.Model;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

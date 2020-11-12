@@ -11,7 +11,7 @@ using Repository.UserRepository;
 using System.Linq;
 using Repository;
 using SimsProjekat.SIMS.Exceptions;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 
 namespace Backend.Users.Repository.MySqlRepository
 {

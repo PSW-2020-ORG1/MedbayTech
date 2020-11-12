@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimsProjekat.Repository
+namespace Backend.General.Model
 {
     public class JSONRepository<T, ID> : IRepository<T, ID>
         where T : IIdentifiable<ID>

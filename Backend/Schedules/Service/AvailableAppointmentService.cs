@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using SimsProjekat.SIMS.Exceptions;
 
-namespace SimsProjekat.Repository.ScheduleRepository
+namespace Backend.General.Model.ScheduleRepository
 {
     public class AvailableAppointmentService
     {

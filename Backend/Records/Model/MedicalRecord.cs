@@ -9,7 +9,7 @@ using Model.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 
 using Backend.Records.Model.Enums;
 using System.ComponentModel.DataAnnotations;

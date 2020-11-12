@@ -5,7 +5,7 @@
 
 using System;
 using System.Collections.Generic;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 namespace Model.Users
 {
     public class Notification : IIdentifiable<int>

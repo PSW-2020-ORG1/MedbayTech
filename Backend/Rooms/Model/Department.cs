@@ -5,7 +5,7 @@
 
 using Model.Users;
 using System;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

@@ -5,7 +5,7 @@
  ***********************************************************************/
 
 using Model.Users;
-using SimsProjekat.Repository;
+using Backend.General.Model;
 using SimsProjekat.SIMS.Exceptions;
 using System;
 using System.Collections.Generic;
