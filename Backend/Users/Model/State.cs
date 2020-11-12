@@ -12,8 +12,8 @@ namespace Model.Users
 {
    public class State
    {
-        public long Id { get; set; }
-        public string Name { get; set; }
+        public long Id { get; protected set; }
+        public string Name { get; protected set; }
 
         public State () { }
         public State(long id, string name)

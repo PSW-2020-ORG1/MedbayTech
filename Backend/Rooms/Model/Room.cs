@@ -9,43 +9,42 @@ using SimsProjekat.Repository;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Model.Rooms
 {
     public class Room : IIdentifiable<int>
     {
         public int Id { get; set; }
-        public int RoomNumber { get; set; }
+        public int RoomNumber { get; protected set; }
         public RoomType RoomType { get; set; }
         public virtual Department Department { get; set; }
-        public int DepartmentId { get; set; }
-        public virtual List<HospitalEquipment> HospitalEquipment { get; set; }
+        public int DepartmentId { get; protected set; }
+        public virtual List<HospitalEquipment> HospitalEquipment { get; protected set; }
 
-        public Room ( )
+        public Room ()
         {
         }
 
-        public Room ( int roomNumber, RoomType roomType, Department department, List<HospitalEquipment> hospitalEquipment )
+        public Room (int id, int roomNumber, RoomType roomType, Department department)
         {
+            Id = id;
             RoomNumber = roomNumber;
             RoomType = roomType;
             Department = department;
-            HospitalEquipment = hospitalEquipment;
+            DepartmentId = department.Id;
+            HospitalEquipment = new List<HospitalEquipment>();
         }
 
-        public Room ( int id )
-        {
-            Id = id;
-        }
-
-        public int GetId ( )
+        public int GetId ()
         {
             return Id;
         }
 
-        public void SetId ( int id )
+        public void SetId (int id)
         {
             Id = id;
         }
+
     }
 }

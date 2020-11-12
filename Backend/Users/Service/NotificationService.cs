@@ -28,9 +28,9 @@ namespace Service.GeneralService
         public Notification NewVacationRequest(Employee employee)
         {
             Notification notification = new Notification();
-            notification.ContentOfNotification = "Novi zahtev za odsustvo!";
+            notification.Content = "Novi zahtev za odsustvo!";
             notification.NotificationCategory = NotificationCategory.VACATION_REQUEST;
-            notification.NotificationFrom = employee;
+            notification.RegisteredUser = employee;
             notification.NotificationTo = (List<RegisteredUser>)userRepository.GetAllManagers();
             return notificationRepository.Create(notification);
         }
@@ -41,8 +41,8 @@ namespace Service.GeneralService
             List<RegisteredUser> notificationTo = new List<RegisteredUser>();
             notificationTo.Add(question.Author);
             notification.NotificationTo = notificationTo;
-            notification.NotificationFrom = question.QuestionReply.Author;
-            notification.ContentOfNotification = "Odgovor na Vaše pitanje je postavljeno od strane " + question.QuestionReply.Author.Name + " " + question.QuestionReply.Author.Surname; 
+            notification.RegisteredUser = question.QuestionReply.Author;
+            notification.Content = "Odgovor na Vaše pitanje je postavljeno od strane " + question.QuestionReply.Author.Name + " " + question.QuestionReply.Author.Surname; 
             notification.NotificationCategory = NotificationCategory.BLOG;
             return notificationRepository.Create(notification);
         }
@@ -51,8 +51,8 @@ namespace Service.GeneralService
         {
             Notification notification = new Notification();
             notification.NotificationCategory = NotificationCategory.BLOG;
-            notification.ContentOfNotification = "Novo pitanje je postavljeno na blogu!";
-            notification.NotificationFrom = question.Author;
+            notification.Content = "Novo pitanje je postavljeno na blogu!";
+            notification.RegisteredUser = question.Author;
             notification.NotificationTo = MakeListOfDoctors(userRepository.GetAllDoctors()).ToList();
             return notificationRepository.Create(notification);
         }
@@ -60,11 +60,11 @@ namespace Service.GeneralService
         public Notification AppointmentNotifyForPatients(Appointment appointement)
         {
             Notification notification = new Notification();
-            notification.NotificationFrom = appointement.Doctor;
+            notification.RegisteredUser = appointement.Doctor;
             List<RegisteredUser> notificationTo = new List<RegisteredUser>();
             notificationTo.Add((medicalRecordRepository.GetObject(appointement.MedicalRecord.Id).Patient));
             notification.NotificationTo = notificationTo;
-            notification.ContentOfNotification = "Imate novi zakazan pregled kod " + appointement.Doctor.Name + " " + appointement.Doctor.Surname;
+            notification.Content = "Imate novi zakazan pregled kod " + appointement.Doctor.Name + " " + appointement.Doctor.Surname;
             notification.NotificationCategory = NotificationCategory.SCHEDULE;
             return notificationRepository.Create(notification);
         }
@@ -73,11 +73,11 @@ namespace Service.GeneralService
         {
             Notification notification = new Notification();
             Patient patient = medicalRecordRepository.GetObject(appointement.MedicalRecord.Id).Patient;
-            notification.NotificationFrom = patient;
+            notification.RegisteredUser = patient;
             List<RegisteredUser> notificationTo = new List<RegisteredUser>();
             notificationTo.Add(appointement.Doctor);
             notification.NotificationTo = notificationTo;
-            notification.ContentOfNotification = "Imate novi zakazan pregled od strane " + patient.Name + " " + patient.Surname;
+            notification.Content = "Imate novi zakazan pregled od strane " + patient.Name + " " + patient.Surname;
             notification.NotificationCategory = NotificationCategory.SCHEDULE;
             return notificationRepository.Create(notification);
         }
@@ -87,8 +87,8 @@ namespace Service.GeneralService
             Notification notification = new Notification();
             notification.NotificationCategory = NotificationCategory.RENOVATION;
             notification.NotificationTo = MakeListOfSecretaries(userRepository.GetAllSecrateries()).ToList();
-            notification.NotificationFrom = null;
-            notification.ContentOfNotification = "Novo renoviranje je zakazano!";
+            notification.RegisteredUser = null;
+            notification.Content = "Novo renoviranje je zakazano!";
             return notificationRepository.Create(notification);
 
         }
@@ -97,8 +97,8 @@ namespace Service.GeneralService
         {
             Notification notification = new Notification();
             notification.NotificationTo = MakeListOfDoctors(userRepository.GetAllDoctorsBySpecialization(specialization)).ToList();
-            notification.NotificationFrom = null;
-            notification.ContentOfNotification = "Novi lek je dodat za validaciju!";
+            notification.RegisteredUser = null;
+            notification.Content = "Novi lek je dodat za validaciju!";
             notification.NotificationCategory = NotificationCategory.MEDICATION;
             return notificationRepository.Create(notification);
         }
@@ -107,9 +107,9 @@ namespace Service.GeneralService
         {
             Notification notification = new Notification();
             notification.NotificationCategory = NotificationCategory.MEDICATION;
-            notification.NotificationFrom = doctor;
+            notification.RegisteredUser = doctor;
             notification.NotificationTo = MakeListOfManagers(userRepository.GetAllManagers()).ToList();
-            notification.ContentOfNotification = "Validiran lek od strane " + doctor.Name + " " + doctor.Surname;
+            notification.Content = "Validiran lek od strane " + doctor.Name + " " + doctor.Surname;
             return notificationRepository.Create(notification);
         }
 
@@ -117,9 +117,9 @@ namespace Service.GeneralService
         {
             Notification notification = new Notification();
             notification.NotificationCategory = NotificationCategory.EMERGENCY_REQUEST;
-            notification.NotificationFrom = null;
+            notification.RegisteredUser = null;
             notification.NotificationTo = MakeListOfSecretaries(userRepository.GetAllSecrateries()).ToList();
-            notification.ContentOfNotification = "Novi zahtev za zakazivanje hitnog pregleda za pacijenta " + 
+            notification.Content = "Novi zahtev za zakazivanje hitnog pregleda za pacijenta " + 
                 emergencyRequest.MedicalRecord.Patient.Name + " " + emergencyRequest.MedicalRecord.Patient.Surname;
             return notificationRepository.Create(notification);
         }
@@ -128,20 +128,20 @@ namespace Service.GeneralService
         {
             Notification notification = new Notification();
             notification.NotificationCategory = NotificationCategory.HOSPITAL_TREATMENT;
-            notification.NotificationFrom = null;
+            notification.RegisteredUser = null;
             notification.NotificationTo = MakeListOfSecretaries(userRepository.GetAllSecrateries()).ToList();
-            notification.ContentOfNotification = "Novi zahtev za bolnièko leèenje je dodat!";
+            notification.Content = "Novi zahtev za bolnièko leèenje je dodat!";
             return notificationRepository.Create(notification);
         }
         public Notification DeletedAppointment(Appointment appointment)
         {
             Notification notification = new Notification();
             notification.NotificationCategory = NotificationCategory.SCHEDULE;
-            notification.NotificationFrom = null;
+            notification.RegisteredUser = null;
             List<RegisteredUser> notificationTo = new List<RegisteredUser>();
             notificationTo.Add(appointment.MedicalRecord.Patient);
             notification.NotificationTo = notificationTo;
-            notification.ContentOfNotification = "Vaš pregled je obrisan! Za više informacija pozovite sekretara.";
+            notification.Content = "Vaš pregled je obrisan! Za više informacija pozovite sekretara.";
             return notificationRepository.Create(notification);
         }
 

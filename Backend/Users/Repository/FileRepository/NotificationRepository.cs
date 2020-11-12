@@ -5,7 +5,6 @@
  ***********************************************************************/
 
 using Model.Users;
-using Repository.ReportRepository;
 using Repository.UserRepository;
 using SimsProjekat.Repository;
 using SimsProjekat.SIMS.Exceptions;
@@ -59,8 +58,8 @@ namespace Backend.Users.Repository.MySqlRepository
 
         public void CompleteObject(Notification entity)
         {
-            if (entity.NotificationFrom != null)
-                entity.NotificationFrom = userRepository.GetObject(entity.NotificationFrom.Username);
+            if (entity.RegisteredUser != null)
+                entity.RegisteredUser = userRepository.GetObject(entity.RegisteredUser.Username);
             for (int i = 0; i < entity.NotificationTo.Count; i++)
             {
                 entity.NotificationTo[i] = userRepository.GetObject(entity.NotificationTo[i].Username);
@@ -69,11 +68,11 @@ namespace Backend.Users.Repository.MySqlRepository
 
         public void SetMissingValues(Notification entity)
         {
-            if (entity.NotificationFrom != null)
-                entity.NotificationFrom = new RegisteredUser(entity.NotificationFrom.Username);
+            if (entity.RegisteredUser != null)
+                entity.RegisteredUser = new RegisteredUser();
             for(int i = 0; i < entity.NotificationTo.Count; i++)
             {
-                entity.NotificationTo[i] = new RegisteredUser(entity.NotificationTo[i].Username);
+                entity.NotificationTo[i] = new RegisteredUser();
             }
         }
     }

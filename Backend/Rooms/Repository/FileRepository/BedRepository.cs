@@ -5,7 +5,6 @@
 
 using Model.Rooms;
 using Repository.MedicalRecordRepository;
-using Repository.ReportRepository;
 using SimsProjekat.Repository;
 using SimsProjekat.SIMS.Exceptions;
 using System;
@@ -69,7 +68,7 @@ namespace Repository.RoomRepository
 
         public void SetMissingValues(Bed entity)
         {
-            entity.Room = new Room(entity.Room.Id);
+            entity.Room = new Room();
         }
 
         public void CompleteObject(Bed entity)
@@ -78,7 +77,7 @@ namespace Repository.RoomRepository
 
             foreach (Occupation occupation in entity.Occupations)
             {
-                occupation.Patient = medicalRecordRepository.GetObject(occupation.Patient.Id);
+                occupation.MedicalRecord = medicalRecordRepository.GetObject(occupation.MedicalRecord.Id);
             }
         }
     }

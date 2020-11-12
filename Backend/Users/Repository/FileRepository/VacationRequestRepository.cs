@@ -4,7 +4,6 @@
 // Purpose: Definition of Class VacationRequestRepository
 
 using Model.Users;
-using Repository.ReportRepository;
 using SimsProjekat.Repository;
 using SimsProjekat.SIMS.Exceptions;
 using System;
@@ -61,7 +60,7 @@ namespace Repository.UserRepository
         
         public void SetMissingValues(VacationRequest vacationRequest)
         {
-            vacationRequest.Employee = new Employee(vacationRequest.Employee.Username);
+            vacationRequest.Employee = new Employee();
         }
 
         public void CompleteObject(VacationRequest vacationRequest)

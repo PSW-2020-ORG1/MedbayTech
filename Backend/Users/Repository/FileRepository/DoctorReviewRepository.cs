@@ -88,8 +88,8 @@ namespace Backend.Users.Repository.MySqlRepository
         private int GetNextID() => stream.GetAll().ToList().Count + 1;
         public void SetMissingValues(DoctorReview entity)
         {
-            entity.Doctor = new Doctor(entity.Doctor.Username);
-            entity.Patient = new Patient(entity.Patient.Username);
+            entity.Doctor = new Doctor();
+            entity.Patient = new Patient();
         }
 
         public void CompleteObject(DoctorReview entity)

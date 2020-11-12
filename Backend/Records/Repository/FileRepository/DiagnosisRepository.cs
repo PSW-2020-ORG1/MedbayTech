@@ -4,7 +4,6 @@
 // Purpose: Definition of Class DiagnosisRepository
 
 using Model.MedicalRecord;
-using Repository.ReportRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

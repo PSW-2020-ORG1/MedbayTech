@@ -10,23 +10,20 @@ namespace Model.Users
    public class QuestionReply
    {
 
-        public int Id { get; set; }
-        public DateTime Date { get; set; }
-        public string Content { get; set; }
+        public int Id { get; protected set; }
+        public DateTime Date { get; protected set; }
+        public string Content { get; protected set; }
         public virtual Doctor Author { get; set; }
-        public string AuthorId { get; set; }
+        public string AuthorId { get; protected set; }
 
         public QuestionReply() { }
-        public QuestionReply(int id)
-        {
-            Id = id;
-        }
 
-        public QuestionReply(DateTime date, string content, Doctor author)
+        public QuestionReply(int Id, DateTime date, string content, Doctor author)
         {
             Date = date;
             Content = content;
             Author = author;
+            AuthorId = author.Id;
         }
 
     }

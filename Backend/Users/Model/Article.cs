@@ -11,28 +11,28 @@ namespace Model.Users
    public class Article : IIdentifiable<int>
    {
         public int Id { get; set; }
-        public DateTime Date { get; set; }
-        public string Image { get; set; }
-        public string DoctorId { get; set; }
-        public int PostContentId { get; set; }
-        public virtual PostContent PostContent { get; set; }
+        public DateTime Date { get; protected set; }
+        public string Image { get; protected set; }
+        public string DoctorId { get; protected set; }
+        public int PostContentId { get; protected set; }
+        public virtual PostContent PostContent { get; protected set; }
         public virtual Doctor Doctor { get; set; }
 
         public Article() 
         {
             PostContent = new PostContent();
         }
-        public Article(int id)
+
+        public Article(int id, DateTime date, string image, PostContent postContent, Doctor doctor)
         {
             Id = id;
-        }
-        public Article(DateTime date, PostContent postContent, Doctor author)
-        {
             Date = date;
+            Image = image;
             PostContent = postContent;
-            Doctor = author;
+            PostContentId = postContent.Id;
+            Doctor = doctor;
+            DoctorId = doctor.Id;
         }
-
 
         public int GetId()
         {

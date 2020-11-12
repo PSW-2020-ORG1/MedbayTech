@@ -4,6 +4,7 @@
 // Purpose: Definition of Class Renovation
 
 using System;
+using Backend.Utils;
 using SimsProjekat.Repository;
 
 namespace Model.Rooms
@@ -11,35 +12,30 @@ namespace Model.Rooms
     public class Renovation : IIdentifiable<int>
     {
         public int Id { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public bool MoveEquipment { get; set; }
+        public Period Period { get; set; }
+        public bool MoveEquipment { get; protected set; }
         public virtual Room Room { get; set; }
-        public int RoomId { get; set; }
+        public int RoomId { get; protected set; }
 
-        public Renovation ( )
+        public Renovation ()
         {
         }
 
-        public Renovation ( int id )
+        public Renovation (int id, Period period, bool moveEquipment, Room room)
         {
             Id = id;
-        }
-
-        public Renovation ( DateTime startDate, DateTime endDate, bool moveEquipment, Room room )
-        {
             Room = room;
-            StartDate = startDate;
-            EndDate = endDate;
+            RoomId = room.Id;
+            Period = period;
             MoveEquipment = moveEquipment;
         }
 
-        public int GetId ( )
+        public int GetId ()
         {
             return Id;
         }
 
-        public void SetId ( int id )
+        public void SetId (int id)
         {
             Id = id;
         }

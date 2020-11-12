@@ -65,7 +65,7 @@ namespace Backend.Users.Repository.MySqlRepository
         }
         public void SetMissingValues(Survey survey)
         {
-            survey.Patient = new Patient(survey.Patient.Username);
+            survey.Patient = new Patient();
         }
     }
 }

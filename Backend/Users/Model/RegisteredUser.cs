@@ -12,48 +12,36 @@ namespace Model.Users
 {
    public class RegisteredUser : IIdentifiable<string>
    {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public string Id { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public DateTime DateOfCreation { get; set; }
-        public EducationLevel EducationLevel { get; set; }
-        public string Profession { get; set; }
-        public string ProfileImage { get; set; }
-        public Gender Gender { get; set; }
+        public string Name { get; protected set; }
+        public string Surname { get; protected set; }
+        public DateTime DateOfBirth { get; protected set; }
+        public string Id { get; protected set; }
+        public string Phone { get; protected set; }
+        public string Email { get; protected set; }
+        public string Username { get; protected set; }
+        public string Password { get; protected set; }
+        public DateTime DateOfCreation { get; protected set; }
+        public EducationLevel EducationLevel { get; protected set; }
+        public string Profession { get; protected set; }
+        public string ProfileImage { get; protected set; }
+        public Gender Gender { get; protected set; }
 
-        public int PlaceOfBirthId { get; set; }
+        public int PlaceOfBirthId { get; protected set; }
         public virtual City PlaceOfBirth { get; set; }
 
-        public int CurrResidenceId { get; set; }
-        public virtual Address CurrResidence { get; set; }
+        public int CurrResidenceId { get; protected set; }
+        public virtual Address CurrResidence { get;  set; }
 
-        public string InsurancePolicyId { get; set; }
-        public virtual InsurancePolicy InsurancePolicy { get; set; }
+        public string InsurancePolicyId { get; protected set; }
+        public virtual InsurancePolicy InsurancePolicy { get; protected set; }
 
         public RegisteredUser() { }
-
-        public RegisteredUser(string id)
-        {
-            Username = id;
-        }
-
-        public RegisteredUser(string name, string surname, string identificationNumber, string phone)
-        {
-            Name = name;
-            Surname = surname;
-            Id = identificationNumber;
-            Phone = phone;
-        }
 
         public RegisteredUser(string name, string surname, DateTime dateOfBirth,
             string identificationNumber, string email, string username, string phone,
             string password, EducationLevel educationLevel, Gender gender,
-            string profession, City city, Address currResidence, InsurancePolicy insurancePolicy)
+            string profession, City city, Address currResidence, InsurancePolicy insurancePolicy,
+            string profileImage)
         {
             Gender = gender;
             Name = name;
@@ -66,10 +54,14 @@ namespace Model.Users
             EducationLevel = educationLevel;
             Profession = profession;
             PlaceOfBirth = city;
+            PlaceOfBirthId = city.Id;
             CurrResidence = currResidence;
+            CurrResidenceId = currResidence.Id;
             InsurancePolicy = insurancePolicy;
+            InsurancePolicyId = insurancePolicy.Id;
             Phone = phone;
-
+            DateOfCreation = DateTime.Now;
+            ProfileImage = profileImage;
         }
 
         public string GetId()

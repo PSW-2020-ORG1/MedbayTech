@@ -5,7 +5,6 @@
  ***********************************************************************/
 
 using Model.Users;
-using Repository.ReportRepository;
 using SimsProjekat.Repository;
 using SimsProjekat.SIMS.Exceptions;
 using System;
@@ -71,7 +70,7 @@ namespace Repository.UserRepository
 
         public void SetMissingValues(WorkDay entity)
         {
-            entity.Employee = new Employee(entity.Employee.Username);
+            entity.Employee = new Employee();
         }
 
         public void CompleteObject(WorkDay entity)

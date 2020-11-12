@@ -4,7 +4,6 @@
 // Purpose: Definition of Class HospitalRepository
 
 using Model.Users;
-using Repository.ReportRepository;
 using SimsProjekat.Repository;
 using SimsProjekat.SIMS.Exceptions;
 using System;

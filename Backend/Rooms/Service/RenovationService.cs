@@ -71,8 +71,8 @@ namespace Service.RoomService
         {
             var allAppointments = appointmentRepository.GetScheduledFromToday();
             if (allAppointments.Any(ent => ent.Value.Room.Id == renovation.Room.Id)
-                && allAppointments.Any(ent2 => ent2.Value.StartTime.Date.CompareTo(renovation.StartDate.Date) >= 0 
-                && allAppointments.Any(ent1 => ent1.Value.StartTime.Date.CompareTo(renovation.EndDate.Date) <= 0)))
+                && allAppointments.Any(ent2 => ent2.Value.Period.StartTime.Date.CompareTo(renovation.Period.StartTime.Date) >= 0 
+                && allAppointments.Any(ent1 => ent1.Value.Period.StartTime.Date.CompareTo(renovation.Period.EndTime.Date) <= 0)))
                 throw new RoomHasAppointments(string.Format(HAS_APPOINTMENTS, renovation.Room.Id));
             return true;
         }
@@ -106,7 +106,7 @@ namespace Service.RoomService
             List<Renovation> activeRenovations = new List<Renovation>();
             foreach(Renovation renovation in allRenovations)
             {
-                if(renovation.StartDate.CompareTo(DateTime.Today) < 0)
+                if(renovation.Period.StartTime.CompareTo(DateTime.Today) < 0)
                 {
                     activeRenovations.Add(renovation);
                 }

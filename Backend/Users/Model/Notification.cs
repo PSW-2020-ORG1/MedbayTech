@@ -12,22 +12,22 @@ namespace Model.Users
     {
 
         public int Id { get; set; }
-        public string ContentOfNotification { get; set; }
+        public string Content { get; set; }
         public int NotificationCategoryId { get; set; }
         public virtual NotificationCategory NotificationCategory { get; set; }
-        public string NotificationFromRegisteredUserId { get; set; }
-        public virtual RegisteredUser NotificationFrom { get; set; }
+        public string RegisteredUserId { get; set; }
+        public virtual RegisteredUser RegisteredUser { get; set; }
         public virtual List<RegisteredUser> NotificationTo { get; set; }
 
 
         public Notification() { }
-        public Notification(int id) { }
-        public Notification(string content, NotificationCategory category, RegisteredUser notificationFrom, List<RegisteredUser> notificationTo)
+        public Notification(int id, string content, NotificationCategory category, RegisteredUser registeredUser)
         {
-            ContentOfNotification = content;
+            Id = id;
+            Content = content;
             NotificationCategory = category;
-            NotificationTo = notificationTo;
-            NotificationFrom = notificationFrom;
+            RegisteredUser = registeredUser;
+            RegisteredUserId = registeredUser.Id;
         }
 
         public int GetId()

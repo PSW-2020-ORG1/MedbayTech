@@ -12,33 +12,34 @@ namespace Model.Rooms
     public class HospitalEquipment : IIdentifiable<int>
     {
         public int Id { get; set; }
-        public int QuantityInRoom { get; set; }
+        public int QuantityInRoom { get; protected set; }
         public int QuantityInStorage { get; set; }
-        public int RoomId { get; set; }
-        public virtual Room Room { get; set; }
+        public int RoomId { get; protected set; }
+        public virtual Room Room { get; protected set; }
 
-        public virtual EquipmentType EquipmentType { get; set; }
-        public int EquipmentTypeId { get; set; }
+        public virtual EquipmentType EquipmentType { get; protected set; }
+        public int EquipmentTypeId { get; protected set; }
 
-        public HospitalEquipment (int roomNumberIn, int quantityInRoom, int quantityinStorage, EquipmentType et )
+        public HospitalEquipment (int id, int quantityInRoom, int quantityinStorage, Room room, EquipmentType et)
         {
             QuantityInRoom = quantityInRoom;
             QuantityInStorage = quantityinStorage;
-            RoomId = roomNumberIn;
+            Room = room;
+            RoomId = Room.Id;
             EquipmentType = et;
-            
+            EquipmentTypeId = et.Id;
         }
 
-        public HospitalEquipment ( )
+        public HospitalEquipment ()
         {
         }
 
-        public int GetId ( )
+        public int GetId ()
         {
             return Id;
         }
 
-        public void SetId ( int id )
+        public void SetId (int id)
         {
             this.Id = id;
         }

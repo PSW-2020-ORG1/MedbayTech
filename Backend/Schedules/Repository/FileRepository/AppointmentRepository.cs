@@ -9,7 +9,6 @@ using Model.Rooms;
 using Model.Schedule;
 using Model.Users;
 using Repository.MedicalRecordRepository;
-using Repository.ReportRepository;
 using Repository.RoomRepository;
 using Repository.UserRepository;
 using SimsProjekat.Repository;
@@ -63,11 +62,11 @@ namespace Repository.ScheduleRepository
             Dictionary<int, Appointment> appointmentsByDate = new Dictionary<int, Appointment>();
             foreach (Appointment appointment in allAppointments)
             {
-                if (appointment.StartTime.Date.CompareTo(date.Date) == 0)
+                if (appointment.Period.StartTime.Date.CompareTo(date.Date) == 0)
                 {
                     CompleteObject(appointment);
                     Doctor doctor = (Doctor)doctorRepository.GetObject(appointment.Doctor.Username);
-                    appointmentsByDate.Add((new Appointment(appointment.StartTime, appointment.EndTime, doctor, TypeOfAppointment.examination)).GetHashCode(), appointment);
+                    appointmentsByDate.Add((new Appointment()).GetHashCode(), appointment);
                 }
             }
             return appointmentsByDate;
@@ -88,9 +87,9 @@ namespace Repository.ScheduleRepository
 
         public void SetMissingValues(Appointment entity)
         {
-            entity.Room = new Room(entity.Room.Id);
-            entity.MedicalRecord = new MedicalRecord(entity.MedicalRecord.Id);
-            entity.Doctor = new Doctor(entity.Doctor.Username);
+            entity.Room = new Room();
+            entity.MedicalRecord = new MedicalRecord();
+            entity.Doctor = new Doctor();
         }
 
         public int GetNextID() => stream.GetAll().ToList().Count + 1;
@@ -110,7 +109,7 @@ namespace Repository.ScheduleRepository
             foreach (Appointment appointment in allAppointments)
             {
                 CompleteObject(appointment);
-                if (appointment.StartTime.Date.CompareTo(DateTime.Today.Date) > 0)
+                if (appointment.Period.StartTime.Date.CompareTo(DateTime.Today.Date) > 0)
                 {
                     appointmentsByDate.Add(appointment.GetHashCode(), appointment);
                 }

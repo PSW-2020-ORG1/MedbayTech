@@ -7,11 +7,11 @@ using Microsoft.Extensions.Configuration;
 using Backend.Examinations.Model;
 using Model.MedicalRecord;
 using Model.Medications;
-using Model.Reports;
 using Model.Schedule;
 using Model.Users;
 using MySql.Data.MySqlClient;
 using ZdravoKorporacija.Model.Users;
+using Backend.Utils;
 
 namespace Model
 {
@@ -99,22 +99,22 @@ namespace Model
                 ); */
             modelBuilder.Entity<City>().HasData(
 
-                new City { Id = 21000, Name = "Novi Sad", StateId = 1 },
-                new City { Id = 11000, Name = "Beograd", StateId = 1 }
+                new City(21000, "Novi Sad", new State(1, "Serbia")),
+                new City(11000, "Beograd", new State(1, "Serbia"))
                 );
 
             modelBuilder.Entity<State>().HasData(
-                new State { Id = 1, Name = "Serbia" }
+                 new State(1, "Serbia")
             );
 
             modelBuilder.Entity<Address>().HasData(
-                new Address { Id = 1, Street = "Radnicka", Number = 4, CityId = 21000 },
-                new Address { Id = 2, Street = "Gospodara Vucica", Number = 5, CityId = 11000 }
+                new Address(1, "Radnicka", 4, 28, 7, new City(21000, "Novi Sad", new State(1, "Serbia"))),
+                new Address(2, "1100 Kaplara", 3, 23, 7, new City(21000, "Novi Sad", new State(1, "Serbia")))
                 );
 
             modelBuilder.Entity<InsurancePolicy>().HasData(
-                new InsurancePolicy { Company = "Dunav osiguranje d.o.o", Id = "policy1", PolicyStartDate = new DateTime(2020, 11, 1), PolicyEndDate = new DateTime(2022, 11, 1) }
-            );
+                new InsurancePolicy("policy1", "Dunav Osiguranje D.O.O", new Period(new DateTime(2020, 11, 1), new DateTime(2022, 11, 1)))
+                );
 
           /*  modelBuilder.Entity<Symptoms>().HasData(
                 new Symptoms { Id = 1, Name = "Dunav osiguranje d.o.o" }
@@ -133,33 +133,20 @@ namespace Model
           
 
             modelBuilder.Entity<RegisteredUser>().HasData(
-                new RegisteredUser
-                {
-                    Id = "2406978890045",
-                    CurrResidenceId = 1,
-                    DateOfBirth = new DateTime(1978, 6, 24),
-                    DateOfCreation = new DateTime(),
-                    EducationLevel = EducationLevel.bachelor,
-                    Email = "marko@gmail.com",
-                    Gender = Gender.MALE,
-                    InsurancePolicyId = "policy1",
-                    Name = "Marko",
-                    Surname = "Markovic",
-                    Username = "markic",
-                    Password = "marko1978",
-                    Phone = "065/123-4554",
-                    PlaceOfBirthId = 11000,
-                    Profession = "vodoinstalater",
-                    ProfileImage = "."
-
-                }
+                new RegisteredUser("Marko", "Markic", new DateTime(1978, 6, 24), "2406978890045", "marko@gmail.com", "markic",
+                "065/123-4554", "marko1978", EducationLevel.bachelor, Gender.MALE, "Vodoinstalater", new City(21000, "Novi Sad", new State(1, "Serbia")),
+                new Address(1, "Radnicka", 4, 28, 7, new City(21000, "Novi Sad", new State(1, "Serbia"))),
+                new InsurancePolicy("policy1", "Dunav Osiguranje D.O.O", new Period(new DateTime(2020, 11, 1), new DateTime(2022, 11, 1))),
+                "")
                 );
 
             modelBuilder.Entity<Feedback>().HasData(
-                new Feedback { Id = 1, AdditionalNotes = "Sve je super!", Approved = true, Date = new DateTime(), RegisteredUserId = "2406978890045", Anonymous = false, AllowedForPublishing = true},
-                new Feedback { Id = 2, AdditionalNotes = "Bolnica je veoma losa, bas sam razocaran! Rupe u zidovima, voda curi na sve strane, treba vas zatvoriti!!!", Approved = false, Date = new DateTime(), RegisteredUserId = "2406978890045", Anonymous = false, AllowedForPublishing = true },
-                new Feedback { Id = 3, AdditionalNotes = "Predivno, ali i ruzno! Sramite se! Cestitke... <3", Approved = false, Date = new DateTime(), RegisteredUserId = "2406978890045", Anonymous = false, AllowedForPublishing = false },
-                new Feedback { Id = 4, AdditionalNotes = "Odlicno!", Approved = false, Date = new DateTime(), RegisteredUserId = "2406978890045", Anonymous = false, AllowedForPublishing = false }
+                new Feedback(2, DateTime.Now, "Bolnica je veoma losa, bas sam razocaran! Rupe u zidovima, voda curi na sve strane, treba vas zatvoriti!!!",
+                Grade.veryPoor, true, true, new RegisteredUser("Marko", "Markic", new DateTime(1978, 6, 24), "2406978890045", "marko@gmail.com", "markic",
+                "065/123-4554", "marko1978", EducationLevel.bachelor, Gender.MALE, "Vodoinstalater", new City(21000, "Novi Sad", new State(1, "Serbia")),
+                new Address(1, "Radnicka", 4, 28, 7, new City(21000, "Novi Sad", new State(1, "Serbia"))),
+                new InsurancePolicy("policy1", "Dunav Osiguranje D.O.O", new Period(new DateTime(2020, 11, 1), new DateTime(2022, 11, 1))),
+                ""))
             );
         }
     }

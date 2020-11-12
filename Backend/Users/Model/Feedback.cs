@@ -12,27 +12,25 @@ namespace Model.Users
     public class Feedback : IIdentifiable<int>
     {
         public int Id { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Date { get; protected set; }
         public string AdditionalNotes { get; set; }
-        public Boolean Approved { get; set; }
-        public Boolean Anonymous { get; set; }
-        public Boolean AllowedForPublishing { get; set; }
-        public string RegisteredUserId { get; set; }
-
+        public bool Approved { get; set; }
+        public bool Anonymous { get; set; }
+        public bool AllowedForPublishing { get; set; }
+        public Grade Grade { get; set; }
+        public string RegisteredUserId { get; protected set; }
         public virtual RegisteredUser RegisteredUser { get; set; }
 
         public Feedback() { }
 
-        public Feedback(int id)
+        public Feedback(int id, DateTime date, string additionalNotes, Grade grade, bool anonymous, bool allowedForPublishing, RegisteredUser user) 
         {
             Id = id;
-        }
-
-        public Feedback(DateTime date, string additionalNotes, Grade everythingInGoodPlace, Boolean anonymous, Boolean allowedForPublishing, RegisteredUser user) 
-        {
             Date = date;
             AdditionalNotes = additionalNotes;
+            Grade = grade;
             RegisteredUser = user;
+            RegisteredUserId = user.Id;
             Anonymous = anonymous;
             Approved = false;
             AllowedForPublishing = allowedForPublishing;

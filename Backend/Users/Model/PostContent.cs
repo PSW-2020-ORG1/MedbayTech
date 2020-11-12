@@ -15,13 +15,10 @@ namespace Model.Users
         public string ContentTitle { get; set; }
 
         public PostContent() { }
-        public PostContent(int id)
+
+        public PostContent(int id, string content, string contentTitle)
         {
             Id = id;
-        }
-
-        public PostContent(string content, string contentTitle)
-        {
             Content = content;
             ContentTitle = contentTitle;
         }

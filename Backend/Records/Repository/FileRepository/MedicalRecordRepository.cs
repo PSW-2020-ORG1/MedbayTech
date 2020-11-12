@@ -5,7 +5,6 @@
 
 using Model.MedicalRecord;
 using Model.Users;
-using Repository.ReportRepository;
 using System;
 using System.Collections.Generic;
 using Repository.MedicationRepository;
@@ -132,7 +131,7 @@ namespace Repository.MedicalRecordRepository
 
         private void SetPatient(MedicalRecord entity)
         {
-            entity.Patient = new Patient(entity.Patient.Username);
+            entity.Patient = new Patient();
         }
 
         public void CompleteObject(MedicalRecord record)

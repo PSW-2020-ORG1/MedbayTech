@@ -56,9 +56,9 @@ namespace Service.ScheduleService
             Appointment bestAppointment = null;
             foreach (Appointment appointment in allAppointmentsInTimePeriod)
             {
-                if (appointment.StartTime.CompareTo(minimumDate) < 0)
+                if (appointment.Period.StartTime.CompareTo(minimumDate) < 0)
                 {
-                    minimumDate = appointment.StartTime;
+                    minimumDate = appointment.Period.StartTime;
                     bestAppointment = appointment;
                 }
             }
@@ -71,9 +71,9 @@ namespace Service.ScheduleService
             Appointment bestAppointment = null;
             foreach (Appointment appointment in allAppointmentsInTimePeriod)
             {
-                if (appointment.StartTime.CompareTo(minimumDate) < 0)
+                if (appointment.Period.StartTime.CompareTo(minimumDate) < 0)
                 {
-                    minimumDate = appointment.StartTime;
+                    minimumDate = appointment.Period.StartTime;
                     bestAppointment = appointment;
                 }
             }

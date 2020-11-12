@@ -12,32 +12,24 @@ namespace Model.Users
    public class WorkDay : IIdentifiable<int>
    {
         public int Id { get; set; }
-        public Days Day { get; set; }
-        public DateTime Date { get; set; }
+        public Days Day { get; protected set; }
+        public DateTime Date { get; protected set; }
 
-        public virtual Shift Shift { get; set; }
+        public virtual Shift Shift { get; protected set; }
 
-        public int EmployeeId { get; set; }
+        public string EmployeeId { get; protected set; }
         public virtual Employee Employee { get; set; }
 
-        public int shiftId;
-        public string employeeId;
-      
-
         public WorkDay() { }
-        
-        public WorkDay(int id)
+
+        public WorkDay(int id, Days day, DateTime dateTime, Shift shift, Employee employee)
         {
             Id = id;
-        }
-
-        public WorkDay(Days day, DateTime dateTime, Shift shift, Employee employee)
-        {
             Day = day;
             Date = dateTime;
             Shift = shift;
             Employee = employee;
-
+            EmployeeId = employee.Id;
         }
 
         public int GetId()

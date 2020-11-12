@@ -30,7 +30,7 @@ namespace Service.UserService
             int CurrentlyActiveVacation = 0;
             foreach(VacationRequest vacationRequest in allVacationRequests)
             {
-                if(vacationRequest.Approved==true && vacationRequest.FromDate.CompareTo(DateTime.Today)<0)
+                if(vacationRequest.Approved==true && vacationRequest.Period.StartTime.CompareTo(DateTime.Today)<0)
                 {
                     ++CurrentlyActiveVacation;
                 }
@@ -44,7 +44,7 @@ namespace Service.UserService
             int ActiveVacationsInPeriodOfTime = 0;
             foreach (VacationRequest vacationRequest in allVacationRequests)
             {
-                if (vacationRequest.Approved == true && vacationRequest.FromDate.CompareTo(startDate) <= 0 && vacationRequest.ToDate.CompareTo(endDate) >= 0)
+                if (vacationRequest.Approved == true && vacationRequest.Period.StartTime.CompareTo(startDate) <= 0 && vacationRequest.Period.EndTime.CompareTo(endDate) >= 0)
                 {
                     ++ActiveVacationsInPeriodOfTime;
                 }

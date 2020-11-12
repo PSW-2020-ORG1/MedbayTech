@@ -12,24 +12,21 @@ namespace Model.Users
    public class Hospital : IIdentifiable<int>
    {
 
-        public string Description { get; set; }
-        public string Name { get; set; }
+        public string Description { get; protected set; }
+        public string Name { get; protected set; }
         public int Id { get; set; }
-        public virtual Address Address { get; set; }
-        public int AddressId { get; set; }
+        public virtual Address Address { get; protected set; }
+        public int AddressId { get; protected set; }
 
         public Hospital() { }
 
-        public Hospital(int id)
+        public Hospital(int id, string description, string name, Address address)
         {
             Id = id;
-        }
-
-        public Hospital(string descritpion, string name, Address address)
-        {
-            Description = descritpion;
+            Description = description;
             Name = name;
             Address = address;
+            AddressId = address.Id;
         }
 
 

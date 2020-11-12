@@ -4,7 +4,6 @@
 // Purpose: Definition of Class EmergencyRequestRepository
 
 using Backend.Examinations.Model;
-using Repository.ReportRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -31,7 +31,7 @@ namespace Service.ScheduleService
         {
             foreach (Appointment appointment in allAppointmentsInTimePeriod)
             {
-                Console.WriteLine(appointment.StartTime.ToString("dd.MM.yyyy. HH:mm:ss") + " " + appointment.EndTime.ToString("dd.MM.yyyy. HH:mm:ss"));
+                Console.WriteLine(appointment.Period.StartTime.ToString("dd.MM.yyyy. HH:mm:ss") + " " + appointment.Period.EndTime.ToString("dd.MM.yyyy. HH:mm:ss"));
             }
             if (allAppointmentsInTimePeriod.Count > 0)
                 return allAppointmentsInTimePeriod[rndGen.Next(0, allAppointmentsInTimePeriod.Count)];

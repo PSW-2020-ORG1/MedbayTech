@@ -9,28 +9,25 @@ namespace Model.Users
 {
    public class DoctorReview
    {
-        public string PatientId { get; set;}
-        public string DoctorId { get; set; }
         public int Id { get; set; }
-        public DateTime DateOfReview { get; set; }
+        public DateTime DateOfReview { get; protected set; }
         public Grade Grade { get; set; }
 
+        public string PatientId { get; protected set; }
         public virtual Patient Patient { get; set; }
+        public string DoctorId { get; protected set; }
         public virtual Doctor Doctor { get; set; }
 
         public DoctorReview() { }
 
-        public DoctorReview(int id)
-        {
-            Id = id;
-        }
-
-        public DoctorReview(DateTime dateOfReview, Grade grade, Patient patient, Doctor doctor)
+        public DoctorReview(int id, DateTime dateOfReview, Grade grade, Patient patient, Doctor doctor)
         {
             DateOfReview = dateOfReview;
             Grade = grade;
             Patient = patient;
+            PatientId = patient.Id;
             Doctor = doctor;
+            DoctorId = doctor.Id;
         }
 
     }

@@ -6,7 +6,6 @@
 
 using Model.Rooms;
 using Model.Users;
-using Repository.ReportRepository;
 using Repository.ScheduleRepository;
 using Repository.UserRepository;
 using Backend.Exceptions.IncorrectEmailAddress;

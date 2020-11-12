@@ -6,7 +6,6 @@
 
 using Model.Medications;
 using Model.Users;
-using Repository.ReportRepository;
 using Repository.UserRepository;
 using SimsProjekat.Repository;
 using System;
@@ -81,7 +80,7 @@ namespace Repository.MedicationRepository
         {
             int MedId = entity.Medication.Id;
             entity.Medication = new Medication(MedId);
-            entity.Doctor = new Doctor(entity.Doctor.Username);
+            entity.Doctor = new Doctor();
         }
 
         public int GetNextID() => stream.GetAll().ToList().Count + 1;

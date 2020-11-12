@@ -127,7 +127,7 @@ namespace SimsProjekat.Repository.ScheduleRepository
             {
                 foreach (Appointment availableAppointment in availableAppointments.Values)
                 {
-                    if (appointment.StartTime.CompareTo(availableAppointment.StartTime) >= 0 && appointment.StartTime.CompareTo(availableAppointment.EndTime) < 0
+                    if (appointment.Period.StartTime.CompareTo(availableAppointment.Period.StartTime) >= 0 && appointment.Period.StartTime.CompareTo(availableAppointment.Period.EndTime) < 0
                         && appointment.Room.Id == availableAppointment.Room.Id)
                     {
                         availableAppointments.Remove(availableAppointment.GetHashCode());
@@ -164,9 +164,8 @@ namespace SimsProjekat.Repository.ScheduleRepository
             var allScheduled = appointmentRepository.GetAppointmentsByDate(workDay.Date);
             while (startTime.CompareTo(endTime) < 0)
             {
-                Appointment appointment = new Appointment(startTime, startTime.AddMinutes(appointmentTimePeriod),
-                    (Doctor)workDay.Employee, TypeOfAppointment.examination);
-                if (!allScheduled.ContainsKey(appointment.GetHashCode()) && !(appointment.EndTime.Hour > workDay.Shift.EndHour))
+                Appointment appointment = new Appointment();
+                if (!allScheduled.ContainsKey(appointment.GetHashCode()) && !(appointment.Period.EndTime.Hour > workDay.Shift.EndHour))
                 {
                     appointment.TypeOfAppointment = TypeOfAppointment.examination;
                     availableAppointments.Add(appointment.GetHashCode(), appointment);
@@ -185,9 +184,8 @@ namespace SimsProjekat.Repository.ScheduleRepository
             var allScheduled = appointmentRepository.GetAppointmentsByDate(workDay.Date);
             while (startTime.CompareTo(endTime) < 0)
             {
-                Appointment appointment = new Appointment(startTime, startTime.AddMinutes(appointmentTimePeriod * surgeryMultiplyTime),
-                    (Doctor)workDay.Employee, TypeOfAppointment.examination);
-                if (!allScheduled.ContainsKey(appointment.GetHashCode()) && !(appointment.EndTime.Hour > workDay.Shift.EndHour) 
+                Appointment appointment = new Appointment();
+                if (!allScheduled.ContainsKey(appointment.GetHashCode()) && !(appointment.Period.EndTime.Hour > workDay.Shift.EndHour) 
                     && ifCanScheduleSurgery(appointment))
                 {
                     appointment.TypeOfAppointment = TypeOfAppointment.examination;
@@ -201,11 +199,11 @@ namespace SimsProjekat.Repository.ScheduleRepository
         private bool ifCanScheduleSurgery(Appointment appointment)
         {
             bool somethingBetweenScheduled = false;
-            DateTime checkFrom = appointment.StartTime;
-            var allScheduled = appointmentRepository.GetAppointmentsByDate(appointment.StartTime.Date);
-            while (checkFrom.CompareTo(appointment.EndTime) < 0)
+            DateTime checkFrom = appointment.Period.StartTime;
+            var allScheduled = appointmentRepository.GetAppointmentsByDate(appointment.Period.StartTime.Date);
+            while (checkFrom.CompareTo(appointment.Period.EndTime) < 0)
             {
-                Appointment appointmentToCheck = new Appointment(checkFrom, checkFrom.AddMinutes(appointmentTimePeriod), appointment.Doctor, TypeOfAppointment.surgery);
+                Appointment appointmentToCheck = new Appointment();
                 if (allScheduled.ContainsKey(appointmentToCheck.GetHashCode()))
                     somethingBetweenScheduled = true;
                 checkFrom = checkFrom.AddMinutes(appointmentTimePeriod);

@@ -97,7 +97,7 @@ namespace Backend.Users.Repository.MySqlRepository
         }
         public void SetMissingValues(Feedback entity)
         {
-            entity.RegisteredUser = new RegisteredUser(entity.RegisteredUser.Username);
+            entity.RegisteredUser = new RegisteredUser();
         }
     }
 }

@@ -5,7 +5,6 @@
  ***********************************************************************/
 
 using Model.Users;
-using Repository.ReportRepository;
 using Repository.UserRepository;
 using SimsProjekat.Repository;
 using SimsProjekat.SIMS.Exceptions;
@@ -81,9 +80,9 @@ namespace Backend.Users.Repository.MySqlRepository
 
         public void SetMissingValues(Question entity)
         {
-            entity.Author = new Patient(entity.Author.Username); 
+            entity.Author = new Patient(); 
             if (entity.QuestionReply.Author != null)
-                entity.QuestionReply.Author = new Doctor(entity.QuestionReply.Author.Username);
+                entity.QuestionReply.Author = new Doctor();
 
         }
     }

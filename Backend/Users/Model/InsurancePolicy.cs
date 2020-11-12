@@ -7,30 +7,25 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Backend.Utils;
 using Pomelo.EntityFrameworkCore.MySql.Query.Internal;
 
 namespace Model.Users
 {
    public class InsurancePolicy
    {
-        public string Company { get; set; }
-        public string Id { get; set; }
-        public DateTime PolicyStartDate { get; set; }
-        public DateTime PolicyEndDate { get; set; }
+        public string Company { get; protected set; }
+        public string Id { get; protected set; }
+        public Period Period { get; set; }
 
 
 
         public InsurancePolicy() { }
-        public InsurancePolicy(string id)
+        public InsurancePolicy(string id, string company, Period period)
         {
             Id = id;
-        }
-        public InsurancePolicy(string company, string personalInsuranceNumber, DateTime policyStartDate, DateTime policyEndDate)
-        {
             Company = company;
-            Id = personalInsuranceNumber;
-            PolicyStartDate = policyStartDate;
-            PolicyEndDate = policyEndDate;
+            Period = period;
         }
 
     

@@ -8,7 +8,6 @@ using Model.MedicalRecord;
 using Repository.UserRepository;
 using Repository.MedicalRecordRepository;
 using Model.Users;
-using Repository.ReportRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,7 +91,7 @@ namespace Repository.ExaminationRepository
 
         private void SetDoctor(ExaminationSurgery entity)
         {
-            entity.Doctor = new Doctor(entity.Doctor.Username);
+            entity.Doctor = new Doctor();
         }
 
         private void SetMedicalRecord(ExaminationSurgery entity)

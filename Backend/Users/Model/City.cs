@@ -10,25 +10,20 @@ namespace Model.Users
 {
    public class City
    {
-        private string name;
+        public string Name { get; protected set; }
 
-        public long StateId { get; set; }
-        public virtual State State {get; set; }
+        public long StateId { get; protected set; }
+        public virtual State State { get; protected set; }
         public int Id { get; set; }
 
         public City() { }
 
-        public City(int id)
-        {
-            Id = id;
-        }
-
-        public City(string name, State state)
+        public City(int id, string name, State state)
         {
             Name = name;
             State = state;
+            StateId = state.Id;
+            Id = id;
         }
-
-        public string Name { get => name; set => name = value; }
     }
 }

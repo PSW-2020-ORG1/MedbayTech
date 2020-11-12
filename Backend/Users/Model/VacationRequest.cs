@@ -5,6 +5,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using Backend.Utils;
 using SimsProjekat.Repository;
 
 namespace Model.Users
@@ -12,30 +13,25 @@ namespace Model.Users
    public class VacationRequest : IIdentifiable<int>
    {
       public int Id { get; set; }
-      public  DateTime FromDate { get; set; }
-      public DateTime ToDate { get; set; }
-      public string ReasonForVacation { get; set; }
+      public Period Period { get; protected set; }
+      public string ReasonForVacation { get; protected set; }
       public bool Approved { get; set; }
       
-      public int EmployeeId { get; set; }
-      public virtual Employee Employee { get; set; }
+      public string EmployeeId { get; protected set; }
+      public virtual Employee Employee { get;  set; }
 
 
 
         public VacationRequest() { }
 
-        public VacationRequest(int id)
+        public VacationRequest(int id, Period period, string reasonForVacation, bool approved, Employee employee)
         {
             Id = id;
-        }
-
-        public VacationRequest(int id,DateTime fromDate,DateTime toDate,string reasonForVacation,Employee employee)
-        {
-            Id = id;
-            FromDate = fromDate;
-            ToDate = toDate;
+            Period = period;
             ReasonForVacation = reasonForVacation;
             Employee = employee;
+            EmployeeId = employee.Id;
+            Approved = approved;
         }
 
         public int GetId()

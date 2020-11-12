@@ -4,7 +4,6 @@
 // Purpose: Definition of Class RenovationRepository
 
 using Model.Rooms;
-using Repository.ReportRepository;
 using SimsProjekat.Repository;
 using SimsProjekat.SIMS.Exceptions;
 using System;
@@ -47,7 +46,7 @@ namespace Repository.RoomRepository
             return allRenovations;
         }
 
-        public IEnumerable<Renovation> GetAllFromDate(DateTime date) => base.GetAll().Where(renovation => renovation.StartDate.CompareTo(date) < 0).ToList();
+        public IEnumerable<Renovation> GetAllFromDate(DateTime date) => base.GetAll().Where(renovation => renovation.Period.StartTime.CompareTo(date) < 0).ToList();
         
         public int GetNextID() => base.GetAll().ToList().Count + 1;
 
@@ -66,7 +65,7 @@ namespace Repository.RoomRepository
 
         public void SetMissingValues(Renovation entity)
         {
-            entity.Room = new Room(entity.Room.Id);
+            entity.Room = new Room();
         }
         public void CompleteObject(Renovation entity)
         {

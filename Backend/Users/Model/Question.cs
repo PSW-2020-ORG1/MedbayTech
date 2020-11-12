@@ -12,13 +12,13 @@ namespace Model.Users
    {
 
         public int Id { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Date { get; protected set; }
         public bool FrequentlyAsked { get; set; }
         public virtual Patient Author { get; set; }
-        public string AuthorId { get; set; }
-        public virtual PostContent PostContent { get; set; }
-        public int PostContentId { get; set; }
-        public QuestionReply QuestionReply { get; set; }
+        public string AuthorId { get; protected set; }
+        public virtual PostContent PostContent { get; protected set; }
+        public int PostContentId { get; protected set; }
+        private QuestionReply _questionReply;
         public int QuestionReplyId { get; set; }
 
         public Question() 
@@ -26,20 +26,24 @@ namespace Model.Users
             PostContent = new PostContent();
             QuestionReply = new QuestionReply();
         }
-        public Question(int id)
-        {
-            PostContent = new PostContent();
-            QuestionReply = new QuestionReply();
-            Id = id;
-        }
 
-        public Question(DateTime date, bool frequentlyAsked, Patient author, PostContent postContent)
+        public Question(int id, DateTime date, bool frequentlyAsked, Patient author, PostContent postContent)
         {
             Date = date;
             FrequentlyAsked = frequentlyAsked;
             Author = author;
+            AuthorId = author.Id;
             PostContent = postContent;
-            QuestionReply = new QuestionReply();
+            PostContentId = postContent.Id;
+        }
+        public QuestionReply QuestionReply 
+        {
+            get => _questionReply;
+            set
+            {
+                _questionReply = value;
+                QuestionReplyId = value.Id;
+            }
         }
 
         public int GetId()

@@ -86,9 +86,9 @@ namespace Service.ScheduleService
         public Appointment ChangeDateTimeOfAppointment(Appointment appointment, DateTime termOfAppointmetn)
         {
             Appointment appointmentToUpdate = appointmentRepository.GetObject(appointment.Id);
-            appointmentToUpdate.StartTime = termOfAppointmetn;
+            appointmentToUpdate.Period.StartTime = termOfAppointmetn;
             int ifSurgeryMultiply = appointment.TypeOfAppointment == TypeOfAppointment.surgery ? 5 : 1;
-            appointmentToUpdate.EndTime = termOfAppointmetn.AddMinutes(appointmentTimePeriod * ifSurgeryMultiply);
+            appointmentToUpdate.Period.EndTime = termOfAppointmetn.AddMinutes(appointmentTimePeriod * ifSurgeryMultiply);
             return appointmentRepository.Update(appointmentToUpdate);
         }
 
@@ -138,15 +138,15 @@ namespace Service.ScheduleService
         }
         private bool CheckIfTooEarlyToSchedule(Appointment appointment, bool ifUrgent)
         {
-            if (appointment.StartTime.Date.CompareTo(DateTime.Now.AddHours(allowedPeriodOfTime).Date) <= 0 && !ifUrgent)
+            if (appointment.Period.StartTime.Date.CompareTo(DateTime.Now.AddHours(allowedPeriodOfTime).Date) <= 0 && !ifUrgent)
                 throw new NotValidTimeForScheduling(string.Format(CANT_SCHEDULE, allowedPeriodOfTime));
             return true;
         }
 
         private bool CheckIfAlreadyScheduled(Appointment appointment)
         {
-            if (appointmentRepository.GetAll().Any(ent => ent.StartTime.CompareTo(appointment.StartTime) == 0 && ent.Doctor.Username.Equals(appointment.Doctor.Username)))
-                throw new AlreadyOccupied(string.Format(ALREADY_SCHEDULED, appointment.StartTime.ToString("dd.MM.yyyy. HH:mm")));
+            if (appointmentRepository.GetAll().Any(ent => ent.Period.StartTime.CompareTo(appointment.Period.StartTime) == 0 && ent.Doctor.Username.Equals(appointment.Doctor.Username)))
+                throw new AlreadyOccupied(string.Format(ALREADY_SCHEDULED, appointment.Period.StartTime.ToString("dd.MM.yyyy. HH:mm")));
             return true;
         }
 

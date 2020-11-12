@@ -46,7 +46,7 @@ namespace Backend.Users.Repository.MySqlRepository
 
         public void SetMissingValues(Address entity)
         {
-            entity.City = new City(entity.City.Id);
+            entity.City = new City();
         }
 
         public IEnumerable<Address> GetAdressesByCity(City city) => GetAll().ToList().Where(entity => entity.City.Id == city.Id);

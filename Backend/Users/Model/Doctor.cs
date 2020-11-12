@@ -13,40 +13,42 @@ namespace Model.Users
 {
    public class Doctor : Employee
    {
-        public string LicenseNumber { get; set; }
-        public bool OnCall { get; set; }
-        public double PatientReview { get; set; }
-        // TODO(Jovan): Does Specialization need a Doctor reference?
+        public string LicenseNumber { get; protected set; }
+        public bool OnCall { get; protected set; }
+        public double PatientReview { get; protected set; }
         public virtual List<Specialization> Specializations { get; set; }
-        public int DepartmentId { get; set; }
-        public virtual Department Department { get; set; }
-        public int ExaminationRoomId { get; set; }
-        public virtual Room ExaminationRoom { get; set; }
-        public int OperationRoomId { get; set; }
-        public virtual Room OperationRoom { get; set; }
+        public int DepartmentId { get; protected set; }
+        public virtual Department Department { get;  set; }
+        public int ExaminationRoomId { get; protected set; }
+        public virtual Room ExaminationRoom { get;  set; }
+        public int OperationRoomId { get; protected set; }
+        public virtual Room OperationRoom { get;  set; }
 
         public Doctor() 
         {
             Specializations = new List<Specialization>();
         }
 
-        public Doctor(string username) : base(username) { }
-
         public Doctor(string name, string surname, DateTime dateOfBirth,
             string identificationNumber, string email, string username, string phone,
             string password, EducationLevel educationLevel,Gender gender,
             string profession, City city, Address currResidence, InsurancePolicy insurancePolicy, string biography,
-            Department department, List<Specialization> specializations, string licenseNumber, Room patientRoom, Room operationRoom)
+            Department department, string licenseNumber, Room examinationRoom, Room operationRoom,
+            string profileImage)
             : base(name, surname, dateOfBirth, identificationNumber, email, username, phone, password,
-                  educationLevel, gender, profession, city, currResidence, insurancePolicy, biography)
+                  educationLevel, gender, profession, city, currResidence, insurancePolicy, biography,
+                  profileImage)
         {
             LicenseNumber = licenseNumber;
-            Specializations = specializations;
+            Specializations = new List<Specialization>();
             Department = department;
+            DepartmentId = department.Id;
             PatientReview = 0.0;
             OnCall = false;
-            ExaminationRoom = patientRoom;
+            ExaminationRoom = examinationRoom;
+            ExaminationRoomId = examinationRoom.Id;
             OperationRoom = operationRoom;
+            OperationRoomId = operationRoom.Id;
         }
     }
 }

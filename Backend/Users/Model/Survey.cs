@@ -12,26 +12,24 @@ namespace Model.Users
    {
 
         public int Id { get; set; }
-        public DateTime Date { get; set; }
-        public string AdditionalNotes { get; set; }
-        public Grade AverageGrade { get; set; }
+        public DateTime Date { get; protected set; }
+        public string AdditionalNotes { get; protected set; }
+        public Grade AverageGrade { get; protected set; }
         public virtual Patient Patient { get; set; }
-        public string PatientId { get; set; }
+        public string PatientId { get; protected set; }
         public virtual List<SurveyQuestion> SurveyQuestions { get; set; }
         
       
         public Survey() { }
-        public Survey(int id)
-        {
-            Id = id;
-        }
 
-        public Survey(DateTime date, string additionalNotes, Grade averageGrade, List<SurveyQuestion> surveyQuestions)
+        public Survey(int id, DateTime date, string additionalNotes, Grade averageGrade, Patient patient)
         {
             Date = date;
             AdditionalNotes = additionalNotes;
             AverageGrade = averageGrade;
-            SurveyQuestions = surveyQuestions;
+            SurveyQuestions = new List<SurveyQuestion>();
+            Patient = patient;
+            PatientId = patient.Id;
         }
 
     }

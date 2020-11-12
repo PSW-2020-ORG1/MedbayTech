@@ -5,7 +5,6 @@
  ***********************************************************************/
 
 using Model.Users;
-using Repository.ReportRepository;
 using Backend.Exceptions.IncorrectEmailAddress;
 using System;
 using System.Collections.Generic;
@@ -49,9 +48,9 @@ namespace Repository.UserRepository
         public void SetMissingValues(RegisteredUser entity)
         {
             if (entity.CurrResidence != null)
-                entity.CurrResidence = new Address(entity.CurrResidence.Id);
+                entity.CurrResidence = new Address();
             if (entity.PlaceOfBirth != null)
-                entity.PlaceOfBirth = new City(entity.PlaceOfBirth.Id);
+                entity.PlaceOfBirth = new City();
             if (entity is Doctor)
                 SetDoctorMissing(entity);
             if (entity is Patient)
@@ -62,14 +61,14 @@ namespace Repository.UserRepository
         {
             var patient = (Patient)entity;
             if (patient.ChosenDoctor != null)
-                patient.ChosenDoctor = new Doctor(patient.ChosenDoctor.Username);
+                patient.ChosenDoctor = new Doctor();
         }
 
         public void SetDoctorMissing(RegisteredUser entity)
         {
             Doctor doctor = (Doctor)entity;
-            doctor.OperationRoom = doctor.OperationRoom == null ? null : new Room(doctor.OperationRoom.Id);
-            doctor.ExaminationRoom = doctor.ExaminationRoom == null ? null : new Room(doctor.ExaminationRoom.Id);
+            doctor.OperationRoom = doctor.OperationRoom == null ? null : new Room();
+            doctor.ExaminationRoom = doctor.ExaminationRoom == null ? null : new Room();
             doctor.Department = doctor.Department == null ? null : new Department(doctor.Department.Id);
         }
 

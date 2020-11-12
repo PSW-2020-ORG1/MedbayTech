@@ -7,7 +7,6 @@
 using Model.Rooms;
 using Model.Users;
 using Backend.Users.Repository.MySqlRepository;
-using Repository.ReportRepository;
 using SimsProjekat.Repository;
 using SimsProjekat.SIMS.Exceptions;
 using System;
@@ -63,7 +62,7 @@ namespace Repository.RoomRepository
 
         public void SetMissingValues(Department entity)
         {
-            entity.Hospital = new Hospital(entity.Hospital.Id);
+            entity.Hospital = new Hospital();
         }
 
         public void CompleteObject(Department entity)

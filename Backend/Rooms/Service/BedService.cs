@@ -90,11 +90,11 @@ namespace Service.RoomService
 
         private bool CheckIfOccupationDatesAreValid(Occupation occupation)
         {
-            if (DateTime.Compare(occupation.OccupiedFromDate, occupation.OccupiedToDate) > 0)
+            if (DateTime.Compare(occupation.Period.StartTime, occupation.Period.EndTime) > 0)
             {
                 throw new InvalidDate(INVALID_DATE);
             }
-            else if(DateTime.Compare(DateTime.Now, occupation.OccupiedFromDate) > 0)
+            else if(DateTime.Compare(DateTime.Now, occupation.Period.StartTime) > 0)
             {
                 throw new InvalidDate(INVALID_DATE);
             }
@@ -105,9 +105,9 @@ namespace Service.RoomService
         {
             foreach (Occupation occup in bed.Occupations)
             {
-                if (CheckIfDatesOverlap(occup.OccupiedFromDate, occup.OccupiedToDate, occupation))
+                if (CheckIfDatesOverlap(occup.Period.StartTime, occup.Period.EndTime, occupation))
                 {
-                    throw new AlreadyOccupied(string.Format(ALREADY_OCCUPIED, occupation.OccupiedFromDate.ToString("dd.MM.yyyy."), occupation.OccupiedToDate.ToString("dd.MM.yyyy.")));
+                    throw new AlreadyOccupied(string.Format(ALREADY_OCCUPIED, occupation.Period.StartTime.ToString("dd.MM.yyyy."), occupation.Period.EndTime.ToString("dd.MM.yyyy.")));
                 }
             }
             return false;
@@ -115,11 +115,11 @@ namespace Service.RoomService
 
         private bool CheckIfDatesOverlap(DateTime startDate, DateTime endDate, Occupation occupation)
         {
-            if (DateTime.Compare(startDate, occupation.OccupiedToDate) > 0)
+            if (DateTime.Compare(startDate, occupation.Period.EndTime) > 0)
             {
                 return false;
             }
-            else if (DateTime.Compare(occupation.OccupiedFromDate, endDate) > 0)
+            else if (DateTime.Compare(occupation.Period.StartTime, endDate) > 0)
             {
                 return false;
             }

@@ -10,25 +10,23 @@ namespace Model.Users
 {
    public class Patient : RegisteredUser
    {
-        public bool IsGuestAccount { get; set; }
-        public string ChosenDoctorId { get; set; }
+        public bool IsGuestAccount { get; protected set; }
+        public string ChosenDoctorId { get; protected set; }
         public virtual Doctor ChosenDoctor { get; set; }
+
 
         public Patient(string name, string surname, DateTime dateOfBirth,
             string identificationNumber, string email, string username,
-            string password, EducationLevel educationLevel, Gender gender,  string phone,
-            string profession, City city, Address currResidence, InsurancePolicy insurancePolicy, bool guestAccount)
+            string password, EducationLevel educationLevel, Gender gender, string phone,
+            string profession, City city, Address currResidence, InsurancePolicy insurancePolicy, bool guestAccount,
+            string profileImage)
             : base(name, surname, dateOfBirth, identificationNumber, email, username, phone, password,
-                educationLevel, gender, profession, city, currResidence, insurancePolicy)
+                educationLevel, gender, profession, city, currResidence, insurancePolicy, profileImage)
         {
             IsGuestAccount = guestAccount;
             ChosenDoctor = null;
         }
 
-        public Patient(string username) : base(username) { }
-
         public Patient() { }
-
-        public Patient(string name, string surname, string idNumber, string phone) : base(name, surname, idNumber, phone) { } 
     }
 }

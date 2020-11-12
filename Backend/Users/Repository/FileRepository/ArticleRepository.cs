@@ -5,7 +5,6 @@
  ***********************************************************************/
 
 using Model.Users;
-using Repository.ReportRepository;
 using System;
 using System.Collections.Generic;
 using Repository.UserRepository;
@@ -78,7 +77,7 @@ namespace Backend.Users.Repository.MySqlRepository
         
         public void SetMissingValues(Article entity)
         {
-            entity.Doctor = new Doctor(entity.Doctor.Username);
+            entity.Doctor = new Doctor();
         }
 
     }

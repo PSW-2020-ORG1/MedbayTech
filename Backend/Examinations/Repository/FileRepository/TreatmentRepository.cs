@@ -5,7 +5,6 @@
 
 using Backend.Examinations.Model;
 using Model.Users;
-using Repository.ReportRepository;
 using System;
 using System.Collections.Generic;
 using Repository.MedicationRepository;
