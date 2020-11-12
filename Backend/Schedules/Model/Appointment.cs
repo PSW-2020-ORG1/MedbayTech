@@ -7,6 +7,7 @@ using Model.Rooms;
 using Model.Users;
 using System;
 using SimsProjekat.Repository;
+using Backend.Records.Model;
 using Backend.Utils;
 
 namespace Model.Schedule
@@ -24,7 +25,7 @@ namespace Model.Schedule
         public int RoomId { get; protected set; }
         public virtual Room Room { get; set; }
         public int MedicalRecordId { get; protected set; }
-        public virtual MedicalRecord.MedicalRecord MedicalRecord { get; set; }
+        public virtual MedicalRecord MedicalRecord { get; set; }
         public string DoctorId { get; protected set; }
         public virtual Doctor Doctor { get; set; }
 
@@ -33,7 +34,7 @@ namespace Model.Schedule
         public Appointment() { }
 
         public Appointment(int id, Period period, TypeOfAppointment type, string shortDescription,
-            bool urgent, bool deleted, Room room, MedicalRecord.MedicalRecord medicalRecord, Doctor doctor)
+            bool urgent, bool deleted, Room room, MedicalRecord medicalRecord, Doctor doctor)
         {
             Id = id;
             Period = period;

@@ -4,8 +4,8 @@
 // Purpose: Definition of Class Occupations
 
 using Backend.Utils;
-using Model.MedicalRecord;
 using Model.Users;
+using Backend.Records.Model;
 using System;
 
 namespace Model.Rooms
@@ -17,13 +17,13 @@ namespace Model.Rooms
         public int BedId { get; protected set; }
         public virtual Bed Bed { get; protected set; }
         public int MedicalRecordId { get; protected set; }
-        public virtual MedicalRecord.MedicalRecord MedicalRecord { get; set; }
+        public virtual MedicalRecord MedicalRecord { get; set; }
 
         public Occupation()
         {
         }
 
-        public Occupation(Period period, Bed bed, MedicalRecord.MedicalRecord medicalRecord)
+        public Occupation(Period period, Bed bed, MedicalRecord medicalRecord)
         {
             Period = period;
             Bed = bed;

@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using Backend.Exceptions.IncorrectEmailAddress;
 using SimsProjekat.SIMS.Exceptions;
 using System.Linq;
+using Backend.Records.Model;
 using Backend.Records.Model.Enums;
 using Model.Rooms;
 

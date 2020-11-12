@@ -3,10 +3,11 @@
 // Created: Friday, April 17, 2020 1:49:21 AM
 // Purpose: Definition of Class FamilyIllnessHistory
 
+using Backend.Records.Model.Enums;
 using System;
 using System.Collections.Generic;
 
-namespace Backend.Records.Model.Enums
+namespace Backend.Records.Model
 {
    public class FamilyIllnessHistory
    {

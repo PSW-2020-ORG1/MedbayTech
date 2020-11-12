@@ -5,7 +5,7 @@
 
 using System;
 using System.Collections.Generic;
-using Backend.Records.Model.Enums;
+using Backend.Records.Model;
 using Model.Schedule;
 using Model.Users;
 using SimsProjekat.Repository;

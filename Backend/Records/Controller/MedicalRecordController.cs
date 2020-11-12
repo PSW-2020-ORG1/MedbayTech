@@ -10,6 +10,7 @@ using Model.Users;
 using Service.MedicalRecordService;
 using System;
 using System.Collections.Generic;
+using Backend.Records.Model;
 
 namespace Backend.Examinations.Controller.MedicalRecordController
 {

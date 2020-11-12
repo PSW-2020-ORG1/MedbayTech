@@ -3,7 +3,7 @@
 // Created: Tuesday, May 19, 2020 10:48:36 PM
 // Purpose: Definition of Class VaccinesService
 
-using Backend.Records.Model.Enums;
+using Backend.Records.Model;
 using Repository.MedicalRecordRepository;
 using System;
 using System.Collections.Generic;

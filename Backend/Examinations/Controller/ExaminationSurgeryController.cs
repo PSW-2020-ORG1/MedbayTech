@@ -4,7 +4,7 @@
 // Purpose: Definition of Class ExaminationSurgeryController
 
 using Backend.Examinations.Model;
-using Backend.Records.Model.Enums;
+using Backend.Records.Model;
 using Model.Users;
 using Backend.Examinations.Service;
 using System;

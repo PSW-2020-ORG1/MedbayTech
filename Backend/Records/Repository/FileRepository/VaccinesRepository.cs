@@ -3,7 +3,7 @@
 // Created: Friday, May 22, 2020 4:38:47 AM
 // Purpose: Definition of Class VaccinesRepository
 
-using Backend.Records.Model.Enums;
+using Backend.Records.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

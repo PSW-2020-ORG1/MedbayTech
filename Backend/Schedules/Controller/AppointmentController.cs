@@ -3,7 +3,7 @@
 // Created: Tuesday, May 19, 2020 11:51:47 PM
 // Purpose: Definition of Class AppointmentController
 
-using Backend.Records.Model.Enums;
+using Backend.Records.Model;
 using Model.Rooms;
 using Model.Schedule;
 using Model.Users;

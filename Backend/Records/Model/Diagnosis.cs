@@ -9,7 +9,7 @@ using System.Linq;
 using Backend.Examinations.Model;
 using SimsProjekat.Repository;
 
-namespace Backend.Records.Model.Enums
+namespace Backend.Records.Model
 {
     public class Diagnosis : IIdentifiable<int>
     {

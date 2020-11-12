@@ -3,7 +3,7 @@
 // Created: Tuesday, May 19, 2020 10:46:13 PM
 // Purpose: Definition of Class DiagnosisService
 
-using Backend.Records.Model.Enums;
+using Backend.Records.Model;
 using Repository.MedicalRecordRepository;
 using System;
 using System.Collections.Generic;

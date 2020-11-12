@@ -14,6 +14,7 @@ using SimsProjekat.SIMS.Exceptions;
 using Backend.Medications.Model;
 using SimsProjekat.Repository;
 using Backend.Exceptions.IncorrectEmailAddress;
+using Backend.Records.Model;
 
 namespace Repository.MedicalRecordRepository
 {

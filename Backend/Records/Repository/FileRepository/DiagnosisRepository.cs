@@ -3,11 +3,9 @@
 // Created: Friday, May 22, 2020 4:38:49 AM
 // Purpose: Definition of Class DiagnosisRepository
 
-using Model.MedicalRecord;
+using Backend.Records.Model;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using SimsProjekat.SIMS.Exceptions;
 using SimsProjekat.Repository;
 
 namespace Repository.MedicalRecordRepository

@@ -4,9 +4,10 @@
 // Purpose: Definition of Class ExaminationSurgeryRepository
 
 using Backend.Examinations.Model;
-using Backend.Records.Model.Enums;
+using Backend.Records.Model;
 using Repository.UserRepository;
-using Repository.MedicalRecordRepository;
+using Backend.Examinations.Repository;
+using Backend.Examinations.Model;
 using Model.Users;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using Backend.Examinations.Model.Enums;
 using Repository;
 using SimsProjekat.SIMS.Exceptions;
 using SimsProjekat.Repository;
+using Repository.MedicalRecordRepository;
 
 namespace Backend.Examinations.Repository
 {
@@ -66,7 +68,7 @@ namespace Backend.Examinations.Repository
             }
             return allExaminations;
         }
-        public IEnumerable<ExaminationSurgery> GetAllByRecord(MedicalRecord record) => stream.GetAll().Where(item => item.MedicalRecord.Id.Equals(record.Id)).ToList();
+        public IEnumerable<ExaminationSurgery> GetAllBy(MedicalRecord record) => stream.GetAll().Where(item => item.MedicalRecord.Id.Equals(record.Id)).ToList();
  
         public new ExaminationSurgery GetObject(int id)
         {

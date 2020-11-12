@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Backend.Exceptions;
 using SimsProjekat.SIMS.Exceptions;
+using Backend.Records.Model;
 
 namespace Backend.Examinations.Service
 {
@@ -38,7 +39,7 @@ namespace Backend.Examinations.Service
             examinationSurgeryRepository.GetAllBy(doctor);
 
         public IEnumerable<ExaminationSurgery> GetAllBy(MedicalRecord record) => 
-            examinationSurgeryRepository.GetAllByRecord(record);  
+            examinationSurgeryRepository.GetAllBy(record);  
         public ExaminationSurgery GetLastExamination(MedicalRecord medicalRecord)
         {
             var allForOneRecord = GetAllBy(medicalRecord).ToList();

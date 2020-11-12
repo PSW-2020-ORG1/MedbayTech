@@ -3,6 +3,7 @@
 // Created: Wednesday, May 20, 2020 2:50:31 AM
 // Purpose: Definition of Class VaccinesController
 
+using Backend.Records.Model;
 using Backend.Records.Model.Enums;
 using Service.MedicalRecordService;
 using System;

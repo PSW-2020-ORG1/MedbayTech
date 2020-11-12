@@ -11,7 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using SimsProjekat.Repository;
 
-namespace Backend.Records.Model.Enums
+using Backend.Records.Model.Enums;
+
+namespace Backend.Records.Model
 {
    public class MedicalRecord : IIdentifiable<int>
    {

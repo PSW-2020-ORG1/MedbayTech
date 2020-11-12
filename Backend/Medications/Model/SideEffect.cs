@@ -4,6 +4,7 @@
 // Purpose: Definition of Class Frequency
 
 using System;
+using Backend.Records.Model;
 using Backend.Records.Model.Enums;
 
 namespace Backend.Medications.Model

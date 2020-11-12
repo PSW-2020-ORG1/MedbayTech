@@ -10,6 +10,7 @@ using System.Linq;
 using Repository;
 using SimsProjekat.SIMS.Exceptions;
 using SimsProjekat.Repository;
+using Backend.Medications.Model;
 
 namespace Backend.Medications.Repository.FileRepository
 {

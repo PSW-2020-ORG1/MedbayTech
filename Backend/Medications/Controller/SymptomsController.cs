@@ -7,6 +7,7 @@ using Backend.Records.Model.Enums;
 using System;
 using System.Collections.Generic;
 using Backend.Medications.Service;
+using Backend.Records.Model;
 
 namespace Backend.Medications.Controller
 {

@@ -4,7 +4,7 @@
  * Purpose: Definition of the Class Service.MedicalRecordService
  ***********************************************************************/
 
-using Backend.Records.Model.Enums;
+using Backend.Records.Model;
 using Backend.Medications.Model;
 using Model.Users;
 using Repository.MedicalRecordRepository;

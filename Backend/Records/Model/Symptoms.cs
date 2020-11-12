@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Backend.Records.Model.Enums
+namespace Backend.Records.Model
 {
    public class Symptoms
    {

@@ -9,6 +9,7 @@ using Model.Users;
 using System;
 using System.Collections.Generic;
 using Repository;
+using Backend.Records.Model;
 
 namespace Backend.Examinations.Repository
 {
@@ -16,7 +17,7 @@ namespace Backend.Examinations.Repository
    {
       IEnumerable<ExaminationSurgery> GetAllBy(Doctor doctor);
       
-      IEnumerable<ExaminationSurgery> GetAllByRecord(MedicalRecord record);
+      IEnumerable<ExaminationSurgery> GetAllBy(MedicalRecord record);
       ExaminationSurgery UpdateTreatment(ExaminationSurgery examinationSurgery, Treatment treatment);
     }
 }
