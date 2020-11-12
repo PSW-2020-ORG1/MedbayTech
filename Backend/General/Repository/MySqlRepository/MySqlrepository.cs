@@ -19,6 +19,7 @@ namespace Repository
         internal DbSet<T> dbSet;
         
         public  MySqlrepository() {}
+
         public MySqlrepository(MySqlContext mySqlContext)
         {
             this.context = mySqlContext;
@@ -50,9 +51,7 @@ namespace Repository
             if (ExistsInSystem(entity.GetId()))
             {
                 if (context.Entry(entity).State == EntityState.Detached)
-                {
                     dbSet.Attach(entity);
-                }
                 dbSet.Remove(entity);
                 return true;
             }
@@ -67,9 +66,7 @@ namespace Repository
         public bool ExistsInSystem(ID id)
         {
             if (dbSet.Find(id) == null)
-            {
                 return false;
-            }
 
             return true;
         }

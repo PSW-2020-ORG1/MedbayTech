@@ -6,10 +6,11 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using SimsProjekat.Repository;
 
 namespace Backend.Medications.Model
 {
-   public class MedicationIngredient
+   public class MedicationIngredient : IIdentifiable<int>
     {
         [Key]
         public int Id { get; set; }
@@ -21,7 +22,14 @@ namespace Backend.Medications.Model
             Name = name;
         }
 
-        
-        
+        public int GetId()
+        {
+            return Id;
+        }
+
+        public void SetId(int id)
+        {
+            Id = id;
+        }
     }
 }

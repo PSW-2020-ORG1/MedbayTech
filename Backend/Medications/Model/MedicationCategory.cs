@@ -7,10 +7,11 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Model.Users;
+using SimsProjekat.Repository;
 
 namespace Backend.Medications.Model
 {
-    public class MedicationCategory
+    public class MedicationCategory : IIdentifiable<int>
     {
         [Key]
         public int Id { get; set; }
@@ -27,6 +28,14 @@ namespace Backend.Medications.Model
             Specialization = specialization;
         }
 
-        
+        public int GetId()
+        {
+            return Id;
+        }
+
+        public void SetId(int id)
+        {
+            Id = id;
+        }
     }
 }

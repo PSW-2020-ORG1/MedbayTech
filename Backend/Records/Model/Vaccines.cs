@@ -5,10 +5,11 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using SimsProjekat.Repository;
 
 namespace Backend.Records.Model
 {
-   public class Vaccines
+   public class Vaccines : IIdentifiable<int>
    {
         [Key]
         public  int Id { get; set; }
@@ -19,6 +20,15 @@ namespace Backend.Records.Model
         {
             Name = name;
         }
-     
+
+        public int GetId()
+        {
+            return Id;
+        }
+
+        public void SetId(int id)
+        {
+            Id = id;
+        }
     }
 }

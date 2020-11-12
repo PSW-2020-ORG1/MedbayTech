@@ -8,7 +8,8 @@ using Repository;
 
 namespace Backend.Users.Repository.MySqlRepository
 {
-    public class FeedbackSqlRepository : MySqlrepository<Feedback, int>
+    public class FeedbackSqlRepository : MySqlrepository<Feedback, int>,
+        IFeedbackRepository
     {
         public FeedbackSqlRepository(MySqlContext context) : base(context) { }
 

@@ -33,7 +33,7 @@ namespace Repository.ScheduleRepository
         public AppointmentRepository(IUserRepository userRepository, IMedicalRecordRepository medicalRecordRepository, 
             IRoomRepository roomRepository, Stream<Appointment> stream) : base(stream, "Appointment")
         {
-            this.doctorRepository = userRepository;
+            doctorRepository = userRepository;
             this.medicalRecordRepository = medicalRecordRepository;
             this.roomRepository = roomRepository;
         }

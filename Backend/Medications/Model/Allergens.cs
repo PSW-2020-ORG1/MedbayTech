@@ -7,11 +7,12 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Records.Model;
+using SimsProjekat.Repository;
 
 
 namespace Backend.Medications.Model
 {
-    public class Allergens
+    public class Allergens : IIdentifiable<int>
     {
         [Key]
         public int Id { get; set; }
@@ -29,5 +30,14 @@ namespace Backend.Medications.Model
             Allergen = allergen;
         }
 
+        public int GetId()
+        {
+            return Id;
+        }
+
+        public void SetId(int id)
+        {
+            Id = id;
+        }
     }
 }
