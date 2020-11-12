@@ -4,18 +4,23 @@
 // Purpose: Definition of Class Article
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using SimsProjekat.Repository;
 
 namespace Model.Users
 {
    public class Article : IIdentifiable<int>
    {
+        [Key]
         public int Id { get; set; }
         public DateTime Date { get; protected set; }
         public string Image { get; protected set; }
-        public string DoctorId { get; protected set; }
+        [ForeignKey("PostContent")]
         public int PostContentId { get; protected set; }
         public virtual PostContent PostContent { get; protected set; }
+        [ForeignKey("Doctor")]
+        public string DoctorId { get; protected set; }
         public virtual Doctor Doctor { get; set; }
 
         public Article() 

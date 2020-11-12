@@ -3,19 +3,21 @@
 // Created: Monday, April 06, 2020 11:29:00 PM
 // Purpose: Definition of Class Address
 
-using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Users
 {
    public class Address
    {
-       public int Id { get; set; } 
-       public string Street { get; protected set; }
+        [Key]
+        public int Id { get; set; } 
+        public string Street { get; protected set; }
         public int Number { get; protected set; }
         public int Apartment { get; protected set; }
 
         public int Floor { get; protected set; }
-
+        [ForeignKey("City")]
         public int CityId { get; protected set; }
         public virtual City City { get; set; }
 

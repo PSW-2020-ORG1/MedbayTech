@@ -4,17 +4,21 @@
 // Purpose: Definition of Class DoctorReview
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Users
 {
    public class DoctorReview
    {
+        [Key]
         public int Id { get; set; }
         public DateTime DateOfReview { get; protected set; }
         public Grade Grade { get; set; }
-
+        [ForeignKey("Patient")]
         public string PatientId { get; protected set; }
         public virtual Patient Patient { get; set; }
+        [ForeignKey("Doctor")]
         public string DoctorId { get; protected set; }
         public virtual Doctor Doctor { get; set; }
 

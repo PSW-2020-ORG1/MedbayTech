@@ -63,7 +63,7 @@ namespace Repository.RoomRepository
         public void SetMissingValues(Room entity)
         {
             if (entity.Department != null)
-                entity.Department = new Department(entity.Department.Id);
+                entity.Department = new Department();
         }
 
         public void CompleteObject(Room entity)

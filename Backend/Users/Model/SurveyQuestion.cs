@@ -4,17 +4,20 @@
 // Purpose: Definition of Class SurveyQuestion
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Users
 {
    public class SurveyQuestion
    {
+        [Key]
         public int Id { get; protected set; }
         public string Question { get; protected set; }
         public Grade Grade { get; protected set; }
-
-        public virtual Survey Survey { get; protected set; }
+        [ForeignKey("Survey")]
         public int SurveyId { get; protected set; }
+        public virtual Survey Survey { get; protected set; }
 
         public SurveyQuestion() { }
 
@@ -24,6 +27,7 @@ namespace Model.Users
             Grade = grade;
             Survey = survey;
             SurveyId = survey.Id;
+            Id = id;
         }
 
     }

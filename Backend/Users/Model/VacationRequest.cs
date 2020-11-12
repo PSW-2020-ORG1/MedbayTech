@@ -4,6 +4,8 @@
 // Purpose: Definition of Class VacationRequest
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 using Backend.Utils;
 using SimsProjekat.Repository;
@@ -12,15 +14,14 @@ namespace Model.Users
 {
    public class VacationRequest : IIdentifiable<int>
    {
+      [Key]
       public int Id { get; set; }
       public Period Period { get; protected set; }
       public string ReasonForVacation { get; protected set; }
       public bool Approved { get; set; }
-      
+      [ForeignKey("Employee")]
       public string EmployeeId { get; protected set; }
       public virtual Employee Employee { get;  set; }
-
-
 
         public VacationRequest() { }
 

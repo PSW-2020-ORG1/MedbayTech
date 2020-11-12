@@ -5,17 +5,20 @@
  ***********************************************************************/
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using SimsProjekat.Repository;
 using ZdravoKorporacija.Model.Users;
 
 namespace Model.Users
 {
    public class RegisteredUser : IIdentifiable<string>
-   {
+    {
+        [Key]
+        public string Id { get; protected set; }
         public string Name { get; protected set; }
         public string Surname { get; protected set; }
         public DateTime DateOfBirth { get; protected set; }
-        public string Id { get; protected set; }
         public string Phone { get; protected set; }
         public string Email { get; protected set; }
         public string Username { get; protected set; }
@@ -25,13 +28,13 @@ namespace Model.Users
         public string Profession { get; protected set; }
         public string ProfileImage { get; protected set; }
         public Gender Gender { get; protected set; }
-
+        [ForeignKey("PlaceOfBirth")]
         public int PlaceOfBirthId { get; protected set; }
         public virtual City PlaceOfBirth { get; set; }
-
+        [ForeignKey("CurrResidence")]
         public int CurrResidenceId { get; protected set; }
         public virtual Address CurrResidence { get;  set; }
-
+        [ForeignKey("InsurancePolicy")]
         public string InsurancePolicyId { get; protected set; }
         public virtual InsurancePolicy InsurancePolicy { get; protected set; }
 

@@ -4,6 +4,8 @@
 // Purpose: Definition of Class Renovation
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Utils;
 using SimsProjekat.Repository;
 
@@ -11,11 +13,13 @@ namespace Model.Rooms
 {
     public class Renovation : IIdentifiable<int>
     {
+        [Key]
         public int Id { get; set; }
         public Period Period { get; set; }
         public bool MoveEquipment { get; protected set; }
-        public virtual Room Room { get; set; }
+        [ForeignKey("Room")]
         public int RoomId { get; protected set; }
+        public virtual Room Room { get; set; }
 
         public Renovation ()
         {

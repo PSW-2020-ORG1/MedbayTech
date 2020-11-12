@@ -48,8 +48,6 @@ namespace Service.RoomService
             var storages = roomService.GetAllRoomsFromOneType(RoomType.storage).ToList();
             foreach(HospitalEquipment equipment in hospitalEquipmentService.GetEquipmentByRoomNumber(roomToUpdate.Id))
             {
-           //     equipment.Room = storages[0];
-             //   equipment.RoomNumberIn = storages[0].RoomNumber;
                 hospitalEquipmentService.UpdateEquipment(equipment);
             }
         }

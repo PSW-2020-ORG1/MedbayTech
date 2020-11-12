@@ -69,7 +69,7 @@ namespace Repository.UserRepository
             Doctor doctor = (Doctor)entity;
             doctor.OperationRoom = doctor.OperationRoom == null ? null : new Room();
             doctor.ExaminationRoom = doctor.ExaminationRoom == null ? null : new Room();
-            doctor.Department = doctor.Department == null ? null : new Department(doctor.Department.Id);
+            doctor.Department = doctor.Department == null ? null : new Department();
         }
 
         public new IEnumerable<RegisteredUser> GetAll()

@@ -6,16 +6,22 @@
 
 using SimsProjekat.Repository;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Rooms
 {
     public class Bed : IIdentifiable<int>
     {
+        [Key]
         public int Id { get; set; }
         public bool CurrentlyFree { get; protected set; }
 
-        public virtual Room Room { get;  set; }
+        [ForeignKey("Room")]
         public int RoomId { get; protected set; }
+        public virtual Room Room { get;  set; }
+
+        // TODO(Jovan): Needs DB storage?
         public virtual List<Occupation> Occupations { get;  set; }
 
         public Bed (Room room)

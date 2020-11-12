@@ -4,11 +4,13 @@
 // Purpose: Definition of Class Specialization
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Model.Users
 {
    public class Specialization
    {
+        [Key]
         public int Id { get; protected set; }
         public string SpecializationName { get; protected set; }
 

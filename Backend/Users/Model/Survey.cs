@@ -5,18 +5,21 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Users
 {
    public class Survey
    {
-
+        [Key]
         public int Id { get; set; }
         public DateTime Date { get; protected set; }
         public string AdditionalNotes { get; protected set; }
         public Grade AverageGrade { get; protected set; }
-        public virtual Patient Patient { get; set; }
+        [ForeignKey("Patient")]
         public string PatientId { get; protected set; }
+        public virtual Patient Patient { get; set; }
         public virtual List<SurveyQuestion> SurveyQuestions { get; set; }
         
       

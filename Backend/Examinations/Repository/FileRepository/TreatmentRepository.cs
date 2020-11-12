@@ -136,7 +136,7 @@ namespace Backend.Examinations.Repository
         public void SetHospitalTreatment(Treatment entity)
         {
             HospitalTreatment treatment = (HospitalTreatment)entity;
-            treatment.Department = new Department(treatment.Department.Id);
+            treatment.Department = new Department();
         }
 
         public void CompleteObject(Treatment entity)

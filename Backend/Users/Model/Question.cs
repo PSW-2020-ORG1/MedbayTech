@@ -4,18 +4,21 @@
 // Purpose: Definition of Class Question
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using SimsProjekat.Repository;
 
 namespace Model.Users
 {
    public class Question : IIdentifiable<int>
    {
-
+        [Key]
         public int Id { get; set; }
         public DateTime Date { get; protected set; }
         public bool FrequentlyAsked { get; set; }
-        public virtual Patient Author { get; set; }
+        [ForeignKey("Author")]
         public string AuthorId { get; protected set; }
+        public virtual Patient Author { get; set; }
         public virtual PostContent PostContent { get; protected set; }
         public int PostContentId { get; protected set; }
         private QuestionReply _questionReply;
