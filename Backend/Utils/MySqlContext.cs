@@ -57,8 +57,6 @@ namespace Model
             //Refactored previous solution, note tested for multiple projects
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
-
-            optionsBuilder.UseMySql(configuration.GetConnectionString("MySqlConnectionString")).UseLazyLoadingProxies();
         }
         /*
         public DbSet<Symptoms> Symptoms { get; set; }
@@ -103,14 +101,15 @@ namespace Model
                 modelBuilder.Entity<LabTestType>().HasData(
                     new LabTestType {Id=1,TestName = "LDL", LabTestingId = 1}
                     ); */
-
+            modelBuilder.Entity<Period>().HasNoKey();
+            modelBuilder.Entity<State>().HasData(
+                new State { Id=1, Name="Serbia"}
+                );
             modelBuilder.Entity<City>().HasData(
-
-                new City(21000, "Novi Sad", new State(1, "Serbia")),
-                new City(11000, "Beograd", new State(1, "Serbia"))
+                new City { Id=21000, Name="Novi Sad", StateId=1}
                 );
 
-            modelBuilder.Entity<State>().HasData(
+           /* modelBuilder.Entity<State>().HasData(
                  new State(1, "Serbia")
             );
 
@@ -139,7 +138,7 @@ namespace Model
 
             modelBuilder.Entity<InsurancePolicy>().HasData(
                 new InsurancePolicy("policy1", "Dunav Osiguranje D.O.O", new Period(new DateTime(2020, 11, 1), new DateTime(2022, 11, 1)))
-                );
+                );*/
 
           /*  modelBuilder.Entity<Symptoms>().HasData(
                 new Symptoms { Id = 1, Name = "Dunav osiguranje d.o.o" }
@@ -156,7 +155,7 @@ namespace Model
             ); */
 
           
-
+            /*
             modelBuilder.Entity<RegisteredUser>().HasData(
                 new RegisteredUser("Marko", "Markic", new DateTime(1978, 6, 24), "2406978890045", "marko@gmail.com", "markic",
                 "065/123-4554", "marko1978", EducationLevel.bachelor, Gender.MALE, "Vodoinstalater", new City(21000, "Novi Sad", new State(1, "Serbia")),
@@ -172,7 +171,7 @@ namespace Model
                 new Address(1, "Radnicka", 4, 28, 7, new City(21000, "Novi Sad", new State(1, "Serbia"))),
                 new InsurancePolicy("policy1", "Dunav Osiguranje D.O.O", new Period(new DateTime(2020, 11, 1), new DateTime(2022, 11, 1))),
                 ""))
-            );
+            );*/
         }
     }
 }
