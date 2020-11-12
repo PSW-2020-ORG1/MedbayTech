@@ -17,8 +17,12 @@ namespace Service.MedicalRecordService
             this.allergensRepository = allergensRepository;
         }
 
-        public IEnumerable<Allergens> GetAllAllergies() => allergensRepository.GetAll();
-        public Allergens CreateAllergen(Allergens allergens) => allergensRepository.Create(allergens);
+        public IEnumerable<Allergens> GetAllAllergies() => 
+            allergensRepository.GetAll();
+
+        public Allergens CreateAllergen(Allergens allergens) => 
+            allergensRepository.Create(allergens);
+
       
         public IAllergensRepository allergensRepository;
    

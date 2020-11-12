@@ -4,7 +4,7 @@
 // Purpose: Definition of Interface IExaminationSurgeryRepository
 
 using Backend.Examinations.Model;
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using Model.Users;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace Backend.Examinations.Repository
 {
    public interface IExaminationSurgeryRepository : IRepository<ExaminationSurgery,int>
    {
-      IEnumerable<ExaminationSurgery> GetAllByDoctor(Doctor doctor);
+      IEnumerable<ExaminationSurgery> GetAllBy(Doctor doctor);
       
       IEnumerable<ExaminationSurgery> GetAllByRecord(MedicalRecord record);
       ExaminationSurgery UpdateTreatment(ExaminationSurgery examinationSurgery, Treatment treatment);

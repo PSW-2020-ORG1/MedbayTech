@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using Backend.Exceptions.IncorrectEmailAddress;
 using SimsProjekat.SIMS.Exceptions;
 using System.Linq;
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using Model.Rooms;
 
 namespace Service.UserService
@@ -36,7 +36,7 @@ namespace Service.UserService
             if (IsIdentificationNumberUnique(user))
             {
                 if (user is Patient) 
-                    medicalRecordService.CreateNewRecord(new MedicalRecord(BloodType.ANeg, (Patient)user, PatientCondition.stable));
+                    medicalRecordService.CreateNewRecord(new MedicalRecord(BloodType.ANeg, (Patient)user, PatientCondition.Stable));
                 return userRepository.Create(user);
             }
             throw new UserNotUnique(USER_ALREADY_EXISTS);
@@ -88,7 +88,7 @@ namespace Service.UserService
             {
                 if (user is Patient)
                 {
-                    var record = medicalRecordService.GetRecordByPatient((Patient)user);
+                    var record = medicalRecordService.GetRecordBy((Patient)user);
                     medicalRecordService.DeleteRecord(record);
                     return true;
                 }

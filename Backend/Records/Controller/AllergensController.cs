@@ -17,8 +17,11 @@ namespace Backend.Examinations.Controller.MedicalRecordController
             this.allergensService = allergensService;
         }
 
-        public IEnumerable<Allergens> GetAllAllergies() => allergensService.GetAllAllergies();
-        public Allergens CreateAllergen(Allergens allergens) => allergensService.CreateAllergen(allergens);
+        public IEnumerable<Allergens> GetAllAllergies() => 
+            allergensService.GetAllAllergies();
+
+        public Allergens CreateAllergen(Allergens allergens) => 
+            allergensService.CreateAllergen(allergens);
         
         public AllergensService allergensService;
    

@@ -10,7 +10,7 @@ using Service.GeneralService;
 using System;
 using System.Collections.Generic;
 
-namespace Backend.Examination.Controller.GeneralController
+namespace Backend.Examinations.Controller.GeneralController
 {
    public class NotificationController
    {

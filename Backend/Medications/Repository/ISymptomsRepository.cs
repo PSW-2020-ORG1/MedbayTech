@@ -3,7 +3,7 @@
 // Created: Friday, May 22, 2020 4:40:37 AM
 // Purpose: Definition of Interface ISymptomsRepository
 
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using System;
 using Repository;
 

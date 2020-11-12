@@ -3,7 +3,7 @@
 // Created: Friday, May 22, 2020 4:38:47 AM
 // Purpose: Definition of Class MedicalRecordRepository
 
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using Model.Users;
 using System;
 using System.Collections.Generic;
@@ -68,7 +68,7 @@ namespace Repository.MedicalRecordRepository
             return record;
         }
 
-        public MedicalRecord GetRecordByPatient(Patient patient)
+        public MedicalRecord GetRecordBy(Patient patient)
         {
             var record = stream.GetAll().SingleOrDefault(entity => entity.Patient.Username.CompareTo(patient.Username) == 0);
             if (record != null)
@@ -77,7 +77,7 @@ namespace Repository.MedicalRecordRepository
                 throw new EntityNotFound();
             return record;
         }
-        public IEnumerable<MedicalRecord> GetRecordsForDoctor(Doctor doctor)
+        public IEnumerable<MedicalRecord> GetRecordsFor(Doctor doctor)
         {
             var allWithChosenDoctor = GetAll().Where(entity => entity.Patient.ChosenDoctor != null);
             return allWithChosenDoctor.Where(entity => entity.Patient.ChosenDoctor.Username.Equals(doctor.Username));
@@ -88,6 +88,8 @@ namespace Repository.MedicalRecordRepository
             SetMissingValues(entity);
             return base.Update(entity);
         }
+
+
 
         public void SetMissingValues(MedicalRecord entity)
         {

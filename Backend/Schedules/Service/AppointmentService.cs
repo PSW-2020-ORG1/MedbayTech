@@ -4,7 +4,7 @@
  * Purpose: Definition of the Class Service.AppointmentService
  ***********************************************************************/
 
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using Model.Rooms;
 using Model.Schedule;
 using Model.Users;

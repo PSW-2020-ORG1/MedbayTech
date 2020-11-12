@@ -44,16 +44,5 @@ namespace Backend.Medications.Repository.FileRepository
         public int GetNextID() => 
             stream.GetAll().ToList().Count + 1;
 
-        public Medication RejectMedication(Medication medication)
-        {
-            medication.Status = MedStatus.Rejected;
-            return base.Update(medication);
-        }
-
-        public Medication ApproveMedication(Medication medication)
-        {
-            medication.Status = MedStatus.Approved;
-            return base.Update(medication);
-        }
     }
 }

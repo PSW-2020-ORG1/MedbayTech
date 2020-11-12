@@ -3,7 +3,7 @@
 // Created: Wednesday, May 20, 2020 2:50:31 AM
 // Purpose: Definition of Class VaccinesController
 
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using Service.MedicalRecordService;
 using System;
 using System.Collections.Generic;
@@ -17,8 +17,12 @@ namespace Backend.Examinations.Controller.MedicalRecordController
             this.vaccinesService = vaccinesService;
         }
 
-        public IEnumerable<Vaccines> GetAllVaccines() => vaccinesService.GetAllVaccines();
-        public Vaccines CreateVaccine(Vaccines vaccine) => vaccinesService.CreateVaccine(vaccine);
+        public IEnumerable<Vaccines> GetAllVaccines() => 
+            vaccinesService.GetAllVaccines();
+
+        public Vaccines CreateVaccine(Vaccines vaccine) => 
+            vaccinesService.CreateVaccine(vaccine);
+
         public VaccinesService vaccinesService;
    
    }

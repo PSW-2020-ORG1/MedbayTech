@@ -5,15 +5,13 @@
 
 using System;
 
-namespace Model.MedicalRecord
+namespace Backend.Records.Model.Enums
 {
    public class Vaccines
    {
         public  int Id { get; set; }
         public string Name { get; set; }
 
-        public int MedicalRecordId { get; set; }
-        public virtual MedicalRecord MedicalRecord { get; set; }
         public Vaccines() {}
         public Vaccines(string name)
         {

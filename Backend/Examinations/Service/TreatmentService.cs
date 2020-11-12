@@ -25,7 +25,11 @@ namespace Backend.Examinations.Service
         public Treatment CreateTreatment(Treatment treatment)
         {
             if (treatment.IsPrescription())
-                return treatmentRepository.ReserveMedication((Prescription) treatment);
+            {
+                Prescription prescription = (Prescription) treatment;
+                prescription.InitializeReservationDates();
+                return treatmentRepository.Update(treatment);
+            }
             if (treatment.IsHospitalTreatment())
                 notificationService.NewHospitalTreatment((HospitalTreatment) treatment);
             return treatmentRepository.Create(treatment);
@@ -51,8 +55,18 @@ namespace Backend.Examinations.Service
         public IEnumerable<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate) => 
             treatmentRepository.GetAllPrescriptionsInPeriod(startDate, endDate);
 
-        public HospitalTreatment ApproveHospitalTreatment(HospitalTreatment hospitalTreatment) =>
-            treatmentRepository.ApproveTreatment(hospitalTreatment);
+        public HospitalTreatment ApproveHospitalTreatment(HospitalTreatment hospitalTreatment)
+        {
+            HospitalTreatment treatment = (HospitalTreatment)treatmentRepository.GetObject(hospitalTreatment.Id);
+            treatment.Status = Status.Approved;
+            return (HospitalTreatment) treatmentRepository.Update(treatment);
+        }
+        public HospitalTreatment RejectHospitalTreatment(HospitalTreatment hospitalTreatment)
+        {
+            HospitalTreatment treatment = (HospitalTreatment)treatmentRepository.GetObject(hospitalTreatment.Id);
+            treatment.Status = Status.Rejected;
+            return (HospitalTreatment)treatmentRepository.Update(treatment);
+        }
 
         public NotificationService notificationService;
         public ITreatmentRepository treatmentRepository;

@@ -26,14 +26,14 @@ namespace Backend.Medications.Model
         public virtual List<SideEffect> SideEffects { get; set; }
         public Medication() { }
 
-        public Medication(string name, string company, List<DosageOfIngredient> ingredients, MedicationCategory category, List<Allergens> allergens, List<SideEffect> sideEffects)
+        public Medication(string name, string company, MedicationCategory category)
         {
             Med = name;
             Company = company;
-            MedicationContent = ingredients;
+            MedicationContent = new List<DosageOfIngredient>();
             MedicationCategory = category;
-            Allergens = allergens;
-            SideEffects = sideEffects;
+            Allergens = new List<Allergens>();
+            SideEffects = new List<SideEffect>();
             Status = MedStatus.Validation;
         }
 

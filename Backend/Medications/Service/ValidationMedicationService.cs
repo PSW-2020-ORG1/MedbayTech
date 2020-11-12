@@ -20,8 +20,12 @@ namespace Backend.Medications.Service
             this.notificationService = notificationService;
         }
 
-        public ValidationMed ReviewValidation(ValidationMed validation) =>
-            validationMedicationRepository.ReviewMedication(validation);
+        public ValidationMed ReviewValidation(ValidationMed validation)
+        {
+            ValidationMed validationToUpdate = validationMedicationRepository.GetObject(validation.Id);
+            validationToUpdate.Reviewed = true;
+            return validationMedicationRepository.Update(validation);
+        }
 
         public ValidationMed AddValidation(ValidationMed medication)
         {
