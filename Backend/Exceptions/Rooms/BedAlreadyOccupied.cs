@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Backend.Exceptions.IncorrectEmailAddress
+namespace Backend.Exceptions.Schedules
 {
-    public class AlreadyOccupied : SystemException
+    public class BedAlreadyOccupied : SystemException
     {
-        public AlreadyOccupied()
+        public BedAlreadyOccupied()
         {
 
         }
 
-        public AlreadyOccupied(string message) : base(message)
+        public BedAlreadyOccupied(string message) : base(message)
         {
 
         }
 
-        public AlreadyOccupied(string message, System.Exception inner) : base(message, inner)
+        public BedAlreadyOccupied(string message, System.Exception inner) : base(message, inner)
         {
 
         }

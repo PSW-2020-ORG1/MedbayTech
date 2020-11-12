@@ -11,7 +11,6 @@ using Model.Users;
 using Repository.ScheduleRepository;
 using Service.GeneralService;
 using Service.UserService;
-using Backend.Exceptions.IncorrectEmailAddress;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -127,12 +126,12 @@ namespace Service.ScheduleService
         {
             var appointmentsForPatient = GetScheduledFor(appointment.MedicalRecord.Patient);
             if (appointmentsForPatient != null && !ifUrgent)
-                throw new AlreadyOccupied(PATIENT_ALREADY_HAS_SCHEDULED);
+                throw new AppointmentAlreadyOccupied(PATIENT_ALREADY_HAS_SCHEDULED);
             if (appointment.IsTooEarlyToSchedule(allowedPeriodOfTime))
                 throw new NotValidTimeForScheduling(string.Format(CANT_SCHEDULE, allowedPeriodOfTime));
             if (appointmentRepository.GetAll().Any(ent => ent.IsAlreadyScheduled(appointment.Period.StartTime) 
                                                           && ent.Doctor.Username.Equals(appointment.Doctor.Username)))
-                throw new AlreadyOccupied(string.Format(ALREADY_SCHEDULED, appointment.Period.StartTime.ToString("dd.MM.yyyy. HH:mm")));
+                throw new AppointmentAlreadyOccupied(string.Format(ALREADY_SCHEDULED, appointment.Period.StartTime.ToString("dd.MM.yyyy. HH:mm")));
             return true;
         }
 

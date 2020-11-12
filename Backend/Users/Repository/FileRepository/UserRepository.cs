@@ -5,7 +5,7 @@
  ***********************************************************************/
 
 using Model.Users;
-using Backend.Exceptions.IncorrectEmailAddress;
+using Backend.Exceptions.Schedules;
 using System;
 using System.Collections.Generic;
 using System.Linq;

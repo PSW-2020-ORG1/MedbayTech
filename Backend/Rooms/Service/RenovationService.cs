@@ -10,7 +10,7 @@ using Service.GeneralService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Backend.Exceptions.IncorrectEmailAddress;
+using Backend.Exceptions.Schedules;
 
 namespace Service.RoomService
 {

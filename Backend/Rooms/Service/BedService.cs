@@ -5,7 +5,7 @@
 
 using Model.Rooms;
 using Repository.RoomRepository;
-using Backend.Exceptions.IncorrectEmailAddress;
+using Backend.Exceptions.Schedules;
 using SimsProjekat.SIMS.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -106,7 +106,7 @@ namespace Service.RoomService
             {
                 if (CheckIfDatesOverlap(occup.Period.StartTime, occup.Period.EndTime, occupation))
                 {
-                    throw new AlreadyOccupied(string.Format(ALREADY_OCCUPIED, occupation.Period.StartTime.ToString("dd.MM.yyyy."), occupation.Period.EndTime.ToString("dd.MM.yyyy.")));
+                    throw new BedAlreadyOccupied(string.Format(ALREADY_OCCUPIED, occupation.Period.StartTime.ToString("dd.MM.yyyy."), occupation.Period.EndTime.ToString("dd.MM.yyyy.")));
                 }
             }
             return false;

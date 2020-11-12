@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Backend.Exceptions.IncorrectEmailAddress
+namespace Backend.Exceptions.Schedules
 {
     public class IncorrectPasswordFormat : System.Exception
     {

@@ -3,7 +3,7 @@ using Model.Users;
 using Repository.ScheduleRepository;
 using Service.ScheduleService;
 using Service.UserService;
-using Backend.Exceptions.IncorrectEmailAddress;
+using Backend.Exceptions.Schedules;
 using System;
 using System.Collections.Generic;
 using System.Text;

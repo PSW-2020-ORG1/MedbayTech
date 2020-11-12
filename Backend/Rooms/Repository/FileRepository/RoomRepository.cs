@@ -8,7 +8,7 @@ using Model.Rooms;
 using Model.Users;
 using Repository.ScheduleRepository;
 using Repository.UserRepository;
-using Backend.Exceptions.IncorrectEmailAddress;
+using Backend.Exceptions.Schedules;
 using Backend.General.Model;
 using SimsProjekat.SIMS.Exceptions;
 using System;

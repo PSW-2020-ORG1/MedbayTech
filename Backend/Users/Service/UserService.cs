@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using Repository.UserRepository;
 using System.Text.RegularExpressions;
-using Backend.Exceptions.IncorrectEmailAddress;
+using Backend.Exceptions.Schedules;
 using SimsProjekat.SIMS.Exceptions;
 using System.Linq;
 using Backend.Records.Model;
@@ -78,7 +78,7 @@ namespace Service.UserService
             {
                 var patinet = (Patient)user;
                 if (patinet.IsGuestAccount)
-                    throw new GuestAccount();
+                    throw new NoRightPrivileges();
             }
         }
 

@@ -13,7 +13,7 @@ using System.Linq;
 using SimsProjekat.SIMS.Exceptions;
 using Backend.Medications.Model;
 using Backend.General.Model;
-using Backend.Exceptions.IncorrectEmailAddress;
+using Backend.Exceptions.Schedules;
 using Backend.Records.Model;
 
 namespace Repository.MedicalRecordRepository
