@@ -9,8 +9,6 @@ namespace Backend.Utils
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-        public Period() {}
-
         public Period(DateTime startTime, DateTime endTime)
         {
             StartTime = startTime; 

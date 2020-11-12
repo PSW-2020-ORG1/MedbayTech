@@ -12,10 +12,10 @@ namespace Model.Users
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; protected set; }
+        public string Name { get;  set; }
         [ForeignKey("State")]
-        public long StateId { get; protected set; }
-        public virtual State State { get; protected set; }
+        public long StateId { get;  set; }
+        public virtual State State { get;  set; }
 
         public City() { }
 
