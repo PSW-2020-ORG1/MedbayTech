@@ -3,7 +3,7 @@
 // Created: Tuesday, May 19, 2020 11:01:37 PM
 // Purpose: Definition of Class BedService
 
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using Model.Rooms;
 using Repository.RoomRepository;
 using Backend.Exceptions.IncorrectEmailAddress;

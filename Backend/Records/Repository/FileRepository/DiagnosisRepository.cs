@@ -3,7 +3,7 @@
 // Created: Friday, May 22, 2020 4:38:49 AM
 // Purpose: Definition of Class DiagnosisRepository
 
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using Repository.ReportRepository;
 using System;
 using System.Collections.Generic;
@@ -24,7 +24,12 @@ namespace Repository.MedicalRecordRepository
             return base.Create(entity);
         }
 
-        public Diagnosis GetByName(string name) => base.GetAll().ToList().SingleOrDefault(entity => entity.Name.Equals(name));
+        public Diagnosis GetBy(string name) => base.GetAll().ToList().SingleOrDefault(entity => entity.Name.Equals(name));
         public int GetNextID() => stream.GetAll().ToList().Count + 1;
+
+        public Diagnosis UpdateSymptoms(Diagnosis diagnosis, Symptoms symptom)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

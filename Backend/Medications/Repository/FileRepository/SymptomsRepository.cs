@@ -4,7 +4,7 @@
  * Purpose: Definition of the Class Repository.SymptomsRepository
  ***********************************************************************/
 
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

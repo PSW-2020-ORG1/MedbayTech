@@ -5,7 +5,7 @@
 
 using System;
 using Backend.Medications.Model;
-namespace Model.MedicalRecord
+namespace Backend.Records.Model.Enums
 {
    public class Therapy
    {

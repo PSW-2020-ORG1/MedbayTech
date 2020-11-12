@@ -5,7 +5,7 @@
  ***********************************************************************/
 
 using Backend.Examinations.Model;
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using Model.Users;
 using Backend.Examinations.Repository;
 using System;
@@ -35,7 +35,7 @@ namespace Backend.Examinations.Service
             examinationSurgeryRepository.GetObject(id);
 
         public IEnumerable<ExaminationSurgery> GetAllBy(Doctor doctor) => 
-            examinationSurgeryRepository.GetAllByDoctor(doctor);
+            examinationSurgeryRepository.GetAllBy(doctor);
 
         public IEnumerable<ExaminationSurgery> GetAllBy(MedicalRecord record) => 
             examinationSurgeryRepository.GetAllByRecord(record);  

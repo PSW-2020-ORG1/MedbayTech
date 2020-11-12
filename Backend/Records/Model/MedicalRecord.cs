@@ -8,9 +8,10 @@ using Backend.Medications.Model;
 using Model.Users;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using SimsProjekat.Repository;
 
-namespace Model.MedicalRecord
+namespace Backend.Records.Model.Enums
 {
    public class MedicalRecord : IIdentifiable<int>
    {
@@ -24,7 +25,6 @@ namespace Model.MedicalRecord
         public virtual List<FamilyIllnessHistory> FamilyIllnessHistory { get; set; }
         public int PatientId { get; set; }
         public virtual Patient Patient { get; set; }
-        public virtual List<ListOfResults> ListOfResults { get; set; }
         public virtual List<Therapy> Therapies { get; set; }
 
         public MedicalRecord() { }
@@ -43,7 +43,6 @@ namespace Model.MedicalRecord
             IllnessHistory = new List<Diagnosis>();
             FamilyIllnessHistory = new List<FamilyIllnessHistory>();
             Therapies = new List<Therapy>();
-            ListOfResults = new List<ListOfResults>();
             Vaccines = new List<Vaccines>();
         }
 
@@ -58,5 +57,25 @@ namespace Model.MedicalRecord
         {
             Id = id;
         }
-    }
+
+        public bool IsFamilyIllnessHistoryAdded(FamilyIllnessHistory diagnosis)
+        {
+            return FamilyIllnessHistory.Any(illness => illness.Id == diagnosis.Id);
+        }
+
+        public bool IsTherapyAdded(Therapy therapy)
+        {
+            return Therapies.Any(currTherapy => currTherapy.Medication.Id == therapy.Medication.Id);
+        }
+
+        public bool IsVaccineAdded(Vaccines vaccine)
+        {
+            return Vaccines.Any(currVaccines => currVaccines.Id == vaccine.Id);
+        }
+
+        public bool IsAllergyAdded(Allergens allergens)
+        {
+            return Allergies.Any(allergy => allergy.Id == allergens.Id);
+        }
+   }
 }

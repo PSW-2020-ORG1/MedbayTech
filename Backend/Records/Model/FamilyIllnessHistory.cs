@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Model.MedicalRecord
+namespace Backend.Records.Model.Enums
 {
    public class FamilyIllnessHistory
    {

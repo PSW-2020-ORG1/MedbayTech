@@ -113,17 +113,6 @@ namespace Backend.Examinations.Repository
             return prescriptions;
         }
 
-        public HospitalTreatment ApproveTreatment(HospitalTreatment hospitalTreatment)
-        {
-            hospitalTreatment.Status = Status.Approved;
-            return (HospitalTreatment)base.Update(hospitalTreatment);
-        }
-
-        public Prescription ReserveMedication(Prescription treatment)
-        {
-            treatment.InitializeReservationDates();
-            return (Prescription)base.Update(treatment);
-        }
 
         public int GetNextId() => stream.GetAll().ToList().Count + 1;
 

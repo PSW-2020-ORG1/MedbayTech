@@ -44,7 +44,14 @@ namespace Backend.Medications.Controller
             medicationService.RejectMedication(medication);
         public Medication ApproveMedication(Medication medication) => 
             medicationService.ApproveMedication(medication);
-      
+        public Medication UpdateSideEffects(Medication medication, SideEffect sideEffect) =>
+            medicationService.UpdateSideEffects(medication, sideEffect);
+        public Medication UpdateDosageOfIngerdients(Medication medication, DosageOfIngredient dosageOfIngredient) =>
+            medicationService.UpdateDosageOfIngredients(medication, dosageOfIngredient);
+        public Medication UpdateAllegens(Medication medication, Allergens allergens) =>
+            medicationService.UpdateAllergens(medication, allergens);
+
+
         public MedicationService medicationService;
    
    }

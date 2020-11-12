@@ -4,7 +4,7 @@
 // Purpose: Definition of Class ExaminationSurgeryRepository
 
 using Backend.Examinations.Model;
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using Repository.UserRepository;
 using Repository.MedicalRecordRepository;
 using Model.Users;
@@ -58,7 +58,7 @@ namespace Backend.Examinations.Repository
             return examinations;
         }
 
-        public IEnumerable<ExaminationSurgery> GetAllByDoctor(Doctor doctor)
+        public IEnumerable<ExaminationSurgery> GetAllBy(Doctor doctor)
         {
             var allExaminations = stream.GetAll().Where(item => item.Doctor.Id.Equals(doctor.Id)).ToList();
             foreach(ExaminationSurgery examintion in allExaminations)
@@ -106,17 +106,9 @@ namespace Backend.Examinations.Repository
             for (int i = 0; i < entity.Treatments.Count; i++)
             {
                 if (entity.Treatments[i].Type == TreatmentType.HospitalTreatment)
-                {
                     entity.Treatments[i] = new HospitalTreatment(entity.Treatments[i].Id);
-                }
-                else if (entity.Treatments[i].Type == TreatmentType.Prescription)
-                {
+                else 
                     entity.Treatments[i] = new Prescription(entity.Treatments[i].Id);
-                }
-                else if (entity.Treatments[i].Type == TreatmentType.LabTest)
-                {
-                    entity.Treatments[i] = new LabTesting(entity.Treatments[i].Id);
-                }
             }
         }
 

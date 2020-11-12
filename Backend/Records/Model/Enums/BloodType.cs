@@ -6,7 +6,7 @@
 using Model.Users;
 using System;
 
-namespace Model.MedicalRecord
+namespace Backend.Records.Model.Enums
 {
    public enum BloodType
    {

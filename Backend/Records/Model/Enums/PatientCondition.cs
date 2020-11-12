@@ -7,13 +7,13 @@
 using Model.Users;
 using System;
 
-namespace Model.MedicalRecord
+namespace Backend.Records.Model.Enums
 {
    public enum PatientCondition
    {
-      stable,
-      urgent,
-      hospitalTreatment,
-      homeTreatment
+      Stable,
+      Urgent,
+      HospitalTreatment,
+      HomeTreatment
    }
 }

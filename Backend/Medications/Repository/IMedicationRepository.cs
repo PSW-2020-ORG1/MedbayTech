@@ -20,7 +20,5 @@ namespace Backend.Medications.Repository.FileRepository
 
         bool ExistsInSystem(int id);
         int GetNextID();
-        Medication RejectMedication(Medication medication);
-        Medication ApproveMedication(Medication medication);
     }
 }

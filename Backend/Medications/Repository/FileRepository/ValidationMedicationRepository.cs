@@ -68,11 +68,6 @@ namespace Backend.Medications.Repository.FileRepository
         public int GetNextID() => 
             stream.GetAll().ToList().Count + 1;
 
-        public ValidationMed ReviewMedication(ValidationMed validation)
-        {
-            validation.Reviewed = true;
-            return base.Update(validation);
-        }
 
         public void SetMissingValues(ValidationMed entity)
         {

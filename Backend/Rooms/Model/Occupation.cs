@@ -3,7 +3,7 @@
 // Created: Thursday, April 23, 2020 7:27:04 PM
 // Purpose: Definition of Class Occupations
 
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using System;
 
 namespace Model.Rooms
@@ -16,9 +16,9 @@ namespace Model.Rooms
         public int BedId { get; set; }
         public virtual Bed Bed { get; set; }
         public int PatientId { get; set; }
-        public virtual MedicalRecord.MedicalRecord Patient { get; set; }
+        public virtual Backend.Records.Model.Enums.MedicalRecord Patient { get; set; }
 
-        public Occupation ( DateTime startDate, DateTime endDate, MedicalRecord.MedicalRecord patient )
+        public Occupation ( DateTime startDate, DateTime endDate, Backend.Records.Model.Enums.MedicalRecord patient )
         {
             OccupiedFromDate = startDate;
             OccupiedToDate = endDate;

@@ -6,7 +6,7 @@
 
 using System;
 using System.Collections.Generic;
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using SimsProjekat.Repository;
 
 namespace Model.Rooms

@@ -3,7 +3,7 @@
 // Created: Tuesday, May 19, 2020 11:48:16 PM
 // Purpose: Definition of Class BedController
 
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using Model.Rooms;
 using Service.RoomService;
 using System;

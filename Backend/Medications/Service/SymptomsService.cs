@@ -4,7 +4,7 @@
  * Purpose: Definition of the Class Service.MedicalRecordService.SymptomsService
  ***********************************************************************/
 
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using Backend.Medications.Repository.FileRepository;
 using System;
 using System.Collections.Generic;

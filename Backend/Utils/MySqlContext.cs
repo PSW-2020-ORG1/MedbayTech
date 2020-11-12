@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Backend.Examinations.Model;
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using Backend.Medications.Model;
 using Model.Reports;
 using Model.Schedule;

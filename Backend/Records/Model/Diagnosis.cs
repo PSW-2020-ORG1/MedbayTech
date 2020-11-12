@@ -5,24 +5,18 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Backend.Examinations.Model;
 using SimsProjekat.Repository;
 
-namespace Model.MedicalRecord
+namespace Backend.Records.Model.Enums
 {
     public class Diagnosis : IIdentifiable<int>
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
         public virtual List<Symptoms> Symptoms { get; set; }
 
-        public int FamilyIllnessHistoryId { get; set; }
-        public virtual FamilyIllnessHistory FamilyIllnessHistory  { get; set; }
-        public int MedicalRecordId { get; set; }
-        public virtual MedicalRecord MedicalRecord { get; set; }
-       
-        public int ExaminationSurgeryId { get; set; }
-        public virtual Backend.Examinations.Model.ExaminationSurgery ExaminationSurgery { get; set; }
         public Diagnosis() 
         {
             
@@ -33,11 +27,11 @@ namespace Model.MedicalRecord
             Id = code;
         }
 
-        public Diagnosis(string name, int code, List<Symptoms> symptoms)
+        public Diagnosis(string name, int code) 
         {
             Name = name;
             Id = code;
-            Symptoms = symptoms;
+            Symptoms = new List<Symptoms>();
         }
 
       
@@ -49,6 +43,19 @@ namespace Model.MedicalRecord
         public void SetId(int id)
         {
             Id = id;
+        }
+
+        public bool IsMySymptom(IEnumerable<Symptoms> symptoms)
+        {
+            foreach (Symptoms symptom in symptoms)
+            {
+                if (Symptoms.Any(entity => entity.Name.Equals(symptom.Name)))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

@@ -4,7 +4,7 @@
 // Purpose: Definition of Class Allergens
 
 using System;
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 
 
 namespace Backend.Medications.Model

@@ -25,7 +25,7 @@ namespace Model.Schedule
         public int RoomId { get; set; }
         public virtual Room Room { get; set; }
         public int MedicalRecordId { get; set; }
-        public virtual MedicalRecord.MedicalRecord MedicalRecord { get; set; }
+        public virtual Backend.Records.Model.Enums.MedicalRecord MedicalRecord { get; set; }
         public int DoctorId { get; set; }
         public virtual Doctor Doctor { get; set; }
 
@@ -50,7 +50,7 @@ namespace Model.Schedule
         }
 
         public Appointment(DateTime startTime, DateTime endTime, TypeOfAppointment type, string shortDescription,
-            bool urgent, bool deleted, Room room, MedicalRecord.MedicalRecord medicalRecord, Doctor doctor)
+            bool urgent, bool deleted, Room room, Backend.Records.Model.Enums.MedicalRecord medicalRecord, Doctor doctor)
         {
             Finished = false;
             StartTime = startTime;

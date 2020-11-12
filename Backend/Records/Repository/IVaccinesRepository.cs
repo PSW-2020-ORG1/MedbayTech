@@ -3,7 +3,7 @@
 // Created: Friday, May 22, 2020 4:36:47 AM
 // Purpose: Definition of Interface IVaccinesRepository
 
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using System;
 
 namespace Repository.MedicalRecordRepository

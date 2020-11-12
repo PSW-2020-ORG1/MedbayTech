@@ -26,11 +26,17 @@ namespace Backend.Medications.Service
             this.medicationRepository = medicationRepository;
         }
 
-        public Medication RejectMedication(Medication medication) =>
-            medicationRepository.RejectMedication(medication);
+        public Medication RejectMedication(Medication medication)
+        {
+            medication.Status = MedStatus.Approved;
+            return medicationRepository.Update(medication);
+        }
 
-        public Medication ApproveMedication(Medication medication) =>
-            medicationRepository.ApproveMedication(medication);
+        public Medication ApproveMedication(Medication medication)
+        {
+            medication.Status = MedStatus.Rejected;
+            return medicationRepository.Update(medication);
+        }
 
         public Medication CreateMedication(Medication medication)
         {
@@ -80,8 +86,26 @@ namespace Backend.Medications.Service
             medication.Quantity += amount;
             return medicationRepository.Update(medication);
         }
-      
-        
+
+        public Medication UpdateSideEffects(Medication medication, SideEffect sideEffects)
+        {
+            medication.SideEffects.Add(sideEffects);
+            return medicationRepository.Update(medication);
+        }
+
+        public Medication UpdateDosageOfIngredients(Medication medication, DosageOfIngredient dosageOfIngredient)
+        {
+            medication.MedicationContent.Add(dosageOfIngredient);
+            return medicationRepository.Update(medication);
+        }
+
+        public Medication UpdateAllergens(Medication medication, Allergens allergens)
+        {
+            medication.Allergens.Add(allergens);
+            return medicationRepository.Update(medication);
+        }
+
+
 
     }
 }

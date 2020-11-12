@@ -11,7 +11,7 @@ using System.Linq;
 using System.Security.Cryptography.Xml;
 using Backend.Examinations.Model.Enums;
 using SimsProjekat.SIMS.Exceptions;
-using Model.MedicalRecord;
+using Backend.Records.Model.Enums;
 using Backend.Medications.Model;
 using Repository;
 using SimsProjekat.Repository;
