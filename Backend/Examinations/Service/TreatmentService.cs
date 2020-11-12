@@ -43,10 +43,8 @@ namespace Backend.Examinations.Service
             List<HospitalTreatment> allHospitalTreatments = (new List<HospitalTreatment>(treatmentRepository.GetAllHospitalTreatments()));
             List<HospitalTreatment> unapprovedTreatments = new List<HospitalTreatment>();
             foreach (HospitalTreatment hospitalTreatment in allHospitalTreatments)
-            {
                 if (!hospitalTreatment.IsApproved())
                     unapprovedTreatments.Add(hospitalTreatment);
-            }
             return unapprovedTreatments;
         }
         public IEnumerable<Prescription> GetAllPrescriptions() => 

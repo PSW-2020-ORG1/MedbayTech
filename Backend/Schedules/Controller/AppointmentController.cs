@@ -19,19 +19,45 @@ namespace Backend.Examinations.Controller.ScheduleController
         {
             this.appointmentService = appointmentService;
         }
-        public Appointment AddAppointment(Appointment appointment, bool ifUrgent) => appointmentService.AddAppointment(appointment, ifUrgent);
-        public Appointment ChangeRoomForAppointment(Appointment appointment, Room room) => appointmentService.ChangeRoomForAppointment(appointment, room);
-        public Appointment ChangeDoctorForAppointment(Doctor doctor, Appointment appointment) => appointmentService.ChangeDoctorForAppointment(doctor, appointment);
-        public Appointment ChangeDateTimeOfAppointment(Appointment appointment, DateTime termOfAppointmetn) => appointmentService.ChangeDateTimeOfAppointment(appointment, termOfAppointmetn);
-        public bool DeleteAppointment(Appointment appointment) => appointmentService.DeleteAppointment(appointment);
-        public Appointment GetAppointment(int appointmentId) => appointmentService.GetAppointment(appointmentId);
-        public IEnumerable<Appointment> GetScheduledByDay(DateTime date) => appointmentService.GetScheduledByDay(date);
-        public IEnumerable<Appointment> GetScheduledByDoctorForOneDay(Doctor doctor, DateTime date) => appointmentService.GetScheduledByDoctorForOneDay(doctor, date);
-        public Appointment GetScheduledForPatient(Patient patient) => appointmentService.GetScheduledForPatient(patient);
-        public IEnumerable<Appointment> NotFinishedByDoctorAndDay(Doctor doctor, DateTime day) => appointmentService.NotFinishedByDoctorAndDay(doctor, day);
-        public Appointment GetCurrentAppointment(Doctor doctor, MedicalRecord medicalRecord) => appointmentService.GetCurrentAppointment(doctor, medicalRecord);
-        public Appointment FinishAppointment(Appointment appointment) => appointmentService.FinishAppointment(appointment);
-        public int GetNumberOfAppointmentsForDoctor(Doctor doctor, TypeOfAppointment type) => appointmentService.GetNumberOfAppointmentsForDoctor(doctor, type);
+        public Appointment AddAppointment(Appointment appointment, bool ifUrgent) => 
+            appointmentService.AddAppointment(appointment, ifUrgent);
+
+        public Appointment ChangeRoomForAppointment(Appointment appointment, Room room) => 
+            appointmentService.ChangeRoomForAppointment(appointment, room);
+
+        public Appointment ChangeDoctorForAppointment(Doctor doctor, Appointment appointment) => 
+            appointmentService.ChangeDoctorForAppointment(doctor, appointment);
+
+        public Appointment ChangeTimeOfAppointment(Appointment appointment, DateTime termOfAppointment) => 
+            appointmentService.ChangeTimeOfAppointment(appointment, termOfAppointment);
+
+        public bool DeleteAppointment(Appointment appointment) => 
+            appointmentService.DeleteAppointment(appointment);
+
+        public Appointment GetAppointment(int appointmentId) => 
+            appointmentService.GetAppointment(appointmentId);
+
+        public IEnumerable<Appointment> GetScheduledBy(DateTime date) => 
+            appointmentService.GetScheduledBy(date);
+
+        public IEnumerable<Appointment> GetScheduledBy(Doctor doctor, DateTime date) => 
+            appointmentService.GetScheduledBy(doctor, date);
+
+        public Appointment GetScheduledFor(Patient patient) => 
+            appointmentService.GetScheduledFor(patient);
+
+        public IEnumerable<Appointment> NotFinishedByDoctorAndDay(Doctor doctor, DateTime day) => 
+            appointmentService.NotFinishedByDoctorAndDay(doctor, day);
+
+        public Appointment GetCurrentAppointment(Doctor doctor, MedicalRecord medicalRecord) => 
+            appointmentService.GetCurrentAppointment(doctor, medicalRecord);
+
+        public Appointment FinishAppointment(Appointment appointment) => 
+            appointmentService.FinishAppointment(appointment);
+
+        public int GetNumberOfAppointmentsFor(Doctor doctor, TypeOfAppointment type) => 
+            appointmentService.GetNumberOfAppointmentsFor(doctor, type);
+
 
         public AppointmentService appointmentService;
     

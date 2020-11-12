@@ -13,8 +13,7 @@ namespace Repository.ScheduleRepository
 {
    public interface IAppointmentRepository : IRepository<Appointment,int>
    {
-        Dictionary<int, Appointment> GetAppointmentsByDate(DateTime date);
+        Dictionary<int, Appointment> GetAppointmentsBy(DateTime date);
         Dictionary<int, Appointment> GetScheduledFromToday();
-   
-   }
+    }
 }

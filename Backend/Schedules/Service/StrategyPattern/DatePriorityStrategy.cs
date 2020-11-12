@@ -1,31 +1,27 @@
-// File:    DatePrirorityStrategy.cs
+// File:    DatePriorityStrategy.cs
 // Author:  Vlajkov
 // Created: Tuesday, June 02, 2020 1:09:09 AM
-// Purpose: Definition of Class DatePrirorityStrategy
+// Purpose: Definition of Class DatePriorityStrategy
 
 using Model.Schedule;
 using SimsProjekat.Repository.ScheduleRepository;
 using System;
 using System.Collections.Generic;
+using Backend.Utils;
 
 namespace Service.ScheduleService
 {
-   public class DatePrirorityStrategy : IPriorityStrategy
+   public class DatePriorityStrategy : IPriorityStrategy
    {
         public Appointment Recommend(PriorityParameters parameters)
         {
-            DateTime startFrom = DateTime.Today;
-            if (parameters.ChosenStartDate.Date.CompareTo(DateTime.Today.Date) <= 0)
-                startFrom = new DateTime(DateTime.Today.AddDays(1).Year, DateTime.Today.AddDays(1).Month, DateTime.Today.AddDays(1).Day, startWorkingHours, 0, 0);
-            else 
-                startFrom = new DateTime(parameters.ChosenStartDate.Year, parameters.ChosenStartDate.Month, parameters.ChosenStartDate.Day, startWorkingHours, 0, 0);
-            parameters.ChosenEndDate = new DateTime(parameters.ChosenEndDate.Year, parameters.ChosenEndDate.Month, parameters.ChosenEndDate.Day, endWorkingHours, 0, 0);
+            Period period = parameters.SetStartTime(startWorkingHours, endWorkingHours);
             List<Appointment> allAppointmentsInTimePeriod = new List<Appointment>();
-            while (startFrom.Date.CompareTo(parameters.ChosenEndDate.Date) < 0)
+            while (period.IsPeriodActive())
             {
-                var appointmentsForDoctors = appointmentService.AppointemntsForDoctor(startFrom.Date, parameters.ChosenDoctor, TypeOfAppointment.examination);
+                var appointmentsForDoctors = appointmentService.AvailableExaminationsFor(parameters.ChosenDoctor, period.StartTime.Date, false);
                 allAppointmentsInTimePeriod.AddRange(appointmentsForDoctors.Values);
-                startFrom = startFrom.AddDays(1);
+                period.AddDay();
             }
             return RecommendResults(allAppointmentsInTimePeriod, parameters);
         }
@@ -34,18 +30,18 @@ namespace Service.ScheduleService
         {
             if (allAppointmentsInTimePeriod.Count > 0)
                 return RecommendBest(allAppointmentsInTimePeriod, parameters);
-            return FindAnyOtherAppoitnemnt(parameters);
+            return FindAnyOtherAppointment(parameters);
         }
 
-        private Appointment FindAnyOtherAppoitnemnt(PriorityParameters parameters)
+        private Appointment FindAnyOtherAppointment(PriorityParameters parameters)
         {
-            DateTime startFrom = parameters.ChosenStartDate;
+            Period period = parameters.SetStartTime(startWorkingHours, endWorkingHours);
             List<Appointment> allAppointmentsInTimePeriod = new List<Appointment>();
-            while (startFrom.Date.CompareTo(parameters.ChosenEndDate.Date) < 0)
+            while (period.IsPeriodActive())
             {
-                var appointmentsForDoctors = appointmentService.ScheduleAppointemnts(startFrom, TypeOfAppointment.examination);
+                var appointmentsForDoctors = appointmentService.ScheduleAppointments(period.StartTime, TypeOfAppointment.Examination);
                 allAppointmentsInTimePeriod.AddRange(appointmentsForDoctors.Values);
-                startFrom = startFrom.AddDays(1);
+                period.AddDay();
             }
             return RecommendAnyOtherResults(allAppointmentsInTimePeriod, parameters);
         }
@@ -80,19 +76,17 @@ namespace Service.ScheduleService
             return bestAppointment;
         }
 
-        public DatePrirorityStrategy(AvailableAppointmentService appointmentService, int startHours, int endHours)
+        public DatePriorityStrategy(AvailableAppointmentService appointmentService, int startHours, int endHours)
         {
             startWorkingHours = startHours;
             endWorkingHours = endHours;
-            rndGen = new Random();
             this.appointmentService = appointmentService;
         }
 
 
-        private int startWorkingHours;
-        private int endWorkingHours;
+        private readonly int startWorkingHours;
+        private readonly int endWorkingHours;
 
-        private Random rndGen;
         public AvailableAppointmentService appointmentService;
    
    }

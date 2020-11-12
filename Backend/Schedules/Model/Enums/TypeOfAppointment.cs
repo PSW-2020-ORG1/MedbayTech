@@ -11,8 +11,8 @@ namespace Model.Schedule
 {
    public enum TypeOfAppointment
    {
-       examination,
-       surgery
+       Examination,
+       Surgery
    
    }
 }

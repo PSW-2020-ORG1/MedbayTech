@@ -28,8 +28,7 @@ namespace Backend.Examinations.Service
         {
             if (!examinationSurgery.IsAlreadyStarted())
                 return examinationSurgeryRepository.Create(examinationSurgery);
-            else
-                return GetCurrentExamination(examinationSurgery.MedicalRecord.Id);
+            return GetCurrentExamination(examinationSurgery.MedicalRecord.Id);
         }
 
         public ExaminationSurgery GetExaminationSurgery(int id) => 
@@ -47,10 +46,8 @@ namespace Backend.Examinations.Service
             {
                 ExaminationSurgery lastExamination = allForOneRecord[0];
                 foreach (ExaminationSurgery examinationSurgery in allForOneRecord)
-                {
                     if (examinationSurgery.IsExaminationBefore(lastExamination.StartTime))
                         lastExamination = examinationSurgery;
-                }
                 return lastExamination;
             }
             throw new EntityNotFound();

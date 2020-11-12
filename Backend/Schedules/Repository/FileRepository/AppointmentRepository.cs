@@ -56,7 +56,7 @@ namespace Repository.ScheduleRepository
             return allAppointments;
         }
 
-        public Dictionary<int, Appointment> GetAppointmentsByDate(DateTime date)
+        public Dictionary<int, Appointment> GetAppointmentsBy(DateTime date)
         {
             var allAppointments = stream.GetAll().ToList();
             Dictionary<int, Appointment> appointmentsByDate = new Dictionary<int, Appointment>();
@@ -109,10 +109,8 @@ namespace Repository.ScheduleRepository
             foreach (Appointment appointment in allAppointments)
             {
                 CompleteObject(appointment);
-                if (appointment.Period.StartTime.Date.CompareTo(DateTime.Today.Date) > 0)
-                {
+                if (appointment.IsAfterToday())
                     appointmentsByDate.Add(appointment.GetHashCode(), appointment);
-                }
             }
             return appointmentsByDate;
             

@@ -16,5 +16,15 @@ namespace Backend.Utils
             StartTime = startTime; 
             EndTime = endTime;
         }
+
+        public bool IsPeriodActive()
+        {
+            return StartTime.Date.CompareTo(EndTime.Date) < 0;
+        }
+
+        public void AddDay()
+        {
+            StartTime = StartTime.AddDays(1);
+        }
     }
 }

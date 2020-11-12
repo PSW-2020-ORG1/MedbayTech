@@ -5,6 +5,7 @@
 
 using Model.Users;
 using System;
+using Backend.Utils;
 
 namespace Service.ScheduleService
 {
@@ -22,6 +23,18 @@ namespace Service.ScheduleService
             ChosenStartDate = chosenStartDate;
             ChosenEndDate = chosenEndDate;
             Priority = type;
+        }
+
+        public Period SetStartTime(int startWorkingHours, int endWorkingHours)
+        {
+            Period retVal = new Period();
+            
+            if (ChosenStartDate.Date.CompareTo(DateTime.Today.Date) <= 0)
+                 retVal.StartTime = new DateTime(DateTime.Today.AddDays(1).Year, DateTime.Today.AddDays(1).Month, DateTime.Today.AddDays(1).Day, startWorkingHours, 0, 0);
+            else
+                retVal.StartTime = new DateTime(ChosenStartDate.Year, ChosenStartDate.Month, ChosenStartDate.Day, startWorkingHours, 0, 0);
+            retVal.EndTime = new DateTime(ChosenEndDate.Year, ChosenEndDate.Month, ChosenEndDate.Day, endWorkingHours, 0, 0);
+            return retVal;
         }
 
         public Doctor ChosenDoctor { get => chosenDoctor; set => chosenDoctor = value; }

@@ -67,5 +67,51 @@ namespace Model.Schedule
         {
             Id = id;
         }
+
+        public bool IsAlreadyScheduled(DateTime time)
+        {
+            if (Period.StartTime.CompareTo(time) == 0)
+                return true;
+            return false;
+        }
+
+        public bool IsTooEarlyToSchedule(int allowedHours)
+        {
+            if (Period.StartTime.Date.CompareTo(DateTime.Now.AddHours(allowedHours).Date) <= 0)
+                return true;
+            return false;
+        }
+
+        public bool IsPatient(Patient patient)
+        {
+            return MedicalRecord.Patient.Username.Equals(patient.Username);
+        }
+
+        public bool IsDoctor(Doctor doctor)
+        {
+            return Doctor.Username.Equals(doctor.Username);
+        }
+
+        public bool IsMedicalRecord(MedicalRecord medicalRecord)
+        {
+            return MedicalRecord.Id == medicalRecord.Id;
+        }
+
+        public bool IsInConflict(Appointment availableAppointment)
+        {
+            return Period.StartTime.CompareTo(availableAppointment.Period.StartTime) >= 0 &&
+                   Period.StartTime.CompareTo(availableAppointment.Period.EndTime) < 0
+                   && Room.Id == availableAppointment.Room.Id;
+        }
+
+        public bool IsBefore(WorkDay workDay)
+        {
+            return Period.EndTime.Hour > workDay.Shift.EndHour;
+        }
+
+        public bool IsAfterToday()
+        {
+            return Period.StartTime.Date.CompareTo(DateTime.Today.Date) > 0;
+        }
     }
 }
