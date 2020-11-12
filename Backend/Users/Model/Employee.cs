@@ -4,13 +4,14 @@
 // Purpose: Definition of Class Employee
 
 using System;
+using System.ComponentModel.DataAnnotations;
 using ZdravoKorporacija.Model.Users;
 
 namespace Model.Users
 {
    public class Employee : RegisteredUser
    {
-
+        [Key]
         public int WorkersID { get; protected set; }
         public bool VacationLeave { get; protected set; }
         public bool CurrentlyWorking { get; protected set; }

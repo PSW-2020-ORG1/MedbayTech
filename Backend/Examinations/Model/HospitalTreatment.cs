@@ -4,6 +4,7 @@
 // Purpose: Definition of Class HospitalTreatment
 
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Examinations.Model.Enums;
 using Backend.Utils;
 using Model.Rooms;
@@ -14,6 +15,7 @@ namespace Backend.Examinations.Model
     {
         public Period Period { get; set; }
         public Status Status { get; set; }
+        [ForeignKey("Department")]
         public int DepartmentId { get; set; }
         public virtual Department Department { get; set; }
 

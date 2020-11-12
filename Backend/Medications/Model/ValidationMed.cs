@@ -6,18 +6,23 @@
 using Model.Users;
 using System;
 using SimsProjekat.Repository;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Medications.Model
 {
    public class ValidationMed : IIdentifiable<int>
    {
+        [Key]
         public int Id { get; set; }
         public  string SideNotes { get; set; }
         public  DateTime DateOfValidation { get; set; }
         public  bool Approved { get; set; }
         public  bool Reviewed { get; set; }
+        [ForeignKey("Medication")]
         public int MedicationId { get; set; }
         public  Medication Medication { get; set; }
+        [ForeignKey("Doctor")]
         public string DoctorId { get; set; }
         public  Doctor Doctor { get; set; }
 

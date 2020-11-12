@@ -4,6 +4,8 @@
 // Purpose: Definition of Class Frequency
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Records.Model;
 using Backend.Records.Model.Enums;
 
@@ -11,11 +13,13 @@ namespace Backend.Medications.Model
 {
    public class SideEffect
    {
+        [Key]
         public int Id { get; set; }
         public SideEffectFrequency Frequency { get; set; }
+        [ForeignKey("SideEffects")]
         public int SideEffectsId { get; set; }
         public virtual Symptoms SideEffects { get; set; }
-
+        [ForeignKey("Medication")]
         public int MedicationId { get; set; }
         public virtual Medication Medication { get; set; }
 

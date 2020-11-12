@@ -4,13 +4,15 @@
 // Purpose: Definition of Class Feedback
 
 using System;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using SimsProjekat.Repository;
 
 namespace Model.Users
 {
     public class Feedback : IIdentifiable<int>
     {
+        [Key]
         public int Id { get; set; }
         public DateTime Date { get; protected set; }
         public string AdditionalNotes { get; set; }
@@ -18,7 +20,8 @@ namespace Model.Users
         public bool Anonymous { get; set; }
         public bool AllowedForPublishing { get; set; }
         public Grade Grade { get; set; }
-        public string RegisteredUserId { get; protected set; }
+        [ForeignKey("RegisteredUser")]
+        public string RegisteredUserId { get; set; }
         public virtual RegisteredUser RegisteredUser { get; set; }
 
         public Feedback() { }

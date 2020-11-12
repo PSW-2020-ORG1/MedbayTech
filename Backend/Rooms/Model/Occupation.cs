@@ -12,6 +12,7 @@ namespace Model.Rooms
 {
     public class Occupation
     {
+        // TODO(Jovan): Need DB storage?
         public Period Period { get; protected set; }
         public string PatientId { get; protected set; }
         public int BedId { get; protected set; }

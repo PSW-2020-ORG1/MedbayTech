@@ -4,6 +4,7 @@
 // Purpose: Definition of Class Patient
 
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using ZdravoKorporacija.Model.Users;
 
 namespace Model.Users
@@ -11,6 +12,7 @@ namespace Model.Users
    public class Patient : RegisteredUser
    {
         public bool IsGuestAccount { get; protected set; }
+        [ForeignKey("ChosenDoctor")]
         public string ChosenDoctorId { get; protected set; }
         public virtual Doctor ChosenDoctor { get; set; }
 

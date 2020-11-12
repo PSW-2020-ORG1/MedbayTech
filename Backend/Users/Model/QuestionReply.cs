@@ -4,17 +4,20 @@
 // Purpose: Definition of Class QuestionReply
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Users
 {
    public class QuestionReply
    {
-
+        [Key]
         public int Id { get; protected set; }
         public DateTime Date { get; protected set; }
         public string Content { get; protected set; }
-        public virtual Doctor Author { get; set; }
+        [ForeignKey("AuthorId")]
         public string AuthorId { get; protected set; }
+        public virtual Doctor Author { get; set; }
 
         public QuestionReply() { }
 

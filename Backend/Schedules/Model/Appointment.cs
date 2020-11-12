@@ -9,12 +9,14 @@ using System;
 using SimsProjekat.Repository;
 using Backend.Records.Model;
 using Backend.Utils;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Schedule
 {
     public class Appointment : IIdentifiable<int>
     {
-
+        [Key]
         public int Id { get; set; }
         public Period Period { get; protected set; }
         public TypeOfAppointment TypeOfAppointment { get; set; }
@@ -22,10 +24,13 @@ namespace Model.Schedule
         public bool Urgent { get; set; }
         public bool Deleted { get; set; }
         public bool Finished { get; set; }
+        [ForeignKey("Room")]
         public int RoomId { get; protected set; }
         public virtual Room Room { get; set; }
+        [ForeignKey("MedicalRecord")]
         public int MedicalRecordId { get; protected set; }
         public virtual MedicalRecord MedicalRecord { get; set; }
+        [ForeignKey("Doctor")]
         public string DoctorId { get; protected set; }
         public virtual Doctor Doctor { get; set; }
 

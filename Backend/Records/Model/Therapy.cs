@@ -4,13 +4,17 @@
 // Purpose: Definition of Class Therapy
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Medications.Model;
 namespace Backend.Records.Model
 {
    public class Therapy
    {
+        [Key]
         public int Id { get; set; }
         public int HourConsumption { get; set; }
+        [ForeignKey("Medication")]
         public int MedicationId { get; set; }
         public virtual Medication Medication { get; set; }
 

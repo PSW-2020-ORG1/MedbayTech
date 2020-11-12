@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Model;
-using Backend.Examinations.Model;
 using Model.Users;
-using Repository;
-using Repository.GeneralRepository;
 using WebApplication.DTO;
 using WebApplicationService.GeneralService;
 using WebApplication.Adapters;
-using System.Security.Cryptography.Xml;
 
 namespace WebApplication
 {

@@ -5,6 +5,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Records.Model;
 using Model.Schedule;
 using Model.Users;
@@ -13,14 +15,17 @@ using SimsProjekat.Repository;
 namespace Backend.Examinations.Model
 {
    public class ExaminationSurgery : IIdentifiable<int>
-   {
+    {
+        [Key]
+        public int Id { get; set; }
         public DateTime StartTime { get; set; }
         public TypeOfAppointment Type { get; set; }
-        public int Id { get; set; }
         public virtual List<Treatment> Treatments { get; set; }
         public virtual List<Diagnosis> Diagnoses { get; set; }
+        [ForeignKey("Doctor")]
         public int DoctorId { get; set; }
         public virtual Doctor Doctor { get; set; }
+        [ForeignKey("MedicalRecord")]
         public int MedicalRecordId { get; set; }
         public virtual MedicalRecord MedicalRecord { get; set; }
 

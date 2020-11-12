@@ -4,6 +4,8 @@
 // Purpose: Definition of Class EmergencyRequest
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Examinations.Model.Enums;
 using Backend.Records.Model;
 using Model.Schedule;
@@ -13,12 +15,15 @@ using SimsProjekat.Repository;
 namespace Backend.Examinations.Model
 {
    public class EmergencyRequest : IIdentifiable<int>
-   {
-        public TypeOfAppointment TypeOfAppointment { get; set; }
+    {
+        [Key]
         public int Id { get; protected set; }
+        public TypeOfAppointment TypeOfAppointment { get; set; }
         public string SideNotes { get; set; }
+        [ForeignKey("Specialization")]
         public int SpecializationId { get; set; }
         public virtual Specialization Specialization { get; set; }
+        [ForeignKey("MedicalRecord")]
         public int MedicalRecordId { get; set; }
         public virtual MedicalRecord MedicalRecord { get; set; }
         public Status Status { get; set; }

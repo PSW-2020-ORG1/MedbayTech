@@ -13,7 +13,6 @@ namespace Model.Users
 
         public int Id { get; set; }
         public string Content { get; set; }
-        public int NotificationCategoryId { get; set; }
         public virtual NotificationCategory NotificationCategory { get; set; }
         public string RegisteredUserId { get; set; }
         public virtual RegisteredUser RegisteredUser { get; set; }
@@ -21,6 +20,14 @@ namespace Model.Users
 
 
         public Notification() { }
+
+        public Notification(string content, NotificationCategory category, RegisteredUser registeredUser)
+        {
+            Content = content;
+            NotificationCategory = category;
+            RegisteredUser = registeredUser;
+            RegisteredUserId = registeredUser.Id;
+        }
         public Notification(int id, string content, NotificationCategory category, RegisteredUser registeredUser)
         {
             Id = id;

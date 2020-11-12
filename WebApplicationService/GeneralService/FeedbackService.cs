@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Model.Users;
+using Repository;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
-using Model.Users;
-using Repository;
 
 namespace WebApplicationService.GeneralService
 {

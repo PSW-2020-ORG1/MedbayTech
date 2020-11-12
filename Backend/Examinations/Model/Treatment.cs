@@ -4,19 +4,21 @@
 // Purpose: Definition of Class Treatment
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Examinations.Model.Enums;
-using Backend.Utils;
 using SimsProjekat.Repository;
 
 namespace Backend.Examinations.Model
 {
    public class Treatment : IIdentifiable<int>
    {
+        [Key]
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public string AdditionalNotes { get; set; }
         public TreatmentType Type { get; set; }
-
+        [ForeignKey("ExaminationSurgery")]
         public int ExaminationSurgeryId { get; set; }
         public virtual ExaminationSurgery ExaminationSurgery { get; set; }
         public Treatment() { }

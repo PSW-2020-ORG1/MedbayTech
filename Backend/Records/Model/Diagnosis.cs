@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Backend.Examinations.Model;
 using SimsProjekat.Repository;
@@ -13,6 +14,7 @@ namespace Backend.Records.Model
 {
     public class Diagnosis : IIdentifiable<int>
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public virtual List<Symptoms> Symptoms { get; set; }

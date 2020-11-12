@@ -5,13 +5,15 @@
  ***********************************************************************/
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Backend.Medications.Model
 {
    public class MedicationIngredient
-   {
-        public  string Name { get; set; }
+    {
+        [Key]
         public int Id { get; set; }
+        public  string Name { get; set; }
 
         public MedicationIngredient() { }
         public MedicationIngredient(string name)

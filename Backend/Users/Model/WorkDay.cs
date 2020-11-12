@@ -4,6 +4,8 @@
 // Purpose: Definition of Class WorkDay
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Policy;
 using SimsProjekat.Repository;
 
@@ -11,12 +13,12 @@ namespace Model.Users
 {
    public class WorkDay : IIdentifiable<int>
    {
+        [Key]
         public int Id { get; set; }
         public Days Day { get; protected set; }
         public DateTime Date { get; protected set; }
-
         public virtual Shift Shift { get; protected set; }
-
+        [ForeignKey("Employee")]
         public string EmployeeId { get; protected set; }
         public virtual Employee Employee { get; set; }
 

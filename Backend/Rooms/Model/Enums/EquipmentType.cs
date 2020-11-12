@@ -4,12 +4,14 @@
 // Purpose: Definition of Class EquipmentType
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Model.Rooms
 {
     public class EquipmentType
     {
         public string Name { get; set; }
+        [Key]
         public int Id { get; set; }
 
         public EquipmentType ( string name )

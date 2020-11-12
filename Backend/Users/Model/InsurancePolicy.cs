@@ -6,16 +6,15 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Utils;
-using Pomelo.EntityFrameworkCore.MySql.Query.Internal;
 
 namespace Model.Users
 {
    public class InsurancePolicy
-   {
-        public string Company { get; protected set; }
+    {
+        [Key]
         public string Id { get; protected set; }
+        public string Company { get; protected set; }
         public Period Period { get; set; }
 
 

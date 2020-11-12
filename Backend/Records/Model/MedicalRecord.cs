@@ -12,12 +12,14 @@ using System.Linq;
 using SimsProjekat.Repository;
 
 using Backend.Records.Model.Enums;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Records.Model
 {
    public class MedicalRecord : IIdentifiable<int>
    {
-
+        [Key]
         public int Id { get; set; }
         public PatientCondition CurrHealthState { get; set; }
         public BloodType BloodType { get; set; }
@@ -25,6 +27,7 @@ namespace Backend.Records.Model
         public virtual List<Vaccines> Vaccines { get; set; } 
         public virtual List<Diagnosis> IllnessHistory { get; set; }
         public virtual List<FamilyIllnessHistory> FamilyIllnessHistory { get; set; }
+        [ForeignKey("Patient")]
         public int PatientId { get; set; }
         public virtual Patient Patient { get; set; }
         public virtual List<Therapy> Therapies { get; set; }
