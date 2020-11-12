@@ -14,7 +14,8 @@ namespace Backend.Medications.Model
 {
    public class Medication : IIdentifiable<int>
    {
-       public int Id { get; set;  }
+        [Key]
+        public int Id { get; set;  }
         public string Med { get; set; }
         public MedStatus Status { get; set; }
         public string Company { get; set; }

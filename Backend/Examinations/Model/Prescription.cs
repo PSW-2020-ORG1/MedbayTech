@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Backend.Examinations.Model.Enums;
 using Backend.Utils;
 using Backend.Medications.Model;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Examinations.Model
 {
@@ -17,8 +18,9 @@ namespace Backend.Examinations.Model
         public bool Reserved { get; set; }
         public Period ReservationPeriod { get; set; }
         public int HourlyIntake { get; set; }
-        public virtual Medication Medication { get; set; }
+        [ForeignKey("Medication")]
         public int MedicationId { get; set; }
+        public virtual Medication Medication { get; set; }
 
         public Prescription() : base(TreatmentType.Prescription)
         {

@@ -6,11 +6,13 @@
 using Backend.Records.Model.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Backend.Records.Model
 {
    public class FamilyIllnessHistory
    {
+        [Key]
         public int Id { get; set; }
         public Relative RelativeMember { get; set; }
         public virtual List<Diagnosis> Diagnosis { get; set; }

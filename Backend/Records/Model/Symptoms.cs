@@ -4,11 +4,13 @@
 // Purpose: Definition of Class Symptoms
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Backend.Records.Model
 {
    public class Symptoms
    {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
 

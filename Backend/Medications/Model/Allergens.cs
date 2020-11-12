@@ -4,6 +4,8 @@
 // Purpose: Definition of Class Allergens
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Records.Model;
 
 
@@ -11,13 +13,13 @@ namespace Backend.Medications.Model
 {
     public class Allergens
     {
-
+        [Key]
         public int Id { get; set; }
         public string Allergen { get; set; }
-
+        [ForeignKey("MedicalRecord")]
         public int MedicalRecordId { get; set; }
         public virtual MedicalRecord MedicalRecord { get; set; }
-        
+        [ForeignKey("Medication")]
         public int MedicationId { get; set; }
         public virtual Medication Medication { get; set; }
 
