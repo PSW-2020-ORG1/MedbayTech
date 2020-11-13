@@ -3,13 +3,14 @@
 // Created: Friday, April 17, 2020 1:58:30 AM
 // Purpose: Definition of Class DoctorReview
 
+using Backend.General.Model;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Users
 {
-   public class DoctorReview
+   public class DoctorReview : IIdentifiable<int>
    {
         [Key]
         public int Id { get; set; }
@@ -34,5 +35,14 @@ namespace Model.Users
             DoctorId = doctor.Id;
         }
 
+        public int GetId()
+        {
+            return Id;
+        }
+
+        public void SetId(int id)
+        {
+            Id = id;
+        }
     }
 }

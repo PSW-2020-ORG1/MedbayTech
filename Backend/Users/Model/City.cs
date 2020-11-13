@@ -3,12 +3,13 @@
 // Created: Monday, April 06, 2020 11:20:51 PM
 // Purpose: Definition of Class City
 
+using Backend.General.Model;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Users
 {
-   public class City
+   public class City : IIdentifiable<int>
     {
         [Key]
         public int Id { get; set; }
@@ -24,6 +25,16 @@ namespace Model.Users
             Name = name;
             State = state;
             StateId = state.Id;
+            Id = id;
+        }
+
+        public int GetId()
+        {
+            return Id;
+        }
+
+        public void SetId(int id)
+        {
             Id = id;
         }
     }

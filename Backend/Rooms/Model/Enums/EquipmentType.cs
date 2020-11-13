@@ -3,12 +3,13 @@
 // Created: Friday, April 17, 2020 12:41:59 AM
 // Purpose: Definition of Class EquipmentType
 
+using Backend.General.Model;
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.Rooms
 {
-    public class EquipmentType
+    public class EquipmentType : IIdentifiable<int>
     {
         public string Name { get; set; }
         [Key]
@@ -21,6 +22,16 @@ namespace Model.Rooms
 
         public EquipmentType ( )
         {
+        }
+
+        public int GetId()
+        {
+            return Id;
+        }
+
+        public void SetId(int id)
+        {
+            Id = id;
         }
     }
 }

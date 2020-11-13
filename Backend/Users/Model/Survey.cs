@@ -3,6 +3,7 @@
 // Created: Friday, April 17, 2020 2:10:18 AM
 // Purpose: Definition of Class Survey
 
+using Backend.General.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +11,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Users
 {
-   public class Survey
+   public class Survey : IIdentifiable<int>
    {
         [Key]
         public int Id { get; set; }
@@ -35,5 +36,14 @@ namespace Model.Users
             PatientId = patient.Id;
         }
 
+        public int GetId()
+        {
+            return Id;
+        }
+
+        public void SetId(int id)
+        {
+            Id = id;
+        }
     }
 }
