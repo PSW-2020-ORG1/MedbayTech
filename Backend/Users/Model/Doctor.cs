@@ -4,6 +4,7 @@
  * Purpose: Definition of the Class HealthCorporation.Doctor.Doctor
  ***********************************************************************/
 
+using Backend.General.Model;
 using Model.Rooms;
 using System;
 using System.Collections.Generic;
