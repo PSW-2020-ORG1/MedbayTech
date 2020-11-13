@@ -100,7 +100,7 @@ namespace Service.UserService
 
         public IEnumerable<Doctor> GetAllDoctorsBySpecialization(Specialization specialization) => userRepository.GetAllDoctorsBySpecialization(specialization);
         public IEnumerable<Employee> GetAllEmployees() => userRepository.GetAllEmployees();
-        public IEnumerable<Secretary> GetAllSecrateries() => userRepository.GetAllSecrateries();
+        public IEnumerable<Secretary> GetAllSecrateries() => userRepository.GetAllSecretaries();
         public IEnumerable<Patient> GetAllPatients() => userRepository.GetAllPatients();
         public IEnumerable<Doctor> GetAllDoctors() => userRepository.GetAllDoctors();
         public RegisteredUser GetDoctor(string id) => userRepository.GetObject(id);

@@ -4,6 +4,7 @@ using Repository;
 using Repository.UserRepository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Backend.Users.Repository.MySqlRepository
@@ -14,42 +15,42 @@ namespace Backend.Users.Repository.MySqlRepository
     {
         public IEnumerable<Doctor> GetAllDoctors()
         {
-            throw new NotImplementedException();
+            return (IEnumerable<Doctor>) context.Doctors.ToList();
         }
 
         public IEnumerable<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
         {
-            throw new NotImplementedException();
+            return (IEnumerable<Doctor>) context.Doctors.ToList().Where(d => d.IsMySpecialization(specialization));
         }
 
         public IEnumerable<Employee> GetAllEmployees()
         {
-            throw new NotImplementedException();
+            return (IEnumerable<Employee>)context.Employees.ToList();
         }
 
         public IEnumerable<Manager> GetAllManagers()
         {
-            throw new NotImplementedException();
+            return (IEnumerable<Manager>)context.Managers.ToList();
         }
 
         public IEnumerable<Patient> GetAllPatients()
         {
-            throw new NotImplementedException();
+            return (IEnumerable<Patient>)context.Patients.ToList();
         }
 
-        public IEnumerable<Secretary> GetAllSecrateries()
+        public IEnumerable<Secretary> GetAllSecretaries()
         {
-            throw new NotImplementedException();
+            return (IEnumerable<Secretary>)context.Secretaries.ToList();
         }
 
         public RegisteredUser GetByUsername(string username)
         {
-            throw new NotImplementedException();
+            return context.RegisteredUsers.ToList().FirstOrDefault(ru => ru.Username.Equals(username));
         }
 
         public IEnumerable<Doctor> GetDoctorsFromDepartment(Department department)
         {
-            throw new NotImplementedException();
+            return context.Doctors.ToList().Where(d => d.DepartmentId.Equals(department.Id));
         }
     }
 }

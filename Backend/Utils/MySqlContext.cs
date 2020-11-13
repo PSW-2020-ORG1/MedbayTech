@@ -32,10 +32,14 @@ namespace Model
         public DbSet<LabTestType> LabTestTypes { get; set; }
         private DbSet<Treatment> Treatments { get; set; } 
    */
+        public DbSet<Secretary> Secretaries { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Manager> Managers { get; set; }
+        public DbSet<Employee> Employees { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Hospital> Hospitals { get; set; }
-        public DbSet<Feedback> Doctors { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<City> Cities { get; set; }

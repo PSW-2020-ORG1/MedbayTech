@@ -87,7 +87,7 @@ namespace Service.GeneralService
         {
             Notification notification = new Notification();
             notification.NotificationCategory = NotificationCategory.RENOVATION;
-            notification.NotificationTo = MakeListOfSecretaries(userRepository.GetAllSecrateries()).ToList();
+            notification.NotificationTo = MakeListOfSecretaries(userRepository.GetAllSecretaries()).ToList();
             notification.RegisteredUser = null;
             notification.Content = "Novo renoviranje je zakazano!";
             return notificationRepository.Create(notification);
@@ -120,7 +120,7 @@ namespace Service.GeneralService
             Notification notification = new Notification();
             notification.NotificationCategory = NotificationCategory.EMERGENCY_REQUEST;
             notification.RegisteredUser = null;
-            notification.NotificationTo = MakeListOfSecretaries(userRepository.GetAllSecrateries()).ToList();
+            notification.NotificationTo = MakeListOfSecretaries(userRepository.GetAllSecretaries()).ToList();
             notification.Content = "Novi zahtev za zakazivanje hitnog pregleda za pacijenta " + 
                 emergencyRequest.MedicalRecord.Patient.Name + " " + emergencyRequest.MedicalRecord.Patient.Surname;
             return notificationRepository.Create(notification);
@@ -131,7 +131,7 @@ namespace Service.GeneralService
             Notification notification = new Notification();
             notification.NotificationCategory = NotificationCategory.HOSPITAL_TREATMENT;
             notification.RegisteredUser = null;
-            notification.NotificationTo = MakeListOfSecretaries(userRepository.GetAllSecrateries()).ToList();
+            notification.NotificationTo = MakeListOfSecretaries(userRepository.GetAllSecretaries()).ToList();
             notification.Content = "Novi zahtev za bolnièko leèenje je dodat!";
             return notificationRepository.Create(notification);
         }

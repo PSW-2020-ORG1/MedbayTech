@@ -129,7 +129,7 @@ namespace Repository.UserRepository
             return allEmployees;
         }
 
-        public IEnumerable<Secretary> GetAllSecrateries()
+        public IEnumerable<Secretary> GetAllSecretaries()
         {
             var allUsers = base.GetAll().ToList();
             List<Secretary> allSecretaries = new List<Secretary>();

@@ -17,7 +17,7 @@ namespace Repository.UserRepository
       
         IEnumerable<Employee> GetAllEmployees();
       
-        IEnumerable<Secretary> GetAllSecrateries();
+        IEnumerable<Secretary> GetAllSecretaries();
         IEnumerable<Doctor> GetAllDoctors();
         IEnumerable<Patient> GetAllPatients();
 
