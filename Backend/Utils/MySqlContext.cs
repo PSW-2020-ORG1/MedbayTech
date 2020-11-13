@@ -44,7 +44,8 @@ namespace Model
         public DbSet<InsurancePolicy> InsurancePolicies { get; set; }
 
         public MySqlContext(DbContextOptions<MySqlContext> options) : base(options)
-        {}
+        {
+        }
         public MySqlContext() { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -56,6 +57,8 @@ namespace Model
             // that project
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
+                optionsBuilder.UseMySql(configuration.GetConnectionString("MySqlConnectionString")).UseLazyLoadingProxies();
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
