@@ -15,6 +15,7 @@ namespace Model.Rooms
     {
         [Key]
         public int Id { get; set; }
+        [NotMapped]
         public Period Period { get; set; }
         public bool MoveEquipment { get; protected set; }
         [ForeignKey("Room")]

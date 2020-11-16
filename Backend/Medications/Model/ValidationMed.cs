@@ -16,15 +16,15 @@ namespace Backend.Medications.Model
         [Key]
         public int Id { get; set; }
         public  string SideNotes { get; set; }
-        public  DateTime DateOfValidation { get; set; }
+        public DateTime DateOfValidation { get; set; }
         public  bool Approved { get; set; }
         public  bool Reviewed { get; set; }
         [ForeignKey("Medication")]
         public int MedicationId { get; set; }
-        public  Medication Medication { get; set; }
+        public virtual Medication Medication { get; set; }
         [ForeignKey("Doctor")]
         public string DoctorId { get; set; }
-        public  Doctor Doctor { get; set; }
+        public virtual Doctor Doctor { get; set; }
 
         public ValidationMed() { }
 

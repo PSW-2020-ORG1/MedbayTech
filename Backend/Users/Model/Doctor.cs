@@ -16,7 +16,6 @@ namespace Model.Users
 {
    public class Doctor : Employee
    {
-        [Key]
         public string LicenseNumber { get; protected set; }
         public bool OnCall { get; protected set; }
         public double PatientReview { get; protected set; }

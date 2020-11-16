@@ -18,6 +18,7 @@ namespace Model.Schedule
     {
         [Key]
         public int Id { get; set; }
+        [NotMapped]
         public Period Period { get; protected set; }
         public TypeOfAppointment TypeOfAppointment { get; set; }
         public string ShortDescription { get; set; }

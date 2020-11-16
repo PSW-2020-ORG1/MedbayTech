@@ -7,12 +7,14 @@ using Backend.Utils;
 using Model.Users;
 using Backend.Records.Model;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Rooms
 {
     public class Occupation
     {
-        // TODO(Jovan): Need DB storage?
+
+        [NotMapped]
         public Period Period { get; protected set; }
         public string PatientId { get; protected set; }
         public int BedId { get; protected set; }

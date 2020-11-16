@@ -13,6 +13,7 @@ namespace Backend.Examinations.Model
 {
     public class HospitalTreatment : Treatment
     {
+        [NotMapped]
         public Period Period { get; set; }
         public Status Status { get; set; }
         [ForeignKey("Department")]

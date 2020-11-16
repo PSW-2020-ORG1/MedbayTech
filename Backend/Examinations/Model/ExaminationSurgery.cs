@@ -23,7 +23,7 @@ namespace Backend.Examinations.Model
         public virtual List<Treatment> Treatments { get; set; }
         public virtual List<Diagnosis> Diagnoses { get; set; }
         [ForeignKey("Doctor")]
-        public int DoctorId { get; set; }
+        public string DoctorId { get; set; }
         public virtual Doctor Doctor { get; set; }
         [ForeignKey("MedicalRecord")]
         public int MedicalRecordId { get; set; }

@@ -14,14 +14,15 @@ namespace Model.Users
 {
    public class VacationRequest : IIdentifiable<int>
    {
-      [Key]
-      public int Id { get; set; }
-      public Period Period { get; protected set; }
-      public string ReasonForVacation { get; protected set; }
-      public bool Approved { get; set; }
-      [ForeignKey("Employee")]
-      public string EmployeeId { get; protected set; }
-      public virtual Employee Employee { get;  set; }
+        [Key]
+        public int Id { get; set; }
+        [NotMapped]
+        public Period Period { get; protected set; }
+        public string ReasonForVacation { get; protected set; }
+        public bool Approved { get; set; }
+        [ForeignKey("Employee")]
+        public string EmployeeId { get; protected set; }
+        public virtual Employee Employee { get;  set; }
 
         public VacationRequest() { }
 

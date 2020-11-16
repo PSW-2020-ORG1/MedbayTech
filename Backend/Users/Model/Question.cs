@@ -39,7 +39,7 @@ namespace Model.Users
             PostContent = postContent;
             PostContentId = postContent.Id;
         }
-        public QuestionReply QuestionReply 
+        public virtual QuestionReply QuestionReply 
         {
             get => _questionReply;
             set

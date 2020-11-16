@@ -22,6 +22,7 @@ namespace Model.Rooms
         public virtual Room Room { get;  set; }
 
         // TODO(Jovan): Needs DB storage?
+        [NotMapped]
         public virtual List<Occupation> Occupations { get;  set; }
 
         public Bed (Room room)

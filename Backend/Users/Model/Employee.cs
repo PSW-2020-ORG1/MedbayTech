@@ -11,7 +11,6 @@ namespace Model.Users
 {
    public class Employee : RegisteredUser
    {
-        [Key]
         public int WorkersID { get; protected set; }
         public bool VacationLeave { get; protected set; }
         public bool CurrentlyWorking { get; protected set; }

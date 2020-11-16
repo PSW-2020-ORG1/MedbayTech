@@ -18,7 +18,7 @@ namespace Backend.Rooms.Repository.MySqlRepository
 
         public IEnumerable<HospitalEquipment> GetEquipmentByType(EquipmentType type)
         {
-            return GetAll().ToList().Where(he => he.EquipmentTypeId.Equals(type.Id)));
+            return GetAll().ToList().Where(he => he.EquipmentTypeId.Equals(type.Id));
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Backend.Records.Model
         public virtual List<Diagnosis> IllnessHistory { get; set; }
         public virtual List<FamilyIllnessHistory> FamilyIllnessHistory { get; set; }
         [ForeignKey("Patient")]
-        public int PatientId { get; set; }
+        public string PatientId { get; set; }
         public virtual Patient Patient { get; set; }
         public virtual List<Therapy> Therapies { get; set; }
 

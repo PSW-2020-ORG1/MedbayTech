@@ -16,6 +16,7 @@ namespace Backend.Examinations.Model
     {
         private const int RESERVATION_DAYS = 10;
         public bool Reserved { get; set; }
+        [NotMapped]
         public Period ReservationPeriod { get; set; }
         public int HourlyIntake { get; set; }
         [ForeignKey("Medication")]

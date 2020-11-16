@@ -11,12 +11,13 @@ using Backend.General.Model;
 
 namespace Model.Users
 {
-   public class WorkDay : IIdentifiable<int>
-   {
+    public class WorkDay : IIdentifiable<int>
+    {
         [Key]
         public int Id { get; set; }
         public Days Day { get; protected set; }
         public DateTime Date { get; protected set; }
+        [NotMapped]
         public virtual Shift Shift { get; protected set; }
         [ForeignKey("Employee")]
         public string EmployeeId { get; protected set; }
