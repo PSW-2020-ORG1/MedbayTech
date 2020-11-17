@@ -41,6 +41,7 @@ import { FeedbackService } from './service/feedback/feedback.service';
     MatListModule,
     MatCardModule,
     MatDividerModule,
+    MatButtonModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
