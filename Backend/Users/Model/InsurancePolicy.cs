@@ -14,8 +14,8 @@ namespace Model.Users
    public class InsurancePolicy
     {
         [Key]
-        public string Id { get; protected set; }
-        public string Company { get; protected set; }
+        public string Id { get;  set; }
+        public string Company { get;  set; }
         [NotMapped]
         public Period Period { get; set; }
 
