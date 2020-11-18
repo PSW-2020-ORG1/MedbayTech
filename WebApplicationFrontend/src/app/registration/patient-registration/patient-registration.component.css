@@ -1,0 +1,30 @@
+.inputField {
+    padding-left: 3.5vw;
+}
+.inputRow {
+    padding-top: 20px;
+}
+
+.container{
+    padding-top: 20px;
+}
+
+.heading-col{
+    padding: 0px;
+}
+
+.heading{
+    margin-bottom: 0px;
+}
+
+.personalInfoSection {
+    padding-top: 10px;
+}
+
+.sections {
+    padding-top: 15px;
+}
+
+:focus {
+    outline:none;
+ }

@@ -1,0 +1,130 @@
+<div class="container">
+    
+    <div class="row">
+        <div class="col-12 heading-col">
+            <h4 class="heading">Personal info</h4>
+            <mat-divider class="divider"></mat-divider>
+        </div>
+    </div>
+    <div class="container personalInfoSection">
+        <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                
+                <mat-form-field>
+                    <mat-label>Name*</mat-label>
+                    <input matInput id="name" placeholder="Name" formControlName="name">
+                    <mat-error *ngIf="!createForm.get('name').valid && createForm.get('name').touched && createForm.get('name').errors['required']">Please enter name</mat-error>
+                    <mat-error *ngIf="!createForm.get('name').valid && createForm.get('name').touched && createForm.get('name').errors['pattern']">Please enter correct name</mat-error>
+                </mat-form-field>
+                
+                <div class="inputField">
+                    <mat-form-field>
+                        <mat-label>Surname*</mat-label>
+                        <input matInput id="surname" placeholder="Surname" formControlName="surname">
+                        <mat-error *ngIf="!createForm.get('surname').valid && createForm.get('surname').touched && createForm.get('surname').errors['required']">Please enter surname</mat-error>
+                        <mat-error *ngIf="!createForm.get('surname').valid && createForm.get('surname').touched && createForm.get('surname').errors['pattern']">Please enter correct surname</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="inputField">
+                    <mat-form-field>
+                        <mat-label>Id*</mat-label>
+                        <input matInput id="id" placeholder="Id" formControlName="id">
+                        <mat-error *ngIf="!createForm.get('id').valid && createForm.get('id').touched && createForm.get('id').errors['required']">Please enter id</mat-error>
+                        <mat-error *ngIf="!createForm.get('id').valid && createForm.get('id').touched && createForm.get('id').errors['pattern']">Please correct id</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="inputField">
+                    <mat-form-field>
+                        <mat-label>Date of birth*</mat-label>
+                        <input matInput [matDatepicker]="picker" id="dateOfBirth" placeholder="Date of birth" formControlName="dateOfBirth">
+                        <mat-error *ngIf="!createForm.get('dateOfBirth').valid && createForm.get('dateOfBirth').touched && createForm.get('dateOfBirth').errors['required']">Please enter date of birth</mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="picker">
+                          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        
+                    </mat-form-field>
+                </div>
+
+                <div class="inputField">
+                    <mat-form-field>
+                        <mat-label>Phone*</mat-label>
+                        <input matInput type="tel" id="phone" placeholder="Phone" formControlName="phone">
+                        <mat-error *ngIf="!createForm.get('phone').valid && createForm.get('phone').touched && createForm.get('phone').errors['required']">Please phone number</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row sections">
+
+                <mat-form-field>
+                    <mat-label>Gender*</mat-label>
+                    <input matInput id="gender" placeholder="Gender" >
+                </mat-form-field>
+                <div class="inputField">
+                    <mat-form-field>
+                        <mat-label>Email*</mat-label>
+                        <input matInput id="email" placeholder="email" formControlName="email">
+                        <mat-error *ngIf="!createForm.get('email').valid && createForm.get('email').touched && createForm.get('email').errors['required']">Please enter email</mat-error>
+                        <mat-error *ngIf="!createForm.get('email').valid && createForm.get('email').touched && createForm.get('email').errors['email']">Please enter correct email</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="inputField">
+                    <mat-form-field>
+                        <mat-label>Username*</mat-label>
+                        <input matInput id="username" placeholder="Username" formControlName="username">
+                        <mat-error *ngIf="!createForm.get('username').valid && createForm.get('username').touched && createForm.get('username').errors['required']">Please enter username</mat-error>
+                        <mat-error *ngIf="!createForm.get('username').valid && createForm.get('username').touched && createForm.get('username').errors['minlength']">At least 5 characters</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="inputField">
+                    <mat-form-field>
+                        <mat-label>Password*</mat-label>
+                        <input matInput type="password" id="password" placeholder="Password" formControlName="password">
+                        <mat-error *ngIf="!createForm.get('password').valid && createForm.get('password').touched && createForm.get('password').errors['required']">Please enter password</mat-error>
+                        <mat-error *ngIf="!createForm.get('password').valid && createForm.get('password').touched && createForm.get('password').errors['minlength']">At least 8 characters</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="inputField">
+                    <mat-form-field>
+                        <mat-label>Confirm password*</mat-label>
+                        <input matInput type="password" id="confirmPassword" placeholder="Confirm password" formControlName="confirmPassword">
+                        <mat-error *ngIf="!createForm.get('confirmPassword').valid && createForm.get('confirmPassword').touched && createForm.get('confirmPassword').errors['required']">Please enter password</mat-error>
+                        <mat-error *ngIf="!createForm.get('confirmPassword').valid && createForm.get('confirmPassword').touched && createForm.get('confirmPassword').errors['minlength']">At least 8 characters</mat-error>
+                    </mat-form-field>
+                </div>
+
+                
+            </div>
+
+           
+            <div class="row sections">
+                <mat-form-field>
+                    <mat-label>Profession</mat-label>
+                    <input matInput id="profession" placeholder="Profession" formControlName="profession">
+                    <mat-error *ngIf="!createForm.get('profession').valid && createForm.get('profession').touched && createForm.get('profession').errors['minlength']">At least 3 characters</mat-error>
+                </mat-form-field>
+                
+                <div class="inputField">
+                    <mat-form-field>
+                        <mat-label>Gender*</mat-label>
+                        <input matInput id="gender" placeholder="Gender" >
+                    </mat-form-field>
+                </div>
+            </div>
+        
+            <div class="row sections">
+                <button mat-flat-button color="primary" type="submit" [disabled]="!createForm.valid">Register</button>
+            </div>
+
+        </form>
+    </div>
+   
+   
+  
+</div>
