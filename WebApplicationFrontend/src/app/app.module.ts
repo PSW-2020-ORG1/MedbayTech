@@ -23,6 +23,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatIconModule} from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-feedback/approved-feedback.component';
 import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
@@ -53,7 +55,9 @@ import { FeedbackService } from './service/feedback/feedback.service';
     RouterModule,
     FormsModule,
     MatIconModule,
+    MatSelectModule,
     ReactiveFormsModule,
+    MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule,
     ToastrModule.forRoot(),

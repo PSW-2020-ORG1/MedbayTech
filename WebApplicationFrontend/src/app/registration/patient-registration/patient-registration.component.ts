@@ -24,7 +24,20 @@ export class PatientRegistrationComponent implements OnInit {
       'username' : new FormControl(null, [Validators.required, Validators.minLength(5)]),
       'password' : new FormControl(null, [Validators.required, Validators.minLength(8)]),
       'confirmPassword' : new FormControl(null, [Validators.required, Validators.minLength(8)]),
-      'profession' : new FormControl(null, [Validators.minLength(3)])
+      'profession' : new FormControl(null, [Validators.minLength(3)]),
+      'gender' : new FormControl(null, [Validators.required]),
+      'insurancePolicyNumber' : new FormControl(null, [Validators.required]),
+      'insurancePolicyCompany' : new FormControl(null, [Validators.required]),
+      'insurancePolicyStartDate' : new FormControl(null, [Validators.required]),
+      'insurancePolicyEndDate' : new FormControl(null, [Validators.required]),
+      'cityOfBirth' : new FormControl(null, [Validators.required]),
+      'postalCodeBirth' : new FormControl(null, [Validators.required]),
+      'stateBirth' : new FormControl(null, [Validators.required]),
+      'street' : new FormControl(null, [Validators.required]),
+      'number' : new FormControl(null, [Validators.required]),
+      'apartment' : new FormControl(null),
+      'floor' : new FormControl(null),
+      'educationLevel' : new FormControl(null, [Validators.required])
     });
   }
 
