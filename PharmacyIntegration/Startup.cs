@@ -38,7 +38,7 @@ namespace PharmacyIntegration
                       .AllowAnyHeader()
                       .AllowAnyMethod()
                       .AllowCredentials()
-                      .WithOrigins("http://localhost:50202");
+                      .WithOrigins("http://localhost:50202", "https://www.schnabel.herokuapp.com/");
                 });
             });
         }

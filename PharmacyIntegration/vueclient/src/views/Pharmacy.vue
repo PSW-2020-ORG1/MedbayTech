@@ -25,6 +25,7 @@ export default {
                 .then(response => {
                     console.log(response.data);
                     this.pharmacy = response.data;
+                    this.getDummy();
                 })
                 .catch(response => {
                     console.log(response.data);
