@@ -10,7 +10,6 @@ using Backend.Medications;
 using Model.Schedule;
 using Model.Users;
 using MySql.Data.MySqlClient;
-using ZdravoKorporacija.Model.Users;
 using Backend.Utils;
 using Model.Rooms;
 using System.Linq;

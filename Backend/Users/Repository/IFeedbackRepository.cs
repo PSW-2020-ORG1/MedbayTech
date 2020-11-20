@@ -9,7 +9,7 @@ using Repository;
 
 namespace Backend.Users.Repository.MySqlRepository
 {
-   public interface IFeedbackRepository : ICreate<Feedback>, IGetAll<Feedback>
+   public interface IFeedbackRepository : ICreate<Feedback>, IGetAll<Feedback> 
    {
 
    }
