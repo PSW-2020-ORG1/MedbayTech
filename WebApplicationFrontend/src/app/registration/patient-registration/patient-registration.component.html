@@ -13,7 +13,7 @@
                 
                 <mat-form-field>
                     <mat-label>Name*</mat-label>
-                    <input matInput id="name" placeholder="Name" formControlName="name">
+                    <input matInput id="name" placeholder="Name" formControlName="name" autocomplete="off">
                     <mat-error *ngIf="!createForm.get('name').valid && createForm.get('name').touched && createForm.get('name').errors['required']">Please enter name</mat-error>
                     <mat-error *ngIf="!createForm.get('name').valid && createForm.get('name').touched && createForm.get('name').errors['pattern']">Please enter correct name</mat-error>
                 </mat-form-field>
@@ -125,6 +125,13 @@
                         <mat-error *ngIf="!createForm.get('educationLevel').valid && createForm.get('educationLevel').touched && createForm.get('educationLevel').errors['required']">Please select education level</mat-error>
                     </mat-form-field>
                 </div>
+
+                <div class="inputField">
+                    <mat-form-field>
+                        <mat-label>Choose photo</mat-label>
+                        <input matInput id="photo" name="photo"> 
+                    </mat-form-field>
+                </div>
             </div>
 
             <div class="row heading-row">
@@ -220,7 +227,7 @@
 
                     <div class="inputField">
                         <mat-form-field>
-                        <mat-label>Insurance policy period</mat-label>
+                        <mat-label>Insurance policy period*</mat-label>
                         <mat-date-range-input [rangePicker]="picker2">
                           <input matStartDate id="insurancePolicyStartDate" name="insurancePolicyStartDate" formControlName="insurancePolicyStartDate" placeholder="Start date">
                           <input matEndDate id="insurancePolicyEndDate" name="insurancePolicyEndDate" formControlName="insurancePolicyEndDate" placeholder="End date">
@@ -265,6 +272,13 @@
                                 <mat-option value="AbNeg">AbNeg</mat-option>
                                 <mat-option value="AbPlus">AbPlus</mat-option>
                             </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="inputField">
+                        <mat-form-field>
+                            <mat-label>Choosen doctor*</mat-label>
+                            <input matInput id="choosenDoctor" name="choosenDoctor" formControlName="choosenDoctor">
+                            <mat-error *ngIf="!createForm.get('choosenDoctor').valid && createForm.get('choosenDoctor').touched && createForm.get('choosenDoctor').errors['required']">Please enter choosen doctor</mat-error>
                         </mat-form-field>
                     </div>
                 </div>

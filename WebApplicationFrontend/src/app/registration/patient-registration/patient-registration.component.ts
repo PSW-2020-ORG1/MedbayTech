@@ -55,7 +55,8 @@ export class PatientRegistrationComponent implements OnInit {
       'floor' : new FormControl(null, [Validators.pattern("^\\d{1,4}$")]),
       'educationLevel' : new FormControl(null, [Validators.required]),
       'patientCondition' : new FormControl(null),
-      'bloodType' : new FormControl(null)
+      'bloodType' : new FormControl(null),
+      'choosenDoctor' : new FormControl(null, [Validators.required])
     });
   }
 
