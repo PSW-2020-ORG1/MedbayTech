@@ -25,13 +25,16 @@ import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.compo
 import { PostFeedbackComponent } from './feedback/post-feedback/post-feedback.component';
 import { FeedbackService } from './service/feedback/feedback.service';
 
+import {MedicalRecordComponent} from './medical-record/medical-record.component';
+import {MedicalRecordService} from './service/medicalRecord/medicalRecord.service';
+
 @NgModule({
   declarations: [
     AppComponent,
     ApprovedFeedbackComponent,
     AllFeedbackComponent,
-    PostFeedbackComponent
-   
+    PostFeedbackComponent,
+    MedicalRecordComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,7 @@ import { FeedbackService } from './service/feedback/feedback.service';
 
     
   ],
-  providers: [FeedbackService],
+  providers: [FeedbackService, MedicalRecordService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

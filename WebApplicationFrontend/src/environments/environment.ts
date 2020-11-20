@@ -8,7 +8,8 @@ export const environment = {
   fedback: 'api/feedback',
   allFeedback: 'allFeedback',
   updateFeedbackStatus: 'updateFeedbackStatus',
-  createFeedback : 'createFeedback'
+  createFeedback : 'createFeedback',
+  medicalRecord : 'medicalRecord'
 };
 
 /*

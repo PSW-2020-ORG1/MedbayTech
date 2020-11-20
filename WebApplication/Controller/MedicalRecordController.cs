@@ -26,9 +26,9 @@ namespace WebApplication.Controller
         [HttpGet] // GET api/medicalrecord
         public IActionResult GetMedicalRecordByPatient(string id)
         {
-            MedicalRecord medicalRecord = medicalRecordService.GetMedicalRecordByPatient("2406978890046");
+            MedicalRecord medicalRecord = medicalRecordService.GetMedicalRecordByPatient(id);
             MedicalRecordDTO medicalRecordDTO = MedicalRecordAdapter.MedicalRecordToMedicalRecordDTO(medicalRecord);
-            return Ok(medicalRecordDTO.Email);
+            return Ok(medicalRecordDTO);
         }
     }
 }

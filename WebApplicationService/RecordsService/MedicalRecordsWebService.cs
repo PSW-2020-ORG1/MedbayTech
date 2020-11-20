@@ -11,13 +11,6 @@ namespace WebApplicationService.RecordsService
     public class MedicalRecordsWebService
     {
         private UnitOfWork unitOfWork;
-        public IMedicalRecordRepository medicalRecordRepository;
-
-        public MedicalRecordsWebService(IMedicalRecordRepository medicalRecordRepository)
-        {
-            unitOfWork = new UnitOfWork();
-            this.medicalRecordRepository = medicalRecordRepository;
-        }
 
         public MedicalRecordsWebService()
         {
