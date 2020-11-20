@@ -11,13 +11,29 @@ import { Component, OnInit } from '@angular/core';
 export class PatientRegistrationComponent implements OnInit {
 
   createForm : FormGroup;
-  constructor(private taostr : ToastrService) { }
+
+  minDateOfBirth : Date;
+  maxDateOfBirth : Date;
+  
+  minDatePolicy : Date;
+  maxDatePolicy : Date;
+
+  constructor(private taostr : ToastrService) { 
+    this.maxDateOfBirth = new Date();
+    this.minDateOfBirth = new Date();
+    this.minDateOfBirth.setFullYear(this.minDateOfBirth.getFullYear() - 180);
+
+    this.minDatePolicy = new Date();
+    this.minDatePolicy.setFullYear(this.minDatePolicy.getFullYear() - 10);
+
+    this.maxDatePolicy = new Date();
+  }
 
   ngOnInit(): void {
     this.createForm = new FormGroup({
       'name' : new FormControl(null, [Validators.required, Validators.pattern("^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
       'surname' : new FormControl(null , [Validators.required, Validators.pattern("^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
-      'id' : new FormControl(null, [Validators.required, Validators.pattern('')]),
+      'id' : new FormControl(null, [Validators.required, Validators.pattern("^\\d{13}$")]),
       'dateOfBirth' : new FormControl(null, [Validators.required]),
       'email' : new FormControl(null, [Validators.required, Validators.email]),
       'phone' : new FormControl(null, [Validators.required]),
@@ -30,14 +46,16 @@ export class PatientRegistrationComponent implements OnInit {
       'insurancePolicyCompany' : new FormControl(null, [Validators.required]),
       'insurancePolicyStartDate' : new FormControl(null, [Validators.required]),
       'insurancePolicyEndDate' : new FormControl(null, [Validators.required]),
-      'cityOfBirth' : new FormControl(null, [Validators.required]),
-      'postalCodeBirth' : new FormControl(null, [Validators.required]),
-      'stateBirth' : new FormControl(null, [Validators.required]),
+      'cityOfBirth' : new FormControl(null, [Validators.required, Validators.pattern("^[A-ZŠĐŽČĆa-zšđćčžA-ZŠĐŽČĆ ]*$")]),
+      'postalCodeBirth' : new FormControl(null, [Validators.required, Validators.pattern("^\\d{5}$")]),
+      'stateBirth' : new FormControl(null, [Validators.required, Validators.pattern("^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
       'street' : new FormControl(null, [Validators.required]),
       'number' : new FormControl(null, [Validators.required]),
-      'apartment' : new FormControl(null),
-      'floor' : new FormControl(null),
-      'educationLevel' : new FormControl(null, [Validators.required])
+      'apartment' : new FormControl(null, [Validators.pattern("^\\d{1,6}$")]),
+      'floor' : new FormControl(null, [Validators.pattern("^\\d{1,4}$")]),
+      'educationLevel' : new FormControl(null, [Validators.required]),
+      'patientCondition' : new FormControl(null),
+      'bloodType' : new FormControl(null)
     });
   }
 
