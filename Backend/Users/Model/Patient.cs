@@ -5,15 +5,14 @@
 
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using ZdravoKorporacija.Model.Users;
 
 namespace Model.Users
 {
    public class Patient : RegisteredUser
    {
-        public bool IsGuestAccount { get; protected set; }
+        public bool IsGuestAccount { get; set; }
         [ForeignKey("ChosenDoctor")]
-        public string ChosenDoctorId { get; protected set; }
+        public string ChosenDoctorId { get; set; }
         public virtual Doctor ChosenDoctor { get; set; }
 
 
