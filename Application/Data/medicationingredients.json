@@ -1,9 +1,0 @@
-{
-  "$type": "System.Collections.Generic.List`1[[Model.Medications.MedicationIngredient, SimsProjekat]], System.Private.CoreLib",
-  "$values": [
-    {
-      "$type": "Model.Medications.MedicationIngredient, SimsProjekat",
-      "Name": "brufen"
-    }
-  ]
-}

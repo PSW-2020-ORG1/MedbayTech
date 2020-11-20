@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row" *ngFor="let feedback of approvedFeedback">
+                    <mat-card>
+                        <mat-card-title>
+                            <p class="title-paragraph" *ngIf="feedback.Anonymous">Anonymous</p>
+                            <p class="title-paragraph" *ngIf="!feedback.Anonymous"> {{ feedback.Name }} {{ feedback.Surname }}</p>
+                        </mat-card-title>
+                        <mat-divider></mat-divider>
+                        <mat-card-content>
+                          
+                            <div class="limit">
+                                <p class="content-paragraph">{{ feedback.AdditionalNotes }}</p>
+                            </div>
+                        </mat-card-content>
+                        <mat-divider></mat-divider>
+                        <mat-card-footer>
+                            <p class="date-paragraph">{{ feedback.Date | date: 'dd/MM/yyyy'}}</p>
+                        </mat-card-footer>
+                    </mat-card>
+                
+                    
+    </div>
+    
+</div>
