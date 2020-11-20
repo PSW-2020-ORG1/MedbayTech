@@ -8,7 +8,7 @@ using Xunit;
 using Shouldly;
 using Model.Users;
 using Backend.Records.Model.Enums;
-using Service.MedicalRecordService;
+using WebApplicationService.RecordsService;
 
 namespace MedbayTechUnitTests
 {
@@ -25,12 +25,13 @@ namespace MedbayTechUnitTests
 
             stubRepository.Setup(m => m.GetRecordBy(patient)).Returns(mr);
 
-            MedicalRecordService medicalRecordService = new MedicalRecordService(stubRepository.Object);
+            MedicalRecordsWebService medicalRecordService = new MedicalRecordsWebService(stubRepository.Object);
 
-            MedicalRecord medicalRecord = medicalRecordService.GetRecordBy(patient);
+            MedicalRecord medicalRecord = medicalRecordService.GetMedicalRecordByPatient(patient.Id);
 
             medicalRecord.ShouldNotBeNull();
         }
+
 
         private static Patient CreatePatient()
         {
@@ -40,6 +41,7 @@ namespace MedbayTechUnitTests
 
             Patient patient = new Patient("Marko", "Markovic", new DateTime(1975, 6, 9), "001", "marko@gmail.com", "marko12", "password",
                 EducationLevel.bachelor, Gender.MALE, "0123456", "vodoinstalater", city, address, insurancePolicy, false, ".");
+            
             return patient;
         }
 

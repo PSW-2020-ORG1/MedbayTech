@@ -17,5 +17,7 @@ namespace Repository.MedicalRecordRepository
         IEnumerable<MedicalRecord> FilterRecordsByState(PatientCondition state);
 
         MedicalRecord GetRecordBy(Model.Users.Patient patient);
+
+        MedicalRecord GetMedicalRecordByPatientId(string id);
     }
 }

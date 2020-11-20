@@ -20,9 +20,10 @@ namespace Backend.Records.Repository.MySqlRepository
             throw new NotImplementedException();
         }
 
-        public MedicalRecord GetRecordBy(Patient patient)
+        public MedicalRecord GetMedicalRecordByPatientId(string id)
         {
-            MedicalRecord medicalRecord = GetAll().SingleOrDefault(entity => entity.Patient.Id.CompareTo(patient.Id) == 0);
+            List<MedicalRecord> medicalRecords = GetAll().ToList();
+            MedicalRecord medicalRecord = medicalRecords.FirstOrDefault(entity => entity.Patient.Id.Equals(id));
 
             if (medicalRecord != null)
             {
@@ -33,6 +34,11 @@ namespace Backend.Records.Repository.MySqlRepository
         }
 
         public IEnumerable<MedicalRecord> GetRecordsFor(Doctor doctor)
+        {
+            throw new NotImplementedException();
+        }
+
+        MedicalRecord IMedicalRecordRepository.GetRecordBy(Patient patient)
         {
             throw new NotImplementedException();
         }
