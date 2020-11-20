@@ -13,8 +13,8 @@ namespace PharmacyIntegration.Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pharmacy>().HasData(
-                new Pharmacy { Id = "Jankovic", APIKey = "ID1APIKEYAAAA" },
-                new Pharmacy { Id = "Liman", APIKey = "ID2APIKEYAAAA" }
+                new Pharmacy { Id = "Jankovic", APIKey = "ID1APIKEYAAAA", APIEndpoint = "jankovic.rs"},
+                new Pharmacy { Id = "Liman", APIKey = "ID2APIKEYAAAA", APIEndpoint = "liman.li"}
             );
         }
 

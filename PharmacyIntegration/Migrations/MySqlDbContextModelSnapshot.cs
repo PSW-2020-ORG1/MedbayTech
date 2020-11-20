@@ -21,6 +21,9 @@ namespace PharmacyIntegration.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
+                    b.Property<string>("APIEndpoint")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("APIKey")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -32,11 +35,13 @@ namespace PharmacyIntegration.Migrations
                         new
                         {
                             Id = "Jankovic",
+                            APIEndpoint = "jankovic.rs",
                             APIKey = "ID1APIKEYAAAA"
                         },
                         new
                         {
                             Id = "Liman",
+                            APIEndpoint = "liman.li",
                             APIKey = "ID2APIKEYAAAA"
                         });
                 });

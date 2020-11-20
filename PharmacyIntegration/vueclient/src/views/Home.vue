@@ -5,19 +5,23 @@
 			<h1>Pharmacy database</h1>
 		</div>
 		<div class="content">
-			<div id="ph-add">
-				<b class="error">{{errors.id}}</b>
+			<v-form id="ph-add" v-model="valid">
 				<v-text-field v-model="id"
 								label="Pharmacy ID"
+								:rules="idRules"
 								hide-details />
-				<b class="error">{{errors.apiKey}}</b>
 				<v-text-field v-model="apiKey"
 								label="Pharmacy API Key"
+								:rules="apiKeyRules"
 								hide-details />
-				<v-btn elevation="2" @click="add">
+				<v-text-field v-model="apiEndpoint"
+								label="Pharmacy API Endpoint"
+								:rules="apiEndpointRules"
+								hide-details />
+				<v-btn :disabled="!valid" elevation="2" @click="add" class="deep-orange white--text">
 					Add
 				</v-btn>
-			</div>
+			</v-form>
 				<div id="ph-table">
 					<v-text-field v-model="search"
 									label="Search pharmacies"
@@ -27,7 +31,7 @@
 									:search="search">
 						<template v-slot:item="row">
 							<tr>
-								<td>{{row.item.id}}</td>
+								<td><router-link :to="{name:'Pharmacy', params: {id: row.item.id}}">{{row.item.id}}</router-link></td>
 								<td>{{row.item.apiKey}}</td>
 								<td>
 									<v-btn elevation="0" @click="remove(row.item.id)">
@@ -50,46 +54,29 @@
 				headers: [
 					{ text: "Id", value: "id", },
 					{ text: "API_Key", value: "apiKey", },
+					{ text: "API_Endpoint", value: "apiEndpoint", },
 					{ text: "Remove" },
 				],
 				search: [],
+				valid: false,
 				id: "",
+				idRules: [
+					v => !!v || "Id is required",
+				],
 				apiKey: "",
-				errors: {
-					id: "",
-					apiKey: "",
-				},
+				apiKeyRules: [
+					v => !!v || "API Key is required",
+				],
+				apiEndpoint: "",
+				apiEndpointRules: [
+					v => !!v || "API Endpoint is required",
+				],
 				status: ""
 			}
 		},
 		methods: {
-			validateId: function () {
-				if (!this.id) {
-					this.errors.id = "Enter ID!";
-					return false;
-				}
-				return true;
-			},
-			validateAPIKey: function () {
-				if (!this.apiKey) {
-					this.errors.apiKey = "Enter API key!";
-					return false;
-				}
-				return true;
-			},
-			validateInputs: function () {
-				this.errors = {
-					id: "",
-					apiKey: "",
-				};
-				let validId = this.validateId();
-				let validAPIKey = this.validateAPIKey();
-
-				return validId && validAPIKey;
-			},
 			add: function () {
-				if (!this.validateInputs())
-					return;
+				if (!this.valid) return;
 				this.status = "";
 
 				let pharmacy = {
@@ -138,19 +125,12 @@
 </script>
 
 <style scoped>
-	.error {
-		color: #fff;
-		font-weight: 500;
-	}
 	h1 {
 		font-size: 3rem;
 		text-align: center;
 		color: #3e3e3e;
 	}
 
-	label {
-		font-size: 1rem;
-	}
 	#header {
 		margin-top: 10vh;
 		width: 100%;

@@ -22,8 +22,8 @@ namespace PharmacyIntegration.Service
         public static List<Pharmacy> GetAllPharmaciesAPIKeys()
         {
             List<Pharmacy> pharmacies =  new List<Pharmacy>();
-            pharmacies.Add(new Pharmacy("id123", "api123"));
-            pharmacies.Add(new Pharmacy("id456", "api456"));
+            pharmacies.Add(new Pharmacy("id123", "api123", "random.com"));
+            pharmacies.Add(new Pharmacy("id456", "api456", "another.co.rs"));
             return pharmacies;
         }
     }
