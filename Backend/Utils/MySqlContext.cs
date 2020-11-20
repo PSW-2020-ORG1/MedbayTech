@@ -15,6 +15,7 @@ using Backend.Utils;
 using Model.Rooms;
 using System.Linq;
 using Backend.Medications.Model;
+using Backend.Users.Model.Enums;
 
 namespace Model
 {
@@ -142,6 +143,10 @@ namespace Model
                 new Feedback { Id = 2, AdditionalNotes = "Bolnica je veoma losa, bas sam razocaran! Rupe u zidovima, voda curi na sve strane, treba vas zatvoriti!!!", Approved = false, Date = new DateTime(), RegisteredUserId = "2406978890045", Anonymous = false, AllowedForPublishing = true },
                 new Feedback { Id = 3, AdditionalNotes = "Predivno, ali i ruzno! Sramite se! Cestitke... <3", Approved = false, Date = new DateTime(), RegisteredUserId = "2406978890045", Anonymous = false, AllowedForPublishing = false },
                 new Feedback { Id = 4, AdditionalNotes = "Odlicno!", Approved = false, Date = new DateTime(), RegisteredUserId = "2406978890045", Anonymous = false, AllowedForPublishing = false }
+            );
+
+            modelBuilder.Entity<SurveyQuestion>().HasData(
+                new SurveyQuestion { Id = 1, Question = "Rate work of Doctor", QuestionType = QuestionType.DOCTOR, Status = true }
             );
 
 
