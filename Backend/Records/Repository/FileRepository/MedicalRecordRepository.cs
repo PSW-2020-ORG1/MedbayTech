@@ -182,4 +182,4 @@ namespace Repository.MedicalRecordRepository
             entity.Patient = (Patient) patientRepository.GetObject(entity.Patient.Username);
         }
     }
-}
+} 

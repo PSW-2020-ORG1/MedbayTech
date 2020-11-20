@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Repository.MedicalRecordRepository
 {
-   public interface IMedicalRecordRepository : IRepository<MedicalRecord,int>
+   public interface IMedicalRecordRepository : IRepository<MedicalRecord,int> 
    {
         IEnumerable<MedicalRecord> GetRecordsFor(Model.Users.Doctor doctor);
       
