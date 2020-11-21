@@ -1,0 +1,207 @@
+<div>
+    <h1>Prescription search</h1>
+</div>
+<form class="container">   
+    <table>
+    <tr style="width:50%">
+    
+    <mat-radio-group aria-label="Select an option" style="visibility: hidden;">
+        <mat-radio-button value="1">AND</mat-radio-button>
+        <mat-radio-button value="2">OR</mat-radio-button>
+    </mat-radio-group>
+   
+
+   
+    <mat-form-field appearance="fill" class="fix-margins">
+        <mat-label>Choose option</mat-label>
+        <mat-select [(ngModel)]="selectedOption" name="opt">
+        <mat-option *ngFor="let opt of options" [value]="opt">
+            {{opt}}
+        </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    
+    
+    <span *ngIf="selectedOption === 'Search by medicine'">
+        <mat-form-field appearance="fill" class="fix-margins">
+            <mat-label>Medicine</mat-label>
+            <input matInput [formControl]="med">
+        </mat-form-field>
+    </span> 
+    
+    <span *ngIf="selectedOption === 'Search by hourly intake'">
+        <mat-form-field appearance="fill" class="fix-margins">
+            <mat-label>Hourly intake</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </span>  
+
+    <span *ngIf="selectedOption === 'Search by reservation period'">
+        <mat-form-field appearance="fill" class="fix-margins">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+            <input matStartDate formControlName="start" placeholder="Start date">
+            <input matEndDate formControlName="end" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        
+            <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+            <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+        </mat-form-field>
+    </span>
+    
+    </tr>
+
+    <tr>
+    
+        <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="1">AND</mat-radio-button>
+            <mat-radio-button value="2">OR</mat-radio-button>
+        </mat-radio-group>
+        
+    
+        <mat-form-field appearance="fill" class="fix-margins">
+            <mat-label>Choose option</mat-label>
+            <mat-select [(ngModel)]="selectedOption2" name="opt2">
+                <mat-option *ngFor="let opt2 of options2" [value]="opt2">
+                    {{opt2}}
+                </mat-option>
+                
+            </mat-select>
+        </mat-form-field>
+                
+        <span *ngIf="selectedOption2 === 'Search by medicine'">
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Medicine</mat-label>
+                <input matInput [formControl]="med">
+            </mat-form-field>
+        </span> 
+        
+        
+        <span *ngIf="selectedOption2 === 'Search by hourly intake'">
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Hourly intake</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </span>  
+        
+          
+        <span *ngIf="selectedOption2 === 'Search by reservation period'">
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [formGroup]="range2" [rangePicker]="picker2">
+                <input matStartDate formControlName="start2" placeholder="Start date">
+                <input matEndDate formControlName="end2" placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            
+                <mat-error *ngIf="range2.controls.start2.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                <mat-error *ngIf="range2.controls.end2.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+            </mat-form-field>
+        </span>
+    </tr>
+
+    <tr>
+        <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="1">AND</mat-radio-button>
+            <mat-radio-button value="2">OR</mat-radio-button>
+        </mat-radio-group>
+        
+    
+        <mat-form-field appearance="fill" class="fix-margins">
+            <mat-label>Choose option</mat-label>
+            <mat-select [(ngModel)]="selectedOption3" name="opt3">
+                <mat-option *ngFor="let opt3 of options3" [value]="opt3">
+                    {{opt3}}
+                </mat-option>
+                
+            </mat-select>
+        </mat-form-field>
+                
+        <span *ngIf="selectedOption3 === 'Search by medicine'">
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Medicine</mat-label>
+                <input matInput [formControl]="med">
+            </mat-form-field>
+        </span> 
+        
+        
+        <span *ngIf="selectedOption3 === 'Search by hourly intake'">
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Hourly intake</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </span>  
+        
+          
+        <span *ngIf="selectedOption3 === 'Search by reservation period'">
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [formGroup]="range3" [rangePicker]="picker3">
+                <input matStartDate formControlName="start3" placeholder="Start date">
+                <input matEndDate formControlName="end3" placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            
+                <mat-error *ngIf="range3.controls.start3.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                <mat-error *ngIf="range3.controls.end3.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+            </mat-form-field>
+        </span>
+    </tr>
+
+    <tr>
+        <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="1">AND</mat-radio-button>
+            <mat-radio-button value="2">OR</mat-radio-button>
+        </mat-radio-group>
+        
+    
+        <mat-form-field appearance="fill" class="fix-margins">
+            <mat-label>Choose option</mat-label>
+            <mat-select [(ngModel)]="selectedOption4" name="opt4">
+                <mat-option *ngFor="let opt4 of options4" [value]="opt4">
+                    {{opt4}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+                
+        <span *ngIf="selectedOption4 === 'Search by medicine'">
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Medicine</mat-label>
+                <input matInput [formControl]="med">
+            </mat-form-field>
+        </span> 
+        
+        
+        <span *ngIf="selectedOption4 === 'Search by hourly intake'">
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Hourly intake</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </span>  
+        
+          
+        <span *ngIf="selectedOption4 === 'Search by reservation period'">
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [formGroup]="range4" [rangePicker]="picker4">
+                <input matStartDate formControlName="start4" placeholder="Start date">
+                <input matEndDate formControlName="end4" placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            
+                <mat-error *ngIf="range4.controls.start4.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                <mat-error *ngIf="range4.controls.end4.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+            </mat-form-field>
+        </span>
+    </tr>
+    </table>
+
+    <button mat-raised-button color="primary">Search</button>
+    
+</form>

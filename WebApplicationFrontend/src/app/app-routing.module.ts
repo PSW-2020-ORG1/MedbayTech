@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
+import { PrescriptionSearchComponent } from './search/prescription-search/prescription-search.component';
 
 const routes: Routes = [
 
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path : 'allFeedback',
     component : AllFeedbackComponent
+  },
+  {
+    path : 'prescriptionSearch',
+    component : PrescriptionSearchComponent
   },
   {
     path : 'createFeedback',

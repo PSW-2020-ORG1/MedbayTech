@@ -18,20 +18,31 @@ import {MatList, MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-feedback/approved-feedback.component';
 import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
 
 import { PostFeedbackComponent } from './feedback/post-feedback/post-feedback.component';
 import { FeedbackService } from './service/feedback/feedback.service';
+import { PrescriptionSearchComponent } from './search/prescription-search/prescription-search.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatTableModule} from '@angular/material/table';
+
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ApprovedFeedbackComponent,
     AllFeedbackComponent,
-    PostFeedbackComponent
-   
+    PostFeedbackComponent,
+    PrescriptionSearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,17 +50,28 @@ import { FeedbackService } from './service/feedback/feedback.service';
     HttpClientModule,
     BrowserAnimationsModule,
     MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatCardModule,
     MatDividerModule,
     MatButtonModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatTableModule,
     RouterModule,
+    MatSelectModule,
+    MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
 
     
   ],
-  providers: [FeedbackService],
-  bootstrap: [AppComponent]
+  providers: [
+    FeedbackService,
+    MatDatepickerModule
+  ],
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }
