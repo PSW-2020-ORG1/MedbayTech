@@ -1,12 +1,9 @@
 <template>
     <div id="ph-main">
-        <main-navigation></main-navigation>
-        <div id="header">
-            <h1>{{pharmacy.id}}</h1>
-        </div>
-        <div class="container">
-            {{dummyData}} was registered.
-        </div>
+        <v-card elevation="2">
+            <v-card-title><v-progress-circular v-if ="!pharmacy.id"></v-progress-circular>{{pharmacy.id}}</v-card-title>
+            <v-card-text>Greetings from <v-progress-circular v-if="!pharmacy.id"></v-progress-circular>{{pharmacy.id}} to <v-progress-circular v-if="!dummyData"></v-progress-circular>{{dummyData}}</v-card-text>
+        </v-card>
     </div>
 </template>
 
@@ -51,23 +48,9 @@ export default {
 </script>
 
 <style scoped>
-    h1 {
-        font-size: 3rem;
-        text-align: center;
-        color: #3e3e3e;
-    }
-
-    #header {
-        margin-top: 10vh;
-        width: 100%;
-        height: 30vh;
-    }
-
-    .content {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        max-width: 70%;
+    #ph-main {
+        width: 40vw;
         margin: 0 auto;
+        margin-top: 10vh;
     }
 </style>
