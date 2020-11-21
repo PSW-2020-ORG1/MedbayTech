@@ -9,7 +9,7 @@ export const environment = {
   allFeedback: 'allFeedback',
   updateFeedbackStatus: 'updateFeedbackStatus',
   createFeedback : 'createFeedback',
-  medicalRecord : 'medicalRecord'
+  medicalRecord : 'medicalRecord',
 };
 
 /*

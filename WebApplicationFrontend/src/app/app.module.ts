@@ -18,6 +18,7 @@ import {MatList, MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-feedback/approved-feedback.component';
 import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
@@ -34,7 +35,7 @@ import {MedicalRecordService} from './service/medicalRecord/medicalRecord.servic
     ApprovedFeedbackComponent,
     AllFeedbackComponent,
     PostFeedbackComponent,
-    MedicalRecordComponent
+    MedicalRecordComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +46,7 @@ import {MedicalRecordService} from './service/medicalRecord/medicalRecord.servic
     MatCardModule,
     MatDividerModule,
     MatButtonModule,
+    MatTabsModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
