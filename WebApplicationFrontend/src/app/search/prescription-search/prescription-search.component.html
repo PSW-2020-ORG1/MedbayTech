@@ -27,13 +27,25 @@
         <mat-form-field appearance="fill" class="fix-margins">
             <mat-label>Medicine</mat-label>
             <input matInput [formControl]="med">
+            <mat-error *ngIf="med.hasError('pattern') && !med.hasError('required')">
+                Must contain letters only
+            </mat-error>
+            <mat-error *ngIf="med.hasError('required')">
+                Can not be empty
+            </mat-error>
         </mat-form-field>
     </span> 
     
     <span *ngIf="selectedOption === 'Search by hourly intake'">
         <mat-form-field appearance="fill" class="fix-margins">
             <mat-label>Hourly intake</mat-label>
-            <input matInput>
+            <input matInput [formControl]="hour">
+            <mat-error *ngIf="hour.hasError('pattern') && !hour.hasError('required')">
+                Must be a number 0-9
+            </mat-error>
+            <mat-error *ngIf="hour.hasError('required')">
+                Can not be empty
+            </mat-error>
         </mat-form-field>
     </span>  
 
@@ -75,7 +87,13 @@
         <span *ngIf="selectedOption2 === 'Search by medicine'">
             <mat-form-field appearance="fill" class="fix-margins">
                 <mat-label>Medicine</mat-label>
-                <input matInput [formControl]="med">
+                <input matInput [formControl]="med2">
+                <mat-error *ngIf="med2.hasError('pattern') && !med2.hasError('required')">
+                    Must contain letters only
+                </mat-error>
+                <mat-error *ngIf="med2.hasError('required')">
+                    Can not be empty
+                </mat-error>
             </mat-form-field>
         </span> 
         
@@ -83,7 +101,13 @@
         <span *ngIf="selectedOption2 === 'Search by hourly intake'">
             <mat-form-field appearance="fill" class="fix-margins">
                 <mat-label>Hourly intake</mat-label>
-                <input matInput>
+                <input matInput [formControl]="hour2">
+                <mat-error *ngIf="hour2.hasError('pattern') && !hour2.hasError('required')">
+                    Must be a number 0-9
+                </mat-error>
+                <mat-error *ngIf="hour2.hasError('required')">
+                    Can not be empty
+                </mat-error>
             </mat-form-field>
         </span>  
         
@@ -96,7 +120,7 @@
                 <input matEndDate formControlName="end2" placeholder="End date">
                 </mat-date-range-input>
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
+                <mat-date-range-picker #picker2></mat-date-range-picker>
             
                 <mat-error *ngIf="range2.controls.start2.hasError('matStartDateInvalid')">Invalid start date</mat-error>
                 <mat-error *ngIf="range2.controls.end2.hasError('matEndDateInvalid')">Invalid end date</mat-error>
@@ -124,7 +148,13 @@
         <span *ngIf="selectedOption3 === 'Search by medicine'">
             <mat-form-field appearance="fill" class="fix-margins">
                 <mat-label>Medicine</mat-label>
-                <input matInput [formControl]="med">
+                <input matInput [formControl]="med3">
+                <mat-error *ngIf="med3.hasError('pattern') && !med3.hasError('required')">
+                    Must contain letters only
+                </mat-error>
+                <mat-error *ngIf="med3.hasError('required')">
+                    Can not be empty
+                </mat-error>
             </mat-form-field>
         </span> 
         
@@ -132,7 +162,13 @@
         <span *ngIf="selectedOption3 === 'Search by hourly intake'">
             <mat-form-field appearance="fill" class="fix-margins">
                 <mat-label>Hourly intake</mat-label>
-                <input matInput>
+                <input matInput [formControl]="hour3">
+                <mat-error *ngIf="hour3.hasError('pattern') && !hour3.hasError('required')">
+                    Must be a number 0-9
+                </mat-error>
+                <mat-error *ngIf="hour3.hasError('required')">
+                    Can not be empty
+                </mat-error>
             </mat-form-field>
         </span>  
         
@@ -145,7 +181,7 @@
                 <input matEndDate formControlName="end3" placeholder="End date">
                 </mat-date-range-input>
                 <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
+                <mat-date-range-picker #picker3></mat-date-range-picker>
             
                 <mat-error *ngIf="range3.controls.start3.hasError('matStartDateInvalid')">Invalid start date</mat-error>
                 <mat-error *ngIf="range3.controls.end3.hasError('matEndDateInvalid')">Invalid end date</mat-error>
@@ -172,7 +208,13 @@
         <span *ngIf="selectedOption4 === 'Search by medicine'">
             <mat-form-field appearance="fill" class="fix-margins">
                 <mat-label>Medicine</mat-label>
-                <input matInput [formControl]="med">
+                <input matInput [formControl]="med4">
+                <mat-error *ngIf="med4.hasError('pattern') && !med4.hasError('required')">
+                    Must contain letters only
+                </mat-error>
+                <mat-error *ngIf="med4.hasError('required')">
+                    Can not be empty
+                </mat-error>
             </mat-form-field>
         </span> 
         
@@ -180,7 +222,13 @@
         <span *ngIf="selectedOption4 === 'Search by hourly intake'">
             <mat-form-field appearance="fill" class="fix-margins">
                 <mat-label>Hourly intake</mat-label>
-                <input matInput>
+                <input matInput [formControl]="hour4">
+                <mat-error *ngIf="hour4.hasError('pattern') && !hour4.hasError('required')">
+                    Must be a number 0-9
+                </mat-error>
+                <mat-error *ngIf="hour4.hasError('required')">
+                    Can not be empty
+                </mat-error>
             </mat-form-field>
         </span>  
         
@@ -193,7 +241,7 @@
                 <input matEndDate formControlName="end4" placeholder="End date">
                 </mat-date-range-input>
                 <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
+                <mat-date-range-picker #picker4></mat-date-range-picker>
             
                 <mat-error *ngIf="range4.controls.start4.hasError('matStartDateInvalid')">Invalid start date</mat-error>
                 <mat-error *ngIf="range4.controls.end4.hasError('matEndDateInvalid')">Invalid end date</mat-error>

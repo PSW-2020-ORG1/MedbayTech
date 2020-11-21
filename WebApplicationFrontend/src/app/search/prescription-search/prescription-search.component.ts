@@ -64,7 +64,31 @@ export class PrescriptionSearchComponent implements OnInit {
   );
 
   hour = new FormControl('',[Validators.required,
-    Validators.pattern("/\b(0?[1-9]|1[0-9]|2[0-5])\b/g")]
+    Validators.pattern("[0123456789]{1}")]
+  );
+
+  med2 = new FormControl('',[Validators.required,
+    Validators.pattern("[A-Za-z]+")]
+  );
+
+  hour2 = new FormControl('',[Validators.required,
+    Validators.pattern("[0123456789]{1}")]
+  );
+
+  med3 = new FormControl('',[Validators.required,
+    Validators.pattern("[A-Za-z]+")]
+  );
+
+  hour3 = new FormControl('',[Validators.required,
+    Validators.pattern("[0123456789]{1}")]
+  );
+
+  med4 = new FormControl('',[Validators.required,
+    Validators.pattern("[A-Za-z]+")]
+  );
+
+  hour4 = new FormControl('',[Validators.required,
+    Validators.pattern("[0123456789]{1}")]
   );
   
   constructor() { }
