@@ -5,7 +5,7 @@
             <h1>{{pharmacy.id}}</h1>
         </div>
         <div class="container">
-            {{dummyData}}
+            {{dummyData}} was registered.
         </div>
     </div>
 </template>
@@ -39,7 +39,7 @@ export default {
                     console.log(response.data);
                 })
                 .catch(response => {
-                    console.log(response.data);
+                    console.log(response);
                 });
         }
     },
