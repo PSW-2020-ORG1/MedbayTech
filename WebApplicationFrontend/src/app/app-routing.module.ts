@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
 import { PrescriptionSearchComponent } from './search/prescription-search/prescription-search.component';
+import { ReportSearchComponent } from './search/report-search/report-search.component';
 
 const routes: Routes = [
 
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path : 'prescriptionSearch',
     component : PrescriptionSearchComponent
+  },
+  {
+    path : 'reportSearch',
+    component : ReportSearchComponent
   },
   {
     path : 'createFeedback',
