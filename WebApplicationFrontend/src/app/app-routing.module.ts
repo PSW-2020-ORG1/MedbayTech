@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
+import { SurveyComponent } from './survey/do-survey/survey/survey/survey.component';
 
 const routes: Routes = [
 
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path : 'createFeedback',
     component : PostFeedbackComponent
+  },
+  {
+    path : 'survey',
+    component : SurveyComponent
   },
   {
     path : "**",
