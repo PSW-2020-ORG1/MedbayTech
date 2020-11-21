@@ -24,6 +24,10 @@ namespace Service.GeneralService
             this.@object = @object;
         }
 
+        public SurveyService()
+        {
+        }
+
         public Survey CreateSurvey(Survey survey) => surveyRepository.Create(survey);
         public IEnumerable<Survey> GetAllSurveys() => surveyRepository.GetAll();
       
