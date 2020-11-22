@@ -8,13 +8,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplicationService", "WebApplicationService\WebApplicationService.csproj", "{67B631E9-1FB2-41C5-8D89-2867864D2117}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTechUnitTests", "MedbayTechUnitTests\MedbayTechUnitTests.csproj", "{E0D6C7CE-574F-4415-B59D-F525A2C11309}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "Backend\Backend.csproj", "{93C92C42-324A-47C2-A593-778053E59F17}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacyIntegration", "PharmacyIntegration\PharmacyIntegration.csproj", "{26BDF43A-2396-41AF-A220-DC7AB197F158}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQService", "RabbitMQService\RabbitMQService.csproj", "{77E96225-68C0-44EE-829D-4546BBBD2727}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{7B5764A1-CE45-494B-B166-9446E101C16D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +33,6 @@ Global
 		{67B631E9-1FB2-41C5-8D89-2867864D2117}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67B631E9-1FB2-41C5-8D89-2867864D2117}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67B631E9-1FB2-41C5-8D89-2867864D2117}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0D6C7CE-574F-4415-B59D-F525A2C11309}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0D6C7CE-574F-4415-B59D-F525A2C11309}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0D6C7CE-574F-4415-B59D-F525A2C11309}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0D6C7CE-574F-4415-B59D-F525A2C11309}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93C92C42-324A-47C2-A593-778053E59F17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{93C92C42-324A-47C2-A593-778053E59F17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93C92C42-324A-47C2-A593-778053E59F17}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -50,6 +45,11 @@ Global
 		{77E96225-68C0-44EE-829D-4546BBBD2727}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77E96225-68C0-44EE-829D-4546BBBD2727}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77E96225-68C0-44EE-829D-4546BBBD2727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B5764A1-CE45-494B-B166-9446E101C16D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B5764A1-CE45-494B-B166-9446E101C16D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B5764A1-CE45-494B-B166-9446E101C16D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B5764A1-CE45-494B-B166-9446E101C16D}.Release|Any CPU.Build.0 = Release|Any CPU
+
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

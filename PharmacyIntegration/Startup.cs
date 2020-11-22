@@ -30,7 +30,7 @@ namespace PharmacyIntegration
             services.AddDbContext<MySqlContext>(options =>
                     options.UseMySql(ConfigurationExtensions.GetConnectionString(Configuration, "MySqlConnectionString")).UseLazyLoadingProxies());
             services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
-            services.AddCors(options =>
+            /*services.AddCors(options =>
             {
                 options.AddPolicy("VueCorsPolicy", builder =>
                 {
@@ -38,9 +38,10 @@ namespace PharmacyIntegration
                       .AllowAnyHeader()
                       .AllowAnyMethod()
                       .AllowCredentials()
-                      .WithOrigins("http://localhost:50202");
+                      .WithOrigins("http://localhost:50202", "https://www.schnabel.herokuapp.com/");
                 });
-            });
+            });*/
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,7 +76,10 @@ namespace PharmacyIntegration
                     spa.UseVueDevelopmentServer();
                 }
             });
-            app.UseCors("VueCorsPolicy");
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true)); // allow any origin
         }
     }
 }

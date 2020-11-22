@@ -33,6 +33,7 @@
 							<tr>
 								<td><router-link :to="{name:'Pharmacy', params: {id: row.item.id}}">{{row.item.id}}</router-link></td>
 								<td>{{row.item.apiKey}}</td>
+								<td>{{row.item.apiEndpoint}}</td>
 								<td>
 									<v-btn elevation="0" @click="remove(row.item.id)">
 										X
@@ -82,6 +83,7 @@
 				let pharmacy = {
 					Id: this.id,
 					APIKey: this.apiKey,
+					APIEndpoint: this.apiEndpoint,
 				};
 
 				this.axios.post("http://localhost:50202/api/Pharmacy/", pharmacy)
