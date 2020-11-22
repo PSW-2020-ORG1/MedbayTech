@@ -15,25 +15,33 @@ namespace WebApplication.DTO
         public String PatientId { get; set; }
         public String Name { get; set; }
         public String Surname { get; set; }
-        public Gender Gender { get; set; }
+        public String Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public BloodType BloodType { get; set; }
-        public Address ResidenceAddress { get; set; }
+        public String BloodType { get; set; }
+        public String City { get; set; }
+        public String State { get; set; }
+        public String Street { get; set; }
+        public int Number { get; set; }
+        public int Apartment { get; set; }
         public String Phone { get; set; }
         public String Email { get; set; }
         public String InsurancePolicyCompany { get; set; }
         public Period InsurancePolicyPeriod { get; set; }
-        public PatientCondition PatientCondition { get; set; }
-    /*    public List<Allergens> Allergies { get; set; }
-        public List<Vaccines> Vaccines { get; set; }
-        public List<Diagnosis> IllnesHistory { get; set; }
-        public List<FamilyIllnessHistory> FamilyIllnessHistories { get; set; }
-        public List<Therapy> Therapies { get; set; } */
+    //    public DateTime InsurancePolicyStart { get; set; }
+    //    public DateTime InsurancePolicyEnd { get; set; }
+        public String PatientCondition { get; set; }
+        public List<String> Allergies { get; set; }
+        public List<String> Vaccines { get; set; }
+        public List<String> IllnesHistoryName { get; set; }
+        public List<String> IllnesHistorySymptoms { get; set; }
+        public List<String> FamilyIllnessHistoriesRelative { get; set; }
+        public List<String> FamilyIllnesHistoriesDiagnosis { get; set; }
+        public List<int> TherapiesHourConsumption { get; set; } 
+        public List<String> TherapiesMedication { get; set; }
 
-        public MedicalRecordDTO(string patientId, string name, string surname, Gender gender, DateTime dateOfBirth,
-            BloodType bloodType, Address residenceAddress, string phone, string email, string insurancePolicyCompany,
-            Period insurancePolicyPeriod, PatientCondition patientCondition) /*, List<Allergens> allergies, List<Vaccines> vaccines,
-            List<Diagnosis> illnesHistory, List<FamilyIllnessHistory> familyIllnessHistories, List<Therapy> therapies) */
+        public MedicalRecordDTO() { }
+        public MedicalRecordDTO(string patientId, string name, string surname, string gender, DateTime dateOfBirth, string bloodType, string city, string state, string street, int number, int apartment, string phone, string email, string insurancePolicyCompany, Period insurancePolicyPeriod,// DateTime insurancePolicyStart, DateTime insurancePolicyEnd, 
+            string patientCondition, List<string> allergies, List<string> vaccines, List<string> illnesHistoryName, List<string> illnesHistorySymptoms, List<string> familyIllnessHistoriesRelative, List<string> familyIllnesHistoriesDiagnosis, List<int> therapiesHourConsumption, List<string> therapiesMedication)
         {
             PatientId = patientId;
             Name = name;
@@ -41,17 +49,27 @@ namespace WebApplication.DTO
             Gender = gender;
             DateOfBirth = dateOfBirth;
             BloodType = bloodType;
-            ResidenceAddress = residenceAddress;
+            City = city;
+            State = state;
+            Street = street;
+            Number = number;
+            Apartment = apartment;
             Phone = phone;
             Email = email;
             InsurancePolicyCompany = insurancePolicyCompany;
             InsurancePolicyPeriod = insurancePolicyPeriod;
+         //   InsurancePolicyStart = insurancePolicyStart;
+         //   InsurancePolicyEnd = insurancePolicyEnd;
             PatientCondition = patientCondition;
-         /*   Allergies = allergies;
+            Allergies = allergies;
             Vaccines = vaccines;
-            IllnesHistory = illnesHistory;
-            FamilyIllnessHistories = familyIllnessHistories;
-            Therapies = therapies; */
+            IllnesHistoryName = illnesHistoryName;
+            IllnesHistorySymptoms = illnesHistorySymptoms;
+            FamilyIllnessHistoriesRelative = familyIllnessHistoriesRelative;
+            FamilyIllnesHistoriesDiagnosis = familyIllnesHistoriesDiagnosis;
+            TherapiesHourConsumption = therapiesHourConsumption;
+            TherapiesMedication = therapiesMedication;
         }
+
     }
 }
