@@ -1,5 +1,4 @@
-﻿using GraphicEditor.View.Building1;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,30 +14,45 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GraphicEditor
+namespace GraphicEditor.View.Building2
 {
     /// <summary>
-    /// Interaction logic for Building1FloorPlan.xaml
+    /// Interaction logic for Building2FirstFloorPlan.xaml
     /// </summary>
-    public partial class Building1FloorPlan : Page
+    public partial class Building2FirstFloorPlan : Page
     {
-        private MainWindow mainWindow;
-        public Building1FloorPlan(MainWindow mainWindow)
+        public Building2FirstFloorPlan()
         {
             InitializeComponent();
-            this.mainWindow = mainWindow;
         }
-
-        private void mouseClickArrowUp(object sender, RoutedEventArgs e)
+        public Building2FirstFloorPlan(MainPage mainPage)
         {
-            mainWindow.MainFrame.Content = new Building1FirstFloorPlan(mainWindow);
-            if (mainWindow.tabControl.SelectedIndex == 0)
+            InitializeComponent();
+            page = mainPage;
+        }
+        MainPage page;
+        private void mouseClickArrowUp(object sender, MouseButtonEventArgs e)
+        {
+            page.MainFrame.Content = new Building2SecondFloorPlan(page);
+            if (page.tabControl.SelectedIndex == 0)
             {
-                mainWindow.comboBoxH1.SelectedIndex = 1;
+                page.comboBoxH2.SelectedIndex = 2;
             }
             else
             {
-                mainWindow.comboBoxHospital1.SelectedIndex = 1;
+                page.comboBoxHospital2.SelectedIndex = 2;
+            }
+        }
+        private void mouseClickArrowDown(object sender, MouseButtonEventArgs e)
+        {
+            page.MainFrame.Content = new Building1FloorPlan(page);
+            if (page.tabControl.SelectedIndex == 0)
+            {
+                page.comboBoxH2.SelectedIndex = 0;
+            }
+            else
+            {
+                page.comboBoxHospital2.SelectedIndex = 0;
             }
         }
 
@@ -89,7 +103,6 @@ namespace GraphicEditor
             PopupAuxiliaryRoom.Visibility = Visibility.Collapsed;
             PopupAuxiliaryRoom.IsOpen = false;
         }
-
         private void AdditionalInformationPatientRoom(object sender, MouseButtonEventArgs e)
         {
             AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom();
@@ -98,7 +111,7 @@ namespace GraphicEditor
 
         private void AdditionalInformationOperatingRoom(object sender, MouseButtonEventArgs e)
         {
-            AdditionalInformationOperaingRoom additionalInformation = new AdditionalInformationOperaingRoom();
+            AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom();
             additionalInformation.ShowDialog();
         }
 

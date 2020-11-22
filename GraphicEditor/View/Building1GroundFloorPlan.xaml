@@ -9,7 +9,7 @@
       Title="Building1FloorPlan">
 
     <Grid>
-        <Canvas x:Name="canvasBuild1fl1" Background="MintCream">
+        <Canvas x:Name="canvasH1GF" Background="MintCream">
             <Label Content="Hospital 1" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="249" Canvas.Top="36"/>
             <Image Source="arrowUp.png" Width="60" Canvas.Left="348" Canvas.Top="113" MouseLeftButtonDown="mouseClickArrowUp"/>
             <Rectangle Fill="White" Stroke="Black" StrokeThickness="3" Height="260" Width="595" Canvas.Left="86"  Canvas.Top="196"/>
@@ -103,6 +103,15 @@
 
             <Grid>
                 <local:PopupAuxiliaryRoom x:Name="AuxiliaryRoom" Foreground="#E0FFFF"/>
+            </Grid>
+        </Popup>
+        <Popup x:Name="PopupInfoForPatient"
+                   AllowsTransparency="True"
+                   HorizontalOffset="10"
+                   VerticalOffset="10">
+
+            <Grid>
+                <local:PopupInfoForPatient x:Name="InfoForPatient" Foreground="#E0FFFF"/>
             </Grid>
         </Popup>
     </Grid>

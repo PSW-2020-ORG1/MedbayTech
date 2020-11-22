@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraphicEditor.View.Building2;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,30 +15,33 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GraphicEditor.View.Building1
+namespace GraphicEditor
 {
     /// <summary>
-    /// Interaction logic for Building1SecondFloorPlan.xaml
+    /// Interaction logic for Building2FloorPlan.xaml
     /// </summary>
-    public partial class Building1SecondFloorPlan : Page
+    public partial class Building2FloorPlan : Page
     {
-        private MainWindow mainWindow;
-        public Building1SecondFloorPlan(MainWindow mainWindow)
+        public Building2FloorPlan()
         {
             InitializeComponent();
-            this.mainWindow = mainWindow;
         }
-
-        private void mouseClickArrowDown(object sender, RoutedEventArgs e)
+        public Building2FloorPlan(MainPage mainPage)
         {
-            mainWindow.MainFrame.Content = new Building1FirstFloorPlan(mainWindow);
-            if (mainWindow.tabControl.SelectedIndex == 0)
+            InitializeComponent();
+            page = mainPage;
+        }
+        MainPage page;
+        private void mouseClickArrowUp(object sender, MouseButtonEventArgs e)
+        {
+            page.MainFrame.Content = new Building2FirstFloorPlan(page);
+            if (page.tabControl.SelectedIndex == 0)
             {
-                mainWindow.comboBoxH1.SelectedIndex = 1;
+                page.comboBoxH2.SelectedIndex = 1;
             }
             else
             {
-                mainWindow.comboBoxHospital1.SelectedIndex = 1;
+                page.comboBoxHospital2.SelectedIndex = 1;
             }
         }
 
@@ -97,7 +101,7 @@ namespace GraphicEditor.View.Building1
 
         private void AdditionalInformationOperatingRoom(object sender, MouseButtonEventArgs e)
         {
-            AdditionalInformationOperaingRoom additionalInformation = new AdditionalInformationOperaingRoom();
+            AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom();
             additionalInformation.ShowDialog();
         }
 
@@ -112,5 +116,6 @@ namespace GraphicEditor.View.Building1
             AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom();
             additionalInformation.ShowDialog();
         }
+
     }
 }

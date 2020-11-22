@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,22 +8,31 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace GraphicEditor
 {
     /// <summary>
-    /// Interaction logic for AdditionalInformationOperaingRoom.xaml
+    /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class AdditionalInformationOperaingRoom : Window
+    public partial class Login : Page
     {
-        public AdditionalInformationOperaingRoom()
+        public Login()
         {
             InitializeComponent();
         }
-        private void Ok_Click(object sender, RoutedEventArgs e)
+        public Login(MainWindow mainWindow)
         {
-            this.Close();
+            InitializeComponent();
+            window = mainWindow;
+        }
+        MainWindow window;
+
+        private void LogIn_Click(object sender, RoutedEventArgs e)
+        {
+            window.Frame.Content = new MainPage(window);
         }
     }
+
 }

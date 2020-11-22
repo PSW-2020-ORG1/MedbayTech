@@ -1,6 +1,6 @@
-﻿using GraphicEditor.View.Building2;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,31 +15,77 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GraphicEditor
+namespace GraphicEditor.View.Building1
 {
     /// <summary>
-    /// Interaction logic for Building2FloorPlan.xaml
+    /// Interaction logic for Building1FirstFloorPlan.xaml
     /// </summary>
-    public partial class Building2FloorPlan : Page
+    public partial class Building1FirstFloorPlan : Page
     {
-        private MainWindow mainWindow;
-
-        public Building2FloorPlan(MainWindow mainWindow)
+        public Building1FirstFloorPlan()
         {
             InitializeComponent();
-            this.mainWindow = mainWindow;
         }
+        public Building1FirstFloorPlan(MainPage mainPage)
+        {
+            InitializeComponent();
+            page = mainPage;
+        }
+        MainPage page;
+        public void Building1Objects(object sender, RoutedEventArgs e)
+        {
+            List<Rectangle> rectangles = new List<Rectangle>();
 
+            string textFile = "C:/Users/Korisnik DT/Documents/GitHub/MedbayTech/MapData/Hospital1Floor1.txt";
+            MapObject o = new MapObject();
+            rectangles = o.Window_Loaded(textFile, canvasH1F1);
+            foreach (Rectangle rectangle in rectangles)
+            {
+                if(rectangle.Name.Equals("PatientRoom"))
+                {
+                    rectangle.MouseDown += AdditionalInformationPatientRoom;
+                }
+                else if(rectangle.Name.Equals("ExamintionRoom"))
+                {
+                    rectangle.MouseDown += AdditionalInformationExaminationRoom;
+                }
+                else if (rectangle.Name.Equals("OperatingRoom"))
+                {
+                    rectangle.MouseDown += AdditionalInformationOperatingRoom;
+                }
+                else if (rectangle.Name.Equals("AuxiliaryRoom"))
+                {
+                    rectangle.MouseDown += AdditionalInformationAuxiliaryRoom;
+                }
+                else if (rectangle.Name.Equals("StorageRoom"))
+                {
+                    rectangle.MouseDown += AdditionalInformationAuxiliaryRoom;
+                }
+            }
+
+        }
         private void mouseClickArrowUp(object sender, MouseButtonEventArgs e)
         {
-            mainWindow.MainFrame.Content = new Building2FirstFloorPlan(mainWindow);
-            if (mainWindow.tabControl.SelectedIndex == 0)
+            page.MainFrame.Content = new Building1SecondFloorPlan();
+            if (page.tabControl.SelectedIndex == 0)
             {
-                mainWindow.comboBoxH2.SelectedIndex = 1;
+                page.comboBoxH1.SelectedIndex = 2;
             }
             else
             {
-                mainWindow.comboBoxHospital2.SelectedIndex = 1;
+                page.comboBoxHospital1.SelectedIndex = 2;
+            }
+        }
+        private void mouseClickArrowDown(object sender, MouseButtonEventArgs e)
+        {
+            page.MainFrame.Content = new Building1FloorPlan();
+            if (page.tabControl.SelectedIndex == 0)
+            {
+                page.comboBoxH1.SelectedIndex = 0;
+            }
+            else
+            {
+                page.comboBoxHospital1.SelectedIndex = 0;
             }
         }
 
@@ -90,7 +136,6 @@ namespace GraphicEditor
             PopupAuxiliaryRoom.Visibility = Visibility.Collapsed;
             PopupAuxiliaryRoom.IsOpen = false;
         }
-
         private void AdditionalInformationPatientRoom(object sender, MouseButtonEventArgs e)
         {
             AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom();
@@ -99,7 +144,7 @@ namespace GraphicEditor
 
         private void AdditionalInformationOperatingRoom(object sender, MouseButtonEventArgs e)
         {
-            AdditionalInformationOperaingRoom additionalInformation = new AdditionalInformationOperaingRoom();
+            AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom();
             additionalInformation.ShowDialog();
         }
 
@@ -114,6 +159,5 @@ namespace GraphicEditor
             AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom();
             additionalInformation.ShowDialog();
         }
-
     }
 }

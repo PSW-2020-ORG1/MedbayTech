@@ -17,38 +17,31 @@ using System.Windows.Shapes;
 namespace GraphicEditor.View.Building2
 {
     /// <summary>
-    /// Interaction logic for Building2FirstFloorPlan.xaml
+    /// Interaction logic for Building2SecondFloorPlan.xaml
     /// </summary>
-    public partial class Building2FirstFloorPlan : Page
+    public partial class Building2SecondFloorPlan : Page
     {
-        private MainWindow mainWindow;
-        public Building2FirstFloorPlan(MainWindow mainWindow)
+        public Building2SecondFloorPlan()
         {
             InitializeComponent();
-            this.mainWindow = mainWindow;
         }
-        private void mouseClickArrowUp(object sender, MouseButtonEventArgs e)
+        public Building2SecondFloorPlan(MainPage mainPage)
         {
-            mainWindow.MainFrame.Content = new Building2SecondFloorPlan(mainWindow);
-            if (mainWindow.tabControl.SelectedIndex == 0)
+            InitializeComponent();
+            page = mainPage;
+        }
+        MainPage page;
+
+        private void mouseClickArrowDown(object sender, RoutedEventArgs e)
+        {
+            page.MainFrame.Content = new Building2FirstFloorPlan(page);
+            if (page.tabControl.SelectedIndex == 0)
             {
-                mainWindow.comboBoxH2.SelectedIndex = 2;
+                page.comboBoxH2.SelectedIndex = 1;
             }
             else
             {
-                mainWindow.comboBoxHospital2.SelectedIndex = 2;
-            }
-        }
-        private void mouseClickArrowDown(object sender, MouseButtonEventArgs e)
-        {
-            mainWindow.MainFrame.Content = new Building1FloorPlan(mainWindow);
-            if (mainWindow.tabControl.SelectedIndex == 0)
-            {
-                mainWindow.comboBoxH2.SelectedIndex = 0;
-            }
-            else
-            {
-                mainWindow.comboBoxHospital2.SelectedIndex = 0;
+                page.comboBoxHospital2.SelectedIndex = 1;
             }
         }
 
@@ -99,6 +92,7 @@ namespace GraphicEditor.View.Building2
             PopupAuxiliaryRoom.Visibility = Visibility.Collapsed;
             PopupAuxiliaryRoom.IsOpen = false;
         }
+
         private void AdditionalInformationPatientRoom(object sender, MouseButtonEventArgs e)
         {
             AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom();
@@ -107,7 +101,7 @@ namespace GraphicEditor.View.Building2
 
         private void AdditionalInformationOperatingRoom(object sender, MouseButtonEventArgs e)
         {
-            AdditionalInformationOperaingRoom additionalInformation = new AdditionalInformationOperaingRoom();
+            AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom();
             additionalInformation.ShowDialog();
         }
 

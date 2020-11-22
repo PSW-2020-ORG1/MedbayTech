@@ -66,8 +66,8 @@
             <Rectangle Fill="#494848" Height="50" Width="50" Canvas.Left="384" Stroke="Black" StrokeThickness="3" Canvas.Top="406"/>
             <Rectangle Fill="#494848" Height="50" Width="50" Canvas.Left="434" Stroke="Black" StrokeThickness="3" Canvas.Top="406"/>
             <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="86" Stroke="Black" StrokeThickness="3" Canvas.Top="406" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom" RenderTransformOrigin="0.948,0.611"/>
-            <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="331" Stroke="Black" StrokeThickness="3" Canvas.Top="246" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom" RenderTransformOrigin="0.948,0.611"/>
-            <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="331" Stroke="Black" StrokeThickness="3" Canvas.Top="196" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom" RenderTransformOrigin="0.948,0.611"/>
+            <Rectangle Fill="#ffdf99" Height="50" Width="50" Canvas.Left="331" Stroke="Black" StrokeThickness="3" Canvas.Top="246" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom" RenderTransformOrigin="0.948,0.611"/>
+            <Rectangle Fill="#ffdf99" Height="50" Width="50" Canvas.Left="331" Stroke="Black" StrokeThickness="3" Canvas.Top="196" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom" RenderTransformOrigin="0.948,0.611"/>
             <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="334" Stroke="Black" StrokeThickness="3" Canvas.Top="406" RenderTransformOrigin="0.948,0.611" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom"/>
         </Canvas>
         <Popup x:Name="PopupPatientRoom"
@@ -104,6 +104,15 @@
 
             <Grid>
                 <local:PopupAuxiliaryRoom x:Name="AuxiliaryRoom" Foreground="#E0FFFF"/>
+            </Grid>
+        </Popup>
+        <Popup x:Name="PopupInfoForPatient"
+                   AllowsTransparency="True"
+                   HorizontalOffset="10"
+                   VerticalOffset="10">
+
+            <Grid>
+                <local:PopupInfoForPatient x:Name="InfoForPatient" Foreground="#E0FFFF"/>
             </Grid>
         </Popup>
     </Grid>
