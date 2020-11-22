@@ -8,7 +8,7 @@ using Xunit;
 using Shouldly;
 using Model.Users;
 using Backend.Records.Model.Enums;
-using WebApplicationService.RecordsService;
+using Backend.Records.WebApiService;
 
 namespace MedbayTechUnitTests
 {
@@ -16,22 +16,25 @@ namespace MedbayTechUnitTests
     public class MedicalRecordTests
     {
         [Fact]
-        public void Get_medical_record_by_patient()
+        public void Find_patients_medical_record()
         {
-            var stubRepository = new Mock<IMedicalRecordRepository>();
-
-            Patient patient = CreatePatient();
-            MedicalRecord mr = new MedicalRecord(BloodType.AbNeg, patient, PatientCondition.HospitalTreatment);
-
-            stubRepository.Setup(m => m.GetRecordBy(patient)).Returns(mr);
-
-            MedicalRecordsWebService medicalRecordService = new MedicalRecordsWebService(stubRepository.Object);
-
-            MedicalRecord medicalRecord = medicalRecordService.GetMedicalRecordByPatient(patient.Id);
+            MedicalRecordWebService service = new MedicalRecordWebService(CreateStubRepository());
+            MedicalRecord medicalRecord = service.GetMedicalRecordByPatientId("001");
 
             medicalRecord.ShouldNotBeNull();
         }
 
+        private static IMedicalRecordRepository CreateStubRepository()
+        {
+            var stubRepository = new Mock<IMedicalRecordRepository>();
+            var patient = CreatePatient();
+
+            MedicalRecord mr = new MedicalRecord(BloodType.AbPlus, patient, PatientCondition.HospitalTreatment);
+
+            stubRepository.Setup(m => m.GetMedicalRecordByPatientId(patient.Id)).Returns(mr);
+
+            return stubRepository.Object;
+        }
 
         private static Patient CreatePatient()
         {
