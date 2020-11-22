@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Pharmacy from '../views/Pharmacy.vue'
+import Messages from '../views/Messages.vue'
 
 Vue.use(VueRouter)
 
@@ -15,7 +16,12 @@ const routes = [
     path: '/pharmacy/:id',
     name: 'Pharmacy',
     component: Pharmacy,
-  },
+    },
+    {
+        path: '/messages',
+        name: 'Messages',
+        component: Messages,
+    },
 ]
 
 const router = new VueRouter({

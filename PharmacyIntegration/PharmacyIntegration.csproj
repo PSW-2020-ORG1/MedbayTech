@@ -53,7 +53,7 @@
   </Target>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\RabbitMQService\RabbitMQService.csproj" />
   </ItemGroup>
 
 
