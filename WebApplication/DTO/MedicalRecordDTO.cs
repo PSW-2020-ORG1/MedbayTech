@@ -24,16 +24,16 @@ namespace WebApplication.DTO
         public String InsurancePolicyCompany { get; set; }
         public Period InsurancePolicyPeriod { get; set; }
         public PatientCondition PatientCondition { get; set; }
-        public List<Allergens> Allergies { get; set; }
+    /*    public List<Allergens> Allergies { get; set; }
         public List<Vaccines> Vaccines { get; set; }
         public List<Diagnosis> IllnesHistory { get; set; }
         public List<FamilyIllnessHistory> FamilyIllnessHistories { get; set; }
-        public List<Therapy> Therapies { get; set; }
+        public List<Therapy> Therapies { get; set; } */
 
         public MedicalRecordDTO(string patientId, string name, string surname, Gender gender, DateTime dateOfBirth,
             BloodType bloodType, Address residenceAddress, string phone, string email, string insurancePolicyCompany,
-            Period insurancePolicyPeriod, PatientCondition patientCondition, List<Allergens> allergies, List<Vaccines> vaccines,
-            List<Diagnosis> illnesHistory, List<FamilyIllnessHistory> familyIllnessHistories, List<Therapy> therapies)
+            Period insurancePolicyPeriod, PatientCondition patientCondition) /*, List<Allergens> allergies, List<Vaccines> vaccines,
+            List<Diagnosis> illnesHistory, List<FamilyIllnessHistory> familyIllnessHistories, List<Therapy> therapies) */
         {
             PatientId = patientId;
             Name = name;
@@ -47,11 +47,11 @@ namespace WebApplication.DTO
             InsurancePolicyCompany = insurancePolicyCompany;
             InsurancePolicyPeriod = insurancePolicyPeriod;
             PatientCondition = patientCondition;
-            Allergies = allergies;
+         /*   Allergies = allergies;
             Vaccines = vaccines;
             IllnesHistory = illnesHistory;
             FamilyIllnessHistories = familyIllnessHistories;
-            Therapies = therapies;
+            Therapies = therapies; */
         }
     }
 }

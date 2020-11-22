@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Backend.Records.Model;
+using Backend.Records.WebApiController;
+using Backend.Records.WebApiService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.Users;
 using WebApplication.Adapters;
 using WebApplication.DTO;
-using WebApplicationService.RecordsService;
 
 namespace WebApplication.Controller
 {
@@ -16,17 +17,17 @@ namespace WebApplication.Controller
     [ApiController]
     public class MedicalRecordController : ControllerBase
     {
-        private MedicalRecordsWebService medicalRecordService;
+        private MedicalRecordWebController medicalRecordWebController;
 
         public MedicalRecordController()
         {
-            medicalRecordService = new MedicalRecordsWebService();
+            this.medicalRecordWebController = new MedicalRecordWebController();
         }
 
         [HttpGet] // GET api/medicalrecord
-        public IActionResult GetMedicalRecordByPatient(string id)
+        public IActionResult GetMedicalRecordByPatient()
         {
-            MedicalRecord medicalRecord = medicalRecordService.GetMedicalRecordByPatient(id);
+            MedicalRecord medicalRecord = medicalRecordWebController.GetMedicalRecordByPatientId("2406978890046");
             MedicalRecordDTO medicalRecordDTO = MedicalRecordAdapter.MedicalRecordToMedicalRecordDTO(medicalRecord);
             return Ok(medicalRecordDTO);
         }

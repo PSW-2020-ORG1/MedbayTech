@@ -27,14 +27,14 @@ namespace WebApplication.Adapters
             string insurancePolicyCompany = medicalRecord.Patient.InsurancePolicy.Company;
             Period insurancePolicyPeriod = medicalRecord.Patient.InsurancePolicy.Period;
             PatientCondition patientCondition = medicalRecord.CurrHealthState;
-            List<Allergens> allergies = medicalRecord.Allergies;
-            List<Vaccines> vaccines = medicalRecord.Vaccines;
-            List<Diagnosis> illnesHistory = medicalRecord.IllnessHistory;
-            List<FamilyIllnessHistory> familyIllnessHistory = medicalRecord.FamilyIllnessHistory;
-            List<Therapy> therapies = medicalRecord.Therapies;
+            /*   List<Allergens> allergies = medicalRecord.Allergies;
+               List<Vaccines> vaccines = medicalRecord.Vaccines;
+               List<Diagnosis> illnesHistory = medicalRecord.IllnessHistory;
+               List<FamilyIllnessHistory> familyIllnessHistory = medicalRecord.FamilyIllnessHistory;
+               List<Therapy> therapies = medicalRecord.Therapies; */
 
             return new MedicalRecordDTO(patientId, name, surname, gender, dateOfBirth, bloodType, residenceAddress, phone, email,
-                insurancePolicyCompany, insurancePolicyPeriod, patientCondition, allergies, vaccines, illnesHistory, familyIllnessHistory, therapies);
+                insurancePolicyCompany, insurancePolicyPeriod, patientCondition); //, allergies, vaccines, illnesHistory, familyIllnessHistory, therapies);
         }
     }
 }
