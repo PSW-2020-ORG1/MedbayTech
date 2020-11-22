@@ -5,16 +5,67 @@ using Model.Users;
 using Moq;
 using System.Collections.Generic;
 using WebApplicationService.GeneralService;
+using Backend.Users.WebApiController;
+using Backend.Users.WebApiService;
+using Shouldly;
+using System;
+using System.Text;
+using Xunit;
+using Backend.Users.Model;
 
 namespace MedbayTechUnitTests
 {
-    [TestClass]
     public class SurveyTest
     {
-        [TestMethod]
-        public void TestMethod1()
+        [Fact]
+        public void Post_survey()
         {
+            WebSurveyController controller = new WebSurveyController();
+            var survey = CreateSurvey();
+            Survey postedSurvey = controller.PostSurvey(survey);
+            postedSurvey.ShouldNotBeNull();
             
         }
+
+        public static Survey CreateSurvey()
+        {
+            Survey survey = new Survey
+            {
+                Id = 53,
+                Date = DateTime.Now,
+                AppointmentId = 0,
+                Appointment = null,
+                SurveyAnswers = CreateListOfQuestions(),
+            };
+            return survey;
+        }
+        public static List<SurveyAnswer> CreateListOfQuestions() 
+        {
+            List<SurveyAnswer> answer = new List<SurveyAnswer>();
+
+            SurveyAnswer answer1 = new SurveyAnswer
+            {
+                Id = 1,
+                SurveyId = 53,
+                Survey = null,
+                Grade = Grade.excellent,
+                SurveyQuestionId = 1,
+            };
+
+            SurveyAnswer answer2 = new SurveyAnswer
+            {
+                Id = 2,
+                SurveyId = 53,
+                Survey = null,
+                Grade = Grade.good,
+                SurveyQuestionId = 2,
+            };
+
+            answer.Add(answer1);
+            answer.Add(answer2);
+
+            return answer;
+        }
+
     }
 }
