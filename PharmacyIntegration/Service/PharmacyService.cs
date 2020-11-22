@@ -3,28 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PharmacyIntegration.Model;
+using PharmacyIntegration.Repository;
 
 namespace PharmacyIntegration.Service
 {
-    public class PharmacyService
+    public class PharmacyService : IPharmacyService
     {
-        public static string GetPharmacyAPIById(string id)
-        {
 
-            return "key123";
+        private IPharmacyRepository _repository;
+
+        public PharmacyService(IPharmacyRepository repository)
+        {
+            this._repository = repository;
         }
 
-        public static bool AddPharmacyAPIKey(Pharmacy pharmacy)
+        public Pharmacy Get(string id)
         {
-            return true;
+            return _repository.Get(id);
         }
 
-        public static List<Pharmacy> GetAllPharmaciesAPIKeys()
+        public bool Add(Pharmacy pharmacy)
         {
-            List<Pharmacy> pharmacies =  new List<Pharmacy>();
-            pharmacies.Add(new Pharmacy("id123", "api123", "random.com"));
-            pharmacies.Add(new Pharmacy("id456", "api456", "another.co.rs"));
-            return pharmacies;
+            return _repository.Add(pharmacy);
+        }
+
+        public List<Pharmacy> GetAll()
+        {
+            return _repository.GetAll();
+        }
+
+        public bool Remove(string id)
+        {
+            return _repository.Remove(id);
+        }
+
+        public bool Update(Pharmacy pharmacy)
+        {
+            return _repository.Update(pharmacy);
         }
     }
 }

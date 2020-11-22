@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace PharmacyIntegration.Repository
 {
-    public class PharmacyRepository
+    public class PharmacyRepository : IPharmacyRepository
     {
         private MySqlContext Context;
 

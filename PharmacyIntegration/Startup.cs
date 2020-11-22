@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PharmacyIntegration.Model;
+using PharmacyIntegration.Repository;
+using PharmacyIntegration.Service;
 
 namespace PharmacyIntegration
 {
@@ -26,6 +28,8 @@ namespace PharmacyIntegration
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IPharmacyRepository, PharmacyRepository>();
+            services.AddScoped<IPharmacyService, PharmacyService>();
             services.AddControllers();
             services.AddDbContext<MySqlContext>(options =>
                     options.UseMySql(ConfigurationExtensions.GetConnectionString(Configuration, "MySqlConnectionString")).UseLazyLoadingProxies());

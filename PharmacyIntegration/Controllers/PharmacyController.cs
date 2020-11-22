@@ -14,32 +14,32 @@ namespace PharmacyIntegration.Controllers
     [ApiController]
     public class PharmacyController : ControllerBase
     {
-        private MySqlContext Context;
-        private PharmacyRepository pharmacyDAO;
-        public PharmacyController(MySqlContext Context)
+        private MySqlContext _context;
+        private IPharmacyService _pharmacyService;
+        public PharmacyController(MySqlContext context, IPharmacyService service)
         {
-            this.Context = Context;
-            this.pharmacyDAO = new PharmacyRepository(Context);
+            this._context = context;
+            this._pharmacyService = service;
         }
 
         [HttpGet("{id?}")]
         public IActionResult Get(string id)
         {
             
-            return Ok(pharmacyDAO.Get(id));
+            return Ok(_pharmacyService.Get(id));
 
         }
 
         [HttpGet]
         public IEnumerable<Pharmacy> Get()
         {
-            return pharmacyDAO.GetAll();
+            return _pharmacyService.GetAll();
         }
 
         [HttpPost]
         public IActionResult Post(Pharmacy pharmacy)
         {
-            bool isSuccessfullyAdded = pharmacyDAO.Add(pharmacy);
+            bool isSuccessfullyAdded = _pharmacyService.Add(pharmacy);
 
             if (isSuccessfullyAdded)
                 return Ok();
@@ -50,7 +50,7 @@ namespace PharmacyIntegration.Controllers
         [HttpDelete]
         public IActionResult Delete(string id)
         {
-            if(pharmacyDAO.Remove(id))
+            if(_pharmacyService.Remove(id))
             {
                 return Ok();
             }
