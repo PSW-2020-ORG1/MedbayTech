@@ -24,6 +24,15 @@ namespace MedbayTechUnitTests
             medicalRecord.ShouldNotBeNull();
         }
 
+        [Fact]
+        public void Doesnt_find_patients_record()
+        {
+            MedicalRecordWebService service = new MedicalRecordWebService(CreateStubRepository());
+            MedicalRecord medicalRecord = service.GetMedicalRecordByPatientId("002");
+
+            medicalRecord.ShouldBeNull();
+        }
+
         private static IMedicalRecordRepository CreateStubRepository()
         {
             var stubRepository = new Mock<IMedicalRecordRepository>();
