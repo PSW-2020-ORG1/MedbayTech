@@ -12,7 +12,7 @@ export class MedicalRecordService {
 
     constructor(private http : HttpClient) {}
 
-    getMedicalRecordByPatientId(id: string) : Observable<MedicalRecord> {
-        return this.http.get<MedicalRecord>(`${environment.baseUrl}/${environment.medicalRecord}/${id}`)
+    getMedicalRecordByPatientId() : Observable<MedicalRecord> {
+        return this.http.get<MedicalRecord>(`${environment.baseUrl}/${environment.medicalRecord}`)
     }
 }

@@ -24,7 +24,7 @@ namespace WebApplication.Controller
             this.medicalRecordWebController = new MedicalRecordWebController();
         }
 
-        [HttpGet] // GET api/medicalrecord
+        [HttpGet] // GET api/medicalRecord
         public IActionResult GetMedicalRecordByPatient()
         {
             MedicalRecord medicalRecord = medicalRecordWebController.GetMedicalRecordByPatientId("2406978890046");

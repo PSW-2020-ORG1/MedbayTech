@@ -32,8 +32,8 @@ namespace WebApplication.DTO
         public String PatientCondition { get; set; }
         public List<String> Allergies { get; set; }
         public List<String> Vaccines { get; set; }
-        public List<String> IllnesHistoryName { get; set; }
-        public List<String> IllnesHistorySymptoms { get; set; }
+        public List<String> IllnessHistoryName { get; set; }
+        public List<String> IllnessHistorySymptoms { get; set; }
         public List<String> FamilyIllnessHistoriesRelative { get; set; }
         public List<String> FamilyIllnesHistoriesDiagnosis { get; set; }
         public List<int> TherapiesHourConsumption { get; set; } 
@@ -63,8 +63,8 @@ namespace WebApplication.DTO
             PatientCondition = patientCondition;
             Allergies = allergies;
             Vaccines = vaccines;
-            IllnesHistoryName = illnesHistoryName;
-            IllnesHistorySymptoms = illnesHistorySymptoms;
+            IllnessHistoryName = illnesHistoryName;
+            IllnessHistorySymptoms = illnesHistorySymptoms;
             FamilyIllnessHistoriesRelative = familyIllnessHistoriesRelative;
             FamilyIllnesHistoriesDiagnosis = familyIllnesHistoriesDiagnosis;
             TherapiesHourConsumption = therapiesHourConsumption;

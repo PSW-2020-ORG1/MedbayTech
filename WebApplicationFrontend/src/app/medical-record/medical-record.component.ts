@@ -14,11 +14,11 @@ export class MedicalRecordComponent implements OnInit {
   constructor(private medicalRecordService : MedicalRecordService) { }
 
   ngOnInit(): void { 
-    this.loadMedicalRecord(this.medicalRecord.PatientId);
+    this.loadMedicalRecord();
   }
 
-  loadMedicalRecord(id) {
-    this.medicalRecordService.getMedicalRecordByPatientId(id).subscribe();
+  loadMedicalRecord() {
+    this.medicalRecordService.getMedicalRecordByPatientId().subscribe();
   }
 
 }
