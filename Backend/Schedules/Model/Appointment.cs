@@ -26,16 +26,16 @@ namespace Model.Schedule
         public bool Deleted { get; set; }
         public bool Finished { get; set; }
         [ForeignKey("Room")]
-        public int RoomId { get; protected set; }
+        public int RoomId { get;  set; }
         public virtual Room Room { get; set; }
         [ForeignKey("MedicalRecord")]
-        public int MedicalRecordId { get; protected set; }
+        public int MedicalRecordId { get;  set; }
         public virtual MedicalRecord MedicalRecord { get; set; }
         [ForeignKey("Doctor")]
-        public string DoctorId { get; protected set; }
+        public string DoctorId { get;  set; }
         public virtual Doctor Doctor { get; set; }
 
-        public int WeeklyAppointmentReportId { get; protected set; }
+        public int WeeklyAppointmentReportId { get;  set; }
 
         public Appointment() { }
 
