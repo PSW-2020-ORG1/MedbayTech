@@ -17,9 +17,9 @@ namespace Model.Users
    {
         [Key]
         public int Id { get; set; }
-        public DateTime Date { get; protected set; }
+        public DateTime Date { get; set; }
         [ForeignKey("Appointment")]
-        public int AppointmentId { get; protected set; }
+        public int AppointmentId { get; set; }
         public virtual Appointment Appointment { get; set; }
         public virtual List<SurveyAnswer> SurveyAnswers { get; set; }
         

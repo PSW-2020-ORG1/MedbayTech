@@ -8,6 +8,6 @@ namespace Backend.Users.Repository
 {
     public interface ISurveyQuestionRepository : IGetAll<SurveyQuestion>
     {
-
+        public IEnumerable<SurveyQuestion> GetAllActiveQuestions();
     }
 }

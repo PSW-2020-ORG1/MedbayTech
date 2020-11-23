@@ -8,12 +8,12 @@ namespace Backend.Users.Model
 {
     public class SurveyAnswer
     {
-        public int Id { get; protected set; }
+        public int Id { get;  set; }
         [ForeignKey("Survey")]
-        public int SurveyId { get; protected set; }
+        public int SurveyId { get;  set; }
         public virtual Survey Survey { get; set; }
-        public Grade Grade { get; protected set; }
-        public int SurveyQuestionId { get; protected set; }
+        public Grade Grade { get;  set; }
+        public int SurveyQuestionId { get;  set; }
 
 
         public SurveyAnswer() { }

@@ -67,5 +67,9 @@ namespace Backend.Users.Repository.MySqlRepository
         {
             //survey.Patient = new Patient();
         }
+        int ISurveyRepository.GetLastId()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

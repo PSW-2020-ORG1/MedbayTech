@@ -42,6 +42,11 @@ namespace Backend.Users.Repository.FileRepository
         {
             var allAddresses = stream.GetAll().ToList();
             return allAddresses.Any(item => item.Id == id);
-        }      
+        }
+
+        public IEnumerable<SurveyQuestion> GetAllActiveQuestions()
+        {
+            return null;
+        }
     }
 }
