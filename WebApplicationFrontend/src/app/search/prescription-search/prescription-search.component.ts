@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
-import { PrescriptionSearch } from 'src/app/model/prescriptionSearch';
+import { Prescription} from 'src/app/model/prescriptionSearch';
 import { PrescriptionService } from 'src/app/service/prescription/prescription.service';
 
 
@@ -14,7 +14,7 @@ export class PrescriptionSearchComponent implements OnInit {
 
   prescriptionForm: FormGroup;
   
-  allPrescriptions: PrescriptionSearch[] = new Array();
+  allPrescriptions: Prescription[] = new Array();
   
   
 

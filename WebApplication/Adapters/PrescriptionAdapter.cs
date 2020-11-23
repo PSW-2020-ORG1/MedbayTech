@@ -17,8 +17,8 @@ namespace WebApplication.Adapters
             foreach (Prescription pres in prescriptions)
             {
                 int id = pres.Id;
-                DateTime startDate = pres.ReservationPeriod.StartTime;
-                DateTime endDate = pres.ReservationPeriod.EndTime;
+                DateTime startDate = DateTime.Now;
+                DateTime endDate = DateTime.Now;
                 string medicine = "";
                 if (pres.Medication != null)
                 {

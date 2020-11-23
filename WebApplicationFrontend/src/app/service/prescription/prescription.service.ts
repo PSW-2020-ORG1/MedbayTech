@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PrescriptionSearch } from 'src/app/model/prescriptionSearch';
+import { Prescription } from 'src/app/model/prescriptionSearch';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,9 +11,9 @@ export class PrescriptionService {
 
   constructor(private http : HttpClient) { }
 
-  getAllPrescriptions(): Observable<PrescriptionSearch[]>{
+  getAllPrescriptions(): Observable<Prescription[]>{
 
-    return this.http.get<PrescriptionSearch[]>(`${environment.baseUrl}/${environment.prescription}/${environment.allPrescriptions}`)
+    return this.http.get<Prescription[]>(`${environment.baseUrl}/${environment.prescription}/${environment.allPrescriptions}`)
 
   }
 }

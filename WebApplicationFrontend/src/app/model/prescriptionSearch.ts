@@ -1,4 +1,4 @@
-export class PrescriptionSearch{
+export class Prescription{
     public Id: number;
     public Medicine: string;
     public HourlyIntake: string;
