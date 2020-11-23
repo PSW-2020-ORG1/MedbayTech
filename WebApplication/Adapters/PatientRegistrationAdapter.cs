@@ -9,7 +9,7 @@ namespace WebApplication.Adapters
 {
     public class PatientRegistrationAdapter
     {
-        public Patient PatientRegistrationDTOtoPatient(PatientRegistrationDTO patientRegistrationDTO)
+        public static Patient PatientRegistrationDTOtoPatient(PatientRegistrationDTO patientRegistrationDTO)
         {
             Patient patient = new Patient
             {
@@ -22,7 +22,9 @@ namespace WebApplication.Adapters
                 Username = patientRegistrationDTO.Username,
                 Password = patientRegistrationDTO.Password,
                 Profession = patientRegistrationDTO.Profession,
-                ChosenDoctorId = patientRegistrationDTO.Doctor
+                //ChosenDoctorId = patientRegistrationDTO.Doctor
+                CurrResidenceId = 1,
+                PlaceOfBirthId = patientRegistrationDTO.PostalCodeBirth
             };
             return patient;
         }

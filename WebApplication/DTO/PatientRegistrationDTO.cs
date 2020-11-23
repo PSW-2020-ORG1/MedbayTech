@@ -16,7 +16,7 @@ namespace WebApplication.DTO
         public string Username { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
-        public string EducationalLevel { get; set; }
+        public string EducationLevel { get; set; }
         public string Profession { get; set; }
         public string ProfileImage { get; set; }
         public string Gender { get; set; }
@@ -34,6 +34,9 @@ namespace WebApplication.DTO
         public string PatientCondition { get; set; }
         public string BloodType { get; set; }
         public string Doctor { get; set; }
+        public string CityOfBirth { get; set; }
+        public int PostalCodeBirth { get; set; }
+        public string StateOfBirth { get; set; }
 
         public PatientRegistrationDTO() { }
 
