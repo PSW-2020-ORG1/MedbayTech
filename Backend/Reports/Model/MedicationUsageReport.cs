@@ -13,14 +13,8 @@ namespace Backend.Reports.Model
         [Key]
         public int Id { get; set; }
         public Period Period { get; set; }
-        
         public List<Medication> Medications { get; set; }
-
-
-        public MedicationUsageReport()
-        {
-        }
-
+        public MedicationUsageReport(){}
         public MedicationUsageReport(int id, Period period)
         {
             Id = id;

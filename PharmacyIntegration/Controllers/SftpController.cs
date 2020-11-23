@@ -14,10 +14,10 @@ namespace PharmacyIntegration.Controllers
             // TODO(Jovan): Fix hardcoded data
             var config = new SftpConfig
             {
-                Host = "192.168.1.7",
-                Port = 8022,
-                Username = "isa",
-                Password = "isa"
+                Host = "https://schnabel.herokuapp.com/",
+                Port = 2222,
+                Username = "psw",
+                Password = "psw"
             };
             string localFile = "test.txt";
             using var client = new SftpClient(config.Host, config.Port, config.Username, config.Password);
@@ -25,12 +25,13 @@ namespace PharmacyIntegration.Controllers
             {
                 client.Connect();
                 using var s = System.IO.File.OpenRead(localFile);
-                client.UploadFile(s, ".");
+                Console.WriteLine(localFile);
+                client.UploadFile(s, "test.txt");
                 return Ok($"Finished uploading file [{localFile}] to [{"."}]");
             }
             catch (Exception exception)
             {
-                return BadRequest(exception + $"Failed in uploading file [{localFile}] to [{"."}]");
+                return BadRequest(exception.Message + $"Failed in uploading file [{localFile}] to [{"."}]");
             }
             finally
             {

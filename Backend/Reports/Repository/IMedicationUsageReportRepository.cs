@@ -9,9 +9,5 @@ namespace Backend.Reports.Repository
 {
     public interface IMedicationUsageReportRepository : IRepository<MedicationUsageReport, int>
     {
-        IEnumerable<MedicationUsageReport> GetAll();
-
-        bool ExistsInSystem(int id);
-        int GetNextID();
     }
 }

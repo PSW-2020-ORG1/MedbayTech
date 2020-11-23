@@ -52,8 +52,5 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
-  <ItemGroup>
-    <ProjectReference Include="..\RabbitMQService\RabbitMQService.csproj" />
-  </ItemGroup>
 
 </Project>
