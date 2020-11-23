@@ -3,15 +3,15 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:GraphicEditor.View.Building2" xmlns:local1="clr-namespace:GraphicEditor"
+      xmlns:local1="clr-namespace:GraphicEditor"
       mc:Ignorable="d" 
       d:DesignHeight="652" d:DesignWidth="766"
       Title="Building2SecondFloorPlan">
 
     <Grid>
         <Canvas x:Name="canvasBuild2fl1" Background="MintCream">
-            <Label Content="Hospital 2" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="249" Canvas.Top="36"/>
-            <Image Source="arrowDown.png" Width="60" Canvas.Left="348" Canvas.Top="495" MouseLeftButtonDown="mouseClickArrowDown"/>
+            <Label Content="H2 Second floor" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="167" Canvas.Top="40"/>
+            <Image Source="/View/icons/arrowDown.png" Width="60" Canvas.Left="348" Canvas.Top="495" MouseLeftButtonDown="mouseClickArrowDown"/>
             <Rectangle Fill="White" Stroke="Black" StrokeThickness="3" Height="260" Width="595" Canvas.Left="86"  Canvas.Top="196"/>
             <Rectangle Fill="#77c588" Height="100" Width="50" Stroke="Black" StrokeThickness="3" Canvas.Left="186" Canvas.Top="196" MouseEnter="ExaminationRoom_MouseEnter" MouseLeave="ExaminationRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationExaminationRoom" />
             <Rectangle Fill="#77c588" Height="100" Width="50" Stroke="Black" StrokeThickness="3" Canvas.Top="356" Canvas.Left="136" MouseEnter="ExaminationRoom_MouseEnter" MouseLeave="ExaminationRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationExaminationRoom" />
@@ -106,5 +106,6 @@
                 <local1:PopupAuxiliaryRoom x:Name="AuxiliaryRoom" Foreground="#E0FFFF"/>
             </Grid>
         </Popup>
+        
     </Grid>
 </Page>

@@ -10,8 +10,8 @@
 
     <Grid>
         <Canvas x:Name="canvasH1GF" Background="MintCream">
-            <Label Content="Hospital 1" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="249" Canvas.Top="36"/>
-            <Image Source="arrowUp.png" Width="60" Canvas.Left="348" Canvas.Top="113" MouseLeftButtonDown="mouseClickArrowUp"/>
+            <Label Content="H1 Ground floor" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="164" Canvas.Top="40"/>
+            <Image Source="/View/icons/arrowUp.png" Width="60" Canvas.Left="348" Canvas.Top="113" MouseLeftButtonDown="mouseClickArrowUp"/>
             <Rectangle Fill="White" Stroke="Black" StrokeThickness="3" Height="260" Width="595" Canvas.Left="86"  Canvas.Top="196"/>
             <Rectangle Fill="#77c588" Height="100" Width="50" Stroke="Black" StrokeThickness="3" Canvas.Left="86" Canvas.Top="196" MouseEnter="ExaminationRoom_MouseEnter" MouseLeave="ExaminationRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationExaminationRoom" />
             <Rectangle Fill="#77c588" Height="100" Width="50" Stroke="Black" StrokeThickness="3" Canvas.Top="356" Canvas.Left="86" MouseEnter="ExaminationRoom_MouseEnter" MouseLeave="ExaminationRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationExaminationRoom" />

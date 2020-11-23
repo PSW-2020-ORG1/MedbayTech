@@ -36,9 +36,8 @@ namespace GraphicEditor
         }
         MainWindow window;
 
-        private void ShowHospitalMap(object sender, MouseButtonEventArgs e)
+        private void TransitionAnimation()
         {
-            MainFrame.Content = new HospitalMap(this);
             Storyboard storyboard = new Storyboard();
             DoubleAnimation doubleAnimation = new DoubleAnimation();
             doubleAnimation.From = 0;
@@ -50,6 +49,11 @@ namespace GraphicEditor
             storyboard.Begin(this);
         }
 
+        private void ShowHospitalMap(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Content = new HospitalMap(this);
+            TransitionAnimation();
+        }
         private void ShowBuilding1GroundFloor(object sender, MouseButtonEventArgs e)
         {
             MainFrame.Content = new Building1FloorPlan(this);
@@ -69,42 +73,18 @@ namespace GraphicEditor
         private void ShowBuilding2GroundFloor(object sender, MouseButtonEventArgs e)
         {
             MainFrame.Content = new Building2FloorPlan(this);
-            Storyboard storyboard = new Storyboard();
-            DoubleAnimation doubleAnimation = new DoubleAnimation();
-            doubleAnimation.From = 0;
-            doubleAnimation.To = 1;
-            doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
-            storyboard.Children.Add(doubleAnimation);
-            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
-            Storyboard.SetTargetName(doubleAnimation, MainFrame.Name);
-            storyboard.Begin(this);
+            TransitionAnimation();
         }
 
         private void ShowBuilding2FirstFloor(object sender, MouseButtonEventArgs e)
         {
             MainFrame.Content = new Building2FirstFloorPlan(this);
-            Storyboard storyboard = new Storyboard();
-            DoubleAnimation doubleAnimation = new DoubleAnimation();
-            doubleAnimation.From = 0;
-            doubleAnimation.To = 1;
-            doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
-            storyboard.Children.Add(doubleAnimation);
-            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
-            Storyboard.SetTargetName(doubleAnimation, MainFrame.Name);
-            storyboard.Begin(this);
+            TransitionAnimation();
         }
         private void ShowBuilding2SecondFloor(object sender, MouseButtonEventArgs e)
         {
             MainFrame.Content = new Building2SecondFloorPlan(this);
-            Storyboard storyboard = new Storyboard();
-            DoubleAnimation doubleAnimation = new DoubleAnimation();
-            doubleAnimation.From = 0;
-            doubleAnimation.To = 1;
-            doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
-            storyboard.Children.Add(doubleAnimation);
-            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
-            Storyboard.SetTargetName(doubleAnimation, MainFrame.Name);
-            storyboard.Begin(this);
+            TransitionAnimation();
         }
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -239,17 +219,5 @@ namespace GraphicEditor
             }
         }
 
-        private void TransitionAnimation()
-        {
-            Storyboard storyboard = new Storyboard();
-            DoubleAnimation doubleAnimation = new DoubleAnimation();
-            doubleAnimation.From = 0;
-            doubleAnimation.To = 1;
-            doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
-            storyboard.Children.Add(doubleAnimation);
-            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
-            Storyboard.SetTargetName(doubleAnimation, MainFrame.Name);
-            storyboard.Begin(this);
-        }
     }
 }

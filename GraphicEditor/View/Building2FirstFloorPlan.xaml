@@ -3,16 +3,16 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:GraphicEditor.View.Building2" xmlns:local1="clr-namespace:GraphicEditor"
+      xmlns:local1="clr-namespace:GraphicEditor"
       mc:Ignorable="d" 
       d:DesignHeight="652" d:DesignWidth="766"
       Title="Building2FirstFloorPlan">
 
     <Grid>
         <Canvas x:Name="canvasBuild1fl1" Background="MintCream">
-            <Label Content="Hospital 2" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="249" Canvas.Top="36"/>
-            <Image Source="arrowUp.png" Width="60" Canvas.Left="348" Canvas.Top="113" MouseLeftButtonDown="mouseClickArrowUp"/>
-            <Image Source="arrowDown.png" Width="60" Canvas.Left="348" Canvas.Top="495" MouseLeftButtonDown="mouseClickArrowDown"/>
+            <Label Content="H2 First floor" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="199" Canvas.Top="40"/>
+            <Image Source="/View/icons/arrowUp.png" Width="60" Canvas.Left="348" Canvas.Top="113" MouseLeftButtonDown="mouseClickArrowUp"/>
+            <Image Source="/View/icons/arrowDown.png" Width="60" Canvas.Left="348" Canvas.Top="495" MouseLeftButtonDown="mouseClickArrowDown"/>
             <Rectangle Fill="White" Stroke="Black" StrokeThickness="3" Height="260" Width="595" Canvas.Left="86"  Canvas.Top="196"/>
             <Rectangle Fill="#dca0d3" Height="100" Width="50" Stroke="Black" StrokeThickness="3" Canvas.Top="196" Canvas.Left="532"  MouseEnter="PatientRoom_MouseEnter" MouseLeave="PatientRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationPatientRoom"/>
             <Rectangle Fill="#dca0d3" Height="100" Width="50" Canvas.Left="186" Stroke="Black" StrokeThickness="3" Canvas.Top="196"  MouseEnter="PatientRoom_MouseEnter" MouseLeave="PatientRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationPatientRoom"/>
@@ -107,5 +107,6 @@
                 <local1:PopupAuxiliaryRoom x:Name="AuxiliaryRoom" Foreground="#E0FFFF"/>
             </Grid>
         </Popup>
+        
     </Grid>
 </Page>

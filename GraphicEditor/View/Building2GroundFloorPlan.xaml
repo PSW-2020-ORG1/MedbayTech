@@ -10,7 +10,7 @@
 
     <Grid>
         <Canvas x:Name="canvasBuild2fl1" Background="MintCream">
-            <Label Content="Hospital 2" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="249" Canvas.Top="36"/>
+            <Label Content="H2 Ground floor" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="159" Canvas.Top="40"/>
             <Image Source="/View/icons/arrowUp.png" Width="60" Canvas.Left="348" Canvas.Top="113" MouseLeftButtonDown="mouseClickArrowUp"/>
             <Rectangle Fill="White" Stroke="Black" StrokeThickness="3" Height="260" Width="595" Canvas.Left="86"  Canvas.Top="196"/>
             <Rectangle Fill="#77c588" Height="100" Width="50" Stroke="Black" StrokeThickness="3" Canvas.Left="86" Canvas.Top="196" MouseEnter="ExaminationRoom_MouseEnter" MouseLeave="ExaminationRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationExaminationRoom" />
@@ -99,6 +99,15 @@
 
             <Grid>
                 <local:PopupAuxiliaryRoom x:Name="AuxiliaryRoom" Foreground="#E0FFFF"/>
+            </Grid>
+        </Popup>
+        <Popup x:Name="PopupInfoForPatient"
+                   AllowsTransparency="True"
+                   HorizontalOffset="10"
+                   VerticalOffset="10">
+
+            <Grid>
+                <local:PopupInfoForPatient x:Name="InfoForPatient" Foreground="#E0FFFF"/>
             </Grid>
         </Popup>
     </Grid>

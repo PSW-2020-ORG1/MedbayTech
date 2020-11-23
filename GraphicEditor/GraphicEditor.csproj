@@ -7,6 +7,16 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="View\Building1\**" />
+    <Compile Remove="View\Building2\**" />
+    <EmbeddedResource Remove="View\Building1\**" />
+    <EmbeddedResource Remove="View\Building2\**" />
+    <None Remove="View\Building1\**" />
+    <None Remove="View\Building2\**" />
+    <Page Remove="View\Building1\**" />
+    <Page Remove="View\Building2\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="appsettings.Development.json" />
     <None Remove="appsettings.json" />
   </ItemGroup>
@@ -25,9 +35,5 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\Building1\" />
-    <Folder Include="View\Building2\" />
   </ItemGroup>
 </Project>

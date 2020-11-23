@@ -27,7 +27,19 @@ namespace GraphicEditor
             InitializeComponent();
             page = mainPage;
         }
-        
+        private void TransitionAnimation()
+        {
+            Storyboard storyboard = new Storyboard();
+            DoubleAnimation doubleAnimation = new DoubleAnimation();
+            doubleAnimation.From = 0;
+            doubleAnimation.To = 1;
+            doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
+            storyboard.Children.Add(doubleAnimation);
+            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
+            Storyboard.SetTargetName(doubleAnimation, page.MainFrame.Name);
+            storyboard.Begin(page);
+        }
+
         private void ShowBuilding1FloorPlan(object sender, MouseButtonEventArgs e)
         {
             page.MainFrame.Content = new Building1FloorPlan();
@@ -43,19 +55,6 @@ namespace GraphicEditor
             page.comboBoxH2.SelectedIndex = 0;
             page.SetActiveUserControl(page.legenda);
             TransitionAnimation();
-        }
-
-        private void TransitionAnimation()
-        {
-            Storyboard storyboard = new Storyboard();
-            DoubleAnimation doubleAnimation = new DoubleAnimation();
-            doubleAnimation.From = 0;
-            doubleAnimation.To = 1;
-            doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
-            storyboard.Children.Add(doubleAnimation);
-            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
-            Storyboard.SetTargetName(doubleAnimation, page.MainFrame.Name);
-            storyboard.Begin(page);
         }
 
         private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)

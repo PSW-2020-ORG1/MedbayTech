@@ -51,7 +51,7 @@ namespace GraphicEditor
 
         private void PatientRoom_MouseEnter(object sender, MouseEventArgs e)
         {
-            if(ChooseUser.Restriction==0)
+            if (ChooseUser.Restriction == 0)
             {
                 PopupPatientRoom.Placement = PlacementMode.MousePoint;
                 PopupPatientRoom.IsOpen = true;

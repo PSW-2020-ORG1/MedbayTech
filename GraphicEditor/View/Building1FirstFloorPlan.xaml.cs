@@ -44,22 +44,32 @@ namespace GraphicEditor.View.Building1
                 if(rectangle.Name.Equals("PatientRoom"))
                 {
                     rectangle.MouseDown += AdditionalInformationPatientRoom;
+                    rectangle.MouseEnter += PatientRoom_MouseEnter;
+                    rectangle.MouseLeave += PatientRoom_MouseLeave;
                 }
-                else if(rectangle.Name.Equals("ExamintionRoom"))
+                else if(rectangle.Name.Equals("ExaminationRoom"))
                 {
                     rectangle.MouseDown += AdditionalInformationExaminationRoom;
+                    rectangle.MouseEnter += ExaminationRoom_MouseEnter;
+                    rectangle.MouseLeave += ExaminationRoom_MouseLeave;
                 }
                 else if (rectangle.Name.Equals("OperatingRoom"))
                 {
                     rectangle.MouseDown += AdditionalInformationOperatingRoom;
+                    rectangle.MouseEnter += OperatingRoom_MouseEnter;
+                    rectangle.MouseLeave += OperatingRoom_MouseLeave;
                 }
                 else if (rectangle.Name.Equals("AuxiliaryRoom"))
                 {
                     rectangle.MouseDown += AdditionalInformationAuxiliaryRoom;
+                    rectangle.MouseEnter += AuxiliaryRoom_MouseEnter;
+                    rectangle.MouseLeave += AuxiliaryRoom_MouseLeave;
                 }
                 else if (rectangle.Name.Equals("StorageRoom"))
                 {
                     rectangle.MouseDown += AdditionalInformationAuxiliaryRoom;
+                    rectangle.MouseEnter += AuxiliaryRoom_MouseEnter;
+                    rectangle.MouseLeave += AuxiliaryRoom_MouseLeave;
                 }
             }
 
@@ -91,14 +101,25 @@ namespace GraphicEditor.View.Building1
 
         private void PatientRoom_MouseEnter(object sender, MouseEventArgs e)
         {
-            PopupPatientRoom.Placement = PlacementMode.MousePoint;
-            PopupPatientRoom.IsOpen = true;
+            if (ChooseUser.Restriction == 0)
+            {
+                PopupPatientRoom.Placement = PlacementMode.MousePoint;
+                PopupPatientRoom.IsOpen = true;
+            }
+            else
+            {
+                PopupInfoForPatient.Placement = PlacementMode.MousePoint;
+                PopupInfoForPatient.IsOpen = true;
+            }
         }
 
         private void PatientRoom_MouseLeave(object sender, MouseEventArgs e)
         {
             PopupPatientRoom.Visibility = Visibility.Collapsed;
             PopupPatientRoom.IsOpen = false;
+
+            PopupInfoForPatient.Visibility = Visibility.Collapsed;
+            PopupInfoForPatient.IsOpen = false;
         }
 
         private void ExaminationRoom_MouseEnter(object sender, MouseEventArgs e)
@@ -115,49 +136,84 @@ namespace GraphicEditor.View.Building1
 
         private void OperatingRoom_MouseEnter(object sender, MouseEventArgs e)
         {
-            PopupOperatingRoom.Placement = PlacementMode.MousePoint;
-            PopupOperatingRoom.IsOpen = true;
+            if (ChooseUser.Restriction == 0)
+            {
+                PopupOperatingRoom.Placement = PlacementMode.MousePoint;
+                PopupOperatingRoom.IsOpen = true;
+            }
+            else
+            {
+                PopupInfoForPatient.Placement = PlacementMode.MousePoint;
+                PopupInfoForPatient.IsOpen = true;
+            }
         }
 
         private void OperatingRoom_MouseLeave(object sender, MouseEventArgs e)
         {
             PopupOperatingRoom.Visibility = Visibility.Collapsed;
             PopupOperatingRoom.IsOpen = false;
+
+            PopupInfoForPatient.Visibility = Visibility.Collapsed;
+            PopupInfoForPatient.IsOpen = false;
         }
 
         private void AuxiliaryRoom_MouseEnter(object sender, MouseEventArgs e)
         {
-            PopupAuxiliaryRoom.Placement = PlacementMode.MousePoint;
-            PopupAuxiliaryRoom.IsOpen = true;
+            if (ChooseUser.Restriction == 0)
+            {
+                PopupAuxiliaryRoom.Placement = PlacementMode.MousePoint;
+                PopupAuxiliaryRoom.IsOpen = true;
+            }
+            else
+            {
+                PopupInfoForPatient.Placement = PlacementMode.MousePoint;
+                PopupInfoForPatient.IsOpen = true;
+            }
         }
 
         private void AuxiliaryRoom_MouseLeave(object sender, MouseEventArgs e)
         {
             PopupAuxiliaryRoom.Visibility = Visibility.Collapsed;
             PopupAuxiliaryRoom.IsOpen = false;
+
+            PopupInfoForPatient.Visibility = Visibility.Collapsed;
+            PopupInfoForPatient.IsOpen = false;
         }
+
         private void AdditionalInformationPatientRoom(object sender, MouseButtonEventArgs e)
         {
-            AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom();
-            additionalInformation.ShowDialog();
+            if (ChooseUser.Restriction == 0)
+            {
+                AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom();
+                additionalInformation.ShowDialog();
+            }
         }
 
         private void AdditionalInformationOperatingRoom(object sender, MouseButtonEventArgs e)
         {
-            AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom();
-            additionalInformation.ShowDialog();
+            if (ChooseUser.Restriction == 0)
+            {
+                AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom();
+                additionalInformation.ShowDialog();
+            }
         }
 
         private void AdditionalInformationExaminationRoom(object sender, MouseButtonEventArgs e)
         {
-            AdditionalInformationExaminationRoom additionalInformation = new AdditionalInformationExaminationRoom();
-            additionalInformation.ShowDialog();
+            if (ChooseUser.Restriction == 0)
+            {
+                AdditionalInformationExaminationRoom additionalInformation = new AdditionalInformationExaminationRoom();
+                additionalInformation.ShowDialog();
+            }
         }
 
         private void AdditionalInformationAuxiliaryRoom(object sender, MouseButtonEventArgs e)
         {
-            AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom();
-            additionalInformation.ShowDialog();
+            if (ChooseUser.Restriction == 0)
+            {
+                AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom();
+                additionalInformation.ShowDialog();
+            }
         }
     }
 }
