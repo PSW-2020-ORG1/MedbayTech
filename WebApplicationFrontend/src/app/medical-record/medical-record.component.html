@@ -1,22 +1,91 @@
 <div class = "container">
-    <mat-tab-group>
-        <mat-tab label = "Patient Info">
-            Content
-        </mat-tab>
-        <mat-tab label = "Allergies">
-            Content
-        </mat-tab>
-        <mat-tab label = "Vaccines">
-            Content
-        </mat-tab>
-        <mat-tab label = "Illness History">
-            Content
-        </mat-tab>
-        <mat-tab label = "Family Illness History">
-            Content
-        </mat-tab>
-        <mat-tab label = "Therapies"> 
-            Content
-        </mat-tab>
-    </mat-tab-group> 
-</div>
+    <mat-card class="card">
+        <mat-card-header>
+            <mat-card-title>Patient Information</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>Name : {{ medicalRecord.Name }}</p>
+            <p>Surname : {{ medicalRecord.Surname }}</p>
+            <p>Gender : {{ medicalRecord.Gender }}</p>
+            <p>Date of birth: {{ medicalRecord.DateOfBirth | date : 'dd/MM/yyyy'}}</p>
+            <p>Blood type: {{ medicalRecord.BloodType }}</p>
+            <p>Address : {{ medicalRecord.Street }} {{ medicalRecord.Number }} / {{ medicalRecord.Apartment }} , {{ medicalRecord.City }} , {{ medicalRecord.State }}</p>
+            <p>Phone number : {{ medicalRecord.Phone }}</p>
+            <p>E-mail : {{ medicalRecord.Email }}</p>
+            <p>Insurance policy provider : {{ medicalRecord.InsurancePolicyCompany }}</p>
+            <p>Patient condition : {{medicalRecord.PatientCondition }}</p>
+        </mat-card-content>
+        <mat-card-footer>
+            <mat-tab-group>
+                <mat-tab label="Allergies">
+                    <table>
+                        <th> &nbsp;</th>
+                        <th> Name </th>
+                        <tr *ngFor="let allergen of medicalRecord.Allergies">
+                            <td> &nbsp; </td>
+                            <td>{{ allergen }}</td>
+                        </tr>
+                    </table>
+                </mat-tab>
+                <mat-tab label="Vaccines">
+                    <table>
+                        <th> &nbsp;</th>
+                        <th> Name </th>
+                        <tr *ngFor="let vaccine of medicalRecord.Vaccines">
+                            <td> &nbsp; </td>
+                            <td>{{ vaccine }}</td>
+                        </tr>
+                    </table>
+                </mat-tab>
+                <mat-tab label="Illness history">
+                    <table>
+                        <th> &nbsp;</th>
+                        <th> Diagnoses </th>
+                        <th> &nbsp; </th>
+                        <th> &nbsp; </th>
+                        <th> Symptoms </th>
+                        <tr *ngFor="let name of medicalRecord.IllnessHistoryName">
+                            <td> &nbsp; </td>
+                            <td> {{ name }} </td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td> {{ medicalRecord.IllnessHistorySymptoms }} </td>
+                        </tr>
+                    </table>
+                </mat-tab>
+                <mat-tab label="Family illness history">
+                    <table>
+                        <th> &nbsp;</th>
+                        <th> Relative </th>
+                        <th> &nbsp; </th>
+                        <th> &nbsp; </th>
+                        <th> Diagnoses </th>
+                        <tr>
+                            <td> {{ medicalRecord.FamilyIllnessHistoryRelatives }} </td>
+                            <td> &nbsp; </td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td> {{ medicalRecord.FamilyIllnessHistoryDiagnosis }} </td>
+                        </tr>
+                    </table>
+                </mat-tab>
+                <mat-tab label="Therapies">
+                    <table>
+                        <th> &nbsp;</th>
+                        <th> Hour consumption </th>
+                        <th> &nbsp; </th>
+                        <th> &nbsp; </th>
+                        <th> Medication </th>
+                        <tr *ngFor="let hourConsumption of medicalRecord.TherapiesHourConsumption">
+                            <td> &nbsp; </td>
+                            <td> {{ hourConsumption }} </td>
+                            <td> &nbsp; </td>
+                            <td> &nbsp; </td>
+                            <td> {{ medicalRecord.TherapiesMedication[0] }} </td>
+                        </tr>
+                    </table>
+                </mat-tab>
+              </mat-tab-group>
+        </mat-card-footer>
+    </mat-card>
+</div>    

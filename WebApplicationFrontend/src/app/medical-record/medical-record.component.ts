@@ -18,7 +18,10 @@ export class MedicalRecordComponent implements OnInit {
   }
 
   loadMedicalRecord() {
-    this.medicalRecordService.getMedicalRecordByPatientId().subscribe();
+    this.medicalRecordService.getMedicalRecordByPatientId().subscribe(data =>
+      {
+        this.medicalRecord = data;
+      });
   }
 
 }
