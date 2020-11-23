@@ -21,6 +21,7 @@ namespace Backend.Medications.Model
         public string Company { get; set; }
         public int Quantity { get; set; }
         public virtual List<DosageOfIngredient> MedicationContent { get; set; }
+        public int MedicationCategoryId { get; set; }
         public virtual MedicationCategory MedicationCategory { get; set; }
         public virtual List<Allergens> Allergens { get; set; }
         public virtual List<Medication> AlternativeMedication { get; set; }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
+import { PrescriptionSearch } from 'src/app/model/prescriptionSearch';
+import { PrescriptionService } from 'src/app/service/prescription/prescription.service';
 
 
 @Component({
@@ -12,7 +14,7 @@ export class PrescriptionSearchComponent implements OnInit {
 
   prescriptionForm: FormGroup;
   
-  
+  allPrescriptions: PrescriptionSearch[] = new Array();
   
   
 
@@ -95,7 +97,7 @@ export class PrescriptionSearchComponent implements OnInit {
     Validators.pattern("[0123456789]{1}")]
   );
   
-  constructor(private fb: FormBuilder) {
+  constructor(private ps: PrescriptionService,private fb: FormBuilder) {
    
 
    }
@@ -126,5 +128,12 @@ export class PrescriptionSearchComponent implements OnInit {
     const dups = (this.prescriptionForm.get('duplicates')as FormArray);
     dups.removeAt(i);
     
+  }
+
+  loadAllFeedback() {
+    this.ps.getAllPrescriptions().subscribe(data => 
+      {
+        this.allPrescriptions = data
+      });
   }
 }
