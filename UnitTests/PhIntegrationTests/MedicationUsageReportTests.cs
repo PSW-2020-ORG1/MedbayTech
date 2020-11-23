@@ -3,6 +3,7 @@ using Backend.Reports.Model;
 using Backend.Reports.Repository;
 using Backend.Reports.Service;
 using Backend.Utils;
+using Castle.Core.Internal;
 using Model.Users;
 using Moq;
 using Shouldly;
@@ -16,14 +17,25 @@ namespace UnitTests.PhIntegrationTests
 {
     public class MedicationUsageReportTests
     {
-        [Fact]
-        public void Analyze_usage_in_specific_period()
+        [Theory]
+        [MemberData(nameof(Periods))]
+        public void Analyze_usage_in_specific_period(Period period, bool isEmpty)
         {
             MedicationUsageReportService medicationUsageReportService = new MedicationUsageReportService(CreateStubRepository());
 
-            List<MedicationUsageReport> reports = medicationUsageReportService.GetAll().ToList();
+            List<MedicationUsageReport> reports = (List<MedicationUsageReport>)medicationUsageReportService.GetForSpecificPeriod(period);
 
-            reports.ShouldNotBeNull();
+            reports.IsNullOrEmpty().ShouldBe(isEmpty);
+        }
+
+        public static IEnumerable<object[]> Periods()
+        {
+            var retVal = new List<object[]>();
+            retVal.Add(new object[] { new Period(new DateTime(2020, 8, 10), new DateTime(2020, 9, 10)), false });
+            retVal.Add(new object[] { new Period(new DateTime(2020, 8, 10), new DateTime(2020, 9, 10)), false });
+            retVal.Add(new object[] { new Period(new DateTime(2020, 8, 10), new DateTime(2020, 9, 10)), false });
+            retVal.Add(new object[] { new Period(new DateTime(2020, 8, 10), new DateTime(2020, 9, 10)), false });
+            return retVal;
         }
 
         private static IMedicationUsageReportRepository CreateStubRepository()

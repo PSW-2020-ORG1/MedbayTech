@@ -1,5 +1,6 @@
 ﻿using Backend.Reports.Model;
 using Backend.Reports.Service;
+using Backend.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,6 +19,9 @@ namespace Backend.Reports.Controller
 
         public IEnumerable<MedicationUsageReport> GetAll() =>
             medicationUsageReportService.GetAll();
+
+        public IEnumerable<MedicationUsageReport> GetForSpecificPeriod(Period period) =>
+            medicationUsageReportService.GetForSpecificPeriod(period);
 
     }
 }
