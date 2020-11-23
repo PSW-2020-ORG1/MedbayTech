@@ -6,6 +6,7 @@ using Moq;
 using Shouldly;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
 using ZdravoKorporacija.Model.Users;
@@ -16,19 +17,41 @@ namespace MedbayTechUnitTests.Users
     {
 
         [Fact]
-        public void Register_patient()
+        public void Register_patient_integration()
         {
             WebRegistrationController controller = new WebRegistrationController();
             var patient = CreatePatient();
             Patient registeredPatient = controller.Register(patient);
+
             registeredPatient.ShouldNotBeNull();
         }
+        [Fact]
+        public void Exists_by_id()
+        {
+            var stubRepository = CreateStubRepository();
+            RegistrationService service = new RegistrationService(stubRepository);
 
+            bool existsById = service.ExistsById("2406978890044");
+
+            existsById.ShouldBe(true);
+        }    
+        public static IPatientRepository CreateStubRepository()
+        {
+            var stubRepository = new Mock<IPatientRepository>();
+            var patients = CreateListOfPatients();
+            var patient = CreatePatient();
+            stubRepository.Setup(p => p.GetAll()).Returns(patients);
+            stubRepository.Setup(m => m.ExistsById(It.IsAny<string>()))
+                .Returns((string id) => patients.Exists(p => p.Id.Equals(id)));
+            stubRepository.Setup(p => p.Create(patient)).Returns(patient);
+
+            return stubRepository.Object;
+        }
         public static Patient CreatePatient()
         {
             Patient patient = new Patient
             {
-                Id = "2406978890099",
+                Id = "2406978890084",
                 CurrResidenceId = 1,
                 DateOfBirth = new DateTime(1978, 6, 24),
                 DateOfCreation = new DateTime(),
@@ -56,7 +79,7 @@ namespace MedbayTechUnitTests.Users
 
             Patient patient2 = new Patient
             {
-                Id = "2406978890049",
+                Id = "2406978890044",
                 CurrResidenceId = 1,
                 DateOfBirth = new DateTime(1978, 6, 24),
                 DateOfCreation = new DateTime(),
