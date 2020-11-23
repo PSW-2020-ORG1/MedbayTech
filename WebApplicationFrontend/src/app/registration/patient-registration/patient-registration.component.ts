@@ -109,15 +109,15 @@ export class PatientRegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-   /* this.service.registerPatient(this.createPatient()).subscribe(
+   this.service.registerPatient(this.createPatient()).subscribe(
       res => {
-        this.createForm.reset();
+        //this.createForm.reset();
         this.taostr.success(res);
       },
       error => {
-        this.taostr.error(error);
+        this.taostr.error("Patient already exists");
       }
-    );*/
+    );
 
     
     const formData = new FormData();

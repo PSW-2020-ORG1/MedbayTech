@@ -21,6 +21,7 @@ namespace MedbayTechUnitTests.Users
         {
             WebRegistrationController controller = new WebRegistrationController();
             var patient = CreatePatient();
+
             Patient registeredPatient = controller.Register(patient);
 
             registeredPatient.ShouldNotBeNull();

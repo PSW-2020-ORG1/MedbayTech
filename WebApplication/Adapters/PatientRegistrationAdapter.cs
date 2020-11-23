@@ -11,6 +11,7 @@ namespace WebApplication.Adapters
     {
         public static Patient PatientRegistrationDTOtoPatient(PatientRegistrationDTO patientRegistrationDTO)
         {
+
             Patient patient = new Patient
             {
                 Id = patientRegistrationDTO.Id,
@@ -23,8 +24,8 @@ namespace WebApplication.Adapters
                 Password = patientRegistrationDTO.Password,
                 Profession = patientRegistrationDTO.Profession,
                 //ChosenDoctorId = patientRegistrationDTO.Doctor
-                CurrResidenceId = 1,
-                PlaceOfBirthId = patientRegistrationDTO.PostalCodeBirth
+                CurrResidenceId = patientRegistrationDTO.CurrentResidenceId,
+                PlaceOfBirthId = patientRegistrationDTO.PlaceOfBirthId,
             };
             return patient;
         }

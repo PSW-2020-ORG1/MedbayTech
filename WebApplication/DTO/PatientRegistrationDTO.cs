@@ -37,7 +37,8 @@ namespace WebApplication.DTO
         public string CityOfBirth { get; set; }
         public int PostalCodeBirth { get; set; }
         public string StateOfBirth { get; set; }
-
+        public int CurrentResidenceId { get; set; }
+        public int PlaceOfBirthId { get; set; }
         public PatientRegistrationDTO() { }
 
 
