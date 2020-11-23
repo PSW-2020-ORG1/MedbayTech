@@ -25,12 +25,15 @@ export class PatientRegistration {
     public PatientCondition : string;
     public BloodType : string;
     public Doctor : string;
+    public CityOfBirth : string;
+    public PostalCodeBirth : string;
+    public StateOfBirth : string;
 
     constructor(id : string, name : string, surname : string, dateOfBirth : Date, phone : string, email : string, username: string,
                 password : string, confirmPassword : string, educationalLevel : string, profession : string,
                 gender : string, postalCode : number, city : string, state : string, street : string, number : number, apartment : number,
                 floor : number, policyNumber : string, company : string, policyStart : Date, policyEnd : Date, patientCondition : string, 
-                bloodType : string, doctor : string) {
+                bloodType : string, doctor : string, cityOfBirth : string, postalCodeBirth : string, stateOfBirth : string) {
                     this.Id = id;
                     this.Name = name;
                     this.Surname = surname;
@@ -57,6 +60,9 @@ export class PatientRegistration {
                     this.PatientCondition = patientCondition;
                     this.BloodType = bloodType;
                     this.Doctor = doctor;
+                    this.CityOfBirth = cityOfBirth;
+                    this.PostalCodeBirth = postalCodeBirth;
+                    this.CityOfBirth = cityOfBirth;
                 }
 
 
