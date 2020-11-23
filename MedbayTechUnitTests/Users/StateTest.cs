@@ -43,7 +43,7 @@ namespace MedbayTechUnitTests.Users
         {
             var stubRepository = CreateStubRepository();
             StateService cityService = new StateService(stubRepository);
-            var state = CreateStateDoesNotExists();
+            var state = CreateStateExists();
 
             var createdCity = cityService.Save(state);
 
