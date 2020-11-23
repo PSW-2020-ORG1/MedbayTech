@@ -45,6 +45,51 @@ namespace PharmacyIntegration.Migrations
                             APIKey = "ID2APIKEYAAAA"
                         });
                 });
+
+            modelBuilder.Entity("PharmacyIntegration.Model.PharmacyNotification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Approved")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("PharmacyID")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PharmacyID");
+
+                    b.ToTable("PharmacyNotifications");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Approved = true,
+                            Content = "Aspirin nam je jeftin. Bas jako. Ide gaso!",
+                            PharmacyID = "Jankovic"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Approved = true,
+                            Content = "Brufen nam je jeftin. Bas jako. Ide gaso!",
+                            PharmacyID = "Liman"
+                        });
+                });
+
+            modelBuilder.Entity("PharmacyIntegration.Model.PharmacyNotification", b =>
+                {
+                    b.HasOne("PharmacyIntegration.Model.Pharmacy", "Pharmacy")
+                        .WithMany()
+                        .HasForeignKey("PharmacyID");
+                });
 #pragma warning restore 612, 618
         }
     }
