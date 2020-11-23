@@ -86,6 +86,32 @@ namespace GraphicEditor
             MainFrame.Content = new Building2SecondFloorPlan(this);
             TransitionAnimation();
         }
+
+        private void EnterKey(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                if (Rooms.IsChecked == true)
+                {
+                    MainFrame.Content = new SearchResultsForRooms(this);
+                }
+                else if ((bool)Medicines.IsChecked)
+                {
+                    if(ChooseUser.Restriction == 0)
+                    {
+                        MainFrame.Content = new SearchResultsForMedicines(this);
+                    }
+                }
+                else if ((bool)Equipment.IsChecked)
+                {
+                    if (ChooseUser.Restriction == 0)
+                    {
+                        MainFrame.Content = new SearchResaultsForEquipment(this);
+                    }
+                }
+            }
+        }
+
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dontRefreshMap == true)
@@ -208,14 +234,6 @@ namespace GraphicEditor
             else if (comboBoxHospital2.SelectedIndex == 2)
             {
                 ShowBuilding2SecondFloor(null, null);
-            }
-        }
-
-        private void EnterKey(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-            {
-                
             }
         }
 

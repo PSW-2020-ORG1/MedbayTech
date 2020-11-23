@@ -16,7 +16,19 @@
             <DockPanel DockPanel.Dock="Top">
                 <Label DockPanel.Dock="Top" Content="Informations" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White"/>
                 <Label DockPanel.Dock="Left" Content="Search:" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White" Width="102"/>
-                <TextBox DockPanel.Dock="Right" Height="25" TextWrapping="Wrap" Width="155" TextAlignment="Center" FontSize="15" FontWeight="SemiBold"  BorderBrush="#3A6180" KeyDown="EnterKey"/>
+                <TextBox DockPanel.Dock="Right" Height="25" TextWrapping="Wrap" Width="155" TextAlignment="Left" FontSize="15" FontWeight="SemiBold"  BorderBrush="#3A6180" KeyDown="EnterKey"/>
+            </DockPanel>
+            
+            <DockPanel DockPanel.Dock="Top" Margin="0,5,0,10">
+                <Viewbox Height="22" HorizontalAlignment="Left">
+                    <RadioButton x:Name="Equipment" GroupName="Search" Foreground="White" FontSize="15" FontWeight="Medium">Equipment</RadioButton>
+                </Viewbox>
+                <Viewbox Height="22" HorizontalAlignment="Left">
+                    <RadioButton x:Name="Medicines" GroupName="Search" Foreground="White" FontSize="15" FontWeight="Medium">Medicines</RadioButton>
+                </Viewbox>
+                <Viewbox Height="22" HorizontalAlignment="Left">
+                    <RadioButton x:Name="Rooms" IsChecked="True" GroupName="Search" Foreground="White" FontSize="15" FontWeight="Medium">Rooms</RadioButton>
+                </Viewbox>
             </DockPanel>
 
             <DockPanel DockPanel.Dock="Bottom">
