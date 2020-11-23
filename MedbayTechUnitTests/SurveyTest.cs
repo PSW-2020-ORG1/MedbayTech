@@ -22,13 +22,14 @@ namespace MedbayTechUnitTests
         {
             WebSurveyController controller = new WebSurveyController();
             var survey = CreateSurvey();
-            Survey postedSurvey = controller.PostSurvey(survey);
+            Survey postedSurvey = controller.CreateSurvey(survey.SurveyAnswers,survey.Appointment);
             postedSurvey.ShouldNotBeNull();
             
         }
 
         public static Survey CreateSurvey()
         {
+
             Survey survey = new Survey
             {
                 Id = 53,
