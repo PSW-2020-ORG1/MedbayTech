@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 
 
@@ -9,6 +9,12 @@ import {MatRadioModule} from '@angular/material/radio';
   styleUrls: ['./prescription-search.component.css']
 })
 export class PrescriptionSearchComponent implements OnInit {
+
+  prescriptionForm: FormGroup;
+  
+  
+  
+  
 
   options = [
     'Search by medicine',
@@ -34,10 +40,8 @@ export class PrescriptionSearchComponent implements OnInit {
     'Search by reservation period'
   ];
 
-  selectedOption: string;
-  selectedOption2: string;
-  selectedOption3: string;
-  selectedOption4: string;
+  
+  
 
   range = new FormGroup({
     start: new FormControl(),
@@ -91,10 +95,36 @@ export class PrescriptionSearchComponent implements OnInit {
     Validators.pattern("[0123456789]{1}")]
   );
   
-  constructor() { }
+  constructor(private fb: FormBuilder) {
+   
+
+   }
 
   ngOnInit(): void {
+    this.prescriptionForm = this.fb.group({
+      selectedOption: [this.options[0]],
+      radios: [],
+      duplicates: this.fb.array([])
+    });
+
+    //this.addCreds();
   }
 
-  
+ 
+
+
+  addDuplicates() {
+    const dups = this.prescriptionForm.get('duplicates') as FormArray;
+    dups.push(this.fb.group({
+      selectedOption2: [this.options[0]],
+      radios2: []
+    }));
+    console.log(this.prescriptionForm.get('duplicates'));
+  }
+
+  removeDuplicates(i:number){
+    const dups = (this.prescriptionForm.get('duplicates')as FormArray);
+    dups.removeAt(i);
+    
+  }
 }

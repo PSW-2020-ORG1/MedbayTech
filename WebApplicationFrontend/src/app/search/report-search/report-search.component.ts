@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-report-search',
@@ -7,6 +7,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./report-search.component.css']
 })
 export class ReportSearchComponent implements OnInit {
+
+  reportForm: FormGroup;
 
   options = [
     'Search by doctor',
@@ -111,9 +113,30 @@ export class ReportSearchComponent implements OnInit {
 
   
 
-  constructor() { }
+  constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
+    this.reportForm = this.fb.group({
+      selectedOption: [this.options[0]],
+      radios: [],
+      duplicates: this.fb.array([])
+    });
+
+  }
+
+  addDuplicates() {
+    const dups = this.reportForm.get('duplicates') as FormArray;
+    dups.push(this.fb.group({
+      selectedOption2: [this.options[0]],
+      radios2: []
+    }));
+    console.log(this.reportForm.get('duplicates.0').value);
+  }
+
+  removeDuplicates(i:number){
+    const dups = (this.reportForm.get('duplicates')as FormArray);
+    dups.removeAt(i);
+    
   }
 
 }
