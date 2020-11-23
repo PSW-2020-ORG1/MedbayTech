@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <Folder Include="Exceptions\Examinations\" />
+    <Folder Include="Resources\Images\" />
   </ItemGroup>
 
 </Project>
