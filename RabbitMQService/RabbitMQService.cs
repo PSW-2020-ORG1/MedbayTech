@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using PharmacyIntegration.Model;
+using RabbitMQService.Repository;
 
 namespace RabbitMQService
 {
@@ -17,6 +19,14 @@ namespace RabbitMQService
     {
         IConnection connection;
         IModel channel;
+
+        private IRabbitMQRepository _rabbitMQRepository;
+
+        public RabbitMQService(IRabbitMQRepository rabbitMQRepository)
+        {
+            _rabbitMQRepository = rabbitMQRepository;
+        }
+    
         public override Task StartAsync(CancellationToken cancellationToken)
         {
             var factory = new ConnectionFactory() { HostName = "localhost" };
@@ -43,7 +53,9 @@ namespace RabbitMQService
                     message = JsonConvert.DeserializeObject<Message>(jsonMessage, new MyDateTimeConverter());
                 }
                 Console.WriteLine(" [x] Received {0}", message);
-                Program.Messages.Add(message);
+
+                CreatePharmacyNotification(message);
+
             };
             channel.BasicConsume(queue: "hello",
                                     autoAck: true,
@@ -62,5 +74,22 @@ namespace RabbitMQService
         {
             return Task.CompletedTask;
         }
+
+
+        private PharmacyNotification CreatePharmacyNotification(Message message)
+        {
+            int index = _rabbitMQRepository.GetNotificationLastId();
+            string content = message.Text;
+
+            // TODO: Hardokodovano je
+            Pharmacy pharmacy = _rabbitMQRepository.GetPharmacy("Liman");
+
+            PharmacyNotification pharmacyNotification = new PharmacyNotification(index + 1, content, true, pharmacy);
+
+            _rabbitMQRepository.AddNotification(pharmacyNotification);
+
+            return null;
+        }
+       
     }
 }

@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using PharmacyIntegration.Model;
+using Microsoft.Extensions.Configuration;
 
-namespace PharmacyIntegration.Model
+namespace RabbitMQService.Model
 {
     public class MySqlContext : DbContext
     {
@@ -13,10 +15,13 @@ namespace PharmacyIntegration.Model
 
         public MySqlContext(DbContextOptions<MySqlContext> options) : base(options) { }
 
-        public MySqlContext()
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-        }
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
+            optionsBuilder.UseMySql(configuration.GetConnectionString("MySqlConnectionString")).UseLazyLoadingProxies();
 
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pharmacy>().HasData(
