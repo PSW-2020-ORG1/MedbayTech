@@ -12,6 +12,7 @@ using System;
 using System.Text;
 using Xunit;
 using Backend.Users.Model;
+using Model.Schedule;
 
 namespace MedbayTechUnitTests
 {
@@ -32,10 +33,10 @@ namespace MedbayTechUnitTests
 
             Survey survey = new Survey
             {
-                Id = 53,
+                Id = 2,
                 Date = DateTime.Now,
                 AppointmentId = 0,
-                Appointment = null,
+                Appointment = CreateAppointment(),
                 SurveyAnswers = CreateListOfQuestions(),
             };
             return survey;
@@ -46,26 +47,33 @@ namespace MedbayTechUnitTests
 
             SurveyAnswer answer1 = new SurveyAnswer
             {
-                Id = 1,
-                SurveyId = 53,
+                Id = 52,
+                SurveyId = 2,
                 Survey = null,
                 Grade = Grade.excellent,
                 SurveyQuestionId = 1,
             };
 
-            SurveyAnswer answer2 = new SurveyAnswer
-            {
-                Id = 2,
-                SurveyId = 53,
-                Survey = null,
-                Grade = Grade.good,
-                SurveyQuestionId = 2,
-            };
-
             answer.Add(answer1);
-            answer.Add(answer2);
 
             return answer;
+        }
+        public static Appointment CreateAppointment()
+        {
+            Appointment appointment = new Appointment
+            {
+                Id = 2,
+                TypeOfAppointment = TypeOfAppointment.Examination,
+                ShortDescription = "standard appointment",
+                Urgent = true,
+                Deleted = false,
+                Finished = true,
+                RoomId = 1,
+                MedicalRecordId = 1,
+                DoctorId = "2406978890047",
+                WeeklyAppointmentReportId = 2
+            };
+            return appointment;
         }
 
     }
