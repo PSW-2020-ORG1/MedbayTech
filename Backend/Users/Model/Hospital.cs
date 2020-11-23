@@ -13,11 +13,11 @@ namespace Model.Users
    {
         [Key]
         public int Id { get; set; }
-        public string Description { get; protected set; }
-        public string Name { get; protected set; }
+        public string Description { get;  set; }
+        public string Name { get;  set; }
         [ForeignKey("Address")]
-        public int AddressId { get; protected set; }
-        public virtual Address Address { get; protected set; }
+        public int AddressId { get;  set; }
+        public virtual Address Address { get;  set; }
 
         public Hospital() { }
 
