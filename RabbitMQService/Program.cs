@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RabbitMQService.Repository;
-using RabbitMQService.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Model;
+using PharmacyIntegration.Service;
 
 namespace RabbitMQService
 {
@@ -23,7 +23,7 @@ namespace RabbitMQService
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddDbContext<MySqlContext>();
-                    services.AddScoped<IRabbitMQRepository, RabbitMQRepository>();
+                    services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
                     services.AddHostedService<RabbitMQService>();
                 });
     }

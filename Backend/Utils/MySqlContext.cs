@@ -15,6 +15,7 @@ using Backend.Utils;
 using Model.Rooms;
 using System.Linq;
 using Backend.Medications.Model;
+using PharmacyIntegration.Model;
 
 namespace Model
 {
@@ -27,7 +28,8 @@ namespace Model
         private string mySqlDatabaseName = "newdb";
         private string mySqlHostAddress = "localhost";
 
-
+        public DbSet<Pharmacy> Pharmacies { get; set; }
+        public DbSet<PharmacyNotification> PharmacyNotifications { get; set; }
         public DbSet<WorkDay> WorkDays { get; set; }
         public DbSet<VacationRequest> VacationRequests { get; set; }
         public DbSet<SurveyQuestion> SurveyQuestions { get; set; }
@@ -104,6 +106,16 @@ namespace Model
             modelBuilder.Entity<City>().HasData(
                 new City { Id=21000, Name="Novi Sad", StateId=1}
                 );
+
+            modelBuilder.Entity<Pharmacy>().HasData(
+                new Pharmacy { Id = "Jankovic", APIKey = "ID1APIKEYAAAA", APIEndpoint = "jankovic.rs" },
+                new Pharmacy { Id = "Liman", APIKey = "ID2APIKEYAAAA", APIEndpoint = "liman.li" }
+            );
+
+            modelBuilder.Entity<PharmacyNotification>().HasData(
+                new PharmacyNotification { Id = 1, Content = "Aspirin nam je jeftin. Bas jako. Ide gaso!", Approved = true },
+                new PharmacyNotification { Id = 2, Content = "Brufen nam je jeftin. Bas jako. Ide gaso!", Approved = true }
+            );
         }
     }
 }

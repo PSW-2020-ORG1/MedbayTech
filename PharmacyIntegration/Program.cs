@@ -13,11 +13,9 @@ namespace PharmacyIntegration
 {
     public class Program
     {
-        public static PharmacyRepository pharmacyDAO;
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            pharmacyDAO = new PharmacyRepository();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

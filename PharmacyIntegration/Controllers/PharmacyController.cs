@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Model;
 using PharmacyIntegration.Model;
 using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
@@ -39,7 +40,7 @@ namespace PharmacyIntegration.Controllers
         [HttpPost]
         public IActionResult Post(Pharmacy pharmacy)
         {
-            bool isSuccessfullyAdded = _pharmacyService.Add(pharmacy);
+            bool isSuccessfullyAdded = _pharmacyService.Add(pharmacy) != null;
 
             if (isSuccessfullyAdded)
                 return Ok();
@@ -50,7 +51,7 @@ namespace PharmacyIntegration.Controllers
         [HttpDelete]
         public IActionResult Delete(string id)
         {
-            if(_pharmacyService.Remove(id))
+            if(_pharmacyService.Remove(_pharmacyService.Get(id)))
             {
                 return Ok();
             }

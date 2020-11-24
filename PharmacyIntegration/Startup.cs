@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Backend.Pharmacies.Repository.MySqlRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Model;
 using PharmacyIntegration.Model;
 using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
+using Repository;
 
 namespace PharmacyIntegration
 {
@@ -28,24 +31,14 @@ namespace PharmacyIntegration
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IPharmacyRepository, PharmacyRepository>();
-            services.AddScoped<IPharmacyService, PharmacyService>();
-            services.AddControllers();
             services.AddDbContext<MySqlContext>(options =>
                     options.UseMySql(ConfigurationExtensions.GetConnectionString(Configuration, "MySqlConnectionString")).UseLazyLoadingProxies());
+            services.AddScoped<IPharmacyService, PharmacyService>();
+            services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
+            services.AddControllers();
             services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
-            /*services.AddCors(options =>
-            {
-                options.AddPolicy("VueCorsPolicy", builder =>
-                {
-                    builder
-                      .AllowAnyHeader()
-                      .AllowAnyMethod()
-                      .AllowCredentials()
-                      .WithOrigins("http://localhost:50202", "https://www.schnabel.herokuapp.com/");
-                });
-            });*/
             services.AddCors();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

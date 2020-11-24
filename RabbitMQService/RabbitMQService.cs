@@ -11,7 +11,7 @@ using Newtonsoft.Json.Converters;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using PharmacyIntegration.Model;
-using RabbitMQService.Repository;
+using PharmacyIntegration.Service;
 
 namespace RabbitMQService
 {
@@ -20,11 +20,11 @@ namespace RabbitMQService
         IConnection connection;
         IModel channel;
 
-        private IRabbitMQRepository _rabbitMQRepository;
+        private IPharmacyNotificationService _notificationService;
 
-        public RabbitMQService(IRabbitMQRepository rabbitMQRepository)
+        public RabbitMQService(IPharmacyNotificationService notificationService)
         {
-            _rabbitMQRepository = rabbitMQRepository;
+            _notificationService = notificationService;
         }
     
         public override Task StartAsync(CancellationToken cancellationToken)
@@ -78,15 +78,15 @@ namespace RabbitMQService
 
         private PharmacyNotification CreatePharmacyNotification(Message message)
         {
-            int index = _rabbitMQRepository.GetNotificationLastId();
+            /*int index = _notificationService.GetNotificationLastId();
             string content = message.Text;
 
             // TODO: Hardokodovano je
-            Pharmacy pharmacy = _rabbitMQRepository.GetPharmacy("Liman");
+            Pharmacy pharmacy = _notificationService.GetPharmacy("Liman");
 
             PharmacyNotification pharmacyNotification = new PharmacyNotification(index + 1, content, true, pharmacy);
 
-            _rabbitMQRepository.AddNotification(pharmacyNotification);
+            _notificationService.AddNotification(pharmacyNotification);*/
 
             return null;
         }
