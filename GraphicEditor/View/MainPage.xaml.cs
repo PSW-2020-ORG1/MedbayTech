@@ -21,20 +21,28 @@ namespace GraphicEditor
     /// </summary>
     public partial class MainPage : Page
     {
-        public MainPage()
+        private Boolean dontRefreshMap;
+        private static int Restriction;
+
+        public MainPage(String user)
         {
             InitializeComponent();
             MainFrame.Content = new HospitalMap(this);
+            setRestrictionType(user);
         }
 
-        private Boolean dontRefreshMap;
-        public MainPage(MainWindow mainWindow)
+        private void setRestrictionType(String user)
         {
-            InitializeComponent();
-            window = mainWindow;
-            MainFrame.Content = new HospitalMap(this);
+            if (user.Equals("administrator")) Restriction = 0;
+            else if (user.Equals("patient")) Restriction = 1;
+            else if (user.Equals("secretary")) Restriction = 2;
+            else if (user.Equals("doctor")) Restriction = 3;
         }
-        MainWindow window;
+
+        public int getRestriction()
+        {
+            return Restriction;
+        }
 
         private void TransitionAnimation()
         {
@@ -97,14 +105,14 @@ namespace GraphicEditor
                 }
                 else if ((bool)Medicines.IsChecked)
                 {
-                    if(ChooseUser.Restriction == 0)
+                    if (Restriction == 0)
                     {
                         MainFrame.Content = new SearchResultsForMedicines(this);
                     }
                 }
                 else if ((bool)Equipment.IsChecked)
                 {
-                    if (ChooseUser.Restriction == 0)
+                    if (Restriction == 0)
                     {
                         MainFrame.Content = new SearchResaultsForEquipment(this);
                     }
@@ -208,16 +216,19 @@ namespace GraphicEditor
             {
                 dontRefreshMap = true;
                 ShowBuilding2GroundFloor(null, null);
+                SetActiveUserControl(legenda);
             }
             else if (comboBoxH2.SelectedIndex == 1)
             {
                 dontRefreshMap = true;
                 ShowBuilding2FirstFloor(null, null);
+                SetActiveUserControl(legenda);
             }
             else if (comboBoxH2.SelectedIndex == 2)
             {
                 dontRefreshMap = true;
                 ShowBuilding2SecondFloor(null, null);
+                SetActiveUserControl(legenda);
             }
         }
         private void comboBoxHospital2_SelectionChanged(object sender, SelectionChangedEventArgs e)

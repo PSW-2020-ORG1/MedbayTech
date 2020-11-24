@@ -14,13 +14,14 @@ namespace GraphicEditor
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Boolean dontRefreshMap;
         public MainWindow()
         {
+            String userType = "administrator";
+            //String userType = "patient";
+            //String userType = "secretary";
+            //String userType = "doctor";
             InitializeComponent();
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            Frame.Content = new ChooseUser(this);
-
+            Frame.Content = new MainPage(userType);
         }
     }
 }

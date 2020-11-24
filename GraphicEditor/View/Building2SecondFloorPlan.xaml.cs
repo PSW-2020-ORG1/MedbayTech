@@ -21,16 +21,13 @@ namespace GraphicEditor.View.Building2
     /// </summary>
     public partial class Building2SecondFloorPlan : Page
     {
-        public Building2SecondFloorPlan()
-        {
-            InitializeComponent();
-        }
+        private MainPage page;
+
         public Building2SecondFloorPlan(MainPage mainPage)
         {
             InitializeComponent();
             page = mainPage;
         }
-        MainPage page;
 
         private void mouseClickArrowDown(object sender, RoutedEventArgs e)
         {

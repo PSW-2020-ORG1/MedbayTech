@@ -9,26 +9,27 @@
       Title="MainPage">
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="68" VerticalAlignment="Top" Background="#006481" Grid.ColumnSpan="2">
-            <Image Width="60" Margin="5,0,0,0" Source="/WhiteLogo.png"/>
+            <Image Width="60" Margin="5,0,0,0" Source="/View/WhiteLogo.png" />
             <Label Content="Hospital map" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="White"/>
         </StackPanel>
         <DockPanel DockPanel.Dock="Left" Background="SteelBlue">
             <DockPanel DockPanel.Dock="Top">
-                <Label DockPanel.Dock="Top" Content="Informations" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White"/>
-                <Label DockPanel.Dock="Left" Content="Search:" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White" Width="102"/>
-                <TextBox DockPanel.Dock="Right" Height="25" TextWrapping="Wrap" Width="155" TextAlignment="Left" FontSize="15" FontWeight="SemiBold"  BorderBrush="#3A6180" KeyDown="EnterKey"/>
-            </DockPanel>
-            
-            <DockPanel DockPanel.Dock="Top" Margin="0,5,0,10">
-                <Viewbox Height="22" HorizontalAlignment="Left">
-                    <RadioButton x:Name="Equipment" GroupName="Search" Foreground="White" FontSize="15" FontWeight="Medium">Equipment</RadioButton>
-                </Viewbox>
-                <Viewbox Height="22" HorizontalAlignment="Left">
-                    <RadioButton x:Name="Medicines" GroupName="Search" Foreground="White" FontSize="15" FontWeight="Medium">Medicines</RadioButton>
-                </Viewbox>
-                <Viewbox Height="22" HorizontalAlignment="Left">
-                    <RadioButton x:Name="Rooms" IsChecked="True" GroupName="Search" Foreground="White" FontSize="15" FontWeight="Medium">Rooms</RadioButton>
-                </Viewbox>
+                <DockPanel DockPanel.Dock="Top">
+                    <Label DockPanel.Dock="Top" Content="Informations" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White"/>
+                    <Label DockPanel.Dock="Left" Content="Search:" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White" Width="102"/>
+                    <TextBox DockPanel.Dock="Right" Height="25" Margin="0,0,10,0" TextWrapping="Wrap" TextAlignment="Left" FontSize="15" FontWeight="SemiBold"  BorderBrush="#3A6180" KeyDown="EnterKey"/>
+                </DockPanel>
+                <StackPanel DockPanel.Dock="Bottom" Margin="5,5,0,5" Orientation="Horizontal">
+                    <Viewbox Height="22" HorizontalAlignment="Left" Margin="0,0,10,0">
+                        <RadioButton x:Name="Equipment" GroupName="Search" Foreground="White" FontSize="15" FontWeight="Medium">Equipment</RadioButton>
+                    </Viewbox>
+                    <Viewbox Height="22" HorizontalAlignment="Left" Margin="0,0,10,0">
+                        <RadioButton x:Name="Medicines" GroupName="Search" Foreground="White" FontSize="15" FontWeight="Medium">Medicines</RadioButton>
+                    </Viewbox>
+                    <Viewbox Height="22" HorizontalAlignment="Left" Margin="0,0,10,0">
+                        <RadioButton x:Name="Rooms" IsChecked="True" GroupName="Search" Foreground="White" FontSize="15" FontWeight="Medium">Rooms</RadioButton>
+                    </Viewbox>
+                </StackPanel>
             </DockPanel>
 
             <DockPanel DockPanel.Dock="Bottom">

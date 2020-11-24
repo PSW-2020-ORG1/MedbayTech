@@ -19,6 +19,9 @@
   <ItemGroup>
     <None Remove="appsettings.Development.json" />
     <None Remove="appsettings.json" />
+    <None Remove="View\arrowDown.png" />
+    <None Remove="View\arrowUp.png" />
+    <None Remove="View\WhiteLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="appsettings.Development.json">
@@ -35,5 +38,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\arrowDown.png" />
+    <Resource Include="View\arrowUp.png" />
+    <Resource Include="View\WhiteLogo.png" />
   </ItemGroup>
 </Project>

@@ -21,20 +21,17 @@ namespace GraphicEditor.View.Building1
     /// </summary>
     public partial class Building1SecondFloorPlan : Page
     {
-        public Building1SecondFloorPlan()
-        {
-            InitializeComponent();
-        }
+        private MainPage page;
+
         public Building1SecondFloorPlan(MainPage mainPage)
         {
             InitializeComponent();
             page = mainPage;
         }
-        MainPage page;
 
         private void mouseClickArrowDown(object sender, RoutedEventArgs e)
         {
-            page.MainFrame.Content = new Building1FirstFloorPlan();
+            page.MainFrame.Content = new Building1FirstFloorPlan(page);
             if (page.tabControl.SelectedIndex == 0)
             {
                 page.comboBoxH1.SelectedIndex = 1;
@@ -47,7 +44,7 @@ namespace GraphicEditor.View.Building1
 
         private void PatientRoom_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (ChooseUser.Restriction == 0)
+            if (page.getRestriction() == 0)
             {
                 PopupPatientRoom.Placement = PlacementMode.MousePoint;
                 PopupPatientRoom.IsOpen = true;
@@ -82,7 +79,7 @@ namespace GraphicEditor.View.Building1
 
         private void OperatingRoom_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (ChooseUser.Restriction == 0)
+            if (page.getRestriction() == 0)
             {
                 PopupOperatingRoom.Placement = PlacementMode.MousePoint;
                 PopupOperatingRoom.IsOpen = true;
@@ -105,7 +102,7 @@ namespace GraphicEditor.View.Building1
 
         private void AuxiliaryRoom_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (ChooseUser.Restriction == 0)
+            if (page.getRestriction() == 0)
             {
                 PopupAuxiliaryRoom.Placement = PlacementMode.MousePoint;
                 PopupAuxiliaryRoom.IsOpen = true;
@@ -128,7 +125,7 @@ namespace GraphicEditor.View.Building1
 
         private void AdditionalInformationPatientRoom(object sender, MouseButtonEventArgs e)
         {
-            if (ChooseUser.Restriction == 0)
+            if (page.getRestriction() == 0)
             {
                 AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom();
                 additionalInformation.ShowDialog();
@@ -137,7 +134,7 @@ namespace GraphicEditor.View.Building1
 
         private void AdditionalInformationOperatingRoom(object sender, MouseButtonEventArgs e)
         {
-            if (ChooseUser.Restriction == 0)
+            if (page.getRestriction() == 0)
             {
                 AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom();
                 additionalInformation.ShowDialog();
@@ -146,7 +143,7 @@ namespace GraphicEditor.View.Building1
 
         private void AdditionalInformationExaminationRoom(object sender, MouseButtonEventArgs e)
         {
-            if (ChooseUser.Restriction == 0)
+            if (page.getRestriction() == 0)
             {
                 AdditionalInformationExaminationRoom additionalInformation = new AdditionalInformationExaminationRoom();
                 additionalInformation.ShowDialog();
@@ -155,7 +152,7 @@ namespace GraphicEditor.View.Building1
 
         private void AdditionalInformationAuxiliaryRoom(object sender, MouseButtonEventArgs e)
         {
-            if (ChooseUser.Restriction == 0)
+            if (page.getRestriction() == 0)
             {
                 AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom();
                 additionalInformation.ShowDialog();

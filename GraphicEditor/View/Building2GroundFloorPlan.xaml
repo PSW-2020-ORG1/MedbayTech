@@ -11,7 +11,7 @@
     <Grid>
         <Canvas x:Name="canvasBuild2fl1" Background="MintCream">
             <Label Content="H2 Ground floor" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="159" Canvas.Top="40"/>
-            <Image Source="/View/icons/arrowUp.png" Width="60" Canvas.Left="348" Canvas.Top="113" MouseLeftButtonDown="mouseClickArrowUp"/>
+            <Image Width="60" Canvas.Left="348" Canvas.Top="113" MouseLeftButtonDown="mouseClickArrowUp" Source="/View/arrowUp.png"/>
             <Rectangle Fill="White" Stroke="Black" StrokeThickness="3" Height="260" Width="595" Canvas.Left="86"  Canvas.Top="196"/>
             <Rectangle Fill="#77c588" Height="100" Width="50" Stroke="Black" StrokeThickness="3" Canvas.Left="86" Canvas.Top="196" MouseEnter="ExaminationRoom_MouseEnter" MouseLeave="ExaminationRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationExaminationRoom" />
             <Rectangle Fill="#77c588" Height="100" Width="50" Canvas.Left="186" Stroke="Black" StrokeThickness="3" Canvas.Top="197" MouseEnter="ExaminationRoom_MouseEnter" MouseLeave="ExaminationRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationExaminationRoom" />

@@ -38,7 +38,6 @@ namespace GraphicEditor
         public List<Rectt> LoadFromFile(string textFile)
         {
             List<Rectt> rectangles = new List<Rectt>();
-
             if (File.Exists(textFile))
             {
                 // Read a text file line by line.  

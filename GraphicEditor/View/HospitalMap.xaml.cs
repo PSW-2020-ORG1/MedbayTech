@@ -42,7 +42,7 @@ namespace GraphicEditor
 
         private void ShowBuilding1FloorPlan(object sender, MouseButtonEventArgs e)
         {
-            page.MainFrame.Content = new Building1FloorPlan();
+            page.MainFrame.Content = new Building1FloorPlan(page);
             page.comboBoxH1.SelectedIndex = 0;
             page.SetActiveUserControl(page.legenda);
             TransitionAnimation();
@@ -51,7 +51,7 @@ namespace GraphicEditor
 
         private void ShowBuilding2FloorPlan(object sender, MouseButtonEventArgs e)
         {
-            page.MainFrame.Content = new Building2FloorPlan();
+            page.MainFrame.Content = new Building2FloorPlan(page);
             page.comboBoxH2.SelectedIndex = 0;
             page.SetActiveUserControl(page.legenda);
             TransitionAnimation();
