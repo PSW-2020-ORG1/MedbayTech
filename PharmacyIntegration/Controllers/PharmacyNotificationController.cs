@@ -25,6 +25,8 @@ namespace PharmacyIntegration.Controllers
             using (var conn = factory.CreateConnection())
             using (var channel = conn.CreateModel())
             {
+                channel.ExchangeDeclare("psw-exchange", ExchangeType.Direct, true);
+                channel.QueueBind("psw-queue", "psw-exchange", "psw-key");
                 var data = channel.BasicGet("psw-queue", false);
                 if (data == null) return BadRequest("No data");
                 var msg = Encoding.UTF8.GetString(data.Body.ToArray());
