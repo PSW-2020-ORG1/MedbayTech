@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
 import { MedicalRecordComponent } from './medical-record/medical-record.component';
 import { PrescriptionSimpleSearchComponent } from './search/prescription-simple-search/prescription-simple-search.component';
+import { ReportSimpleSearchComponent } from './search/report-simple-search/report-simple-search.component';
 
 const routes: Routes = [
 
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path : 'prescriptionSimpleSearch',
     component : PrescriptionSimpleSearchComponent
+  },
+  {
+    path : 'reportSimpleSearch',
+    component : ReportSimpleSearchComponent
   },
   {
     path : "**",

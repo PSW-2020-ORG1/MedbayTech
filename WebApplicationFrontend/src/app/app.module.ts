@@ -35,6 +35,7 @@ import {MedicalRecordComponent} from './medical-record/medical-record.component'
 import {MedicalRecordService} from './service/medicalRecord/medicalRecord.service';
 import { PrescriptionSimpleSearchComponent } from './search/prescription-simple-search/prescription-simple-search.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ReportSimpleSearchComponent } from './search/report-simple-search/report-simple-search.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     PostFeedbackComponent,
     MedicalRecordComponent,
     PrescriptionSimpleSearchComponent,
+    ReportSimpleSearchComponent,
   ],
   imports: [
     BrowserModule,
