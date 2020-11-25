@@ -9,7 +9,9 @@ export const environment = {
   allFeedback: 'allFeedback',
   updateFeedbackStatus: 'updateFeedbackStatus',
   createFeedback : 'createFeedback',
-  allQuestions: 'allQuestions'
+  survey: 'api/survey',
+  allQuestions: 'allQuestions',
+  createSurvey : 'createSurvey'
 };
 
 /*

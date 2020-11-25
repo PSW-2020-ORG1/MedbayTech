@@ -1,15 +1,15 @@
-import { QuestionType } from './questionType';
 
 export class SurveyQuestion {
 
     public Id : number;
     public Question : string;
-    public Status : QuestionType;
+    public QuestionType : number;
 
-    constructor(id : number, status : QuestionType, question : string) {
+    constructor(id : number, question : string, questionType : number )
+    {
         this.Id = id;
         this.Question = question;
-        this.Status = status;
+        this.QuestionType = questionType;
     }
 
 }
