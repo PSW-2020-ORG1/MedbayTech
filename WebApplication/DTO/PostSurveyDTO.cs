@@ -1,5 +1,6 @@
 ﻿using Backend.Users.Model;
 using Model.Schedule;
+using Model.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,16 @@ namespace WebApplication.DTO
 {
     public class PostSurveyDTO
     {
-        public Appointment Appointment { get; set; }
-        public List<SurveyAnswer> SurveyAnswers { get; set; }
+        public int AppointmentId { get; set; }
+        public List<int> SurveyQuestions { get; set; }
+        public List<Grade> SurveyAnswers { get; set; }
+
         public PostSurveyDTO() { }
-        public PostSurveyDTO(Appointment appointment, List<SurveyAnswer> surveyAnswers)
+        public PostSurveyDTO(List<int> surveyQuestions, List<Grade> surveyAnswers, int appointmentId)
         {
-            Appointment = appointment;
+            SurveyQuestions = surveyQuestions;
             SurveyAnswers = surveyAnswers;
+            AppointmentId = appointmentId;         
         }
 
     }
