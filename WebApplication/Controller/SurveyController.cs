@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Backend.Users.Model;
+using Backend.Users.WebApiController;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.Users;
@@ -15,18 +17,32 @@ namespace WebApplication.Controller
     [ApiController]
     public class SurveyController : ControllerBase
     {
-        private SurveyService surveyService;
+        private WebSurveyController surveyContoller;
 
         public SurveyController()
         {
-            surveyService = new SurveyService();
+            this.surveyContoller = new WebSurveyController();
         }   
         [HttpGet("allQuestions")]
         public IActionResult GetAllQuestions()
         {
-            List<SurveyQuestion> allQuestions = surveyService.GetAllActiveQuestions().ToList();
+            List<SurveyQuestion> allQuestions = surveyContoller.GetAllActiveQuestions().ToList();
             List<SurveyQuestionDTO> allQuestionsDTOs = SurveyAdapter.ListActiveQuestionsToListSurveyQuestionDTO(allQuestions);
             return Ok(allQuestionsDTOs);
+        }
+
+        [HttpPost("createSurvey")]
+        public IActionResult Post(PostSurveyDTO postSurveyDTO)
+        {
+
+            SurveyService surveyService = new SurveyService();           
+            Survey surveySuccessfullyCreated = surveyContoller.CreateSurvey(postSurveyDTO.SurveyQuestions, postSurveyDTO.SurveyAnswers, postSurveyDTO.AppointmentId);
+
+            if (surveySuccessfullyCreated == null)
+            {
+                return BadRequest("Failed to post survey");
+            }
+            return Ok("Survey posted successfully");
         }
     }
 }
