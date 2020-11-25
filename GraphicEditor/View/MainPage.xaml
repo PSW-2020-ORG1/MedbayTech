@@ -9,7 +9,7 @@
       Title="MainPage">
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="68" VerticalAlignment="Top" Background="#006481" Grid.ColumnSpan="2">
-            <Image Width="60" Margin="5,0,0,0" Source="/View/WhiteLogo.png" />
+            <Image Name="imageLogo" Width="60" Margin="5,0,0,0" />
             <Label Content="Hospital map" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="White"/>
         </StackPanel>
         <DockPanel DockPanel.Dock="Left" Background="SteelBlue">

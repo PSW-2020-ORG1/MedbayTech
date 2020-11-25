@@ -29,6 +29,10 @@ namespace GraphicEditor
         {
             InitializeComponent();
             page = mainPage;
+            string path = Directory.GetCurrentDirectory();
+            string new_path = path.Replace('\\', '/');
+            string arrowUp = new_path + "/View/arrowUp.png";
+            imageArrowUp.Source = new BitmapImage(new Uri(@arrowUp, UriKind.Absolute));
         }
 
         private void mouseClickArrowUp(object sender, RoutedEventArgs e)

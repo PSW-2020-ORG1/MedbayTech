@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace GraphicEditor
 {
@@ -29,6 +30,10 @@ namespace GraphicEditor
             InitializeComponent();
             MainFrame.Content = new HospitalMap(this);
             setRestrictionType(user);
+            string path = Directory.GetCurrentDirectory();
+            string new_path = path.Replace('\\', '/');
+            string logo = new_path + "/View/WhiteLogo.png";
+            imageLogo.Source = new BitmapImage(new Uri(@logo, UriKind.Absolute));
         }
 
         private void setRestrictionType(String user)

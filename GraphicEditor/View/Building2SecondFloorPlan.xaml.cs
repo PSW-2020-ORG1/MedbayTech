@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,10 @@ namespace GraphicEditor.View.Building2
         {
             InitializeComponent();
             page = mainPage;
+            string path = Directory.GetCurrentDirectory();
+            string new_path = path.Replace('\\', '/');
+            string arrowDown = new_path + "/View/arrowDown.png";
+            imageArrowDown.Source = new BitmapImage(new Uri(@arrowDown, UriKind.Absolute));
         }
 
         private void mouseClickArrowDown(object sender, RoutedEventArgs e)

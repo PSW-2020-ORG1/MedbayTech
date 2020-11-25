@@ -8,7 +8,7 @@
         Title="AdditionalInformationAuxiliaryRoom" Height="400" Width="500" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" BorderBrush="Black">
     <Grid>
         <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Top" Background="#006481">
-            <Image Width="60" Margin="5,0,0,0" Source="/View/WhiteLogo.png"/>
+            <Image Name="imageLogo" Width="60" Margin="5,0,0,0" />
             <Label Content="Additiondal information" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="25" Foreground="White" Width="327" Height="40"/>
         </StackPanel>
         <Label Content="Room label" HorizontalAlignment="Left" Margin="143,39,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>

@@ -12,8 +12,8 @@
     <Grid>
         <Canvas x:Name="canvasH1F1" Background="MintCream">
             <Label Content="H1 First floor" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="Black" Canvas.Left="202" Canvas.Top="40"/>
-            <Image Width="60" Canvas.Left="348" Canvas.Top="113" MouseLeftButtonDown="mouseClickArrowUp" Source="/View/arrowUp.png" />
-            <Image Width="60" Canvas.Left="348" Canvas.Top="495" MouseLeftButtonDown="mouseClickArrowDown" Source="/View/arrowDown.png" />
+            <Image Name="imageArrowUp" Width="60" Canvas.Left="348" Canvas.Top="113" MouseLeftButtonDown="mouseClickArrowUp" />
+            <Image Name="imageArrowDown" Width="60" Canvas.Left="348" Canvas.Top="495" MouseLeftButtonDown="mouseClickArrowDown" />
 
             <Line X1="10" Y1="10" X2="10" Y2="30" Stroke="Black" 
                   StrokeThickness="5" StrokeDashCap="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" Canvas.Left="392" Canvas.Top="256"/>
