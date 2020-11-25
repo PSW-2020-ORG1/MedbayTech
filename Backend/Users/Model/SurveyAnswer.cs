@@ -1,4 +1,5 @@
-﻿using Model.Users;
+﻿using Backend.General.Model;
+using Model.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace Backend.Users.Model
 {
-    public class SurveyAnswer
+    public class SurveyAnswer : IIdentifiable<int>
     {
         public int Id { get;  set; }
         [ForeignKey("Survey")]
@@ -25,6 +26,15 @@ namespace Backend.Users.Model
             SurveyId = survey.Id;
             Grade = grade;
             SurveyQuestionId = surveyQuestionId;
+        }
+        public int GetId()
+        {
+            return Id;
+        }
+
+        public void SetId(int id)
+        {
+            Id = id;
         }
     }
 

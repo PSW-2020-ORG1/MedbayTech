@@ -21,7 +21,9 @@ namespace Model.Users
         [ForeignKey("Appointment")]
         public int AppointmentId { get; set; }
         public virtual Appointment Appointment { get; set; }
-        public virtual List<SurveyAnswer> SurveyAnswers { get; set; }
+        //public virtual List<SurveyAnswer> SurveyAnswers { get; set; }
+        public List<int> SurveyQuestions { get; set; }
+        public List<Grade> SurveyAnswers { get; set; }
         
       
         public Survey() { }
@@ -30,7 +32,8 @@ namespace Model.Users
         {
             Id = id;
             Date = date;
-            SurveyAnswers = new List<SurveyAnswer>();
+            SurveyQuestions = new List<int>();
+            SurveyAnswers = new List<Grade>();
             Appointment = appointment;
             AppointmentId = appointment.Id;
         }
