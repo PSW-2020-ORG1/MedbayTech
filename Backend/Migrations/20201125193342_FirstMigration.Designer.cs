@@ -9,8 +9,8 @@ using Model;
 namespace Backend.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201123153150_firstMigration")]
-    partial class firstMigration
+    [Migration("20201125193342_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -581,37 +581,6 @@ namespace Backend.Migrations
                             Id = 2,
                             MedicalRecordId = 1,
                             Name = "Male boginje"
-                        });
-                });
-
-            modelBuilder.Entity("Backend.Users.Model.SurveyAnswer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("Grade")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SurveyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SurveyQuestionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SurveyId");
-
-                    b.ToTable("SurveyAnswer");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Grade = 1,
-                            SurveyId = 1,
-                            SurveyQuestionId = 1
                         });
                 });
 
@@ -1357,19 +1326,17 @@ namespace Backend.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("SurveyAnswers")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("SurveyQuestions")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AppointmentId");
 
                     b.ToTable("Surveys");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AppointmentId = 1,
-                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Model.Users.SurveyQuestion", b =>
@@ -1789,15 +1756,6 @@ namespace Backend.Migrations
                     b.HasOne("Backend.Records.Model.MedicalRecord", "MedicalRecord")
                         .WithMany("Vaccines")
                         .HasForeignKey("MedicalRecordId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Backend.Users.Model.SurveyAnswer", b =>
-                {
-                    b.HasOne("Model.Users.Survey", "Survey")
-                        .WithMany("SurveyAnswers")
-                        .HasForeignKey("SurveyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

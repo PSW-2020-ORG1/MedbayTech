@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Backend.Migrations
 {
-    public partial class firstMigration : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -890,7 +890,9 @@ namespace Backend.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Date = table.Column<DateTime>(nullable: false),
-                    AppointmentId = table.Column<int>(nullable: false)
+                    AppointmentId = table.Column<int>(nullable: false),
+                    SurveyQuestions = table.Column<string>(nullable: true),
+                    SurveyAnswers = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -973,27 +975,6 @@ namespace Backend.Migrations
                         name: "FK_Diagnoses_MedicalRecords_MedicalRecordId",
                         column: x => x.MedicalRecordId,
                         principalTable: "MedicalRecords",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SurveyAnswer",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    SurveyId = table.Column<int>(nullable: false),
-                    Grade = table.Column<int>(nullable: false),
-                    SurveyQuestionId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SurveyAnswer", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_SurveyAnswer_Surveys_SurveyId",
-                        column: x => x.SurveyId,
-                        principalTable: "Surveys",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1233,19 +1214,14 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Surveys",
-                columns: new[] { "Id", "AppointmentId", "Date" },
-                values: new object[] { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                table: "Symptoms",
+                columns: new[] { "Id", "DiagnosisId", "Name" },
+                values: new object[] { 1, 1, "Kasalj" });
 
             migrationBuilder.InsertData(
                 table: "Symptoms",
                 columns: new[] { "Id", "DiagnosisId", "Name" },
                 values: new object[] { 2, 1, "Temperatura" });
-
-            migrationBuilder.InsertData(
-                table: "Symptoms",
-                columns: new[] { "Id", "DiagnosisId", "Name" },
-                values: new object[] { 1, 1, "Kasalj" });
 
             migrationBuilder.InsertData(
                 table: "SideEffects",
@@ -1256,11 +1232,6 @@ namespace Backend.Migrations
                 table: "SideEffects",
                 columns: new[] { "Id", "Frequency", "MedicationId", "SideEffectsId" },
                 values: new object[] { 2, 1, 1, 1 });
-
-            migrationBuilder.InsertData(
-                table: "SurveyAnswer",
-                columns: new[] { "Id", "Grade", "SurveyId", "SurveyQuestionId" },
-                values: new object[] { 1, 1, 1, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_CityId",
@@ -1509,11 +1480,6 @@ namespace Backend.Migrations
                 column: "DoctorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SurveyAnswer_SurveyId",
-                table: "SurveyAnswer",
-                column: "SurveyId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Surveys_AppointmentId",
                 table: "Surveys",
                 column: "AppointmentId");
@@ -1633,10 +1599,10 @@ namespace Backend.Migrations
                 name: "SideEffects");
 
             migrationBuilder.DropTable(
-                name: "SurveyAnswer");
+                name: "SurveyQuestions");
 
             migrationBuilder.DropTable(
-                name: "SurveyQuestions");
+                name: "Surveys");
 
             migrationBuilder.DropTable(
                 name: "Therapies");
@@ -1675,16 +1641,13 @@ namespace Backend.Migrations
                 name: "Symptoms");
 
             migrationBuilder.DropTable(
-                name: "Surveys");
+                name: "Appointments");
 
             migrationBuilder.DropTable(
                 name: "Medications");
 
             migrationBuilder.DropTable(
                 name: "Diagnoses");
-
-            migrationBuilder.DropTable(
-                name: "Appointments");
 
             migrationBuilder.DropTable(
                 name: "ExaminationSurgeries");

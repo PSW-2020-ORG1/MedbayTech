@@ -18,6 +18,7 @@ using Backend.Medications.Model;
 using Backend.Users.Model.Enums;
 using Backend.Users.Model;
 using Backend.Records.Model.Enums;
+using Newtonsoft.Json;
 
 namespace Model
 {
@@ -150,13 +151,18 @@ namespace Model
             modelBuilder.Entity<SurveyQuestion>().HasData(
                 new SurveyQuestion { Id = 1, Question = "Rate work of Doctor", QuestionType = QuestionType.DOCTOR, Status = true }
             );
-            modelBuilder.Entity<Survey>().HasData(
-                new Survey { Id = 1, Date = new DateTime(), AppointmentId = 1, SurveyAnswers = new List<SurveyAnswer>()}
+            modelBuilder.Entity<Survey>()
+                .Property(b => b.SurveyQuestions)
+                .HasConversion(
+                    v => JsonConvert.SerializeObject(v),
+                    v => JsonConvert.DeserializeObject<List<int>>(v)
             );
-            modelBuilder.Entity<SurveyAnswer>().HasData(
-                new SurveyAnswer { Id = 1, SurveyId = 1, Grade = Grade.excellent, SurveyQuestionId = 1 }
+            modelBuilder.Entity<Survey>()
+                .Property(b => b.SurveyAnswers)
+                .HasConversion(
+                    v => JsonConvert.SerializeObject(v),
+                    v => JsonConvert.DeserializeObject<List<Grade>>(v)
             );
-
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment 
                 { 
