@@ -23,9 +23,8 @@ namespace MedbayTechUnitTests
         {
             WebSurveyController controller = new WebSurveyController();
             var survey = CreateSurvey();
-            Survey postedSurvey = controller.CreateSurvey(survey.SurveyAnswers,survey.Appointment);
-            postedSurvey.ShouldNotBeNull();
-            
+            Survey postedSurvey = controller.CreateSurvey(survey.SurveyQuestions, survey.SurveyAnswers, survey.AppointmentId);
+            postedSurvey.ShouldNotBeNull();    
         }
 
         public static Survey CreateSurvey()
@@ -35,45 +34,27 @@ namespace MedbayTechUnitTests
             {
                 Id = 2,
                 Date = DateTime.Now,
-                AppointmentId = 0,
-                Appointment = CreateAppointment(),
-                SurveyAnswers = CreateListOfQuestions(),
+                AppointmentId = 1,
+                SurveyQuestions = CreateListOfQuestions(),
+                SurveyAnswers = CreateListOfAnswers(),
             };
             return survey;
         }
-        public static List<SurveyAnswer> CreateListOfQuestions() 
+        public static List<int> CreateListOfQuestions() 
         {
-            List<SurveyAnswer> answer = new List<SurveyAnswer>();
+            List<int> questions = new List<int>();
 
-            SurveyAnswer answer1 = new SurveyAnswer
-            {
-                Id = 52,
-                SurveyId = 2,
-                Survey = null,
-                Grade = Grade.excellent,
-                SurveyQuestionId = 1,
-            };
+            questions.Add(1);
 
-            answer.Add(answer1);
-
-            return answer;
+            return questions;
         }
-        public static Appointment CreateAppointment()
+        public static List<Grade> CreateListOfAnswers()
         {
-            Appointment appointment = new Appointment
-            {
-                Id = 2,
-                TypeOfAppointment = TypeOfAppointment.Examination,
-                ShortDescription = "standard appointment",
-                Urgent = true,
-                Deleted = false,
-                Finished = true,
-                RoomId = 1,
-                MedicalRecordId = 1,
-                DoctorId = "2406978890047",
-                WeeklyAppointmentReportId = 2
-            };
-            return appointment;
+            List<Grade> answers = new List<Grade>();
+
+            answers.Add(Grade.excellent);
+
+            return answers;
         }
 
     }
