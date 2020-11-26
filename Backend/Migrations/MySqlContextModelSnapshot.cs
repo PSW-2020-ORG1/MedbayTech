@@ -1360,8 +1360,106 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            Question = "Rate work of Doctor",
+                            Question = "How to rate the kindness of your doctor?",
                             QuestionType = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Question = "To what extent has your doctor clearly stated what your examination will look like and instructed you on how to behave?",
+                            QuestionType = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Question = "How would you rate the clarity and expertise of the doctor in making the diagnosis?",
+                            QuestionType = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Question = "How would you rate the competence of your doctor during the treatment?",
+                            QuestionType = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Question = "To what extent has your doctor paid attention to you and contributed to your more comfortable stay in the hospital?",
+                            QuestionType = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Question = "How would you rate the helpfulness and kindness of the information counter employees?",
+                            QuestionType = 1,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Question = "How would you rate the helpfulness and kindness of nurses and technicians?",
+                            QuestionType = 1,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Question = "To what extent were nurses and technicians professional in treatment?",
+                            QuestionType = 1,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Question = "To what extent have nurses and technicians paid attention to you and your comfortable hospital stay?",
+                            QuestionType = 1,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Question = "To what extent have nurses and technicians instructed you in the procedures they will perform during your treatment?",
+                            QuestionType = 1,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Question = "How would you rate the cleanliness of hospital hallways and waiting rooms?",
+                            QuestionType = 2,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Question = "How would you rate the cleanliness of the toilet in the hospital?",
+                            QuestionType = 2,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Question = "How would you rate the cleanliness and comfort of the patient's room?",
+                            QuestionType = 2,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Question = "To what extent are you satisfied with the equipment of the hospital for the needs of your treatment?",
+                            QuestionType = 2,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Question = "How would you rate the organization of the hospital when scheduling an examination?",
+                            QuestionType = 2,
                             Status = true
                         });
                 });

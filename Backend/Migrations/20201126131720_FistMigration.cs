@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Backend.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class FistMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -1062,7 +1062,24 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "SurveyQuestions",
                 columns: new[] { "Id", "Question", "QuestionType", "Status" },
-                values: new object[] { 1, "Rate work of Doctor", 0, true });
+                values: new object[,]
+                {
+                    { 13, "How would you rate the cleanliness and comfort of the patient's room?", 2, true },
+                    { 12, "How would you rate the cleanliness of the toilet in the hospital?", 2, true },
+                    { 11, "How would you rate the cleanliness of hospital hallways and waiting rooms?", 2, true },
+                    { 10, "To what extent have nurses and technicians instructed you in the procedures they will perform during your treatment?", 1, true },
+                    { 9, "To what extent have nurses and technicians paid attention to you and your comfortable hospital stay?", 1, true },
+                    { 8, "To what extent were nurses and technicians professional in treatment?", 1, true },
+                    { 4, "How would you rate the competence of your doctor during the treatment?", 0, true },
+                    { 6, "How would you rate the helpfulness and kindness of the information counter employees?", 1, true },
+                    { 5, "To what extent has your doctor paid attention to you and contributed to your more comfortable stay in the hospital?", 0, true },
+                    { 14, "To what extent are you satisfied with the equipment of the hospital for the needs of your treatment?", 2, true },
+                    { 3, "How would you rate the clarity and expertise of the doctor in making the diagnosis?", 0, true },
+                    { 2, "To what extent has your doctor clearly stated what your examination will look like and instructed you on how to behave?", 0, true },
+                    { 1, "How to rate the kindness of your doctor?", 0, true },
+                    { 7, "How would you rate the helpfulness and kindness of nurses and technicians?", 1, true },
+                    { 15, "How would you rate the organization of the hospital when scheduling an examination?", 2, true }
+                });
 
             migrationBuilder.InsertData(
                 table: "Cities",

@@ -149,7 +149,22 @@ namespace Model
             );
 
             modelBuilder.Entity<SurveyQuestion>().HasData(
-                new SurveyQuestion { Id = 1, Question = "Rate work of Doctor", QuestionType = QuestionType.DOCTOR, Status = true }
+                new SurveyQuestion { Id = 1, Question = "How to rate the kindness of your doctor?", QuestionType = QuestionType.DOCTOR, Status = true },
+                new SurveyQuestion { Id = 2, Question = "To what extent has your doctor clearly stated what your examination will look like and instructed you on how to behave?", QuestionType = QuestionType.DOCTOR, Status = true },
+                new SurveyQuestion { Id = 3, Question = "How would you rate the clarity and expertise of the doctor in making the diagnosis?", QuestionType = QuestionType.DOCTOR, Status = true },
+                new SurveyQuestion { Id = 4, Question = "How would you rate the competence of your doctor during the treatment?", QuestionType = QuestionType.DOCTOR, Status = true },
+                new SurveyQuestion { Id = 5, Question = "To what extent has your doctor paid attention to you and contributed to your more comfortable stay in the hospital?", QuestionType = QuestionType.DOCTOR, Status = true },
+                new SurveyQuestion { Id = 6, Question = "How would you rate the helpfulness and kindness of the information counter employees?", QuestionType = QuestionType.MEDICAL_STUFF, Status = true },
+                new SurveyQuestion { Id = 7, Question = "How would you rate the helpfulness and kindness of nurses and technicians?", QuestionType = QuestionType.MEDICAL_STUFF, Status = true },
+                new SurveyQuestion { Id = 8, Question = "To what extent were nurses and technicians professional in treatment?", QuestionType = QuestionType.MEDICAL_STUFF, Status = true },
+                new SurveyQuestion { Id = 9, Question = "To what extent have nurses and technicians paid attention to you and your comfortable hospital stay?", QuestionType = QuestionType.MEDICAL_STUFF, Status = true },
+                new SurveyQuestion { Id = 10, Question = "To what extent have nurses and technicians instructed you in the procedures they will perform during your treatment?", QuestionType = QuestionType.MEDICAL_STUFF, Status = true },
+                new SurveyQuestion { Id = 11, Question = "How would you rate the cleanliness of hospital hallways and waiting rooms?", QuestionType = QuestionType.HOSPITAL, Status = true },
+                new SurveyQuestion { Id = 12, Question = "How would you rate the cleanliness of the toilet in the hospital?", QuestionType = QuestionType.HOSPITAL, Status = true },
+                new SurveyQuestion { Id = 13, Question = "How would you rate the cleanliness and comfort of the patient's room?", QuestionType = QuestionType.HOSPITAL, Status = true },
+                new SurveyQuestion { Id = 14, Question = "To what extent are you satisfied with the equipment of the hospital for the needs of your treatment?", QuestionType = QuestionType.HOSPITAL, Status = true },
+                new SurveyQuestion { Id = 15, Question = "How would you rate the organization of the hospital when scheduling an examination?", QuestionType = QuestionType.HOSPITAL, Status = true }
+
             );
             modelBuilder.Entity<Survey>()
                 .Property(b => b.SurveyQuestions)
