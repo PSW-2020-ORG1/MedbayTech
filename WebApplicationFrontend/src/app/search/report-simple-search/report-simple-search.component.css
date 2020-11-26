@@ -1,7 +1,15 @@
 .fix-margins{
-    margin-left: 16px;
+    margin-left: 10px;
 }
 
-.mat-radio-button ~ .mat-radio-button {
-    margin-left: 16px;
+table {
+    margin-left: 15%;
+    margin-top: 15px;
+    width: 60%;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+th {
+    background-color: lightpink;
 }

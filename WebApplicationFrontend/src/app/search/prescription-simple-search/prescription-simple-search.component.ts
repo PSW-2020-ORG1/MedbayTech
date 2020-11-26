@@ -13,32 +13,20 @@ export class PrescriptionSimpleSearchComponent implements OnInit {
   
   allPrescriptions: Prescription[] = new Array();
 
-  options = [
-    'Search by medicine',
-    'Search by hourly intake',
-    'Search by reservation period'
-  ];
-
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
   });
 
-  med = new FormControl('',[Validators.required,
-    Validators.pattern("[A-Za-z]+")]
-  );
+  med = new FormControl('',[Validators.pattern("[A-Za-z]+")]);
 
-  hour = new FormControl('',[Validators.required,
-    Validators.pattern("[0123456789]{1}")]
-  );
+  hour = new FormControl('',[Validators.pattern("[0123456789]{1}")]);
 
   constructor(private ps : PrescriptionService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
 
-    this.prescriptionForm = this.fb.group({
-      selectedOption: [this.options[0]],
-    });
+    this.prescriptionForm = this.fb.group({});
   }
 
 }

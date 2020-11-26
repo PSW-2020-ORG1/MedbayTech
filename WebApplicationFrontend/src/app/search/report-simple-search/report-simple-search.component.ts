@@ -10,37 +10,21 @@ export class ReportSimpleSearchComponent implements OnInit {
 
   reportForm: FormGroup;
 
-  options = [
-    'Search by doctor',
-    'Search by diagnosis',
-    'Search by date of examination',
-    'Search by allergens'
-  ];
-
-  selectedOption: string;
-
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
   });
 
-  doc = new FormControl('',[Validators.required,
-    Validators.pattern("[A-Za-z]+")]
-  );
+  doc = new FormControl('',[Validators.pattern("[A-Za-z]+")]);
 
-  diag = new FormControl('',[Validators.required,
-    Validators.pattern("[A-Za-z]+")]
-  );
+  diag = new FormControl('',[Validators.pattern("[A-Za-z]+")]);
 
-  allergens = new FormControl('',[Validators.required,
-    Validators.pattern("[A-Za-z]+")]
-  );
+  treatments = new FormControl('',[Validators.pattern("[A-Za-z]+")]);
 
   constructor(private fb : FormBuilder) { }
 
   ngOnInit(): void {
     this.reportForm = this.fb.group({
-      selectedOption: [this.options[0]]
     });
   }
 
