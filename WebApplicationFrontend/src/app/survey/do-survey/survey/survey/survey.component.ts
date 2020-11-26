@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AppointmentSurvey } from 'src/app/model/appointmentSurvey';
 import { PostSurvey } from 'src/app/model/postSurvey';
@@ -12,10 +13,11 @@ import { SurveyService } from 'src/app/service/survey/survey.service';
 })
 export class SurveyComponent implements OnInit {
 
+  //postForm: FormGroup;
   postSurvey : PostSurvey;
   public allQuestions : SurveyQuestion[] = new Array();
   questionList : number[] = new Array();
-  appointmentId : number = 2;
+  appointmentId : number = 1;
   answers : number[] = new Array;
   questions : number[] = new Array;
 
@@ -23,6 +25,9 @@ export class SurveyComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAllQuestions();
+    /*this.postForm = new FormGroup({
+        'questionList[1]' : new FormControl(null, [Validators.required])
+    });*/
   }
   loadAllQuestions(){
       this.surveyService.getActiveQuestions().subscribe(data => 
