@@ -13,12 +13,12 @@ namespace Backend.Users.WebApiService
     {
         private ISurveyQuestionRepository surveyQuestionRepository;
         private ISurveyRepository surveyRepository;
-        private ISurveyAnswerRepository surveyAnswerRepository;
+        /*private ISurveyAnswerRepository surveyAnswerRepository;*/
 
-        public SurveyService(ISurveyQuestionRepository surveyQuestionRepository, ISurveyRepository surveyRepository, ISurveyAnswerRepository surveyAnswerRepository) {
+        public SurveyService(ISurveyQuestionRepository surveyQuestionRepository, ISurveyRepository surveyRepository/*, ISurveyAnswerRepository surveyAnswerRepository*/) {
             this.surveyQuestionRepository = surveyQuestionRepository;
             this.surveyRepository = surveyRepository;
-            this.surveyAnswerRepository = surveyAnswerRepository;
+           /* this.surveyAnswerRepository = surveyAnswerRepository;*/
         }
 
         public IEnumerable<SurveyQuestion> GetAllQuestions()
@@ -30,11 +30,11 @@ namespace Backend.Users.WebApiService
         {
             return surveyQuestionRepository.GetAllActiveQuestions();
         }
-
+        /*
         public IEnumerable<SurveyAnswer> GetAllAnswers()
         {
             return surveyAnswerRepository.GetAll();
-        }
+        }*/
 
         public Survey CreateSurvey(List<int> surveyQuestions, List<Grade> surveyAnswers, int appointmentId)
         {
@@ -50,7 +50,7 @@ namespace Backend.Users.WebApiService
 
             return createdSurvey;
         }
-
+        /*
         public List<SurveyAnswer> CreateAnswers(List<SurveyAnswer> surveyAnswers) 
         {
             List<SurveyAnswer> answers = new List<SurveyAnswer>();
@@ -58,7 +58,7 @@ namespace Backend.Users.WebApiService
                 answers.Add(surveyAnswerRepository.Create(answer));
             }
             return answers;
-        }
+        }*/
 
         public int GenerateSurveyId()
         {      
