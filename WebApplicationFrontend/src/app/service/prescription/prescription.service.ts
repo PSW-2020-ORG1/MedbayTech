@@ -12,7 +12,7 @@ export class PrescriptionService {
 
     constructor(private http : HttpClient) {}
 
-    getSimpleSearchResults(medicine : string, hourlyIntake : number, date : Date) : Observable<Prescription[]> {
+    getSimpleSearchResults(medicine : string, hourlyIntake : number, startDate : Date, endDate : Date) : Observable<Prescription[]> {
         return this.http.get<Prescription[]>(`${environment.baseUrl}/${environment.prescriptionSimpleSearch}`)
     }
 }

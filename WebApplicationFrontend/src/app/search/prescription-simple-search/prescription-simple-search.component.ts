@@ -31,7 +31,8 @@ export class PrescriptionSimpleSearchComponent implements OnInit {
 
   onSubmit() {
     this.ps.getSimpleSearchResults(this.prescriptionForm.value.med, this.prescriptionForm.value.hour, 
-      this.prescriptionForm.value.range).subscribe(
+      new Date(this.prescriptionForm.value.range.start.getTime() - this.prescriptionForm.value.range.start.getTimezoneOffset() * 60000),
+      new Date(this.prescriptionForm.value.range.end.geTime() - this.prescriptionForm.value.range.end.getTimezoneOffset() * 60000)).subscribe(
         data => {
           this.allPrescriptions = data;
         }

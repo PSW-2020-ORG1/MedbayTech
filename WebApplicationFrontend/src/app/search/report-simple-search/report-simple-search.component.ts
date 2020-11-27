@@ -33,8 +33,9 @@ export class ReportSimpleSearchComponent implements OnInit {
   }
 
   onSubmit() {
-    this.rs.getSimpleSearchResults(this.reportForm.value.doc, this.reportForm.value.range,
-       this.reportForm.value.treatments).subscribe(
+    this.rs.getSimpleSearchResults(this.reportForm.value.doc, new Date(this.reportForm.value.range.start.getTime() - this.reportForm.value.range.start.getTimezoneOffset() * 60000),
+       new Date(this.reportForm.value.range.end.getTime() - this.reportForm.value.range.end.getTimezoneOffset() * 60000),
+        this.reportForm.value.treatments).subscribe(
         data => {
           this.allReports = data;
         }

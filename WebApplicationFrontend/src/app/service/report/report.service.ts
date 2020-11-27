@@ -12,7 +12,7 @@ import { Report } from 'src/app/model/report';
 export class ReportService {
     constructor(private http : HttpClient) {}
 
-    getSimpleSearchResults(doctor : string, date : Date, treatment : string) : Observable<Report[]> {
+    getSimpleSearchResults(doctor : string, startDate : Date, endDate : Date, treatment : string) : Observable<Report[]> {
         return this.http.get<Report[]>(`${environment.baseUrl}/${environment.reportSimpleSearch}`)
     }
 }
