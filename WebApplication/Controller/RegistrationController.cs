@@ -56,51 +56,7 @@ namespace WebApplication.Controller
         [HttpGet("proba")]
         public IActionResult Proba()
         {
-            /*Address address = SaveAddress("Maksima Gorkog 23", 1, 0, 0, 11000);
-            if(address == null)
-            {
-                return BadRequest("Neuspesno");
-            }
-            return Ok(address.Street);
-
-            Patient patient = registrationController.GetUserById("2203998890018");
-            if(patient == null)
-            {
-                return BadRequest();
-            }
-            
-            string guid = Guid.NewGuid().ToString();
-            var link = GenerateUrl(patient.Id, guid);
-            string email = patient.Email;
-            MailRequest mailRequest = new MailRequest { ToEmail = email, Url = link };
-            SendMail(mailRequest);
-            return Ok(link);*/
-            PatientRegistrationDTO dto = new PatientRegistrationDTO
-            {
-                Id = "2222222222223",
-                Name = "Bojan",
-                Surname = "Vujic",
-                Email = "bojanvjc@gmail.com",
-                Phone = "0645666905",
-                Username = "sddsa",
-                Password = "bojan123",
-                ConfirmPassword = "bojan123",
-                Profession = "programmer",
-                CityOfBirth = "Sremska Mitrovica",
-                PolicyNumber = "dsadsa",
-                Company = "Dunav osiguranje d.o.o",
-                PostalCodeBirth = 21000,
-                State = "Srbija",
-                Street = "Milosa Crnjanskog",
-                Number = 0,
-                Apartment = 0,
-                Floor = 0
-            };
-
-            string name = "Bojan";
-            
-            
-            return Ok(name);
+            return Ok();
         }
         [Route("activate")]
         public IActionResult Activate(string userId, string token)
@@ -130,7 +86,6 @@ namespace WebApplication.Controller
                     file.CopyTo(stream);
                 }
 
-                //Patient patient = registrationController.GetUserById(id);
                 return Ok(dto.Id);
             }
             return BadRequest();
