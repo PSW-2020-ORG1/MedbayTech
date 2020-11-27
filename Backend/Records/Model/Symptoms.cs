@@ -14,6 +14,7 @@ namespace Backend.Records.Model
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
+        public int DiagnosisId { get; set; }
 
         public Symptoms() {
             

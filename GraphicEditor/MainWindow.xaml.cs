@@ -21,6 +21,7 @@ namespace GraphicEditor
             //String userType = "secretary";
             //String userType = "doctor";
             InitializeComponent();
+            Services.getService();
             Frame.Content = new MainPage(userType);
         }
     }

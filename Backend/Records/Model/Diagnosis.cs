@@ -17,6 +17,7 @@ namespace Backend.Records.Model
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
+        public int MedicalRecordId { get; set; }
         public virtual List<Symptoms> Symptoms { get; set; }
 
         public Diagnosis() 

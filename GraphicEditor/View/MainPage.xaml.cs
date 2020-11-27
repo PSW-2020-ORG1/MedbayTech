@@ -106,20 +106,20 @@ namespace GraphicEditor
             {
                 if (Rooms.IsChecked == true)
                 {
-                    MainFrame.Content = new SearchResultsForRooms(this);
+                    MainFrame.Content = new SearchResultsForRooms(this, textBoxSearch.Text);
                 }
                 else if ((bool)Medicines.IsChecked)
                 {
                     if (Restriction == 0)
                     {
-                        MainFrame.Content = new SearchResultsForMedicines(this);
+                        MainFrame.Content = new SearchResultsForMedicines(this, textBoxSearch.Text);
                     }
                 }
                 else if ((bool)Equipment.IsChecked)
                 {
                     if (Restriction == 0)
                     {
-                        MainFrame.Content = new SearchResaultsForEquipment(this);
+                        MainFrame.Content = new SearchResaultsForEquipment(this, textBoxSearch.Text);
                     }
                 }
             }

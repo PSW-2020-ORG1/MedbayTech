@@ -11,6 +11,7 @@ using System.Linq;
 using Backend.Medications.Repository.FileRepository;
 using Model.Users;
 using Service.GeneralService;
+using Model;
 
 namespace Backend.Medications.Service
 {
@@ -20,10 +21,17 @@ namespace Backend.Medications.Service
         public NotificationService notificationService;
         public IValidationMedicationRepository validationMedicationRepository;
 
+        private MySqlContext _context;
+
         public MedicationService(IMedicationRepository medicationRepository, IValidationMedicationRepository validationMedicationRepository)
         {
             this.validationMedicationRepository = validationMedicationRepository;
             this.medicationRepository = medicationRepository;
+        }
+
+        public MedicationService(MySqlContext context)
+        {
+            _context = context;
         }
 
         public Medication RejectMedication(Medication medication)

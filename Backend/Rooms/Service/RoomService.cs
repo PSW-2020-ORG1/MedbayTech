@@ -10,6 +10,7 @@ using Backend.Exceptions.Schedules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Model;
 
 namespace Service.RoomService
 {
@@ -21,10 +22,17 @@ namespace Service.RoomService
         public IAppointmentRepository appointmentRepository;
         private const string APPOINTMENTS_SCHEDULED = "Room has appointments shceduled in future.";
 
+        private MySqlContext _context;
+
         public RoomService(IRoomRepository roomRepository, IAppointmentRepository appointmentRepository)
         {
             this.appointmentRepository = appointmentRepository;
             this.roomRepository = roomRepository;
+        }
+
+        public RoomService(MySqlContext context)
+        {
+            _context = context;
         }
 
         public Room GetRoomByRoomNumber(int roomNumber)
@@ -39,6 +47,16 @@ namespace Service.RoomService
             }
             return null;
         }
+
+        public List<Room> GetRoomsByRoomLabel(string roomLabel)
+        {
+            return _context.Rooms.ToList().Where(p => p.RoomLabel.ToLower().Contains(roomLabel)).ToList();
+        }
+        public List<Room> GetRoomsByRoomUse(string roomUse)
+        {
+            return _context.Rooms.ToList().Where(p => p.RoomUse.ToLower().Contains(roomUse)).ToList();
+        }
+
         public Room UpdateRoom(Room room) => roomRepository.Update(room);
         public Room AddRoomToDepartment(Room room, Department department)
         {

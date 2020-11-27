@@ -16,17 +16,17 @@ namespace Model.Users
 {
    public class Doctor : Employee
    {
-        public string LicenseNumber { get; protected set; }
-        public bool OnCall { get; protected set; }
-        public double PatientReview { get; protected set; }
+        public string LicenseNumber { get; set; }
+        public bool OnCall { get; set; }
+        public double PatientReview { get; set; }
         [ForeignKey("Department")]
-        public int DepartmentId { get; protected set; }
+        public int DepartmentId { get; set; }
         public virtual Department Department { get;  set; }
         [ForeignKey("ExaminationRoom")]
-        public int ExaminationRoomId { get; protected set; }
+        public int ExaminationRoomId { get; set; }
         public virtual Room ExaminationRoom { get;  set; }
         [ForeignKey("OperationRoom")]
-        public int OperationRoomId { get; protected set; }
+        public int OperationRoomId { get; set; }
         public virtual Room OperationRoom { get;  set; }
         public virtual List<Specialization> Specializations { get; set; }
 

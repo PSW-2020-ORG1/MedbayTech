@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Rooms;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -23,10 +24,33 @@ namespace GraphicEditor
             InitializeComponent();
         }
         MainPage page;
-        public SearchResultsForRooms(MainPage mainPage)
+        public SearchResultsForRooms(MainPage mainPage, string textBoxSearch)
         {
             InitializeComponent();
             page = mainPage;
+            searchDataBase(textBoxSearch);
+        }
+        private void searchDataBase(string textBoxSearch)
+        {
+            List<Room> rooms = Services.getService().roomService.GetRoomsByRoomLabel(textBoxSearch.ToLower().Trim());
+            if(rooms.Count != 0)
+            {
+                dataGridRoom.ItemsSource = rooms;
+                return;
+            }
+            rooms = Services.getService().roomService.GetRoomsByRoomUse(textBoxSearch.ToLower().Trim());
+            if(rooms.Count !=0)
+            {
+                dataGridRoom.ItemsSource = rooms;
+                return;
+            }
+            MessageBox.Show("Nema rezultata za unetu pretragu!");
+        }
+
+        private void buttonShowOnMap(object sender, RoutedEventArgs e)
+        {
+            Room room = (Room)dataGridRoom.SelectedItem;
+            MessageBox.Show("Treba da se implementira!");
         }
     }
 }

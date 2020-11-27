@@ -23,10 +23,15 @@ namespace GraphicEditor
             InitializeComponent();
         }
         MainPage page;
-        public SearchResultsForMedicines(MainPage mainPage)
+        public SearchResultsForMedicines(MainPage mainPage, string textBoxSearch)
         {
             InitializeComponent();
             page = mainPage;
+        }
+
+        private void buttonShowOnMap(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Treba da se implementira!");
         }
     }
 }

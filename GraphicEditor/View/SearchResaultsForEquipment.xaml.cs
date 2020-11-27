@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Rooms;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -23,10 +24,37 @@ namespace GraphicEditor
             InitializeComponent();
         }
         MainPage page;
-        public SearchResaultsForEquipment(MainPage mainPage)
+        public SearchResaultsForEquipment(MainPage mainPage, string textBoxSearch)
         {
             InitializeComponent();
             page = mainPage;
+            searchDataBase(textBoxSearch);
+        }
+        private void searchDataBase(string textBoxSearch)
+        {
+            List<HospitalEquipment> hospitalEquipments = Services.getService().hospitalEquipmentService.GetHospitalEquipmentsByName(textBoxSearch.ToLower().Trim());
+            if (hospitalEquipments.Count != 0)
+            {
+                dataGridEquipment.ItemsSource = hospitalEquipments;
+                return;
+            }
+            int id;
+            if(Int32.TryParse(textBoxSearch, out id))
+            {
+                hospitalEquipments = Services.getService().hospitalEquipmentService.GetHospitalEquipmentsById(id);
+                if (hospitalEquipments.Count != 0)
+                {
+                    dataGridEquipment.ItemsSource = hospitalEquipments;
+                    return;
+                }
+            }
+            MessageBox.Show("Ne postoje rezultati za ovu pretragu!");
+        }
+
+        private void buttonShownOnMap(object sender, RoutedEventArgs e)
+        {
+            HospitalEquipment hospitalEquipment = (HospitalEquipment)dataGridEquipment.SelectedItem;
+            MessageBox.Show("Treba da se implementira!");
         }
     }
 }

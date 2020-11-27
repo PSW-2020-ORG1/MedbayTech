@@ -8,15 +8,16 @@
       d:DesignHeight="652" d:DesignWidth="766"
       Title="SearchResultsForRooms">
 
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Center" Width="622" Height="456" RenderTransformOrigin="1.059,-0.838">
+    <DockPanel>
+        <Button DockPanel.Dock="Bottom" Name="btnShowOnMap" Width="300" Margin="0,5,0,5" Content="Shown on map" FontWeight="Bold" FontSize="18" Click="buttonShowOnMap" />
+        <DataGrid DockPanel.Dock="Top" Name="dataGridRoom" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Room label" Width="125"/>
-                <DataGridTextColumn Header="Room use" Width="125"/>
-                <DataGridTextColumn Header="Ward" Width="125"/>
-                <DataGridTextColumn Header="Floor" Width="125"/>
-                <DataGridTextColumn Header="Building" Width="125"/>
+                <DataGridTextColumn Header="Room label" Width="149" Binding="{Binding RoomLabel}"/>
+                <DataGridTextColumn Header="Room use" Width="149" Binding="{Binding RoomUse}"/>
+                <DataGridTextColumn Header="Ward" Width="149" Binding="{Binding Department.Name}"/>
+                <DataGridTextColumn Header="Floor" Width="149" Binding="{Binding Department.Floor}"/>
+                <DataGridTextColumn Header="Building" Width="149" Binding="{Binding Department.Hospital.Name}"/>
             </DataGrid.Columns>
         </DataGrid>
-    </Grid>
+    </DockPanel>
 </Page>

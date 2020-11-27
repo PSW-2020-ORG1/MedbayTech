@@ -8,15 +8,16 @@
       d:DesignHeight="652" d:DesignWidth="766"
       Title="SearchResultsForMedicines">
 
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Center" Width="622" Height="456" RenderTransformOrigin="1.059,-0.838">
+    <DockPanel>
+        <Button DockPanel.Dock="Bottom" Name="btnShowOnMap" Width="300" Margin="0,5,0,5" Content="Shown on map" FontWeight="Bold" FontSize="18" Click="buttonShowOnMap"/>
+        <DataGrid DockPanel.Dock="Top" Name="dataGridMedicate" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Width="125"/>
-                <DataGridTextColumn Header="Name" Width="125"/>
-                <DataGridTextColumn Header="Dosage" Width="125"/>
-                <DataGridTextColumn Header="Quantity" Width="125"/>
-                <DataGridTextColumn Header="Storige room" Width="125"/>
+                <DataGridTextColumn Header="Id" Width="149"/>
+                <DataGridTextColumn Header="Name" Width="149"/>
+                <DataGridTextColumn Header="Dosage" Width="149"/>
+                <DataGridTextColumn Header="Quantity" Width="149"/>
+                <DataGridTextColumn Header="Storige room" Width="149"/>
             </DataGrid.Columns>
         </DataGrid>
-    </Grid>
+    </DockPanel>
 </Page>

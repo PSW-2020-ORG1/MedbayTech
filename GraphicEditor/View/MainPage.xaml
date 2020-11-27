@@ -17,7 +17,7 @@
                 <DockPanel DockPanel.Dock="Top">
                     <Label DockPanel.Dock="Top" Content="Informations" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White"/>
                     <Label DockPanel.Dock="Left" Content="Search:" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White" Width="102"/>
-                    <TextBox DockPanel.Dock="Right" Height="25" Margin="0,0,10,0" TextWrapping="Wrap" TextAlignment="Left" FontSize="15" FontWeight="SemiBold"  BorderBrush="#3A6180" KeyDown="EnterKey"/>
+                    <TextBox Name="textBoxSearch" DockPanel.Dock="Right" Height="25" Margin="0,0,10,0" TextWrapping="Wrap" TextAlignment="Left" FontSize="15" FontWeight="SemiBold"  BorderBrush="#3A6180" KeyDown="EnterKey"/>
                 </DockPanel>
                 <StackPanel DockPanel.Dock="Bottom" Margin="5,5,0,5" Orientation="Horizontal">
                     <Viewbox Height="22" HorizontalAlignment="Left" Margin="0,0,10,0">
