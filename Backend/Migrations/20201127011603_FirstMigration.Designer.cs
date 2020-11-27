@@ -9,7 +9,7 @@ using Model;
 namespace Backend.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201117184526_FirstMigration")]
+    [Migration("20201127011603_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -823,6 +823,12 @@ namespace Backend.Migrations
                     b.Property<string>("Company")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime(6)");
+
                     b.HasKey("Id");
 
                     b.ToTable("InsurancePolicies");
@@ -831,7 +837,9 @@ namespace Backend.Migrations
                         new
                         {
                             Id = "policy1",
-                            Company = "Dunav osiguranje d.o.o"
+                            Company = "Dunav osiguranje d.o.o",
+                            EndTime = new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartTime = new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -1215,11 +1223,20 @@ namespace Backend.Migrations
                 {
                     b.HasBaseType("Model.Users.RegisteredUser");
 
+                    b.Property<bool>("Blocked")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("ChosenDoctorId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
+                    b.Property<bool>("Confirmed")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<bool>("IsGuestAccount")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasIndex("ChosenDoctorId");
 

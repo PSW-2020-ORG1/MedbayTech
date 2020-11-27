@@ -111,7 +111,7 @@ namespace Model
                 );
 
             modelBuilder.Entity<InsurancePolicy>().HasData(
-                new InsurancePolicy { Company = "Dunav osiguranje d.o.o", Id = "policy1", Period = new Period(new DateTime(2020, 11, 1), new DateTime(2020, 11, 1)) }
+                new InsurancePolicy { Company = "Dunav osiguranje d.o.o", Id = "policy1", StartTime = new DateTime(2020, 11, 1), EndTime =  new DateTime(2020, 11, 1) }
             );
 
             modelBuilder.Entity<RegisteredUser>().HasData(
