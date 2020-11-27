@@ -11,9 +11,9 @@ export class PrescriptionService {
 
   constructor(private http : HttpClient) { }
 
-  getAllPrescriptions(): Observable<Prescription[]>{
+  getAllPrescriptions(data: Prescription): Observable<Prescription[]>{
 
-    return this.http.get<Prescription[]>(`${environment.baseUrl}/${environment.prescription}/${environment.allPrescriptions}`)
+    return this.http.post<Prescription[]>(`${environment.baseUrl}/${environment.prescription}/${environment.allPrescriptions}`,data)
 
   }
 }

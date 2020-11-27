@@ -17,8 +17,10 @@ namespace Backend.Examinations.Model
         private const int RESERVATION_DAYS = 10;
         public bool Reserved { get; set; }
         [NotMapped]
-        public Period ReservationPeriod { get; set; }
-        public int HourlyIntake { get; set; }
+        public DateTime ReservationPeriodStart { get; set; }
+
+        public DateTime ReservationPeriodEnd { get; set; }
+        public string HourlyIntake { get; set; }
         [ForeignKey("Medication")]
         public int MedicationId { get; set; }
         public virtual Medication Medication { get; set; }
@@ -28,13 +30,14 @@ namespace Backend.Examinations.Model
             Date = DateTime.Today;
         }
 
-        public Prescription(DateTime dateOfPrescription, bool reserved, int hourlyIntake, string additionalNotes, Medication medication)
+        public Prescription(DateTime dateOfPrescription, bool reserved, string hourlyIntake, string additionalNotes, Medication medication)
             : base(dateOfPrescription, additionalNotes, TreatmentType.Prescription)
         {
             Reserved = reserved;
             if (Reserved)
             {
-                ReservationPeriod = new Period(DateTime.Today, DateTime.Today.AddDays(RESERVATION_DAYS));
+                ReservationPeriodStart = DateTime.Today;
+                ReservationPeriodEnd = DateTime.Today.AddDays(RESERVATION_DAYS);
             }
             HourlyIntake = hourlyIntake;
             Medication = medication;
@@ -45,8 +48,11 @@ namespace Backend.Examinations.Model
 
         public void InitializeReservationDates()
         {
-            if (Reserved) 
-                ReservationPeriod = new Period(DateTime.Today, DateTime.Today.AddDays(RESERVATION_DAYS));
+            if (Reserved)
+            {
+                ReservationPeriodStart = DateTime.Today;
+                ReservationPeriodEnd = DateTime.Today.AddDays(RESERVATION_DAYS);
+            }
         }
 
         public bool IsStillActive(DateTime startDate, DateTime endDate)

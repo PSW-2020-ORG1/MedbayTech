@@ -9,7 +9,7 @@ namespace Backend.Examinations.Repository
     {
         IEnumerable<Prescription> GetAllPrescriptions();
 
-        IEnumerable<Prescription> GetSearchedPresciptions();
+       
 
         
       

@@ -28,11 +28,11 @@
         <span *ngIf="prescriptionForm.get('selectedOption').value === 'Search by medicine'">
             <mat-form-field appearance="fill" class="fix-margins">
                 <mat-label>Medicine</mat-label>
-                <input matInput [formControl]="med" formControlName="medField">
-                <mat-error *ngIf="med.hasError('pattern') && !med.hasError('required')">
+                <input matInput formControlName="medField">
+                <mat-error *ngIf="prescriptionForm.get('medField').hasError('pattern') && !prescriptionForm.get('medField').hasError('required')">
                     Must contain letters only
                 </mat-error>
-                <mat-error *ngIf="med.hasError('required')">
+                <mat-error *ngIf="prescriptionForm.get('medField').hasError('required')">
                     Can not be empty
                 </mat-error>
             </mat-form-field>
@@ -41,11 +41,11 @@
         <span *ngIf="prescriptionForm.get('selectedOption').value === 'Search by hourly intake'">
             <mat-form-field appearance="fill" class="fix-margins">
                 <mat-label>Hourly intake</mat-label>
-                <input matInput [formControl]="hour" formControlName="hourField">
-                <mat-error *ngIf="hour.hasError('pattern') && !hour.hasError('required')">
+                <input matInput formControlName="hourField">
+                <mat-error *ngIf="prescriptionForm.get('hourField').hasError('pattern') && !prescriptionForm.get('hourField').hasError('required')">
                     Must be a number 0-9
                 </mat-error>
-                <mat-error *ngIf="hour.hasError('required')">
+                <mat-error *ngIf="prescriptionForm.get('hourField').hasError('required')">
                     Can not be empty
                 </mat-error>
             </mat-form-field>
@@ -78,11 +78,11 @@
     <span *ngIf="prescriptionForm.get('duplicates.0').value.selectedOption2 === 'Search by medicine'">
         <mat-form-field appearance="fill" class="fix-margins">
             <mat-label>Medicine</mat-label>
-            <input matInput [formControl]="med2" formControlName="medField2">
-            <mat-error *ngIf="med2.hasError('pattern') && !med2.hasError('required')">
+            <input matInput  formControlName="medField2">
+            <mat-error *ngIf="prescriptionForm.get('duplicates.0').get('medField2').hasError('pattern') && !prescriptionForm.get('duplicates.0').get('medField2').hasError('required')">
                 Must contain letters only
             </mat-error>
-            <mat-error *ngIf="med2.hasError('required')">
+            <mat-error *ngIf="prescriptionForm.get('duplicates.0').get('medField2').hasError('required')">
                 Can not be empty
             </mat-error>
         </mat-form-field>
@@ -91,11 +91,11 @@
     <span *ngIf="prescriptionForm.get('duplicates.0').value.selectedOption2 === 'Search by hourly intake'">
         <mat-form-field appearance="fill" class="fix-margins">
             <mat-label>Hourly intake</mat-label>
-            <input matInput [formControl]="hour2" formControlName="hourField2">
-            <mat-error *ngIf="hour2.hasError('pattern') && !hour2.hasError('required')">
+            <input matInput formControlName="hourField2">
+            <mat-error *ngIf="prescriptionForm.get('duplicates.0').get('hourField2').hasError('pattern') && !prescriptionForm.get('duplicates.0').get('hourField2').hasError('required')">
                 Must be a number 0-9
             </mat-error>
-            <mat-error *ngIf="hour2.hasError('required')">
+            <mat-error *ngIf="prescriptionForm.get('duplicates.0').get('hourField2').hasError('required')">
                 Can not be empty
             </mat-error>
         </mat-form-field>
@@ -107,12 +107,12 @@
     </div>
     </div>
 
-    <div *ngIf="prescriptionForm.get('duplicates')['length']<3">
+    <div *ngIf="prescriptionForm.get('duplicates')['length']<1">
         <button mat-raised-button color="primary" (click)="addDuplicates()">Add</button>
     </div>
 
     <div style="margin-top: 10px;" >
-    <button mat-raised-button color="primary">Search</button>
+        <button mat-raised-button color="primary" (click)="onSearch()">Search</button>
     </div>
 </div>
 

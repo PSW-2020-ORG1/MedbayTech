@@ -19,9 +19,9 @@ export class PrescriptionSearchComponent implements OnInit {
   
 
   Id: number;
-  Medicine: string;
-  AndOr: boolean;
-  HourlyIntake: number;
+  FirstOperand: string;
+  AndOr: string;
+  SecondOperand: string;
   ReservationPeriodStart: Date;
   ReservationPeriodEnd: Date;
 
@@ -72,42 +72,63 @@ export class PrescriptionSearchComponent implements OnInit {
     this.prescriptionForm = this.fb.group({
       selectedOption: [this.options[0]],
       radios: [],
-      medField: ['',[Validators.required,
-        Validators.pattern("[A-Za-z]+")]],
-      hourField: ['',[Validators.required,
-        Validators.pattern("[0123456789]{1}")]],
+      medField: new FormControl('',[Validators.required,
+        Validators.pattern("[A-Za-z]+")]),
+      hourField: new FormControl('',[Validators.required,
+        Validators.pattern("[0123456789]{1}")]),
       duplicates: this.fb.array([])
     });
 
     
 
-
+    
     //this.addCreds();
   }
 
   onSearch():void {
     const selects = this.prescriptionForm.get('selectedOption').value;
-    const selects2 = this.prescriptionForm.get('duplicates.0').value.selectedOption2;
-    this.Id = 0;
-    this.AndOr = this.getRadio();
-    if(selects == "Search by medicine")
-      this.Medicine = this.prescriptionForm.value.medField;
-    else if(selects == "Search by hourly intake")
-      this.HourlyIntake = this.prescriptionForm.value.hourField;
-
-    if(selects2 == "Search by medicine")
-      this.Medicine = this.prescriptionForm.get('duplicates.0').value.medField2;
-    else if(selects2 == "Search by hourly intake")
-      this.HourlyIntake = this.prescriptionForm.get('duplicates.0').value.hourField2;
     
+    this.Id = 0;
+    
+    if(selects == "Search by medicine")
+      this.FirstOperand = this.prescriptionForm.value.medField;
+    else if(selects == "Search by hourly intake")
+      this.FirstOperand = this.prescriptionForm.value.hourField;
+    else
+      this.FirstOperand = "";
+    
+    if(this.prescriptionForm.get('duplicates')['length']>0){
+      const selects2 = this.prescriptionForm.get('duplicates.0').value.selectedOption2;
+      this.AndOr = this.getRadio();
+    
+      if(selects2 == "Search by medicine")
+        this.SecondOperand = this.prescriptionForm.get('duplicates.0').value.medField2;
+      else if(selects2 == "Search by hourly intake")
+        this.SecondOperand = this.prescriptionForm.get('duplicates.0').value.hourField2;
+      else
+        this.SecondOperand = "";
+    
+    }
+    else{
+      this.SecondOperand = "";
+      this.AndOr = "AND";
+    }
+    
+    
+    
+      
+    console.log(console.log(this.prescriptionForm.get('medField').errors));
   }
 
-  private getRadio () : boolean {
+  private getRadio () : string {
     const selects = this.prescriptionForm.get('duplicates.0').value.radios2;
     if(selects == "and"){
-      return true;
+      return "AND";
     }
-    return false;
+    else if(selects == "or"){
+      return "OR";
+    }
+    return "AND";
   }
 
 
@@ -116,12 +137,12 @@ export class PrescriptionSearchComponent implements OnInit {
     dups.push(this.fb.group({
       selectedOption2: [this.options2[0]],
       radios2: [],
-      medField2: ['',[Validators.required,
-        Validators.pattern("[A-Za-z]+")]],
-      hourField2: ['',[Validators.required,
-        Validators.pattern("[0123456789]{1}")]]
+      medField2: new FormControl('',[Validators.required,
+        Validators.pattern("[A-Za-z]+")]),
+      hourField2: new FormControl('',[Validators.required,
+        Validators.pattern("[0123456789]{1}")])
     }));
-    console.log( this.prescriptionForm.get('duplicates.0').value.hourField2);
+    console.log( this.prescriptionForm.get('duplicates.0').get('medField2'));
   }
 
 
@@ -131,10 +152,10 @@ export class PrescriptionSearchComponent implements OnInit {
     
   }
 
-  loadAllFeedback() {
-    this.ps.getAllPrescriptions().subscribe(data => 
-      {
-        this.allPrescriptions = data
-      });
-  }
+  // loadAllFeedback() {
+  //   this.ps.getAllPrescriptions().subscribe(data => 
+  //     {
+  //       this.allPrescriptions = data
+  //     });
+  // }
 }
