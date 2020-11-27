@@ -15,7 +15,7 @@ namespace Backend.Examinations.WebApiService
             this.repository = repository;
         }
 
-        public IEnumerable<Treatment> GetSearchedPrescription(string medicationName, int hourlyIntake, DateTime startDate, DateTime endDate)
+        public IEnumerable<Prescription> GetSearchedPrescription(string medicationName, int hourlyIntake, DateTime startDate, DateTime endDate)
         {
             return repository.GetSearchedPrescription(medicationName, hourlyIntake, startDate, endDate);
         }

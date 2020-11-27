@@ -140,8 +140,12 @@ namespace Backend.Examinations.Repository
         public ExaminationSurgery UpdateTreatment(ExaminationSurgery examinationSurgery, Treatment treatment)
         {
             Prescription prescription = (Prescription) treatment;
-            prescription.InitializeReservationDates();
             return base.Update(examinationSurgery);
+        }
+
+        IEnumerable<ExaminationSurgery> IExaminationSurgeryRepository.GetSearchedReports(string name, DateTime startDate, DateTime endDate, string treatment)
+        {
+            throw new NotImplementedException();
         }
     }
 }

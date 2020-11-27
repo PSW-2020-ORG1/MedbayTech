@@ -13,6 +13,7 @@ using Model.Rooms;
 using Backend.Records.Model;
 using Backend.Records.Model.Enums;
 using Backend.Examinations.WebApiService;
+using System.Linq;
 
 namespace MedbayTechUnitTests
 {
@@ -22,7 +23,7 @@ namespace MedbayTechUnitTests
         public void Find_searched_prescription()
         {
             PrescriptionSearchWebService service = new PrescriptionSearchWebService(CreatePrescriptionStubRepository());
-            List<Prescription> prescriptions = (List<Prescription>)service.GetSearchedPrescription("Brufen", 6, new DateTime(2020, 11, 26), new DateTime(2020, 11, 28));
+            List<Prescription> prescriptions = service.GetSearchedPrescription("Brufen", 6, new DateTime(2020, 11, 26), new DateTime(2020, 11, 28)).ToList();
 
             prescriptions[0].ShouldNotBeNull();
         }
@@ -31,7 +32,7 @@ namespace MedbayTechUnitTests
         public void Dont_find_searched_prescription()
         {
             PrescriptionSearchWebService service = new PrescriptionSearchWebService(CreatePrescriptionStubRepository());
-            List<Prescription> prescriptions = (List<Prescription>)service.GetSearchedPrescription("Brufen", 6, new DateTime(2020, 11, 24), new DateTime(2020, 11, 25));
+            List<Prescription> prescriptions = service.GetSearchedPrescription("Brufen", 6, new DateTime(2020, 11, 24), new DateTime(2020, 11, 25)).ToList();
 
             prescriptions[0].ShouldBeNull();
 
@@ -41,7 +42,7 @@ namespace MedbayTechUnitTests
         public void Find_searched_report()
         {
             ReportSearchWebService service = new ReportSearchWebService(CreateReportStubRepository());
-            List<ExaminationSurgery> reports = (List<ExaminationSurgery>)service.GetSearchedReports("Petar Petrovic", new DateTime(2020, 11, 26), new DateTime(2020, 11, 28), "HospitalTreatment");
+            List<ExaminationSurgery> reports = service.GetSearchedReports("Petar Petrovic", new DateTime(2020, 11, 26), new DateTime(2020, 11, 28), "HospitalTreatment").ToList();
 
             reports[0].ShouldNotBeNull();
 
@@ -51,7 +52,7 @@ namespace MedbayTechUnitTests
         public void Dont_find_searched_report()
         {
             ReportSearchWebService service = new ReportSearchWebService(CreateReportStubRepository());
-            List<ExaminationSurgery> reports = (List<ExaminationSurgery>)service.GetSearchedReports("Petar Petrovic", new DateTime(2020, 11, 24), new DateTime(2020, 11, 25), "HospitalTreatment");
+            List<ExaminationSurgery> reports = service.GetSearchedReports("Petar Petrovic", new DateTime(2020, 11, 24), new DateTime(2020, 11, 25), "HospitalTreatment").ToList();
 
             reports[0].ShouldBeNull();
         }
