@@ -22,5 +22,29 @@ namespace Backend.Users.WebApiController
         {
             return registrationService.Register(patient);
         }
+
+        public bool ExistsById(string id)
+        {
+            return registrationService.ExistsById(id);
+        }
+
+        public Patient SetImagePath(string path, string id)
+        {
+            return registrationService.SetImagePath(path, id);
+        }
+        public Patient GetFirstPatient()
+        {
+            return registrationService.GetFirstPatient();
+        }
+
+        public Patient GetUserById(string id)
+        {
+            return registrationService.GetUserById(id);
+        }
+
+        public Patient ActivateAccount(string userId, string token)
+        {
+            return registrationService.ActivateAccount(userId, token);
+        }
     }
 }
