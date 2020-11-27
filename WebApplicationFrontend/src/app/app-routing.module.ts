@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
+import { MedicalRecordComponent } from './medical-record/medical-record.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path : 'patientRegistration',
     component : PatientRegistrationComponent
+  },
+  {
+    path : 'medicalRecord',
+    component : MedicalRecordComponent
   },
   {
     path : "**",

@@ -12,7 +12,8 @@ export const environment = {
   registration : 'api/registration',
   patientRegistration : 'patientRegistration',
   doctor : 'api/doctor',
-  searchDoctor : 'searchDoctor'
+  searchDoctor : 'searchDoctor',
+  medicalRecord : 'api/medicalRecord',
 };
 
 /*

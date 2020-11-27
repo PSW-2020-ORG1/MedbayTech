@@ -5,7 +5,6 @@
 
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using ZdravoKorporacija.Model.Users;
 
 namespace Model.Users
 {

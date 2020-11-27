@@ -26,6 +26,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
 
 import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-feedback/approved-feedback.component';
 import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
@@ -33,6 +35,8 @@ import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.compo
 import { PostFeedbackComponent } from './feedback/post-feedback/post-feedback.component';
 import { FeedbackService } from './service/feedback/feedback.service';
 
+import {MedicalRecordComponent} from './medical-record/medical-record.component';
+import {MedicalRecordService} from './service/medicalRecord/medicalRecord.service';
 
 @NgModule({
   declarations: [
@@ -40,8 +44,8 @@ import { FeedbackService } from './service/feedback/feedback.service';
     ApprovedFeedbackComponent,
     AllFeedbackComponent,
     PostFeedbackComponent,
-    PatientRegistrationComponent
-   
+    PatientRegistrationComponent,
+    MedicalRecordComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +57,8 @@ import { FeedbackService } from './service/feedback/feedback.service';
     MatDividerModule,
     MatButtonModule,
     MatInputModule,
+    MatTabsModule,
+    MatTableModule,
     RouterModule,
     FormsModule,
     MatIconModule,
@@ -69,8 +75,8 @@ import { FeedbackService } from './service/feedback/feedback.service';
   providers: [
     FeedbackService,
     MatDatepickerModule,
-    MatNativeDateModule
-  
+    MatNativeDateModule,
+    MedicalRecordService,
   ],
   bootstrap: [AppComponent]
 })

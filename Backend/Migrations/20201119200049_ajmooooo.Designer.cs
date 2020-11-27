@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Model;
 
 namespace Backend.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    partial class MySqlContextModelSnapshot : ModelSnapshot
+    [Migration("20201119200049_ajmooooo")]
+    partial class ajmooooo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1045,12 +1047,6 @@ namespace Backend.Migrations
                     b.Property<string>("Company")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime(6)");
-
                     b.HasKey("Id");
 
                     b.ToTable("InsurancePolicies");
@@ -1059,9 +1055,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = "policy1",
-                            Company = "Dunav osiguranje d.o.o",
-                            EndTime = new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StartTime = new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Company = "Dunav osiguranje d.o.o"
                         });
                 });
 
@@ -1459,20 +1453,11 @@ namespace Backend.Migrations
                 {
                     b.HasBaseType("Model.Users.RegisteredUser");
 
-                    b.Property<bool>("Blocked")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<string>("ChosenDoctorId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
-                    b.Property<bool>("Confirmed")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<bool>("IsGuestAccount")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Token")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasIndex("ChosenDoctorId");
 
