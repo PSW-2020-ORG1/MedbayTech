@@ -9,7 +9,7 @@ namespace PharmacyIntegration.Service
     public interface IPharmacyNotificationService
     {
 
-        public PharmacyNotification Add(PharmacyNotification pharmacyNotification);
+        public PharmacyNotification Add(string recivedNotification);
 
         public bool Remove(PharmacyNotification pharmacyNotification);
 

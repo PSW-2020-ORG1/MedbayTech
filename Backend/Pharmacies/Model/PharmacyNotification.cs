@@ -23,12 +23,13 @@ namespace PharmacyIntegration.Model
             this.Approved = false;
         }
 
-        public PharmacyNotification(int id, string content, bool apprved)
+        public PharmacyNotification(string content, int id=0, bool apprved=true)
         {
             Id = id;
             Content = content;
             Approved = apprved;
         }
+
 
         public int GetId()
         {

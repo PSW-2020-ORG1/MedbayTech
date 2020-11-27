@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using PharmacyIntegration.Repository;
 using Model;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace PharmacyIntegration.Service
 {
@@ -17,10 +20,23 @@ namespace PharmacyIntegration.Service
             this._context = context;
         }
 
-        public PharmacyNotification Add(PharmacyNotification pharmacyNotification)
+        public PharmacyNotification Add(string recivedNotification)
         {
+            string content;
+            try
+            {
+                dynamic data = JsonConvert.DeserializeObject(recivedNotification);
+                content = data.content;
+            }
+            catch(Exception)
+            {
+                content = "Nije usjelo!";
+            }
+            PharmacyNotification pharmacyNotification = new PharmacyNotification(content);
             pharmacyNotification.Id = getNextId();
             _context.PharmacyNotifications.Add(pharmacyNotification);
+            // Note (Marko): Does it need .SaveChages? Is not used in PharmacyService
+            _context.SaveChanges();
             return pharmacyNotification;
         }
 
@@ -60,7 +76,7 @@ namespace PharmacyIntegration.Service
                     maxInt = not.Id;
                 }
             }
-            return maxInt;
+            return maxInt + 1;
         }
     }
 }

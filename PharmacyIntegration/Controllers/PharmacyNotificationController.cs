@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyIntegration.Service;
 using RabbitMQ.Client;
+using Model;
 
 namespace PharmacyIntegration.Controllers
 {
@@ -13,12 +14,20 @@ namespace PharmacyIntegration.Controllers
     [ApiController]
     public class PharmacyNotificationController : Controller
     {
-        private IPharmacyNotificationService notificationService;
+        private MySqlContext _context;
+        private IPharmacyNotificationService _notificationService;
         private static string url = "amqps://vmaqngrm:BHAFy2pYqDLrQxDduUD-03HH-N0ACEVW@squid.rmq.cloudamqp.com/vmaqngrm";
         private static ConnectionFactory factory = new ConnectionFactory
         {
             Uri = new Uri(url.Replace("amqp://", "amqps://")),
         };
+
+        public PharmacyNotificationController(MySqlContext context, IPharmacyNotificationService service)
+        {
+            this._context = context;
+            this._notificationService = service;
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
@@ -31,8 +40,15 @@ namespace PharmacyIntegration.Controllers
                 if (data == null) return BadRequest("No data");
                 var msg = Encoding.UTF8.GetString(data.Body.ToArray());
                 channel.BasicAck(data.DeliveryTag, false);
+                _notificationService.Add(msg);
                 return Ok(Json(msg));
             }
+        }
+
+        [HttpGet("/all")]
+        public IActionResult GetAll()
+        {
+            return Ok(_notificationService.GetAll());
         }
     }
 }
