@@ -49,7 +49,7 @@
         </div>
 
         <div style="margin-top: 10px; margin-left: 10px;">
-            <button mat-raised-button color="primary">Search</button>
+            <button mat-raised-button color="primary" type="submit">Search</button>
         </div>
     </div>
 
@@ -59,4 +59,10 @@
     <th>Medicine</th>
     <th>Hourly Intake</th>
     <th>Date</th>
+
+    <tr *ngFor="let prescription of allPrescriptions">
+        <td>{{prescription.Medicine}}</td>
+        <td>{{prescription.HourlyIntake}}</td>
+        <td>{{prescription.Date}}</td>
+    </tr>
 </table>
