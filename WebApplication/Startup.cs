@@ -51,6 +51,7 @@ namespace WebApplication
 
             services.AddTransient<IMailService, MailService.MailService>();
 
+            
 
             //add cors package
             services.AddCors();

@@ -142,7 +142,7 @@ export class PatientRegistrationComponent implements OnInit {
     this.name = this.createForm.value.name;
     this.surname = this.createForm.value.surname;
     this.id = this.createForm.value.id;
-    this.dateOfBirth = this.createForm.value.dateOfBirth;
+    this.dateOfBirth = new Date(this.createForm.value.dateOfBirth.getTime() - this.createForm.value.dateOfBirth.getTimezoneOffset() * 60000)
     this.phone = this.createForm.value.phone;
     this.email = this.createForm.value.email;
     this.username = this.createForm.value.username;
@@ -160,8 +160,10 @@ export class PatientRegistrationComponent implements OnInit {
     this.state = this.createForm.value.state;
     this.policyNumber = this.createForm.value.insurancePolicyNumber;
     this.company = this.createForm.value.insurancePolicyCompany;
-    this.policyStart = this.createForm.value.insurancePolicyStartDate;
-    this.policyEnd = this.createForm.value.insurancePolicyEndDate;
+    
+    this.policyStart = new Date(this.createForm.value.insurancePolicyStartDate.getTime() - this.createForm.value.insurancePolicyStartDate.getTimezoneOffset() * 60000);
+    this.policyEnd = new Date(this.createForm.value.insurancePolicyEndDate.getTime() - this.createForm.value.insurancePolicyEndDate.getTimezoneOffset() * 60000);
+    
     this.doctor = this.createForm.value.choosenDoctor;
 
     this.patient = new PatientRegistration

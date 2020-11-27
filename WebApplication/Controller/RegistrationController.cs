@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Backend.Users.WebApiController;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.Users;
@@ -12,6 +13,7 @@ using WebApplication.Adapters;
 using WebApplication.DTO;
 using WebApplication.MailService;
 using WebApplication.ObjectBuilder;
+using WebApplication.Validators;
 
 namespace WebApplication.Controller
 {
@@ -21,13 +23,17 @@ namespace WebApplication.Controller
     {
         WebRegistrationController registrationController;
         PatientRegistrationBuilder registrationBuilder;
-        
+
+        private IWebHostEnvironment _hostEnvironment;
+
+
         private readonly IMailService mailService;
-        public RegistrationController(IMailService mailService)
+        public RegistrationController(IMailService mailService, IWebHostEnvironment environment)
         {
             this.registrationController = new WebRegistrationController();
             this.registrationBuilder = new PatientRegistrationBuilder();
             this.mailService = mailService;
+            _hostEnvironment = environment;
         }
 
         
@@ -55,7 +61,7 @@ namespace WebApplication.Controller
             {
                 return BadRequest("Neuspesno");
             }
-            return Ok(address.Street);*/
+            return Ok(address.Street);
 
             Patient patient = registrationController.GetUserById("2203998890018");
             if(patient == null)
@@ -68,7 +74,33 @@ namespace WebApplication.Controller
             string email = patient.Email;
             MailRequest mailRequest = new MailRequest { ToEmail = email, Url = link };
             SendMail(mailRequest);
-            return Ok(link);
+            return Ok(link);*/
+            PatientRegistrationDTO dto = new PatientRegistrationDTO
+            {
+                Id = "2222222222223",
+                Name = "Bojan",
+                Surname = "Vujic",
+                Email = "bojanvjc@gmail.com",
+                Phone = "0645666905",
+                Username = "sddsa",
+                Password = "bojan123",
+                ConfirmPassword = "bojan123",
+                Profession = "programmer",
+                CityOfBirth = "Sremska Mitrovica",
+                PolicyNumber = "dsadsa",
+                Company = "Dunav osiguranje d.o.o",
+                PostalCodeBirth = 21000,
+                State = "Srbija",
+                Street = "Milosa Crnjanskog",
+                Number = 0,
+                Apartment = 0,
+                Floor = 0
+            };
+
+            string name = "Bojan";
+            
+            
+            return Ok(name);
         }
         [Route("activate")]
         public IActionResult Activate(string userId, string token)
@@ -108,9 +140,15 @@ namespace WebApplication.Controller
         public IActionResult Register(PatientRegistrationDTO dto)
         {
 
-            if (registrationController.ExistsById(dto.Id)) 
-                return BadRequest("Patient already exists");
-
+            try
+            {
+                ValidateRegistrationInput.Validate(dto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            
             State stateOfBirth = registrationBuilder.SaveState(dto.StateOfBirth);
             City cityOfBirth = registrationBuilder.SaveCity(dto.PostalCodeBirth, dto.CityOfBirth, stateOfBirth.Id);
 
