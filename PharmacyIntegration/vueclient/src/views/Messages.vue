@@ -7,11 +7,17 @@
         </div>
         <div class="container">
             <button id="get-message-button" v-on:click="getMessage()">Get new message:</button>
-            <ul>
-                <li>
-                    {{message.content}}
-                </li>
-            </ul>
+            <div v-if="messages.length > 0">
+                <ul>
+                    <li v-for="msg of messages" :key="msg.id">
+                        {{msg.content}}
+                        <!--
+                        <button v-if="msg.Approve === true" id="approve-button" v-on:click="changeMessageStatus()" title="Make visible for everyone">Approve</button>
+                        <button v-else id="approve-button" v-on:click="changeMessageStatus()" title="Hidde for everyone">Disapprove</button>
+                        -->
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -20,20 +26,25 @@
 export default {
     data() {
         return {
-            message: {}
+            messages: [],
+            newMessage: "",
         }
     },
 
     methods: {
-        getMessage: function() {
+        getMessage: function () {
             this.axios.get("http://localhost:50202/api/pharmacyNotification")
                 .then(response => {
                     console.log(response.data);
-                    this.message = JSON.parse(response.data.value);
+                    this.newMessage = JSON.parse(response.data.value);
+                    this.messages.push(this.newMessage)
                 })
                 .catch(response => {
                     console.log(response.data);
                 })
+        },
+        changeMessageStatus: function () {
+
         }
     },
 }
@@ -60,7 +71,7 @@ export default {
         margin: 0 auto;
     }
 
-    #get-message-button {
+    #get-message-button, #approve-button {
         margin: 4px;
         padding: 3px;
         float: none;
@@ -68,7 +79,7 @@ export default {
         background-color: #ff6a00;
         color: #fff;
         border-radius: 5px;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0, .08);
+        box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.38);
     }
         #get-message-button:hover {
             border: 1px solid #ff6a00;
