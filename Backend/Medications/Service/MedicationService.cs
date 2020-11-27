@@ -33,6 +33,12 @@ namespace Backend.Medications.Service
         {
             _context = context;
         }
+        //UBACENO NOVO:
+        public List<Medication> GetAllMedicationsByName(string nameOfMedication)
+        {
+            return _context.Medications.ToList().Where(p => p.Med.ToLower().Contains(nameOfMedication)).ToList();
+        }
+
 
         public Medication RejectMedication(Medication medication)
         {

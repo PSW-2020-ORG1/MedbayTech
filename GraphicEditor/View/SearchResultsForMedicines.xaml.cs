@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Backend.Medications.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,17 +22,39 @@ namespace GraphicEditor
         public SearchResultsForMedicines()
         {
             InitializeComponent();
+      
         }
         MainPage page;
         public SearchResultsForMedicines(MainPage mainPage, string textBoxSearch)
         {
             InitializeComponent();
             page = mainPage;
+            searchDataBase(textBoxSearch);
+
         }
 
+        private void searchDataBase(string textBoxSearch)
+        {
+            List<Medication> medications = Services.getService().medicationService.GetAllMedicationsByName(textBoxSearch.ToLower().Trim());
+            if (medications.Count != 0)
+            {
+                dataGridMedicate.ItemsSource = medications;
+                return;
+            }
+           /* 
+            * TO BE IMPLEMENTED 
+            medications = Services.getService().medicationService.GetAllMedicationsById(textBoxSearch.ToLower().Trim());
+            if (medications.Count != 0)
+            {
+                dataGridMedicate.ItemsSource = medications;
+                return;
+            }
+            */
+            MessageBox.Show("No results found!");
+        }
         private void buttonShowOnMap(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Treba da se implementira!");
+            MessageBox.Show("To be implemented!");
         }
     }
 }
