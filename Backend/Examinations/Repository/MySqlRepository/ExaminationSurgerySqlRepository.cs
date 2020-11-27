@@ -25,5 +25,10 @@ namespace Backend.Examinations.Repository.MySqlRepository
         {
             throw new NotImplementedException();
         }
+
+        IEnumerable<ExaminationSurgery> IExaminationSurgeryRepository.GetSearchedReports(string name, DateTime startDate, DateTime endDate, string treatment)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

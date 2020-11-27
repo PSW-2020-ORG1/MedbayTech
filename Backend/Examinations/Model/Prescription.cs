@@ -16,8 +16,8 @@ namespace Backend.Examinations.Model
     {
         private const int RESERVATION_DAYS = 10;
         public bool Reserved { get; set; }
-        [NotMapped]
-        public Period ReservationPeriod { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public int HourlyIntake { get; set; }
         [ForeignKey("Medication")]
         public int MedicationId { get; set; }
@@ -34,20 +34,14 @@ namespace Backend.Examinations.Model
             Reserved = reserved;
             if (Reserved)
             {
-                ReservationPeriod = new Period(DateTime.Today, DateTime.Today.AddDays(RESERVATION_DAYS));
+                StartDate = DateTime.Today;
+                EndDate = DateTime.Today.AddDays(RESERVATION_DAYS);
             }
             HourlyIntake = hourlyIntake;
             Medication = medication;
         }
 
         public Prescription(int id) : base(id) { }
-
-
-        public void InitializeReservationDates()
-        {
-            if (Reserved) 
-                ReservationPeriod = new Period(DateTime.Today, DateTime.Today.AddDays(RESERVATION_DAYS));
-        }
 
         public bool IsStillActive(DateTime startDate, DateTime endDate)
         {
