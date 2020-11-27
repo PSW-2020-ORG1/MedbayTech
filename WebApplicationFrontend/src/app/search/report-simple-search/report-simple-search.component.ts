@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Report } from 'src/app/model/report';
+import { ReportService } from 'src/app/service/report/report.service';
 
 @Component({
   selector: 'app-report-simple-search',
@@ -9,6 +11,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class ReportSimpleSearchComponent implements OnInit {
 
   reportForm: FormGroup;
+
+  public allReports : Report[] = new Array();
 
   range = new FormGroup({
     start: new FormControl(),
@@ -21,11 +25,20 @@ export class ReportSimpleSearchComponent implements OnInit {
 
   treatments = new FormControl('',[Validators.pattern("[A-Za-z]+")]);
 
-  constructor(private fb : FormBuilder) { }
+  constructor(private rs : ReportService, private fb : FormBuilder) { }
 
   ngOnInit(): void {
     this.reportForm = this.fb.group({
     });
+  }
+
+  onSubmit() {
+    this.rs.getSimpleSearchResults(this.reportForm.value.doc, this.reportForm.value.range,
+       this.reportForm.value.treatments).subscribe(
+        data => {
+          this.allReports = data;
+        }
+    ) 
   }
 
 }

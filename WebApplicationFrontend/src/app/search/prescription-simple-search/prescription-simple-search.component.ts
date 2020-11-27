@@ -29,4 +29,13 @@ export class PrescriptionSimpleSearchComponent implements OnInit {
     this.prescriptionForm = this.fb.group({});
   }
 
+  onSubmit() {
+    this.ps.getSimpleSearchResults(this.prescriptionForm.value.med, this.prescriptionForm.value.hour, 
+      this.prescriptionForm.value.range).subscribe(
+        data => {
+          this.allPrescriptions = data;
+        }
+    ) 
+  }
+
 }

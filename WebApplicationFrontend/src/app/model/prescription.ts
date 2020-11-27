@@ -1,24 +1,12 @@
 export class Prescription{
-    public Id: number;
     public Medicine: string;
     public HourlyIntake: string;
-    public ReservationPeriod: Period;
+    public Date : Date;
 
-    constructor(id:number, medicine:string, hour: string, period: Period) {
-        this.Id = id;
+    constructor(medicine:string, hour: string, date : Date) {
         this.Medicine = medicine;
         this.HourlyIntake = hour;
-        this.ReservationPeriod = period;
+        this.Date = date;
     }
 
-}
-
-export class Period{
-    public StartTime: Date;
-    public EndTime: Date;
-
-    constructor(startTime: Date, endTime: Date){
-        this.StartTime = startTime;
-        this.EndTime = endTime;
-    }
 }
