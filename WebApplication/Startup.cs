@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Model;
 using Newtonsoft.Json;
+using WebApplication.MailService;
 
 namespace WebApplication
 {
@@ -45,7 +46,10 @@ namespace WebApplication
                 options.MemoryBufferThreshold = int.MaxValue;
 
             });
-           
+
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+
+            services.AddTransient<IMailService, MailService.MailService>();
 
 
             //add cors package

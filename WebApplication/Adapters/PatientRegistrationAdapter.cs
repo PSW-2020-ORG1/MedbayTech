@@ -26,6 +26,7 @@ namespace WebApplication.Adapters
                 //ChosenDoctorId = patientRegistrationDTO.Doctor
                 CurrResidenceId = patientRegistrationDTO.CurrentResidenceId,
                 PlaceOfBirthId = patientRegistrationDTO.PlaceOfBirthId,
+                InsurancePolicyId = patientRegistrationDTO.PolicyNumber
             };
             return patient;
         }

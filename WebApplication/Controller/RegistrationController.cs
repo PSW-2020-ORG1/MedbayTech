@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Model.Users;
 using WebApplication.Adapters;
 using WebApplication.DTO;
+using WebApplication.MailService;
+using WebApplication.ObjectBuilder;
 
 namespace WebApplication.Controller
 {
@@ -18,34 +20,74 @@ namespace WebApplication.Controller
     public class RegistrationController : ControllerBase
     {
         WebRegistrationController registrationController;
-        WebStateController stateController;
-        WebCityController cityController;
-        WebAddressController addressController;
-        public RegistrationController()
+        PatientRegistrationBuilder registrationBuilder;
+        
+        private readonly IMailService mailService;
+        public RegistrationController(IMailService mailService)
         {
             this.registrationController = new WebRegistrationController();
-            this.stateController = new WebStateController();
-            this.cityController = new WebCityController();
-            this.addressController = new WebAddressController();
+            this.registrationBuilder = new PatientRegistrationBuilder();
+            this.mailService = mailService;
         }
+
+        
+        public async void SendMail(MailRequest request)
+        {
+           
+            try
+            {
+                await mailService.SendMailAsync(request);
+                
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+       
         [HttpGet("proba")]
         public IActionResult Proba()
         {
-            Address address = SaveAddress("Maksima Gorkog 23", 1, 0, 0, 11000);
+            /*Address address = SaveAddress("Maksima Gorkog 23", 1, 0, 0, 11000);
             if(address == null)
             {
                 return BadRequest("Neuspesno");
             }
-            return Ok(address.Street);
+            return Ok(address.Street);*/
+
+            Patient patient = registrationController.GetUserById("2203998890018");
+            if(patient == null)
+            {
+                return BadRequest();
+            }
+            
+            string guid = Guid.NewGuid().ToString();
+            var link = GenerateUrl(patient.Id, guid);
+            string email = patient.Email;
+            MailRequest mailRequest = new MailRequest { ToEmail = email, Url = link };
+            SendMail(mailRequest);
+            return Ok(link);
+        }
+        [Route("activate")]
+        public IActionResult Activate(string userId, string token)
+        {
+            Patient patient = registrationController.ActivateAccount(userId, token);
+            if (patient == null) return BadRequest();
+
+            return Ok(patient.Token);
         }
         [HttpPost("image"), DisableRequestSizeLimit]
         [Consumes("multipart/form-data")]
-        public IActionResult Image()
+        public IActionResult Image([FromForm] PostImageDTO dto)
         {
-            var file = Request.Form.Files[0];
-            var folderName = Path.Combine("Resources", "Images");
+            if (dto.Id.Equals("null")) return BadRequest("null");
+            var file = dto.File;
+            var folderName1 = Path.Combine("Resources", "Images");
+            var folderName = Path.Combine(folderName1, dto.Id);
             var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-
+            Directory.CreateDirectory(pathToSave);
             if (file.Length > 0)
             {
                 var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
@@ -56,7 +98,8 @@ namespace WebApplication.Controller
                     file.CopyTo(stream);
                 }
 
-                return Ok();
+                //Patient patient = registrationController.GetUserById(id);
+                return Ok(dto.Id);
             }
             return BadRequest();
         }
@@ -64,69 +107,58 @@ namespace WebApplication.Controller
         [HttpPost("patientRegistration")]
         public IActionResult Register(PatientRegistrationDTO dto)
         {
-            IActionResult actionResult;
-            State stateOfBirth = SaveState(dto.StateOfBirth);
-            City cityOfBirth = SaveCity(dto.PostalCodeBirth, dto.CityOfBirth, stateOfBirth.Id);
 
-            State currResidenceState = SaveState(dto.State);
-            City currResidenceCity = SaveCity(dto.PostalCode, dto.City, currResidenceState.Id);
-            Address currResidenceAddress = SaveAddress(dto.Street, dto.Number, dto.Floor, dto.Apartment, currResidenceCity.Id);
+            if (registrationController.ExistsById(dto.Id)) 
+                return BadRequest("Patient already exists");
 
+            State stateOfBirth = registrationBuilder.SaveState(dto.StateOfBirth);
+            City cityOfBirth = registrationBuilder.SaveCity(dto.PostalCodeBirth, dto.CityOfBirth, stateOfBirth.Id);
+
+            State currResidenceState = registrationBuilder.SaveState(dto.State);
+            City currResidenceCity = registrationBuilder.SaveCity(dto.PostalCode, dto.City, currResidenceState.Id);
+            Address currResidenceAddress = registrationBuilder.SaveAddress(dto.Street, dto.Number, dto.Floor, dto.Apartment, currResidenceCity.Id);
+
+            InsurancePolicy insurancePolicy = registrationBuilder.SavePolicy(dto.PolicyNumber, dto.Company, dto.PolicyStart, dto.PolicyEnd);
+            if (insurancePolicy == null)
+                return BadRequest("Policy already exists");
+
+            dto.PolicyNumber = insurancePolicy.Id;
             dto.PlaceOfBirthId = cityOfBirth.Id;
             dto.CurrentResidenceId = currResidenceAddress.Id;
 
-
-
-            
-            String message = "";
             Patient patient = PatientRegistrationAdapter.PatientRegistrationDTOtoPatient(dto);
+            patient.Token  = Guid.NewGuid().ToString();
             Patient registeredPatient = registrationController.Register(patient);
-            if(registeredPatient == null)
-            {
-                message = "Usernae already exists";
-                actionResult = BadRequest(message);
-            }
-            else
-            {
-                message = "Registration success";
-                actionResult = Ok(message);
-            }
+            
+            var link = GenerateUrl(patient.Id, patient.Token);
+            string email = patient.Email;
+            MailRequest mailRequest = new MailRequest { ToEmail = email, Url = link };
+            SendMail(mailRequest);
 
-            return actionResult;
+            return Ok("Please check your mail to confirm registration");
         }
 
-        private State SaveState(string name)
+        private string GenerateUrl(string _userId, string _token)
         {
-            State state = BuildSate(name);
-            State savedState = stateController.Save(state);
-            return savedState;
+            string url = Url.Action(nameof(Activate), "Registration", new { userId = _userId, token = _token });
+            return "http://localhost:8080" + url;
         }
 
-        private City SaveCity(int id, string name, long stateId)
+        private string GetDomain()
         {
-            City city = BuildCity(id, name, stateId);
-            return cityController.Save(city);
+            return "http://localhost:8080";
         }
 
-        private Address SaveAddress(string street, int number, int floor, int apartment, int cityId)
-        {
-            Address address = BuildAddress(street, number, floor, apartment, cityId);
-            return addressController.Save(address);
-        }
+        
 
-        private State BuildSate(string name)
-        {
-            return new State { Name = name };
-        }
+        
 
-        private City BuildCity(int id, string name, long stateId)
-        {
-            return new City { Id = id, Name = name, StateId = stateId };
-        }
+        
 
-        private Address BuildAddress(string street, int number, int floor, int apartment, int cityId)
-        {
-            return new Address { Street = street, Number = number, Floor = floor, Apartment = apartment, CityId = cityId };
-        }
+        
+
+       
+
+        
     }
 }
