@@ -23,7 +23,7 @@ namespace WebApplication.Adapters
                 Username = patientRegistrationDTO.Username,
                 Password = patientRegistrationDTO.Password,
                 Profession = patientRegistrationDTO.Profession,
-                //ChosenDoctorId = patientRegistrationDTO.Doctor
+                ChosenDoctorId = patientRegistrationDTO.Doctor,
                 CurrResidenceId = patientRegistrationDTO.CurrentResidenceId,
                 PlaceOfBirthId = patientRegistrationDTO.PlaceOfBirthId,
                 InsurancePolicyId = patientRegistrationDTO.PolicyNumber

@@ -12,18 +12,16 @@ namespace WebApplication.Adapters
         public static List<DoctorSearchDTO> ListDoctorToListDoctorSearchDTO(List<Doctor> doctors)
         {
             List<DoctorSearchDTO> searchDoctorList = new List<DoctorSearchDTO>();
-            for (int i = 0; i < 4; i++)
+            foreach(Doctor doctorIt in doctors)
             {
                 DoctorSearchDTO doctor = new DoctorSearchDTO
                 {
-                    Id = "123",
-                    FullName = "pera" + " " + "peric"
+                    Id = doctorIt.Id,
+                    FullName = doctorIt.Name + " " + doctorIt.Surname
                 };
                 searchDoctorList.Add(doctor);
             }
             return searchDoctorList;
-
-
         }
     }
 }
