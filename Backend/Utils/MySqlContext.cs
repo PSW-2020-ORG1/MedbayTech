@@ -113,8 +113,8 @@ namespace Model
             );
 
             modelBuilder.Entity<PharmacyNotification>().HasData(
-                new PharmacyNotification { Id = 1, Content = "Aspirin nam je jeftin. Bas jako. Ide gaso!", Approved = true },
-                new PharmacyNotification { Id = 2, Content = "Brufen nam je jeftin. Bas jako. Ide gaso!", Approved = true }
+                new PharmacyNotification { Id = 1, Content = "Aspirin nam je jeftin. Bas jako.", Approved = true },
+                new PharmacyNotification { Id = 2, Content = "Brufen nam je jeftin. Bas jako." , Approved = true }
             );
         }
     }

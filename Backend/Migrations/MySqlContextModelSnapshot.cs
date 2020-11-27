@@ -1132,12 +1132,7 @@ namespace Backend.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("PharmacyID")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PharmacyID");
 
                     b.ToTable("PharmacyNotifications");
 
@@ -1146,15 +1141,13 @@ namespace Backend.Migrations
                         {
                             Id = 1,
                             Approved = true,
-                            Content = "Aspirin nam je jeftin. Bas jako. Ide gaso!",
-                            PharmacyID = "Jankovic"
+                            Content = "Aspirin nam je jeftin. Bas jako."
                         },
                         new
                         {
                             Id = 2,
                             Approved = true,
-                            Content = "Brufen nam je jeftin. Bas jako. Ide gaso!",
-                            PharmacyID = "Liman"
+                            Content = "Brufen nam je jeftin. Bas jako."
                         });
                 });
 
@@ -1677,13 +1670,6 @@ namespace Backend.Migrations
                     b.HasOne("Model.Users.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId");
-                });
-
-            modelBuilder.Entity("PharmacyIntegration.Model.PharmacyNotification", b =>
-                {
-                    b.HasOne("PharmacyIntegration.Model.Pharmacy", "Pharmacy")
-                        .WithMany()
-                        .HasForeignKey("PharmacyID");
                 });
 
             modelBuilder.Entity("Backend.Examinations.Model.HospitalTreatment", b =>
