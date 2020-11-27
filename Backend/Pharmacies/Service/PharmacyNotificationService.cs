@@ -53,12 +53,14 @@ namespace PharmacyIntegration.Service
         public bool Remove(PharmacyNotification pharmacy)
         {
             _context.PharmacyNotifications.Remove(pharmacy);
+            _context.SaveChanges();
             return true;
         }
 
         public PharmacyNotification Update(PharmacyNotification pharmacyNotification)
         {
             _context.PharmacyNotifications.Update(pharmacyNotification);
+            _context.SaveChanges();
             return pharmacyNotification;
         }
 

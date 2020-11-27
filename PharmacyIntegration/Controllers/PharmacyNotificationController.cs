@@ -28,8 +28,8 @@ namespace PharmacyIntegration.Controllers
             this._notificationService = service;
         }
 
-        [HttpGet]
-        public IActionResult Get()
+        [HttpGet("{id?}")]
+        public IActionResult Get(string id)
         {
             using (var conn = factory.CreateConnection())
             using (var channel = conn.CreateModel())
@@ -40,15 +40,35 @@ namespace PharmacyIntegration.Controllers
                 if (data == null) return BadRequest("No data");
                 var msg = Encoding.UTF8.GetString(data.Body.ToArray());
                 channel.BasicAck(data.DeliveryTag, false);
-                _notificationService.Add(msg);
-                return Ok(Json(msg));
+                return Ok(_notificationService.Add(msg));
             }
         }
 
-        [HttpGet("/all")]
+        [HttpGet]
         public IActionResult GetAll()
         {
             return Ok(_notificationService.GetAll());
+        }
+
+        [HttpPost]
+        public IActionResult Post(PharmacyIntegration.Model.PharmacyNotification pharmacyNotification)
+        {
+            bool isSuccessfullyAdded = _notificationService.Update(pharmacyNotification) != null;
+
+            if (isSuccessfullyAdded)
+                return Ok();
+            else
+                return BadRequest();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            if (_notificationService.Remove(_notificationService.Get(id)))
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
     }
 }
