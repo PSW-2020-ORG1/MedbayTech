@@ -48,13 +48,13 @@ namespace GraphicEditor
                     return;
                 }
             }
-            MessageBox.Show("Ne postoje rezultati za ovu pretragu!");
+            MessageBox.Show("No results found!");
         }
 
         private void buttonShownOnMap(object sender, RoutedEventArgs e)
         {
             HospitalEquipment hospitalEquipment = (HospitalEquipment)dataGridEquipment.SelectedItem;
-            MessageBox.Show("Treba da se implementira!");
+            MessageBox.Show("To be implemented!");
         }
     }
 }

@@ -41,19 +41,21 @@ namespace GraphicEditor
                 dataGridMedicate.ItemsSource = medications;
                 return;
             }
-           /* 
-            * TO BE IMPLEMENTED 
-            medications = Services.getService().medicationService.GetAllMedicationsById(textBoxSearch.ToLower().Trim());
-            if (medications.Count != 0)
+            int id;
+            if (Int32.TryParse(textBoxSearch, out id))
             {
-                dataGridMedicate.ItemsSource = medications;
-                return;
+                medications = Services.getService().medicationService.GetAllMedicationsById(id);
+                if (medications.Count != 0)
+                {
+                    dataGridMedicate.ItemsSource = medications;
+                    return;
+                }
             }
-            */
             MessageBox.Show("No results found!");
         }
         private void buttonShowOnMap(object sender, RoutedEventArgs e)
         {
+            Medication medication = (Medication)dataGridMedicate.SelectedItem;
             MessageBox.Show("To be implemented!");
         }
     }

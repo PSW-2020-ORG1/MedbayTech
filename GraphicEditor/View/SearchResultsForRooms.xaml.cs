@@ -44,13 +44,13 @@ namespace GraphicEditor
                 dataGridRoom.ItemsSource = rooms;
                 return;
             }
-            MessageBox.Show("Nema rezultata za unetu pretragu!");
+            MessageBox.Show("No results found!");
         }
 
         private void buttonShowOnMap(object sender, RoutedEventArgs e)
         {
             Room room = (Room)dataGridRoom.SelectedItem;
-            MessageBox.Show("Treba da se implementira!");
+            MessageBox.Show("To be implemented!");
         }
     }
 }
