@@ -23,5 +23,8 @@ namespace Backend.Reports.Controller
         public IEnumerable<MedicationUsageReport> GetForSpecificPeriod(Period period) =>
             medicationUsageReportService.GetForSpecificPeriod(period);
 
+        public void GenerateMedicationUsageReport(Period period) =>
+            medicationUsageReportService.GenerateMedicationUsageReport(period);
+
     }
 }
