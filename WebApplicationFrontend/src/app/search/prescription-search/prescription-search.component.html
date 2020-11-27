@@ -20,7 +20,6 @@
             <mat-select formControlName="selectedOption">
                 <mat-option value="Search by medicine">Search by medicine</mat-option>
                 <mat-option value="Search by hourly intake">Search by hourly intake</mat-option>
-                <mat-option value="Search by reservation period">Search by reservation period</mat-option>
             </mat-select>
         </mat-form-field>
     
@@ -29,7 +28,7 @@
         <span *ngIf="prescriptionForm.get('selectedOption').value === 'Search by medicine'">
             <mat-form-field appearance="fill" class="fix-margins">
                 <mat-label>Medicine</mat-label>
-                <input matInput [formControl]="med">
+                <input matInput [formControl]="med" formControlName="medField">
                 <mat-error *ngIf="med.hasError('pattern') && !med.hasError('required')">
                     Must contain letters only
                 </mat-error>
@@ -42,7 +41,7 @@
         <span *ngIf="prescriptionForm.get('selectedOption').value === 'Search by hourly intake'">
             <mat-form-field appearance="fill" class="fix-margins">
                 <mat-label>Hourly intake</mat-label>
-                <input matInput [formControl]="hour">
+                <input matInput [formControl]="hour" formControlName="hourField">
                 <mat-error *ngIf="hour.hasError('pattern') && !hour.hasError('required')">
                     Must be a number 0-9
                 </mat-error>
@@ -51,21 +50,6 @@
                 </mat-error>
             </mat-form-field>
         </span>  
-
-        <span *ngIf="prescriptionForm.get('selectedOption').value === 'Search by reservation period'">
-            <mat-form-field appearance="fill" class="fix-margins">
-                <mat-label>Enter a date range</mat-label>
-                <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-                <input matStartDate formControlName="start" placeholder="Start date">
-                <input matEndDate formControlName="end" placeholder="End date">
-                </mat-date-range-input>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
-            
-                <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
-                <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
-            </mat-form-field>
-        </span>
        
     </div>   
         
@@ -73,10 +57,10 @@
     
     <div formArrayName="duplicates" *ngFor="let creds of prescriptionForm.get('duplicates')['controls']; let i = index;">
     
-    <div formGroupName="{{i}}">
+    <div [formGroupName]="i">
     <mat-radio-group aria-label="Select an option" formControlName="radios2">
-    <mat-radio-button value="1">AND</mat-radio-button>
-    <mat-radio-button value="2">OR</mat-radio-button>
+    <mat-radio-button value="and">AND</mat-radio-button>
+    <mat-radio-button value="or">OR</mat-radio-button>
     </mat-radio-group>
 
 
@@ -86,7 +70,6 @@
         <mat-select formControlName="selectedOption2">
             <mat-option value="Search by medicine">Search by medicine</mat-option>
             <mat-option value="Search by hourly intake">Search by hourly intake</mat-option>
-            <mat-option value="Search by reservation period">Search by reservation period</mat-option>
         </mat-select>
     </mat-form-field>
 
@@ -95,7 +78,7 @@
     <span *ngIf="prescriptionForm.get('duplicates.0').value.selectedOption2 === 'Search by medicine'">
         <mat-form-field appearance="fill" class="fix-margins">
             <mat-label>Medicine</mat-label>
-            <input matInput [formControl]="med2">
+            <input matInput [formControl]="med2" formControlName="medField2">
             <mat-error *ngIf="med2.hasError('pattern') && !med2.hasError('required')">
                 Must contain letters only
             </mat-error>
@@ -108,7 +91,7 @@
     <span *ngIf="prescriptionForm.get('duplicates.0').value.selectedOption2 === 'Search by hourly intake'">
         <mat-form-field appearance="fill" class="fix-margins">
             <mat-label>Hourly intake</mat-label>
-            <input matInput [formControl]="hour2">
+            <input matInput [formControl]="hour2" formControlName="hourField2">
             <mat-error *ngIf="hour2.hasError('pattern') && !hour2.hasError('required')">
                 Must be a number 0-9
             </mat-error>
@@ -118,28 +101,13 @@
         </mat-form-field>
     </span>  
 
-    <span *ngIf="prescriptionForm.get('duplicates.0').value.selectedOption2 === 'Search by reservation period'">
-        <mat-form-field appearance="fill" class="fix-margins">
-            <mat-label>Enter a date range</mat-label>
-            <mat-date-range-input [formGroup]="range2" [rangePicker]="picker2">
-            <input matStartDate formControlName="start2" placeholder="Start date">
-            <input matEndDate formControlName="end2" placeholder="End date">
-            </mat-date-range-input>
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-date-range-picker #picker2></mat-date-range-picker>
-        
-            <mat-error *ngIf="range2.controls.start2.hasError('matStartDateInvalid')">Invalid start date</mat-error>
-            <mat-error *ngIf="range2.controls.end2.hasError('matEndDateInvalid')">Invalid end date</mat-error>
-        </mat-form-field>
-    </span>
-
     <span style="margin-left: 10px;">
     <button mat-raised-button color="warn" (click)="removeDuplicates(i)">Remove</button>
     </span>
     </div>
     </div>
 
-    <div>
+    <div *ngIf="prescriptionForm.get('duplicates')['length']<3">
         <button mat-raised-button color="primary" (click)="addDuplicates()">Add</button>
     </div>
 

@@ -19,5 +19,12 @@ namespace Backend.Examinations.Repository.MySqlRepository
         {
             return GetAll().Where(pres => pres.IsPrescription());
         }
+
+        public IEnumerable<Prescription> GetSearchedPresciptions()
+        {
+            return GetAll().Where(pres => pres.HourlyIntake == 8 && pres.Medication.Med.Equals("Brufen"));
+        }
+
+        
     }
 }

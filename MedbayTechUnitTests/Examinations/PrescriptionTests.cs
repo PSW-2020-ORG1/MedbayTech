@@ -9,7 +9,8 @@ using Xunit;
 
 using Backend.Users.Repository;
 using Model.Users;
-
+using Backend.Examinations.Repository;
+using Moq;
 
 namespace MedbayTechUnitTests.Examinations
 {
@@ -18,12 +19,13 @@ namespace MedbayTechUnitTests.Examinations
         [Fact]
         public void Get_all_prescriptions_integration()
         {
-            PrescriptionWebController controller = new PrescriptionWebController();
-            
+            throw new NotImplementedException(); 
+        }
 
-            List<Prescription> registeredPatient = controller.GetAllPrescriptions().ToList();
-
-            registeredPatient.ShouldNotBeEmpty();
+        [Fact]
+        public void Search_prescription_unit()
+        {
+            throw new NotImplementedException();
         }
 
         

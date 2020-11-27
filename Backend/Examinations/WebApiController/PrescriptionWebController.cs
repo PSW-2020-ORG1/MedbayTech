@@ -17,10 +17,5 @@ namespace Backend.Examinations.WebApiController
         {
             this.prescriptionWebService = new PrescriptionWebService(prescriptionSqlRepository);
         }
-
-        public IEnumerable<Prescription> GetAllPrescriptions()
-        {
-            return prescriptionWebService.GetAllPrescriptions();
-        }
     }
 }

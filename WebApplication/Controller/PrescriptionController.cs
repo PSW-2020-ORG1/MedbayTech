@@ -22,12 +22,6 @@ namespace WebApplication.Controller
             this.prescriptionWebController = new PrescriptionWebController();
         }
 
-        [HttpGet] // GET api/medicalRecord
-        public IActionResult GetAllPrescriptions()
-        {
-            List<Prescription> prescriptions = prescriptionWebController.GetAllPrescriptions().ToList();
-            List<PrescriptionDTO> prescriptionDTOs = PrescriptionAdapter.ListAllPrescriptionToPrescriptionDTO(prescriptions);
-            return Ok(prescriptionDTOs);
-        }
+       
     }
 }

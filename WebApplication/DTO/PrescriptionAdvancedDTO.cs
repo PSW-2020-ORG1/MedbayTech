@@ -10,15 +10,15 @@ namespace WebApplication.DTO
     {
         public int Id { get; set; }
         public string Medicine { get; set; }
+        public Boolean AndOr { get; set; }
         public int HourlyIntake { get; set; }
-        public Period  ReservationPeriod { get; set; }
-
-        public PrescriptionDTO(int id, string medicine, int hour, Period period)
+        
+        public PrescriptionDTO(int id, string medicine, int hour)
         {
             this.Id = id;
             this.Medicine = medicine;
             this.HourlyIntake = hour;
-            this.ReservationPeriod = period;
+           
         }
     }
 }

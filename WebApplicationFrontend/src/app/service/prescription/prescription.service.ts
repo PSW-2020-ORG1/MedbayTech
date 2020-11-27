@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Prescription } from 'src/app/model/prescriptionSearch';
 import { environment } from 'src/environments/environment';
 

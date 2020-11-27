@@ -8,5 +8,10 @@ namespace Backend.Examinations.Repository
     public interface IPrescriptionRepository
     {
         IEnumerable<Prescription> GetAllPrescriptions();
+
+        IEnumerable<Prescription> GetSearchedPresciptions();
+
+        
+      
     }
 }
