@@ -5,6 +5,14 @@ import { stringify } from 'querystring';
 import { Prescription } from 'src/app/model/prescriptionSearch';
 import { PrescriptionService } from 'src/app/service/prescription/prescription.service';
 
+const ELEMENT_DATA: Prescription[] = [
+  {Id: 1, FirstOperand: 'Brufen', SecondOperand: "8", AndOr:"AND"},
+  {Id: 2, FirstOperand: 'Paracetamol', SecondOperand: "2", AndOr:"AND"},
+  {Id: 3, FirstOperand: 'Amoksicilin', SecondOperand: "5", AndOr: "Li"},
+  {Id: 4, FirstOperand: 'Febricet', SecondOperand: "6", AndOr: "Be"},
+  
+
+];
 
 @Component({
   selector: 'app-prescription-search',
@@ -24,6 +32,8 @@ export class PrescriptionSearchComponent implements OnInit {
   SecondOperand: string;
   ReservationPeriodStart: Date;
   ReservationPeriodEnd: Date;
+  displayedColumns: string[] = ['medicine', 'hourly intake'];
+  dataSource = ELEMENT_DATA;
 
   options = [
     'Search by medicine',
@@ -47,22 +57,7 @@ export class PrescriptionSearchComponent implements OnInit {
     end2: new FormControl()
   });
 
-  med = new FormControl('',[Validators.required,
-    Validators.pattern("[A-Za-z]+")]
-  );
-
-  hour = new FormControl('',[Validators.required,
-    Validators.pattern("[0123456789]{1}")]
-  );
-
-  med2 = new FormControl('',[Validators.required,
-    Validators.pattern("[A-Za-z]+")]
-  );
-
-  hour2 = new FormControl('',[Validators.required,
-    Validators.pattern("[0123456789]{1}")]
-  );
-  
+ 
   constructor(private ps: PrescriptionService,private fb: FormBuilder) {
    
 
@@ -75,7 +70,7 @@ export class PrescriptionSearchComponent implements OnInit {
       medField: new FormControl('',[Validators.required,
         Validators.pattern("[A-Za-z]+")]),
       hourField: new FormControl('',[Validators.required,
-        Validators.pattern("[0123456789]{1}")]),
+        Validators.pattern("([1-9]|1[0-9]|2[0-4])")]),
       duplicates: this.fb.array([])
     });
 
@@ -140,7 +135,7 @@ export class PrescriptionSearchComponent implements OnInit {
       medField2: new FormControl('',[Validators.required,
         Validators.pattern("[A-Za-z]+")]),
       hourField2: new FormControl('',[Validators.required,
-        Validators.pattern("[0123456789]{1}")])
+        Validators.pattern("([1-9]|1[0-9]|2[0-4])")])
     }));
     console.log( this.prescriptionForm.get('duplicates.0').get('medField2'));
   }
