@@ -69,12 +69,12 @@ namespace Model.Users
 
         public string GetId()
         {
-            return Username;
+            return Id;
         }
 
         public void SetId(string id)
         {
-            Username = id;
+            Id = id;
         }
     }
 }
