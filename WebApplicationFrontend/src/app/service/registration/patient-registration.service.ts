@@ -16,5 +16,8 @@ export class PatientRegistrationService {
     return this.http.post(`${environment.baseUrl}/${environment.registration}/${environment.patientRegistration}`, patient, {responseType : 'text'})
   }
 
+  uploadImage(formData : FormData) {
+    return this.http.post("http://localhost:8080/api/registration/image", formData).subscribe();
+  }
  
 }
