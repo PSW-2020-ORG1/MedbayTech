@@ -55,13 +55,14 @@
 
         methods: {
             generate: function () {
-                
+
             },
         },
 
         mounted() {
-            
+
         },
+    }
 
 </script>
 

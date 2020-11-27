@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Pharmacy from '../views/Pharmacy.vue'
 import Messages from '../views/Messages.vue'
+import MedicationUsageReport from '../views/MedicationUsageReport.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
         path: '/messages',
         name: 'Messages',
         component: Messages,
+    },
+    {
+        path: '/medication_usage_report',
+        name: 'MedicationUsageReport',
+        component: MedicationUsageReport,
     },
 ]
 

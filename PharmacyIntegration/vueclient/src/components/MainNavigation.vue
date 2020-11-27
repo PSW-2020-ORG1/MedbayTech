@@ -7,6 +7,7 @@
 					<div class="navbar-item logo">
 						<ul>
 							<li><router-link :to="{name:'Messages'}">Messages</router-link></li>
+							<li><router-link :to="{name:'MedicationUsageReport'}">MedicationUsageReport</router-link></li>
 						</ul>
 					</div>
 					
