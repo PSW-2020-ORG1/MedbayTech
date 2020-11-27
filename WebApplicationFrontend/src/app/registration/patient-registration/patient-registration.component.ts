@@ -25,6 +25,8 @@ export class PatientRegistrationComponent implements OnInit {
   minDatePolicy : Date;
   maxDatePolicy : Date;
 
+  formData : FormData;
+
   name : string;
   surname : string;
   id : string;
@@ -113,20 +115,16 @@ export class PatientRegistrationComponent implements OnInit {
       res => {
         //this.createForm.reset();
         this.taostr.success(res);
+        this.service.uploadImage(this.formData);
       },
       error => {
         this.taostr.error("Patient already exists");
       }
     );
-
-    
-    const formData = new FormData();
-    formData.append('file', this.fileToUpload, this.fileToUpload.name);
-    this.http.post("http://localhost:8080/api/registration/patientRegistration", formData).subscribe();
-    
+     
   }
 
-  public uploadFile = (files) =>{
+  public uploadFile(files){
     if(files.length === 0)
       return;
 
@@ -134,7 +132,10 @@ export class PatientRegistrationComponent implements OnInit {
 
     this.fileToUpload = <File>files[0];
 
-    
+    this.formData = new FormData();
+    this.formData.append('file', this.fileToUpload, this.fileToUpload.name);
+    this.formData.append('id', this.createForm.value.id);
+    return this.formData;
   };
 
   createPatient() : PatientRegistration {
@@ -144,6 +145,7 @@ export class PatientRegistrationComponent implements OnInit {
     this.dateOfBirth = this.createForm.value.dateOfBirth;
     this.phone = this.createForm.value.phone;
     this.email = this.createForm.value.email;
+    this.username = this.createForm.value.username;
     this.password = this.createForm.value.password;
     this.confirmPassword = this.createForm.value.confirmPassword;
     this.profession = this.createForm.value.profession;

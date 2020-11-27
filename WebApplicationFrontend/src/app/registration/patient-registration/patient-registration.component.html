@@ -129,7 +129,7 @@
                 <div class="inputField">
                 
                         <input type="file" #file id="photo" name="photo" formControlName="photo" (change)="uploadFile(file.files)" style="display: none;">   
-                        <button mat-raised-button (click)="file.click()">Upload</button>
+                        <button type="button" mat-raised-button (click)="file.click()">Upload</button>
                 </div>
             </div>
 
