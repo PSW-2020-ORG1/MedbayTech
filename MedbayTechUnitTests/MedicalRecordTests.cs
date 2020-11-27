@@ -64,12 +64,12 @@ namespace MedbayTechUnitTests
 
             return stubRepository.Object;
         }
-        
+
         private static Patient CreatePatient()
         {
             City city = new City(1, "Novi Sad", new State(1, "Srbija"));
             Address address = new Address(1, "Radnicka", 2, 4, 1, city);
-            InsurancePolicy insurancePolicy = new InsurancePolicy("001", "Dunav Osiguranje", new Backend.Utils.Period(new DateTime(2015, 1, 1), new DateTime(2025, 1, 1)));
+            InsurancePolicy insurancePolicy = new InsurancePolicy{Id = "001", Company = "Dunav Osiguranje",  StartTime = new DateTime(2015, 1, 1), EndTime = new DateTime(2025, 1, 1)};
 
             Patient patient = new Patient("Marko", "Markovic", new DateTime(1975, 6, 9), "2406978890046", "marko@gmail.com", "marko12", "password",
                 EducationLevel.bachelor, Gender.MALE, "0123456", "vodoinstalater", city, address, insurancePolicy, false, ".");
@@ -81,7 +81,7 @@ namespace MedbayTechUnitTests
         {
             City city = new City(1, "Novi Sad", new State(1, "Srbija"));
             Address address = new Address(1, "Radnicka", 2, 4, 1, city);
-            InsurancePolicy insurancePolicy = new InsurancePolicy("001", "Dunav Osiguranje", new Backend.Utils.Period(new DateTime(2015, 1, 1), new DateTime(2025, 1, 1)));
+            InsurancePolicy insurancePolicy = new InsurancePolicy { Id = "001", Company = "Company1", EndTime = new DateTime(), StartTime = new DateTime() };
 
             Patient patient = new Patient("Marko", "Markovic", new DateTime(1975, 6, 9), "001", "marko@gmail.com", "marko12", "password",
                 EducationLevel.bachelor, Gender.MALE, "0123456", "vodoinstalater", city, address, insurancePolicy, false, ".");

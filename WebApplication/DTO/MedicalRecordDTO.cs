@@ -27,8 +27,8 @@ namespace WebApplication.DTO
         public String Email { get; set; }
         public String InsurancePolicyCompany { get; set; }
         public Period InsurancePolicyPeriod { get; set; }
-    //    public DateTime InsurancePolicyStart { get; set; }
-    //    public DateTime InsurancePolicyEnd { get; set; }
+        public DateTime InsurancePolicyStart { get; set; }
+        public DateTime InsurancePolicyEnd { get; set; }
         public String PatientCondition { get; set; }
         public List<String> Allergies { get; set; }
         public List<String> Vaccines { get; set; }
@@ -40,7 +40,7 @@ namespace WebApplication.DTO
         public List<String> TherapiesMedication { get; set; }
 
         public MedicalRecordDTO() { }
-        public MedicalRecordDTO(string patientId, string name, string surname, string gender, DateTime dateOfBirth, string bloodType, string city, string state, string street, int number, int apartment, string phone, string email, string insurancePolicyCompany, Period insurancePolicyPeriod,// DateTime insurancePolicyStart, DateTime insurancePolicyEnd, 
+        public MedicalRecordDTO(string patientId, string name, string surname, string gender, DateTime dateOfBirth, string bloodType, string city, string state, string street, int number, int apartment, string phone, string email, string insurancePolicyCompany, DateTime insurancePolicyStart, DateTime insurancePolicyEnd, 
             string patientCondition, List<string> allergies, List<string> vaccines, List<string> illnesHistoryName, List<string> illnesHistorySymptoms, List<string> familyIllnessHistoriesRelative, List<string> familyIllnesHistoriesDiagnosis, List<int> therapiesHourConsumption, List<string> therapiesMedication)
         {
             PatientId = patientId;
@@ -57,9 +57,8 @@ namespace WebApplication.DTO
             Phone = phone;
             Email = email;
             InsurancePolicyCompany = insurancePolicyCompany;
-            InsurancePolicyPeriod = insurancePolicyPeriod;
-         //   InsurancePolicyStart = insurancePolicyStart;
-         //   InsurancePolicyEnd = insurancePolicyEnd;
+            InsurancePolicyStart = insurancePolicyStart;
+            InsurancePolicyEnd = insurancePolicyEnd;
             PatientCondition = patientCondition;
             Allergies = allergies;
             Vaccines = vaccines;

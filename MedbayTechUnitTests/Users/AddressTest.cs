@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xunit;
-using ZdravoKorporacija.Model.Users;
 using Shouldly;
 
 namespace MedbayTechUnitTests.Users

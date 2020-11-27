@@ -29,9 +29,8 @@ namespace WebApplication.Adapters
             string phone = medicalRecord.Patient.Phone;
             string email = medicalRecord.Patient.Email;
             string insurancePolicyCompany = medicalRecord.Patient.InsurancePolicy.Company;
-            Period insurancePolicyPeriod = medicalRecord.Patient.InsurancePolicy.Period;
-        //    DateTime insurancePolicyStart = medicalRecord.Patient.InsurancePolicy.Period.StartTime;
-        //    DateTime insurancePolicyEnd = medicalRecord.Patient.InsurancePolicy.Period.EndTime;
+            DateTime insurancePolicyStart = medicalRecord.Patient.InsurancePolicy.StartTime;
+            DateTime insurancePolicyEnd = medicalRecord.Patient.InsurancePolicy.EndTime;
             string patientCondition = medicalRecord.CurrHealthState.ToString();
             
             List<String> allergies = new List<String>();
@@ -97,7 +96,7 @@ namespace WebApplication.Adapters
             }
 
             return new MedicalRecordDTO(patientId, name, surname, gender, dateOfBirth, bloodType, city, state, street, number, apartment,
-                phone, email, insurancePolicyCompany, insurancePolicyPeriod, // insurancePolicyStart, insurancePolicyEnd,
+                phone, email, insurancePolicyCompany, insurancePolicyStart, insurancePolicyEnd,
                 patientCondition, allergies, vaccines,
                 illnessHistoryNames, illnessHistorySymptoms, familyIllnessHistoriesRelatives, familyIllnessHistoriesDiagnoses, therapiesHourConsumption,
                 therapiesMedication);

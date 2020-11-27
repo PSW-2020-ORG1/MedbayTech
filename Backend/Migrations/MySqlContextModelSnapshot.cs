@@ -1497,7 +1497,9 @@ namespace Backend.Migrations
                             ProfileImage = ".",
                             Surname = "Petrovic",
                             Username = "pera",
+                            Blocked = false,
                             ChosenDoctorId = "2406978890047",
+                            Confirmed = false,
                             IsGuestAccount = false
                         });
                 });

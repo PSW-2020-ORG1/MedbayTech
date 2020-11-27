@@ -70,6 +70,7 @@ namespace WebApplication.Controller
         [Consumes("multipart/form-data")]
         public IActionResult Image([FromForm] PostImageDTO dto)
         {
+            if (dto.Id == null) return BadRequest("Please select image");
             if (dto.Id.Equals("null")) return BadRequest("null");
             var file = dto.File;
             var folderName1 = Path.Combine("Resources", "Images");
