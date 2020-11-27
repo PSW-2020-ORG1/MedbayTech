@@ -7,4 +7,4 @@ Software Design class project
 | Ignjatijević Aleksandar | Jakovljević Jovana | Farkaš Kristian        | Ivić Mihailo   |
 | Vlajkov Jelena          | Tamindžija Nemanja | Župunski Radovan       | Čivčić Ognjen  |
 | Arađanin Stefan         | Antonić Nikola     | Pekez Marko            | Vujić Bojan    |
-| Vojvodić Danica         | Pjevalica Bojana   | Ivošević Jovan         | Marković Filip |
+| Vojvodić Danica         | Pjevalica Bojana   | Ivošević Jovan         | Marković Filip | 
