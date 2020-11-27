@@ -5,7 +5,9 @@
 				<div class="nav-container" :class="toggleNavClass()">
 					<!-- NOTE(Jovan): Logo -->
 					<div class="navbar-item logo">
-						MIA
+						<ul>
+							<li><router-link :to="{name:'Messages'}">Messages</router-link></li>
+						</ul>
 					</div>
 					
 				</div>
