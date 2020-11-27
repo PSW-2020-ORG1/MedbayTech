@@ -25,6 +25,11 @@ namespace Backend.Reports.Service
             return medicationUsageReportRepository.GetAll().ToList().FindAll(m => DateTime.Compare(m.Period.StartTime, period.StartTime) >= 0 &&
                 DateTime.Compare(m.Period.EndTime, period.EndTime) <= 0);
         }
+
+        public void GenerateMedicationUsageReport(Period period) 
+        { 
+            //
+        }
             
     }
 }
