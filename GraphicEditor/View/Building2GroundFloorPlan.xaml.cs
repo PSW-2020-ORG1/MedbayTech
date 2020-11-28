@@ -34,7 +34,62 @@ namespace GraphicEditor
             string arrowUp = new_path + "/View/arrowUp.png";
             imageArrowUp.Source = new BitmapImage(new Uri(@arrowUp, UriKind.Absolute));
         }
+        public void Building2Objects(object sender, RoutedEventArgs e)
+        {
+            List<Rectangle> rectangles = new List<Rectangle>();
 
+            string textFile = "MapData/Hospital2GroundFloor.txt";
+            MapObject o = new MapObject();
+            rectangles = o.Window_Loaded(textFile, canvasBuild2fl1);
+            foreach (Rectangle rectangle in rectangles)
+            {
+                if (rectangle.Name.Equals("PatientRoom"))
+                {
+                    rectangle.MouseDown += AdditionalInformationPatientRoom;
+                    rectangle.MouseEnter += PatientRoom_MouseEnter;
+                    rectangle.MouseLeave += PatientRoom_MouseLeave;
+                }
+                else if (rectangle.Name.Equals("ExaminationRoom"))
+                {
+                    rectangle.MouseDown += AdditionalInformationExaminationRoom;
+                    rectangle.MouseEnter += ExaminationRoom_MouseEnter;
+                    rectangle.MouseLeave += ExaminationRoom_MouseLeave;
+                }
+                else if (rectangle.Name.Equals("OperatingRoom"))
+                {
+                    rectangle.MouseDown += AdditionalInformationOperatingRoom;
+                    rectangle.MouseEnter += OperatingRoom_MouseEnter;
+                    rectangle.MouseLeave += OperatingRoom_MouseLeave;
+                }
+                else if (rectangle.Name.Equals("AuxiliaryRoom"))
+                {
+                    rectangle.MouseDown += AdditionalInformationAuxiliaryRoom;
+                    rectangle.MouseEnter += AuxiliaryRoom_MouseEnter;
+                    rectangle.MouseLeave += AuxiliaryRoom_MouseLeave;
+                }
+                else if (rectangle.Name.Equals("StorageRoom"))
+                {
+                    rectangle.MouseDown += AdditionalInformationAuxiliaryRoom;
+                    rectangle.MouseEnter += AuxiliaryRoom_MouseEnter;
+                    rectangle.MouseLeave += AuxiliaryRoom_MouseLeave;
+                }
+
+                if (rectangle.Uid.Equals(SearchResultsForRooms.Id))
+                {
+                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#ff1f1f");
+                    rectangle.StrokeThickness = 5;
+                    SearchResultsForRooms.Id = "0";
+                }
+
+                if (rectangle.Uid.Equals(SearchResultsForMedicines.Id))
+                {
+                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#87108b");
+                    rectangle.StrokeThickness = 5;
+                    rectangle.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#05e1ff");
+                    SearchResultsForMedicines.Id = "0";
+                }
+            }
+        }
         private void mouseClickArrowUp(object sender, MouseButtonEventArgs e)
         {
             page.MainFrame.Content = new Building2FirstFloorPlan(page);
