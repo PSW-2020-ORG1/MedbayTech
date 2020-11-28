@@ -32,6 +32,7 @@ namespace WebApplication.Adapters
             DateTime insurancePolicyStart = medicalRecord.Patient.InsurancePolicy.StartTime;
             DateTime insurancePolicyEnd = medicalRecord.Patient.InsurancePolicy.EndTime;
             string patientCondition = medicalRecord.CurrHealthState.ToString();
+            string image = medicalRecord.Patient.ProfileImage;
             
             List<String> allergies = new List<String>();
             foreach (Allergens allergen in medicalRecord.Allergies)
@@ -99,7 +100,7 @@ namespace WebApplication.Adapters
                 phone, email, insurancePolicyCompany, insurancePolicyStart, insurancePolicyEnd,
                 patientCondition, allergies, vaccines,
                 illnessHistoryNames, illnessHistorySymptoms, familyIllnessHistoriesRelatives, familyIllnessHistoriesDiagnoses, therapiesHourConsumption,
-                therapiesMedication);
+                therapiesMedication, image);
             
         }
     }
