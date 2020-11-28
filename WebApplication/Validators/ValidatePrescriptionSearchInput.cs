@@ -10,8 +10,8 @@ namespace WebApplication.Validators
     {
         public static void Validate(PrescriptionAdvancedDTO dto)
         {
-            IsMedicationValid(dto.Medication);
-            IsHourlyIntakeValid(dto.HourlyIntake);
+            //IsMedicationValid(dto.Medication);
+            //IsHourlyIntakeValid(dto.HourlyIntake);
         }
     }
 }
