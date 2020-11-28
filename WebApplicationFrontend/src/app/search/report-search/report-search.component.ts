@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Report } from 'src/app/model/reportSearch';
+
+const ELEMENT_DATA: Report[] = [
+  {doctorName: 'Jovan', doctorSurname: 'Jovanovic', dateOfExamination: '5/31/2020', allergens: 'Prasina', diagnosis: 'Povisena temperatura i kasalj', andOr: 'AND'},
+  {doctorName: 'Bogdan', doctorSurname: 'Bogdanovic', dateOfExamination: '5/31/2020', allergens: 'Polen', diagnosis: 'Povisena temperatura i kasalj', andOr: 'AND'},
+  {doctorName: 'Stefan', doctorSurname: 'Stefanovic', dateOfExamination: '5/31/2020', allergens: 'Ambrozija', diagnosis: 'Povisena temperatura i kasalj', andOr: 'AND'},
+  {doctorName: 'Petar', doctorSurname: 'Petrovic', dateOfExamination: '5/31/2020', allergens: '', diagnosis: 'Povisena temperatura i kasalj', andOr: 'AND'},
+  
+
+];
 
 @Component({
   selector: 'app-report-search',
@@ -9,27 +19,27 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 export class ReportSearchComponent implements OnInit {
 
   reportForm: FormGroup;
+  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['doctorName', 'doctorSurname', 'diagnosis', 'allergens', 'date'];
 
   options = [
-    'Search by doctor',
+    'Search by doctor name',
+    'Search by doctor surname',
     'Search by diagnosis',
     'Search by date of examination',
     'Search by allergens'
   ];
 
   options2 = [
-    'Search by doctor',
+    'Search by doctor name',
+    'Search by doctor surname',
     'Search by diagnosis',
     'Search by date of examination',
     'Search by type of examination'
   ];
 
 
-  selectedOption: string;
-  selectedOption2: string;
-  selectedOption3: string;
-  selectedOption4: string;
-
+  
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
@@ -47,7 +57,9 @@ export class ReportSearchComponent implements OnInit {
     this.reportForm = this.fb.group({
       selectedOption: [this.options[0]],
       radios: [],
-      doc: ['',[Validators.required,
+      docName: ['',[Validators.required,
+        Validators.pattern("[A-Za-z]+")]],
+      docSurname: ['', [Validators.required,
         Validators.pattern("[A-Za-z]+")]],
       diag: ['', [Validators.required,
         Validators.pattern("[A-Za-z]+")]],
@@ -63,7 +75,9 @@ export class ReportSearchComponent implements OnInit {
     dups.push(this.fb.group({
       selectedOption2: [this.options2[0]],
       radios2: [],
-      doc2: ['', [Validators.required,
+      docName2: ['', [Validators.required,
+        Validators.pattern("[A-Za-z]+")]],
+      docSurname2: ['', [Validators.required,
         Validators.pattern("[A-Za-z]+")]],
       diag2: ['', [Validators.required,
         Validators.pattern("[A-Za-z]+")]],
