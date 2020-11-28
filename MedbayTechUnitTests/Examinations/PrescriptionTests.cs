@@ -17,7 +17,7 @@ namespace MedbayTechUnitTests.Examinations
     public class PrescriptionTests
     {
         [Fact]
-        public void Get_all_prescriptions_integration()
+        public void Search_advanced_prescriptions_integration()
         {
             throw new NotImplementedException(); 
         }
