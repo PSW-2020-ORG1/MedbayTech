@@ -79,6 +79,13 @@ namespace GraphicEditor.View.Building1
                     rectangle.StrokeThickness = 5;
                     SearchResultsForRooms.Id = "0";
                 }
+
+                if (rectangle.Uid.Equals(SearchResultsForMedicines.Id))
+                {
+                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#05e1ff");
+                    rectangle.StrokeThickness = 5;
+                    SearchResultsForMedicines.Id = "0";
+                }
             }
         }
         private void mouseClickArrowDown(object sender, RoutedEventArgs e)
