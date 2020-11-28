@@ -1474,7 +1474,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             ExaminationSurgeryId = 1,
                             Type = 0,
                             EndDate = new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -1486,7 +1486,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             ExaminationSurgeryId = 1,
                             Type = 0,
                             EndDate = new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),

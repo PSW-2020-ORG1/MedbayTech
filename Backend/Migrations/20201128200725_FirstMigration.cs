@@ -1239,8 +1239,8 @@ namespace Backend.Migrations
                 columns: new[] { "Id", "AdditionalNotes", "Date", "Discriminator", "ExaminationSurgeryId", "Type", "EndDate", "HourlyIntake", "MedicationId", "Reserved", "StartDate" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Local), "Prescription", 1, 0, new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, null, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Local), "Prescription", 1, 0, new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, null, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Local), "Prescription", 1, 0, new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, null, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Local), "Prescription", 1, 0, new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(

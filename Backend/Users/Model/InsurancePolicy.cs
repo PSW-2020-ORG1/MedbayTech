@@ -22,10 +22,12 @@ namespace Model.Users
         public DateTime EndTime { get; set; }
 
         public InsurancePolicy() { }
-        public InsurancePolicy(string id, string company)
+        public InsurancePolicy(string id, string company, DateTime startDate, DateTime endDate)
         {
             Id = id;
             Company = company;
+            StartTime = startDate;
+            EndTime = endDate;
         }
 
         public string GetId()

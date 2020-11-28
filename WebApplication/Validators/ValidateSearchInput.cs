@@ -11,29 +11,26 @@ namespace WebApplication.Validators
     {
         public static void IsDoctorNameValid(string name)
         {
-            string namePattern = "^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ]*$";
-            Regex regex = new Regex(namePattern);
-
-            if (!regex.IsMatch(name))
-                throw new ValidationException("Enter name in valid format");
+            if (name == null)
+            {
+                throw new ValidationException("Name cannot be null");
+            }
         }
 
         public static void IsTypeValid(string type)
         {
-            string typePattern = "^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ]*$";
-            Regex regex = new Regex(typePattern);
-
-            if (!regex.IsMatch(type))
-                throw new ValidationException("Enter type in valid format");
+            if (type == null)
+            {
+                throw new ValidationException("Type cannot be null");
+            }
         }
 
         public static void IsMedicineValid(string medicine)
         {
-            string medicinePattern = "^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ]*$";
-            Regex regex = new Regex(medicinePattern);
-
-            if (!regex.IsMatch(medicine))
-                throw new ValidationException("Enter medicine in valid format");
+            if (medicine == null)
+            {
+                throw new ValidationException("Medicine cannot be null");
+            }
         }
 
         public static void IsHourlyIntakeValid(int hourlyIntake)

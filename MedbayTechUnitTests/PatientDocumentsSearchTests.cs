@@ -96,7 +96,7 @@ namespace MedbayTechUnitTests
         {
             City city = new City(1, "Novi Sad", new State(1, "Srbija"));
             Address address = new Address(1, "Radnicka", 2, 4, 1, city);
-            InsurancePolicy insurancePolicy = new InsurancePolicy("001", "Dunav Osiguranje", new Backend.Utils.Period(new DateTime(2015, 1, 1), new DateTime(2025, 1, 1)));
+            InsurancePolicy insurancePolicy = new InsurancePolicy("001", "Dunav Osiguranje", new DateTime(2015, 1, 1), new DateTime(2025, 1, 1));
             Department department = new Department(1, "dep1", 2, new Hospital(1, ".", "Bolnica", address));
             Room room = new Room(1, 1, RoomType.Examr, department);
             Doctor doctor = new Doctor("Petar", "Petrovic", new DateTime(1980, 1, 1), "001", "pera@gmail.com", "pera", "01234", "sifra", EducationLevel.bachelor, Gender.MALE,
