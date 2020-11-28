@@ -1,8 +1,5 @@
 ﻿using PharmacyIntegration.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PharmacyIntegration.Service
 {
@@ -12,6 +9,6 @@ namespace PharmacyIntegration.Service
         public bool Remove(Pharmacy pharmacy);
         public Pharmacy Update(Pharmacy pharmacy);
         public Pharmacy Get(string id);
-        public List<Pharmacy> GetAll();
+        public IEnumerable<Pharmacy> GetAll();
     }
 }

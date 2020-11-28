@@ -19,32 +19,33 @@ namespace PharmacyIntegration.Service
             this._context = context;
         }
 
-        public Pharmacy Get(string id)
-        {
-            return _context.Pharmacies.ToList().Find(p => p.Id.Equals(id));
-        }
-
         public Pharmacy Add(Pharmacy pharmacy)
         {
+            if(Get(pharmacy.Id) == null)
+            {
+                return null;
+            }
             _context.Pharmacies.Add(pharmacy);
+            _context.SaveChanges();
             return pharmacy;
-        }
-
-        public List<Pharmacy> GetAll()
-        {
-            return _context.Pharmacies.ToList();
         }
 
         public bool Remove(Pharmacy pharmacy)
         {
             _context.Pharmacies.Remove(pharmacy);
+            _context.SaveChanges();
             return true;
         }
 
         public Pharmacy Update(Pharmacy pharmacy)
         {
             _context.Pharmacies.Update(pharmacy);
+            _context.SaveChanges();
             return pharmacy;
         }
+
+        public Pharmacy Get(string id) => _context.Pharmacies.ToList().Find(p => p.Id.Equals(id));
+        public IEnumerable<Pharmacy> GetAll() => _context.Pharmacies.ToList();
+
     }
 }

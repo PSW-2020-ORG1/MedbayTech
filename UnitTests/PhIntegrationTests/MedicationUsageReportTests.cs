@@ -21,7 +21,7 @@ namespace UnitTests.PhIntegrationTests
         [MemberData(nameof(Periods))]
         public void Analyze_reports_in_specific_period(Period period, bool isEmpty)
         {
-            MedicationUsageReportService medicationUsageReportService = new MedicationUsageReportService(CreateStubRepository());
+            MedicationUsageReportService medicationUsageReportService = (MedicationUsageReportService)CreateStubService().Object;
 
             List<MedicationUsageReport> reports = (List<MedicationUsageReport>)medicationUsageReportService.GetForSpecificPeriod(period);
 
@@ -32,7 +32,7 @@ namespace UnitTests.PhIntegrationTests
         [MemberData(nameof(UsagePeriods))]
         public void Analyze_usage_in_specific_period(Period period, bool isEmpty)
         {
-            MedicationUsageReportService medicationUsageReportService = new MedicationUsageReportService(CreateStubRepository());
+            MedicationUsageReportService medicationUsageReportService = (MedicationUsageReportService)CreateStubService().Object;
 
             List<MedicationUsageReport> reports = (List<MedicationUsageReport>)medicationUsageReportService.GetForSpecificPeriod(period);
 
@@ -61,42 +61,42 @@ namespace UnitTests.PhIntegrationTests
             return retVal;
         }
 
-        private static IMedicationUsageReportRepository CreateStubRepository()
+        private static Mock<IMedicationUsageReportService> CreateStubService()
         {
-            var stubRepository = new Mock<IMedicationUsageReportRepository>();
+            var stubService = new Mock<IMedicationUsageReportService>();
             var medicationUsageReports = new List<MedicationUsageReport>();
 
-            var medicationUsageReport1 = new MedicationUsageReport(810910, new Period(new DateTime(2020, 8, 10), new DateTime(2020, 9, 10)));
-            medicationUsageReport1.Medications.Add(new Medication("Brufen", "Galenika", new MedicationCategory()));
-            medicationUsageReport1.Medications.Add(new Medication("Aspirin", "Bayern", new MedicationCategory()));
-            medicationUsageReport1.Medications.Add(new Medication("Bromazepam", "Hemofarm", new MedicationCategory()));
+            var medicationUsageReport1 = new MedicationUsageReport(810910, new DateTime(2020, 8, 10), new DateTime(2020, 9, 10));
+            medicationUsageReport1.MedicationUsages.Add(new MedicationUsage(1, 1, new Medication("Brufen", "Galenika", new MedicationCategory())));
+            medicationUsageReport1.MedicationUsages.Add(new MedicationUsage(2, 1, new Medication("Aspirin", "Bayern", new MedicationCategory())));
+            medicationUsageReport1.MedicationUsages.Add(new MedicationUsage(3, 1, new Medication("Bromazepam", "Hemofarm", new MedicationCategory())));
 
-            var medicationUsageReport2 = new MedicationUsageReport(71185, new Period(new DateTime(2020, 7, 11), new DateTime(2020, 8, 5)));
-            medicationUsageReport2.Medications.Add(new Medication("Bensedin", "Galenika", new MedicationCategory()));
-            medicationUsageReport2.Medications.Add(new Medication("Xanax", "Bayern", new MedicationCategory()));
+            var medicationUsageReport2 = new MedicationUsageReport(71185,new DateTime(2020, 7, 11), new DateTime(2020, 8, 5));
+            medicationUsageReport2.MedicationUsages.Add(new MedicationUsage(4, 5, new Medication("Bensedin", "Galenika", new MedicationCategory())));
+            medicationUsageReport2.MedicationUsages.Add(new MedicationUsage(5, 5, new Medication("Xanax", "Bayern", new MedicationCategory())));
 
-            var medicationUsageReport3 = new MedicationUsageReport(125212, new Period(new DateTime(2020, 1, 25), new DateTime(2020, 2, 12)));
-            medicationUsageReport3.Medications.Add(new Medication("Tylol hot", "Richter Gedeon", new MedicationCategory()));
-            medicationUsageReport3.Medications.Add(new Medication("Panadol", "Bayern", new MedicationCategory()));
-            medicationUsageReport3.Medications.Add(new Medication("Paracetamol", "Hemofarm", new MedicationCategory()));
-            medicationUsageReport3.Medications.Add(new Medication("Pressing", "Hemofarm", new MedicationCategory()));
+            var medicationUsageReport3 = new MedicationUsageReport(125212, new DateTime(2020, 1, 25), new DateTime(2020, 2, 12));
+            medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(6, 3, new Medication("Tylol hot", "Richter Gedeon", new MedicationCategory())));
+            medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(7, 3, new Medication("Panadol", "Bayern", new MedicationCategory())));
+            medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(8, 3, new Medication("Paracetamol", "Hemofarm", new MedicationCategory())));
+            medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(9, 3, new Medication("Pressing", "Hemofarm", new MedicationCategory())));
 
-            var medicationUsageReport4 = new MedicationUsageReport(39430, new Period(new DateTime(2020, 3, 9), new DateTime(2020, 4, 30)));
+            var medicationUsageReport4 = new MedicationUsageReport(39430, new DateTime(2020, 3, 9), new DateTime(2020, 4, 30));
 
             medicationUsageReports.Add(medicationUsageReport1);
             medicationUsageReports.Add(medicationUsageReport2);
             medicationUsageReports.Add(medicationUsageReport3);
             medicationUsageReports.Add(medicationUsageReport4);
 
-            stubRepository.Setup(m => m.GetAll()).Returns(medicationUsageReports);
-            return stubRepository.Object;
+            stubService.Setup(m => m.GetAll()).Returns(medicationUsageReports);
+            return stubService;
         }
 
         public static bool isEmptyUsage(List<MedicationUsageReport> reports)
         {
             foreach (MedicationUsageReport report in reports)
             {
-                if (report.Medications.IsNullOrEmpty())
+                if (report.MedicationUsages.IsNullOrEmpty())
                     return true;
             }
             return false;

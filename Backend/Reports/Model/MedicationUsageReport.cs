@@ -4,6 +4,7 @@ using Backend.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Backend.Reports.Model
@@ -12,14 +13,21 @@ namespace Backend.Reports.Model
     {
         [Key]
         public int Id { get; set; }
-        public Period Period { get; set; }
-        public List<Medication> Medications { get; set; }
+        // NOTE(Jovan): Not working with entity framework, fix!
+        //[NotMapped]
+        // public Period Period { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime? From { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime? Until { get; set; }
+        public virtual List<MedicationUsage> MedicationUsages { get; set; }
         public MedicationUsageReport(){}
-        public MedicationUsageReport(int id, Period period)
+        public MedicationUsageReport(int id, DateTime from, DateTime until)
         {
             Id = id;
-            Period = period;
-            Medications = new List<Medication>();
+            From = from;
+            Until = until;
+            MedicationUsages = new List<MedicationUsage>();
         }
 
         public int GetId()

@@ -16,6 +16,7 @@ using Model.Rooms;
 using System.Linq;
 using Backend.Medications.Model;
 using PharmacyIntegration.Model;
+using Backend.Reports.Model;
 
 namespace Model
 {
@@ -28,6 +29,7 @@ namespace Model
         private string mySqlDatabaseName = "newdb";
         private string mySqlHostAddress = "localhost";
 
+        public DbSet<MedicationUsageReport> MedicationUsageReports { get; set; }
         public DbSet<Pharmacy> Pharmacies { get; set; }
         public DbSet<PharmacyNotification> PharmacyNotifications { get; set; }
         public DbSet<WorkDay> WorkDays { get; set; }
