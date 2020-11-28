@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Adapters;
 using WebApplication.DTO;
+using WebApplication.Validators;
 
 namespace WebApplication.Controller
 {
@@ -25,6 +26,15 @@ namespace WebApplication.Controller
         [HttpPost]
         public IActionResult GetSearchedPrescription(PrescriptionSearchDTO dto)
         {
+            try
+            {
+                ValidatePrescriptionsSearch.Validate(dto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
             List<Prescription> prescriptions = controller.GetSearchedReports(dto.Medicine, dto.HourlyIntake, dto.StartDate, dto.EndDate);
             List<PrescriptionDTO> prescriptionDTOs = PrescriptionsAdapter.ListPrescriptionToPrescriptionDTO(prescriptions);
 
