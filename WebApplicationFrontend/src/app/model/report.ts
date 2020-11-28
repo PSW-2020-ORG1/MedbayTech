@@ -1,4 +1,3 @@
-import { runInThisContext } from 'vm';
 
 export class ReportSearch {
     public doctor : string;

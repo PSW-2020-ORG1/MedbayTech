@@ -10,7 +10,7 @@ export const environment = {
   updateFeedbackStatus: 'updateFeedbackStatus',
   createFeedback : 'createFeedback',
   medicalRecord : 'api/medicalRecord',
-  prescriptionSimpleSearch : 'prescriptionSimpleSearch',
+  prescriptionSimpleSearch : 'api/prescription',
   reportSimpleSearch : 'api/report'
 };
 

@@ -162,10 +162,5 @@ namespace Backend.Examinations.Repository
             HospitalTreatment treatment = (HospitalTreatment)entity;
             treatment.Department = departmentRepository.GetObject(treatment.Department.Id);
         }
-
-        IEnumerable<Prescription> ITreatmentRepository.GetSearchedPrescription(string medicationName, int hourlyIntake, DateTime startDate, DateTime endDate)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

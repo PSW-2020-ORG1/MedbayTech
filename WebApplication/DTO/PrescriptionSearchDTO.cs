@@ -5,17 +5,19 @@ using System.Threading.Tasks;
 
 namespace WebApplication.DTO
 {
-    public class PrescriptionDTO
+    public class PrescriptionSearchDTO
     {
         public String Medicine { get; set; }
         public int HourlyIntake { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
-        public PrescriptionDTO(string medication, int hourlyIntake, DateTime date)
+        public PrescriptionSearchDTO(string medication, int hourlyIntake, DateTime date)
         {
             Medicine = medication;
             HourlyIntake = hourlyIntake;
-            Date = date;
+            StartDate = date;
+            EndDate = date;
         }
     }
 }

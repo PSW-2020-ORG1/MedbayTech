@@ -35,7 +35,6 @@ export class ReportSimpleSearchComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('cao');
     this.rs.getSimpleSearchResults(this.createSearch()).subscribe(
         data => {
           this.allReports = data;

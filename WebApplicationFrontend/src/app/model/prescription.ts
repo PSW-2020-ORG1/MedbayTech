@@ -1,12 +1,26 @@
 export class Prescription{
-    public Medicine: string;
-    public HourlyIntake: string;
-    public Date : Date;
+    public medicine: string;
+    public hourlyIntake: number;
+    public date : Date;
 
-    constructor(medicine:string, hour: string, date : Date) {
-        this.Medicine = medicine;
-        this.HourlyIntake = hour;
-        this.Date = date;
+    constructor(medicine:string, hour: number, date : Date) {
+        this.medicine = medicine;
+        this.hourlyIntake = hour;
+        this.date = date;
     }
 
+}
+
+export class PrescriptionSearch {
+    public medicine : string;
+    public hourlyIntake : number;
+    public startDate : Date;
+    public endDate : Date;
+
+    constructor (medicine : string, hourlyIntake : number, startDate : Date, endDate : Date) {
+        this.medicine = medicine;
+        this.hourlyIntake = hourlyIntake;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 }

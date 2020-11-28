@@ -23,7 +23,7 @@ namespace MedbayTechUnitTests
         public void Find_searched_prescription()
         {
             PrescriptionSearchWebService service = new PrescriptionSearchWebService(CreatePrescriptionStubRepository());
-            List<Prescription> prescriptions = service.GetSearchedPrescription("Brufen", 6, new DateTime(2020, 11, 26), new DateTime(2020, 11, 28)).ToList();
+            List<Prescription> prescriptions = service.GetSearchedPrescription("Metafex", 6, new DateTime(2020, 11, 24), new DateTime(2020, 12, 1)).ToList();
 
             prescriptions.FirstOrDefault().ShouldNotBeNull();
         }
@@ -42,7 +42,7 @@ namespace MedbayTechUnitTests
         public void Find_searched_report()
         {
             ReportSearchWebService service = new ReportSearchWebService(CreateReportStubRepository());
-            List<ExaminationSurgery> reports = service.GetSearchedReports("Petar", new DateTime(2020, 11, 26), new DateTime(2020, 11, 28), "HospitalTreatment").ToList();
+            List<ExaminationSurgery> reports = service.GetSearchedReports("Petar", new DateTime(2020, 11, 26), new DateTime(2020, 11, 30), "Examination").ToList();
 
             reports.FirstOrDefault().ShouldNotBeNull();
 
@@ -52,28 +52,27 @@ namespace MedbayTechUnitTests
         public void Dont_find_searched_report()
         {
             ReportSearchWebService service = new ReportSearchWebService(CreateReportStubRepository());
-            List<ExaminationSurgery> reports = service.GetSearchedReports("Petar", new DateTime(2020, 11, 24), new DateTime(2020, 11, 25), "HospitalTreatment").ToList();
+            List<ExaminationSurgery> reports = service.GetSearchedReports("Petar", new DateTime(2020, 11, 24), new DateTime(2020, 11, 25), "Examination").ToList();
 
             reports.FirstOrDefault().ShouldBeNull();
         }
 
-        private static ITreatmentRepository CreatePrescriptionStubRepository()
+        private static IPrescriptionRepository CreatePrescriptionStubRepository()
         {
-            var stubRepository = new Mock<ITreatmentRepository>();
+            var stubRepository = new Mock<IPrescriptionRepository>();
             var prescriptions = CreatePrescriptions();
 
             stubRepository.Setup(m => m.GetAll()).Returns(prescriptions);
-         //   stubRepository.Setup(m => m.GetSearchedPrescription())
 
             return stubRepository.Object;
         }
 
         private static List<Prescription> CreatePrescriptions()
         {
-            Prescription p1 = new Prescription(new DateTime(2020, 11, 27), true, 6, "", new Medication("Brufen", "Galenika", 
+            Prescription p1 = new Prescription(new DateTime(2020, 11, 30), true, 6, "", new Medication("Brufen", "Galenika", 
                 new MedicationCategory("Kategorija1", new Specialization(1, "specijalizacija1"))));
 
-            Prescription p2 = new Prescription(new DateTime(2020, 11, 29), true, 9, "", new Medication("Metafex", "Galenika",
+            Prescription p2 = new Prescription(new DateTime(2020, 11, 30), true, 6, "", new Medication("Metafex", "Galenika",
                 new MedicationCategory("Kategorija1", new Specialization(1, "specijalizacija1"))));
 
             List <Prescription> prescriptions= new List<Prescription>();

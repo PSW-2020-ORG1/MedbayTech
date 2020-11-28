@@ -15,7 +15,5 @@ namespace Backend.Examinations.Repository
         IEnumerable<Prescription> GetAllPrescriptionsInPeriod(DateTime startDate, DateTime endDate);
         IEnumerable<Prescription> GetAllPrescriptions();
         IEnumerable<HospitalTreatment> GetAllHospitalTreatments();
-
-        IEnumerable<Prescription> GetSearchedPrescription(string medicationName, int hourlyIntake, DateTime startDate, DateTime endDate);
     }
 }

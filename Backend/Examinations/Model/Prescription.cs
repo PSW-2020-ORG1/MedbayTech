@@ -14,7 +14,7 @@ namespace Backend.Examinations.Model
 {
    public class Prescription : Treatment
     {
-        private const int RESERVATION_DAYS = 10;
+        private const int RESERVATION_DAYS = 10; 
         public bool Reserved { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
