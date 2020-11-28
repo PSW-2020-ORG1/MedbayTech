@@ -40,6 +40,7 @@ namespace MedbayTechUnitTests.Examinations
             
         }
 
+
         public static IPrescriptionRepository CreateStubRepository()
         {
             var stubRepository = new Mock<IPrescriptionRepository>();
@@ -54,7 +55,7 @@ namespace MedbayTechUnitTests.Examinations
             {
                 Id = 1,
                 Reserved = true,
-                HourlyIntake = "3",
+                HourlyIntake = 3,
                 MedicationId = 1,
                 AdditionalNotes = "svasta nesto",
                 Date = new DateTime(),
@@ -68,7 +69,7 @@ namespace MedbayTechUnitTests.Examinations
             {
                 Id = 2,
                 Reserved = false,
-                HourlyIntake = "7",
+                HourlyIntake = 7,
                 MedicationId = 1,
                 AdditionalNotes = "svasta nesto",
                 Date = new DateTime(),
