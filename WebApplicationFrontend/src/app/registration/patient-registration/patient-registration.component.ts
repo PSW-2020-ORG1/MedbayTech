@@ -118,7 +118,7 @@ export class PatientRegistrationComponent implements OnInit {
         this.service.uploadImage(this.formData);
       },
       error => {
-        this.taostr.error("Patient already exists");
+        this.taostr.error(error.error);
       }
     );
      
@@ -165,6 +165,8 @@ export class PatientRegistrationComponent implements OnInit {
     this.policyEnd = new Date(this.createForm.value.insurancePolicyEndDate.getTime() - this.createForm.value.insurancePolicyEndDate.getTimezoneOffset() * 60000);
     
     this.doctor = this.createForm.value.choosenDoctor;
+    
+
 
     this.patient = new PatientRegistration
     (
@@ -224,10 +226,12 @@ export class PatientRegistrationComponent implements OnInit {
 
   selectedPatientCondition(event) {
     this.patientCondition = event.value;
+    console.log("Kurcina");
   }
 
   selectedBloodType(event) {
     this.bloodType = event.value;
+    console.log(this.bloodType);
   }
 
   getDoctor(event) {

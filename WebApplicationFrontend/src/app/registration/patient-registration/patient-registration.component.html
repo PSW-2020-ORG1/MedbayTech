@@ -278,7 +278,7 @@
                 <div class="row">
                     <mat-form-field>
                         <mat-label>Patient condition</mat-label>
-                        <mat-select id="patientCondition" name="patientCondition" formContronName="patientCondition" (selctionChange)=selectedPatientCondition($event)>
+                        <mat-select id="patientCondition" name="patientCondition" formContronName="patientCondition" (selctionChange)="selectedPatientCondition($event)">
                             <mat-option value="Stable">Stable</mat-option>
                             <mat-option value="Urgent">Urgent</mat-option>
                             <mat-option value="HospitalTreatment">HospitalTreatment</mat-option>
