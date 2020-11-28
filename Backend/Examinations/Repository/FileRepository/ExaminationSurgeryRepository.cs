@@ -143,9 +143,5 @@ namespace Backend.Examinations.Repository
             return base.Update(examinationSurgery);
         }
 
-        IEnumerable<ExaminationSurgery> IExaminationSurgeryRepository.GetSearchedReports(string name, DateTime startDate, DateTime endDate, string treatment)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

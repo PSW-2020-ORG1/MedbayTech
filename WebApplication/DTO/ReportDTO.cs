@@ -9,13 +9,13 @@ namespace WebApplication.DTO
     {
         public String Doctor { get; set; }
         public DateTime Date { get; set; }
-        public String Treatment { get; set; }
+        public String Type { get; set; }
 
-        public ReportDTO(string doctor, DateTime date, string treatment)
+        public ReportDTO(string doctor, DateTime date, string type)
         {
             Doctor = doctor;
             Date = date;
-            Treatment = treatment;
+            Type = type;
         }
     }
 }

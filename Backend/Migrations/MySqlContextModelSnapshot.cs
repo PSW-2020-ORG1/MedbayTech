@@ -72,6 +72,24 @@ namespace Backend.Migrations
                     b.HasIndex("MedicalRecordId");
 
                     b.ToTable("ExaminationSurgeries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DoctorId = "2406978890047",
+                            MedicalRecordId = 1,
+                            StartTime = new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DoctorId = "2406978890047",
+                            MedicalRecordId = 1,
+                            StartTime = new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Type = 1
+                        });
                 });
 
             modelBuilder.Entity("Backend.Examinations.Model.Treatment", b =>
@@ -103,6 +121,24 @@ namespace Backend.Migrations
                     b.ToTable("Treatments");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Treatment");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            AdditionalNotes = ".",
+                            Date = new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExaminationSurgeryId = 1,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AdditionalNotes = ".",
+                            Date = new DateTime(2020, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExaminationSurgeryId = 1,
+                            Type = 0
+                        });
                 });
 
             modelBuilder.Entity("Backend.Medications.Model.Allergens", b =>
@@ -1407,6 +1443,9 @@ namespace Backend.Migrations
                 {
                     b.HasBaseType("Backend.Examinations.Model.Treatment");
 
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("HourlyIntake")
                         .HasColumnType("int");
 
@@ -1416,9 +1455,38 @@ namespace Backend.Migrations
                     b.Property<bool>("Reserved")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime(6)");
+
                     b.HasIndex("MedicationId");
 
                     b.HasDiscriminator().HasValue("Prescription");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Date = new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExaminationSurgeryId = 1,
+                            Type = 0,
+                            EndDate = new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HourlyIntake = 6,
+                            MedicationId = 1,
+                            Reserved = true,
+                            StartDate = new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Date = new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExaminationSurgeryId = 1,
+                            Type = 0,
+                            EndDate = new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HourlyIntake = 6,
+                            MedicationId = 1,
+                            Reserved = true,
+                            StartDate = new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("Model.Users.Employee", b =>

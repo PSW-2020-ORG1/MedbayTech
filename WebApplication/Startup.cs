@@ -32,7 +32,8 @@ namespace WebApplication
                 options.JsonSerializerOptions.DictionaryKeyPolicy = null;
             });
 
-            
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
 
             //add cors package
             services.AddCors();

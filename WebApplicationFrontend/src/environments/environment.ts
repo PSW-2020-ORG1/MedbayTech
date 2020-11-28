@@ -11,7 +11,7 @@ export const environment = {
   createFeedback : 'createFeedback',
   medicalRecord : 'api/medicalRecord',
   prescriptionSimpleSearch : 'prescriptionSimpleSearch',
-  reportSimpleSearch : 'reportSimpleSearch'
+  reportSimpleSearch : 'api/report'
 };
 
 /*

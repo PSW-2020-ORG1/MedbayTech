@@ -25,7 +25,7 @@ namespace MedbayTechUnitTests
             PrescriptionSearchWebService service = new PrescriptionSearchWebService(CreatePrescriptionStubRepository());
             List<Prescription> prescriptions = service.GetSearchedPrescription("Brufen", 6, new DateTime(2020, 11, 26), new DateTime(2020, 11, 28)).ToList();
 
-            prescriptions[0].ShouldNotBeNull();
+            prescriptions.FirstOrDefault().ShouldNotBeNull();
         }
 
         [Fact]
@@ -34,7 +34,7 @@ namespace MedbayTechUnitTests
             PrescriptionSearchWebService service = new PrescriptionSearchWebService(CreatePrescriptionStubRepository());
             List<Prescription> prescriptions = service.GetSearchedPrescription("Brufen", 6, new DateTime(2020, 11, 24), new DateTime(2020, 11, 25)).ToList();
 
-            prescriptions[0].ShouldBeNull();
+            prescriptions.FirstOrDefault().ShouldBeNull();
 
         }
 
@@ -42,9 +42,9 @@ namespace MedbayTechUnitTests
         public void Find_searched_report()
         {
             ReportSearchWebService service = new ReportSearchWebService(CreateReportStubRepository());
-            List<ExaminationSurgery> reports = service.GetSearchedReports("Petar Petrovic", new DateTime(2020, 11, 26), new DateTime(2020, 11, 28), "HospitalTreatment").ToList();
+            List<ExaminationSurgery> reports = service.GetSearchedReports("Petar", new DateTime(2020, 11, 26), new DateTime(2020, 11, 28), "HospitalTreatment").ToList();
 
-            reports[0].ShouldNotBeNull();
+            reports.FirstOrDefault().ShouldNotBeNull();
 
         }
 
@@ -52,9 +52,9 @@ namespace MedbayTechUnitTests
         public void Dont_find_searched_report()
         {
             ReportSearchWebService service = new ReportSearchWebService(CreateReportStubRepository());
-            List<ExaminationSurgery> reports = service.GetSearchedReports("Petar Petrovic", new DateTime(2020, 11, 24), new DateTime(2020, 11, 25), "HospitalTreatment").ToList();
+            List<ExaminationSurgery> reports = service.GetSearchedReports("Petar", new DateTime(2020, 11, 24), new DateTime(2020, 11, 25), "HospitalTreatment").ToList();
 
-            reports[0].ShouldBeNull();
+            reports.FirstOrDefault().ShouldBeNull();
         }
 
         private static ITreatmentRepository CreatePrescriptionStubRepository()
@@ -63,6 +63,7 @@ namespace MedbayTechUnitTests
             var prescriptions = CreatePrescriptions();
 
             stubRepository.Setup(m => m.GetAll()).Returns(prescriptions);
+         //   stubRepository.Setup(m => m.GetSearchedPrescription())
 
             return stubRepository.Object;
         }
@@ -109,6 +110,8 @@ namespace MedbayTechUnitTests
             ExaminationSurgery rep2 = new ExaminationSurgery(new DateTime(2020, 11, 29), TypeOfAppointment.Surgery, doctor, mr);
 
             List<ExaminationSurgery> reports = new List<ExaminationSurgery>();
+            reports.Add(rep1);
+            reports.Add(rep2);
 
             return reports;
         }

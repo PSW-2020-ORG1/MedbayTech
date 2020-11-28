@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Backend.Examinations.Model;
 using Backend.Records.Model;
+using Model;
 using Model.Users;
 using Repository;
 
@@ -11,6 +13,10 @@ namespace Backend.Examinations.Repository.MySqlRepository
     class ExaminationSurgerySqlRepository : MySqlrepository<ExaminationSurgery, int>,
         IExaminationSurgeryRepository
     {
+        public ExaminationSurgerySqlRepository(MySqlContext context) : base(context)
+        {
+        }
+
         public IEnumerable<ExaminationSurgery> GetAllBy(Doctor doctor)
         {
             throw new NotImplementedException();
@@ -22,11 +28,6 @@ namespace Backend.Examinations.Repository.MySqlRepository
         }
 
         public ExaminationSurgery UpdateTreatment(ExaminationSurgery examinationSurgery, Treatment treatment)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<ExaminationSurgery> IExaminationSurgeryRepository.GetSearchedReports(string name, DateTime startDate, DateTime endDate, string treatment)
         {
             throw new NotImplementedException();
         }

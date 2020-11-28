@@ -27,7 +27,7 @@ namespace Backend.Examinations.Repository.MySqlRepository
                 && ((Prescription)treatment).IsStillActive(startDate, endDate));
         }
 
-        IEnumerable<Prescription> ITreatmentRepository.GetSearchedPrescription(string medicationName, int hourlyIntake, DateTime startDate, DateTime endDate)
+        public IEnumerable<Prescription> GetSearchedPrescription(string medicationName, int hourlyIntake, DateTime startDate, DateTime endDate)
         {
             throw new NotImplementedException();
         }

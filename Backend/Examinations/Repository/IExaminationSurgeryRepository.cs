@@ -20,6 +20,5 @@ namespace Backend.Examinations.Repository
       IEnumerable<ExaminationSurgery> GetAllBy(MedicalRecord record);
       ExaminationSurgery UpdateTreatment(ExaminationSurgery examinationSurgery, Treatment treatment);
 
-        IEnumerable<ExaminationSurgery> GetSearchedReports(string name, DateTime startDate, DateTime endDate, string treatment);
     }
 }

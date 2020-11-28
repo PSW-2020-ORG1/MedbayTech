@@ -15,6 +15,7 @@ using Model.Rooms;
 using System.Linq;
 using Backend.Medications.Model;
 using Backend.Records.Model.Enums;
+using Backend.Examinations.Model.Enums;
 
 namespace Model
 {
@@ -290,6 +291,50 @@ namespace Model
 
             modelBuilder.Entity<EquipmentType>().HasData(
                 new EquipmentType { Id = 1, Name = "Krevet" }    
+            );
+
+            modelBuilder.Entity<ExaminationSurgery>().HasData(
+                new ExaminationSurgery { Id = 1, StartTime = new DateTime(2020, 11, 27), Type = TypeOfAppointment.Examination, Treatments = new List<Treatment>(),
+                Diagnoses = new List<Diagnosis>(), DoctorId = "2406978890047", MedicalRecordId = 1 },
+                new ExaminationSurgery
+                {
+                    Id = 2,
+                    StartTime = new DateTime(2020, 11, 28),
+                    Type = TypeOfAppointment.Surgery,
+                    Treatments = new List<Treatment>(),
+                    Diagnoses = new List<Diagnosis>(),
+                    DoctorId = "2406978890047",
+                    MedicalRecordId = 1
+                }
+            );
+
+            modelBuilder.Entity<Treatment>().HasData(
+                new Treatment { Id = 3, Date = new DateTime(2020, 11, 27), AdditionalNotes = ".", Type = TreatmentType.Prescription, ExaminationSurgeryId = 1},
+                new Treatment { Id = 4, Date = new DateTime(2020, 11, 29), AdditionalNotes = ".", Type = TreatmentType.Prescription, ExaminationSurgeryId = 1 }
+            );
+
+            modelBuilder.Entity<Prescription>().HasData(
+                new Prescription
+                {
+                    Id = 1,
+                    ExaminationSurgeryId = 1,
+                    Reserved = true,
+                    StartDate = new DateTime(2020, 11, 27),
+                    EndDate = new DateTime(2020, 11, 30),
+                    HourlyIntake = 6,
+                    MedicationId = 1,
+                },
+                new Prescription
+                {
+                    Id = 2,
+                    ExaminationSurgeryId = 1,
+                    Reserved = true,
+                    StartDate = new DateTime(2020, 11, 28),
+                    EndDate = new DateTime(2020, 12, 1),
+                    HourlyIntake = 6,
+                    MedicationId = 1,
+                }
+
             );
         }
     }

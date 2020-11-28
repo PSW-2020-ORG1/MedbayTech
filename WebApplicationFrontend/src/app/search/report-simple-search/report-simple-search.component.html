@@ -1,7 +1,7 @@
 <div style="text-align: center;">
     <h1>Report search</h1>
 </div>
-<form class="container" [formGroup]="reportForm">
+<form class="container" [formGroup]="reportForm" (ngSubmit)="onSubmit()">
     <div style="margin-left: 10px;">
         <a mat-raised-button routerLink="/prescriptionSimpleSearch" target="_blank">Search prescriptions</a>
     </div>
@@ -14,39 +14,31 @@
         <div>
             <mat-form-field appearance="fill" class="fix-margins">
                 <mat-label>Doctor</mat-label>
-                <input matInput [formControl]="doc">
-                <mat-error *ngIf="doc.hasError('pattern')">
-                    Must contain letters only
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill" class="fix-margins">
-                <mat-label>Diagnosis</mat-label>
-                <input matInput [formControl]="diag">
-                <mat-error *ngIf="diag.hasError('pattern')">
+                <input matInput formControlName='doctor'>
+                <mat-error *ngIf="reportForm.get('doctor').hasError('pattern')">
                     Must contain letters only
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="fix-margins">
                 <mat-label>Enter a date range</mat-label>
-                <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-                    <input matStartDate formControlName="start" placeholder="Start date">
-                    <input matEndDate formControlName="end" placeholder="End date">
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate formControlName="startDate" placeholder="Start date">
+                    <input matEndDate formControlName="endDate" placeholder="End date">
                 </mat-date-range-input>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-date-range-picker #picker></mat-date-range-picker>
 
-                <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date
+                <mat-error *ngIf="reportForm.get('startDate').hasError('matStartDateInvalid')">Invalid start date
                 </mat-error>
-                <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+                <mat-error *ngIf="reportForm.get('endDate').hasError('matEndDateInvalid')">Invalid end date</mat-error>
             </mat-form-field>
 
 
             <mat-form-field appearance="fill" class="fix-margins">
-                <mat-label>Treatments</mat-label>
-                <input matInput [formControl]="treatments">
-                <mat-error *ngIf="treatments.hasError('pattern')">
+                <mat-label>Type</mat-label>
+                <input matInput formControlName="type">
+                <mat-error *ngIf="reportForm.get('type').hasError('pattern')">
                     Must contain letters only
                 </mat-error>
             </mat-form-field>
@@ -66,9 +58,9 @@
     <th>Date</th>
     <th>Treatment</th>
 
-    <tr *ngFor="let report from allReports">
-        <td>{{report.Doctor}}</td>
-        <td>{{report.Date}}</td>
-        <td>{{report.Treatment}}</td>
+    <tr *ngFor="let report of allReports">
+        <td>{{report.doctor}}</td>
+        <td>{{report.date | date : 'dd/MM/yyyy'}} </td>
+        <td>{{report.type}}</td>
     </tr>
 </table>

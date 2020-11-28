@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Report } from 'src/app/model/report';
+import { ReportSearch } from 'src/app/model/report'
 import { ReportService } from 'src/app/service/report/report.service';
 
 @Component({
@@ -12,34 +13,48 @@ export class ReportSimpleSearchComponent implements OnInit {
 
   reportForm: FormGroup;
 
-  public allReports : Report[] = new Array();
+  allReports : Report[];
 
-  range = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl()
-  });
+  doctor : string;
+  startDate : Date;
+  endDate : Date;
+  type : string;
 
-  doc = new FormControl('',[Validators.pattern("[A-Za-z]+")]);
+  reportSearch : ReportSearch;
+  report : Report;
 
-  diag = new FormControl('',[Validators.pattern("[A-Za-z]+")]);
-
-  treatments = new FormControl('',[Validators.pattern("[A-Za-z]+")]);
-
-  constructor(private rs : ReportService, private fb : FormBuilder) { }
+  constructor(private rs : ReportService) { }
 
   ngOnInit(): void {
-    this.reportForm = this.fb.group({
-    });
+    this.reportForm = new FormGroup({
+      'doctor' : new FormControl('', [Validators.pattern("^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
+      'startDate' : new FormControl(new Date(1970, 1, 1)),
+      'endDate' : new FormControl(new Date(2070, 12, 31)),
+      'type' : new FormControl('', [Validators.pattern("^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ ]*$")])
+    }) 
   }
 
   onSubmit() {
-    this.rs.getSimpleSearchResults(this.reportForm.value.doc, new Date(this.reportForm.value.range.start.getTime() - this.reportForm.value.range.start.getTimezoneOffset() * 60000),
-       new Date(this.reportForm.value.range.end.getTime() - this.reportForm.value.range.end.getTimezoneOffset() * 60000),
-        this.reportForm.value.treatments).subscribe(
+    console.log('cao');
+    this.rs.getSimpleSearchResults(this.createSearch()).subscribe(
         data => {
           this.allReports = data;
         }
     ) 
   }
 
+  createSearch() : ReportSearch {
+    this.doctor = this.reportForm.value.doctor;
+    this.startDate = new Date(this.reportForm.value.startDate.getTime() - this.reportForm.value.startDate.getTimezoneOffset() * 60000);
+    this.endDate = new Date(this.reportForm.value.endDate.getTime() - this.reportForm.value.endDate.getTimezoneOffset() * 60000);
+    this.type = this.reportForm.value.type;
+
+    this.reportSearch = new ReportSearch(this.doctor, this.startDate, this.endDate, this.type);
+
+    return this.reportSearch;
+  }
+
+  changeToEmptyString() {
+
+  }
 }

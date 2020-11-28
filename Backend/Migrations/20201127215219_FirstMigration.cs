@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Backend.Migrations
 {
-    public partial class ajmooooo : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -925,6 +925,8 @@ namespace Backend.Migrations
                     Status = table.Column<int>(nullable: true),
                     DepartmentId = table.Column<int>(nullable: true),
                     Reserved = table.Column<bool>(nullable: true),
+                    StartDate = table.Column<DateTime>(nullable: true),
+                    EndDate = table.Column<DateTime>(nullable: true),
                     HourlyIntake = table.Column<int>(nullable: true),
                     MedicationId = table.Column<int>(nullable: true)
                 },
@@ -1183,6 +1185,15 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "ExaminationSurgeries",
+                columns: new[] { "Id", "DoctorId", "MedicalRecordId", "StartTime", "Type" },
+                values: new object[,]
+                {
+                    { 1, "2406978890047", 1, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 0 },
+                    { 2, "2406978890047", 1, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "FamilyIllnessHistories",
                 columns: new[] { "Id", "MedicalRecordId", "RelativeMember" },
                 values: new object[,]
@@ -1212,12 +1223,29 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "Symptoms",
                 columns: new[] { "Id", "DiagnosisId", "Name" },
-                values: new object[] { 1, 1, "Kasalj" });
+                values: new object[,]
+                {
+                    { 1, 1, "Kasalj" },
+                    { 2, 1, "Temperatura" }
+                });
 
             migrationBuilder.InsertData(
-                table: "Symptoms",
-                columns: new[] { "Id", "DiagnosisId", "Name" },
-                values: new object[] { 2, 1, "Temperatura" });
+                table: "Treatments",
+                columns: new[] { "Id", "AdditionalNotes", "Date", "Discriminator", "ExaminationSurgeryId", "Type", "EndDate", "HourlyIntake", "MedicationId", "Reserved", "StartDate" },
+                values: new object[,]
+                {
+                    { 1, null, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Local), "Prescription", 1, 0, new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, null, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Local), "Prescription", 1, 0, new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Treatments",
+                columns: new[] { "Id", "AdditionalNotes", "Date", "Discriminator", "ExaminationSurgeryId", "Type" },
+                values: new object[,]
+                {
+                    { 3, ".", new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "Treatment", 1, 0 },
+                    { 4, ".", new DateTime(2020, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), "Treatment", 1, 0 }
+                });
 
             migrationBuilder.InsertData(
                 table: "SideEffects",
