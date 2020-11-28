@@ -3,13 +3,23 @@
 }
 
 table {
-    margin-left: 15%;
+    margin-left: 14.5vw;
     margin-top: 15px;
     width: 45%;
-    text-align: center;
     border-bottom: 1px solid black;
 }
 
 th {
+    font-weight: bold;
+    font-size: small;
     background-color: lightpink;
+}
+
+:host ::ng-deep .mat-sort-header-container { 
+    display: flex;  
+    justify-content: center; 
+}
+
+th.mat-header-cell, td.mat-cell { 
+    text-align: center; 
 }

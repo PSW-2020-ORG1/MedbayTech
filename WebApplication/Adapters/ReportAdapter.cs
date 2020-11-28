@@ -15,7 +15,7 @@ namespace WebApplication.Adapters
 
             foreach(ExaminationSurgery es in examinationSurgeries)
             {
-                String name = es.Doctor.Name;
+                String name = es.Doctor.Name + " " + es.Doctor.Surname;
                 DateTime date = es.StartTime;
                 String type = es.Type.ToString();
 

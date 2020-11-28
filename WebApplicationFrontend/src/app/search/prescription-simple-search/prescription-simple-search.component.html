@@ -55,14 +55,23 @@
 
 </form>
 
-<table>
-    <th>Medicine</th>
-    <th>Hourly Intake</th>
-    <th>Date</th>
+<table mat-table [dataSource]="allPrescriptions" class="mat-elevation-z8">
+    <ng-container matColumnDef="medicine">
+        <th mat-header-cell *matHeaderCellDef> Medicine </th>
+        <td mat-cell *matCellDef="let prescription"> {{prescription.medicine}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="hourlyIntake">
+        <th mat-header-cell *matHeaderCellDef> Hourly intake </th>
+        <td mat-cell *matCellDef="let prescription"> {{prescription.hourlyIntake}} </td>
+      </ng-container>
 
-    <tr *ngFor="let prescription of allPrescriptions">
-        <td>{{prescription.medicine}}</td>
-        <td>{{prescription.hourlyIntake}}</td>
-        <td>{{prescription.date | date : 'dd/MM/yyyy'}}</td>
-    </tr>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let prescription"> {{prescription.date | date : 'dd/MM/yyyy'}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

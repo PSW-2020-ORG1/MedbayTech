@@ -23,13 +23,15 @@ export class ReportSimpleSearchComponent implements OnInit {
   reportSearch : ReportSearch;
   report : Report;
 
+  displayedColumns : string[] = ['doctor', 'date', 'treatment'];
+
   constructor(private rs : ReportService) { }
 
   ngOnInit(): void {
     this.reportForm = new FormGroup({
       'doctor' : new FormControl('', [Validators.pattern("^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
-      'startDate' : new FormControl(new Date(1970, 1, 1)),
-      'endDate' : new FormControl(new Date(2070, 12, 31)),
+      'startDate' : new FormControl(new Date()),
+      'endDate' : new FormControl(new Date()),
       'type' : new FormControl('', [Validators.pattern("^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ ]*$")])
     }) 
   }

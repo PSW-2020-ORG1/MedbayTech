@@ -53,14 +53,23 @@
 </form>
 
 
-<table>
-    <th>Doctor</th>
-    <th>Date</th>
-    <th>Treatment</th>
+<table mat-table [dataSource]="allReports" class="mat-elevation-z8">
+    <ng-container matColumnDef="doctor">
+        <th mat-header-cell *matHeaderCellDef> Doctor </th>
+        <td mat-cell *matCellDef="let report"> {{report.doctor}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let report"> {{report.date | date : 'dd/MM/yyyy'}} </td>
+      </ng-container>
 
-    <tr *ngFor="let report of allReports">
-        <td>{{report.doctor}}</td>
-        <td>{{report.date | date : 'dd/MM/yyyy'}} </td>
-        <td>{{report.type}}</td>
-    </tr>
+      <ng-container matColumnDef="treatment">
+        <th mat-header-cell *matHeaderCellDef> Treatment </th>
+        <td mat-cell *matCellDef="let report"> {{report.type}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
