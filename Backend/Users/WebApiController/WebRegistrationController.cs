@@ -42,6 +42,10 @@ namespace Backend.Users.WebApiController
             return registrationService.GetUserById(id);
         }
 
+        public bool PatientExists(string id, string username)
+        {
+            return registrationService.PatientExists(id, username);
+        }
         public Patient ActivateAccount(string userId, string token)
         {
             return registrationService.ActivateAccount(userId, token);

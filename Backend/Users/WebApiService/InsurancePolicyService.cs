@@ -2,6 +2,7 @@
 using Model.Users;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Backend.Users.WebApiService
@@ -25,7 +26,9 @@ namespace Backend.Users.WebApiService
         }
         public bool ExistsById(string id)
         {
-            return insurancePolicyRepository.ExistsById(id);
+            List<InsurancePolicy> policies = insurancePolicyRepository.GetAll().ToList();
+            return policies.Any(p => p.Id.Equals(id));
+
         }
      
     }

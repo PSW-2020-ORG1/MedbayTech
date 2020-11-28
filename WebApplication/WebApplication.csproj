@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="MailService\MailTemplate\" />
-    <Folder Include="TokenService\" />
     <Folder Include="Resources\Images\" />
   </ItemGroup>
 

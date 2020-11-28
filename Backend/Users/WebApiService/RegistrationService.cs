@@ -18,7 +18,7 @@ namespace Backend.Users.WebApiService
 
         public Patient Register(Patient patient)
         {
-            if (!ExistsById(patient.Id))
+            if (!PatientExists(patient.Id, patient.Username))
             {
                 return patientRepository.Create(patient);
             }
@@ -26,6 +26,11 @@ namespace Backend.Users.WebApiService
             return null;
         }
 
+        public bool PatientExists(string id, string username)
+        {
+            List<Patient> patients = patientRepository.GetAll().ToList();
+            return patients.Any(patient => patient.Username != null && patient.Username.Equals(username) && patient.Id.Equals(id));
+        }
         public bool ExistsById(string id)
         {
             return patientRepository.ExistsById(id);

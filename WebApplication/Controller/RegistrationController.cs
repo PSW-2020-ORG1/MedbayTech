@@ -14,7 +14,9 @@ using WebApplication.Adapters;
 using WebApplication.DTO;
 using WebApplication.MailService;
 using WebApplication.ObjectBuilder;
+using WebApplication.TokenService;
 using WebApplication.Validators;
+
 
 namespace WebApplication.Controller
 {
@@ -101,7 +103,14 @@ namespace WebApplication.Controller
             {
                 return BadRequest(e.Message);
             }
-            
+
+            if (registrationController.PatientExists(dto.Id, dto.Username))
+                return BadRequest("Patient already exists");
+
+            InsurancePolicy insurancePolicy = registrationBuilder.SavePolicy(dto.PolicyNumber, dto.Company, dto.PolicyStart, dto.PolicyEnd);
+            if (insurancePolicy == null)
+                return BadRequest("Policy already exists");
+
             State stateOfBirth = registrationBuilder.SaveState(dto.StateOfBirth);
             City cityOfBirth = registrationBuilder.SaveCity(dto.PostalCodeBirth, dto.CityOfBirth, stateOfBirth.Id);
 
@@ -109,30 +118,25 @@ namespace WebApplication.Controller
             City currResidenceCity = registrationBuilder.SaveCity(dto.PostalCode, dto.City, currResidenceState.Id);
             Address currResidenceAddress = registrationBuilder.SaveAddress(dto.Street, dto.Number, dto.Floor, dto.Apartment, currResidenceCity.Id);
 
-            InsurancePolicy insurancePolicy = registrationBuilder.SavePolicy(dto.PolicyNumber, dto.Company, dto.PolicyStart, dto.PolicyEnd);
-            if (insurancePolicy == null)
-                return BadRequest("Policy already exists");
-
             dto.PolicyNumber = insurancePolicy.Id;
             dto.PlaceOfBirthId = cityOfBirth.Id;
             dto.CurrentResidenceId = currResidenceAddress.Id;
 
             Patient patient = PatientRegistrationAdapter.PatientRegistrationDTOtoPatient(dto);
-            patient.Token  = Guid.NewGuid().ToString();
+
+            patient.Token = Token.GenerateGuidToken();
+
             Patient registeredPatient = registrationController.Register(patient);
+
             if (registeredPatient == null)
                 return BadRequest("Patient already exists");
 
-            MedicalRecord medicalRecord = registrationBuilder.SaveMedicalRecord(registeredPatient.Id, "", dto.BloodType);
-            
-            var link = GenerateUrl(patient.Id, patient.Token);
-            string email = patient.Email;
-            MailRequest mailRequest = new MailRequest { ToEmail = email, Url = link };
-            SendMail(mailRequest);
+            registrationBuilder.SaveMedicalRecord(registeredPatient.Id, "", dto.BloodType);
+
+            GenerateEmailInfo(patient);
 
             return Ok("Please check your mail to confirm registration");
         }
-
         private string GenerateUrl(string _userId, string _token)
         {
             string url = Url.Action(nameof(Activate), "Registration", new { userId = _userId, token = _token });
@@ -143,16 +147,24 @@ namespace WebApplication.Controller
             return "http://localhost:8080";
         }
 
-        
+        private void GenerateEmailInfo(Patient patient)
+        {
+            var link = GenerateUrl(patient.Id, patient.Token);
+            string email = patient.Email;
+            MailRequest mailRequest = new MailRequest { ToEmail = email, Url = link };
+            SendMail(mailRequest);
+        }
 
-        
 
-        
 
-        
 
-       
 
-        
+
+
+
+
+
+
+
     }
 }
