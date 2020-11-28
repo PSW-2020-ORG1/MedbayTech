@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Model;
 
 namespace Backend.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    partial class MySqlContextModelSnapshot : ModelSnapshot
+    [Migration("20201128093637_FifthMigration")]
+    partial class FifthMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -236,343 +238,79 @@ namespace Backend.Migrations
                             MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 10,
-                            RoomId = 1001,
+                            RoomId = 1,
                             Status = 0
                         },
                         new
                         {
                             Id = 2,
                             Company = "Goodwill",
-                            Dosage = "20mg",
-                            Med = "Xanax",
+                            Dosage = "400mg",
+                            Med = "Metafex",
                             MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
-                            RoomId = 1001,
+                            RoomId = 1,
                             Status = 1
                         },
                         new
                         {
                             Id = 3,
-                            Company = "Hemofarm",
-                            Dosage = "500mg",
-                            Med = "Panadon",
+                            Company = "Goodwill",
+                            Dosage = "400mg",
+                            Med = "Neoangin",
                             MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
-                            RoomId = 1001,
+                            RoomId = 1,
                             Status = 1
                         },
                         new
                         {
                             Id = 4,
                             Company = "Famar",
-                            Dosage = "30mg",
-                            Med = "Diazepam",
+                            Dosage = "400mg",
+                            Med = "Phlebodia",
                             MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
-                            RoomId = 1001,
+                            RoomId = 1,
                             Status = 1
                         },
                         new
                         {
                             Id = 5,
                             Company = "Goodwill",
-                            Dosage = "200mg",
-                            Med = "Andol",
+                            Dosage = "400mg",
+                            Med = "Sirup",
                             MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
-                            RoomId = 1001,
+                            RoomId = 1,
                             Status = 1
                         },
                         new
                         {
                             Id = 6,
                             Company = "Famar",
-                            Dosage = "100mg",
-                            Med = "Reglan",
+                            Dosage = "400mg",
+                            Med = "Grafalon",
                             MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
-                            RoomId = 1001,
+                            RoomId = 1,
                             Status = 1
                         },
                         new
                         {
                             Id = 7,
-                            Company = "Bosnalijek",
+                            Company = "Goodwill",
                             Dosage = "400mg",
-                            Med = "Caffetin",
+                            Med = "Zalfija",
                             MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Company = "Galenika",
-                            Dosage = "50mg",
-                            Med = "Plavix",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Company = "Famar",
-                            Dosage = "25mg",
-                            Med = "Ambien",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Company = "Galenika",
-                            Dosage = "200mg",
-                            Med = "Ranisan",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Company = "Hemofarm",
-                            Dosage = "50mg",
-                            Med = "Vicodin",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Company = "Famar",
-                            Dosage = "40mg",
-                            Med = "Adderall",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Company = "Hemofarm",
-                            Dosage = "100mg",
-                            Med = "Hemomicin",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Company = "Galenika",
-                            Dosage = "20mg",
-                            Med = "Klonopin",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Company = "Hemofarm",
-                            Dosage = "30mg",
-                            Med = "Demerol",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Company = "Famar",
-                            Dosage = "40mg",
-                            Med = "OxyCotin",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Company = "Goodwill",
-                            Dosage = "60mg",
-                            Med = "Percocet",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Company = "Bosnalijek",
-                            Dosage = "80mg",
-                            Med = "Ritalin",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 19,
-                            Company = "Famar",
-                            Dosage = "100mg",
-                            Med = "Eritromicin",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 20,
-                            Company = "Bosnalijek",
-                            Dosage = "200mg",
-                            Med = "Penicillin",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 21,
-                            Company = "Hemofarm",
-                            Dosage = "150mg",
-                            Med = "Amoksicilin",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 22,
-                            Company = "Galenika",
-                            Dosage = "200mg",
-                            Med = "Cefaleksin",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 23,
-                            Company = "Goodwill",
-                            Dosage = "500mg",
-                            Med = "Zoloft",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 24,
-                            Company = "Famar",
-                            Dosage = "40mg",
-                            Med = "Lexilium",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 25,
-                            Company = "Hemofarm",
-                            Dosage = "50mg",
-                            Med = "Bensedin",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 27,
-                            Company = "Galenika",
-                            Dosage = "100mg",
-                            Med = "Letrox",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 28,
-                            Company = "Famar",
-                            Dosage = "25mg",
-                            Med = "Claritin",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 29,
-                            Company = "Hemofarm",
-                            Dosage = "500mg",
-                            Med = "Flobian",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 30,
-                            Company = "Galenika",
-                            Dosage = "75mg",
-                            Med = "Lasix",
-                            MedicalRecordId = 0,
-                            MedicationCategoryId = 1,
-                            Quantity = 15,
-                            RoomId = 1001,
+                            RoomId = 1,
                             Status = 1
                         });
                 });
@@ -967,93 +705,79 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            Floor = 0,
+                            Floor = 1,
                             HospitalId = 1,
-                            Name = "General H1"
+                            Name = "Infektivno"
                         },
                         new
                         {
                             Id = 2,
-                            Floor = 0,
-                            HospitalId = 1,
-                            Name = "Cardiology"
+                            Floor = 1,
+                            HospitalId = 2,
+                            Name = "Radiology"
                         },
                         new
                         {
                             Id = 3,
                             Floor = 1,
-                            HospitalId = 1,
-                            Name = "Oncology"
+                            HospitalId = 2,
+                            Name = "Neurology"
                         },
                         new
                         {
                             Id = 4,
                             Floor = 1,
-                            HospitalId = 1,
-                            Name = "Radiology"
+                            HospitalId = 2,
+                            Name = "Oncology"
                         },
                         new
                         {
                             Id = 5,
-                            Floor = 2,
-                            HospitalId = 1,
-                            Name = "Neurology"
+                            Floor = 1,
+                            HospitalId = 2,
+                            Name = "Cardiology"
                         },
                         new
                         {
                             Id = 6,
-                            Floor = 2,
-                            HospitalId = 1,
+                            Floor = 1,
+                            HospitalId = 2,
                             Name = "Intensive Care"
                         },
                         new
                         {
                             Id = 7,
-                            Floor = 0,
-                            HospitalId = 2,
-                            Name = "General H2"
+                            Floor = 1,
+                            HospitalId = 3,
+                            Name = "Gastroenterology"
                         },
                         new
                         {
                             Id = 8,
-                            Floor = 0,
-                            HospitalId = 2,
-                            Name = "Dialysis"
+                            Floor = 1,
+                            HospitalId = 3,
+                            Name = "Hematology"
                         },
                         new
                         {
                             Id = 9,
                             Floor = 1,
-                            HospitalId = 2,
-                            Name = "Gastroenterology"
+                            HospitalId = 3,
+                            Name = "Dialysis"
                         },
                         new
                         {
                             Id = 10,
                             Floor = 1,
-                            HospitalId = 2,
-                            Name = "Hematology"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Floor = 2,
-                            HospitalId = 2,
+                            HospitalId = 3,
                             Name = "Rheumatology"
                         },
                         new
                         {
-                            Id = 12,
-                            Floor = 2,
-                            HospitalId = 2,
-                            Name = "Infectous Diseases"
-                        },
-                        new
-                        {
-                            Id = 13,
+                            Id = 11,
                             Floor = 1,
                             HospitalId = 3,
-                            Name = "Infektivno"
+                            Name = "Infectous Diseases"
                         });
                 });
 
@@ -1074,102 +798,37 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Mamogram"
+                            Name = "Krevet"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "X-ray"
+                            Name = "Metla"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "CT"
+                            Name = "Sapun"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "MRI"
+                            Name = "Spric"
                         },
                         new
                         {
                             Id = 5,
-                            Name = "Ultra sound"
+                            Name = "Papir"
                         },
                         new
                         {
                             Id = 6,
-                            Name = "EKG"
+                            Name = "Krpa"
                         },
                         new
                         {
                             Id = 7,
-                            Name = "Holter"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Gastroscope"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Blood preasure monitor"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Otoscope"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Name = "Stethoscope"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Name = "Suringe"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Name = "Needle"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Name = "Scalpel"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Name = "Pean"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Name = "Scissors"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Name = "Surgical mask"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Name = "Surgical gloves"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            Name = "Computer"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            Name = "Bed"
+                            Name = "Sljivovica za smirenje zivaca"
                         });
                 });
 
@@ -1204,161 +863,57 @@ namespace Backend.Migrations
                         {
                             Id = 1,
                             EquipmentTypeId = 1,
-                            QuantityInRoom = 1,
-                            QuantityInStorage = 1,
-                            RoomId = 1002
+                            QuantityInRoom = 5,
+                            QuantityInStorage = 15,
+                            RoomId = 1
                         },
                         new
                         {
                             Id = 2,
                             EquipmentTypeId = 2,
-                            QuantityInRoom = 1,
-                            QuantityInStorage = 0,
-                            RoomId = 1002
+                            QuantityInRoom = 5,
+                            QuantityInStorage = 15,
+                            RoomId = 2
                         },
                         new
                         {
                             Id = 3,
                             EquipmentTypeId = 3,
-                            QuantityInRoom = 1,
-                            QuantityInStorage = 0,
-                            RoomId = 1002
+                            QuantityInRoom = 5,
+                            QuantityInStorage = 15,
+                            RoomId = 3
                         },
                         new
                         {
                             Id = 4,
                             EquipmentTypeId = 4,
-                            QuantityInRoom = 1,
-                            QuantityInStorage = 0,
-                            RoomId = 1002
+                            QuantityInRoom = 5,
+                            QuantityInStorage = 15,
+                            RoomId = 2
                         },
                         new
                         {
                             Id = 5,
                             EquipmentTypeId = 5,
-                            QuantityInRoom = 1,
-                            QuantityInStorage = 1,
-                            RoomId = 1002
+                            QuantityInRoom = 5,
+                            QuantityInStorage = 15,
+                            RoomId = 3
                         },
                         new
                         {
                             Id = 6,
                             EquipmentTypeId = 6,
-                            QuantityInRoom = 1,
-                            QuantityInStorage = 2,
-                            RoomId = 1002
+                            QuantityInRoom = 5,
+                            QuantityInStorage = 15,
+                            RoomId = 4
                         },
                         new
                         {
                             Id = 7,
                             EquipmentTypeId = 7,
-                            QuantityInRoom = 1,
-                            QuantityInStorage = 4,
-                            RoomId = 1002
-                        },
-                        new
-                        {
-                            Id = 8,
-                            EquipmentTypeId = 8,
-                            QuantityInRoom = 1,
-                            QuantityInStorage = 3,
-                            RoomId = 1002
-                        },
-                        new
-                        {
-                            Id = 9,
-                            EquipmentTypeId = 9,
-                            QuantityInRoom = 2,
+                            QuantityInRoom = 5,
                             QuantityInStorage = 15,
-                            RoomId = 1002
-                        },
-                        new
-                        {
-                            Id = 10,
-                            EquipmentTypeId = 10,
-                            QuantityInRoom = 2,
-                            QuantityInStorage = 7,
-                            RoomId = 1002
-                        },
-                        new
-                        {
-                            Id = 11,
-                            EquipmentTypeId = 11,
-                            QuantityInRoom = 2,
-                            QuantityInStorage = 20,
-                            RoomId = 1002
-                        },
-                        new
-                        {
-                            Id = 12,
-                            EquipmentTypeId = 12,
-                            QuantityInRoom = 5,
-                            QuantityInStorage = 100,
-                            RoomId = 1002
-                        },
-                        new
-                        {
-                            Id = 13,
-                            EquipmentTypeId = 13,
-                            QuantityInRoom = 5,
-                            QuantityInStorage = 200,
-                            RoomId = 1002
-                        },
-                        new
-                        {
-                            Id = 14,
-                            EquipmentTypeId = 14,
-                            QuantityInRoom = 3,
-                            QuantityInStorage = 14,
-                            RoomId = 1002
-                        },
-                        new
-                        {
-                            Id = 15,
-                            EquipmentTypeId = 15,
-                            QuantityInRoom = 3,
-                            QuantityInStorage = 13,
-                            RoomId = 1002
-                        },
-                        new
-                        {
-                            Id = 16,
-                            EquipmentTypeId = 16,
-                            QuantityInRoom = 3,
-                            QuantityInStorage = 16,
-                            RoomId = 1002
-                        },
-                        new
-                        {
-                            Id = 17,
-                            EquipmentTypeId = 17,
-                            QuantityInRoom = 10,
-                            QuantityInStorage = 500,
-                            RoomId = 1002
-                        },
-                        new
-                        {
-                            Id = 18,
-                            EquipmentTypeId = 18,
-                            QuantityInRoom = 10,
-                            QuantityInStorage = 1000,
-                            RoomId = 1002
-                        },
-                        new
-                        {
-                            Id = 19,
-                            EquipmentTypeId = 19,
-                            QuantityInRoom = 3,
-                            QuantityInStorage = 20,
-                            RoomId = 1002
-                        },
-                        new
-                        {
-                            Id = 20,
-                            EquipmentTypeId = 20,
-                            QuantityInRoom = 4,
-                            QuantityInStorage = 5,
-                            RoomId = 1002
+                            RoomId = 4
                         });
                 });
 
@@ -1434,7 +989,7 @@ namespace Backend.Migrations
                             DepartmentId = 2,
                             RoomLabel = "F1-C3",
                             RoomNumber = 2,
-                            RoomType = 1,
+                            RoomType = 0,
                             RoomUse = "Soba za pregledanje"
                         },
                         new
@@ -1445,7 +1000,7 @@ namespace Backend.Migrations
                             DepartmentId = 3,
                             RoomLabel = "F1-C5",
                             RoomNumber = 3,
-                            RoomType = 1,
+                            RoomType = 2,
                             RoomUse = "Soba za pregledanje"
                         },
                         new
@@ -1456,7 +1011,7 @@ namespace Backend.Migrations
                             DepartmentId = 4,
                             RoomLabel = "F1-R5",
                             RoomNumber = 4,
-                            RoomType = 1,
+                            RoomType = 2,
                             RoomUse = "Soba za pregledanje"
                         },
                         new
@@ -1467,7 +1022,7 @@ namespace Backend.Migrations
                             DepartmentId = 5,
                             RoomLabel = "F2-C4",
                             RoomNumber = 5,
-                            RoomType = 1,
+                            RoomType = 3,
                             RoomUse = "Soba za pregledanje"
                         },
                         new
@@ -1478,7 +1033,7 @@ namespace Backend.Migrations
                             DepartmentId = 6,
                             RoomLabel = "F1-G1",
                             RoomNumber = 6,
-                            RoomType = 1,
+                            RoomType = 3,
                             RoomUse = "Soba za pregledanje"
                         },
                         new
@@ -1489,7 +1044,7 @@ namespace Backend.Migrations
                             DepartmentId = 7,
                             RoomLabel = "F2-C2",
                             RoomNumber = 7,
-                            RoomType = 1,
+                            RoomType = 0,
                             RoomUse = "Soba za pregledanje"
                         },
                         new
@@ -1502,710 +1057,6 @@ namespace Backend.Migrations
                             RoomNumber = 8,
                             RoomType = 1,
                             RoomUse = "Soba za pregledanje"
-                        },
-                        new
-                        {
-                            Id = 1001,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 1,
-                            RoomLabel = "0F-GH1",
-                            RoomNumber = 1,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1002,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 1,
-                            RoomLabel = "0F-GH2",
-                            RoomNumber = 2,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1003,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 1,
-                            RoomLabel = "0F-GH3",
-                            RoomNumber = 3,
-                            RoomType = 1,
-                            RoomUse = "Examination room"
-                        },
-                        new
-                        {
-                            Id = 1004,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 1,
-                            RoomLabel = "0F-GH4",
-                            RoomNumber = 4,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1005,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 1,
-                            RoomLabel = "0F-GH5",
-                            RoomNumber = 5,
-                            RoomType = 1,
-                            RoomUse = "Examination room"
-                        },
-                        new
-                        {
-                            Id = 1006,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 1,
-                            RoomLabel = "0F-GH6",
-                            RoomNumber = 6,
-                            RoomType = 1,
-                            RoomUse = "Examination room"
-                        },
-                        new
-                        {
-                            Id = 1007,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 1,
-                            RoomLabel = "0F-GH7",
-                            RoomNumber = 7,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1008,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 1,
-                            RoomLabel = "0F-GH8",
-                            RoomNumber = 8,
-                            RoomType = 1,
-                            RoomUse = "Examination room"
-                        },
-                        new
-                        {
-                            Id = 1009,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 1,
-                            RoomLabel = "0F-GH9",
-                            RoomNumber = 9,
-                            RoomType = 1,
-                            RoomUse = "Examination room"
-                        },
-                        new
-                        {
-                            Id = 1010,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 1,
-                            RoomLabel = "0F-GH10",
-                            RoomNumber = 10,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1011,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 1,
-                            RoomLabel = "0F-GH11",
-                            RoomNumber = 11,
-                            RoomType = 1,
-                            RoomUse = "Examination room"
-                        },
-                        new
-                        {
-                            Id = 1012,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 2,
-                            RoomLabel = "0F-C1",
-                            RoomNumber = 12,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1013,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 2,
-                            RoomLabel = "0F-c2",
-                            RoomNumber = 13,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1014,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 2,
-                            RoomLabel = "0F-C3",
-                            RoomNumber = 14,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1015,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 2,
-                            RoomLabel = "0F-C4",
-                            RoomNumber = 15,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1016,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 2,
-                            RoomLabel = "0F-C5",
-                            RoomNumber = 16,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1017,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 2,
-                            RoomLabel = "0F-C6",
-                            RoomNumber = 17,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1018,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 2,
-                            RoomLabel = "0F-C7",
-                            RoomNumber = 18,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1019,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 2,
-                            RoomLabel = "0F-C8",
-                            RoomNumber = 19,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1020,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 2,
-                            RoomLabel = "0F-E1",
-                            RoomNumber = 20,
-                            RoomType = 3,
-                            RoomUse = "Elevator"
-                        },
-                        new
-                        {
-                            Id = 1021,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 2,
-                            RoomLabel = "0F-E2",
-                            RoomNumber = 21,
-                            RoomType = 3,
-                            RoomUse = "Elevator"
-                        },
-                        new
-                        {
-                            Id = 1101,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 3,
-                            RoomLabel = "1F-O1",
-                            RoomNumber = 1,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1102,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 3,
-                            RoomLabel = "1F-O2",
-                            RoomNumber = 2,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1103,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 3,
-                            RoomLabel = "1F-O3",
-                            RoomNumber = 3,
-                            RoomType = 1,
-                            RoomUse = "Examination room"
-                        },
-                        new
-                        {
-                            Id = 1104,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 3,
-                            RoomLabel = "1F-O4",
-                            RoomNumber = 4,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1105,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 3,
-                            RoomLabel = "1F-O5",
-                            RoomNumber = 5,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1106,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 3,
-                            RoomLabel = "1F-O6",
-                            RoomNumber = 6,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1107,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 3,
-                            RoomLabel = "1F-O7",
-                            RoomNumber = 7,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1108,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 3,
-                            RoomLabel = "1F-O8",
-                            RoomNumber = 8,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1109,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 3,
-                            RoomLabel = "1F-O9",
-                            RoomNumber = 9,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1110,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 3,
-                            RoomLabel = "1F-O10",
-                            RoomNumber = 10,
-                            RoomType = 1,
-                            RoomUse = "Examination room"
-                        },
-                        new
-                        {
-                            Id = 1111,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 3,
-                            RoomLabel = "1F-O11",
-                            RoomNumber = 11,
-                            RoomType = 4,
-                            RoomUse = "Storage room"
-                        },
-                        new
-                        {
-                            Id = 1112,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 3,
-                            RoomLabel = "1F-O12",
-                            RoomNumber = 12,
-                            RoomType = 4,
-                            RoomUse = "Storage room"
-                        },
-                        new
-                        {
-                            Id = 1113,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 4,
-                            RoomLabel = "1F-O13",
-                            RoomNumber = 13,
-                            RoomType = 1,
-                            RoomUse = "Examination room"
-                        },
-                        new
-                        {
-                            Id = 1114,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 4,
-                            RoomLabel = "1F-R1",
-                            RoomNumber = 14,
-                            RoomType = 2,
-                            RoomUse = "Operation room"
-                        },
-                        new
-                        {
-                            Id = 1115,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 4,
-                            RoomLabel = "1F-R2",
-                            RoomNumber = 15,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1116,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 4,
-                            RoomLabel = "1F-R3",
-                            RoomNumber = 16,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1117,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 4,
-                            RoomLabel = "1F-R4",
-                            RoomNumber = 17,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1118,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 4,
-                            RoomLabel = "1F-R5",
-                            RoomNumber = 18,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1119,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 4,
-                            RoomLabel = "1F-R6",
-                            RoomNumber = 19,
-                            RoomType = 2,
-                            RoomUse = "Operation room"
-                        },
-                        new
-                        {
-                            Id = 1120,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 4,
-                            RoomLabel = "1F-R7",
-                            RoomNumber = 20,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1121,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 4,
-                            RoomLabel = "1F-R8",
-                            RoomNumber = 21,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1201,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 5,
-                            RoomLabel = "2F-N1",
-                            RoomNumber = 1,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1202,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 5,
-                            RoomLabel = "2F-N2",
-                            RoomNumber = 2,
-                            RoomType = 1,
-                            RoomUse = "Examination room"
-                        },
-                        new
-                        {
-                            Id = 1203,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 5,
-                            RoomLabel = "2F-N3",
-                            RoomNumber = 3,
-                            RoomType = 1,
-                            RoomUse = "Examination room"
-                        },
-                        new
-                        {
-                            Id = 1204,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 5,
-                            RoomLabel = "2F-N4",
-                            RoomNumber = 4,
-                            RoomType = 1,
-                            RoomUse = "Examination room"
-                        },
-                        new
-                        {
-                            Id = 1205,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 5,
-                            RoomLabel = "2F-N5",
-                            RoomNumber = 5,
-                            RoomType = 1,
-                            RoomUse = "Examination room"
-                        },
-                        new
-                        {
-                            Id = 1206,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 5,
-                            RoomLabel = "2F-N6",
-                            RoomNumber = 6,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1207,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 5,
-                            RoomLabel = "2F-N7",
-                            RoomNumber = 7,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1208,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 5,
-                            RoomLabel = "2F-N8",
-                            RoomNumber = 8,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1209,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 5,
-                            RoomLabel = "2F-N9",
-                            RoomNumber = 9,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1210,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 5,
-                            RoomLabel = "2F-N10",
-                            RoomNumber = 10,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1211,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 5,
-                            RoomLabel = "2F-N11",
-                            RoomNumber = 11,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1212,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 5,
-                            RoomLabel = "2F-N12",
-                            RoomNumber = 12,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1213,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 5,
-                            RoomLabel = "2F-N13",
-                            RoomNumber = 13,
-                            RoomType = 4,
-                            RoomUse = "Storage room"
-                        },
-                        new
-                        {
-                            Id = 1214,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 5,
-                            RoomLabel = "2F-N14",
-                            RoomNumber = 14,
-                            RoomType = 4,
-                            RoomUse = "Storage room"
-                        },
-                        new
-                        {
-                            Id = 1215,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 6,
-                            RoomLabel = "2F-IC1",
-                            RoomNumber = 15,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1216,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 6,
-                            RoomLabel = "2F-IC2",
-                            RoomNumber = 16,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1217,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 6,
-                            RoomLabel = "2F-IC3",
-                            RoomNumber = 17,
-                            RoomType = 2,
-                            RoomUse = "Operation room"
-                        },
-                        new
-                        {
-                            Id = 1218,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 6,
-                            RoomLabel = "2F-IC4",
-                            RoomNumber = 18,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1219,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 6,
-                            RoomLabel = "2F-IC5",
-                            RoomNumber = 19,
-                            RoomType = 0,
-                            RoomUse = "Patient room"
-                        },
-                        new
-                        {
-                            Id = 1220,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 6,
-                            RoomLabel = "2F-IC6",
-                            RoomNumber = 20,
-                            RoomType = 2,
-                            RoomUse = "Operation room"
-                        },
-                        new
-                        {
-                            Id = 1221,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 6,
-                            RoomLabel = "2F-IC7",
-                            RoomNumber = 21,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
-                        },
-                        new
-                        {
-                            Id = 1222,
-                            BedsCapacity = 10,
-                            BedsFree = 3,
-                            DepartmentId = 6,
-                            RoomLabel = "2F-IC7",
-                            RoomNumber = 22,
-                            RoomType = 3,
-                            RoomUse = "Auxiliary room"
                         });
                 });
 
@@ -2510,23 +1361,23 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 3,
+                            Id = 1,
                             AddressId = 1,
                             Description = "blablal",
                             Name = "Medbay"
                         },
                         new
                         {
-                            Id = 1,
+                            Id = 2,
                             AddressId = 3,
-                            Description = "Hospital 1",
+                            Description = "Nebitno 1",
                             Name = "Hospital 1"
                         },
                         new
                         {
-                            Id = 2,
+                            Id = 3,
                             AddressId = 4,
-                            Description = "Hospital 2",
+                            Description = "Nebitno 2",
                             Name = "Hospital 2"
                         });
                 });

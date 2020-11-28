@@ -192,13 +192,36 @@ namespace Model
             );
 
             modelBuilder.Entity<Medication>().HasData(
-                new Medication { Id = 1, Med = "Brufen", Dosage="400mg", RoomId=1, Status = MedStatus.Approved, Company = "Famar", Quantity = 10, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
-                new Medication { Id = 2, Med = "Metafex", Dosage = "400mg", RoomId = 1, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
-                new Medication { Id = 3, Med = "Neoangin", Dosage = "400mg", RoomId = 1, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
-                new Medication { Id = 4, Med = "Phlebodia", Dosage = "400mg", RoomId = 1, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
-                new Medication { Id = 5, Med = "Sirup", Dosage = "400mg", RoomId = 1, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
-                new Medication { Id = 6, Med = "Grafalon", Dosage = "400mg", RoomId = 1, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
-                new Medication { Id = 7, Med = "Zalfija", Dosage = "400mg", RoomId = 1, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() }
+                new Medication { Id = 1, Med = "Brufen", Dosage="400mg", RoomId= 1001, Status = MedStatus.Approved, Company = "Famar", Quantity = 10, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 2, Med = "Xanax", Dosage = "20mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 3, Med = "Panadon", Dosage = "500mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 4, Med = "Diazepam", Dosage = "30mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 5, Med = "Andol", Dosage = "200mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 6, Med = "Reglan", Dosage = "100mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 7, Med = "Caffetin", Dosage = "400mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Bosnalijek", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 8, Med = "Plavix", Dosage = "50mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Galenika", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 9, Med = "Ambien", Dosage = "25mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 10, Med = "Ranisan", Dosage = "200mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Galenika", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 11, Med = "Vicodin", Dosage = "50mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 12, Med = "Adderall", Dosage = "40mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 13, Med = "Hemomicin", Dosage = "100mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 14, Med = "Klonopin", Dosage = "20mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Galenika", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 15, Med = "Demerol", Dosage = "30mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 16, Med = "OxyCotin", Dosage = "40mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 17, Med = "Percocet", Dosage = "60mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 18, Med = "Ritalin", Dosage = "80mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Bosnalijek", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 19, Med = "Eritromicin", Dosage = "100mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 20, Med = "Penicillin", Dosage = "200mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Bosnalijek", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 21, Med = "Amoksicilin", Dosage = "150mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 22, Med = "Cefaleksin", Dosage = "200mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Galenika", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 23, Med = "Zoloft", Dosage = "500mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 24, Med = "Lexilium", Dosage = "40mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 25, Med = "Bensedin", Dosage = "50mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 27, Med = "Letrox", Dosage = "100mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Galenika", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 28, Med = "Claritin", Dosage = "25mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 29, Med = "Flobian", Dosage = "500mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 30, Med = "Lasix", Dosage = "75mg", RoomId = 1001, Status = MedStatus.Validation, Company = "Galenika", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() }
+
             );
 
             modelBuilder.Entity<Therapy>().HasData(
@@ -280,56 +303,154 @@ namespace Model
             );
 
             modelBuilder.Entity<Department>().HasData(
-                new Department { Id = 1, Name = "Infektivno", Floor = 1, HospitalId = 1 },
-                new Department { Id = 2, Name = "Radiology", Floor = 1, HospitalId = 2 },
-                new Department { Id = 3, Name = "Neurology", Floor = 1, HospitalId = 2 },
-                new Department { Id = 4, Name = "Oncology", Floor = 1, HospitalId = 2 },
-                new Department { Id = 5, Name = "Cardiology", Floor = 1, HospitalId = 2 },
-                new Department { Id = 6, Name = "Intensive Care", Floor = 1, HospitalId = 2 },
-                new Department { Id = 7, Name = "Gastroenterology", Floor = 1, HospitalId = 3 },
-                new Department { Id = 8, Name = "Hematology", Floor = 1, HospitalId = 3 },
-                new Department { Id = 9, Name = "Dialysis", Floor = 1, HospitalId = 3 },
-                new Department { Id = 10, Name = "Rheumatology", Floor = 1, HospitalId = 3 },
-                new Department { Id = 11, Name = "Infectous Diseases", Floor = 1, HospitalId = 3 }
+                new Department { Id = 1, Name = "General H1", Floor = 0, HospitalId = 1 },
+                new Department { Id = 2, Name = "Cardiology", Floor = 0, HospitalId = 1 },
+                new Department { Id = 3, Name = "Oncology", Floor = 1, HospitalId = 1 },
+                new Department { Id = 4, Name = "Radiology", Floor = 1, HospitalId = 1 },
+                new Department { Id = 5, Name = "Neurology", Floor = 2, HospitalId = 1 },
+                new Department { Id = 6, Name = "Intensive Care", Floor = 2, HospitalId = 1 },
+                new Department { Id = 7, Name = "General H2", Floor = 0, HospitalId = 2 },
+                new Department { Id = 8, Name = "Dialysis", Floor = 0, HospitalId = 2 },
+                new Department { Id = 9, Name = "Gastroenterology", Floor = 1, HospitalId = 2 },
+                new Department { Id = 10, Name = "Hematology", Floor = 1, HospitalId = 2 },
+                new Department { Id = 11, Name = "Rheumatology", Floor = 2, HospitalId = 2 },
+                new Department { Id = 12, Name = "Infectous Diseases", Floor = 2, HospitalId = 2 },
+                new Department { Id = 13, Name = "Infektivno", Floor = 1, HospitalId = 3 }
             );
 
             modelBuilder.Entity<Hospital>().HasData(
 
-                new Hospital { Id = 1, Description = "blablal", Name = "Medbay", AddressId = 1 },
-                new Hospital { Id = 2, Description = "Nebitno 1", Name = "Hospital 1", AddressId = 3 },
-                new Hospital { Id = 3, Description = "Nebitno 2", Name = "Hospital 2", AddressId = 4 }
+                new Hospital { Id = 3, Description = "blablal", Name = "Medbay", AddressId = 1 },
+                new Hospital { Id = 1, Description = "Hospital 1", Name = "Hospital 1", AddressId = 3 },
+                new Hospital { Id = 2, Description = "Hospital 2", Name = "Hospital 2", AddressId = 4 }
             );
-
+            
             modelBuilder.Entity<Room>().HasData(
-                new Room { Id = 1, RoomNumber = 1, RoomLabel = "F2-G3", RoomUse = "Soba za pregledanje", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.Examination, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() },
-                new Room { Id = 2, RoomNumber = 2, RoomLabel = "F1-C3", RoomUse = "Soba za pregledanje", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.Ordination, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() },
-                new Room { Id = 3, RoomNumber = 3, RoomLabel="F1-C5", RoomUse="Soba za pregledanje", BedsCapacity=10, BedsFree=3, RoomType = RoomType.Patientroom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() },
-                new Room { Id = 4, RoomNumber = 4, RoomLabel = "F1-R5", RoomUse = "Soba za pregledanje", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.Patientroom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() },
-                new Room { Id = 5, RoomNumber = 5, RoomLabel = "F2-C4", RoomUse = "Soba za pregledanje", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.Storage, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
-                new Room { Id = 6, RoomNumber = 6, RoomLabel = "F1-G1", RoomUse = "Soba za pregledanje", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.Storage, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() },
-                new Room { Id = 7, RoomNumber = 7, RoomLabel = "F2-C2", RoomUse = "Soba za pregledanje", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.Ordination, DepartmentId = 7, HospitalEquipment = new List<HospitalEquipment>() },
-                new Room { Id = 8, RoomNumber = 8, RoomLabel = "F1-R2", RoomUse = "Soba za pregledanje", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.Examination, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() }
+
+                new Room { Id = 1, RoomNumber = 1, RoomLabel = "F2-G3", RoomUse = "Soba za pregledanje", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 2, RoomNumber = 2, RoomLabel = "F1-C3", RoomUse = "Soba za pregledanje", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 3, RoomNumber = 3, RoomLabel="F1-C5", RoomUse="Soba za pregledanje", BedsCapacity=10, BedsFree=3, RoomType = RoomType.ExaminationRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 4, RoomNumber = 4, RoomLabel = "F1-R5", RoomUse = "Soba za pregledanje", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 5, RoomNumber = 5, RoomLabel = "F2-C4", RoomUse = "Soba za pregledanje", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 6, RoomNumber = 6, RoomLabel = "F1-G1", RoomUse = "Soba za pregledanje", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 7, RoomNumber = 7, RoomLabel = "F2-C2", RoomUse = "Soba za pregledanje", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 7, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 8, RoomNumber = 8, RoomLabel = "F1-R2", RoomUse = "Soba za pregledanje", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() },
+
+                new Room { Id = 1001, RoomNumber = 1, RoomLabel = "0F-GH1", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1002, RoomNumber = 2, RoomLabel = "0F-GH2", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1003, RoomNumber = 3, RoomLabel = "0F-GH3", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1004, RoomNumber = 4, RoomLabel = "0F-GH4", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1005, RoomNumber = 5, RoomLabel = "0F-GH5", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1006, RoomNumber = 6, RoomLabel = "0F-GH6", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1007, RoomNumber = 7, RoomLabel = "0F-GH7", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1008, RoomNumber = 8, RoomLabel = "0F-GH8", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1009, RoomNumber = 9, RoomLabel = "0F-GH9", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1010, RoomNumber = 10, RoomLabel = "0F-GH10", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1011, RoomNumber = 11, RoomLabel = "0F-GH11", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1012, RoomNumber = 12, RoomLabel = "0F-C1", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1013, RoomNumber = 13, RoomLabel = "0F-c2", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1014, RoomNumber = 14, RoomLabel = "0F-C3", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1015, RoomNumber = 15, RoomLabel = "0F-C4", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1016, RoomNumber = 16, RoomLabel = "0F-C5", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1017, RoomNumber = 17, RoomLabel = "0F-C6", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1018, RoomNumber = 18, RoomLabel = "0F-C7", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1019, RoomNumber = 19, RoomLabel = "0F-C8", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1020, RoomNumber = 20, RoomLabel = "0F-E1", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1021, RoomNumber = 21, RoomLabel = "0F-E2", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() },
+
+                new Room { Id = 1101, RoomNumber = 1, RoomLabel = "1F-O1", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1102, RoomNumber = 2, RoomLabel = "1F-O2", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1103, RoomNumber = 3, RoomLabel = "1F-O3", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1104, RoomNumber = 4, RoomLabel = "1F-O4", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1105, RoomNumber = 5, RoomLabel = "1F-O5", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1106, RoomNumber = 6, RoomLabel = "1F-O6", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1107, RoomNumber = 7, RoomLabel = "1F-O7", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1108, RoomNumber = 8, RoomLabel = "1F-O8", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1109, RoomNumber = 9, RoomLabel = "1F-O9", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1110, RoomNumber = 10, RoomLabel = "1F-O10", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1111, RoomNumber = 11, RoomLabel = "1F-O11", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1112, RoomNumber = 12, RoomLabel = "1F-O12", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1113, RoomNumber = 13, RoomLabel = "1F-O13", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1114, RoomNumber = 14, RoomLabel = "1F-R1", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1115, RoomNumber = 15, RoomLabel = "1F-R2", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1116, RoomNumber = 16, RoomLabel = "1F-R3", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1117, RoomNumber = 17, RoomLabel = "1F-R4", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1118, RoomNumber = 18, RoomLabel = "1F-R5", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1119, RoomNumber = 19, RoomLabel = "1F-R6", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1120, RoomNumber = 20, RoomLabel = "1F-R7", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1121, RoomNumber = 21, RoomLabel = "1F-R8", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() },
+
+                new Room { Id = 1201, RoomNumber = 1, RoomLabel = "2F-N1", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1202, RoomNumber = 2, RoomLabel = "2F-N2", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1203, RoomNumber = 3, RoomLabel = "2F-N3", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1204, RoomNumber = 4, RoomLabel = "2F-N4", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1205, RoomNumber = 5, RoomLabel = "2F-N5", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1206, RoomNumber = 6, RoomLabel = "2F-N6", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1207, RoomNumber = 7, RoomLabel = "2F-N7", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1208, RoomNumber = 8, RoomLabel = "2F-N8", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1209, RoomNumber = 9, RoomLabel = "2F-N9", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1210, RoomNumber = 10, RoomLabel = "2F-N10", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1211, RoomNumber = 11, RoomLabel = "2F-N11", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1212, RoomNumber = 12, RoomLabel = "2F-N12", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1213, RoomNumber = 13, RoomLabel = "2F-N13", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1214, RoomNumber = 14, RoomLabel = "2F-N14", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1215, RoomNumber = 15, RoomLabel = "2F-IC1", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1216, RoomNumber = 16, RoomLabel = "2F-IC2", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1217, RoomNumber = 17, RoomLabel = "2F-IC3", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1218, RoomNumber = 18, RoomLabel = "2F-IC4", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1219, RoomNumber = 19, RoomLabel = "2F-IC5", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1220, RoomNumber = 20, RoomLabel = "2F-IC6", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1221, RoomNumber = 21, RoomLabel = "2F-IC7", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() },
+                new Room { Id = 1222, RoomNumber = 22, RoomLabel = "2F-IC7", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() }
             );
 
             modelBuilder.Entity<HospitalEquipment>().HasData(
-                new HospitalEquipment { Id = 1, QuantityInRoom = 5, QuantityInStorage = 15, RoomId = 1, EquipmentTypeId = 1 },
-                new HospitalEquipment { Id = 2, QuantityInRoom = 5, QuantityInStorage = 15, RoomId = 2, EquipmentTypeId = 2 },
-                new HospitalEquipment { Id = 3, QuantityInRoom = 5, QuantityInStorage = 15, RoomId = 3, EquipmentTypeId = 3 },
-                new HospitalEquipment { Id = 4, QuantityInRoom = 5, QuantityInStorage = 15, RoomId = 2, EquipmentTypeId = 4 },
-                new HospitalEquipment { Id = 5, QuantityInRoom = 5, QuantityInStorage = 15, RoomId = 3, EquipmentTypeId = 5 },
-                new HospitalEquipment { Id = 6, QuantityInRoom = 5, QuantityInStorage = 15, RoomId = 4, EquipmentTypeId = 6 },
-                new HospitalEquipment { Id = 7, QuantityInRoom = 5, QuantityInStorage = 15, RoomId = 4, EquipmentTypeId = 7 }
+                new HospitalEquipment { Id = 1, QuantityInRoom = 1, QuantityInStorage = 1, RoomId = 1002, EquipmentTypeId = 1 },
+                new HospitalEquipment { Id = 2, QuantityInRoom = 1, QuantityInStorage = 0, RoomId = 1002, EquipmentTypeId = 2 },
+                new HospitalEquipment { Id = 3, QuantityInRoom = 1, QuantityInStorage = 0, RoomId = 1002, EquipmentTypeId = 3 },
+                new HospitalEquipment { Id = 4, QuantityInRoom = 1, QuantityInStorage = 0, RoomId = 1002, EquipmentTypeId = 4 },
+                new HospitalEquipment { Id = 5, QuantityInRoom = 1, QuantityInStorage = 1, RoomId = 1002, EquipmentTypeId = 5 },
+                new HospitalEquipment { Id = 6, QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 1002, EquipmentTypeId = 6 },
+                new HospitalEquipment { Id = 7, QuantityInRoom = 1, QuantityInStorage = 4, RoomId = 1002, EquipmentTypeId = 7 },
+                new HospitalEquipment { Id = 8, QuantityInRoom = 1, QuantityInStorage = 3, RoomId = 1002, EquipmentTypeId = 8 },
+                new HospitalEquipment { Id = 9, QuantityInRoom = 2, QuantityInStorage = 15, RoomId = 1002, EquipmentTypeId = 9 },
+                new HospitalEquipment { Id = 10, QuantityInRoom = 2, QuantityInStorage = 7, RoomId = 1002, EquipmentTypeId = 10 },
+                new HospitalEquipment { Id = 11, QuantityInRoom = 2, QuantityInStorage = 20, RoomId = 1002, EquipmentTypeId = 11 },
+                new HospitalEquipment { Id = 12, QuantityInRoom = 5, QuantityInStorage = 100, RoomId = 1002, EquipmentTypeId = 12 },
+                new HospitalEquipment { Id = 13, QuantityInRoom = 5, QuantityInStorage = 200, RoomId = 1002, EquipmentTypeId = 13 },
+                new HospitalEquipment { Id = 14, QuantityInRoom = 3, QuantityInStorage = 14, RoomId = 1002, EquipmentTypeId = 14 },
+                new HospitalEquipment { Id = 15, QuantityInRoom = 3, QuantityInStorage = 13, RoomId = 1002, EquipmentTypeId = 15 },
+                new HospitalEquipment { Id = 16, QuantityInRoom = 3, QuantityInStorage = 16, RoomId = 1002, EquipmentTypeId = 16 },
+                new HospitalEquipment { Id = 17, QuantityInRoom = 10, QuantityInStorage = 500, RoomId = 1002, EquipmentTypeId = 17 },
+                new HospitalEquipment { Id = 18, QuantityInRoom = 10, QuantityInStorage = 1000, RoomId = 1002, EquipmentTypeId = 18 },
+                new HospitalEquipment { Id = 19, QuantityInRoom = 3, QuantityInStorage = 20, RoomId = 1002, EquipmentTypeId = 19 },
+                new HospitalEquipment { Id = 20, QuantityInRoom = 4, QuantityInStorage = 5, RoomId = 1002, EquipmentTypeId = 20 }
 
             );
 
             modelBuilder.Entity<EquipmentType>().HasData(
-                new EquipmentType { Id = 1, Name = "Krevet" },
-                new EquipmentType { Id = 2, Name = "Metla" },
-                new EquipmentType { Id = 3, Name = "Sapun" },
-                new EquipmentType { Id = 4, Name = "Spric" },
-                new EquipmentType { Id = 5, Name = "Papir" },
-                new EquipmentType { Id = 6, Name = "Krpa" },
-                new EquipmentType { Id = 7, Name = "Sljivovica za smirenje zivaca" }
+                new EquipmentType { Id = 1, Name = "Mamogram" },
+                new EquipmentType { Id = 2, Name = "X-ray" },
+                new EquipmentType { Id = 3, Name = "CT" },
+                new EquipmentType { Id = 4, Name = "MRI" },
+                new EquipmentType { Id = 5, Name = "Ultra sound" },
+                new EquipmentType { Id = 6, Name = "EKG" },
+                new EquipmentType { Id = 7, Name = "Holter" },
+                new EquipmentType { Id = 8, Name = "Gastroscope" },
+                new EquipmentType { Id = 9, Name = "Blood preasure monitor" },
+                new EquipmentType { Id = 10, Name = "Otoscope" },
+                new EquipmentType { Id = 11, Name = "Stethoscope" },
+                new EquipmentType { Id = 12, Name = "Suringe" },
+                new EquipmentType { Id = 13, Name = "Needle" },
+                new EquipmentType { Id = 14, Name = "Scalpel" },
+                new EquipmentType { Id = 15, Name = "Pean" },
+                new EquipmentType { Id = 16, Name = "Scissors" },
+                new EquipmentType { Id = 17, Name = "Surgical mask" },
+                new EquipmentType { Id = 18, Name = "Surgical gloves" },
+                new EquipmentType { Id = 19, Name = "Computer" },
+                new EquipmentType { Id = 20, Name = "Bed" }
+            
+
 
             );
         }

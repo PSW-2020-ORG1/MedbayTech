@@ -10,9 +10,10 @@ namespace Model.Rooms
 {
     public enum RoomType
     {
-        Ordination,
-        Examination,
-        Patientroom,
-        Storage
+        PatientRoom,
+        ExaminationRoom,
+        OperationRoom,
+        AuxiliaryRoom,
+        StorageRoom
     }
 }
