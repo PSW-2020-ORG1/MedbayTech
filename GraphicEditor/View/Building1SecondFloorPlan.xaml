@@ -54,10 +54,10 @@
             <Line X1="100" Y1="0" X2="0" Y2="0" Stroke="Black" StrokeThickness="1" Canvas.Left="381" Canvas.Top="235"/>
             <Line X1="100" Y1="0" X2="0" Y2="0" Stroke="Black" StrokeThickness="1" Canvas.Left="381" Canvas.Top="225"/>
             <Line X1="100" Y1="0" X2="0" Y2="0" Stroke="Black" StrokeThickness="1" Canvas.Left="381" Canvas.Top="215"/>
-            <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="186" Stroke="Black" StrokeThickness="3" Canvas.Top="245" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom"/>
-            <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="186" Stroke="Black" StrokeThickness="3" Canvas.Top="195" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom"/>
-            <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="236" Stroke="Black" StrokeThickness="3" Canvas.Top="245" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom"/>
-            <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="236" Stroke="Black" StrokeThickness="3" Canvas.Top="195" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom" RenderTransformOrigin="0.948,0.611"/>
+            <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="184" Stroke="Black" StrokeThickness="3" Canvas.Top="246" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom"/>
+            <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="184" Stroke="Black" StrokeThickness="3" Canvas.Top="196" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom"/>
+            <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="234" Stroke="Black" StrokeThickness="3" Canvas.Top="246" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom"/>
+            <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="234" Stroke="Black" StrokeThickness="3" Canvas.Top="196" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom" RenderTransformOrigin="0.948,0.611"/>
             <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="86" Stroke="Black" StrokeThickness="3" Canvas.Top="196" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom"/>
             <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="86" Stroke="Black" StrokeThickness="3" Canvas.Top="246" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom"/>
             <Rectangle Fill="#dca0d3" Height="100" Width="50" Canvas.Left="481" Stroke="Black" StrokeThickness="3" Canvas.Top="356" MouseEnter="PatientRoom_MouseEnter" MouseLeave="PatientRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationPatientRoom" />
@@ -68,7 +68,7 @@
             <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="86" Stroke="Black" StrokeThickness="3" Canvas.Top="406" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom" RenderTransformOrigin="0.948,0.611"/>
             <Rectangle Fill="#ffdf99" Height="50" Width="50" Canvas.Left="331" Stroke="Black" StrokeThickness="3" Canvas.Top="246" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom" RenderTransformOrigin="0.948,0.611"/>
             <Rectangle Fill="#ffdf99" Height="50" Width="50" Canvas.Left="331" Stroke="Black" StrokeThickness="3" Canvas.Top="196" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom" RenderTransformOrigin="0.948,0.611"/>
-            <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="334" Stroke="Black" StrokeThickness="3" Canvas.Top="406" RenderTransformOrigin="0.948,0.611" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom"/>
+            <Rectangle Fill="#9da49f" Height="50" Width="50" Canvas.Left="333" Stroke="Black" StrokeThickness="3" Canvas.Top="406" RenderTransformOrigin="0.948,0.611" MouseEnter="AuxiliaryRoom_MouseEnter" MouseLeave="AuxiliaryRoom_MouseLeave" MouseLeftButtonDown="AdditionalInformationAuxiliaryRoom"/>
         </Canvas>
         <Popup x:Name="PopupPatientRoom"
                    AllowsTransparency="True"
@@ -115,6 +115,6 @@
                 <local:PopupInfoForPatient x:Name="InfoForPatient" Foreground="#E0FFFF"/>
             </Grid>
         </Popup>
-        
+
     </Grid>
 </Page>
