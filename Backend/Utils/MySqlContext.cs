@@ -112,7 +112,13 @@ namespace Model
                 );
 
             modelBuilder.Entity<InsurancePolicy>().HasData(
-                new InsurancePolicy { Company = "Dunav osiguranje d.o.o", Id = "policy1", StartTime = new DateTime(2020, 11, 1), EndTime =  new DateTime(2020, 11, 1) }
+                new InsurancePolicy 
+                { 
+                    Company = "Dunav osiguranje d.o.o",
+                    Id = "policy1",
+                    StartTime = new DateTime(2020, 11, 1),
+                    EndTime =  new DateTime(2020, 11, 1) 
+                }
             );
 
             modelBuilder.Entity<RegisteredUser>().HasData(
@@ -139,10 +145,44 @@ namespace Model
                 );
 
             modelBuilder.Entity<Feedback>().HasData(
-                new Feedback { Id = 1, AdditionalNotes = "Sve je super!", Approved = true, Date = new DateTime(), RegisteredUserId = "2406978890045", Anonymous = false, AllowedForPublishing = true },
-                new Feedback { Id = 2, AdditionalNotes = "Bolnica je veoma losa, bas sam razocaran! Rupe u zidovima, voda curi na sve strane, treba vas zatvoriti!!!", Approved = false, Date = new DateTime(), RegisteredUserId = "2406978890045", Anonymous = false, AllowedForPublishing = true },
-                new Feedback { Id = 3, AdditionalNotes = "Predivno, ali i ruzno! Sramite se! Cestitke... <3", Approved = false, Date = new DateTime(), RegisteredUserId = "2406978890045", Anonymous = false, AllowedForPublishing = false },
-                new Feedback { Id = 4, AdditionalNotes = "Odlicno!", Approved = false, Date = new DateTime(), RegisteredUserId = "2406978890045", Anonymous = false, AllowedForPublishing = false }
+                new Feedback 
+                {
+                    Id = 1,
+                    AdditionalNotes = "Sve je super!",
+                    Approved = true, Date = new DateTime(),
+                    RegisteredUserId = "2406978890045",
+                    Anonymous = false,
+                    AllowedForPublishing = true 
+                },
+                new Feedback 
+                {
+                    Id = 2,
+                    AdditionalNotes = "Bolnica je veoma losa, bas sam razocaran! Rupe u zidovima, voda curi na sve strane, treba vas zatvoriti!!!",
+                    Approved = false,
+                    Date = new DateTime(),
+                    RegisteredUserId = "2406978890045",
+                    Anonymous = false,
+                    AllowedForPublishing = true 
+                },
+                new Feedback 
+                { 
+                    Id = 3,
+                    AdditionalNotes = "Predivno, ali i ruzno! Sramite se! Cestitke... <3",
+                    Approved = false, Date = new DateTime(),
+                    RegisteredUserId = "2406978890045",
+                    Anonymous = false,
+                    AllowedForPublishing = false
+                },
+                new Feedback 
+                { 
+                    Id = 4,
+                    AdditionalNotes = "Odlicno!",
+                    Approved = false,
+                    Date = new DateTime(),
+                    RegisteredUserId = "2406978890045",
+                    Anonymous = false,
+                    AllowedForPublishing = false 
+                }
             );
 
             modelBuilder.Entity<Vaccines>().HasData(
@@ -190,8 +230,32 @@ namespace Model
             );
 
             modelBuilder.Entity<Medication>().HasData(
-                new Medication { Id = 1, Med = "Brufen", Status = MedStatus.Approved, Company = "Famar", Quantity = 10, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>()},
-                new Medication { Id = 2, Med = "Metafex", Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() }
+                new Medication 
+                { 
+                    Id = 1,
+                    Med = "Brufen",
+                    Status = MedStatus.Approved,
+                    Company = "Famar",
+                    Quantity = 10,
+                    MedicationContent = new List<DosageOfIngredient>(),
+                    MedicationCategoryId = 1,
+                    Allergens = new List<Allergens>(),
+                    AlternativeMedication = new List<Medication>(),
+                    SideEffects = new List<SideEffect>()
+                },
+                new Medication
+                { 
+                    Id = 2,
+                    Med = "Metafex",
+                    Status = MedStatus.Validation,
+                    Company = "Goodwill",
+                    Quantity = 15,
+                    MedicationContent = new List<DosageOfIngredient>(),
+                    MedicationCategoryId = 1,
+                    Allergens = new List<Allergens>(),
+                    AlternativeMedication = new List<Medication>(),
+                    SideEffects = new List<SideEffect>() 
+                }
             );
 
             modelBuilder.Entity<Therapy>().HasData(
@@ -294,8 +358,16 @@ namespace Model
             );
 
             modelBuilder.Entity<ExaminationSurgery>().HasData(
-                new ExaminationSurgery { Id = 1, StartTime = new DateTime(2020, 11, 27), Type = TypeOfAppointment.Examination, Treatments = new List<Treatment>(),
-                Diagnoses = new List<Diagnosis>(), DoctorId = "2406978890047", MedicalRecordId = 1 },
+                new ExaminationSurgery 
+                { 
+                    Id = 1,
+                    StartTime = new DateTime(2020, 11, 27),
+                    Type = TypeOfAppointment.Examination,
+                    Treatments = new List<Treatment>(),
+                    Diagnoses = new List<Diagnosis>(),
+                    DoctorId = "2406978890047",
+                    MedicalRecordId = 1 
+                },
                 new ExaminationSurgery
                 {
                     Id = 2,
@@ -309,8 +381,22 @@ namespace Model
             );
 
             modelBuilder.Entity<Treatment>().HasData(
-                new Treatment { Id = 3, Date = new DateTime(2020, 11, 27), AdditionalNotes = ".", Type = TreatmentType.Prescription, ExaminationSurgeryId = 1},
-                new Treatment { Id = 4, Date = new DateTime(2020, 11, 29), AdditionalNotes = ".", Type = TreatmentType.Prescription, ExaminationSurgeryId = 1 }
+                new Treatment 
+                { 
+                    Id = 3,
+                    Date = new DateTime(2020, 11, 27),
+                    AdditionalNotes = ".",
+                    Type = TreatmentType.Prescription,
+                    ExaminationSurgeryId = 1
+                },
+                new Treatment 
+                { 
+                    Id = 4,
+                    Date = new DateTime(2020, 11, 29),
+                    AdditionalNotes = ".",
+                    Type = TreatmentType.Prescription,
+                    ExaminationSurgeryId = 1 
+                }
             );
 
             modelBuilder.Entity<Prescription>().HasData(

@@ -21,7 +21,7 @@ namespace WebApplication.Controller
 
         public MedicalRecordController()
         {
-            this.medicalRecordWebController = new MedicalRecordWebController();
+            medicalRecordWebController = new MedicalRecordWebController();
         }
 
         [HttpGet] // GET api/medicalRecord
