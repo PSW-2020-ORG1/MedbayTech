@@ -11,10 +11,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Model;
+using Backend.Rooms.Service;
 
 namespace Service.RoomService
 {
-   public class RoomService
+   public class RoomService : IRoomService
    {
         public IEnumerable<Room> GetAllRooms() => roomRepository.GetAll();
 
@@ -126,6 +127,11 @@ namespace Service.RoomService
             roomToChange.Department = department;
             return roomRepository.Update(room);
 
+        }
+
+        public List<Room> GetAll()
+        {
+            return _context.Rooms.ToList();
         }
 
     }

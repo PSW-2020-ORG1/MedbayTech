@@ -1,6 +1,8 @@
 ﻿using Model.Rooms;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,7 +34,23 @@ namespace GraphicEditor
         }
         private void searchDataBase(string textBoxSearch)
         {
-            List<Room> rooms = Services.getService().roomService.GetRoomsByRoomLabel(textBoxSearch.ToLower().Trim());
+            List<Room> rooms = new List<Room>();
+            HttpClient httpClient = new HttpClient();
+            var task = httpClient.GetAsync("http://localhost:53109/api/room/" + textBoxSearch)
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    rooms = JsonConvert.DeserializeObject<List<Room>>(jsonString.Result);
+                });
+            task.Wait();
+            dataGridRoom.ItemsSource = rooms;
+
+
+
+
+            /*List<Room> rooms = Services.getService().roomService.GetRoomsByRoomLabel(textBoxSearch.ToLower().Trim());
             if(rooms.Count != 0)
             {
                 dataGridRoom.ItemsSource = rooms;
@@ -44,7 +62,7 @@ namespace GraphicEditor
                 dataGridRoom.ItemsSource = rooms;
                 return;
             }
-            MessageBox.Show("No results found!");
+            MessageBox.Show("No results found!");*/
         }
 
         private void buttonShowOnMap(object sender, RoutedEventArgs e)

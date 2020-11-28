@@ -90,7 +90,7 @@ namespace Model
             // that project
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
-            optionsBuilder.UseMySql(configuration.GetConnectionString("MySqlConnectionString")).UseLazyLoadingProxies();
+            optionsBuilder.UseMySql("server=localhost;port=3306;database=newdb;user=root;password=root").UseLazyLoadingProxies();
 
         }
 
