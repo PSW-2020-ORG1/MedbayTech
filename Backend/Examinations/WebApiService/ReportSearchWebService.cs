@@ -33,12 +33,7 @@ namespace Backend.Examinations.WebApiService
                     reports.Remove(report);
                 }
 
-                if (report.StartTime == startDate && report.StartTime == endDate)
-                {
-                    continue;
-                }
-
-                if (report.StartTime < startDate || report.StartTime > endDate) 
+                if (report.StartTime <= startDate || report.StartTime >= endDate) 
                 {
                     reports.Remove(report);
                 }  

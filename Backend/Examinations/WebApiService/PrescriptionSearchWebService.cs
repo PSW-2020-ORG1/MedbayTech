@@ -32,12 +32,7 @@ namespace Backend.Examinations.WebApiService
                     prescriptions.Remove(prescription);
                 }
 
-                if (prescription.Date == startDate && prescription.Date == endDate)
-                {
-                    continue;
-                }
-
-                if (prescription.Date < startDate || prescription.Date > endDate)
+                if (prescription.Date <= startDate || prescription.Date >= endDate)
                 {
                     prescriptions.Remove(prescription);
                 } 
