@@ -140,8 +140,8 @@ namespace Backend.Examinations.Repository
         public ExaminationSurgery UpdateTreatment(ExaminationSurgery examinationSurgery, Treatment treatment)
         {
             Prescription prescription = (Prescription) treatment;
-            prescription.InitializeReservationDates();
             return base.Update(examinationSurgery);
         }
+
     }
 }

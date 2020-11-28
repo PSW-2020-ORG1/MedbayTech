@@ -14,6 +14,8 @@ export const environment = {
   doctor : 'api/doctor',
   searchDoctor : 'searchDoctor',
   medicalRecord : 'api/medicalRecord',
+  prescriptionSimpleSearch : 'api/prescription',
+  reportSimpleSearch : 'api/report'
 };
 
 /*
