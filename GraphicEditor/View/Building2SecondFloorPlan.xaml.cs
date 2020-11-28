@@ -89,6 +89,12 @@ namespace GraphicEditor.View.Building2
                     rectangle.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#05e1ff");
                     SearchResultsForMedicines.Id = "0";
                 }
+                if (rectangle.Uid.Equals(SearchResaultsForEquipment.Id))
+                {
+                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#ffea05");
+                    rectangle.StrokeThickness = 5;
+                    SearchResaultsForEquipment.Id = "0";
+                }
             }
         }
 
