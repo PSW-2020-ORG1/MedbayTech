@@ -55,6 +55,12 @@ namespace GraphicEditor
         private void searchDataBase(string textBoxSearch)
         {
             List<Room> rooms = new List<Room>();
+            if(textBoxSearch.Trim().Equals(""))
+            {
+                dataGridRoom.ItemsSource = rooms;
+                MessageBox.Show("No results found!");
+                return;
+            }
             HttpClient httpClient = new HttpClient();
             var task = httpClient.GetAsync("http://localhost:53109/api/room/" + textBoxSearch)
                 .ContinueWith((taskWithResponse) =>
@@ -66,30 +72,12 @@ namespace GraphicEditor
                 });
             task.Wait();
             dataGridRoom.ItemsSource = rooms;
-
-
-
-
-            /*List<Room> rooms = Services.getService().roomService.GetRoomsByRoomLabel(textBoxSearch.ToLower().Trim());
-            if(rooms.Count != 0)
-            {
-                dataGridRoom.ItemsSource = rooms;
-                return;
-            }
-            rooms = Services.getService().roomService.GetRoomsByRoomUse(textBoxSearch.ToLower().Trim());
-            if(rooms.Count !=0)
-            {
-                dataGridRoom.ItemsSource = rooms;
-                return;
-            }
-            MessageBox.Show("No results found!");*/
+            if(rooms.Count == 0) MessageBox.Show("No results found!");
         }
         public static string Id;
         private void buttonShowOnMap(object sender, RoutedEventArgs e)
         {
-            
             Room room = (Room)dataGridRoom.SelectedItem;
-            //MessageBox.Show("To be implemented!");
             if(room.Department.Floor == 0 && room.Department.Hospital.Id == 1)
             {
                 Id = room.Id.ToString();

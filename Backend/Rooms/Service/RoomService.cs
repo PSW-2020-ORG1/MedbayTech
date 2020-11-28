@@ -49,13 +49,16 @@ namespace Service.RoomService
             return null;
         }
 
-        public List<Room> GetRoomsByRoomLabel(string roomLabel)
+        public List<Room> GetRoomsByRoomLabelorRoomUse(string textBoxSearch)
         {
-            return _context.Rooms.ToList().Where(p => p.RoomLabel.ToLower().Contains(roomLabel)).ToList();
-        }
-        public List<Room> GetRoomsByRoomUse(string roomUse)
-        {
-            return _context.Rooms.ToList().Where(p => p.RoomUse.ToLower().Contains(roomUse)).ToList();
+            List<Room> rooms = new List<Room>();
+            rooms = _context.Rooms.ToList().Where(p => p.RoomLabel.ToLower().Contains(textBoxSearch)).ToList();
+            if(rooms.Count != 0)
+            {
+                return rooms;
+            }
+            rooms = _context.Rooms.ToList().Where(p => p.RoomUse.ToLower().Contains(textBoxSearch)).ToList();
+            return rooms;
         }
 
         public Room UpdateRoom(Room room) => roomRepository.Update(room);

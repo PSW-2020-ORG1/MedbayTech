@@ -1,6 +1,8 @@
 ﻿using Model.Rooms;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,23 +34,25 @@ namespace GraphicEditor
         }
         private void searchDataBase(string textBoxSearch)
         {
-            List<HospitalEquipment> hospitalEquipments = Services.getService().hospitalEquipmentService.GetHospitalEquipmentsByName(textBoxSearch.ToLower().Trim());
-            if (hospitalEquipments.Count != 0)
+            List<HospitalEquipment> hospitalEquipment = new List<HospitalEquipment>();
+            if(textBoxSearch.Trim().Equals(""))
             {
-                dataGridEquipment.ItemsSource = hospitalEquipments;
+                dataGridEquipment.ItemsSource = hospitalEquipment;
+                MessageBox.Show("No results found!");
                 return;
             }
-            int id;
-            if(Int32.TryParse(textBoxSearch, out id))
-            {
-                hospitalEquipments = Services.getService().hospitalEquipmentService.GetHospitalEquipmentsById(id);
-                if (hospitalEquipments.Count != 0)
+            HttpClient httpClient = new HttpClient();
+            var task = httpClient.GetAsync("http://localhost:53109/api/hospitalequipment/" + textBoxSearch)
+                .ContinueWith((taskWithResponse) =>
                 {
-                    dataGridEquipment.ItemsSource = hospitalEquipments;
-                    return;
-                }
-            }
-            MessageBox.Show("No results found!");
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    hospitalEquipment = JsonConvert.DeserializeObject<List<HospitalEquipment>>(jsonString.Result);
+                });
+            task.Wait();
+            dataGridEquipment.ItemsSource = hospitalEquipment;
+            if (hospitalEquipment.Count == 0) MessageBox.Show("No results found!");
         }
 
         private void buttonShownOnMap(object sender, RoutedEventArgs e)

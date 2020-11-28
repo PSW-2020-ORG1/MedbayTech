@@ -15,7 +15,7 @@ using Model;
 
 namespace Backend.Medications.Service
 {
-   public class MedicationService
+   public class MedicationService : IMedicationService
    {
         public IMedicationRepository medicationRepository;
         public NotificationService notificationService;
@@ -33,13 +33,16 @@ namespace Backend.Medications.Service
         {
             _context = context;
         }
-        public List<Medication> GetAllMedicationsByName(string nameOfMedication)
+        public List<Medication> GetAllMedicationsByNameOrId(string nameOfMedication)
         {
-            return _context.Medications.ToList().Where(p => p.Med.ToLower().Contains(nameOfMedication)).ToList();
-        }
-        public List<Medication> GetAllMedicationsById(int idOfMedication)
-        {
-            return _context.Medications.ToList().Where(p => p.Id == idOfMedication).ToList();
+            List<Medication> medications = new List<Medication>();
+            if(Int32.TryParse(nameOfMedication, out int id))
+            {
+                medications = _context.Medications.ToList().Where(p => p.Id == id).ToList();
+                if (medications.Count != 0) return medications;
+            }
+            medications = _context.Medications.ToList().Where(p => p.Med.ToLower().Contains(nameOfMedication)).ToList();
+            return medications;
         }
         public Medication RejectMedication(Medication medication)
         {

@@ -8,8 +8,7 @@ namespace Backend.Rooms.Service
     public interface IRoomService
     {
         public Room GetRoomByRoomNumber(int roomNumber);
-        public List<Room> GetRoomsByRoomLabel(string roomLabel);
-        public List<Room> GetRoomsByRoomUse(string roomUse);
+        public List<Room> GetRoomsByRoomLabelorRoomUse(string textBoxSearch);
         public Room UpdateRoom(Room room);
         public Room AddRoomToDepartment(Room room, Department department);
         public Room AddRoom(Room room);

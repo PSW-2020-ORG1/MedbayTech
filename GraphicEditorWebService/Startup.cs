@@ -1,3 +1,4 @@
+using Backend.Medications.Service;
 using Backend.Rooms.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +34,8 @@ namespace GraphicEditorWebService
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IHospitalEquipmentService, HospitalEquipmentService>();
+            services.AddScoped<IMedicationService, MedicationService>();
             services.AddControllers();
             services.AddCors();
         }

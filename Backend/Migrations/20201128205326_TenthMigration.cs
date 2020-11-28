@@ -2,7 +2,7 @@
 
 namespace Backend.Migrations
 {
-    public partial class deseta : Migration
+    public partial class TenthMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

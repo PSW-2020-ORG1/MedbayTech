@@ -2,8 +2,10 @@
 using GraphicEditor.View.Building1;
 using GraphicEditor.View.Building2;
 using Model.Rooms;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,23 +53,25 @@ namespace GraphicEditor
 
         private void searchDataBase(string textBoxSearch)
         {
-            List<Medication> medications = Services.getService().medicationService.GetAllMedicationsByName(textBoxSearch.ToLower().Trim());
-            if (medications.Count != 0)
+            List<Medication> medications = new List<Medication>();
+            if(textBoxSearch.Trim().Equals(""))
             {
                 dataGridMedicate.ItemsSource = medications;
+                MessageBox.Show("No results found!");
                 return;
             }
-            int id;
-            if (Int32.TryParse(textBoxSearch, out id))
-            {
-                medications = Services.getService().medicationService.GetAllMedicationsById(id);
-                if (medications.Count != 0)
+            HttpClient httpClient = new HttpClient();
+            var task = httpClient.GetAsync("http://localhost:53109/api/medication/" + textBoxSearch)
+                .ContinueWith((taskWithResponse) =>
                 {
-                    dataGridMedicate.ItemsSource = medications;
-                    return;
-                }
-            }
-            MessageBox.Show("No results found!");
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    medications = JsonConvert.DeserializeObject<List<Medication>>(jsonString.Result);
+                });
+            task.Wait();
+            dataGridMedicate.ItemsSource = medications;
+            if(medications.Count == 0) MessageBox.Show("No results found!");
         }
         public static string Id;
         private void buttonShowOnMap(object sender, RoutedEventArgs e)

@@ -4,6 +4,7 @@
  * Purpose: Definition of the Class Service.EquipmentService
  ***********************************************************************/
 
+using Backend.Rooms.Service;
 using Model;
 using Model.Rooms;
 using Repository.RoomRepository;
@@ -11,10 +12,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Service.RoomService
+namespace Service.RoomService 
 {
-   public class HospitalEquipmentService
-   {
+   public class HospitalEquipmentService : IHospitalEquipmentService
+    {
 
         private MySqlContext _context;
 
@@ -28,16 +29,17 @@ namespace Service.RoomService
             this.hospitalEquipmentRepository = hospitalEquipmentRepository;
         }
 
-        public List<HospitalEquipment> GetHospitalEquipmentsByName(string equipmentName)
+        public List<HospitalEquipment> GetHospitalEquipmentsByNameOrId(string textBoxSearch)
         {
-            return _context.HospitalEquipment.ToList().Where(p => p.EquipmentType.Name.ToLower().Trim().Contains(equipmentName)).ToList();
+            List<HospitalEquipment> hospitalEquipment = new List<HospitalEquipment>();
+            if(Int32.TryParse(textBoxSearch, out int id))
+            {
+                hospitalEquipment = _context.HospitalEquipment.ToList().Where(p => p.Id == id).ToList();
+                if (hospitalEquipment.Count != 0) return hospitalEquipment;
+            }
+            hospitalEquipment = _context.HospitalEquipment.ToList().Where(p => p.EquipmentType.Name.ToLower().Trim().Contains(textBoxSearch)).ToList();
+            return hospitalEquipment;
         }
-
-        public List<HospitalEquipment> GetHospitalEquipmentsById(int equipmentId)
-        {
-            return _context.HospitalEquipment.ToList().Where(p => p.Id == equipmentId).ToList();
-        }
-
 
         public HospitalEquipment AddEquipment(HospitalEquipment equipment) => hospitalEquipmentRepository.Create(equipment);
         public HospitalEquipment UpdateEquipment(HospitalEquipment equipment) => hospitalEquipmentRepository.Update(equipment);

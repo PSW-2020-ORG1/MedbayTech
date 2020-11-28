@@ -13,6 +13,7 @@ namespace GraphicEditorService.Controller
     public class RoomController : ControllerBase
     {
         private IRoomService _roomService;
+ 
         public RoomController (IRoomService roomService)
         {
             _roomService = roomService;
@@ -21,13 +22,7 @@ namespace GraphicEditorService.Controller
         [HttpGet("{textBoxSearch?}")]
         public IActionResult Get(string textBoxSearch)
         {
-            return Ok(_roomService.GetRoomsByRoomLabel(textBoxSearch));
+            return Ok(_roomService.GetRoomsByRoomLabelorRoomUse(textBoxSearch.ToLower().Trim()));
         }
-
-        /*[HttpGet("{roomId?}")]
-        public IActionResult Get(int roomId)
-        {
-            return Ok(_roomService.GetAll());
-        }*/
     }
 }
