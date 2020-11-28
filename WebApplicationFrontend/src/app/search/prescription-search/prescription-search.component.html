@@ -107,7 +107,7 @@
     </div>
     </div>
 
-    <div *ngIf="prescriptionForm.get('duplicates')['length']<1">
+    <div *ngIf="prescriptionForm.get('duplicates')['length']<3">
         <button mat-raised-button color="primary" (click)="addDuplicates()">Add</button>
     </div>
 
@@ -122,13 +122,13 @@
 
     <ng-container matColumnDef="medicine">
       <th mat-header-cell *matHeaderCellDef> Medicine </th>
-      <td mat-cell *matCellDef="let element"> {{element.FirstOperand}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.medication}} </td>
     </ng-container>
   
     <!-- Name Column -->
     <ng-container matColumnDef="hourly intake">
       <th mat-header-cell *matHeaderCellDef> Hourly intake </th>
-      <td mat-cell *matCellDef="let element"> {{element.SecondOperand}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.hourlyIntake}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

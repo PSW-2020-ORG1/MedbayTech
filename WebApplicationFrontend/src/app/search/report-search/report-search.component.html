@@ -195,7 +195,7 @@
     </div>
     </div>
 
-    <div>
+    <div *ngIf="reportForm.get('duplicates')['length']<3">
         <button mat-raised-button color="primary" (click)="addDuplicates()">Add</button>
     </div>
 

@@ -215,13 +215,43 @@ namespace Model
                 new Prescription { 
                     Id = 2,
                     Reserved = true,
-                    HourlyIntake = 8, 
+                    HourlyIntake = "3", 
                     MedicationId = 1, 
                     AdditionalNotes = "svasta nesto",
                     Date = new DateTime(),
                     ExaminationSurgeryId = 3,
                     Type = TreatmentType.Prescription
-                }
+                },
+                new Prescription {
+                     Id = 3,
+                     Reserved = true,
+                     HourlyIntake = "8",
+                     MedicationId = 1,
+                     AdditionalNotes = "svasta nesto",
+                     Date = new DateTime(),
+                     ExaminationSurgeryId = 3,
+                     Type = TreatmentType.Prescription
+                 },
+                new Prescription {
+                     Id = 4,
+                     Reserved = true,
+                     HourlyIntake = "12",
+                     MedicationId = 1,
+                     AdditionalNotes = "svasta nesto",
+                     Date = new DateTime(),
+                     ExaminationSurgeryId = 3,
+                     Type = TreatmentType.Prescription
+                 },
+                new Prescription {
+                     Id = 5,
+                     Reserved = true,
+                     HourlyIntake = "5",
+                     MedicationId = 1,
+                     AdditionalNotes = "svasta nesto",
+                     Date = new DateTime(),
+                     ExaminationSurgeryId = 3,
+                     Type = TreatmentType.Prescription
+                 }
             );
 
             modelBuilder.Entity<ExaminationSurgery>().HasData(
