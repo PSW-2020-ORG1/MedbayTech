@@ -74,9 +74,23 @@ namespace GraphicEditor.View.Building1
                     rectangle.MouseEnter += AuxiliaryRoom_MouseEnter;
                     rectangle.MouseLeave += AuxiliaryRoom_MouseLeave;
                 }
-            }
 
+                if (rectangle.Uid.Equals(SearchResultsForRooms.Id))
+                {
+                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#ff1f1f");
+                    rectangle.StrokeThickness = 5;
+                    SearchResultsForRooms.Id = "0";
+                }
+
+                if (rectangle.Uid.Equals(SearchResultsForMedicines.Id))
+                {
+                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#05e1ff");
+                    rectangle.StrokeThickness = 5;
+                    SearchResultsForMedicines.Id = "0";
+                }
+            }
         }
+
         private void mouseClickArrowUp(object sender, MouseButtonEventArgs e)
         {
             page.MainFrame.Content = new Building1SecondFloorPlan(page);
