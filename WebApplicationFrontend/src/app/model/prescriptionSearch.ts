@@ -1,15 +1,15 @@
 export class Prescription{
-    public Id: number;
-    public FirstOperand: string;
-    public AndOr: string;
-    public SecondOperand: string;
+    
+    public medication: string;
+    public andOr: string;
+    public hourlyIntake: string;
 
 
-    constructor(id:number, first:string, second: string, operators:string) {
-        this.Id = id;
-        this.FirstOperand = first;
-        this.SecondOperand = second;
-        this.AndOr = operators;
+    constructor(id:number, medication:string, hour: string, operators:string) {
+        
+        this.medication = medication;
+        this.hourlyIntake = hour;
+        this.andOr = operators;
     }
 
 }

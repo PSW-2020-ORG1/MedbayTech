@@ -6,21 +6,18 @@ using System.Threading.Tasks;
 
 namespace WebApplication.DTO
 {
-    public class PrescriptionDTO
+    public class PrescriptionAdvancedDTO
     {
-        public int Id { get; set; }
-        public string FirstOperand { get; set; }
+        public string Medication { get; set; }
         public string AndOr { get; set; }
-        public string SecondOperand { get; set; }
-        public string Type { get; set; }
+        public string HourlyIntake { get; set; }
         
-        public PrescriptionDTO(int id, string first, string second, string operators, string type)
+        public PrescriptionAdvancedDTO(string medication, string hour, string operators)
         {
-            this.Id = id;
-            this.FirstOperand = first;
-            this.SecondOperand = second;
+            this.Medication = medication;
+            this.HourlyIntake = hour;
             this.AndOr = operators;
-            this.Type = type;
+           
            
         }
     }

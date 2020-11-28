@@ -6,10 +6,10 @@ import { Prescription } from 'src/app/model/prescriptionSearch';
 import { PrescriptionService } from 'src/app/service/prescription/prescription.service';
 
 const ELEMENT_DATA: Prescription[] = [
-  {Id: 1, FirstOperand: 'Brufen', SecondOperand: "8", AndOr:"AND"},
-  {Id: 2, FirstOperand: 'Paracetamol', SecondOperand: "2", AndOr:"AND"},
-  {Id: 3, FirstOperand: 'Amoksicilin', SecondOperand: "5", AndOr: "Li"},
-  {Id: 4, FirstOperand: 'Febricet', SecondOperand: "6", AndOr: "Be"},
+  {medication: 'Brufen', hourlyIntake: "8", andOr:"AND"},
+  {medication: 'Paracetamol', hourlyIntake: "2", andOr:"AND"},
+  {medication: 'Amoksicilin', hourlyIntake: "5", andOr: "Li"},
+  {medication: 'Febricet', hourlyIntake: "6", andOr: "Be"},
   
 
 ];
