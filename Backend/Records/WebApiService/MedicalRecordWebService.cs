@@ -20,6 +20,11 @@ namespace Backend.Records.WebApiService
             return medicalRecordRepository.GetMedicalRecordByPatientId(id);
         }
 
+        public MedicalRecord CreateMedicalRecord(MedicalRecord medicalRecord)
+        {
+            return medicalRecordRepository.Create(medicalRecord);
+        }
+
 
     }
 }

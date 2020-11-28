@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Backend.Records.Model;
 using Backend.Users.WebApiController;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -35,11 +36,8 @@ namespace WebApplication.Controller
             this.mailService = mailService;
             _hostEnvironment = environment;
         }
-
-        
         public async void SendMail(MailRequest request)
         {
-           
             try
             {
                 await mailService.SendMailAsync(request);
@@ -49,14 +47,6 @@ namespace WebApplication.Controller
             {
                 throw;
             }
-
-        }
-
-       
-        [HttpGet("proba")]
-        public IActionResult Proba()
-        {
-            return Ok();
         }
         [Route("activate")]
         public IActionResult Activate(string userId, string token)
@@ -64,19 +54,26 @@ namespace WebApplication.Controller
             Patient patient = registrationController.ActivateAccount(userId, token);
             if (patient == null) return BadRequest();
 
-            return Ok(patient.Token);
+            return Ok("Login Page");
         }
         [HttpPost("image"), DisableRequestSizeLimit]
         [Consumes("multipart/form-data")]
         public IActionResult Image([FromForm] PostImageDTO dto)
         {
-            if (dto.Id == null) return BadRequest("Please select image");
+            if (dto.Id == null)
+            {
+                string defaultPath = "Resources/Images/Default/default.png";
+                registrationController.SetImagePath(defaultPath, dto.Id);
+                return Ok();
+            }
             if (dto.Id.Equals("null")) return BadRequest("null");
             var file = dto.File;
             var folderName1 = Path.Combine("Resources", "Images");
             var folderName = Path.Combine(folderName1, dto.Id);
             var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
             Directory.CreateDirectory(pathToSave);
+
             if (file.Length > 0)
             {
                 var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
@@ -86,16 +83,16 @@ namespace WebApplication.Controller
                 {
                     file.CopyTo(stream);
                 }
-
+                registrationController.SetImagePath(fullPath, dto.Id);
                 return Ok(dto.Id);
             }
+           
             return BadRequest();
         }
 
         [HttpPost("patientRegistration")]
         public IActionResult Register(PatientRegistrationDTO dto)
         {
-
             try
             {
                 ValidateRegistrationInput.Validate(dto);
@@ -123,6 +120,10 @@ namespace WebApplication.Controller
             Patient patient = PatientRegistrationAdapter.PatientRegistrationDTOtoPatient(dto);
             patient.Token  = Guid.NewGuid().ToString();
             Patient registeredPatient = registrationController.Register(patient);
+            if (registeredPatient == null)
+                return BadRequest("Patient already exists");
+
+            MedicalRecord medicalRecord = registrationBuilder.SaveMedicalRecord(registeredPatient.Id, "", dto.BloodType);
             
             var link = GenerateUrl(patient.Id, patient.Token);
             string email = patient.Email;
@@ -137,7 +138,6 @@ namespace WebApplication.Controller
             string url = Url.Action(nameof(Activate), "Registration", new { userId = _userId, token = _token });
             return "http://localhost:8080" + url;
         }
-
         private string GetDomain()
         {
             return "http://localhost:8080";

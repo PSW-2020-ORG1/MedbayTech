@@ -1,10 +1,14 @@
-﻿using Backend.Users.WebApiController;
+﻿using Backend.Records.Model;
+using Backend.Records.Model.Enums;
+using Backend.Records.WebApiController;
+using Backend.Users.WebApiController;
 using Backend.Utils;
 using Model.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication.Adapters;
 
 namespace WebApplication.ObjectBuilder
 {
@@ -16,12 +20,14 @@ namespace WebApplication.ObjectBuilder
         WebStateController stateController;
         WebCityController cityController;
         WebInsuranceController insuranceController;
+        MedicalRecordWebController medicalRecordController;
         public PatientRegistrationBuilder()
         {
             addressController = new WebAddressController();
             stateController = new WebStateController();
             cityController = new WebCityController();
             insuranceController = new WebInsuranceController();
+            medicalRecordController = new MedicalRecordWebController();
         }
         private Address BuildAddress(string street, int number, int floor, int apartment, int cityId)
         {
@@ -66,6 +72,25 @@ namespace WebApplication.ObjectBuilder
         {
             InsurancePolicy policy = BuildInsurancePolicy(id, Company, startTime, endTime);
             return insuranceController.SavePolicy(policy);
+        }
+
+        private MedicalRecord BuildMedicalRecord(string patientId, string condition, string bloodType)
+        {
+            MedicalRecord medicalRecord = new MedicalRecord
+            {
+                PatientId = patientId,
+                CurrHealthState = PatientRegistrationAdapter.StringToCondition(condition),
+                BloodType = PatientRegistrationAdapter.StringToBloodType(bloodType)
+
+            };
+
+            return medicalRecord;
+        }
+
+        public MedicalRecord SaveMedicalRecord(string patientId, string condition, string bloodType)
+        {
+            MedicalRecord medicalRecord = BuildMedicalRecord(patientId, condition, bloodType);
+            return medicalRecordController.CreateMedicalRecord(medicalRecord);
         }
 
     }

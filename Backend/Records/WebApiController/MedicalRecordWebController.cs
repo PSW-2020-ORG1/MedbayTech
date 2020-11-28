@@ -22,5 +22,10 @@ namespace Backend.Records.WebApiController
         {
             return medicalRecordWebService.GetMedicalRecordByPatientId(id);
         }
+
+        public MedicalRecord CreateMedicalRecord(MedicalRecord medicalRecord)
+        {
+            return medicalRecordWebService.CreateMedicalRecord(medicalRecord);
+        }
     }
 }
