@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { MedicalRecord } from '../model/medicalRecord';
 import { MedicalRecordService } from '../service/medicalRecord/medicalRecord.service';
 
@@ -10,8 +11,10 @@ import { MedicalRecordService } from '../service/medicalRecord/medicalRecord.ser
 export class MedicalRecordComponent implements OnInit {
 
   public medicalRecord : MedicalRecord;
+  public imageUrl : any;
+  public unsafeImageUrl : any;
 
-  constructor(private medicalRecordService : MedicalRecordService) { }
+  constructor(private medicalRecordService : MedicalRecordService, private sanitizer : DomSanitizer) { }
 
   ngOnInit(): void { 
     this.loadMedicalRecord();
@@ -21,6 +24,7 @@ export class MedicalRecordComponent implements OnInit {
     this.medicalRecordService.getMedicalRecordByPatientId().subscribe(data =>
       {
         this.medicalRecord = data;
+        this.imageUrl = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png";
       });
   }
 

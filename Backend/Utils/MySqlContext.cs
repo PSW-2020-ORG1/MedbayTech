@@ -286,7 +286,7 @@ namespace Model
                     Phone = "065/123-4554",
                     PlaceOfBirthId = 11000,
                     Profession = "vodoinstalater",
-                    ProfileImage = ".",
+                    ProfileImage = "C:\\Users\\kaise\\Pictures\\default-user-image",
                     IsGuestAccount = false,
                     ChosenDoctorId = "2406978890047"
                 } 
