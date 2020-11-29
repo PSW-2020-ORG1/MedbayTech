@@ -15,7 +15,7 @@ namespace PharmacyIntegration
 {
     public static class VueHelper
     {
-        private static int Port { get; } = 8080;
+        private static int Port { get; } = 8082;
         private static Uri DevelopmentServerEndpoint { get; } = new Uri($"http://localhost:{Port}");
         private static TimeSpan Timeout { get; } = TimeSpan.FromSeconds(30);
         // NOTE(Jovan): 'npm run serve' response
