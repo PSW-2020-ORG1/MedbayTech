@@ -48,5 +48,10 @@ namespace Backend.Users.Repository.FileRepository
         {
             return null;
         }
+
+        public bool UpdateSurveyQuestion(Survey survey)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -21,7 +21,6 @@ namespace Model.Users
         [ForeignKey("Appointment")]
         public int AppointmentId { get; set; }
         public virtual Appointment Appointment { get; set; }
-        //public virtual List<SurveyAnswer> SurveyAnswers { get; set; }
         public List<int> SurveyQuestions { get; set; }
         public List<Grade> SurveyAnswers { get; set; }
         

@@ -1,16 +1,15 @@
 <div class = "survey">
- <!--<form id="post-form" [formGroup]="postForm" (ngSubmit)="onSubmit()">-->
         <div class = "doctor">
             <label id="Doctor"><b>Doctor</b></label>       
         </div>
         <mat-divider></mat-divider>
         <div class="Doctor1" *ngFor = "let questionSurvey of allQuestions">
-            <div *ngIf="questionSurvey.QuestionType == 0">
-                <label id = "questions">{{questionSurvey.Question}}</label>
+            <div *ngIf="questionSurvey.questionType == 0">
+                <label id = "questions">{{questionSurvey.question}}</label>
                 <div>
                     <mat-radio-group        
                     class="example-radio-group"
-                    [(ngModel)]="questionList[questionSurvey.Id]">
+                    [(ngModel)]="questionList[questionSurvey.id]">
                         <mat-radio-button class="example-radio-button" [value]=1 ></mat-radio-button>
                         <label id = "grade">excellent</label>
                         <mat-radio-button class="example-radio-button" [value]=2 ></mat-radio-button>
@@ -35,12 +34,12 @@
         
         <mat-divider></mat-divider>
         <div class="Doctor1" *ngFor = "let questionSurvey of allQuestions">
-            <div *ngIf="questionSurvey.QuestionType == 1">
-                <label id = "questions">{{questionSurvey.Question}}</label>
+            <div *ngIf="questionSurvey.questionType == 1">
+                <label id = "questions">{{questionSurvey.question}}</label>
                         <div>
                             <mat-radio-group        
                             class="example-radio-group"
-                            [(ngModel)]="questionList[questionSurvey.Id]">
+                            [(ngModel)]="questionList[questionSurvey.id]">
                                 <mat-radio-button class="example-radio-button" [value]=1 ></mat-radio-button>
                                 <label id = "grade">excellent</label>
                                 <mat-radio-button class="example-radio-button" [value]=2 ></mat-radio-button>
@@ -66,12 +65,12 @@
         
         <mat-divider></mat-divider>
         <div class="Doctor1" *ngFor = "let questionSurvey of allQuestions">
-            <div *ngIf="questionSurvey.QuestionType == 2">
-                <label id = "questions">{{questionSurvey.Question}}</label>
+            <div *ngIf="questionSurvey.questionType == 2">
+                <label id = "questions">{{questionSurvey.question}}</label>
                         <div>
                             <mat-radio-group        
                             class="example-radio-group"
-                            [(ngModel)]="questionList[questionSurvey.Id]">
+                            [(ngModel)]="questionList[questionSurvey.id]">
                                 <mat-radio-button class="example-radio-button" [value]=1 ></mat-radio-button>
                                 <label id = "grade">excellent</label>
                                 <mat-radio-button class="example-radio-button" [value]=2 ></mat-radio-button>
@@ -90,6 +89,5 @@
         </div>  
         <mat-divider></mat-divider>
         <button mat-raised-button id="button" color="accent" (click)="onSubmit()" >Post</button>
-    <!--</form>-->
 </div>
 

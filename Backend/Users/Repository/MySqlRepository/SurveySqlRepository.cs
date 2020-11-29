@@ -12,6 +12,17 @@ namespace Backend.Users.Repository.MySqlRepository
         ISurveyRepository
     {
         public SurveySqlRepository(MySqlContext context) : base(context) { }
+
+        public bool CheckIfExistsById(int id)
+        {
+            foreach(Survey s in GetAll()) {
+                if (s.AppointmentId == id) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public int GetLastId()
         {
             int id;

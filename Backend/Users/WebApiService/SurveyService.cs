@@ -5,6 +5,7 @@ using Model.Schedule;
 using Model.Users;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Backend.Users.WebApiService
@@ -13,12 +14,10 @@ namespace Backend.Users.WebApiService
     {
         private ISurveyQuestionRepository surveyQuestionRepository;
         private ISurveyRepository surveyRepository;
-        /*private ISurveyAnswerRepository surveyAnswerRepository;*/
 
-        public SurveyService(ISurveyQuestionRepository surveyQuestionRepository, ISurveyRepository surveyRepository/*, ISurveyAnswerRepository surveyAnswerRepository*/) {
+        public SurveyService(ISurveyQuestionRepository surveyQuestionRepository, ISurveyRepository surveyRepository) {
             this.surveyQuestionRepository = surveyQuestionRepository;
             this.surveyRepository = surveyRepository;
-           /* this.surveyAnswerRepository = surveyAnswerRepository;*/
         }
 
         public IEnumerable<SurveyQuestion> GetAllQuestions()
@@ -30,46 +29,43 @@ namespace Backend.Users.WebApiService
         {
             return surveyQuestionRepository.GetAllActiveQuestions();
         }
-        /*
-        public IEnumerable<SurveyAnswer> GetAllAnswers()
+
+        public IEnumerable<Survey> GetAllSurveys()
         {
-            return surveyAnswerRepository.GetAll();
-        }*/
+            return surveyRepository.GetAll();
+        }
+
+        public bool CheckIfExistsById(int appointmentId)
+        {
+            List<Survey> surveys = surveyRepository.GetAll().ToList();
+            foreach (Survey s in surveys)
+            {
+                if (s.AppointmentId == appointmentId)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         public Survey CreateSurvey(List<int> surveyQuestions, List<Grade> surveyAnswers, int appointmentId)
         {
-            
-
+            if (!CheckIfExistsById(appointmentId))
+            {
+                return null;
+            }
             Survey survey = new Survey();
             survey.AppointmentId = appointmentId;
             survey.Date = DateTime.Now;
             survey.SurveyQuestions = surveyQuestions;
             survey.SurveyAnswers = surveyAnswers;
-   
             Survey createdSurvey = surveyRepository.Create(survey);
-
-            return createdSurvey;
-        }
-        /*
-        public List<SurveyAnswer> CreateAnswers(List<SurveyAnswer> surveyAnswers) 
-        {
-            List<SurveyAnswer> answers = new List<SurveyAnswer>();
-            foreach (SurveyAnswer answer in surveyAnswers) {
-                answers.Add(surveyAnswerRepository.Create(answer));
-            }
-            return answers;
-        }*/
-
-        public int GenerateSurveyId()
-        {      
-            int id;
-            if (surveyRepository.GetAll() == null)
+            bool update = surveyQuestionRepository.UpdateSurveyQuestion(createdSurvey);       
+            if (!update)
             {
-                id = 1;
-                return id;
+                return null;
             }
-            id = surveyRepository.GetLastId();
-            return ++id;
-        }
+            return createdSurvey;
+        }   
     }
 }

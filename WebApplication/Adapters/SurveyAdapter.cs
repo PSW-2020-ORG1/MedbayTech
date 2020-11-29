@@ -18,7 +18,13 @@ namespace WebApplication.Adapters
                 int id = questionIt.Id;
                 string question = questionIt.Question;
                 QuestionType questionType = questionIt.QuestionType;
-                activeQuestionsList.Add(new SurveyQuestionDTO(id, question, questionType));
+                double excellent = questionIt.Excellent;
+                double veryGood = questionIt.VeryGood;
+                double good = questionIt.Good;
+                double poor = questionIt.Poor;
+                double veryPoor = questionIt.VeryPoor;
+                double averageGrade = questionIt.AverageGrade;
+                activeQuestionsList.Add(new SurveyQuestionDTO(id, question, questionType, excellent, veryGood, good, poor, veryPoor, averageGrade));
             }
 
             return activeQuestionsList;

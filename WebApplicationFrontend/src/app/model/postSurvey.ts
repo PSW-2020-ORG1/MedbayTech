@@ -1,18 +1,14 @@
-
-
-
-
 export class PostSurvey {
 
-    public AppointmentId : number;
-    public SurveyQuestions : number[];
-    public SurveyAnswers : number[];
+    public appointmentId : number;
+    public surveyQuestions : number[];
+    public surveyAnswers : number[];
 
 
     constructor(appointmentId : number, surveyAnswers : number[],surveyQuestions : number[]) {
-        this.AppointmentId = appointmentId;
-        this.SurveyAnswers = surveyAnswers;
-        this.SurveyQuestions = surveyQuestions;
+        this.appointmentId = appointmentId;
+        this.surveyAnswers = surveyAnswers;
+        this.surveyQuestions = surveyQuestions;
     }
 
 }

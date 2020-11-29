@@ -14,11 +14,10 @@ namespace Backend.Users.WebApiController
     {
         private SurveyQuestionSqlRepository surveyQuestionRepository = new SurveyQuestionSqlRepository(new MySqlContext());
         private SurveySqlRepository surveyRepository = new SurveySqlRepository(new MySqlContext());
-        /*private SurveyAnswerSqlRepository surveyAnswerRepository = new SurveyAnswerSqlRepository(new MySqlContext());*/
         private SurveyService surveyService;
 
         public WebSurveyController() {
-            this.surveyService = new SurveyService(surveyQuestionRepository, surveyRepository/*, surveyAnswerRepository*/);
+            this.surveyService = new SurveyService(surveyQuestionRepository, surveyRepository);
         }
 
         public IEnumerable<SurveyQuestion> GetAll()
@@ -35,10 +34,5 @@ namespace Backend.Users.WebApiController
         {
             return surveyService.CreateSurvey(surveyQuestions, surveyAnswers, appointmentId);
         }
-        /*
-        public List<SurveyAnswer> CreateAnswers (List<SurveyAnswer> surveyAnswers)
-        {
-            return surveyService.CreateAnswers(surveyAnswers);
-        }*/
     }
 }

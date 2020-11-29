@@ -36,7 +36,7 @@ namespace WebApplication.Controller
         {
 
             SurveyService surveyService = new SurveyService();           
-            Survey surveySuccessfullyCreated = surveyContoller.CreateSurvey(postSurveyDTO.SurveyQuestions, postSurveyDTO.SurveyAnswers, postSurveyDTO.AppointmentId);
+            Survey surveySuccessfullyCreated = surveyContoller.CreateSurvey(postSurveyDTO.surveyQuestions, postSurveyDTO.surveyAnswers, postSurveyDTO.appointmentId);
 
             if (surveySuccessfullyCreated == null)
             {
