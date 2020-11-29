@@ -16,11 +16,18 @@ namespace Backend.Reports.Service
     public class MedicationUsageReportService : IMedicationUsageReportService
     {
         private MySqlContext _context;
+        private IMedicationUsageReportRepository _repository;
 
-        public MedicationUsageReportService(MySqlContext context)
+        /*public MedicationUsageReportService(MySqlContext context)
         {
             this._context = context;
+        }*/
+
+        public MedicationUsageReportService(IMedicationUsageReportRepository repository)
+        {
+            _repository = repository;
         }
+
 
         public MedicationUsageReport GenerateMedicationUsageReport(Period period) 
         {
@@ -42,38 +49,19 @@ namespace Backend.Reports.Service
             return Add(report);
         }
 
-        public MedicationUsageReport Add(MedicationUsageReport report)
-        {
-            if (Get(report.Id) != null)
-            {
-                return null;
-            }
-            _context.MedicationUsageReports.Add(report);
-            _context.SaveChanges();
-            return report;
-        }
+        public MedicationUsageReport Add(MedicationUsageReport report) => _repository.Create(report);
 
-        public bool Remove(MedicationUsageReport report)
-        {
-            _context.MedicationUsageReports.Remove(report);
-            _context.SaveChanges();
-            return true;
-        }
+        public bool Remove(MedicationUsageReport report) => _repository.Delete(report);
 
-        public MedicationUsageReport Update(MedicationUsageReport report)
-        {
-            _context.MedicationUsageReports.Update(report);
-            _context.SaveChanges();
-            return report;
-        }
+        public MedicationUsageReport Update(MedicationUsageReport report) => _repository.Update(report);
 
         public IEnumerable<MedicationUsageReport> GetForSpecificPeriod(Period period) =>
             GetAll().ToList().FindAll(m => DateTime.Compare(m.From.GetValueOrDefault(DateTime.Now), period.StartTime) >= 0
             && DateTime.Compare(m.Until.GetValueOrDefault(DateTime.Now), period.EndTime) <= 0);
 
         public MedicationUsageReport Get(int id) =>
-            _context.MedicationUsageReports.Find(id);
+            _repository.GetObject(id);
         public IEnumerable<MedicationUsageReport> GetAll() =>
-            _context.MedicationUsageReports.ToList();
+            _repository.GetAll();
     }
 }

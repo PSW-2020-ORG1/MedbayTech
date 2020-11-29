@@ -12,7 +12,7 @@ namespace PharmacyIntegration.Service
 
         public PharmacyNotification Update(PharmacyNotification pharmacyNotification);
 
-        public PharmacyNotification Get(int Id);
+        public PharmacyNotification Get(int id);
 
         public IEnumerable<PharmacyNotification> GetAll();
     }
