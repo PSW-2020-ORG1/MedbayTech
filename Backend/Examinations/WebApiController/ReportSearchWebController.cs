@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WebApplication.DTO;
 
 namespace Backend.Examinations.WebApiController
 {
@@ -22,6 +23,11 @@ namespace Backend.Examinations.WebApiController
         public List<ExaminationSurgery> GetSearchedReports(string name, DateTime startDate, DateTime endDate, string type)
         {
             return service.GetSearchedReports(name, startDate, endDate, type).ToList();
+        }
+
+        public List<ExaminationSurgery> AdvancedSearchPrescriptions(ReportAdvancedDTO dto)
+        {
+            return service.AdvancedSearchReports(dto);
         }
     }
 }

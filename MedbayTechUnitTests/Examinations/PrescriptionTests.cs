@@ -15,7 +15,6 @@ using Backend.Examinations.Model.Enums;
 using Backend.Medications.Model;
 using Backend.Examinations.WebApiService;
 using WebApplication.DTO;
-using ZdravoKorporacija.Model.Users;
 using Backend.Records.Model;
 using Backend.Records.Model.Enums;
 using Model.Schedule;

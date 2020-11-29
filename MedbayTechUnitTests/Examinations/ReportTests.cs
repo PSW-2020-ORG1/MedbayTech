@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Text;
 using WebApplication.DTO;
 using Xunit;
-using ZdravoKorporacija.Model.Users;
+
 
 namespace MedbayTechUnitTests.Examinations
 {
