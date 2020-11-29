@@ -55,7 +55,7 @@ namespace MedbayTechUnitTests.Examinations
         {
             PrescriptionAdvancedDTO dto = new PrescriptionAdvancedDTO
             {
-                FirstParameterType = "houlyIntake",
+                FirstParameterType = "hourlyIntake",
                 FirstParameterValue = "5",
                 LogicOperators = new string[2],
                 OtherParameterTypes = new string[2],

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Adapters;
 using WebApplication.DTO;
+using WebApplication.Validators;
 
 namespace WebApplication.Controller
 {
@@ -22,6 +23,23 @@ namespace WebApplication.Controller
             this.prescriptionWebController = new PrescriptionWebController();
         }
 
-       
+        [HttpPost("advancedSearch")]
+        public IActionResult AdvancedSearchPrescriptions(PrescriptionAdvancedDTO dto)
+        {
+            try
+            {
+                ValidatePrescriptionSearchInput.Validate(dto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            List<Prescription> prescriptions = prescriptionWebController.AdvancedSearchPrescriptions(dto);
+            
+
+
+            return Ok(prescriptions);
+        }
     }
 }

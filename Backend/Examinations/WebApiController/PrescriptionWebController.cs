@@ -5,6 +5,7 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using WebApplication.DTO;
 
 namespace Backend.Examinations.WebApiController
 {
@@ -16,6 +17,11 @@ namespace Backend.Examinations.WebApiController
         public PrescriptionWebController()
         {
             this.prescriptionWebService = new PrescriptionWebService(prescriptionSqlRepository);
+        }
+
+        public List<Prescription> AdvancedSearchPrescriptions(PrescriptionAdvancedDTO dto)
+        {
+            return prescriptionWebService.AdvancedSearchPrescriptions(dto);
         }
     }
 }

@@ -27,9 +27,7 @@ namespace Backend.Examinations.WebApiService
         {
             for (int i = 0; i < dto.OtherParameterTypes.Length; i++)
             {
-                List<Prescription> otherPrescriptions = SearchByOtherParameters(dto.OtherParameterTypes[i], dto.OtherParameterValues[i], prescriptions);
-
-                firstPrescriptions = SearchByLogicOperators(dto.LogicOperators[i], otherPrescriptions, firstPrescriptions);
+                firstPrescriptions = SearchByLogicOperators(dto.LogicOperators[i], SearchByOtherParameters(dto.OtherParameterTypes[i], dto.OtherParameterValues[i], prescriptions), firstPrescriptions);
             }
 
             return firstPrescriptions;
@@ -42,7 +40,7 @@ namespace Backend.Examinations.WebApiService
 
         public List<Prescription> SearchByOtherParameters(string otherParameterType, string otherParameterValue, List<Prescription> prescriptions)
         {
-            return otherParameterType.Equals("medicines") ? AdvancedSearch(otherParameterValue, prescriptions) :
+            return otherParameterType.Equals("medication") ? AdvancedSearch(otherParameterValue, prescriptions) :
                 AdvancedSearch(int.Parse(otherParameterValue), prescriptions);
         }       
 

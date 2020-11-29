@@ -16,7 +16,7 @@ namespace Backend.Examinations.Model
     {
         private const int RESERVATION_DAYS = 10;
         public bool Reserved { get; set; }
-        [NotMapped]
+        
         public DateTime ReservationPeriodStart { get; set; }
 
         public DateTime ReservationPeriodEnd { get; set; }
