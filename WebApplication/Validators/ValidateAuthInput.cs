@@ -160,6 +160,9 @@ namespace WebApplication.Validators
 
         public static void IsFloorValid(int floor)
         {
+            if (floor == null)
+                throw new ValidationException("Please enter floor in valid format");
+
             if (floor < 0 || floor > 9999)
                 throw new ValidationException("Please enter floor in valid format");
         }

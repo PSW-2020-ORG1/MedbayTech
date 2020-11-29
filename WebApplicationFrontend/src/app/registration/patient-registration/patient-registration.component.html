@@ -126,10 +126,14 @@
                     </mat-form-field>
                 </div>
 
-                <div class="inputField">
-                
+                <div class="inputField" style="margin-top:10px">
                         <input type="file" #file id="photo" name="photo" formControlName="photo" (change)="uploadFile(file.files)" style="display: none;">   
-                        <button type="button" mat-raised-button (click)="file.click()">Upload</button>
+                        <button type="button" mat-raised-button (click)="file.click()">Upload Image</button>
+                </div>
+                <div class="inputField">
+                    <div class="row-sections" style="margin-top:18px">
+                        <mat-icon aria-hidden="false" *ngIf="selected" aria-label="Example home icon">done</mat-icon>
+                    </div>
                 </div>
             </div>
 
@@ -187,16 +191,18 @@
                 </div>
                 <div class="inputField">
                     <mat-form-field>
-                        <mat-label>Apartment</mat-label>
+                        <mat-label>Apartment*</mat-label>
                         <input matInput matTooltip="Please enter apartment number or 0" id="apartment" placeholder="Apartment" formControlName="apartment">
                         <mat-error *ngIf="!createForm.get('apartment').valid && createForm.get('apartment').touched && createForm.get('apartment').errors['pattern']">Please enter vaid apartment</mat-error>
+                        <mat-error *ngIf="!createForm.get('apartment').valid && createForm.get('apartment').touched && createForm.get('apartment').errors['required']">Please enter apartment</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="inputField">
                     <mat-form-field>
-                        <mat-label>Floor</mat-label>
+                        <mat-label>Floor*</mat-label>
                         <input matInput matTooltip="Please enter floor number or 0" id="floor" placeholder="Floor" formControlName="floor">
-                        <mat-error *ngIf="!createForm.get('floor').valid && createForm.get('floor').touched && createForm.get('floor').errors['pattern']">Please enter vaid floor</mat-error>
+                        <mat-error *ngIf="!createForm.get('floor').valid && createForm.get('floor').touched && createForm.get('floor').errors['pattern']">Please enter valid floor</mat-error>
+                        <mat-error *ngIf="!createForm.get('floor').valid && createForm.get('floor').touched && createForm.get('floor').errors['required']">Please enter floor</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="inputField">
@@ -278,7 +284,7 @@
                 <div class="row">
                     <mat-form-field>
                         <mat-label>Patient condition</mat-label>
-                        <mat-select id="patientCondition" name="patientCondition" formContronName="patientCondition" (selctionChange)="selectedPatientCondition($event)">
+                        <mat-select id="patientCondition" name="patientCondition" formContronName="patientCondition" (selctionChange)=selectedPatientCondition($event)>
                             <mat-option value="Stable">Stable</mat-option>
                             <mat-option value="Urgent">Urgent</mat-option>
                             <mat-option value="HospitalTreatment">HospitalTreatment</mat-option>
@@ -315,7 +321,7 @@
                 </div>
             </div>
             <div class="row sections">
-                <button mat-flat-button color="primary" type="submit" [disabled]="">Register</button>
+                <button mat-flat-button color="primary" type="submit" [disabled]="!createForm.valid" style="margin-bottom: 50px;">Register</button>
             </div>
             
 

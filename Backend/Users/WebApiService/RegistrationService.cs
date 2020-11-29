@@ -29,7 +29,7 @@ namespace Backend.Users.WebApiService
         public bool PatientExists(string id, string username)
         {
             List<Patient> patients = patientRepository.GetAll().ToList();
-            return patients.Any(patient => patient.Username != null && patient.Username.Equals(username) && patient.Id.Equals(id));
+            return patients.Any(patient => patient.Username != null && patient.Username.Equals(username) || patient.Id.Equals(id));
         }
         public bool ExistsById(string id)
         {

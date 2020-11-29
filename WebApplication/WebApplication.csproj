@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <Folder Include="MailService\MailTemplate\" />
-    <Folder Include="Resources\Images\" />
+    <Folder Include="Resources\Images\Default\" />
   </ItemGroup>
 
 

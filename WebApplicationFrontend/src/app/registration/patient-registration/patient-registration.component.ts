@@ -15,6 +15,8 @@ import { environment } from 'src/environments/environment';
 })
 export class PatientRegistrationComponent implements OnInit {
 
+  selected : boolean;
+
   createForm : FormGroup;
 
   searchDoctors : SearchDoctor[] = new Array();
@@ -95,8 +97,8 @@ export class PatientRegistrationComponent implements OnInit {
       'stateBirth' : new FormControl(null, [Validators.required, Validators.pattern("^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
       'street' : new FormControl(null, [Validators.required]),
       'number' : new FormControl(null, [Validators.required]),
-      'apartment' : new FormControl(null, [Validators.pattern("^\\d{1,6}$")]),
-      'floor' : new FormControl(null, [Validators.pattern("^\\d{1,4}$")]),
+      'apartment' : new FormControl(0, [Validators.pattern("^\\d{1,6}$"), Validators.required]),
+      'floor' : new FormControl(0, [Validators.pattern("^\\d{1,4}$"), Validators.required]),
       'educationLevel' : new FormControl(null, [Validators.required]),
       'city' : new FormControl(null, [Validators.required, Validators.pattern("^[A-ZŠĐŽČĆa-zšđćčžA-ZŠĐŽČĆ ]*$")]),
       'state' : new FormControl(null, [Validators.required, Validators.pattern("^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
@@ -115,6 +117,7 @@ export class PatientRegistrationComponent implements OnInit {
       res => {
         //this.createForm.reset();
         this.taostr.success(res);
+        this.formData.append('id', this.createForm.value.id);
         this.service.uploadImage(this.formData);
       },
       error => {
@@ -134,7 +137,7 @@ export class PatientRegistrationComponent implements OnInit {
 
     this.formData = new FormData();
     this.formData.append('file', this.fileToUpload, this.fileToUpload.name);
-    this.formData.append('id', this.createForm.value.id);
+    this.selected = true;
     return this.formData;
   };
 

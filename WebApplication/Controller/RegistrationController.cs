@@ -38,6 +38,15 @@ namespace WebApplication.Controller
             this.mailService = mailService;
             _hostEnvironment = environment;
         }
+
+        [HttpGet("proba")]
+        public IActionResult GetPath()
+        {
+            string contentRootPath = _hostEnvironment.ContentRootPath;
+            string webRootPath = _hostEnvironment.WebRootPath;
+
+            return Ok(contentRootPath);
+        }
         public async void SendMail(MailRequest request)
         {
             try
@@ -62,16 +71,16 @@ namespace WebApplication.Controller
         [Consumes("multipart/form-data")]
         public IActionResult Image([FromForm] PostImageDTO dto)
         {
-            if (dto.Id == null)
+            if (dto.File == null)
             {
-                string defaultPath = "Resources/Images/Default/default.png";
+                string defaultPath = "Resources/Images/Default/default.jpg";
                 registrationController.SetImagePath(defaultPath, dto.Id);
                 return Ok();
             }
             if (dto.Id.Equals("null")) return BadRequest("null");
             var file = dto.File;
-            var folderName1 = Path.Combine("Resources", "Images");
-            var folderName = Path.Combine(folderName1, dto.Id);
+            var folderNameBase = Path.Combine("Resources", "Images");
+            var folderName = Path.Combine(folderNameBase, dto.Id);
             var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
             Directory.CreateDirectory(pathToSave);
@@ -85,7 +94,9 @@ namespace WebApplication.Controller
                 {
                     file.CopyTo(stream);
                 }
-                registrationController.SetImagePath(fullPath, dto.Id);
+
+                string pathForDb = GetDomain() + "/" + "Resources/Images/" + fileName;
+                registrationController.SetImagePath(pathForDb, dto.Id);
                 return Ok(dto.Id);
             }
            
