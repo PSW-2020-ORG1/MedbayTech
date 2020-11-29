@@ -411,7 +411,7 @@ namespace Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("ExaminationSurgeryId")
+                    b.Property<int>("ExaminationSurgeryId")
                         .HasColumnType("int");
 
                     b.Property<int?>("FamilyIllnessHistoryId")
@@ -437,12 +437,14 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
+                            ExaminationSurgeryId = 1,
                             MedicalRecordId = 1,
                             Name = "Dijagnoza1"
                         },
                         new
                         {
                             Id = 2,
+                            ExaminationSurgeryId = 1,
                             MedicalRecordId = 1,
                             Name = "Dijagnoza2"
                         });
@@ -1761,7 +1763,9 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Examinations.Model.ExaminationSurgery", null)
                         .WithMany("Diagnoses")
-                        .HasForeignKey("ExaminationSurgeryId");
+                        .HasForeignKey("ExaminationSurgeryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Backend.Records.Model.FamilyIllnessHistory", null)
                         .WithMany("Diagnosis")

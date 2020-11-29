@@ -73,9 +73,9 @@ namespace WebApplication
             }
 
             FeedbackService feedbackService = new FeedbackService();
-            bool feedbackSuccessfullyCreated = feedbackController.CreateFeedback(postFeedbackDTO.UserId, postFeedbackDTO.AdditionalNotes, postFeedbackDTO.Anonymous, postFeedbackDTO.AllowedForPublishing);
+            Feedback feedbackSuccessfullyCreated = feedbackController.CreateFeedback(postFeedbackDTO.UserId, postFeedbackDTO.AdditionalNotes, postFeedbackDTO.Anonymous, postFeedbackDTO.AllowedForPublishing);
 
-            if (!feedbackSuccessfullyCreated)
+            if (feedbackSuccessfullyCreated==null)
             {
                 return BadRequest("Failed to post feedback");
             }

@@ -28,7 +28,7 @@ namespace MedbayTechUnitTests.Examinations
         {
             var stubRepository = CreateStubRepository();
             PrescriptionAdvancedDTO dto = CreateFalseDTO();
-            PrescriptionWebService service = new PrescriptionWebService(stubRepository);
+            PrescriptionSearchWebService service = new PrescriptionSearchWebService(stubRepository);
 
             List<Prescription> prescriptions = service.AdvancedSearchPrescriptions(dto);
 
@@ -40,7 +40,7 @@ namespace MedbayTechUnitTests.Examinations
         {
             var stubRepository = CreateStubRepository();
             PrescriptionAdvancedDTO dto = CreateDTO();
-            PrescriptionWebService service = new PrescriptionWebService(stubRepository);
+            PrescriptionSearchWebService service = new PrescriptionSearchWebService(stubRepository);
 
             List<Prescription> prescriptions = service.AdvancedSearchPrescriptions(dto);
 

@@ -9,8 +9,8 @@ using Model;
 namespace Backend.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201129153826_First")]
-    partial class First
+    [Migration("20201129175020_test_migration")]
+    partial class test_migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

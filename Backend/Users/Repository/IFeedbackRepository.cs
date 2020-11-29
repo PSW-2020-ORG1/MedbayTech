@@ -15,6 +15,8 @@ namespace Backend.Users.Repository.MySqlRepository
         public IEnumerable<Feedback> GetAllApprovedFeedback();
         public bool UpdateStatus(int feedbackId, bool status);
         public int GetLastId();
+        bool CheckIfExists(Feedback feedback);
+
 
     }
 }
