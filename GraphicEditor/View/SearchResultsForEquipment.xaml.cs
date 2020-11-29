@@ -22,14 +22,14 @@ namespace GraphicEditor
     /// <summary>
     /// Interaction logic for SearchResaultsForEquipment.xaml
     /// </summary>
-    public partial class SearchResaultsForEquipment : Page
+    public partial class SearchResultsForEquipment : Page
     {
-        public SearchResaultsForEquipment()
+        public SearchResultsForEquipment()
         {
             InitializeComponent();
         }
         MainPage page;
-        public SearchResaultsForEquipment(MainPage mainPage, string textBoxSearch)
+        public SearchResultsForEquipment(MainPage mainPage, string textBoxSearch)
         {
             InitializeComponent();
             page = mainPage;
@@ -60,7 +60,15 @@ namespace GraphicEditor
         public static string Id;
         private void buttonShownOnMap(object sender, RoutedEventArgs e)
         {
+
             HospitalEquipment equipment = (HospitalEquipment)dataGridEquipment.SelectedItem;
+
+            if (equipment == null)
+            {
+                MessageBox.Show("Nothing is selected!");
+                return;
+            }
+
             Room equipmentRoom = equipment.Room;
 
             if (equipmentRoom.Department.Floor == 0 && equipmentRoom.Department.Hospital.Id == 1)
@@ -68,6 +76,8 @@ namespace GraphicEditor
                 Id = equipmentRoom.Id.ToString();
                 page.MainFrame.Content = new Building1FloorPlan(page);
                 page.comboBoxH1.SelectedIndex = 0;
+                page.comboBoxHospital1.SelectedIndex = 0;
+
                 page.SetActiveUserControl(page.legenda);
                 TransitionAnimation();
             }
@@ -76,6 +86,8 @@ namespace GraphicEditor
                 Id = equipmentRoom.Id.ToString();
                 page.MainFrame.Content = new Building1FirstFloorPlan(page);
                 page.comboBoxH1.SelectedIndex = 1;
+                page.comboBoxHospital1.SelectedIndex = 1;
+
                 page.SetActiveUserControl(page.legenda);
                 TransitionAnimation();
             }
@@ -84,6 +96,8 @@ namespace GraphicEditor
                 Id = equipmentRoom.Id.ToString();
                 page.MainFrame.Content = new Building1SecondFloorPlan(page);
                 page.comboBoxH1.SelectedIndex = 2;
+                page.comboBoxHospital1.SelectedIndex = 2;
+
                 page.SetActiveUserControl(page.legenda);
                 TransitionAnimation();
             }
@@ -92,6 +106,8 @@ namespace GraphicEditor
                 Id = equipmentRoom.Id.ToString();
                 page.MainFrame.Content = new Building2FloorPlan(page);
                 page.comboBoxH2.SelectedIndex = 0;
+                page.comboBoxHospital2.SelectedIndex = 0;
+
                 page.SetActiveUserControl(page.legenda);
                 TransitionAnimation();
             }
@@ -100,6 +116,8 @@ namespace GraphicEditor
                 Id = equipmentRoom.Id.ToString();
                 page.MainFrame.Content = new Building2FirstFloorPlan(page);
                 page.comboBoxH2.SelectedIndex = 1;
+                page.comboBoxHospital2.SelectedIndex = 1;
+
                 page.SetActiveUserControl(page.legenda);
                 TransitionAnimation();
             }
@@ -108,6 +126,8 @@ namespace GraphicEditor
                 Id = equipmentRoom.Id.ToString();
                 page.MainFrame.Content = new Building2SecondFloorPlan(page);
                 page.comboBoxH2.SelectedIndex = 2;
+                page.comboBoxHospital2.SelectedIndex = 2;
+
                 page.SetActiveUserControl(page.legenda);
                 TransitionAnimation();
             }
