@@ -1,3 +1,6 @@
+using Backend.Medications.Repository.FileRepository;
+using Backend.Medications.Repository.MySqlRepository;
+using Backend.Medications.Service;
 using Backend.Pharmacies.Repository.MySqlRepository;
 using Backend.Reports.Repository;
 using Backend.Reports.Repository.MySqlRepository;
