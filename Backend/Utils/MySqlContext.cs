@@ -149,7 +149,7 @@ namespace Model
             );
 
             modelBuilder.Entity<SurveyQuestion>().HasData(
-                new SurveyQuestion { Id = 1, Question = "How to rate the kindness of your doctor?", QuestionType = QuestionType.DOCTOR, Status = true },
+                new SurveyQuestion { Id = 1, Question = "How would you rate the kindness of your doctor?", QuestionType = QuestionType.DOCTOR, Status = true },
                 new SurveyQuestion { Id = 2, Question = "To what extent has your doctor clearly stated what your examination will look like and instructed you on how to behave?", QuestionType = QuestionType.DOCTOR, Status = true },
                 new SurveyQuestion { Id = 3, Question = "How would you rate the clarity and expertise of the doctor in making the diagnosis?", QuestionType = QuestionType.DOCTOR, Status = true },
                 new SurveyQuestion { Id = 4, Question = "How would you rate the competence of your doctor during the treatment?", QuestionType = QuestionType.DOCTOR, Status = true },
@@ -183,6 +183,71 @@ namespace Model
                 { 
                     Id = 1, 
                     TypeOfAppointment = TypeOfAppointment.Examination, 
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1
+                },
+                new Appointment
+                {
+                    Id = 2,
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1
+                },
+                new Appointment
+                {
+                    Id = 3,
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1
+                },
+                new Appointment
+                {
+                    Id = 4,
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1
+                },
+                new Appointment
+                {
+                    Id = 5,
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1
+                },
+                new Appointment
+                {
+                    Id = 6,
+                    TypeOfAppointment = TypeOfAppointment.Examination,
                     ShortDescription = "standard appointment",
                     Urgent = true,
                     Deleted = false,
