@@ -83,9 +83,8 @@ namespace GraphicEditor
 
                 if (rectangle.Uid.Equals(SearchResultsForMedicines.Id))
                 {
-                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#87108b");
+                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#0022ff");
                     rectangle.StrokeThickness = 5;
-                    rectangle.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#05e1ff");
                     SearchResultsForMedicines.Id = "0";
                 }
                 if (rectangle.Uid.Equals(SearchResultsForEquipment.Id))

@@ -82,7 +82,7 @@ namespace GraphicEditor.View.Building1
 
                 if (rectangle.Uid.Equals(SearchResultsForMedicines.Id))
                 {
-                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#05e1ff");
+                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#0022ff");
                     rectangle.StrokeThickness = 5;
                     SearchResultsForMedicines.Id = "0";
                 }

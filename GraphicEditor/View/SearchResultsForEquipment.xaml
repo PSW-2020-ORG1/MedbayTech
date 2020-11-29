@@ -8,9 +8,9 @@
       d:DesignHeight="652" d:DesignWidth="766"
       Title="SearchResultsForEquipment">
 
-    <DockPanel>
-        <Button DockPanel.Dock="Bottom" Name="btnShowOnMap" Width="300" Margin="0,5,0,5" Content="Shown on map" FontWeight="Bold" FontSize="18" Click="buttonShownOnMap"/>
-        <DataGrid Name="dataGridEquipment" DockPanel.Dock="Top" AutoGenerateColumns="False" IsReadOnly="True">
+    <Grid>
+        <Button  Name="btnShowOnMap" Margin="246,588,246,24"  Content="Shown on map" FontWeight="Bold" FontSize="18" Click="buttonShownOnMap"/>
+        <DataGrid Name="dataGridEquipment" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" Width="710" Height="550"  IsReadOnly="True" Margin="0,25,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="149" Binding="{Binding EquipmentType.Name}"/>
                 <DataGridTextColumn Header="Quantity" Width="149" Binding="{Binding QuantityInRoom}"/>
@@ -19,5 +19,5 @@
                 <DataGridTextColumn Header="Building" Width="149" Binding="{Binding Room.Department.Hospital.Name}"/>
             </DataGrid.Columns>
         </DataGrid>
-    </DockPanel>
+    </Grid>
 </Page>

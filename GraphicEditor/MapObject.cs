@@ -108,6 +108,10 @@ namespace GraphicEditor
                 {
                     newRectangle.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#9da49f");
                 }
+                else if (rectangle.RoomType.Equals("Elevator"))
+                {
+                    newRectangle.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#484848");
+                }
                 newRectangle.Stroke = Border;
                 newRectangle.StrokeThickness = 3;
 
