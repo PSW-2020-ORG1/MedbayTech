@@ -18,7 +18,7 @@ namespace WebApplication
         private WebFeedbackController feedbackController;
         public FeedbackController()
         {
-            this.feedbackController = new WebFeedbackController();
+            feedbackController = new WebFeedbackController();
         }
         /// <summary>
         /// GET method for feedback that is approved by the system administrator

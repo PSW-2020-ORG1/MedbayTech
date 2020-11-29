@@ -3,7 +3,10 @@
         <mat-card-header>
             <mat-card-title>Patient Information</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
+        <div class="imgdiv">
+            <img class="image" src="{{imageUrl}}" alt="image" width="175px" height="175px">
+        </div>
+        <mat-card-content>            
             <p class="content-paragraph">Full Name : <strong>{{ medicalRecord.name }} {{ medicalRecord.surname }}</strong></p>
             <p class="content-paragraph">ID Number: <strong>{{ medicalRecord.patientId }}</strong></p>
             <p class="content-paragraph">Gender : <strong>{{ medicalRecord.gender }}</strong></p>

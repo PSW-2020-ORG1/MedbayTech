@@ -1,0 +1,77 @@
+<div style="text-align: center;">
+    <h1>Prescription search</h1>
+</div>
+<form class="container" [formGroup]="prescriptionForm" (ngSubmit)="onSubmit()">
+    <div style="margin-left: 10px;">
+        <a mat-raised-button routerLink="/reportSimpleSearch" target="_blank">Search reports</a>
+    </div>
+
+    <div style="margin-top: 10px; margin-left: 10px;">
+        <a mat-raised-button routerLink="/prescriptionSearch" target="_blank">Advanced search</a>
+    </div>
+
+    <div style="text-align: justify;margin-top: 15px;">
+        <div>
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Medicine</mat-label>
+                <input matInput formControlName="medicine">
+                <mat-error *ngIf="prescriptionForm.get('medicine').hasError('pattern')">
+                    Must contain letters only
+                </mat-error>
+            </mat-form-field>
+
+
+
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Hourly intake</mat-label>
+                <input matInput formControlName="hourlyIntake">
+                <mat-error *ngIf="prescriptionForm.get('hourlyIntake').hasError('pattern')">
+                    Must be a number 0-9
+                </mat-error>
+            </mat-form-field>
+
+
+
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate formControlName="startDate" placeholder="Start date">
+                    <input matEndDate formControlName="endDate" placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+
+                <mat-error *ngIf="prescriptionForm.get('startDate').hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                <mat-error *ngIf="prescriptionForm.get('endDate').hasError('matEndDateInvalid')">Invalid end date</mat-error>
+            </mat-form-field>
+
+
+        </div>
+
+        <div style="margin-top: 10px; margin-left: 10px;">
+            <button mat-raised-button color="primary" type="submit">Search</button>
+        </div>
+    </div>
+
+</form>
+
+<table mat-table [dataSource]="allPrescriptions" class="mat-elevation-z8">
+    <ng-container matColumnDef="medicine">
+        <th mat-header-cell *matHeaderCellDef> Medicine </th>
+        <td mat-cell *matCellDef="let prescription"> {{prescription.medicine}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="hourlyIntake">
+        <th mat-header-cell *matHeaderCellDef> Hourly intake </th>
+        <td mat-cell *matCellDef="let prescription"> {{prescription.hourlyIntake}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let prescription"> {{prescription.date | date : 'dd/MM/yyyy'}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

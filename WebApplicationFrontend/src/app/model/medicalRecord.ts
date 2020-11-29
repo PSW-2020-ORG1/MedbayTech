@@ -25,6 +25,7 @@ export class MedicalRecord {
     public familyIllnessHistoryDiagnosis : string[];
     public therapiesHourConsumption : number[];
     public therapiesMedication : string[];
+    public img : string;
 
     constructor(patientId : string, name : string, surname : string, gender : string, 
         dateOfBirth : Date, bloodType : string, city : string, state : string, street : string,
@@ -33,7 +34,7 @@ export class MedicalRecord {
         patientCondition : string, allergies : string[], vaccines : string[],
         illnessHistoryName : string[], illnessHistorySymptoms : string[], 
         familyIllnessHistoryRelatives : string[], familyIllnessHistoryDiagnosis : string[],
-        therapiesHourConsumption : number[], therapiesMedication : string[]) 
+        therapiesHourConsumption : number[], therapiesMedication : string[], img : string) 
         {
             this.patientId = patientId;
             this.name = name;
@@ -60,5 +61,6 @@ export class MedicalRecord {
             this.familyIllnessHistoryDiagnosis = familyIllnessHistoryDiagnosis;
             this.therapiesHourConsumption = therapiesHourConsumption;
             this.therapiesMedication = therapiesMedication;
+            this.img = img;
         }   
 }

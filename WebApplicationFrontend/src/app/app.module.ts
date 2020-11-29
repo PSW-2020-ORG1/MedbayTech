@@ -23,11 +23,13 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatIconModule} from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select'
+
 
 import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-feedback/approved-feedback.component';
 import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
@@ -37,6 +39,8 @@ import { FeedbackService } from './service/feedback/feedback.service';
 
 import {MedicalRecordComponent} from './medical-record/medical-record.component';
 import {MedicalRecordService} from './service/medicalRecord/medicalRecord.service';
+import { PrescriptionSimpleSearchComponent } from './search/prescription-simple-search/prescription-simple-search.component';
+import { ReportSimpleSearchComponent } from './search/report-simple-search/report-simple-search.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,8 @@ import {MedicalRecordService} from './service/medicalRecord/medicalRecord.servic
     PostFeedbackComponent,
     PatientRegistrationComponent,
     MedicalRecordComponent,
+    PrescriptionSimpleSearchComponent,
+    ReportSimpleSearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +74,10 @@ import {MedicalRecordService} from './service/medicalRecord/medicalRecord.servic
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatInputModule,
+    MatSelectModule,
     ToastrModule.forRoot(),
 
     

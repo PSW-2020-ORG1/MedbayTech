@@ -41,6 +41,40 @@ namespace WebApplication.DTO
         public int PlaceOfBirthId { get; set; }
         public PatientRegistrationDTO() { }
 
-
+        public PatientRegistrationDTO(string id, string name, string surname, DateTime dateOfBirth, string phone, string email, string username, string password, string confirmPassword, string educationLevel, string profession, string profileImage, string gender, int postalCode, string city, string state, string street, int number, int apartment, int floor, string policyNumber, string company, DateTime policyStart, DateTime policyEnd, string patientCondition, string bloodType, string doctor, string cityOfBirth, int postalCodeBirth, string stateOfBirth, int currentResidenceId, int placeOfBirthId)
+        {
+            Id = id;
+            Name = name;
+            Surname = surname;
+            DateOfBirth = dateOfBirth;
+            Phone = phone;
+            Email = email;
+            Username = username;
+            Password = password;
+            ConfirmPassword = confirmPassword;
+            EducationLevel = educationLevel;
+            Profession = profession;
+            ProfileImage = profileImage;
+            Gender = gender;
+            PostalCode = postalCode;
+            City = city;
+            State = state;
+            Street = street;
+            Number = number;
+            Apartment = apartment;
+            Floor = floor;
+            PolicyNumber = policyNumber;
+            Company = company;
+            PolicyStart = policyStart;
+            PolicyEnd = policyEnd;
+            PatientCondition = patientCondition;
+            BloodType = bloodType;
+            Doctor = doctor;
+            CityOfBirth = cityOfBirth;
+            PostalCodeBirth = postalCodeBirth;
+            StateOfBirth = stateOfBirth;
+            CurrentResidenceId = currentResidenceId;
+            PlaceOfBirthId = placeOfBirthId;
+        }
     }
 }

@@ -51,16 +51,16 @@ namespace MedbayTechUnitTests
             var stubRepository = new Mock<IMedicalRecordRepository>();
             var patients = CreatePatients();
 
-            MedicalRecord mr = new MedicalRecord(BloodType.AbPlus, patients[0], PatientCondition.HospitalTreatment);
-            MedicalRecord mr2 = new MedicalRecord(BloodType.AbNeg, patients[1], PatientCondition.HomeTreatment);
+            MedicalRecord medicalRecord = new MedicalRecord(BloodType.AbPlus, patients[0], PatientCondition.HospitalTreatment);
+            MedicalRecord medicalRecord2 = new MedicalRecord(BloodType.AbNeg, patients[1], PatientCondition.HomeTreatment);
 
-            List<MedicalRecord> mrs = new List<MedicalRecord>();
-            mrs.Add(mr);
-            mrs.Add(mr2);
+            List<MedicalRecord> medicalRecords = new List<MedicalRecord>();
+            medicalRecords.Add(medicalRecord);
+            medicalRecords.Add(medicalRecord2);
 
-            stubRepository.Setup(m => m.GetAll()).Returns(mrs);
+            stubRepository.Setup(m => m.GetAll()).Returns(medicalRecords);
             stubRepository.Setup(m => m.GetMedicalRecordByPatientId(It.IsAny<string>()))
-                .Returns((string id) => mrs.FirstOrDefault(entity => entity.Patient.Id.Equals(id)));
+                .Returns((string id) => medicalRecords.FirstOrDefault(entity => entity.Patient.Id.Equals(id)));
 
             return stubRepository.Object;
         }

@@ -39,9 +39,10 @@ namespace WebApplication.DTO
         public List<int> TherapiesHourConsumption { get; set; } 
         public List<String> TherapiesMedication { get; set; }
 
+        public string Img { get; set; }
         public MedicalRecordDTO() { }
         public MedicalRecordDTO(string patientId, string name, string surname, string gender, DateTime dateOfBirth, string bloodType, string city, string state, string street, int number, int apartment, string phone, string email, string insurancePolicyCompany, DateTime insurancePolicyStart, DateTime insurancePolicyEnd, 
-            string patientCondition, List<string> allergies, List<string> vaccines, List<string> illnesHistoryName, List<string> illnesHistorySymptoms, List<string> familyIllnessHistoriesRelative, List<string> familyIllnesHistoriesDiagnosis, List<int> therapiesHourConsumption, List<string> therapiesMedication)
+            string patientCondition, List<string> allergies, List<string> vaccines, List<string> illnesHistoryName, List<string> illnesHistorySymptoms, List<string> familyIllnessHistoriesRelative, List<string> familyIllnesHistoriesDiagnosis, List<int> therapiesHourConsumption, List<string> therapiesMedication, string img)
         {
             PatientId = patientId;
             Name = name;
@@ -68,6 +69,7 @@ namespace WebApplication.DTO
             FamilyIllnesHistoriesDiagnosis = familyIllnesHistoriesDiagnosis;
             TherapiesHourConsumption = therapiesHourConsumption;
             TherapiesMedication = therapiesMedication;
+            Img = img;
         }
 
     }

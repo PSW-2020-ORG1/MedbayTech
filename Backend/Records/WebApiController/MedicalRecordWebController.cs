@@ -15,7 +15,7 @@ namespace Backend.Records.WebApiController
 
         public MedicalRecordWebController()
         {
-            this.medicalRecordWebService = new MedicalRecordWebService(medicalRecordSqlRepository);
+            medicalRecordWebService = new MedicalRecordWebService(medicalRecordSqlRepository);
         }
 
         public MedicalRecord GetMedicalRecordByPatientId(string id)
