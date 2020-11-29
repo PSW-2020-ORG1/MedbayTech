@@ -19,12 +19,12 @@ namespace MedbayTechUnitTests
     public class SurveyTest
     {
         [Fact]
-        public void Post_survey()
+        public void Post_survey_integration()
         {
             WebSurveyController controller = new WebSurveyController();
             var survey = CreateSurvey();
             Survey postedSurvey = controller.CreateSurvey(survey.SurveyQuestions, survey.SurveyAnswers, survey.AppointmentId);
-            postedSurvey.ShouldNotBeNull();    
+            postedSurvey.ShouldNotBeNull();
         }
 
         public static Survey CreateSurvey()
@@ -32,7 +32,7 @@ namespace MedbayTechUnitTests
 
             Survey survey = new Survey
             {
-                Id = 2,
+                Id = 1,
                 Date = DateTime.Now,
                 AppointmentId = 1,
                 SurveyQuestions = CreateListOfQuestions(),
@@ -40,11 +40,26 @@ namespace MedbayTechUnitTests
             };
             return survey;
         }
-        public static List<int> CreateListOfQuestions() 
+
+        public static List<int> CreateListOfQuestions()
         {
             List<int> questions = new List<int>();
 
             questions.Add(1);
+            questions.Add(2);
+            questions.Add(3);
+            questions.Add(4);
+            questions.Add(5);
+            questions.Add(6);
+            questions.Add(7);
+            questions.Add(8);
+            questions.Add(9);
+            questions.Add(10);
+            questions.Add(11);
+            questions.Add(12);
+            questions.Add(13);
+            questions.Add(14);
+            questions.Add(15);
 
             return questions;
         }
@@ -52,6 +67,20 @@ namespace MedbayTechUnitTests
         {
             List<Grade> answers = new List<Grade>();
 
+            answers.Add(Grade.excellent);
+            answers.Add(Grade.excellent);
+            answers.Add(Grade.excellent);
+            answers.Add(Grade.excellent);
+            answers.Add(Grade.excellent);
+            answers.Add(Grade.excellent);
+            answers.Add(Grade.excellent);
+            answers.Add(Grade.excellent);
+            answers.Add(Grade.excellent);
+            answers.Add(Grade.veryGood);
+            answers.Add(Grade.excellent);
+            answers.Add(Grade.excellent);
+            answers.Add(Grade.excellent);
+            answers.Add(Grade.excellent);
             answers.Add(Grade.excellent);
 
             return answers;
