@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Pharmacy from '../views/Pharmacy.vue'
+//import Pharmacy from '../views/Pharmacy.vue'
 import Messages from '../views/Messages.vue'
 import MedicationUsageReport from '../views/MedicationUsageReport.vue'
+import DeanPanel from '../views/DeanPanel.vue'
+import Pharmacies from '../views/Pharmacies.vue'
 
 Vue.use(VueRouter)
 
@@ -14,20 +16,27 @@ const routes = [
     component: Home
   },
   {
-    path: '/pharmacy/:id',
-    name: 'Pharmacy',
-    component: Pharmacy,
-    },
-    {
-        path: '/messages',
-        name: 'Messages',
-        component: Messages,
-    },
-    {
-        path: '/medication_usage_report',
-        name: 'MedicationUsageReport',
-        component: MedicationUsageReport,
-    },
+    path: '/dean',
+    name: 'DeanPanel',
+    component: DeanPanel,
+    children: [
+        {
+          path: '',
+          name: 'Messages',
+          component: Messages,
+        },
+        {
+          path: 'pharmacies',
+          name: 'Pharmacies',
+          component: Pharmacies,
+        },
+        {
+          path: 'medication_usage_report',
+          name: 'MedicationUsageReport',
+          component: MedicationUsageReport,
+        },
+      ],
+    }
 ]
 
 const router = new VueRouter({

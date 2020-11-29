@@ -5,10 +5,7 @@
 				<div class="nav-container" :class="toggleNavClass()">
 					<!-- NOTE(Jovan): Logo -->
 					<div class="navbar-item logo">
-						<ul>
-							<li><router-link :to="{name:'Messages'}">Messages</router-link></li>
-							<li><router-link :to="{name:'MedicationUsageReport'}">Medication usage report</router-link></li>
-						</ul>
+						MIA
 					</div>
 					
 				</div>
@@ -192,7 +189,7 @@
 		font-family: "Poppins";
 		font-size: 1.5rem;
 		border: none;
-		color: #ff5722;
+		color: #fff;
 		text-transform: uppercase;
 		font-weight: 600;
 	}

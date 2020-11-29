@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using PharmacyIntegration.Model;
 
 namespace PharmacyIntegration.Service
@@ -17,6 +14,6 @@ namespace PharmacyIntegration.Service
 
         public PharmacyNotification Get(int Id);
 
-        public List<PharmacyNotification> GetAll();
+        public IEnumerable<PharmacyNotification> GetAll();
     }
 }

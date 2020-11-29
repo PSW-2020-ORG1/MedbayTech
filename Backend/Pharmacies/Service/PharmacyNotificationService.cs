@@ -35,7 +35,6 @@ namespace PharmacyIntegration.Service
             PharmacyNotification pharmacyNotification = new PharmacyNotification(content);
             pharmacyNotification.Id = getNextId();
             _context.PharmacyNotifications.Add(pharmacyNotification);
-            // Note (Marko): Does it need .SaveChages? Is not used in PharmacyService
             _context.SaveChanges();
             return pharmacyNotification;
         }
@@ -45,10 +44,7 @@ namespace PharmacyIntegration.Service
             return _context.PharmacyNotifications.ToList().Find(pn => pn.Id.Equals(Id));
         }
 
-        public List<PharmacyNotification> GetAll()
-        {
-            return _context.PharmacyNotifications.ToList();
-        }
+        public IEnumerable<PharmacyNotification> GetAll() => _context.PharmacyNotifications.ToList();
 
         public bool Remove(PharmacyNotification pharmacy)
         {

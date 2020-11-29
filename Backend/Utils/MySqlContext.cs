@@ -16,6 +16,7 @@ using Model.Rooms;
 using System.Linq;
 using Backend.Medications.Model;
 using PharmacyIntegration.Model;
+using Backend.Reports.Model;
 
 namespace Model
 {
@@ -28,6 +29,8 @@ namespace Model
         private string mySqlDatabaseName = "newdb";
         private string mySqlHostAddress = "localhost";
 
+        public DbSet<MedicationUsage> MedicationUsages { get; set; }
+        public DbSet<MedicationUsageReport> MedicationUsageReports { get; set; }
         public DbSet<Pharmacy> Pharmacies { get; set; }
         public DbSet<PharmacyNotification> PharmacyNotifications { get; set; }
         public DbSet<WorkDay> WorkDays { get; set; }
@@ -89,9 +92,10 @@ namespace Model
 
             // NOTE(Jovan): When using Backend DB inside project, create appsettings.json inside
             // that project
-            IConfigurationRoot configuration = new ConfigurationBuilder()
+
+        IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
-                optionsBuilder.UseMySql(configuration.GetConnectionString("MySqlConnectionString")).UseLazyLoadingProxies();
+                optionsBuilder.UseMySql($"Server={mySqlHostAddress};port={mySqlConnectionPort};Database={mySqlDatabaseName};user={mySqlConnectionUid};password={mySqlConnectionPassword}").UseLazyLoadingProxies();
 
         }
 
@@ -101,10 +105,10 @@ namespace Model
             modelBuilder.Entity<Occupation>().HasNoKey();
             modelBuilder.Entity<Shift>().HasNoKey();
             modelBuilder.Entity<State>().HasData(
-                new State { Id=1, Name="Serbia"}
+                new State { Id = 1, Name = "Serbia" }
                 );
             modelBuilder.Entity<City>().HasData(
-                new City { Id=21000, Name="Novi Sad", StateId=1}
+                new City { Id = 21000, Name = "Novi Sad", StateId = 1 }
                 );
 
             modelBuilder.Entity<Pharmacy>().HasData(
@@ -114,8 +118,27 @@ namespace Model
 
             modelBuilder.Entity<PharmacyNotification>().HasData(
                 new PharmacyNotification { Id = 1, Content = "Aspirin nam je jeftin. Bas jako.", Approved = true },
-                new PharmacyNotification { Id = 2, Content = "Brufen nam je jeftin. Bas jako." , Approved = true }
+                new PharmacyNotification { Id = 2, Content = "Brufen nam je jeftin. Bas jako.", Approved = true }
             );
+
+            modelBuilder.Entity<Specialization>().HasData(
+                    new Specialization { Id = 1, SpecializationName = "DrugSpec"}
+                );
+
+            modelBuilder.Entity<MedicationCategory>().HasData(
+                    new MedicationCategory { Id = 1, CategoryName = "Drug", SpecializationId = 1 }
+                );
+
+            modelBuilder.Entity<Medication>().HasData(
+                    new Medication { Id = 1, Med = "Aspirin 325mg", Company = "Bayer", MedicationCategoryId = 1 },
+                    new Medication { Id = 2, Med = "Cyclopentanoperhydrophenanthrene 5mg", Company = "StrongDrugs Inc.", MedicationCategoryId = 1 }
+                );
+
+            modelBuilder.Entity<MedicationUsage>().HasData(
+                    new MedicationUsage { Id = 1, Usage = 4, MedicationId = 1 },
+                    new MedicationUsage { Id = 2, Usage = 10, MedicationId = 2 }
+                );
+
         }
     }
 }

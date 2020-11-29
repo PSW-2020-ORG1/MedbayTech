@@ -9,8 +9,8 @@ using Model;
 namespace Backend.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201124015209_migration01")]
-    partial class migration01
+    [Migration("20201129144133_migration0")]
+    partial class migration0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -167,6 +167,9 @@ namespace Backend.Migrations
                     b.Property<string>("Med")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<int>("MedicationCategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("MedicationId")
                         .HasColumnType("int");
 
@@ -178,9 +181,31 @@ namespace Backend.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MedicationCategoryId");
+
                     b.HasIndex("MedicationId");
 
                     b.ToTable("Medications");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Company = "Bayer",
+                            Med = "Aspirin 325mg",
+                            MedicationCategoryId = 1,
+                            Quantity = 0,
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Company = "StrongDrugs Inc.",
+                            Med = "Cyclopentanoperhydrophenanthrene 5mg",
+                            MedicationCategoryId = 1,
+                            Quantity = 0,
+                            Status = 0
+                        });
                 });
 
             modelBuilder.Entity("Backend.Medications.Model.MedicationCategory", b =>
@@ -192,20 +217,22 @@ namespace Backend.Migrations
                     b.Property<string>("CategoryName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("MedicationId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SpecializationId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MedicationId")
-                        .IsUnique();
-
                     b.HasIndex("SpecializationId");
 
                     b.ToTable("MedicationCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryName = "Drug",
+                            SpecializationId = 1
+                        });
                 });
 
             modelBuilder.Entity("Backend.Medications.Model.MedicationIngredient", b =>
@@ -409,6 +436,61 @@ namespace Backend.Migrations
                     b.HasIndex("MedicalRecordId");
 
                     b.ToTable("Vaccines");
+                });
+
+            modelBuilder.Entity("Backend.Reports.Model.MedicationUsage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("MedicationId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MedicationUsageReportId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Usage")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MedicationId");
+
+                    b.HasIndex("MedicationUsageReportId");
+
+                    b.ToTable("MedicationUsages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            MedicationId = 1,
+                            Usage = 4
+                        },
+                        new
+                        {
+                            Id = 2,
+                            MedicationId = 2,
+                            Usage = 10
+                        });
+                });
+
+            modelBuilder.Entity("Backend.Reports.Model.MedicationUsageReport", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("From")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime?>("Until")
+                        .HasColumnType("date");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MedicationUsageReports");
                 });
 
             modelBuilder.Entity("Backend.Utils.Period", b =>
@@ -978,6 +1060,13 @@ namespace Backend.Migrations
                     b.HasIndex("DoctorId");
 
                     b.ToTable("Specializations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            SpecializationName = "DrugSpec"
+                        });
                 });
 
             modelBuilder.Entity("Model.Users.State", b =>
@@ -1134,12 +1223,7 @@ namespace Backend.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("PharmacyID")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PharmacyID");
 
                     b.ToTable("PharmacyNotifications");
 
@@ -1148,15 +1232,13 @@ namespace Backend.Migrations
                         {
                             Id = 1,
                             Approved = true,
-                            Content = "Aspirin nam je jeftin. Bas jako. Ide gaso!",
-                            PharmacyID = "Jankovic"
+                            Content = "Aspirin nam je jeftin. Bas jako."
                         },
                         new
                         {
                             Id = 2,
                             Approved = true,
-                            Content = "Brufen nam je jeftin. Bas jako. Ide gaso!",
-                            PharmacyID = "Liman"
+                            Content = "Brufen nam je jeftin. Bas jako."
                         });
                 });
 
@@ -1341,6 +1423,12 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Medications.Model.Medication", b =>
                 {
+                    b.HasOne("Backend.Medications.Model.MedicationCategory", "MedicationCategory")
+                        .WithMany()
+                        .HasForeignKey("MedicationCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Backend.Medications.Model.Medication", null)
                         .WithMany("AlternativeMedication")
                         .HasForeignKey("MedicationId");
@@ -1348,12 +1436,6 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Medications.Model.MedicationCategory", b =>
                 {
-                    b.HasOne("Backend.Medications.Model.Medication", "Medication")
-                        .WithOne("MedicationCategory")
-                        .HasForeignKey("Backend.Medications.Model.MedicationCategory", "MedicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Model.Users.Specialization", "Specialization")
                         .WithMany()
                         .HasForeignKey("SpecializationId")
@@ -1443,6 +1525,19 @@ namespace Backend.Migrations
                     b.HasOne("Backend.Records.Model.MedicalRecord", null)
                         .WithMany("Vaccines")
                         .HasForeignKey("MedicalRecordId");
+                });
+
+            modelBuilder.Entity("Backend.Reports.Model.MedicationUsage", b =>
+                {
+                    b.HasOne("Backend.Medications.Model.Medication", "Medication")
+                        .WithMany()
+                        .HasForeignKey("MedicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Backend.Reports.Model.MedicationUsageReport", null)
+                        .WithMany("MedicationUsages")
+                        .HasForeignKey("MedicationUsageReportId");
                 });
 
             modelBuilder.Entity("Model.Rooms.Bed", b =>
@@ -1679,13 +1774,6 @@ namespace Backend.Migrations
                     b.HasOne("Model.Users.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId");
-                });
-
-            modelBuilder.Entity("PharmacyIntegration.Model.PharmacyNotification", b =>
-                {
-                    b.HasOne("PharmacyIntegration.Model.Pharmacy", "Pharmacy")
-                        .WithMany()
-                        .HasForeignKey("PharmacyID");
                 });
 
             modelBuilder.Entity("Backend.Examinations.Model.HospitalTreatment", b =>
