@@ -74,5 +74,10 @@ namespace Backend.Examinations.Model
         {
             return StartTime.Date.CompareTo(date.Date) > 0;
         }
-   }
+
+        public bool IsPatient(string id)
+        {
+            return MedicalRecord.PatientId.Equals(id);
+        }
+    }
 }

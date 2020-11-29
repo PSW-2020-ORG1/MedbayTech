@@ -32,7 +32,7 @@ namespace MedbayTechUnitTests.Examinations
         }
 
         [Fact]
-        public void Advanced_prescription_found()
+        public void Advanced_report_found()
         {
             var stubRepository = CreateStubRepository();
             ReportAdvancedDTO dto = CreateDTO();
@@ -59,10 +59,10 @@ namespace MedbayTechUnitTests.Examinations
             dto.LogicOperators[0] = "and";
             dto.LogicOperators[1] = "or";
 
-            dto.OtherParameterValues[0] = "dobar je";
+            dto.OtherParameterValues[0] = "12/3/2020";
             dto.OtherParameterValues[1] = "Stevic";
 
-            dto.OtherParameterTypes[0] = "diagnosis";
+            dto.OtherParameterTypes[0] = "date";
             dto.OtherParameterTypes[1] = "docSurname";
 
             return dto;
@@ -82,10 +82,10 @@ namespace MedbayTechUnitTests.Examinations
             dto.LogicOperators[0] = "and";
             dto.LogicOperators[1] = "or";
 
-            dto.OtherParameterValues[0] = "U teskom stanju";
+            dto.OtherParameterValues[0] = "12/3/2020";
             dto.OtherParameterValues[1] = "Simic";
 
-            dto.OtherParameterTypes[0] = "diagnosis";
+            dto.OtherParameterTypes[0] = "date";
             dto.OtherParameterTypes[1] = "docSurname";
 
             return dto;
@@ -168,7 +168,7 @@ namespace MedbayTechUnitTests.Examinations
             {
                 Id = 3,
                 DoctorId = "2406978890047",
-                StartTime = new DateTime(2015, 4, 23),
+                StartTime = new DateTime(2020, 12, 3),
                 MedicalRecordId = 1,
                 Type = TypeOfAppointment.Examination,
                 Diagnoses = new List<Diagnosis>(),

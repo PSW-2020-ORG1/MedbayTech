@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication.Validators
 {
-    public class ValidateAuthInput
+    public class ValidateAdvancedSearchInput
     {
 
         public static void IsMedicationValid(string medication)

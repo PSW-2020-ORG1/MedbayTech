@@ -7,21 +7,20 @@ namespace WebApplication.DTO
 {
     public class ReportAdvancedDTO
     {
-        public string DoctorName { get; set; }
-        public string DoctorSurname { get;set; }
-        public string AndOr { get; set; }
-        public string Diagnosis { get; set; }
-        public string DateOfExamination { get; set; }
-        public string Allergens { get; set; }
+        public string FirstParameterValue { get; set; }
+        public string FirstParameterType { get; set; }
+        public string[] OtherParameterValues { get; set; }
+        public string[] OtherParameterTypes { get; set; }
+        public string[] LogicOperators { get; set; }
 
-        public ReportAdvancedDTO(string doctorName, string doctorSurname, string andOr, string diagnosis, string date, string allergens)
+        public ReportAdvancedDTO() { }
+        public ReportAdvancedDTO(string firstValue, string firstType, string[] otherValues, string[] otherTypes, string[] logicOperators)
         {
-            this.DoctorName = doctorName;
-            this.DoctorSurname = doctorSurname;
-            this.AndOr = andOr;
-            this.Diagnosis = diagnosis;
-            this.DateOfExamination = date;
-            this.Allergens = allergens;
+            this.FirstParameterValue = firstValue;
+            this.FirstParameterType = firstType;
+            this.OtherParameterValues = otherValues;
+            this.OtherParameterTypes = otherTypes;
+            this.LogicOperators = logicOperators;
         }
     }
 }

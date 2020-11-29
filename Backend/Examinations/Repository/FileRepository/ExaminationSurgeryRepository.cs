@@ -144,5 +144,10 @@ namespace Backend.Examinations.Repository
             prescription.InitializeReservationDates();
             return base.Update(examinationSurgery);
         }
+
+        public IEnumerable<ExaminationSurgery> GetReportFor(string idPatient)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
