@@ -24,7 +24,7 @@ namespace Backend.Utils.EnumMapper
         }
         public static Gender StringToGender(string gender)
         {
-            if (gender.ToLower().Equals("M"))
+            if (gender.Equals("M"))
                 return Gender.MALE;
             else
                 return Gender.FEMALE;

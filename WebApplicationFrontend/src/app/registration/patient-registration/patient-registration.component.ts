@@ -115,7 +115,6 @@ export class PatientRegistrationComponent implements OnInit {
   onSubmit() {
    this.service.registerPatient(this.createPatient()).subscribe(
       res => {
-        //this.createForm.reset();
         this.taostr.success(res);
         this.formData.append('id', this.createForm.value.id);
         this.service.uploadImage(this.formData);

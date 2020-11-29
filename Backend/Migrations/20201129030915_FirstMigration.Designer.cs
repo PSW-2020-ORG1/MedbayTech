@@ -9,7 +9,7 @@ using Model;
 namespace Backend.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201128200725_FirstMigration")]
+    [Migration("20201129030915_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1476,7 +1476,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2020, 11, 29, 0, 0, 0, 0, DateTimeKind.Local),
                             ExaminationSurgeryId = 1,
                             Type = 0,
                             EndDate = new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -1488,7 +1488,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2020, 11, 29, 0, 0, 0, 0, DateTimeKind.Local),
                             ExaminationSurgeryId = 1,
                             Type = 0,
                             EndDate = new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -1564,7 +1564,7 @@ namespace Backend.Migrations
                             Phone = "065/123-4554",
                             PlaceOfBirthId = 11000,
                             Profession = "vodoinstalater",
-                            ProfileImage = ".",
+                            ProfileImage = "C:\\Users\\kaise\\Pictures\\default-user-image",
                             Surname = "Petrovic",
                             Username = "pera",
                             Blocked = false,

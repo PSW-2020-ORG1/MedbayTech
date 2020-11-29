@@ -1149,7 +1149,7 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "RegisteredUsers",
                 columns: new[] { "Id", "CurrResidenceId", "DateOfBirth", "DateOfCreation", "Discriminator", "EducationLevel", "Email", "Gender", "InsurancePolicyId", "Name", "NotificationId", "Password", "Phone", "PlaceOfBirthId", "Profession", "ProfileImage", "Surname", "Username", "Blocked", "ChosenDoctorId", "Confirmed", "IsGuestAccount", "Token" },
-                values: new object[] { "2406978890046", 1, new DateTime(1978, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Patient", 2, "pera@gmail.com", 0, "policy1", "Petar", null, "pera1978", "065/123-4554", 11000, "vodoinstalater", ".", "Petrovic", "pera", false, "2406978890047", false, false, null });
+                values: new object[] { "2406978890046", 1, new DateTime(1978, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Patient", 2, "pera@gmail.com", 0, "policy1", "Petar", null, "pera1978", "065/123-4554", 11000, "vodoinstalater", "C:\\Users\\kaise\\Pictures\\default-user-image", "Petrovic", "pera", false, "2406978890047", false, false, null });
 
             migrationBuilder.InsertData(
                 table: "Specializations",
@@ -1239,8 +1239,8 @@ namespace Backend.Migrations
                 columns: new[] { "Id", "AdditionalNotes", "Date", "Discriminator", "ExaminationSurgeryId", "Type", "EndDate", "HourlyIntake", "MedicationId", "Reserved", "StartDate" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Local), "Prescription", 1, 0, new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, null, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Local), "Prescription", 1, 0, new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, null, new DateTime(2020, 11, 29, 0, 0, 0, 0, DateTimeKind.Local), "Prescription", 1, 0, new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, null, new DateTime(2020, 11, 29, 0, 0, 0, 0, DateTimeKind.Local), "Prescription", 1, 0, new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(

@@ -95,7 +95,7 @@ namespace WebApplication.Controller
                     file.CopyTo(stream);
                 }
 
-                string pathForDb = GetDomain() + "/" + "Resources/Images/" + fileName;
+                string pathForDb = GetDomain() + "/" + "Resources/Images/" + dto.Id + "/" + fileName;
                 registrationController.SetImagePath(pathForDb, dto.Id);
                 return Ok(dto.Id);
             }
