@@ -1,0 +1,75 @@
+<div style="text-align: center;">
+    <h1>Report search</h1>
+</div>
+<form class="container" [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+    <div style="margin-left: 10px;">
+        <a mat-raised-button routerLink="/prescriptionSimpleSearch" target="_blank">Search prescriptions</a>
+    </div>
+
+    <div style="margin-top: 10px; margin-left: 10px;">
+        <a mat-raised-button routerLink="/reportSearch" target="_blank">Advanced search</a>
+    </div>
+
+    <div style="text-align: justify;margin-top: 15px;">
+        <div>
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Doctor</mat-label>
+                <input matInput formControlName='doctor'>
+                <mat-error *ngIf="reportForm.get('doctor').hasError('pattern')">
+                    Must contain letters only
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate formControlName="startDate" placeholder="Start date">
+                    <input matEndDate formControlName="endDate" placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+
+                <mat-error *ngIf="reportForm.get('startDate').hasError('matStartDateInvalid')">Invalid start date
+                </mat-error>
+                <mat-error *ngIf="reportForm.get('endDate').hasError('matEndDateInvalid')">Invalid end date</mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Type</mat-label>
+                <input matInput formControlName="type">
+                <mat-error *ngIf="reportForm.get('type').hasError('pattern')">
+                    Must contain letters only
+                </mat-error>
+            </mat-form-field>
+
+        </div>
+
+        <div style="margin-top: 10px; margin-left: 10px;">
+            <button mat-raised-button color="primary" type="submit">Search</button>
+        </div>
+    </div>
+
+</form>
+
+
+<table mat-table [dataSource]="allReports" class="mat-elevation-z8">
+    <ng-container matColumnDef="doctor">
+        <th mat-header-cell *matHeaderCellDef> Doctor </th>
+        <td mat-cell *matCellDef="let report"> {{report.doctor}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let report"> {{report.date | date : 'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="treatment">
+        <th mat-header-cell *matHeaderCellDef> Treatment </th>
+        <td mat-cell *matCellDef="let report"> {{report.type}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

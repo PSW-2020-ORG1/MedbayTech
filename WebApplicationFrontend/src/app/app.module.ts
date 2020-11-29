@@ -1,3 +1,4 @@
+import { PatientRegistrationComponent } from './registration/patient-registration/patient-registration.component';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -18,7 +19,16 @@ import {MatList, MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
+
+import {MatIconModule} from '@angular/material/icon';
+
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatTabsModule} from '@angular/material/tabs';
+
 import {MatRadioModule} from '@angular/material/radio';
+
+
 
 import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-feedback/approved-feedback.component';
 import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
@@ -37,6 +47,11 @@ import { ReportSearchComponent } from './search/report-search/report-search.comp
 
 
 
+import {MedicalRecordComponent} from './medical-record/medical-record.component';
+import {MedicalRecordService} from './service/medicalRecord/medicalRecord.service';
+import { PrescriptionSimpleSearchComponent } from './search/prescription-simple-search/prescription-simple-search.component';
+import { ReportSimpleSearchComponent } from './search/report-simple-search/report-simple-search.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +60,10 @@ import { ReportSearchComponent } from './search/report-search/report-search.comp
     PostFeedbackComponent,
     PrescriptionSearchComponent,
     ReportSearchComponent,
+    PatientRegistrationComponent,
+    MedicalRecordComponent,
+    PrescriptionSimpleSearchComponent,
+    ReportSimpleSearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,21 +78,34 @@ import { ReportSearchComponent } from './search/report-search/report-search.comp
     MatButtonModule,
     MatDatepickerModule,
     MatRadioModule,
+    MatInputModule,
+    MatTabsModule,
     MatTableModule,
     RouterModule,
     MatSelectModule,
     MatNativeDateModule,
     FormsModule,
+    MatIconModule,
+    MatSelectModule,
     ReactiveFormsModule,
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatInputModule,
+    MatSelectModule,
     ToastrModule.forRoot(),
 
     
   ],
   providers: [
     FeedbackService,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MedicalRecordService,
   ],
-  bootstrap: [AppComponent],
-  
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

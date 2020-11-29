@@ -7,7 +7,6 @@ using Backend.Examinations.Model;
 using Backend.Records.Model;
 using Repository.UserRepository;
 using Backend.Examinations.Repository;
-using Backend.Examinations.Model;
 using Model.Users;
 using System;
 using System.Collections.Generic;
@@ -141,7 +140,6 @@ namespace Backend.Examinations.Repository
         public ExaminationSurgery UpdateTreatment(ExaminationSurgery examinationSurgery, Treatment treatment)
         {
             Prescription prescription = (Prescription) treatment;
-            prescription.InitializeReservationDates();
             return base.Update(examinationSurgery);
         }
 

@@ -14,10 +14,14 @@ namespace Backend.Records.Model
         [Key]
         public int Id { get; set; }
         public int HourConsumption { get; set; }
+        
         [ForeignKey("Medication")]
         public int MedicationId { get; set; }
         public virtual Medication Medication { get; set; }
+
+        [ForeignKey("MedicalRecord")]
         public int MedicalRecordId { get; set; }
+        public virtual MedicalRecord MedicalRecord { get; set; }
 
         public Therapy() {}
         public Therapy(int hourConsumption, Medication medication)

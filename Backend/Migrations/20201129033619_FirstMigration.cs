@@ -26,7 +26,9 @@ namespace Backend.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    Company = table.Column<string>(nullable: true)
+                    Company = table.Column<string>(nullable: true),
+                    StartTime = table.Column<DateTime>(nullable: false),
+                    EndTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,6 +58,7 @@ namespace Backend.Migrations
                     Status = table.Column<int>(nullable: false),
                     Company = table.Column<string>(nullable: true),
                     Quantity = table.Column<int>(nullable: false),
+                    MedicationCategoryId = table.Column<int>(nullable: false),
                     MedicationId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -330,6 +333,9 @@ namespace Backend.Migrations
                     ExaminationRoomId = table.Column<int>(nullable: true),
                     OperationRoomId = table.Column<int>(nullable: true),
                     IsGuestAccount = table.Column<bool>(nullable: true),
+                    Confirmed = table.Column<bool>(nullable: true),
+                    Blocked = table.Column<bool>(nullable: true),
+                    Token = table.Column<string>(nullable: true),
                     ChosenDoctorId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -738,7 +744,7 @@ namespace Backend.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     RelativeMember = table.Column<int>(nullable: false),
-                    MedicalRecordId = table.Column<int>(nullable: true)
+                    MedicalRecordId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -748,7 +754,7 @@ namespace Backend.Migrations
                         column: x => x.MedicalRecordId,
                         principalTable: "MedicalRecords",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -759,7 +765,7 @@ namespace Backend.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     HourConsumption = table.Column<int>(nullable: false),
                     MedicationId = table.Column<int>(nullable: false),
-                    MedicalRecordId = table.Column<int>(nullable: true)
+                    MedicalRecordId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -769,7 +775,7 @@ namespace Backend.Migrations
                         column: x => x.MedicalRecordId,
                         principalTable: "MedicalRecords",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Therapies_Medications_MedicationId",
                         column: x => x.MedicationId,
@@ -785,7 +791,7 @@ namespace Backend.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
-                    MedicalRecordId = table.Column<int>(nullable: true)
+                    MedicalRecordId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -795,7 +801,7 @@ namespace Backend.Migrations
                         column: x => x.MedicalRecordId,
                         principalTable: "MedicalRecords",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -924,6 +930,8 @@ namespace Backend.Migrations
                     Status = table.Column<int>(nullable: true),
                     DepartmentId = table.Column<int>(nullable: true),
                     Reserved = table.Column<bool>(nullable: true),
+                    StartDate = table.Column<DateTime>(nullable: true),
+                    EndDate = table.Column<DateTime>(nullable: true),
                     HourlyIntake = table.Column<int>(nullable: true),
                     MedicationId = table.Column<int>(nullable: true)
                 },
@@ -957,9 +965,9 @@ namespace Backend.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
+                    MedicalRecordId = table.Column<int>(nullable: false),
                     ExaminationSurgeryId = table.Column<int>(nullable: true),
-                    FamilyIllnessHistoryId = table.Column<int>(nullable: true),
-                    MedicalRecordId = table.Column<int>(nullable: true)
+                    FamilyIllnessHistoryId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -981,7 +989,7 @@ namespace Backend.Migrations
                         column: x => x.MedicalRecordId,
                         principalTable: "MedicalRecords",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -991,7 +999,7 @@ namespace Backend.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
-                    DiagnosisId = table.Column<int>(nullable: true)
+                    DiagnosisId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1001,7 +1009,7 @@ namespace Backend.Migrations
                         column: x => x.DiagnosisId,
                         principalTable: "Diagnoses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -1032,9 +1040,32 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "EquipmentType",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 1, "Krevet" });
+
+            migrationBuilder.InsertData(
                 table: "InsurancePolicies",
-                columns: new[] { "Id", "Company" },
-                values: new object[] { "policy1", "Dunav osiguranje d.o.o" });
+                columns: new[] { "Id", "Company", "EndTime", "StartTime" },
+                values: new object[] { "policy1", "Dunav osiguranje d.o.o", new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "MedicationIngredients",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Ibuprofen" },
+                    { 2, "Paracetamol" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Medications",
+                columns: new[] { "Id", "Company", "Med", "MedicationCategoryId", "MedicationId", "Quantity", "Status" },
+                values: new object[,]
+                {
+                    { 1, "Famar", "Brufen", 1, null, 10, 0 },
+                    { 2, "Goodwill", "Metafex", 1, null, 15, 1 }
+                });
 
             migrationBuilder.InsertData(
                 table: "States",
@@ -1044,12 +1075,20 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "Cities",
                 columns: new[] { "Id", "Name", "StateId" },
-                values: new object[] { 21000, "Novi Sad", 1L });
+                values: new object[,]
+                {
+                    { 21000, "Novi Sad", 1L },
+                    { 11000, "Beograd", 1L }
+                });
 
             migrationBuilder.InsertData(
-                table: "Cities",
-                columns: new[] { "Id", "Name", "StateId" },
-                values: new object[] { 11000, "Beograd", 1L });
+                table: "DosageOfIngredient",
+                columns: new[] { "Id", "Amount", "MedicationId", "MedicationIngredientId" },
+                values: new object[,]
+                {
+                    { 1, 100.0, 1, 1 },
+                    { 2, 120.0, 1, 2 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Addresses",
@@ -1062,9 +1101,19 @@ namespace Backend.Migrations
                 values: new object[] { 2, 0, 11000, 0, 5, "Gospodara Vucica" });
 
             migrationBuilder.InsertData(
+                table: "Hospitals",
+                columns: new[] { "Id", "AddressId", "Description", "Name" },
+                values: new object[] { 1, 1, "blablal", "Medbay" });
+
+            migrationBuilder.InsertData(
                 table: "RegisteredUsers",
                 columns: new[] { "Id", "CurrResidenceId", "DateOfBirth", "DateOfCreation", "Discriminator", "EducationLevel", "Email", "Gender", "InsurancePolicyId", "Name", "NotificationId", "Password", "Phone", "PlaceOfBirthId", "Profession", "ProfileImage", "Surname", "Username" },
                 values: new object[] { "2406978890045", 1, new DateTime(1978, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "RegisteredUser", 2, "marko@gmail.com", 0, "policy1", "Marko", null, "marko1978", "065/123-4554", 11000, "vodoinstalater", ".", "Markovic", "markic" });
+
+            migrationBuilder.InsertData(
+                table: "Departments",
+                columns: new[] { "Id", "Floor", "HospitalId", "Name" },
+                values: new object[] { 1, 1, 1, "Infektivno" });
 
             migrationBuilder.InsertData(
                 table: "Feedbacks",
@@ -1076,6 +1125,142 @@ namespace Backend.Migrations
                     { 3, "Predivno, ali i ruzno! Sramite se! Cestitke... <3", false, false, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "2406978890045" },
                     { 4, "Odlicno!", false, false, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "2406978890045" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Rooms",
+                columns: new[] { "Id", "DepartmentId", "RoomNumber", "RoomType" },
+                values: new object[] { 1, 1, 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Rooms",
+                columns: new[] { "Id", "DepartmentId", "RoomNumber", "RoomType" },
+                values: new object[] { 2, 1, 2, 0 });
+
+            migrationBuilder.InsertData(
+                table: "HospitalEquipment",
+                columns: new[] { "Id", "EquipmentTypeId", "QuantityInRoom", "QuantityInStorage", "RoomId" },
+                values: new object[] { 1, 1, 5, 15, 1 });
+
+            migrationBuilder.InsertData(
+                table: "RegisteredUsers",
+                columns: new[] { "Id", "CurrResidenceId", "DateOfBirth", "DateOfCreation", "Discriminator", "EducationLevel", "Email", "Gender", "InsurancePolicyId", "Name", "NotificationId", "Password", "Phone", "PlaceOfBirthId", "Profession", "ProfileImage", "Surname", "Username", "Biography", "CurrentlyWorking", "VacationLeave", "WorkersID", "DepartmentId", "ExaminationRoomId", "LicenseNumber", "OnCall", "OperationRoomId", "PatientReview" },
+                values: new object[] { "2406978890047", 1, new DateTime(1978, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Doctor", 2, "mika@gmail.com", 0, "policy1", "Milan", null, "mika1978", "065/123-4554", 11000, "vodoinstalater", ".", "Milanovic", "mika", null, false, false, 0, 1, 1, "001", true, 2, 4.5 });
+
+            migrationBuilder.InsertData(
+                table: "RegisteredUsers",
+                columns: new[] { "Id", "CurrResidenceId", "DateOfBirth", "DateOfCreation", "Discriminator", "EducationLevel", "Email", "Gender", "InsurancePolicyId", "Name", "NotificationId", "Password", "Phone", "PlaceOfBirthId", "Profession", "ProfileImage", "Surname", "Username", "Blocked", "ChosenDoctorId", "Confirmed", "IsGuestAccount", "Token" },
+                values: new object[] { "2406978890046", 1, new DateTime(1978, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Patient", 2, "pera@gmail.com", 0, "policy1", "Petar", null, "pera1978", "065/123-4554", 11000, "vodoinstalater", "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png", "Petrovic", "pera", false, "2406978890047", false, false, null });
+
+            migrationBuilder.InsertData(
+                table: "Specializations",
+                columns: new[] { "Id", "DoctorId", "SpecializationName" },
+                values: new object[] { 1, "2406978890047", "Interna medicina" });
+
+            migrationBuilder.InsertData(
+                table: "Specializations",
+                columns: new[] { "Id", "DoctorId", "SpecializationName" },
+                values: new object[] { 2, "2406978890047", "Hirurgija" });
+
+            migrationBuilder.InsertData(
+                table: "MedicalRecords",
+                columns: new[] { "Id", "BloodType", "CurrHealthState", "PatientId" },
+                values: new object[] { 1, 2, 2, "2406978890046" });
+
+            migrationBuilder.InsertData(
+                table: "MedicationCategories",
+                columns: new[] { "Id", "CategoryName", "MedicationId", "SpecializationId" },
+                values: new object[] { 1, "Kategorija1", 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Allergens",
+                columns: new[] { "Id", "Allergen", "MedicalRecordId", "MedicationId" },
+                values: new object[,]
+                {
+                    { 1, "Polen", 1, 1 },
+                    { 2, "Prasina", 1, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Diagnoses",
+                columns: new[] { "Id", "ExaminationSurgeryId", "FamilyIllnessHistoryId", "MedicalRecordId", "Name" },
+                values: new object[,]
+                {
+                    { 1, null, null, 1, "Dijagnoza1" },
+                    { 2, null, null, 1, "Dijagnoza2" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ExaminationSurgeries",
+                columns: new[] { "Id", "DoctorId", "MedicalRecordId", "StartTime", "Type" },
+                values: new object[,]
+                {
+                    { 1, "2406978890047", 1, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 0 },
+                    { 2, "2406978890047", 1, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FamilyIllnessHistories",
+                columns: new[] { "Id", "MedicalRecordId", "RelativeMember" },
+                values: new object[,]
+                {
+                    { 1, 1, 1 },
+                    { 2, 1, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Therapies",
+                columns: new[] { "Id", "HourConsumption", "MedicalRecordId", "MedicationId" },
+                values: new object[,]
+                {
+                    { 1, 6, 1, 1 },
+                    { 2, 10, 1, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Vaccines",
+                columns: new[] { "Id", "MedicalRecordId", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, "Grip" },
+                    { 2, 1, "Male boginje" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Symptoms",
+                columns: new[] { "Id", "DiagnosisId", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, "Kasalj" },
+                    { 2, 1, "Temperatura" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Treatments",
+                columns: new[] { "Id", "AdditionalNotes", "Date", "Discriminator", "ExaminationSurgeryId", "Type", "EndDate", "HourlyIntake", "MedicationId", "Reserved", "StartDate" },
+                values: new object[,]
+                {
+                    { 1, null, new DateTime(2020, 11, 29, 0, 0, 0, 0, DateTimeKind.Local), "Prescription", 1, 0, new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, null, new DateTime(2020, 11, 29, 0, 0, 0, 0, DateTimeKind.Local), "Prescription", 1, 0, new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Treatments",
+                columns: new[] { "Id", "AdditionalNotes", "Date", "Discriminator", "ExaminationSurgeryId", "Type" },
+                values: new object[,]
+                {
+                    { 3, ".", new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "Treatment", 1, 0 },
+                    { 4, ".", new DateTime(2020, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), "Treatment", 1, 0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "SideEffects",
+                columns: new[] { "Id", "Frequency", "MedicationId", "SideEffectsId" },
+                values: new object[] { 1, 2, 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "SideEffects",
+                columns: new[] { "Id", "Frequency", "MedicationId", "SideEffectsId" },
+                values: new object[] { 2, 1, 1, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_CityId",

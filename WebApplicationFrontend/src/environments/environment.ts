@@ -12,7 +12,14 @@ export const environment = {
   prescription: 'api/prescription',
   report: 'api/examinationsurgery',
   allPrescriptions: 'allPrescriptions',
-  allReports: 'allReports'
+  allReports: 'allReports',
+  registration : 'api/registration',
+  patientRegistration : 'patientRegistration',
+  doctor : 'api/doctor',
+  searchDoctor : 'searchDoctor',
+  medicalRecord : 'api/medicalRecord',
+  prescriptionSimpleSearch : 'api/prescription',
+  reportSimpleSearch : 'api/report'
 };
 
 /*

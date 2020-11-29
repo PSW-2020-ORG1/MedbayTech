@@ -14,10 +14,10 @@ namespace Backend.Examinations.Model
 {
    public class Prescription : Treatment
     {
-        private const int RESERVATION_DAYS = 10;
+        private const int RESERVATION_DAYS = 10; 
         public bool Reserved { get; set; }
-        public DateTime ReservationPeriodStart { get; set; }
-        public DateTime ReservationPeriodEnd { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public int HourlyIntake { get; set; }
         [ForeignKey("Medication")]
         public int MedicationId { get; set; }
@@ -34,24 +34,14 @@ namespace Backend.Examinations.Model
             Reserved = reserved;
             if (Reserved)
             {
-                ReservationPeriodStart = DateTime.Today;
-                ReservationPeriodEnd = DateTime.Today.AddDays(RESERVATION_DAYS);
+                StartDate = DateTime.Today;
+                EndDate = DateTime.Today.AddDays(RESERVATION_DAYS);
             }
             HourlyIntake = hourlyIntake;
             Medication = medication;
         }
 
         public Prescription(int id) : base(id) { }
-
-
-        public void InitializeReservationDates()
-        {
-            if (Reserved)
-            {
-                ReservationPeriodStart = DateTime.Today;
-                ReservationPeriodEnd = DateTime.Today.AddDays(RESERVATION_DAYS);
-            }
-        }
 
         public bool IsStillActive(DateTime startDate, DateTime endDate)
         {

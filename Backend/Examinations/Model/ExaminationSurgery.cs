@@ -17,7 +17,7 @@ namespace Backend.Examinations.Model
    public class ExaminationSurgery : IIdentifiable<int>
     {
         [Key]
-        public int Id { get; set; }
+        public int Id { get; set; } 
         public DateTime StartTime { get; set; }
         public TypeOfAppointment Type { get; set; }
         public virtual List<Treatment> Treatments { get; set; }

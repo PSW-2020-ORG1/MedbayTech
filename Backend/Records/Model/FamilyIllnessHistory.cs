@@ -7,6 +7,7 @@ using Backend.Records.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Records.Model
 {
@@ -17,6 +18,10 @@ namespace Backend.Records.Model
         public Relative RelativeMember { get; set; }
         public virtual List<Diagnosis> Diagnosis { get; set; }
         public int MedicalRecordId { get; internal set; }
+
+        [ForeignKey("MedicalRecord")]
+        public int MedicalRecordId { get; set; }
+        public virtual MedicalRecord MedicalRecord { get; set; }
 
         public FamilyIllnessHistory() {}
         public FamilyIllnessHistory(Relative relative)

@@ -16,11 +16,29 @@ namespace WebApplication.Controller
     [ApiController]
     public class PrescriptionController : ControllerBase
     {
-        private PrescriptionWebController prescriptionWebController;
+        private PrescriptionSearchWebController controller;
 
         public PrescriptionController()
         {
-            this.prescriptionWebController = new PrescriptionWebController();
+            this.controller = new PrescriptionSearchWebController();
+        }
+
+        [HttpPost]
+        public IActionResult GetSearchedPrescription(PrescriptionSearchDTO dto)
+        {
+            try
+            {
+                ValidatePrescriptionsSearch.Validate(dto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            List<Prescription> prescriptions = controller.GetSearchedReports(dto.Medicine, dto.HourlyIntake, dto.StartDate, dto.EndDate);
+            List<PrescriptionDTO> prescriptionDTOs = PrescriptionsAdapter.ListPrescriptionToPrescriptionDTO(prescriptions);
+
+            return Ok(prescriptionDTOs);
         }
 
         [HttpPost("advancedSearch")]
@@ -30,12 +48,11 @@ namespace WebApplication.Controller
             {
                 ValidatePrescriptionSearchInput.Validate(dto);
             }
-            catch (Exception e)
-            {
+            catch (Exception e){
                 return BadRequest(e.Message);
             }
 
-            List<Prescription> prescriptions = prescriptionWebController.AdvancedSearchPrescriptions(dto);
+            List<Prescription> prescriptions = controller.AdvancedSearchPrescriptions(dto);
 
             return Ok(prescriptions);
         }

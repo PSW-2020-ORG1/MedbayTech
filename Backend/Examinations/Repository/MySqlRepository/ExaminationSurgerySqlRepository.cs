@@ -13,9 +13,10 @@ namespace Backend.Examinations.Repository.MySqlRepository
     public class ExaminationSurgerySqlRepository : MySqlrepository<ExaminationSurgery, int>,
         IExaminationSurgeryRepository
     {
-        public ExaminationSurgerySqlRepository(MySqlContext mySqlContext) : base(mySqlContext)
+        public ExaminationSurgerySqlRepository(MySqlContext context) : base(context)
         {
         }
+
         public IEnumerable<ExaminationSurgery> GetAllBy(Doctor doctor)
         {
             throw new NotImplementedException();

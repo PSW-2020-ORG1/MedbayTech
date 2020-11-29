@@ -5,6 +5,7 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Backend.General.Model;
 
 namespace Backend.Records.Model
@@ -15,6 +16,10 @@ namespace Backend.Records.Model
         public  int Id { get; set; }
         public string Name { get; set; }
         public int MedicalRecordId { get; set; }
+
+        [ForeignKey("MedicalRecord")]
+        public int MedicalRecordId { get; set; }
+        public virtual MedicalRecord MedicalRecord { get; set; }
 
         public Vaccines() {}
         public Vaccines(string name)

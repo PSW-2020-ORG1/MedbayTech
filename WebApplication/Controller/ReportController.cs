@@ -6,6 +6,7 @@ using Backend.Examinations.Model;
 using Backend.Examinations.WebApiController;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication.Adapters;
 using WebApplication.DTO;
 using WebApplication.Validators;
 
@@ -15,11 +16,11 @@ namespace WebApplication.Controller
     [ApiController]
     public class ReportController : ControllerBase
     {
-        private ReportWebController reportWebController;
+        private ReportSearchWebController controller;
 
         public ReportController()
         {
-            this.reportWebController = new ReportWebController();
+            this.controller = new ReportSearchWebController();
         }
 
         [HttpPost("advancedSearch")]
@@ -34,9 +35,28 @@ namespace WebApplication.Controller
                 return BadRequest(e.Message);
             }
 
-            List<ExaminationSurgery> reports = reportWebController.AdvancedSearchPrescriptions(dto);
+            List<ExaminationSurgery> reports = controller.AdvancedSearchPrescriptions(dto);
 
             return Ok(reports);
+        }
+        
+
+        [HttpPost]
+        public IActionResult GetSearchedReports(ReportSearchDTO dto)
+        {
+            try 
+            {
+                ValidateReportSearch.Validate(dto);
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            
+
+            List<ExaminationSurgery> reports = controller.GetSearchedReports(dto.Doctor, dto.startDate, dto.endDate, dto.type);
+            List<ReportDTO> reportDTOs = ReportAdapter.ListExaminationSurgeryToReport(reports);
+            return Ok(reportDTOs);
         }
     }
 }

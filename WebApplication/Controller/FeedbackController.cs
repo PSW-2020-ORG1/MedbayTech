@@ -6,6 +6,7 @@ using Model.Users;
 using WebApplication.DTO;
 using WebApplicationService.GeneralService;
 using WebApplication.Adapters;
+using Backend.Users.WebApiController;
 
 namespace WebApplication
 {
@@ -14,11 +15,10 @@ namespace WebApplication
     public class FeedbackController : ControllerBase
     {
 
-        private FeedbackService feedbackService;
-
+        private WebFeedbackController feedbackController;
         public FeedbackController()
         {
-            feedbackService = new FeedbackService();
+            feedbackController = new WebFeedbackController();
         }
         /// <summary>
         /// GET method for feedback that is approved by the system administrator
@@ -27,7 +27,7 @@ namespace WebApplication
         [HttpGet]       // GET /api/feedback
         public IActionResult Get()
         {
-            List<Feedback> approvedFeedback = feedbackService.GetAllApprovedFeedback().ToList();
+            List<Feedback> approvedFeedback = feedbackController.GetAllApprovedFeedback().ToList();
             List<ApprovedFeedbackDTO> approvedFeedbackDTOs = FeedbackAdapter.ListApprovedFeedbackToListApprovedFeedbackDTO(approvedFeedback);
             return Ok(approvedFeedbackDTOs);
         }
@@ -39,7 +39,9 @@ namespace WebApplication
         [HttpGet("allFeedback")]
         public IActionResult GetAllFeedback() 
         {
-            List<Feedback> allFeedback = feedbackService.GetAll().ToList();
+            /*List<Feedback> allFeedback = feedbackService.GetAll().ToList();
+            List<AllFeedbackDTO> allFeedbackDTOs = FeedbackAdapter.ListAllFeedbackToListAllFeedbackDTO(allFeedback);*/
+            List<Feedback> allFeedback = feedbackController.GetAll().ToList();
             List<AllFeedbackDTO> allFeedbackDTOs = FeedbackAdapter.ListAllFeedbackToListAllFeedbackDTO(allFeedback);
             return Ok(allFeedbackDTOs);
         }
@@ -52,7 +54,8 @@ namespace WebApplication
         [HttpPost("updateFeedbackStatus")]
         public IActionResult UpdateFeedbackStatus(UpdateFeedbackStatusDTO updateFeedbackStatusDTO)
         {
-            bool updatedStatus = feedbackService.UpdateStatus(updateFeedbackStatusDTO.Id, updateFeedbackStatusDTO.Approved);
+            //bool updatedStatus = feedbackService.UpdateStatus(updateFeedbackStatusDTO.Id, updateFeedbackStatusDTO.Approved);
+            bool updatedStatus = feedbackController.UpdateStatus(updateFeedbackStatusDTO.Id, updateFeedbackStatusDTO.Approved);
             return Ok(updatedStatus);
         }
 
@@ -70,7 +73,7 @@ namespace WebApplication
             }
 
             FeedbackService feedbackService = new FeedbackService();
-            bool feedbackSuccessfullyCreated = feedbackService.CreateFeedback(postFeedbackDTO.UserId, postFeedbackDTO.AdditionalNotes, postFeedbackDTO.Anonymous, postFeedbackDTO.AllowedForPublishing);
+            bool feedbackSuccessfullyCreated = feedbackController.CreateFeedback(postFeedbackDTO.UserId, postFeedbackDTO.AdditionalNotes, postFeedbackDTO.Anonymous, postFeedbackDTO.AllowedForPublishing);
 
             if (!feedbackSuccessfullyCreated)
             {
