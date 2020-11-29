@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Backend.Migrations
 {
-    public partial class migration01 : Migration
+    public partial class migration0 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -70,6 +70,20 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MedicationUsageReports",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    From = table.Column<DateTime>(type: "date", nullable: true),
+                    Until = table.Column<DateTime>(type: "date", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MedicationUsageReports", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Period",
                 columns: table => new
                 {
@@ -91,6 +105,20 @@ namespace Backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pharmacies", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PharmacyNotifications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Content = table.Column<string>(nullable: true),
+                    Approved = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PharmacyNotifications", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -159,22 +187,28 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PharmacyNotifications",
+                name: "MedicationUsage",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Content = table.Column<string>(nullable: true),
-                    Approved = table.Column<bool>(nullable: false),
-                    PharmacyID = table.Column<string>(nullable: true)
+                    Usage = table.Column<int>(nullable: false),
+                    MedicationId = table.Column<int>(nullable: true),
+                    MedicationUsageReportId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PharmacyNotifications", x => x.Id);
+                    table.PrimaryKey("PK_MedicationUsage", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PharmacyNotifications_Pharmacies_PharmacyID",
-                        column: x => x.PharmacyID,
-                        principalTable: "Pharmacies",
+                        name: "FK_MedicationUsage_Medications_MedicationId",
+                        column: x => x.MedicationId,
+                        principalTable: "Medications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MedicationUsage_MedicationUsageReports_MedicationUsageReport~",
+                        column: x => x.MedicationUsageReportId,
+                        principalTable: "MedicationUsageReports",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -1114,12 +1148,20 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "Pharmacies",
                 columns: new[] { "Id", "APIEndpoint", "APIKey" },
-                values: new object[] { "Jankovic", "jankovic.rs", "ID1APIKEYAAAA" });
+                values: new object[,]
+                {
+                    { "Jankovic", "jankovic.rs", "ID1APIKEYAAAA" },
+                    { "Liman", "liman.li", "ID2APIKEYAAAA" }
+                });
 
             migrationBuilder.InsertData(
-                table: "Pharmacies",
-                columns: new[] { "Id", "APIEndpoint", "APIKey" },
-                values: new object[] { "Liman", "liman.li", "ID2APIKEYAAAA" });
+                table: "PharmacyNotifications",
+                columns: new[] { "Id", "Approved", "Content" },
+                values: new object[,]
+                {
+                    { 1, true, "Aspirin nam je jeftin. Bas jako." },
+                    { 2, true, "Brufen nam je jeftin. Bas jako." }
+                });
 
             migrationBuilder.InsertData(
                 table: "States",
@@ -1130,16 +1172,6 @@ namespace Backend.Migrations
                 table: "Cities",
                 columns: new[] { "Id", "Name", "StateId" },
                 values: new object[] { 21000, "Novi Sad", 1L });
-
-            migrationBuilder.InsertData(
-                table: "PharmacyNotifications",
-                columns: new[] { "Id", "Approved", "Content", "PharmacyID" },
-                values: new object[] { 1, true, "Aspirin nam je jeftin. Bas jako. Ide gaso!", "Jankovic" });
-
-            migrationBuilder.InsertData(
-                table: "PharmacyNotifications",
-                columns: new[] { "Id", "Approved", "Content", "PharmacyID" },
-                values: new object[] { 2, true, "Brufen nam je jeftin. Bas jako. Ide gaso!", "Liman" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_CityId",
@@ -1298,6 +1330,16 @@ namespace Backend.Migrations
                 column: "MedicationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MedicationUsage_MedicationId",
+                table: "MedicationUsage",
+                column: "MedicationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MedicationUsage_MedicationUsageReportId",
+                table: "MedicationUsage",
+                column: "MedicationUsageReportId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Notifications_RegisteredUserId",
                 table: "Notifications",
                 column: "RegisteredUserId");
@@ -1311,11 +1353,6 @@ namespace Backend.Migrations
                 name: "IX_Occupation_MedicalRecordId",
                 table: "Occupation",
                 column: "MedicalRecordId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PharmacyNotifications_PharmacyID",
-                table: "PharmacyNotifications",
-                column: "PharmacyID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_QuestionReplies_AuthorId",
@@ -1518,10 +1555,16 @@ namespace Backend.Migrations
                 name: "MedicationCategories");
 
             migrationBuilder.DropTable(
+                name: "MedicationUsage");
+
+            migrationBuilder.DropTable(
                 name: "Occupation");
 
             migrationBuilder.DropTable(
                 name: "Period");
+
+            migrationBuilder.DropTable(
+                name: "Pharmacies");
 
             migrationBuilder.DropTable(
                 name: "PharmacyNotifications");
@@ -1569,10 +1612,10 @@ namespace Backend.Migrations
                 name: "Specializations");
 
             migrationBuilder.DropTable(
-                name: "Beds");
+                name: "MedicationUsageReports");
 
             migrationBuilder.DropTable(
-                name: "Pharmacies");
+                name: "Beds");
 
             migrationBuilder.DropTable(
                 name: "PostContents");

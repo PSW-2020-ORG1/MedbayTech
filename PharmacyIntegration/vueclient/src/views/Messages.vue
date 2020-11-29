@@ -1,27 +1,29 @@
 ﻿
 <template>
     <div id="win">
-        <main-navigation id="nav"></main-navigation>
-        <div id="header">
-            <h1>Messages:</h1>
-        </div>
-        <div class="container">
-            <div v-if="messages.length > 0">
-                <table>
-                    <tr v-for="msg of messages" :key="msg.id">
-                        <td>{{msg.content}}</td>
+        <div id="msg-table">
+            <v-btn icon color=accent elevation="0"><i class="fa fa-refresh"></i></v-btn>
+            <v-text-field v-model="search"
+                            label="Search messages"
+                            hide-details />
+            <v-data-table :headers="headers"
+                            :items="messages"
+                            :search="search">
+                <template v-slot:item="row">
+                    <tr>
+                        <td>{{row.item.content}}</td>
+                        <td v-if="row.item.approved"><v-btn class="red white--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Disapprove</v-btn></td>
+                        <td v-else><v-btn class="green white--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Approve</v-btn></td>
                         <td>
-                            <button v-if="msg.approved === false" class="buttons" v-on:click="changeMessageStatus(msg)" title="Make visible for everyone">Approve</button>
-                            <button v-else class="buttons" v-on:click="changeMessageStatus(msg)" title="Hidde for everyone">Disapprove</button>
+                            <v-btn elevation="0" class="red white--text">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                            </v-btn>
                         </td>
-                        <td><button class="buttons" v-on:click="deleteMessage(msg)" title="Delete this notification">Delete</button></td>
                     </tr>
-                </table>
-            </div>
-            <div style="width:100%;text-align:center;">
-                <button class="buttons" v-on:click="getNewMessage()">Get new message</button>
-            </div>
+                </template>
+            </v-data-table>
         </div>
+
     </div>
 </template>
 
@@ -29,9 +31,15 @@
 export default {
     data() {
         return {
-            messages: [],
+            headers: [
+					{ text: "Message"},
+					{ text: "Status" },
+					{ text: "Delete" },
+				],
+            messages: [{id:"1", content: "Test message", approved:false}],
             newMessage: "",
-            status: ""
+            status: "",
+            search: "",
         }
     },
 
@@ -95,9 +103,6 @@ export default {
 </script>
 
 <style scoped>
-    #nav {
-        z-index: 5;
-    }
     #win {
         height: 100%;
     }
@@ -113,9 +118,9 @@ export default {
         height: 30vh;
     }
 
-    .content {
+    #msg-table {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
         max-width: 70%;
         margin: 0 auto;
@@ -137,20 +142,6 @@ export default {
         border: 1px solid #ff6a00;
         background-color: #fff;
         color: #ff6a00;
-    }
-    table {
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: -15px;
-        border: 1px solid rgb(0, 0, 0);
-        border-radius: 5px;
-        padding: 10px;
-        padding-bottom: 20px;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.38);
-        
-    }
-    td {
-        text-align:center;
     }
    
 </style>

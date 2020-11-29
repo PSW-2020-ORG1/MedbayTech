@@ -439,6 +439,12 @@ namespace Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("From")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime?>("Until")
+                        .HasColumnType("date");
+
                     b.HasKey("Id");
 
                     b.ToTable("MedicationUsageReports");

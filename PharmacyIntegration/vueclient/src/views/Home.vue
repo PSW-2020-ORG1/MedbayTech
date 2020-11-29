@@ -1,161 +1,65 @@
 ﻿<template>
-	<div id="main-div">
-		<main-navigation></main-navigation>
+	<div id="home-main">
+		<main-navigation />
 		<div id="header">
-			<h1>Pharmacy database</h1>
-		</div>
-		<div class="content">
-			<v-form id="ph-add" v-model="valid">
-				<v-text-field v-model="id"
-								label="Pharmacy ID"
-								:rules="idRules"
-								hide-details />
-				<v-text-field v-model="apiKey"
-								label="Pharmacy API Key"
-								:rules="apiKeyRules"
-								hide-details />
-				<v-text-field v-model="apiEndpoint"
-								label="Pharmacy API Endpoint"
-								:rules="apiEndpointRules"
-								hide-details />
-				<v-btn :disabled="!valid" elevation="2" @click="add" class="deep-orange white--text">
-					Add
-				</v-btn>
-			</v-form>
-				<div id="ph-table">
-					<v-text-field v-model="search"
-									label="Search pharmacies"
-									hide-details />
-					<v-data-table :headers="headers"
-									:items="pharmacies"
-									:search="search">
-						<template v-slot:item="row">
-							<tr>
-								<td><router-link :to="{name:'Pharmacy', params: {id: row.item.id}}">{{row.item.id}}</router-link></td>
-								<td>{{row.item.apiKey}}</td>
-								<td>{{row.item.apiEndpoint}}</td>
-								<td>
-									<v-btn elevation="0" @click="remove(row.item.id)">
-										X
-									</v-btn>
-								</td>
-							</tr>
-						</template>
-					</v-data-table>
+			<div id="header-text">
+				<div id="header-title"><h1>Medbay Integration Adapters</h1></div>
+				<div id="header-desc">
+					<p>Making sure there are no sus pharmacies</p>
+					<router-link to="/dean" v-slot="{href, navigate}">
+						<v-btn color=accent :href="href" @click="navigate" id="mainbtn" elevation="1">Manage pharmacies</v-btn>
+					</router-link>
 				</div>
+			</div>
+			<div id="header-img">
+				<img src="img/among_us.svg" alt="Header image">
+			</div>
 		</div>
 	</div>
 </template>
 
-<script>
-	module.exports = {
-		data: function () {
-			return {
-				pharmacies: [],
-				headers: [
-					{ text: "Id", value: "id", },
-					{ text: "API_Key", value: "apiKey", },
-					{ text: "API_Endpoint", value: "apiEndpoint", },
-					{ text: "Remove" },
-				],
-				search: [],
-				valid: false,
-				id: "",
-				idRules: [
-					v => !!v || "Id is required",
-				],
-				apiKey: "",
-				apiKeyRules: [
-					v => !!v || "API Key is required",
-				],
-				apiEndpoint: "",
-				apiEndpointRules: [
-					v => !!v || "API Endpoint is required",
-				],
-				status: ""
-			}
-		},
-		methods: {
-			add: function () {
-				if (!this.valid) return;
-				this.status = "";
-
-				let pharmacy = {
-					Id: this.id,
-					APIKey: this.apiKey,
-					APIEndpoint: this.apiEndpoint,
-				};
-
-				this.axios.post("http://localhost:50202/api/Pharmacy/", pharmacy)
-					.then(response => {
-						this.status = "Added!";
-						this.getPharmacies();
-						console.log(response);
-					})
-					.catch(response => {
-						this.status = "Failed!";
-						console.log(response);
-					});
-			},
-			remove: function (id) {
-				this.status = "";
-				console.log(id);
-				this.axios.delete("http://localhost:50202/api/Pharmacy?id=" + id)
-					.then(response => {
-						this.status = "Deleted";
-						this.getPharmacies();
-						console.log(response);
-					})
-					.catch(response => {
-						this.status = "Failed deletion";
-						console.log(response);
-					});
-			},
-
-			getPharmacies: function () {
-				this.axios.get("http://localhost:50202/api/pharmacy")
-					.then(response => {
-						this.pharmacies = response.data;
-					});
-			},
-
-		},
-		mounted() {
-			this.getPharmacies();
-		}
-	}
-</script>
-
 <style scoped>
-	h1 {
-		font-size: 3rem;
-		text-align: center;
-		color: #3e3e3e;
+	#home-main {
+		height: 100%;
+		width: 100%;
+		background: linear-gradient(69deg, rgba(63,81,181,1) 5%, rgba(197,202,233,1) 100%); 
 	}
 
 	#header {
-		margin-top: 10vh;
-		width: 100%;
-		height: 30vh;
-	}
-
-	#ph-add {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-	}
-
-	#ph-table {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-	}
-
-	.content {
 		display: flex;
 		flex-direction: row;
-		justify-content: space-between;
-		max-width: 70%;
-		margin: 0 auto;
+		justify-content: flex-start;
+		margin-top: 10vh;
+	}
+
+	#header-text {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding-left: 10vw;
+	}
+
+	#header-title h1 {
+		font-family: "Poppins", sans-serif;
+		font-weight: 500;
+		font-size: 3.5rem;
+		color: #fff;
+	}
+
+	#header-desc p {
+		font-size: 1.5rem;
+		color: #fff;
+	}
+
+	#header-img {
+		margin-left: auto;
+		height: 100%;
+		width: 50%;
+	}
+
+	#header-img img {
+		width: 100%;
+		height: 100%
 	}
 </style>
+

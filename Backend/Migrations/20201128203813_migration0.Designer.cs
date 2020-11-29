@@ -9,8 +9,8 @@ using Model;
 namespace Backend.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201128015333_migration1")]
-    partial class migration1
+    [Migration("20201128203813_migration0")]
+    partial class migration0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -440,6 +440,12 @@ namespace Backend.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("From")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime?>("Until")
+                        .HasColumnType("date");
 
                     b.HasKey("Id");
 
