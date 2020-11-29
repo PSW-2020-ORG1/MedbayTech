@@ -31,7 +31,7 @@ namespace Backend.Users.WebApiController
         {
             return feedbackService.UpdateStatus(feedbackId, status);
         }
-        public bool CreateFeedback(string userId, string additionalNotes, Boolean anonymous, Boolean allowed)
+        public Feedback CreateFeedback(string userId, string additionalNotes, Boolean anonymous, Boolean allowed)
         {
             return feedbackService.CreateFeedback(userId, additionalNotes, anonymous, allowed);
         }
