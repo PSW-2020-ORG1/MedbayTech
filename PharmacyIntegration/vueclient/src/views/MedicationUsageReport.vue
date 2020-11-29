@@ -3,11 +3,11 @@
         <v-card id="medications">
             <div id="medication-usage-table">
                 <v-data-table :headers="headers_consumption"
-                              :items="medications">
+                              :items="medicationUsages">
                     <template v-slot:item="row">
                         <tr>
+                            <td>{{row.item.medication.med}}</td>
                             <td>{{row.item.usage}}</td>
-                            <td>{{row.item}}</td>
                         </tr>
                     </template>
                 </v-data-table>
@@ -54,6 +54,7 @@
                 reports: [
                     { id: "1" }
                 ],
+                medicationUsages: [],
                 medications: [],
             }
         },
@@ -62,23 +63,46 @@
             generate: function () {
 
             },
-            getAllMedications: function () {
+
+            getAllMedicationUsages: function () {
                 this.axios.get("http://localhost:50202/api/MedicationUsage")
                     .then(response => {
                         console.log(response.data);
+                        this.medicationUsages = response.data;
+                    })
+                    .catch(response => {
+                        console.log(response.data);
+                    });
+            },
+
+            getAllMedications: function () {
+                this.axios.get("http://localhost:50202/api/Medication")
+                    .then(response => {
+                        console.log(response.data)
                         this.medications = response.data;
                     })
                     .catch(response => {
                         console.log(response.data);
-                    })
+                    });
+            },
+
+            getNameById: function () {
+                this.medicationUsages.forEach(mu => {
+                    mu.medication = this.medications.forEach(m => {
+                        if (m.id == mu.medicationId)
+                            return m;
+                    });
+
+                });
+
             },
         },
 
         mounted() {
-
+            this.getAllMedicationUsages();
+            this.getAllMedications();
         },
     }
-
 </script>
 
 <style scoped>
