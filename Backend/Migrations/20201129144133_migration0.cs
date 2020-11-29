@@ -47,29 +47,6 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Medications",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Med = table.Column<string>(nullable: true),
-                    Status = table.Column<int>(nullable: false),
-                    Company = table.Column<string>(nullable: true),
-                    Quantity = table.Column<int>(nullable: false),
-                    MedicationId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Medications", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Medications_Medications_MedicationId",
-                        column: x => x.MedicationId,
-                        principalTable: "Medications",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "MedicationUsageReports",
                 columns: table => new
                 {
@@ -157,60 +134,6 @@ namespace Backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_States", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DosageOfIngredient",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Amount = table.Column<double>(nullable: false),
-                    MedicationIngredientId = table.Column<int>(nullable: false),
-                    MedicationId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DosageOfIngredient", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DosageOfIngredient_Medications_MedicationId",
-                        column: x => x.MedicationId,
-                        principalTable: "Medications",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DosageOfIngredient_MedicationIngredients_MedicationIngredien~",
-                        column: x => x.MedicationIngredientId,
-                        principalTable: "MedicationIngredients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MedicationUsage",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Usage = table.Column<int>(nullable: false),
-                    MedicationId = table.Column<int>(nullable: true),
-                    MedicationUsageReportId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MedicationUsage", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MedicationUsage_Medications_MedicationId",
-                        column: x => x.MedicationId,
-                        principalTable: "Medications",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_MedicationUsage_MedicationUsageReports_MedicationUsageReport~",
-                        column: x => x.MedicationUsageReportId,
-                        principalTable: "MedicationUsageReports",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -677,36 +600,6 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ValidationMeds",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    SideNotes = table.Column<string>(nullable: true),
-                    DateOfValidation = table.Column<DateTime>(nullable: false),
-                    Approved = table.Column<bool>(nullable: false),
-                    Reviewed = table.Column<bool>(nullable: false),
-                    MedicationId = table.Column<int>(nullable: false),
-                    DoctorId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ValidationMeds", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ValidationMeds_RegisteredUsers_DoctorId",
-                        column: x => x.DoctorId,
-                        principalTable: "RegisteredUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ValidationMeds_Medications_MedicationId",
-                        column: x => x.MedicationId,
-                        principalTable: "Medications",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "WorkDays",
                 columns: table => new
                 {
@@ -725,33 +618,6 @@ namespace Backend.Migrations
                         principalTable: "RegisteredUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Allergens",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Allergen = table.Column<string>(nullable: true),
-                    MedicalRecordId = table.Column<int>(nullable: false),
-                    MedicationId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Allergens", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Allergens_MedicalRecords_MedicalRecordId",
-                        column: x => x.MedicalRecordId,
-                        principalTable: "MedicalRecords",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Allergens_Medications_MedicationId",
-                        column: x => x.MedicationId,
-                        principalTable: "Medications",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -866,33 +732,6 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Therapies",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    HourConsumption = table.Column<int>(nullable: false),
-                    MedicationId = table.Column<int>(nullable: false),
-                    MedicalRecordId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Therapies", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Therapies_MedicalRecords_MedicalRecordId",
-                        column: x => x.MedicalRecordId,
-                        principalTable: "MedicalRecords",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Therapies_Medications_MedicationId",
-                        column: x => x.MedicationId,
-                        principalTable: "Medications",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Vaccines",
                 columns: table => new
                 {
@@ -983,18 +822,11 @@ namespace Backend.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CategoryName = table.Column<string>(nullable: true),
-                    SpecializationId = table.Column<int>(nullable: false),
-                    MedicationId = table.Column<int>(nullable: false)
+                    SpecializationId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MedicationCategories", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MedicationCategories_Medications_MedicationId",
-                        column: x => x.MedicationId,
-                        principalTable: "Medications",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_MedicationCategories_Specializations_SpecializationId",
                         column: x => x.SpecializationId,
@@ -1020,6 +852,198 @@ namespace Backend.Migrations
                         name: "FK_SurveyQuestions_Surveys_SurveyId",
                         column: x => x.SurveyId,
                         principalTable: "Surveys",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Diagnoses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    ExaminationSurgeryId = table.Column<int>(nullable: true),
+                    FamilyIllnessHistoryId = table.Column<int>(nullable: true),
+                    MedicalRecordId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Diagnoses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Diagnoses_ExaminationSurgeries_ExaminationSurgeryId",
+                        column: x => x.ExaminationSurgeryId,
+                        principalTable: "ExaminationSurgeries",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Diagnoses_FamilyIllnessHistories_FamilyIllnessHistoryId",
+                        column: x => x.FamilyIllnessHistoryId,
+                        principalTable: "FamilyIllnessHistories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Diagnoses_MedicalRecords_MedicalRecordId",
+                        column: x => x.MedicalRecordId,
+                        principalTable: "MedicalRecords",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Medications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Med = table.Column<string>(nullable: true),
+                    Status = table.Column<int>(nullable: false),
+                    Company = table.Column<string>(nullable: true),
+                    Quantity = table.Column<int>(nullable: false),
+                    MedicationCategoryId = table.Column<int>(nullable: false),
+                    MedicationId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Medications", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Medications_MedicationCategories_MedicationCategoryId",
+                        column: x => x.MedicationCategoryId,
+                        principalTable: "MedicationCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Medications_Medications_MedicationId",
+                        column: x => x.MedicationId,
+                        principalTable: "Medications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Symptoms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    DiagnosisId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Symptoms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Symptoms_Diagnoses_DiagnosisId",
+                        column: x => x.DiagnosisId,
+                        principalTable: "Diagnoses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Allergens",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Allergen = table.Column<string>(nullable: true),
+                    MedicalRecordId = table.Column<int>(nullable: false),
+                    MedicationId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Allergens", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Allergens_MedicalRecords_MedicalRecordId",
+                        column: x => x.MedicalRecordId,
+                        principalTable: "MedicalRecords",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Allergens_Medications_MedicationId",
+                        column: x => x.MedicationId,
+                        principalTable: "Medications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DosageOfIngredient",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Amount = table.Column<double>(nullable: false),
+                    MedicationIngredientId = table.Column<int>(nullable: false),
+                    MedicationId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DosageOfIngredient", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DosageOfIngredient_Medications_MedicationId",
+                        column: x => x.MedicationId,
+                        principalTable: "Medications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DosageOfIngredient_MedicationIngredients_MedicationIngredien~",
+                        column: x => x.MedicationIngredientId,
+                        principalTable: "MedicationIngredients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MedicationUsages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Usage = table.Column<int>(nullable: false),
+                    MedicationId = table.Column<int>(nullable: false),
+                    MedicationUsageReportId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MedicationUsages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MedicationUsages_Medications_MedicationId",
+                        column: x => x.MedicationId,
+                        principalTable: "Medications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MedicationUsages_MedicationUsageReports_MedicationUsageRepor~",
+                        column: x => x.MedicationUsageReportId,
+                        principalTable: "MedicationUsageReports",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Therapies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    HourConsumption = table.Column<int>(nullable: false),
+                    MedicationId = table.Column<int>(nullable: false),
+                    MedicalRecordId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Therapies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Therapies_MedicalRecords_MedicalRecordId",
+                        column: x => x.MedicalRecordId,
+                        principalTable: "MedicalRecords",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Therapies_Medications_MedicationId",
+                        column: x => x.MedicationId,
+                        principalTable: "Medications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1065,57 +1089,33 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Diagnoses",
+                name: "ValidationMeds",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    ExaminationSurgeryId = table.Column<int>(nullable: true),
-                    FamilyIllnessHistoryId = table.Column<int>(nullable: true),
-                    MedicalRecordId = table.Column<int>(nullable: true)
+                    SideNotes = table.Column<string>(nullable: true),
+                    DateOfValidation = table.Column<DateTime>(nullable: false),
+                    Approved = table.Column<bool>(nullable: false),
+                    Reviewed = table.Column<bool>(nullable: false),
+                    MedicationId = table.Column<int>(nullable: false),
+                    DoctorId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Diagnoses", x => x.Id);
+                    table.PrimaryKey("PK_ValidationMeds", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Diagnoses_ExaminationSurgeries_ExaminationSurgeryId",
-                        column: x => x.ExaminationSurgeryId,
-                        principalTable: "ExaminationSurgeries",
+                        name: "FK_ValidationMeds_RegisteredUsers_DoctorId",
+                        column: x => x.DoctorId,
+                        principalTable: "RegisteredUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Diagnoses_FamilyIllnessHistories_FamilyIllnessHistoryId",
-                        column: x => x.FamilyIllnessHistoryId,
-                        principalTable: "FamilyIllnessHistories",
+                        name: "FK_ValidationMeds_Medications_MedicationId",
+                        column: x => x.MedicationId,
+                        principalTable: "Medications",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Diagnoses_MedicalRecords_MedicalRecordId",
-                        column: x => x.MedicalRecordId,
-                        principalTable: "MedicalRecords",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Symptoms",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    DiagnosisId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Symptoms", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Symptoms_Diagnoses_DiagnosisId",
-                        column: x => x.DiagnosisId,
-                        principalTable: "Diagnoses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -1164,6 +1164,11 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Specializations",
+                columns: new[] { "Id", "DoctorId", "SpecializationName" },
+                values: new object[] { 1, null, "DrugSpec" });
+
+            migrationBuilder.InsertData(
                 table: "States",
                 columns: new[] { "Id", "Name" },
                 values: new object[] { 1L, "Serbia" });
@@ -1172,6 +1177,31 @@ namespace Backend.Migrations
                 table: "Cities",
                 columns: new[] { "Id", "Name", "StateId" },
                 values: new object[] { 21000, "Novi Sad", 1L });
+
+            migrationBuilder.InsertData(
+                table: "MedicationCategories",
+                columns: new[] { "Id", "CategoryName", "SpecializationId" },
+                values: new object[] { 1, "Drug", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Medications",
+                columns: new[] { "Id", "Company", "Med", "MedicationCategoryId", "MedicationId", "Quantity", "Status" },
+                values: new object[] { 1, "Bayer", "Aspirin 325mg", 1, null, 0, 0 });
+
+            migrationBuilder.InsertData(
+                table: "Medications",
+                columns: new[] { "Id", "Company", "Med", "MedicationCategoryId", "MedicationId", "Quantity", "Status" },
+                values: new object[] { 2, "StrongDrugs Inc.", "Cyclopentanoperhydrophenanthrene 5mg", 1, null, 0, 0 });
+
+            migrationBuilder.InsertData(
+                table: "MedicationUsages",
+                columns: new[] { "Id", "MedicationId", "MedicationUsageReportId", "Usage" },
+                values: new object[] { 1, 1, null, 4 });
+
+            migrationBuilder.InsertData(
+                table: "MedicationUsages",
+                columns: new[] { "Id", "MedicationId", "MedicationUsageReportId", "Usage" },
+                values: new object[] { 2, 2, null, 10 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_CityId",
@@ -1314,15 +1344,14 @@ namespace Backend.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MedicationCategories_MedicationId",
-                table: "MedicationCategories",
-                column: "MedicationId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_MedicationCategories_SpecializationId",
                 table: "MedicationCategories",
                 column: "SpecializationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Medications_MedicationCategoryId",
+                table: "Medications",
+                column: "MedicationCategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Medications_MedicationId",
@@ -1330,13 +1359,13 @@ namespace Backend.Migrations
                 column: "MedicationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MedicationUsage_MedicationId",
-                table: "MedicationUsage",
+                name: "IX_MedicationUsages_MedicationId",
+                table: "MedicationUsages",
                 column: "MedicationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MedicationUsage_MedicationUsageReportId",
-                table: "MedicationUsage",
+                name: "IX_MedicationUsages_MedicationUsageReportId",
+                table: "MedicationUsages",
                 column: "MedicationUsageReportId");
 
             migrationBuilder.CreateIndex(
@@ -1552,10 +1581,7 @@ namespace Backend.Migrations
                 name: "HospitalEquipment");
 
             migrationBuilder.DropTable(
-                name: "MedicationCategories");
-
-            migrationBuilder.DropTable(
-                name: "MedicationUsage");
+                name: "MedicationUsages");
 
             migrationBuilder.DropTable(
                 name: "Occupation");
@@ -1609,9 +1635,6 @@ namespace Backend.Migrations
                 name: "EquipmentType");
 
             migrationBuilder.DropTable(
-                name: "Specializations");
-
-            migrationBuilder.DropTable(
                 name: "MedicationUsageReports");
 
             migrationBuilder.DropTable(
@@ -1636,10 +1659,16 @@ namespace Backend.Migrations
                 name: "Diagnoses");
 
             migrationBuilder.DropTable(
+                name: "MedicationCategories");
+
+            migrationBuilder.DropTable(
                 name: "ExaminationSurgeries");
 
             migrationBuilder.DropTable(
                 name: "FamilyIllnessHistories");
+
+            migrationBuilder.DropTable(
+                name: "Specializations");
 
             migrationBuilder.DropTable(
                 name: "MedicalRecords");

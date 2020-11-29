@@ -6,11 +6,11 @@ namespace Backend.Reports.Service
 {
     public interface IMedicationUsageReportService
     {
-        public MedicationUsageReport GenerateMedicationUsageReport(Period period);
-        public MedicationUsageReport Add(MedicationUsageReport report);
-        public bool Remove(MedicationUsageReport report);
-        public MedicationUsageReport Update(MedicationUsageReport report);
-        public MedicationUsageReport Get(int id);
-        public IEnumerable<MedicationUsageReport> GetAll();
+        MedicationUsageReport GenerateMedicationUsageReport(Period period);
+        MedicationUsageReport Add(MedicationUsageReport report);
+        bool Remove(MedicationUsageReport report);
+        MedicationUsageReport Update(MedicationUsageReport report);
+        MedicationUsageReport Get(int id);
+        IEnumerable<MedicationUsageReport> GetAll();
     }
 }

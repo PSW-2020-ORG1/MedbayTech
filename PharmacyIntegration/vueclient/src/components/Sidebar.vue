@@ -59,9 +59,11 @@
         display: block;
         color: #fff;
         font-weight: 500;
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         text-align: center;
         padding: 8px 16px 8px 16px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
     }
 
     ul {

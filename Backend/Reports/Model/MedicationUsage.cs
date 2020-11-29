@@ -2,6 +2,7 @@
 using Backend.Medications.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Backend.Reports.Model
@@ -18,15 +19,18 @@ namespace Backend.Reports.Model
                 _usage = value < 0 ? 0 : value;
             }
         }
+        [ForeignKey("Medication")]
+        public int MedicationId { get; set; }
         public virtual Medication Medication { get; set; }
 
         public MedicationUsage() { }
 
         public MedicationUsage(int id, int usage, Medication medication)
         {
-            this.Id = id;
-            this.Usage = usage;
-            this.Medication = medication;
+            Id = id;
+            Usage = usage;
+            Medication = medication;
+            MedicationId = Medication.Id;
         }
 
         public int GetId() => Id;
