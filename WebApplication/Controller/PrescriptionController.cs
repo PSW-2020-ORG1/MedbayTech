@@ -36,8 +36,6 @@ namespace WebApplication.Controller
             }
 
             List<Prescription> prescriptions = prescriptionWebController.AdvancedSearchPrescriptions(dto);
-            
-
 
             return Ok(prescriptions);
         }

@@ -10,22 +10,22 @@ namespace WebApplication.Validators
     {
         public static void Validate(ReportAdvancedDTO dto)
         {
-            if (dto.FirstParameterType.Equals("docName"))
-                IsNameValid(dto.FirstParameterValue);
-            else if(dto.FirstParameterType.Equals("docSurname"))
-                IsSurnameValid(dto.FirstParameterValue);
-            else
-                IsDateValid(dto.FirstParameterType);
+            Checker(dto.FirstParameterType, dto.FirstParameterValue);
 
             for (int i = 0; i < dto.OtherParameterValues.Length; i++)
             {
-                if (dto.OtherParameterTypes[i].Equals("docName"))
-                    IsNameValid(dto.OtherParameterValues[i]);
-                else if (dto.OtherParameterTypes[i].Equals("docSurname"))
-                    IsSurnameValid(dto.OtherParameterValues[i]);
-                else
-                    IsDateValid(dto.OtherParameterValues[i]);
+                Checker(dto.OtherParameterTypes[i], dto.OtherParameterValues[i]);
             }
+        }
+
+        private static void Checker(string parameterType, string parameterValue)
+        {
+            if (parameterType.Equals("docName"))
+                IsNameValid(parameterValue);
+            else if (parameterType.Equals("docSurname"))
+                IsSurnameValid(parameterValue);
+            else
+                IsDateValid(parameterValue);
         }
     }
 }

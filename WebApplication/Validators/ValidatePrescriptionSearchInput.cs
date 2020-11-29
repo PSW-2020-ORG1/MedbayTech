@@ -10,18 +10,20 @@ namespace WebApplication.Validators
     {
         public static void Validate(PrescriptionAdvancedDTO dto)
         {
-            if(dto.FirstParameterType.Equals("medication"))
-                IsMedicationValid(dto.FirstParameterValue);
-            else
-                IsHourlyIntakeValid(dto.FirstParameterValue);
+            Checker(dto.FirstParameterType, dto.FirstParameterValue);
 
             for (int i = 0; i < dto.OtherParameterValues.Length; i++)
             {
-                if (dto.OtherParameterTypes[i].Equals("medication"))
-                    IsMedicationValid(dto.OtherParameterValues[i]);
-                else
-                    IsHourlyIntakeValid(dto.OtherParameterValues[i]);
+                Checker(dto.OtherParameterTypes[i], dto.OtherParameterValues[i]);
             }
+        }
+
+        private static void Checker(string parameterType, string parameterValue)
+        {
+            if (parameterType.Equals("medication"))
+                IsMedicationValid(parameterValue);
+            else
+                IsHourlyIntakeValid(parameterValue);
         }
     }
 }

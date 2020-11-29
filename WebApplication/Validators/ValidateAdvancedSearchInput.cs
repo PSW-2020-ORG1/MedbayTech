@@ -10,7 +10,6 @@ namespace WebApplication.Validators
 {
     public class ValidateAdvancedSearchInput
     {
-
         public static void IsMedicationValid(string medication)
         {
             string medicationPattern = "[a-zšđćčžA-ZŠĐŽČĆ]+$";

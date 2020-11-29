@@ -41,8 +41,16 @@ namespace MedbayTechUnitTests.Examinations
             List<ExaminationSurgery> reports = service.AdvancedSearchReports(dto);
 
             reports.ShouldNotBeEmpty();
+        } 
 
+        public static IExaminationSurgeryRepository CreateStubRepository()
+        {
+            var stubRepository = new Mock<IExaminationSurgeryRepository>();
+            List<ExaminationSurgery> reports = CreateExaminationSurgeryList();
 
+            stubRepository.Setup(r => r.GetReportFor("2406978890046")).Returns(reports);
+
+            return stubRepository.Object;
         }
 
         public static ReportAdvancedDTO CreateDTO()
@@ -91,16 +99,8 @@ namespace MedbayTechUnitTests.Examinations
             return dto;
         }
 
-        public static IExaminationSurgeryRepository CreateStubRepository()
+        private static Doctor CreateDoctor()
         {
-            var stubRepository = new Mock<IExaminationSurgeryRepository>();
-            var medication = new Medication
-            {
-                Id = 1,
-                Med = "Brufen"
-
-            };
-
             var doctor = new Doctor
             {
                 Id = "2406978890047",
@@ -128,6 +128,11 @@ namespace MedbayTechUnitTests.Examinations
                 Specializations = new List<Specialization>()
             };
 
+            return doctor;
+        }
+
+        private static Patient CreatePatient()
+        {
             var patient = new Patient
             {
                 Id = "2406978890046",
@@ -150,6 +155,23 @@ namespace MedbayTechUnitTests.Examinations
                 ChosenDoctorId = "2406978890047"
             };
 
+            return patient;
+        }
+
+        private static Medication CreateMedication()
+        {
+            var medication = new Medication
+            {
+                Id = 1,
+                Med = "Brufen"
+
+            };
+
+            return medication;
+        }
+
+        private static MedicalRecord CreateMedicalRecord()
+        {
             var medicalRecord = new MedicalRecord
             {
                 Id = 1,
@@ -161,9 +183,14 @@ namespace MedbayTechUnitTests.Examinations
                 FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
                 PatientId = "2406978890046",
                 Therapies = new List<Therapy>(),
-                Patient = patient
+                Patient = CreatePatient()
             };
 
+            return medicalRecord;
+        }
+
+        private static List<ExaminationSurgery> CreateExaminationSurgeryList()
+        {
             var examinationSurgery = new ExaminationSurgery
             {
                 Id = 3,
@@ -173,9 +200,9 @@ namespace MedbayTechUnitTests.Examinations
                 Type = TypeOfAppointment.Examination,
                 Diagnoses = new List<Diagnosis>(),
                 Treatments = new List<Treatment>(),
-                MedicalRecord = medicalRecord,
-                Doctor = doctor
-                
+                MedicalRecord = CreateMedicalRecord(),
+                Doctor = CreateDoctor()
+
             };
 
             var examinationSurgery2 = new ExaminationSurgery
@@ -187,25 +214,15 @@ namespace MedbayTechUnitTests.Examinations
                 Type = TypeOfAppointment.Examination,
                 Diagnoses = new List<Diagnosis>(),
                 Treatments = new List<Treatment>(),
-                MedicalRecord = medicalRecord,
-                Doctor = doctor
+                MedicalRecord = CreateMedicalRecord(),
+                Doctor = CreateDoctor()
             };
-
-
-
-
-
-
 
             List<ExaminationSurgery> reports = new List<ExaminationSurgery>();
             reports.Add(examinationSurgery);
             reports.Add(examinationSurgery2);
 
-            stubRepository.Setup(r => r.GetReportFor("2406978890046")).Returns(reports);
-
-
-
-            return stubRepository.Object;
+            return reports;
         }
     }
 }

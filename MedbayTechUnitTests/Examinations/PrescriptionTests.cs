@@ -24,7 +24,6 @@ namespace MedbayTechUnitTests.Examinations
 {
     public class PrescriptionTests
     {
-
         [Fact]
         public void Advanced_presciption_not_found()
         {
@@ -46,9 +45,17 @@ namespace MedbayTechUnitTests.Examinations
 
             List<Prescription> prescriptions = service.AdvancedSearchPrescriptions(dto);
 
-            prescriptions.ShouldNotBeEmpty();
+            prescriptions.ShouldNotBeEmpty(); 
+        }
 
-            
+        public static IPrescriptionRepository CreateStubRepository()
+        {
+            var stubRepository = new Mock<IPrescriptionRepository>();
+            List<Prescription> prescriptions = CreatePrescriptionList();
+
+            stubRepository.Setup(p => p.GetPrescriptionsFor("2406978890046")).Returns(prescriptions);
+
+            return stubRepository.Object;
         }
 
         public static PrescriptionAdvancedDTO CreateDTO()
@@ -97,16 +104,8 @@ namespace MedbayTechUnitTests.Examinations
             return dto;
         }
 
-        public static IPrescriptionRepository CreateStubRepository()
+        private static Patient CreatePatient()
         {
-            var stubRepository = new Mock<IPrescriptionRepository>();
-            var medication = new Medication
-            {
-                Id = 1,
-                Med = "Brufen"
-
-            };
-
             var patient = new Patient
             {
                 Id = "2406978890046",
@@ -129,6 +128,23 @@ namespace MedbayTechUnitTests.Examinations
                 ChosenDoctorId = "2406978890047"
             };
 
+            return patient;
+        }
+
+        private static Medication CreateMedication()
+        {
+            var medication = new Medication
+            {
+                Id = 1,
+                Med = "Brufen"
+
+            };
+
+            return medication;
+        }
+
+        private static MedicalRecord CreateMedicalRecord()
+        {
             var medicalRecord = new MedicalRecord
             {
                 Id = 1,
@@ -140,9 +156,14 @@ namespace MedbayTechUnitTests.Examinations
                 FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
                 PatientId = "2406978890046",
                 Therapies = new List<Therapy>(),
-                Patient = patient
+                Patient = CreatePatient()
             };
 
+            return medicalRecord;
+        }
+
+        private static ExaminationSurgery CreateExaminationSurgery()
+        {
             var examinationSurgery = new ExaminationSurgery
             {
                 Id = 3,
@@ -152,9 +173,14 @@ namespace MedbayTechUnitTests.Examinations
                 Type = TypeOfAppointment.Examination,
                 Diagnoses = new List<Diagnosis>(),
                 Treatments = new List<Treatment>(),
-                MedicalRecord = medicalRecord
+                MedicalRecord = CreateMedicalRecord()
             };
 
+            return examinationSurgery;
+        }
+
+        private static List<Prescription> CreatePrescriptionList()
+        {
             var prescription = new Prescription
             {
                 Id = 1,
@@ -165,9 +191,9 @@ namespace MedbayTechUnitTests.Examinations
                 Date = new DateTime(),
                 ExaminationSurgeryId = 3,
                 Type = TreatmentType.Prescription,
-                Medication = medication,
-                ExaminationSurgery = examinationSurgery
-                
+                Medication = CreateMedication(),
+                ExaminationSurgery = CreateExaminationSurgery()
+
             };
 
             var prescription2 = new Prescription
@@ -180,22 +206,14 @@ namespace MedbayTechUnitTests.Examinations
                 Date = new DateTime(),
                 ExaminationSurgeryId = 3,
                 Type = TreatmentType.Prescription,
-                Medication = medication
+                Medication = CreateMedication()
             };
-
-            
 
             List<Prescription> prescriptions = new List<Prescription>();
             prescriptions.Add(prescription);
             prescriptions.Add(prescription2);
 
-            stubRepository.Setup(p => p.GetPrescriptionsFor("2406978890046")).Returns(prescriptions);
-            
-            
-
-            return stubRepository.Object;
+            return prescriptions;
         }
-
-        
     }
 }
