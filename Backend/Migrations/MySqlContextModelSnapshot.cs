@@ -1562,7 +1562,7 @@ namespace Backend.Migrations
                             Phone = "065/123-4554",
                             PlaceOfBirthId = 11000,
                             Profession = "vodoinstalater",
-                            ProfileImage = "C:\\Users\\kaise\\Pictures\\default-user-image",
+                            ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
                             Surname = "Petrovic",
                             Username = "pera",
                             Blocked = false,

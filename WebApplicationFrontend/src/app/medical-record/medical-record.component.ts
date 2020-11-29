@@ -24,7 +24,7 @@ export class MedicalRecordComponent implements OnInit {
     this.medicalRecordService.getMedicalRecordByPatientId().subscribe(data =>
       {
         this.medicalRecord = data;
-        this.imageUrl = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png";
+        this.imageUrl = data.img;
       });
   }
 

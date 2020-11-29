@@ -1149,7 +1149,7 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "RegisteredUsers",
                 columns: new[] { "Id", "CurrResidenceId", "DateOfBirth", "DateOfCreation", "Discriminator", "EducationLevel", "Email", "Gender", "InsurancePolicyId", "Name", "NotificationId", "Password", "Phone", "PlaceOfBirthId", "Profession", "ProfileImage", "Surname", "Username", "Blocked", "ChosenDoctorId", "Confirmed", "IsGuestAccount", "Token" },
-                values: new object[] { "2406978890046", 1, new DateTime(1978, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Patient", 2, "pera@gmail.com", 0, "policy1", "Petar", null, "pera1978", "065/123-4554", 11000, "vodoinstalater", "C:\\Users\\kaise\\Pictures\\default-user-image", "Petrovic", "pera", false, "2406978890047", false, false, null });
+                values: new object[] { "2406978890046", 1, new DateTime(1978, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Patient", 2, "pera@gmail.com", 0, "policy1", "Petar", null, "pera1978", "065/123-4554", 11000, "vodoinstalater", "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png", "Petrovic", "pera", false, "2406978890047", false, false, null });
 
             migrationBuilder.InsertData(
                 table: "Specializations",
