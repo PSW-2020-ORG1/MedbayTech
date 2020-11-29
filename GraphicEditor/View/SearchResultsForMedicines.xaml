@@ -16,7 +16,7 @@
                 <DataGridTextColumn Header="Name" Width="149"  Binding="{Binding Med}"/>
                 <DataGridTextColumn Header="Dosage" Width="149"  Binding="{Binding Dosage}" />
                  <DataGridTextColumn Header="Quantity" Width="149" Binding="{Binding Quantity}"/>
-                <DataGridTextColumn Header="Storige room" Width="149"  Binding="{Binding Room.RoomLabel}"/>
+                <DataGridTextColumn Header="Storage room" Width="149"  Binding="{Binding Room.RoomLabel}"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

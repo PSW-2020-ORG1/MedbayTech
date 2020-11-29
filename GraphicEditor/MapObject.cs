@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 namespace GraphicEditor
 {
-    class Rectt
+    class Rectangle
     {
         public String Id { get; set; }
         public String RoomType { get; set; }
@@ -24,6 +24,29 @@ namespace GraphicEditor
         public int Left { get; set; }
         public int Top { get; set; }
         public SolidColorBrush Color { get; set; }
+        
+        public Rectangle(){}
+
+        public Rectangle(String id, String roomType, int width, int height, int left, int top, SolidColorBrush color)
+        {
+            Id = id;
+            RoomType = roomType;
+            Width = width;
+            Height = height;
+            Left = left;
+            Top = top;
+            Color = color;
+        }
+
+        public Rectangle(String id, String roomType, int width, int height, int left, int top)
+        {
+            Id = id;
+            RoomType = roomType;
+            Width = width;
+            Height = height;
+            Left = left;
+            Top = top;
+        }
     }
     class MapObject
     {
@@ -35,83 +58,65 @@ namespace GraphicEditor
 
         public SolidColorBrush Border { get; private set; }
 
-        public List<Rectt> LoadFromFile(string textFile)
+        public List<Rectangle> LoadFromFile(string textFile)
         {
-            List<Rectt> rectangles = new List<Rectt>();
+            List<Rectangle> rectangles = new List<Rectangle>();
             if (File.Exists(textFile))
             {
-                // Read a text file line by line.  
                 string[] lines = File.ReadAllLines(textFile);
                 foreach (string line in lines)
                 {
                     string[] parts = line.Split(',');
-                  //  byte b1 = Byte.Parse(parts[6]);
-                   // byte b2 = Byte.Parse(parts[7]);
-                    //byte b3 = Byte.Parse(parts[8]);
+            
+                    rectangles.Add(new Rectangle(parts[0], parts[1], Int32.Parse(parts[2]), Int32.Parse(parts[3]), Int32.Parse(parts[4]),Int32.Parse(parts[5])));
 
-                    //Color col = Color.FromRgb(b1, b2, b3);
-
-                    rectangles.Add(new Rectt()
-                    {
-                        Id = parts[0],
-                        RoomType = parts[1],
-                        Width = Int32.Parse(parts[2]),
-                        Height = Int32.Parse(parts[3]),
-                        Left = Int32.Parse(parts[4]),
-                        Top = Int32.Parse(parts[5])
-
-                    });
                 }
             }
             return rectangles;
         }
-        public List<Rectangle> Window_Loaded(string textFile, Canvas canvas)
+        public List<System.Windows.Shapes.Rectangle> Window_Loaded(string textFile, Canvas canvas)
         {
-            // ... Create list of our Rect objects.
-            List<Rectt> rects = new List<Rectt>();
-            rects = LoadFromFile(textFile);
+            List<Rectangle> rectanglesFromFile = LoadFromFile(textFile);
 
-            List<Rectangle> rectangles = new List<Rectangle>();
-            foreach (Rectt rect in rects)
+            List<System.Windows.Shapes.Rectangle> rectangles = new List<System.Windows.Shapes.Rectangle>();
+            foreach (Rectangle rectangle in rectanglesFromFile)
             {
-                // ... Create Rectangle object.
-                Rectangle r = new Rectangle();
-                r.Uid = rect.Id;
-                r.Name = rect.RoomType;
-                r.Width = rect.Width;
-                r.Height = rect.Height;
-                Color Black = Color.FromRgb(0, 0, 0);
-                Border = new SolidColorBrush(Black);
-                if (rect.RoomType.Equals("PatientRoom"))
+                System.Windows.Shapes.Rectangle newRectangle = new System.Windows.Shapes.Rectangle();
+                newRectangle.Uid = rectangle.Id;
+                newRectangle.Name = rectangle.RoomType;
+                newRectangle.Width = rectangle.Width;
+                newRectangle.Height = rectangle.Height;
+                Color black = Color.FromRgb(0, 0, 0);
+                Border = new SolidColorBrush(black);
+                if (rectangle.RoomType.Equals("PatientRoom"))
                 {
-                    r.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#dca0d3");
+                    newRectangle.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#dca0d3");
                 }
-                else if(rect.RoomType.Equals("ExaminationRoom"))
+                else if(rectangle.RoomType.Equals("ExaminationRoom"))
                 {
-                    r.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#77c588");
+                    newRectangle.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#77c588");
                 }
-                else if (rect.RoomType.Equals("OperatingRoom"))
+                else if (rectangle.RoomType.Equals("OperatingRoom"))
                 {
-                    r.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#208e38");
+                    newRectangle.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#208e38");
                 }
-                else if (rect.RoomType.Equals("StorageRoom"))
+                else if (rectangle.RoomType.Equals("StorageRoom"))
                 {
-                    r.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#ffdf99");
+                    newRectangle.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#ffdf99");
                 }
-                else if (rect.RoomType.Equals("AuxiliaryRoom"))
+                else if (rectangle.RoomType.Equals("AuxiliaryRoom"))
                 {
-                    r.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#9da49f");
+                    newRectangle.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#9da49f");
                 }
-                r.Stroke = Border;
-                r.StrokeThickness = 3;
+                newRectangle.Stroke = Border;
+                newRectangle.StrokeThickness = 3;
 
-                // ... Set canvas position based on Rect object.
-                Canvas.SetLeft(r, rect.Left);
-                Canvas.SetTop(r, rect.Top);
-                // ... Add to canvas.
-                canvas.Children.Add(r);
+                Canvas.SetLeft(newRectangle, rectangle.Left);
+                Canvas.SetTop(newRectangle, rectangle.Top);
 
-                rectangles.Add(r);
+                canvas.Children.Add(newRectangle);
+
+                rectangles.Add(newRectangle);
             }
             return rectangles;
         }

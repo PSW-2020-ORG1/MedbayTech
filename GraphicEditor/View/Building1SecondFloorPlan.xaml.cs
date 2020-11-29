@@ -35,12 +35,12 @@ namespace GraphicEditor.View.Building1
         }
         public void Building1Objects(object sender, RoutedEventArgs e)
         {
-            List<Rectangle> rectangles = new List<Rectangle>();
+            List<System.Windows.Shapes.Rectangle> rectangles = new List<System.Windows.Shapes.Rectangle>();
 
             string textFile = "MapData/Hospital1Floor2.txt";
             MapObject o = new MapObject();
             rectangles = o.Window_Loaded(textFile, canvasH1F2);
-            foreach (Rectangle rectangle in rectangles)
+            foreach (System.Windows.Shapes.Rectangle rectangle in rectangles)
             {
                 if (rectangle.Name.Equals("PatientRoom"))
                 {
@@ -86,11 +86,11 @@ namespace GraphicEditor.View.Building1
                     rectangle.StrokeThickness = 5;
                     SearchResultsForMedicines.Id = "0";
                 }
-                if (rectangle.Uid.Equals(SearchResaultsForEquipment.Id))
+                if (rectangle.Uid.Equals(SearchResultsForEquipment.Id))
                 {
                     rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#ffea05");
                     rectangle.StrokeThickness = 5;
-                    SearchResaultsForEquipment.Id = "0";
+                    SearchResultsForEquipment.Id = "0";
                 }
             }
         }
@@ -123,11 +123,11 @@ namespace GraphicEditor.View.Building1
 
         private void PatientRoom_MouseLeave(object sender, MouseEventArgs e)
         {
-            PopupPatientRoom.Visibility = Visibility.Collapsed;
-            PopupPatientRoom.IsOpen = false;
+            PopupPatientRoom.Visibility = PopupInfoForPatient.Visibility = Visibility.Collapsed;
 
-            PopupInfoForPatient.Visibility = Visibility.Collapsed;
-            PopupInfoForPatient.IsOpen = false;
+            PopupPatientRoom.IsOpen = PopupInfoForPatient.IsOpen = false;
+
+
         }
 
         private void ExaminationRoom_MouseEnter(object sender, MouseEventArgs e)
@@ -158,11 +158,9 @@ namespace GraphicEditor.View.Building1
 
         private void OperatingRoom_MouseLeave(object sender, MouseEventArgs e)
         {
-            PopupOperatingRoom.Visibility = Visibility.Collapsed;
-            PopupOperatingRoom.IsOpen = false;
+            PopupOperatingRoom.Visibility = PopupInfoForPatient.Visibility = Visibility.Collapsed;
+            PopupOperatingRoom.IsOpen = PopupInfoForPatient.IsOpen = false;
 
-            PopupInfoForPatient.Visibility = Visibility.Collapsed;
-            PopupInfoForPatient.IsOpen = false;
         }
 
         private void AuxiliaryRoom_MouseEnter(object sender, MouseEventArgs e)
@@ -181,11 +179,9 @@ namespace GraphicEditor.View.Building1
 
         private void AuxiliaryRoom_MouseLeave(object sender, MouseEventArgs e)
         {
-            PopupAuxiliaryRoom.Visibility = Visibility.Collapsed;
-            PopupAuxiliaryRoom.IsOpen = false;
+            PopupAuxiliaryRoom.Visibility = PopupInfoForPatient.Visibility = Visibility.Collapsed;
+            PopupAuxiliaryRoom.IsOpen = PopupInfoForPatient.IsOpen = false;
 
-            PopupInfoForPatient.Visibility = Visibility.Collapsed;
-            PopupInfoForPatient.IsOpen = false;
         }
 
         private void AdditionalInformationPatientRoom(object sender, MouseButtonEventArgs e)

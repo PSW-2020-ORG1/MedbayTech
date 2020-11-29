@@ -77,12 +77,20 @@ namespace GraphicEditor
         public static string Id;
         private void buttonShowOnMap(object sender, RoutedEventArgs e)
         {
+
             Room room = (Room)dataGridRoom.SelectedItem;
+            if (room == null)
+            {
+                MessageBox.Show("Nothing is selected!");
+                return;
+            }
             if(room.Department.Floor == 0 && room.Department.Hospital.Id == 1)
             {
                 Id = room.Id.ToString();
                 page.MainFrame.Content = new Building1FloorPlan(page);
                 page.comboBoxH1.SelectedIndex = 0;
+                page.comboBoxHospital1.SelectedIndex = 0;
+
                 page.SetActiveUserControl(page.legenda);
                 TransitionAnimation();
             }
@@ -91,6 +99,8 @@ namespace GraphicEditor
                 Id = room.Id.ToString();
                 page.MainFrame.Content = new Building1FirstFloorPlan(page);
                 page.comboBoxH1.SelectedIndex = 1;
+                page.comboBoxHospital1.SelectedIndex = 1;
+
                 page.SetActiveUserControl(page.legenda);
                 TransitionAnimation();
             }
@@ -99,6 +109,8 @@ namespace GraphicEditor
                 Id = room.Id.ToString();
                 page.MainFrame.Content = new Building1SecondFloorPlan(page);
                 page.comboBoxH1.SelectedIndex = 2;
+                page.comboBoxHospital1.SelectedIndex = 2;
+
                 page.SetActiveUserControl(page.legenda);
                 TransitionAnimation();
             }
@@ -107,6 +119,8 @@ namespace GraphicEditor
                 Id = room.Id.ToString();
                 page.MainFrame.Content = new Building2FloorPlan(page);
                 page.comboBoxH2.SelectedIndex = 0;
+                page.comboBoxHospital2.SelectedIndex = 0;
+
                 page.SetActiveUserControl(page.legenda);
                 TransitionAnimation();
             }
@@ -115,6 +129,8 @@ namespace GraphicEditor
                 Id = room.Id.ToString();
                 page.MainFrame.Content = new Building2FirstFloorPlan(page);
                 page.comboBoxH2.SelectedIndex = 1;
+                page.comboBoxHospital2.SelectedIndex = 1;
+
                 page.SetActiveUserControl(page.legenda);
                 TransitionAnimation();
             }
@@ -123,6 +139,8 @@ namespace GraphicEditor
                 Id = room.Id.ToString();
                 page.MainFrame.Content = new Building2SecondFloorPlan(page);
                 page.comboBoxH2.SelectedIndex = 2;
+                page.comboBoxHospital2.SelectedIndex = 2;
+
                 page.SetActiveUserControl(page.legenda);
                 TransitionAnimation();
             }

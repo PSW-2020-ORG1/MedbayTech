@@ -38,12 +38,12 @@ namespace GraphicEditor.View.Building2
 
         public void Building2Objects(object sender, RoutedEventArgs e)
         {
-            List<Rectangle> rectangles = new List<Rectangle>();
+            List<System.Windows.Shapes.Rectangle> rectangles = new List<System.Windows.Shapes.Rectangle>();
 
             string textFile = "MapData/Hospital2Floor1.txt";
             MapObject o = new MapObject();
             rectangles = o.Window_Loaded(textFile, canvasBuild1fl1);
-            foreach (Rectangle rectangle in rectangles)
+            foreach (System.Windows.Shapes.Rectangle rectangle in rectangles)
             {
                 if (rectangle.Name.Equals("PatientRoom"))
                 {
@@ -90,11 +90,11 @@ namespace GraphicEditor.View.Building2
                     rectangle.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#05e1ff");
                     SearchResultsForMedicines.Id = "0";
                 }
-                if (rectangle.Uid.Equals(SearchResaultsForEquipment.Id))
+                if (rectangle.Uid.Equals(SearchResultsForEquipment.Id))
                 {
                     rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#ffea05");
                     rectangle.StrokeThickness = 5;
-                    SearchResaultsForEquipment.Id = "0";
+                    SearchResultsForEquipment.Id = "0";
                 }
             }
         }

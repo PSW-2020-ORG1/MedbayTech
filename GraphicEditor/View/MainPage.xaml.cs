@@ -104,7 +104,7 @@ namespace GraphicEditor
         {
             if (e.Key == Key.Return)
             {
-                if (Rooms.IsChecked == true)
+                if ((bool)Rooms.IsChecked)
                 {
                     MainFrame.Content = new SearchResultsForRooms(this, textBoxSearch.Text);
                 }
@@ -119,7 +119,7 @@ namespace GraphicEditor
                 {
                     if (Restriction == 0)
                     {
-                        MainFrame.Content = new SearchResaultsForEquipment(this, textBoxSearch.Text);
+                        MainFrame.Content = new SearchResultsForEquipment(this, textBoxSearch.Text);
                     }
                 }
             }
@@ -127,7 +127,7 @@ namespace GraphicEditor
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dontRefreshMap == true)
+            if (dontRefreshMap)
             {
                 dontRefreshMap = false;
                 return;
@@ -169,7 +169,7 @@ namespace GraphicEditor
         }
         private void comboBoxH1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dontRefreshMap == true) return;
+            if (dontRefreshMap) return;
             dontRefreshMap = true;
             comboBoxH2.SelectedItem = null;
             if (comboBoxH1.SelectedIndex == 0)
@@ -214,7 +214,7 @@ namespace GraphicEditor
 
         private void comboBoxH2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dontRefreshMap == true) return;
+            if (dontRefreshMap) return;
             dontRefreshMap = true;
             comboBoxH1.SelectedItem = null;
             if (comboBoxH2.SelectedIndex == 0)
