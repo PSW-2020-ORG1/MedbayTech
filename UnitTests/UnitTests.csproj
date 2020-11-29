@@ -21,4 +21,8 @@
     <ProjectReference Include="..\PharmacyIntegration\PharmacyIntegration.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="PhIntegrationTests\" />
+  </ItemGroup>
+
 </Project>

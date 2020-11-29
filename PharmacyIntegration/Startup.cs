@@ -1,22 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Backend.Pharmacies.Repository.MySqlRepository;
+using Backend.Reports.Repository;
+using Backend.Reports.Repository.MySqlRepository;
 using Backend.Reports.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Model;
-using PharmacyIntegration.Model;
 using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
-using Repository;
 
 namespace PharmacyIntegration
 {
@@ -32,11 +26,18 @@ namespace PharmacyIntegration
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MySqlContext>(options =>
-                    options.UseMySql(ConfigurationExtensions.GetConnectionString(Configuration, "MySqlConnectionString")).UseLazyLoadingProxies());
+            services.AddDbContext<MySqlContext>();
+
+            services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
+            services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
+            services.AddTransient<IMedicationUsageRepository, MedicationUsageSqlRepository>();
+            services.AddTransient<IMedicationUsageReportRepository, MedicationUsageReportSqlRepository>();
+
             services.AddScoped<IPharmacyService, PharmacyService>();
             services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
+            services.AddScoped<IMedicationUsageService, MedicationUsageService>();
             services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();
+
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

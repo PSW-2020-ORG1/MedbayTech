@@ -21,7 +21,7 @@ namespace UnitTests.PhIntegrationTests
         [MemberData(nameof(Periods))]
         public void Analyze_reports_in_specific_period(Period period, bool isEmpty)
         {
-            MedicationUsageReportService medicationUsageReportService = (MedicationUsageReportService)CreateStubService().Object;
+            MedicationUsageReportService medicationUsageReportService = new MedicationUsageReportService(CreateStubRepository());
 
             List<MedicationUsageReport> reports = (List<MedicationUsageReport>)medicationUsageReportService.GetForSpecificPeriod(period);
 
@@ -32,7 +32,7 @@ namespace UnitTests.PhIntegrationTests
         [MemberData(nameof(UsagePeriods))]
         public void Analyze_usage_in_specific_period(Period period, bool isEmpty)
         {
-            MedicationUsageReportService medicationUsageReportService = (MedicationUsageReportService)CreateStubService().Object;
+            MedicationUsageReportService medicationUsageReportService = new MedicationUsageReportService(CreateStubRepository());
 
             List<MedicationUsageReport> reports = (List<MedicationUsageReport>)medicationUsageReportService.GetForSpecificPeriod(period);
 
@@ -61,9 +61,9 @@ namespace UnitTests.PhIntegrationTests
             return retVal;
         }
 
-        private static Mock<IMedicationUsageReportService> CreateStubService()
+        private static IMedicationUsageReportRepository CreateStubRepository()
         {
-            var stubService = new Mock<IMedicationUsageReportService>();
+            var stubRepository = new Mock<IMedicationUsageReportRepository>();
             var medicationUsageReports = new List<MedicationUsageReport>();
 
             var medicationUsageReport1 = new MedicationUsageReport(810910, new DateTime(2020, 8, 10), new DateTime(2020, 9, 10));
@@ -88,8 +88,8 @@ namespace UnitTests.PhIntegrationTests
             medicationUsageReports.Add(medicationUsageReport3);
             medicationUsageReports.Add(medicationUsageReport4);
 
-            stubService.Setup(m => m.GetAll()).Returns(medicationUsageReports);
-            return stubService;
+            stubRepository.Setup(m => m.GetAll()).Returns(medicationUsageReports);
+            return stubRepository.Object;
         }
 
         public static bool isEmptyUsage(List<MedicationUsageReport> reports)

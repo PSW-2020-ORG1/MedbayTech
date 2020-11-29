@@ -13,11 +13,18 @@ namespace PharmacyIntegration.Service
 {
     public class PharmacyNotificationService : IPharmacyNotificationService
     {
-        private MySqlContext _context;
+        /*private MySqlContext _context;
 
         public PharmacyNotificationService(MySqlContext context)
         {
             this._context = context;
+        }*/
+
+        private IPharmacyNotificationRepository _pharmacyNotificationRepository;
+
+        public PharmacyNotificationService(IPharmacyNotificationRepository pharmacyNotificationRepository)
+        {
+            _pharmacyNotificationRepository = pharmacyNotificationRepository;
         }
 
         public PharmacyNotification Add(string recivedNotification)
@@ -28,53 +35,38 @@ namespace PharmacyIntegration.Service
                 dynamic data = JsonConvert.DeserializeObject(recivedNotification);
                 content = data.content;
             }
-            catch(Exception)
+            catch (Exception)
             {
-                content = "Nije usjelo!";
+                content = "Failed to create content!";
             }
             PharmacyNotification pharmacyNotification = new PharmacyNotification(content);
             pharmacyNotification.Id = getNextId();
-            _context.PharmacyNotifications.Add(pharmacyNotification);
-            _context.SaveChanges();
-            return pharmacyNotification;
-        }
-
-        public PharmacyNotification Get(int Id)
-        {
-            return _context.PharmacyNotifications.ToList().Find(pn => pn.Id.Equals(Id));
-        }
-
-        public IEnumerable<PharmacyNotification> GetAll() => _context.PharmacyNotifications.ToList();
-
-        public bool Remove(PharmacyNotification pharmacy)
-        {
-            _context.PharmacyNotifications.Remove(pharmacy);
-            _context.SaveChanges();
-            return true;
-        }
-
-        public PharmacyNotification Update(PharmacyNotification pharmacyNotification)
-        {
-            _context.PharmacyNotifications.Update(pharmacyNotification);
-            _context.SaveChanges();
-            return pharmacyNotification;
+            return _pharmacyNotificationRepository.Create(pharmacyNotification);
         }
 
         private int getNextId()
         {
-            if(_context.PharmacyNotifications.ToList().Count <= 0)
+            if (((List<PharmacyNotification>)GetAll()).Count <= 0)
             {
                 return 1;
             }
             int maxInt = 1;
-            foreach(PharmacyNotification not in GetAll())
+            foreach (PharmacyNotification not in GetAll())
             {
-                if(not.Id >= maxInt)
+                if (not.Id >= maxInt)
                 {
                     maxInt = not.Id;
                 }
             }
             return maxInt + 1;
         }
+
+        public bool Remove(PharmacyNotification pharmacy) => _pharmacyNotificationRepository.Delete(pharmacy);
+
+        public PharmacyNotification Update(PharmacyNotification pharmacyNotification) =>
+            _pharmacyNotificationRepository.Update(pharmacyNotification);
+
+        public PharmacyNotification Get(int id) => _pharmacyNotificationRepository.GetObject(id);
+        public IEnumerable<PharmacyNotification> GetAll() => _pharmacyNotificationRepository.GetAll();
     }
 }
