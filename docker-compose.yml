@@ -1,37 +1,49 @@
 version: "3.8"
 
 volumes:
-  mysql_data: {}
+  my-db:
 
 services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'newdb'
+        # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'root'
+        # You can use whatever password you like
+      MYSQL_PASSWORD: 'root'
+        # Password for root access
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+        # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+        # Opens port 3306 on the container
+      - '3306'
+        # Where our data will be persisted
+    volumes:
+      - my-db:/var/lib/mysql
   Backend:
-    build:
+    build: 
       context: .
       dockerfile: Backend/Dockerfile
-    image: aleksandarignjatijevic/backend:latest
-    volumes:
-      - mysql_data:/var/lib/mysql/data
-    expose:
-      - "80"
+    image: stefan7/medbaytechback:latest-back
+    depends_on:
+      - db
+    expose: 
+      - "3306"
     ports:
-      - "5100:80"
+      - "5100:3306"
 
   WebApplication:
-    build:
+    build: 
       context: .
       dockerfile: WebApplication/Dockerfile
-    image: aleksandarignjatijevic/web-application:latest
+    image: stefan7/medbaytechweb:latest-web
     depends_on:
       - Backend
-    expose:
-      - "5000"
+    expose: 
+      - "3306"
     ports:
-      - "5000:5000"
-
-  WebApplicationFrontend:
-    build:
-      context: .
-      dockerfile: WebApplication/Dockerfile
-    image: aleksandarignjatijevic/web-application-frontend:latest
-    
-  
+      - "3306:3306"
