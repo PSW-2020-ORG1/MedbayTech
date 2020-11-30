@@ -15,33 +15,32 @@ using Backend.Rooms.Service;
 
 namespace Service.RoomService
 {
-   public class RoomService : IRoomService
-   {
-        public IEnumerable<Room> GetAllRooms() => roomRepository.GetAll();
+    public class RoomService : IRoomService
+    {
+        public IRoomRepository _roomRepository;
 
-        public IRoomRepository roomRepository;
-        public IAppointmentRepository appointmentRepository;
         private const string APPOINTMENTS_SCHEDULED = "Room has appointments shceduled in future.";
 
         private MySqlContext _context;
 
-        public RoomService(IRoomRepository roomRepository, IAppointmentRepository appointmentRepository)
+        public RoomService ( IRoomRepository roomRepository )
         {
-            this.appointmentRepository = appointmentRepository;
-            this.roomRepository = roomRepository;
+            _roomRepository = roomRepository;
         }
 
-        public RoomService(MySqlContext context)
+        public RoomService ( MySqlContext context )
         {
             _context = context;
         }
 
-        public Room GetRoomByRoomNumber(int roomNumber)
+        public IEnumerable<Room> GetAllRooms ( ) => _roomRepository.GetAll();
+
+        public Room GetRoomByRoomNumber ( int roomNumber )
         {
-            var allRooms = roomRepository.GetAll();
-            foreach (Room room in allRooms)
+            var allRooms = _roomRepository.GetAll();
+            foreach ( Room room in allRooms )
             {
-                if (room.RoomNumber.Equals(roomNumber))
+                if ( room.RoomNumber.Equals(roomNumber) )
                 {
                     return room;
                 }
@@ -49,93 +48,87 @@ namespace Service.RoomService
             return null;
         }
 
-        public List<Room> GetRoomsByRoomLabelorRoomUse(string textBoxSearch)
-        {
-            List<Room> rooms = new List<Room>();
-            rooms = _context.Rooms.ToList().Where(p => p.RoomLabel.ToLower().Contains(textBoxSearch)).ToList();
-            if(rooms.Count != 0)
-            {
-                return rooms;
-            }
-            rooms = _context.Rooms.ToList().Where(p => p.RoomUse.ToLower().Contains(textBoxSearch)).ToList();
-            return rooms;
-        }
+        public List<Room> GetRoomsByRoomLabelorRoomUse ( string textBoxSearch ) =>
+            _roomRepository.GetAll().ToList().FindAll(r =>
+            r.RoomLabel.Contains(textBoxSearch, System.StringComparison.CurrentCultureIgnoreCase)
+            || r.RoomUse.Contains(textBoxSearch, System.StringComparison.CurrentCultureIgnoreCase));
 
-        public Room UpdateRoom(Room room) => roomRepository.Update(room);
-        public Room AddRoomToDepartment(Room room, Department department)
+        public Room UpdateRoom ( Room room ) => _roomRepository.Update(room);
+
+        public Room AddRoomToDepartment ( Room room, Department department )
         {
-            var roomForChange = roomRepository.GetObject(room.Id);
+            var roomForChange = _roomRepository.GetObject(room.Id);
             roomForChange.Department = department;
-            roomRepository.Update(room);
+            _roomRepository.Update(room);
             return room;
-
         }
 
-        public Room AddRoom(Room room) => roomRepository.Create(room);
+        public Room AddRoom ( Room room ) => _roomRepository.Create(room);
 
-        public Room GetRoom(int id) => roomRepository.GetObject(id);
+        public Room GetRoom ( int id ) => _roomRepository.GetObject(id);
 
-        public Room ChangeRoomType(Room room, RoomType type)
+        public Room ChangeRoomType ( Room room, RoomType type )
         {
-            var roomForChange = roomRepository.GetObject(room.Id);
+            var roomForChange = _roomRepository.GetObject(room.Id);
             roomForChange.RoomType = type;
-            return roomRepository.Update(roomForChange);
+            return _roomRepository.Update(roomForChange);
         }
 
-        public bool DeleteRoom(Room room)
+        public bool DeleteRoom ( Room room )
         {
-            var allAppointements = appointmentRepository.GetScheduledFromToday();
-            if (allAppointements.Any(ent => ent.Value.Room.Id == room.GetId()))
+            /*var allAppointements = appointmentRepository.GetScheduledFromToday();
+            if ( allAppointements.Any(ent => ent.Value.Room.Id == room.GetId()) )
                 throw new RoomHasAppointmentsScheduled(APPOINTMENTS_SCHEDULED);
-            return roomRepository.Delete(room);
-            }
-        public IEnumerable<Room> GetAllRoomsFromOneType(RoomType type)
+            return _roomRepository.Delete(room);*/
+            return false;
+        }
+
+        public IEnumerable<Room> GetAllRoomsFromOneType ( RoomType type )
         {
-            var allRooms = roomRepository.GetAll();
+            var allRooms = _roomRepository.GetAll();
             List<Room> roomsOfOneType = new List<Room>();
-            foreach(Room room in allRooms)
+            foreach ( Room room in allRooms )
             {
-                if(room.RoomType.Equals(type))
+                if ( room.RoomType.Equals(type) )
                 {
                     roomsOfOneType.Add(room);
                 }
             }
             return roomsOfOneType;
         }
-      
-        public IEnumerable<Room> GetAllRoomsFromOneDepartment(Department department)
+
+        public IEnumerable<Room> GetAllRoomsFromOneDepartment ( Department department )
         {
-            var allRooms = roomRepository.GetAll();
+            var allRooms = _roomRepository.GetAll();
             List<Room> roomsOfOneDepartment = new List<Room>();
-            foreach (Room room in allRooms)
+            foreach ( Room room in allRooms )
             {
-                if (room.Department.Equals(department))
+                if ( room.Department.Equals(department) )
                 {
                     roomsOfOneDepartment.Add(room);
                 }
             }
             return roomsOfOneDepartment;
         }
-        public Room AddHospitalEquipmentToRoom(Room room, HospitalEquipment hospitalEquipment)
+
+        public Room AddHospitalEquipmentToRoom ( Room room, HospitalEquipment hospitalEquipment )
         {
-            var roomForChange = roomRepository.GetObject(room.Id);
+            var roomForChange = _roomRepository.GetObject(room.Id);
             roomForChange.HospitalEquipment.Add(hospitalEquipment);
-            roomRepository.Update(roomForChange);
+            _roomRepository.Update(roomForChange);
             return room;
-
         }
-        public Room UpdateDepartment(Department department, Room room)
+
+        public Room UpdateDepartment ( Department department, Room room )
         {
-            var roomToChange = roomRepository.GetObject(room.Id);
+            var roomToChange = _roomRepository.GetObject(room.Id);
             roomToChange.Department = department;
-            return roomRepository.Update(room);
-
+            return _roomRepository.Update(room);
         }
 
-        public List<Room> GetAll()
+        public List<Room> GetAll ( )
         {
-            return _context.Rooms.ToList();
+            return ( List<Room> ) _roomRepository.GetAll();
         }
-
     }
 }
