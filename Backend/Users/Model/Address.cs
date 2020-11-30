@@ -13,13 +13,13 @@ namespace Model.Users
    {
         [Key]
         public int Id { get; set; } 
-        public string Street { get; set; }
-        public int Number { get; set; }
-        public int Apartment { get; set; }
+        public string Street { get;  set; }
+        public int Number { get;  set; }
+        public int Apartment { get;  set; }
 
-        public int Floor { get; set; }
+        public int Floor { get;  set; }
         [ForeignKey("City")]
-        public int CityId { get; set; }
+        public int CityId { get;  set; }
         public virtual City City { get; set; }
 
 

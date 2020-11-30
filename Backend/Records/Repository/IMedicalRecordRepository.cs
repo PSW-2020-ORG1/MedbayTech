@@ -10,12 +10,14 @@ using System.Collections.Generic;
 
 namespace Repository.MedicalRecordRepository
 {
-   public interface IMedicalRecordRepository : IRepository<MedicalRecord,int>
+   public interface IMedicalRecordRepository : IRepository<MedicalRecord,int> 
    {
         IEnumerable<MedicalRecord> GetRecordsFor(Model.Users.Doctor doctor);
       
         IEnumerable<MedicalRecord> FilterRecordsByState(PatientCondition state);
 
         MedicalRecord GetRecordBy(Model.Users.Patient patient);
+
+        MedicalRecord GetMedicalRecordByPatientId(string id);
     }
 }
