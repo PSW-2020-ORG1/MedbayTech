@@ -48,6 +48,17 @@ namespace PharmacyIntegration.Controllers
                 return BadRequest();
         }
 
+        [HttpPost("update")]
+        public IActionResult ChangeSendNotificationPermision(Pharmacy pharmacy)
+        {
+            bool isSuccessfullyAdded = _pharmacyService.Update(pharmacy) != null;
+
+            if (isSuccessfullyAdded)
+                return Ok();
+            else
+                return BadRequest();
+        }
+
         [HttpDelete]
         public IActionResult Delete(string id)
         {

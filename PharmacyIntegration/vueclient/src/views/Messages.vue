@@ -2,7 +2,7 @@
 <template>
     <div id="win">
         <div id="msg-table">
-            <v-btn icon color=accent elevation="0"><i class="fa fa-refresh"></i></v-btn>
+            <v-btn icon color=accent elevation="0" @click="getNewMessage"><i class="fa fa-refresh"></i></v-btn>
             <v-text-field v-model="search"
                             label="Search messages"
                             hide-details />
@@ -15,10 +15,11 @@
                         <td v-if="row.item.approved"><v-btn class="red white--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Disapprove</v-btn></td>
                         <td v-else><v-btn class="green white--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Approve</v-btn></td>
                         <td>
-                            <v-btn elevation="0" class="red white--text">
+                            <v-btn elevation="0" class="red white--text" v-on:click="deleteMessage(row.item)">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                             </v-btn>
                         </td>
+                        <td>{{row.item.pharmacyId}}</td>
                     </tr>
                 </template>
             </v-data-table>
@@ -35,11 +36,12 @@ export default {
 					{ text: "Message"},
 					{ text: "Status" },
 					{ text: "Delete" },
+					{ text: "Pharmacy", value: "pharmacyId" },
 				],
             messages: [{id:"1", content: "Test message", approved:false}],
             newMessage: "",
             status: "",
-            search: "",
+            search: [],
         }
     },
 
@@ -66,11 +68,7 @@ export default {
                 })
         },
         changeMessageStatus: function (msg) {
-            if (msg.approved === false) {
-                msg.approved = true;
-            } else {
-                msg.approved = false;
-            }
+            msg.approved = !msg.approved;
             this.axios.post("http://localhost:50202/api/pharmacyNotification/", msg)
                 .then(response => {
                     this.status = "Changed!";
