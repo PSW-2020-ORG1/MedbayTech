@@ -72,6 +72,24 @@ namespace Backend.Migrations
                     b.HasIndex("MedicalRecordId");
 
                     b.ToTable("ExaminationSurgeries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DoctorId = "2406978890047",
+                            MedicalRecordId = 1,
+                            StartTime = new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DoctorId = "2406978890047",
+                            MedicalRecordId = 1,
+                            StartTime = new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Type = 1
+                        });
                 });
 
             modelBuilder.Entity("Backend.Examinations.Model.Treatment", b =>
@@ -103,6 +121,24 @@ namespace Backend.Migrations
                     b.ToTable("Treatments");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Treatment");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            AdditionalNotes = ".",
+                            Date = new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExaminationSurgeryId = 1,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AdditionalNotes = ".",
+                            Date = new DateTime(2020, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExaminationSurgeryId = 1,
+                            Type = 0
+                        });
                 });
 
             modelBuilder.Entity("Backend.Medications.Model.Allergens", b =>
@@ -127,22 +163,6 @@ namespace Backend.Migrations
                     b.HasIndex("MedicationId");
 
                     b.ToTable("Allergens");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Allergen = "Polen",
-                            MedicalRecordId = 1,
-                            MedicationId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Allergen = "Prasina",
-                            MedicalRecordId = 1,
-                            MedicationId = 2
-                        });
                 });
 
             modelBuilder.Entity("Backend.Medications.Model.DosageOfIngredient", b =>
@@ -1568,7 +1588,7 @@ namespace Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("ExaminationSurgeryId")
+                    b.Property<int>("ExaminationSurgeryId")
                         .HasColumnType("int");
 
                     b.Property<int?>("FamilyIllnessHistoryId")
@@ -1594,12 +1614,14 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
+                            ExaminationSurgeryId = 1,
                             MedicalRecordId = 1,
                             Name = "Dijagnoza1"
                         },
                         new
                         {
                             Id = 2,
+                            ExaminationSurgeryId = 1,
                             MedicalRecordId = 1,
                             Name = "Dijagnoza2"
                         });
@@ -4869,6 +4891,12 @@ namespace Backend.Migrations
                     b.Property<string>("Company")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime(6)");
+
                     b.HasKey("Id");
 
                     b.ToTable("InsurancePolicies");
@@ -4877,7 +4905,9 @@ namespace Backend.Migrations
                         new
                         {
                             Id = "policy1",
-                            Company = "Dunav osiguranje d.o.o"
+                            Company = "Dunav osiguranje d.o.o",
+                            EndTime = new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartTime = new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -5231,6 +5261,9 @@ namespace Backend.Migrations
                 {
                     b.HasBaseType("Backend.Examinations.Model.Treatment");
 
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("HourlyIntake")
                         .HasColumnType("int");
 
@@ -5240,9 +5273,38 @@ namespace Backend.Migrations
                     b.Property<bool>("Reserved")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime(6)");
+
                     b.HasIndex("MedicationId");
 
                     b.HasDiscriminator().HasValue("Prescription");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Date = new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExaminationSurgeryId = 1,
+                            Type = 0,
+                            EndDate = new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HourlyIntake = 6,
+                            MedicationId = 1,
+                            Reserved = true,
+                            StartDate = new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Date = new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExaminationSurgeryId = 1,
+                            Type = 0,
+                            EndDate = new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HourlyIntake = 6,
+                            MedicationId = 1,
+                            Reserved = true,
+                            StartDate = new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("Model.Users.Employee", b =>
@@ -5275,11 +5337,20 @@ namespace Backend.Migrations
                 {
                     b.HasBaseType("Model.Users.RegisteredUser");
 
+                    b.Property<bool>("Blocked")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("ChosenDoctorId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
+                    b.Property<bool>("Confirmed")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<bool>("IsGuestAccount")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasIndex("ChosenDoctorId");
 
@@ -5301,10 +5372,12 @@ namespace Backend.Migrations
                             Phone = "065/123-4554",
                             PlaceOfBirthId = 11000,
                             Profession = "vodoinstalater",
-                            ProfileImage = ".",
+                            ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
                             Surname = "Petrovic",
                             Username = "pera",
+                            Blocked = false,
                             ChosenDoctorId = "2406978890047",
+                            Confirmed = false,
                             IsGuestAccount = false
                         });
                 });
@@ -5502,15 +5575,17 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Records.Model.Diagnosis", b =>
                 {
-                    b.HasOne("Backend.Examinations.Model.ExaminationSurgery", null)
+                    b.HasOne("Backend.Examinations.Model.ExaminationSurgery", "ExaminationSurgery")
                         .WithMany("Diagnoses")
-                        .HasForeignKey("ExaminationSurgeryId");
+                        .HasForeignKey("ExaminationSurgeryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Backend.Records.Model.FamilyIllnessHistory", null)
                         .WithMany("Diagnosis")
                         .HasForeignKey("FamilyIllnessHistoryId");
 
-                    b.HasOne("Backend.Records.Model.MedicalRecord", null)
+                    b.HasOne("Backend.Records.Model.MedicalRecord", "MedicalRecord")
                         .WithMany("IllnessHistory")
                         .HasForeignKey("MedicalRecordId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -5519,7 +5594,7 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Records.Model.FamilyIllnessHistory", b =>
                 {
-                    b.HasOne("Backend.Records.Model.MedicalRecord", null)
+                    b.HasOne("Backend.Records.Model.MedicalRecord", "MedicalRecord")
                         .WithMany("FamilyIllnessHistory")
                         .HasForeignKey("MedicalRecordId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -5535,7 +5610,7 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Records.Model.Symptoms", b =>
                 {
-                    b.HasOne("Backend.Records.Model.Diagnosis", null)
+                    b.HasOne("Backend.Records.Model.Diagnosis", "Diagnosis")
                         .WithMany("Symptoms")
                         .HasForeignKey("DiagnosisId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -5544,7 +5619,7 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Records.Model.Therapy", b =>
                 {
-                    b.HasOne("Backend.Records.Model.MedicalRecord", null)
+                    b.HasOne("Backend.Records.Model.MedicalRecord", "MedicalRecord")
                         .WithMany("Therapies")
                         .HasForeignKey("MedicalRecordId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -5559,7 +5634,7 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Records.Model.Vaccines", b =>
                 {
-                    b.HasOne("Backend.Records.Model.MedicalRecord", null)
+                    b.HasOne("Backend.Records.Model.MedicalRecord", "MedicalRecord")
                         .WithMany("Vaccines")
                         .HasForeignKey("MedicalRecordId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -5752,7 +5827,7 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Model.Users.Specialization", b =>
                 {
-                    b.HasOne("Model.Users.Doctor", null)
+                    b.HasOne("Model.Users.Doctor", "Doctor")
                         .WithMany("Specializations")
                         .HasForeignKey("DoctorId");
                 });

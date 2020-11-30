@@ -99,5 +99,25 @@ namespace Backend.Users.Repository.MySqlRepository
         {
             entity.RegisteredUser = new RegisteredUser();
         }
+
+        IEnumerable<Feedback> IFeedbackRepository.GetAllApprovedFeedback()
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IFeedbackRepository.UpdateStatus(int feedbackId, bool status)
+        {
+            throw new NotImplementedException();
+        }
+
+        int IFeedbackRepository.GetLastId()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckIfExists(Feedback feedback)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

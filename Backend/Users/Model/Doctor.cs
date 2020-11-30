@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using ZdravoKorporacija.Model.Users;
+using Model.Users;
 
 namespace Model.Users
 {
@@ -29,6 +29,7 @@ namespace Model.Users
         public int OperationRoomId { get; set; }
         public virtual Room OperationRoom { get;  set; }
         public virtual List<Specialization> Specializations { get; set; }
+
 
         public Doctor() 
         {

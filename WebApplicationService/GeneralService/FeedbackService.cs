@@ -59,6 +59,7 @@ namespace WebApplicationService.GeneralService
             feedback.AdditionalNotes = additionalNotes;
             feedback.Anonymous = anonymous;
             feedback.AllowedForPublishing = allowed;
+            feedback.Date = DateTime.Now;
 
             if (!anonymous)
             {
