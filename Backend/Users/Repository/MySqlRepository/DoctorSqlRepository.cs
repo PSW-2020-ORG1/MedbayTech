@@ -1,4 +1,5 @@
-﻿using Model.Rooms;
+﻿using Model;
+using Model.Rooms;
 using Model.Users;
 using Repository;
 using System;
@@ -11,6 +12,7 @@ namespace Backend.Users.Repository.MySqlRepository
     class DoctorSqlRepository : MySqlrepository<Doctor, string>,
         IDoctorRepository
     {
+        public DoctorSqlRepository(MySqlContext context) : base(context) { }
         public IEnumerable<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
         {
             return GetAll().ToList().Where(d => d.IsMySpecialization(specialization));

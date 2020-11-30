@@ -1,0 +1,45 @@
+mat-card {
+    margin-left: 9vw;
+    width: 55vw;
+}
+
+mat-card-header {
+    background-color: pink;
+    justify-content: center;
+}
+
+mat-card-content {
+    margin-top: 10px;
+}
+
+mat-card-title {
+    align-items: center;
+}
+
+mat-card-footer {
+    margin-top: 5px;
+}
+
+th {
+    background-color: pink;
+}
+
+.table {
+    border-bottom: 1px black;
+}
+ 
+.content-paragraph {
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+.imgdiv {
+    position: relative;
+}
+
+.imgdiv img {
+    position: absolute;
+    top: 10px;
+    left: 32vw;
+    border: 3px solid black;
+}

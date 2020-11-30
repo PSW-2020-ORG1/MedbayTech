@@ -17,7 +17,10 @@ namespace Backend.Medications.Model
         public int Id { get; set; }
         public string CategoryName { get; set; }
         public virtual Specialization Specialization { get; set; }
+        [ForeignKey("Medication")]
         public int SpecializationId { get; set; }
+        public int MedicationId { get; set; }
+        public Medication Medication { get; set; }
         public MedicationCategory() {}
         public MedicationCategory(string categoryName, Specialization specialization)
         {
