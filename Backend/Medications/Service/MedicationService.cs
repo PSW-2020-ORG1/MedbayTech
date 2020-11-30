@@ -11,19 +11,44 @@ using System.Linq;
 using Backend.Medications.Repository.FileRepository;
 using Model.Users;
 using Service.GeneralService;
+using Model;
 
 namespace Backend.Medications.Service
 {
-   public class MedicationService
-   {
+    public class MedicationService : IMedicationService
+    {
         public IMedicationRepository medicationRepository;
         public NotificationService notificationService;
+
+        public List<Medication> GetAllMedicationsByNameOrId(string query)
+        {
+             if (Int32.TryParse(query, out int id))
+                return _context.Medications.Where(med => med.Id == id).ToList();
+            return _context.Medications.Where(med => med.Med.ToLower().Equals(query.ToLower())).ToList();
+
+        }
+
         public IValidationMedicationRepository validationMedicationRepository;
+        public IMedicationRepository _medicationRepository;
+
+
+        private MySqlContext _context;
+        public MedicationService(MySqlContext context)
+        {
+            _context = context;
+        }
 
         public MedicationService(IMedicationRepository medicationRepository, IValidationMedicationRepository validationMedicationRepository)
         {
             this.validationMedicationRepository = validationMedicationRepository;
             this.medicationRepository = medicationRepository;
+        }
+
+        public MedicationService(IMedicationRepository medicationRepository)
+        {
+            this.validationMedicationRepository = validationMedicationRepository;
+            this.medicationRepository = medicationRepository;
+            this._medicationRepository = medicationRepository;
         }
 
         public Medication RejectMedication(Medication medication)
@@ -46,39 +71,39 @@ namespace Backend.Medications.Service
             return medication;
         }
 
-        public Medication UpdateMedication(Medication medication) => 
+        public Medication UpdateMedication(Medication medication) =>
             medicationRepository.Update(medication);
 
-        public bool DeleteMedication(Medication medication) => 
+        public bool DeleteMedication(Medication medication) =>
             medicationRepository.Delete(medication);
 
-        public Medication GetMedication(int id) => 
+        public Medication GetMedication(int id) =>
             medicationRepository.GetObject(id);
-      
+
         public IEnumerable<Medication> GetAllOnValidationFor(Doctor doctor)
         {
-            List<Medication> allOnValidation = (List<Medication>) medicationRepository.GetAllOnValidation().ToList();
+            List<Medication> allOnValidation = (List<Medication>)medicationRepository.GetAllOnValidation().ToList();
             List<Medication> validations = new List<Medication>();
             foreach (Medication medication in allOnValidation)
             {
                 Specialization specialization = medication.MedicationCategory.Specialization;
                 if (doctor.IsMySpecialization(specialization) && medication.IsOnValidation())
-                
+
                     validations.Add((medication));
             }
             return validations;
         }
-       
-        public IEnumerable<Medication> GetAllOnValidation() => 
+
+        public IEnumerable<Medication> GetAllOnValidation() =>
             medicationRepository.GetAllOnValidation();
 
-        public IEnumerable<Medication> GetAll() => 
+        public IEnumerable<Medication> GetAll() =>
             medicationRepository.GetAll();
 
-        public IEnumerable<Medication> GetAllRejected() => 
+        public IEnumerable<Medication> GetAllRejected() =>
             medicationRepository.GetAllRejected();
 
-        public IEnumerable<Medication> GetAllApproved() => 
+        public IEnumerable<Medication> GetAllApproved() =>
             medicationRepository.GetAllApproved();
 
         public Medication AddAmount(Medication medication, int amount)
