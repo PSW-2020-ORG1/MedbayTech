@@ -36,6 +36,7 @@ namespace Repository
             if (!ExistsInSystem(entity.GetId()))
             {
                 dbSet.Add(entity);
+                context.SaveChanges();
                 return entity;
             }
             return null;
@@ -53,6 +54,7 @@ namespace Repository
                 if (context.Entry(entity).State == EntityState.Detached)
                     dbSet.Attach(entity);
                 dbSet.Remove(entity);
+                context.SaveChanges();
                 return true;
             }
             return false;
@@ -101,6 +103,7 @@ namespace Repository
             {
                 dbSet.Attach(entity);
                 context.Entry(entity).State = EntityState.Modified;
+                context.SaveChanges();
                 return entity;
             }
 
