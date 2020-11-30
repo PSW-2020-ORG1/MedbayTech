@@ -43,7 +43,7 @@ namespace PharmacyIntegration.Controllers
                 channel.BasicAck(data.DeliveryTag, false);
                 PharmacyNotification pharmacyNotification = _notificationService.Add(msg);
                 if (pharmacyNotification == null)
-                    return NoContent();
+                    return NotFound();
                 else
                     return Ok(pharmacyNotification);
             }

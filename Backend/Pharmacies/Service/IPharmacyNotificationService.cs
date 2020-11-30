@@ -16,6 +16,5 @@ namespace PharmacyIntegration.Service
 
         public IEnumerable<PharmacyNotification> GetAll();
 
-        public bool CheckPermisionToSendNotification(string pharmacyId);
     }
 }
