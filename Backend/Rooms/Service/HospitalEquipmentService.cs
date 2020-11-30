@@ -49,7 +49,7 @@ namespace Service.RoomService
 
             if (Int32.TryParse(textBoxSearch, out int id))
                 return _context.HospitalEquipment.Where(med => med.Id == id).ToList();
-            return _context.HospitalEquipment.Where(med => med.EquipmentType.Name.ToLower().Equals(textBoxSearch.ToLower())).ToList();
+            return _context.HospitalEquipment.Where(med => med.EquipmentType.Name.ToLower().Contains(textBoxSearch.ToLower())).ToList();
         }
 
         public HospitalEquipment AddEquipment ( HospitalEquipment equipment ) => _hospitalEquipmentRepository.Create(equipment);

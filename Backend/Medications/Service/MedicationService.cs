@@ -24,7 +24,7 @@ namespace Backend.Medications.Service
         {
              if (Int32.TryParse(query, out int id))
                 return _context.Medications.Where(med => med.Id == id).ToList();
-            return _context.Medications.Where(med => med.Med.ToLower().Equals(query.ToLower())).ToList();
+            return _context.Medications.Where(med => med.Med.ToLower().Contains(query.ToLower())).ToList();
 
         }
 
