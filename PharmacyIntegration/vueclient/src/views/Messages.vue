@@ -12,10 +12,10 @@
                 <template v-slot:item="row">
                     <tr>
                         <td>{{row.item.content}}</td>
-                        <td v-if="row.item.approved"><v-btn class="red white--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Disapprove</v-btn></td>
-                        <td v-else><v-btn class="green white--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Approve</v-btn></td>
+                        <td v-if="row.item.approved"><v-btn class="white red--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Disapprove</v-btn></td>
+                        <td v-else><v-btn class="white green--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Approve</v-btn></td>
                         <td>
-                            <v-btn elevation="0" class="red white--text">
+                            <v-btn elevation="0" class="white red--text">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                             </v-btn>
                         </td>
@@ -33,7 +33,7 @@ export default {
         return {
             headers: [
 					{ text: "Message"},
-					{ text: "Status" },
+					{ text: "Change status" },
 					{ text: "Delete" },
 				],
             messages: [{id:"1", content: "Test message", approved:false}],
