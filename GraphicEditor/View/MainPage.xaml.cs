@@ -114,6 +114,7 @@ namespace GraphicEditor
                     {
                         MainFrame.Content = new SearchResultsForMedicines(this, textBoxSearch.Text);
                     }
+                    else MessageBox.Show("You dont have perrmision to search this!");
                 }
                 else if ((bool)Equipment.IsChecked)
                 {
@@ -121,7 +122,8 @@ namespace GraphicEditor
                     {
                         MainFrame.Content = new SearchResultsForEquipment(this, textBoxSearch.Text);
                     }
-                }
+                    else MessageBox.Show("You dont have perrmision to search this!");
+            }
             }
         }
 
@@ -253,5 +255,86 @@ namespace GraphicEditor
             }
         }
 
+        private void ComboBoxWardsMap_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dontRefreshMap = true;
+            if (comboBoxWardsMap.SelectedIndex == 0 || comboBoxWardsMap.SelectedIndex == 1)
+            {
+                comboBoxH2.SelectedItem = null;
+                ShowBuilding1GroundFloor(null, null);
+                comboBoxH1.SelectedIndex = 0;
+            }
+            else if (comboBoxWardsMap.SelectedIndex == 2 || comboBoxWardsMap.SelectedIndex == 3)
+            {
+                comboBoxH1.SelectedItem = null;
+                ShowBuilding2GroundFloor(null, null);
+                comboBoxH2.SelectedIndex = 0;
+            }
+            else if (comboBoxWardsMap.SelectedIndex == 4 || comboBoxWardsMap.SelectedIndex == 5)
+            {
+                comboBoxH2.SelectedItem = null;
+                ShowBuilding1FirstFloor(null, null);
+                comboBoxH1.SelectedIndex = 1;
+            }
+            else if (comboBoxWardsMap.SelectedIndex == 6 || comboBoxWardsMap.SelectedIndex == 7)
+            {
+                comboBoxH1.SelectedItem = null;
+                ShowBuilding2FirstFloor(null, null);
+                comboBoxH2.SelectedIndex = 1;
+            }
+            else if (comboBoxWardsMap.SelectedIndex == 8 || comboBoxWardsMap.SelectedIndex == 9)
+            {
+                comboBoxH2.SelectedItem = null;
+                ShowBuilding1SecondFloor(null, null);
+                comboBoxH1.SelectedIndex = 2;
+            }
+            else if (comboBoxWardsMap.SelectedIndex == 10 || comboBoxWardsMap.SelectedIndex == 11)
+            {
+                comboBoxH1.SelectedItem = null;
+                ShowBuilding2SecondFloor(null, null);
+                comboBoxH2.SelectedIndex = 2;
+            }
+            dontRefreshMap = true;
+        }
+        private void ComboBoxWardsHospital1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dontRefreshMap = true;
+            if (comboBoxWardsHospital1.SelectedIndex == 0 || comboBoxWardsHospital1.SelectedIndex == 1)
+            {
+                ShowBuilding1GroundFloor(null, null);
+                comboBoxHospital1.SelectedIndex = 0;
+            }
+            else if (comboBoxWardsHospital1.SelectedIndex == 2 || comboBoxWardsHospital1.SelectedIndex == 3)
+            {
+                ShowBuilding1FirstFloor(null, null);
+                comboBoxHospital1.SelectedIndex = 1;
+            }
+            else if (comboBoxWardsHospital1.SelectedIndex == 4 || comboBoxWardsHospital1.SelectedIndex == 5)
+            {
+                ShowBuilding1SecondFloor(null, null);
+                comboBoxHospital1.SelectedIndex = 2;
+            }
+            dontRefreshMap = true;
+        }
+        private void ComboBoxWardsHospital2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dontRefreshMap = true;
+            if (comboBoxWardsHospital2.SelectedIndex == 0 || comboBoxWardsHospital2.SelectedIndex == 1)
+            {
+                ShowBuilding2GroundFloor(null, null);
+                comboBoxHospital2.SelectedIndex = 0;
+            }
+            else if (comboBoxWardsHospital2.SelectedIndex == 2 || comboBoxWardsHospital2.SelectedIndex == 3)
+            {
+                ShowBuilding2FirstFloor(null, null);
+                comboBoxHospital2.SelectedIndex = 1;
+            }
+            else if (comboBoxWardsHospital2.SelectedIndex == 4 || comboBoxWardsHospital2.SelectedIndex == 5)
+            {
+                ShowBuilding2SecondFloor(null, null);
+                comboBoxHospital2.SelectedIndex = 2;
+            }
+            dontRefreshMap = true;
+        }
     }
 }

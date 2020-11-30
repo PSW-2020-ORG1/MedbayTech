@@ -1,5 +1,6 @@
 using Backend.Medications.Service;
 using Backend.Rooms.Service;
+using Backend.Users.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,6 +37,7 @@ namespace GraphicEditorWebService
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IHospitalEquipmentService, HospitalEquipmentService>();
             services.AddScoped<IMedicationService, MedicationService>();
+            services.AddScoped<IDoctorService, DoctorService>();
             services.AddControllers();
             services.AddCors();
         }

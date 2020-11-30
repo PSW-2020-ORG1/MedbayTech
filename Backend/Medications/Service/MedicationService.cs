@@ -24,8 +24,23 @@ namespace Backend.Medications.Service
         {
              if (Int32.TryParse(query, out int id))
                 return _context.Medications.Where(med => med.Id == id).ToList();
-            return _context.Medications.Where(med => med.Med.ToLower().Equals(query.ToLower())).ToList();
+            return _context.Medications.Where(med => med.Med.ToLower().Contains(query.ToLower())).ToList();
+        }
 
+        public Medication UpdateMedicationDataBase(Medication medication)
+        {
+            _context.Medications.Update(medication);
+            _context.SaveChanges();
+            return medication;
+        }
+
+        public List<Medication> GetAllMedicationByRoomId(string query)
+        {
+            if(Int32.TryParse(query, out int id))
+            {
+                return _context.Medications.Where(med => med.RoomId == id).ToList();
+            }
+            return new List<Medication>();
         }
 
         public IValidationMedicationRepository validationMedicationRepository;

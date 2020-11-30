@@ -60,6 +60,18 @@ namespace Service.RoomService
             return rooms;
         }
 
+        public Room GetRoomById(int id)
+        {
+            return _context.Rooms.ToList().Find(p => p.Id == id);
+        }
+
+        public Room UpdateRoomDataBase(Room room)
+        {
+            _context.Rooms.Update(room);
+            _context.SaveChanges();
+            return room;
+        }
+
         /*
         public List<Room> GetRoomsByRoomLabelorRoomUse ( string textBoxSearch ) =>
             _roomRepository.GetAll().ToList().FindAll(r =>
