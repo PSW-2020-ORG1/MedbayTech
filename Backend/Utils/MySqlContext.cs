@@ -233,7 +233,9 @@ namespace Model
                 new MedicationCategory { Id = 1, CategoryName = "Kategorija1", SpecializationId = 1, MedicationId = 1 }
             );
 
-     
+            modelBuilder.Entity<Allergens>().HasData(new Allergens { Id = 1, Allergen = "Polen", MedicalRecordId = 1, MedicationId = 1 }, new Allergens { Id = 2, Allergen = "Prasina", MedicalRecordId = 1, MedicationId = 2 });
+
+
 
             modelBuilder.Entity<SideEffect>().HasData(
                 new SideEffect { Id = 1, Frequency = SideEffectFrequency.Rare, SideEffectsId = 1, MedicationId = 1},
@@ -806,13 +808,12 @@ namespace Model
                     Type = TreatmentType.Prescription,
                     ExaminationSurgeryId = 1 
                 }
-            );
-
-            modelBuilder.Entity<Prescription>().HasData(
+            ); modelBuilder.Entity<Prescription>().HasData(
                 new Prescription
                 {
                     Id = 1,
                     ExaminationSurgeryId = 1,
+                    Date = new DateTime(2020, 11, 27),
                     Reserved = true,
                     StartDate = new DateTime(2020, 11, 27),
                     EndDate = new DateTime(2020, 11, 30),
@@ -823,6 +824,7 @@ namespace Model
                 {
                     Id = 2,
                     ExaminationSurgeryId = 1,
+                    Date = new DateTime(2020, 11, 28),
                     Reserved = true,
                     StartDate = new DateTime(2020, 11, 28),
                     EndDate = new DateTime(2020, 12, 1),
