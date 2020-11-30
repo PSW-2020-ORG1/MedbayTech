@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Backend\Backend.csproj" />
+    <ProjectReference Include="..\PharmacyIntegration\PharmacyIntegration.csproj" />
   </ItemGroup>
 
 </Project>

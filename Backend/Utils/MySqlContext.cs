@@ -101,6 +101,7 @@ namespace Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // NOTE(Jovan): PH data start ======================
             modelBuilder.Entity<Period>().HasNoKey();
             modelBuilder.Entity<Occupation>().HasNoKey();
             modelBuilder.Entity<Shift>().HasNoKey();
@@ -135,9 +136,13 @@ namespace Model
                 );
 
             modelBuilder.Entity<MedicationUsage>().HasData(
-                    new MedicationUsage { Id = 1, Usage = 4, MedicationId = 1 },
-                    new MedicationUsage { Id = 2, Usage = 10, MedicationId = 2 }
+                    new MedicationUsage { Id = 1, Usage = 4, MedicationId = 1, Date = new DateTime(2020, 8, 1) },
+                    new MedicationUsage { Id = 2, Usage = 10, MedicationId = 2, Date = new DateTime(2020, 9, 1) },
+                    new MedicationUsage { Id = 3, Usage = 50, MedicationId = 1, Date = new DateTime(2020, 1, 1) },
+                    new MedicationUsage { Id = 4, Usage = 1, MedicationId = 2, Date = new DateTime(2020, 5, 1) }
                 );
+
+            // NOTE(Jovan): PH data end ========================
 
         }
     }

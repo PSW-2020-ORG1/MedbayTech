@@ -15,11 +15,9 @@ namespace PharmacyIntegration.Controllers
     [ApiController]
     public class PharmacyController : ControllerBase
     {
-        private MySqlContext _context;
         private IPharmacyService _pharmacyService;
-        public PharmacyController(MySqlContext context, IPharmacyService service)
+        public PharmacyController(IPharmacyService service)
         {
-            this._context = context;
             this._pharmacyService = service;
         }
 

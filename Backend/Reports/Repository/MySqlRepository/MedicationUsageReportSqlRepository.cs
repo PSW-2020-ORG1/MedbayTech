@@ -39,11 +39,11 @@ namespace Backend.Reports.Repository.MySqlRepository
             return true;
         }
 
-        public bool ExistsInSystem(int id) => GetObject(id) != null;
+        public bool ExistsInSystem(string id) => GetObject(id) != null;
 
         public IEnumerable<MedicationUsageReport> GetAll() => _context.MedicationUsageReports.ToList();
 
-        public MedicationUsageReport GetObject(int id) => 
+        public MedicationUsageReport GetObject(string id) => 
             _context.MedicationUsageReports.ToList().Find(mur => mur.Id.Equals(id));
 
         public MedicationUsageReport Update(MedicationUsageReport entity)
