@@ -1,4 +1,5 @@
-﻿using Model.Users;
+﻿using Model;
+using Model.Users;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace Backend.Users.Repository.MySqlRepository
     class StateSqlRepository : MySqlrepository<State, long>,
         IStateRepository
     {
+
+        public StateSqlRepository(MySqlContext context) : base(context) { }
         public bool CheckIfExists(State state)
         {
             return GetObject(state.Id) == null ? false : true;

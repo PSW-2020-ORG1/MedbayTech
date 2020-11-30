@@ -1,15 +1,11 @@
-﻿using Backend.Medications.Model;
-using Backend.Reports.Model;
+﻿using Backend.Reports.Model;
 using Backend.Reports.Repository;
 using Backend.Utils;
-using Model;
-using Model.Users;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Backend.Reports.Service
 {
@@ -31,8 +27,9 @@ namespace Backend.Reports.Service
             char sep = Path.DirectorySeparatorChar;
             MedicationUsageReport report = new MedicationUsageReport(period.StartTime, period.EndTime);
             string filepath = "." + sep + "GeneratedUsageReports" + sep + report.Id + ".json";
-            report.MedicationUsages.AddRange(_medicationUsageRepository.GetAll()
-                .Where(ur => ur.InPeriod((DateTime)report.From, (DateTime)report.Until)));
+            List<MedicationUsage> usages = (List<MedicationUsage>)_medicationUsageRepository.GetAll().ToList()
+                .Where(ur => ur.InPeriod((DateTime)report.From, (DateTime)report.Until)).ToList();
+            report.MedicationUsages.AddRange(usages);
             string json = JsonConvert.SerializeObject(report);
             Console.WriteLine(json);
             JsonSerializer jsonSerializer = new JsonSerializer();

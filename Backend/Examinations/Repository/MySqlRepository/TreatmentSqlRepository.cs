@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Backend.Examinations.Model;
+using Model;
 using Repository;
 
 namespace Backend.Examinations.Repository.MySqlRepository
@@ -11,6 +12,10 @@ namespace Backend.Examinations.Repository.MySqlRepository
         ITreatmentRepository
 
     {
+        public TreatmentSqlRepository(MySqlContext context) : base(context)
+        {
+        }
+
         public IEnumerable<HospitalTreatment> GetAllHospitalTreatments()
         {
             return (IEnumerable<HospitalTreatment>) GetAll().ToList().Where(treatment => treatment.IsHospitalTreatment());
@@ -18,7 +23,7 @@ namespace Backend.Examinations.Repository.MySqlRepository
 
         public IEnumerable<Prescription> GetAllPrescriptions()
         {
-            return (IEnumerable<Prescription>)GetAll().ToList().Where(treatment => treatment.IsPrescription());
+            return (IEnumerable<Prescription>)GetAll().Where(treatment => treatment.IsPrescription());
         }
 
         public IEnumerable<Prescription> GetAllPrescriptionsInPeriod(DateTime startDate, DateTime endDate)

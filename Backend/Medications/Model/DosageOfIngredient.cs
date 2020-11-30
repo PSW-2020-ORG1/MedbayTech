@@ -17,9 +17,6 @@ namespace Backend.Medications.Model
         [ForeignKey("MedicationIngredient")]
         public int MedicationIngredientId { get; set; }
         public virtual MedicationIngredient MedicationIngredient { get; set; }
-        [ForeignKey("Medication")]
-        public int MedicationId { get; set; }
-        public virtual Medication Medication { get; set; }
         public DosageOfIngredient() {}
         public DosageOfIngredient(MedicationIngredient ingredient, double amount)
         {

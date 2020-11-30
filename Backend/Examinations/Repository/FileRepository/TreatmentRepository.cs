@@ -162,6 +162,5 @@ namespace Backend.Examinations.Repository
             HospitalTreatment treatment = (HospitalTreatment)entity;
             treatment.Department = departmentRepository.GetObject(treatment.Department.Id);
         }
-
     }
 }

@@ -25,6 +25,7 @@ namespace Backend.Users.Repository.MySqlRepository
             {
                 Feedback feedback = GetObject(feedbackId);
                 feedback.Approved = status;
+                context.SaveChanges();
                 return true;
             }
 
@@ -38,8 +39,7 @@ namespace Backend.Users.Repository.MySqlRepository
         /// <returns>all feedback that is approved</returns>
         public IEnumerable<Feedback> GetAllApprovedFeedback()
         {
-            return GetAll().Where(feedback => feedback.Approved == true && feedback.AllowedForPublishing);
-
+            return GetAll().ToList().Where(f => f.Approved & f.AllowedForPublishing);
         }
 
         /// <summary>
@@ -50,6 +50,12 @@ namespace Backend.Users.Repository.MySqlRepository
         {
             Feedback feedback = GetAll().Last();
             return feedback.Id;
+        }
+
+        public bool CheckIfExists(Feedback feedback)
+        {
+            return GetObject(feedback.Id) == null ? false : true;
+
         }
     }
 }

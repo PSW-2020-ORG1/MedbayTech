@@ -13,7 +13,7 @@
             <RowDefinition Height="53*"/>
             <RowDefinition Height="19*"/>
         </Grid.RowDefinitions>
-        <Canvas x:Name="HMapCanvas"  Margin="0,0,0,0" Background="Beige" Grid.RowSpan="2">
+        <Canvas x:Name="HMapCanvas" Margin="0,0,0,0" Background="Beige" Grid.RowSpan="2">
             <Rectangle Fill="LightSlateGray" Height="828" Width="50" Canvas.Left="55" Canvas.Top="-87" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>

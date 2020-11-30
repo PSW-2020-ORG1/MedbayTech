@@ -14,11 +14,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Backend.Medications.Model;
+using Backend.Medications.Service;
 
 namespace Service.GeneralService
 {
-   public class NotificationService
-   {
+   public class NotificationService : INotificationService
+    {
+        private IMedicalRecordRepository medicalRecordRepository;
+        private IUserRepository userRepository;
+        private INotificationRepository notificationRepository;
         public NotificationService(INotificationRepository notificationRepository, IUserRepository userRepository, IMedicalRecordRepository medicalRecordRepository)
         {
             this.notificationRepository = notificationRepository;
@@ -187,11 +191,6 @@ namespace Service.GeneralService
             }
             return notificationForUser;
         }
-
-
-        public IMedicalRecordRepository medicalRecordRepository;
-        public IUserRepository userRepository;
-        public INotificationRepository notificationRepository;
    
    }
 }

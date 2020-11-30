@@ -1,4 +1,4 @@
-// File:    HospitalService.cs
+﻿// File:    HospitalService.cs
 // Author:  Vlajkov
 // Created: Monday, May 18, 2020 9:25:10 PM
 // Purpose: Definition of Class HospitalService
@@ -10,8 +10,8 @@ using System.Collections.Generic;
 
 namespace Service.GeneralService
 {
-   public class HospitalService
-   {
+    public class HospitalService
+    {
         public HospitalService(IHospitalRepository hospitalRepository)
         {
             this.hospitalRepository = hospitalRepository;
@@ -24,10 +24,10 @@ namespace Service.GeneralService
 
         public IEnumerable<Hospital> GetAllHospitals()
         {
-             throw new NotImplementedException();
+            throw new NotImplementedException();
         }
-      
+
         public IHospitalRepository hospitalRepository;
-   
-   }
+
+    }
 }

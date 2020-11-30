@@ -20,7 +20,7 @@ namespace Backend.Pharmacies.Repository.MySqlRepository
 
         public Pharmacy Create(Pharmacy entity)
         {
-            if(!ExistsInSystem(entity.Id))
+            if (ExistsInSystem(entity.Id))
             {
                 return null;
             }
