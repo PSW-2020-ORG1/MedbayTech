@@ -28,8 +28,14 @@ namespace Service.RoomService
             this._hospitalEquipmentRepository = hospitalEquipmentRepository;
         }
 
+        
+
+
+
         public List<HospitalEquipment> GetHospitalEquipmentsByNameOrId ( string textBoxSearch )
         {
+
+            /*
             List<HospitalEquipment> hospitalEquipment = new List<HospitalEquipment>();
             if ( Int32.TryParse(textBoxSearch, out int id) )
             {
@@ -37,8 +43,13 @@ namespace Service.RoomService
                 if ( hospitalEquipment.Count != 0 ) return hospitalEquipment;
             }
             hospitalEquipment = _hospitalEquipmentRepository.GetAll().ToList().Where(p => p.EquipmentType.Name.ToLower().Trim().Contains(textBoxSearch.ToLower())).ToList();
-
+            
             return hospitalEquipment;
+            */
+
+            if (Int32.TryParse(textBoxSearch, out int id))
+                return _context.HospitalEquipment.Where(med => med.Id == id).ToList();
+            return _context.HospitalEquipment.Where(med => med.EquipmentType.Name.ToLower().Equals(textBoxSearch.ToLower())).ToList();
         }
 
         public HospitalEquipment AddEquipment ( HospitalEquipment equipment ) => _hospitalEquipmentRepository.Create(equipment);
