@@ -15,6 +15,7 @@ namespace Model.Users
         [Key]
         public int Id { get; set; }
         public DateTime Date { get; set; }
+ 
         public string AdditionalNotes { get; set; }
         public bool Approved { get; set; }
         public bool Anonymous { get; set; }

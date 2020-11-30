@@ -27,7 +27,6 @@ namespace Backend.Examinations.Service
             if (treatment.IsPrescription())
             {
                 Prescription prescription = (Prescription) treatment;
-                prescription.InitializeReservationDates();
                 return treatmentRepository.Update(treatment);
             }
             if (treatment.IsHospitalTreatment())

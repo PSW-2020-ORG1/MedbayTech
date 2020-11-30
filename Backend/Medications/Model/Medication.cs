@@ -24,11 +24,11 @@ namespace Backend.Medications.Model
         public int Quantity { get; set; }
         public int MedicalRecordId { get; set; }
         public string Dosage { get; set; }
-        public int MedicationCategoryId { get; set; }
         [ForeignKey ("Room")]
         public int RoomId { get; set; } 
         public virtual Room Room { get; set; }
         public virtual List<DosageOfIngredient> MedicationContent { get; set; }
+        public int MedicationCategoryId { get; set; }
         public virtual MedicationCategory MedicationCategory { get; set; }
         public virtual List<Allergens> Allergens { get; set; }
         public virtual List<Medication> AlternativeMedication { get; set; }

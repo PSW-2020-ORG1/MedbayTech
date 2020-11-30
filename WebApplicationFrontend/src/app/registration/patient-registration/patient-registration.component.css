@@ -1,0 +1,40 @@
+.inputField {
+    padding-left: 3.5vw;
+}
+.inputRow {
+    padding-top: 20px;
+}
+
+.container{
+    padding-top: 20px;
+}
+
+.heading-col{
+    padding: 0px;
+}
+
+.heading{
+    margin-bottom: 0px;
+    color:  #3F51B5;
+    font-weight: bold;
+}
+
+.sections {
+    padding-top: 10px;
+}
+
+.sections {
+    padding-top: 15px;
+}
+
+.heading-row {
+    padding-top:15px;
+}
+.mat-divider {
+    border-top-color: #3F51B5;
+}
+
+
+:focus {
+    outline:none;
+ }

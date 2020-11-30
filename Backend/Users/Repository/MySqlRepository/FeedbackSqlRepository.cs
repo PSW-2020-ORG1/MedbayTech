@@ -25,6 +25,7 @@ namespace Backend.Users.Repository.MySqlRepository
             {
                 Feedback feedback = GetObject(feedbackId);
                 feedback.Approved = status;
+                context.SaveChanges();
                 return true;
             }
 

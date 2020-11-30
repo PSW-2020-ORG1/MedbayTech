@@ -20,6 +20,7 @@ namespace Model.Users
         public int Floor { get; set; }
         [ForeignKey("City")]
         public int CityId { get; set; }
+
         public virtual City City { get; set; }
 
 
