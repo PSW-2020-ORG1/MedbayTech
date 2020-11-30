@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using PharmacyIntegration.Service;
 using RabbitMQ.Client;
 using Model;
+using PharmacyIntegration.Model;
 
 namespace PharmacyIntegration.Controllers
 {
@@ -40,7 +41,11 @@ namespace PharmacyIntegration.Controllers
                 if (data == null) return BadRequest("No data");
                 var msg = Encoding.UTF8.GetString(data.Body.ToArray());
                 channel.BasicAck(data.DeliveryTag, false);
-                return Ok(_notificationService.Add(msg));
+                PharmacyNotification pharmacyNotification = _notificationService.Add(msg);
+                if (pharmacyNotification == null)
+                    return NoContent();
+                else
+                    return Ok(pharmacyNotification);
             }
         }
 

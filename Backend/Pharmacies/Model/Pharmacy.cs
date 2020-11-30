@@ -12,13 +12,15 @@ namespace PharmacyIntegration.Model
         public string Id { get; set; }
         public string APIKey { get; set; }
         public string APIEndpoint { get; set; }
+        public bool RecieveNotificationFrom { get; set; }
 
         public Pharmacy() { }
-        public Pharmacy(string Id, string APIKey, string APIEndpoint)
+        public Pharmacy(string Id, string APIKey, string APIEndpoint, bool RecieveNotificationFrom = false )
         {
             this.Id = Id;
             this.APIKey = APIKey;
             this.APIEndpoint = APIEndpoint;
+            this.RecieveNotificationFrom = RecieveNotificationFrom;
         }
 
         public string GetId()

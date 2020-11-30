@@ -9,8 +9,8 @@ using Model;
 namespace Backend.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201129182742_migration0")]
-    partial class migration0
+    [Migration("20201129221853_migration01")]
+    partial class migration01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1192,6 +1192,9 @@ namespace Backend.Migrations
                     b.Property<string>("APIKey")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<bool>("RecieveNotificationFrom")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Pharmacies");
@@ -1201,13 +1204,15 @@ namespace Backend.Migrations
                         {
                             Id = "Jankovic",
                             APIEndpoint = "jankovic.rs",
-                            APIKey = "ID1APIKEYAAAA"
+                            APIKey = "ID1APIKEYAAAA",
+                            RecieveNotificationFrom = true
                         },
                         new
                         {
                             Id = "Liman",
                             APIEndpoint = "liman.li",
-                            APIKey = "ID2APIKEYAAAA"
+                            APIKey = "ID2APIKEYAAAA",
+                            RecieveNotificationFrom = true
                         });
                 });
 
@@ -1223,7 +1228,12 @@ namespace Backend.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("PharmacyId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PharmacyId");
 
                     b.ToTable("PharmacyNotifications");
 
@@ -1232,13 +1242,15 @@ namespace Backend.Migrations
                         {
                             Id = 1,
                             Approved = true,
-                            Content = "Aspirin nam je jeftin. Bas jako."
+                            Content = "Lexapro on sale! Get 15% off!",
+                            PharmacyId = "Jankovic"
                         },
                         new
                         {
                             Id = 2,
                             Approved = true,
-                            Content = "Brufen nam je jeftin. Bas jako."
+                            Content = "Aspirin on sale! Get 11% off!",
+                            PharmacyId = "Liman"
                         });
                 });
 
@@ -1774,6 +1786,13 @@ namespace Backend.Migrations
                     b.HasOne("Model.Users.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId");
+                });
+
+            modelBuilder.Entity("PharmacyIntegration.Model.PharmacyNotification", b =>
+                {
+                    b.HasOne("PharmacyIntegration.Model.Pharmacy", "Pharmacy")
+                        .WithMany()
+                        .HasForeignKey("PharmacyId");
                 });
 
             modelBuilder.Entity("Backend.Examinations.Model.HospitalTreatment", b =>

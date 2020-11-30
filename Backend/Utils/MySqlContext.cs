@@ -112,13 +112,13 @@ namespace Model
                 );
 
             modelBuilder.Entity<Pharmacy>().HasData(
-                new Pharmacy { Id = "Jankovic", APIKey = "ID1APIKEYAAAA", APIEndpoint = "jankovic.rs" },
-                new Pharmacy { Id = "Liman", APIKey = "ID2APIKEYAAAA", APIEndpoint = "liman.li" }
+                new Pharmacy { Id = "Jankovic", APIKey = "ID1APIKEYAAAA", APIEndpoint = "jankovic.rs", RecieveNotificationFrom = true},
+                new Pharmacy { Id = "Liman", APIKey = "ID2APIKEYAAAA", APIEndpoint = "liman.li", RecieveNotificationFrom = true}
             );
 
             modelBuilder.Entity<PharmacyNotification>().HasData(
-                new PharmacyNotification { Id = 1, Content = "Aspirin nam je jeftin. Bas jako.", Approved = true },
-                new PharmacyNotification { Id = 2, Content = "Brufen nam je jeftin. Bas jako.", Approved = true }
+                new PharmacyNotification { Id = 1, Content = "Lexapro on sale! Get 15% off!", Approved = true, PharmacyId = "Jankovic" },
+                new PharmacyNotification { Id = 2, Content = "Aspirin on sale! Get 11% off!", Approved = true, PharmacyId = "Liman" }
             );
 
             modelBuilder.Entity<Specialization>().HasData(

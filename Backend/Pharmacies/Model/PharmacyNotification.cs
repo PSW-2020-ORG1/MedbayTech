@@ -14,20 +14,23 @@ namespace PharmacyIntegration.Model
         public int Id { get; set; }
         public string Content { get; set; }
         public bool Approved { get; set; }
-
+        [ForeignKey("Pharmacy")]
+        public string PharmacyId { get; set; }
+        public virtual Pharmacy Pharmacy{ get; set;}
         public PharmacyNotification() { }
 
-        public PharmacyNotification(string Content)
+        public PharmacyNotification(string content,  string pharmacyId)
         {
-            this.Content = Content;
+            this.Content = content;
             this.Approved = false;
+            this.PharmacyId = pharmacyId;
         }
 
-        public PharmacyNotification(string content, int id=0, bool apprved=true)
+        public PharmacyNotification(string content)
         {
-            Id = id;
+            Id = 0;
             Content = content;
-            Approved = apprved;
+            Approved = true;
         }
 
 

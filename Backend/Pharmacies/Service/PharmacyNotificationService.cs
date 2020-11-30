@@ -20,28 +20,23 @@ namespace PharmacyIntegration.Service
             this._context = context;
         }*/
 
+        private IPharmacyRepository _pharmacyRepository;
+
         private IPharmacyNotificationRepository _pharmacyNotificationRepository;
 
-        public PharmacyNotificationService(IPharmacyNotificationRepository pharmacyNotificationRepository)
+        public PharmacyNotificationService(IPharmacyNotificationRepository pharmacyNotificationRepository, IPharmacyRepository pharmacyRepository)
         {
             _pharmacyNotificationRepository = pharmacyNotificationRepository;
+            _pharmacyRepository = pharmacyRepository;
         }
 
         public PharmacyNotification Add(string recivedNotification)
         {
-            string content;
-            try
-            {
-                dynamic data = JsonConvert.DeserializeObject(recivedNotification);
-                content = data.content;
-            }
-            catch (Exception)
-            {
-                content = "Failed to create content!";
-            }
-            PharmacyNotification pharmacyNotification = new PharmacyNotification(content);
+            PharmacyNotification pharmacyNotification = ParseNotification(recivedNotification);
             pharmacyNotification.Id = getNextId();
-            return _pharmacyNotificationRepository.Create(pharmacyNotification);
+            if (CheckPermisionToSendNotification(pharmacyNotification.PharmacyId))
+                return _pharmacyNotificationRepository.Create(pharmacyNotification);
+            return null;
         }
 
         private int getNextId()
@@ -68,5 +63,31 @@ namespace PharmacyIntegration.Service
 
         public PharmacyNotification Get(int id) => _pharmacyNotificationRepository.GetObject(id);
         public IEnumerable<PharmacyNotification> GetAll() => _pharmacyNotificationRepository.GetAll();
+
+        public bool CheckPermisionToSendNotification(string pharmacyId)
+        {
+            Pharmacy p = _pharmacyRepository.GetObject(pharmacyId);
+            if (p == null ) return false;
+            return p.RecieveNotificationFrom;
+        }
+
+        private PharmacyNotification ParseNotification(string recivedNotification)
+        {
+            string content;
+            string pharmacyId;
+            try
+            {
+                dynamic data = JsonConvert.DeserializeObject(recivedNotification);
+                content = data.content;
+                pharmacyId = data.pharmacyId;
+            }
+            catch (Exception)
+            {
+                content = "Failed to parse content!";
+                pharmacyId = " ";
+            }
+            PharmacyNotification pharmacyNotification = new PharmacyNotification(content, pharmacyId);
+            return pharmacyNotification;
+        }
     }
 }
