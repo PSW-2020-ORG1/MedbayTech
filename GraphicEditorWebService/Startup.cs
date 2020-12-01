@@ -20,6 +20,8 @@ using Backend.Medications.Repository.FileRepository;
 using Backend.Medications.Repository.MySqlRepository;
 using Repository.RoomRepository;
 using Backend.Rooms.Repository.MySqlRepository;
+using Backend.Users.Repository;
+using Backend.Users.Repository.MySqlRepository;
 
 namespace GraphicEditorWebService
 {
@@ -39,13 +41,15 @@ namespace GraphicEditorWebService
             services.AddTransient<IRoomRepository, RoomSqlRepository>();
             services.AddTransient<IHospitalEquipmentRepository, HospitalEquipmentSqlRepository>();
             services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
+            services.AddTransient<IDoctorRepository, DoctorSqlRepository>();
 
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IHospitalEquipmentService, HospitalEquipmentService>();
             services.AddScoped<IMedicationService, MedicationService>();
-// services.AddScoped<IDoctorService, DoctorService>();
+            services.AddScoped<IDoctorService, DoctorService>();
             services.AddControllers();
             services.AddCors();
         }
