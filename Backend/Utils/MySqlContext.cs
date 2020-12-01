@@ -47,7 +47,8 @@ namespace Model
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Renovation> Renovations { get; set; }
         public DbSet<Hospital> Hospitals { get; set; }
-        public DbSet<HospitalEquipment> HospitalEquipment { get; set; }
+        public DbSet<HospitalEquipment> HospitalEquipments { get; set; }
+
         public DbSet<Bed> Beds { get; set; }
         public DbSet<Vaccines> Vaccines { get; set; }
         public DbSet<Therapy> Therapies { get; set; }
@@ -234,6 +235,7 @@ namespace Model
                 new Diagnosis { Id = 2, Name = "Dijagnoza2", Symptoms = new List<Symptoms>(), MedicalRecordId = 1, ExaminationSurgeryId = 1}
             );
 
+
             modelBuilder.Entity<FamilyIllnessHistory>().HasData(
                 new FamilyIllnessHistory { Id = 1, RelativeMember = Relative.Father, Diagnosis = new List<Diagnosis>(), MedicalRecordId = 1},
                 new FamilyIllnessHistory { Id = 2, RelativeMember = Relative.Grandparents, Diagnosis = new List<Diagnosis>(), MedicalRecordId = 1}
@@ -251,19 +253,20 @@ namespace Model
                 new Specialization { Id = 2, SpecializationName = "Hirurgija"/*, DoctorId = "2406978890047"*/ }
             );
 
-            modelBuilder.Entity<Allergens>().HasData(new Allergens { Id = 1, Allergen = "Polen", MedicalRecordId = 1 }, new Allergens { Id = 2, Allergen = "Prasina", MedicalRecordId = 1 });
 
 
 
             modelBuilder.Entity<SideEffect>().HasData(
+
                 new SideEffect { Id = 1, Frequency = SideEffectFrequency.Rare, SideEffectsId = 1 },
 
                 new SideEffect { Id = 2, Frequency = SideEffectFrequency.Common, SideEffectsId = 1 }
+
             );
 
             modelBuilder.Entity<Medication>().HasData(
 
-                
+
                 new Medication { Id = 1, Med = "Brufen", Dosage="400mg", RoomId= 1111, Status = MedStatus.Approved, Company = "Famar", Quantity = 10, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 2, Med = "Xanax", Dosage = "20mg", RoomId = 1111, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 3, Med = "Panadon", Dosage = "500mg", RoomId = 1111, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
@@ -294,7 +297,7 @@ namespace Model
                 new Medication { Id = 28, Med = "Claritin", Dosage = "25mg", RoomId = 1213, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 29, Med = "Flobian", Dosage = "500mg", RoomId = 1213, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 30, Med = "Lasix", Dosage = "75mg", RoomId = 1213, Status = MedStatus.Validation, Company = "Galenika", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
-                new Medication { Id = 31, Med = "Brufen", Dosage="200mg", RoomId= 1214, Status = MedStatus.Approved, Company = "Famar", Quantity = 10, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 31, Med = "Brufen", Dosage = "200mg", RoomId = 1214, Status = MedStatus.Approved, Company = "Famar", Quantity = 10, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 32, Med = "Xanax", Dosage = "40mg", RoomId = 1214, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 33, Med = "Panadon", Dosage = "200mg", RoomId = 1214, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 34, Med = "Diazepam", Dosage = "60mg", RoomId = 1214, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
@@ -304,7 +307,7 @@ namespace Model
                 new Medication { Id = 38, Med = "Hemomicin", Dosage = "100mg", RoomId = 1214, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 39, Med = "Klonopin", Dosage = "20mg", RoomId = 1214, Status = MedStatus.Validation, Company = "Galenika", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 40, Med = "Demerol", Dosage = "30mg", RoomId = 1214, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
-                new Medication { Id = 41, Med = "Brufen", Dosage="400mg", RoomId= 2102, Status = MedStatus.Approved, Company = "Famar", Quantity = 10, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 41, Med = "Brufen", Dosage = "400mg", RoomId = 2102, Status = MedStatus.Approved, Company = "Famar", Quantity = 10, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 42, Med = "Xanax", Dosage = "20mg", RoomId = 2102, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 43, Med = "Panadon", Dosage = "500mg", RoomId = 2102, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 44, Med = "Diazepam", Dosage = "30mg", RoomId = 2102, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
@@ -333,7 +336,7 @@ namespace Model
                 new Medication { Id = 68, Med = "Claritin", Dosage = "25mg", RoomId = 2106, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 69, Med = "Flobian", Dosage = "500mg", RoomId = 2106, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 70, Med = "Lasix", Dosage = "75mg", RoomId = 2106, Status = MedStatus.Validation, Company = "Galenika", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
-                new Medication { Id = 71, Med = "Brufen", Dosage="200mg", RoomId= 2106, Status = MedStatus.Approved, Company = "Famar", Quantity = 10, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 71, Med = "Brufen", Dosage = "200mg", RoomId = 2106, Status = MedStatus.Approved, Company = "Famar", Quantity = 10, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 72, Med = "Xanax", Dosage = "40mg", RoomId = 2107, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 73, Med = "Panadon", Dosage = "200mg", RoomId = 2107, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 74, Med = "Diazepam", Dosage = "60mg", RoomId = 2107, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
@@ -348,7 +351,7 @@ namespace Model
                 new Medication { Id = 83, Med = "Zoloft", Dosage = "200mg", RoomId = 2202, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 84, Med = "Lexilium", Dosage = "80mg", RoomId = 2202, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 85, Med = "Bensedin", Dosage = "10mg", RoomId = 2202, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
-                new Medication { Id = 86, Med = "Brufen", Dosage="100mg", RoomId= 2202, Status = MedStatus.Approved, Company = "Famar", Quantity = 10, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
+                new Medication { Id = 86, Med = "Brufen", Dosage = "100mg", RoomId = 2202, Status = MedStatus.Approved, Company = "Famar", Quantity = 10, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 87, Med = "Xanax", Dosage = "60mg", RoomId = 2202, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 88, Med = "Panadon", Dosage = "250mg", RoomId = 2202, Status = MedStatus.Validation, Company = "Hemofarm", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
                 new Medication { Id = 89, Med = "Diazepam", Dosage = "800mg", RoomId = 2202, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() },
@@ -366,6 +369,7 @@ namespace Model
                 new Medication { Id = 101, Med = "Penicillin", Dosage = "100mg", RoomId = 2206, Status = MedStatus.Validation, Company = "Bosnalijek", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1, Allergens = new List<Allergens>(), AlternativeMedication = new List<Medication>(), SideEffects = new List<SideEffect>() }
             );
 
+
             modelBuilder.Entity<MedicationUsage>().HasData(
                     new MedicationUsage { Id = 1, Usage = 4, MedicationId = 1, Date = new DateTime(2020, 8, 1) },
                     new MedicationUsage { Id = 2, Usage = 10, MedicationId = 2, Date = new DateTime(2020, 9, 1) },
@@ -373,12 +377,17 @@ namespace Model
                     new MedicationUsage { Id = 4, Usage = 1, MedicationId = 2, Date = new DateTime(2020, 5, 1) }
                 );
 
-
             modelBuilder.Entity<Therapy>().HasData(
                 new Therapy { Id = 1, HourConsumption = 6, MedicationId = 1, MedicalRecordId = 1},
                 new Therapy { Id = 2, HourConsumption = 10, MedicationId = 2, MedicalRecordId = 1 }
             );
 
+
+            modelBuilder.Entity<Allergens>().HasData(
+
+                new Allergens { Id = 1, Allergen = "Polen",  MedicalRecordId = 1,/* MedicationId = 1*/},
+                new Allergens { Id = 2, Allergen = "Prasina", MedicalRecordId = 1, /*MedicationId = 2 */}
+            );
 
             modelBuilder.Entity<Patient>().HasData(
                 new Patient
@@ -398,7 +407,6 @@ namespace Model
                     Phone = "065/123-4554",
                     PlaceOfBirthId = 11000,
                     Profession = "vodoinstalater",
-                  
                     ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
                     IsGuestAccount = false,
                     ChosenDoctorId = "2406978890047"
@@ -428,8 +436,8 @@ namespace Model
                  OnCall = true,
                  PatientReview = 4.5,
                  DepartmentId = 1,
-                 ExaminationRoomId = 1,
-                 OperationRoomId = 2,
+                 ExaminationRoomId = 1003,
+                 OperationRoomId = 1114,
                  Specializations = new List<Specialization>()
              }
             );
@@ -471,7 +479,7 @@ namespace Model
                 new Department { Id = 13, Name = "Infektivno", Floor = 1, HospitalId = 3 }
             );
 
-            
+
             modelBuilder.Entity<Room>().HasData(
 
                 new Room { Id = 1, RoomNumber = 1, RoomLabel = "null", RoomUse = "null", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() },
@@ -779,7 +787,9 @@ namespace Model
                 new EquipmentType { Id = 40, Name = "Dialysis machine"
 
                 }   
-            );    
+
+            );
+
 
             modelBuilder.Entity<ExaminationSurgery>().HasData(
                 new ExaminationSurgery 
@@ -821,7 +831,9 @@ namespace Model
                     Type = TreatmentType.Prescription,
                     ExaminationSurgeryId = 1 
                 }
-            ); modelBuilder.Entity<Prescription>().HasData(
+            );
+
+            modelBuilder.Entity<Prescription>().HasData(
                 new Prescription
                 {
                     Id = 1,

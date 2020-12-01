@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Text;
 using Backend.Medications.Model;
@@ -10,6 +11,7 @@ using Repository;
 namespace Backend.Medications.Repository.MySqlRepository
 {
     public class MedicationSqlRepository : IMedicationRepository
+
     {
 
         private MySqlContext _context;
@@ -18,12 +20,6 @@ namespace Backend.Medications.Repository.MySqlRepository
         public MedicationSqlRepository(MySqlContext context)
         {
             _context = context;
-        }
-        public Medication Create(Medication entity)
-        {
-            _context.Medications.Add(entity);
-            _context.SaveChanges();
-            return entity;
         }
 
         public bool Delete(Medication entity)
@@ -42,24 +38,36 @@ namespace Backend.Medications.Repository.MySqlRepository
         public IEnumerable<Medication> GetAll() =>
             _context.Medications.ToList();
 
+        public Medication Create(Medication entity)
+        {
+            if (ExistsInSystem(entity.Id))
+            {
+                return null;
+            }
+            _context.Medications.Add(entity);
+            _context.SaveChanges();
+            return entity;
+        }
+
         public IEnumerable<Medication> GetAllApproved()
         {
-            throw new NotImplementedException();
+            return _context.Medications.ToList();
         }
 
         public IEnumerable<Medication> GetAllOnValidation()
         {
-            throw new NotImplementedException();
+            return _context.Medications.ToList();
         }
 
         public IEnumerable<Medication> GetAllRejected()
         {
-            throw new NotImplementedException();
+            return _context.Medications.ToList();
         }
 
         public int GetNextID()
         {
             throw new NotImplementedException();
+
         }
 
         public Medication GetObject(int id) =>
@@ -71,5 +79,7 @@ namespace Backend.Medications.Repository.MySqlRepository
             _context.SaveChanges();
             return entity;
         }
+
+
     }
 }

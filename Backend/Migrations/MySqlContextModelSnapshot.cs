@@ -2166,7 +2166,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("HospitalEquipment");
+                    b.ToTable("HospitalEquipments");
 
                     b.HasData(
                         new
@@ -5528,10 +5528,10 @@ namespace Backend.Migrations
                             VacationLeave = false,
                             WorkersID = 0,
                             DepartmentId = 1,
-                            ExaminationRoomId = 1,
+                            ExaminationRoomId = 1003,
                             LicenseNumber = "001",
                             OnCall = true,
-                            OperationRoomId = 2,
+                            OperationRoomId = 1114,
                             PatientReview = 4.5
                         });
                 });

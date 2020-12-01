@@ -8,9 +8,13 @@ namespace Backend.Medications.Service
 {
     public interface IMedicationService
     {
+
         Medication Add(Medication medication);
         List<Medication> GetAllMedicationsByNameOrId(string textSearchBox);
         Medication RejectMedication(Medication medication);
+      
+        List<Medication> GetAllMedicationByRoomId(string textSearchBox);
+
 
         Medication ApproveMedication(Medication medication);
 
@@ -37,5 +41,6 @@ namespace Backend.Medications.Service
 
         Medication UpdateDosageOfIngredients(Medication medication, DosageOfIngredient dosageOfIngredient);
         Medication UpdateAllergens(Medication medication, Allergens allergens);
+
     }
 }
