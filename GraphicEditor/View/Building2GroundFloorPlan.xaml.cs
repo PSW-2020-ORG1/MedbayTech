@@ -187,36 +187,44 @@ namespace GraphicEditor
 
         private void AdditionalInformationPatientRoom(object sender, MouseButtonEventArgs e)
         {
+            System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
+            int roomId = Int32.Parse(r.Uid);
             if (page.getRestriction() == 0)
             {
-                AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom();
+                AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom(roomId);
                 additionalInformation.ShowDialog();
             }
         }
 
         private void AdditionalInformationOperatingRoom(object sender, MouseButtonEventArgs e)
         {
+            System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
+            int roomId = Int32.Parse(r.Uid);
             if (page.getRestriction() == 0)
             {
-                AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom();
+                AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom(roomId);
                 additionalInformation.ShowDialog();
             }
         }
 
         private void AdditionalInformationExaminationRoom(object sender, MouseButtonEventArgs e)
         {
+            System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
+            int roomId = Int32.Parse(r.Uid);
             if (page.getRestriction() == 0)
             {
-                AdditionalInformationExaminationRoom additionalInformation = new AdditionalInformationExaminationRoom();
+                AdditionalInformationExaminationRoom additionalInformation = new AdditionalInformationExaminationRoom(roomId);
                 additionalInformation.ShowDialog();
             }
         }
 
         private void AdditionalInformationAuxiliaryRoom(object sender, MouseButtonEventArgs e)
         {
+            System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
+            int roomId = Int32.Parse(r.Uid);
             if (page.getRestriction() == 0)
             {
-                AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom();
+                AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom(roomId);
                 additionalInformation.ShowDialog();
             }
         }

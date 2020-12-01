@@ -9,6 +9,8 @@ namespace Backend.Medications.Service
     public interface IMedicationService
     {
         public List<Medication> GetAllMedicationsByNameOrId(string textSearchBox);
+        public Medication UpdateMedicationDataBase(Medication medication);
+        public List<Medication> GetAllMedicationByRoomId(string textSearchBox);
         public Medication RejectMedication(Medication medication);
 
         public Medication ApproveMedication(Medication medication);

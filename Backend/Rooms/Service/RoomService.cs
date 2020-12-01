@@ -48,10 +48,37 @@ namespace Service.RoomService
             return null;
         }
 
+        public List<Room> GetRoomsByRoomLabelorRoomUse(string textBoxSearch)
+        {
+            List<Room> rooms = new List<Room>();
+            rooms = _context.Rooms.ToList().Where(p => p.RoomLabel.ToLower().Contains(textBoxSearch)).ToList();
+            if (rooms.Count != 0)
+            {
+                return rooms;
+            }
+            rooms = _context.Rooms.ToList().Where(p => p.RoomUse.ToLower().Contains(textBoxSearch)).ToList();
+            return rooms;
+        }
+
+        public Room GetRoomById(int id)
+        {
+            return _context.Rooms.ToList().Find(p => p.Id == id);
+        }
+
+        public Room UpdateRoomDataBase(Room room)
+        {
+            _context.Rooms.Update(room);
+            _context.SaveChanges();
+            return room;
+        }
+
+        /*
         public List<Room> GetRoomsByRoomLabelorRoomUse ( string textBoxSearch ) =>
             _roomRepository.GetAll().ToList().FindAll(r =>
             r.RoomLabel.Contains(textBoxSearch, System.StringComparison.CurrentCultureIgnoreCase)
             || r.RoomUse.Contains(textBoxSearch, System.StringComparison.CurrentCultureIgnoreCase));
+
+        */
 
         public Room UpdateRoom ( Room room ) => _roomRepository.Update(room);
 

@@ -9,6 +9,8 @@ namespace Backend.Rooms.Service
     {
         public Room GetRoomByRoomNumber(int roomNumber);
         public List<Room> GetRoomsByRoomLabelorRoomUse(string textBoxSearch);
+        public Room GetRoomById(int roomId);
+        public Room UpdateRoomDataBase(Room room);
         public Room UpdateRoom(Room room);
         public Room AddRoomToDepartment(Room room, Department department);
         public Room AddRoom(Room room);
