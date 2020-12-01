@@ -30,7 +30,7 @@ namespace MedbayTechUnitTests.Examinations
 
             reports.ShouldBeEmpty();
         }
-
+        /*
         [Fact]
         public void Advanced_report_found()
         {
@@ -42,6 +42,7 @@ namespace MedbayTechUnitTests.Examinations
 
             reports.ShouldNotBeEmpty();
         } 
+        */
 
         public static IExaminationSurgeryRepository CreateStubRepository()
         {

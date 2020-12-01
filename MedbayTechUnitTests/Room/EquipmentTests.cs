@@ -12,7 +12,7 @@ using Xunit;
 namespace MedbayTechUnitTests
 {
     public class EquipmentTests
-    {/*
+    {
         [Theory]
         [MemberData(nameof(EquipmentQueries))]
         public void Equipment_search ( string query, bool isEmpty )
@@ -55,6 +55,6 @@ namespace MedbayTechUnitTests
             hospitalEquipment.Add(h5);
             hospitalEquipment.Add(h6);
             return hospitalEquipment;
-        }*/
+        }
     }
 }
