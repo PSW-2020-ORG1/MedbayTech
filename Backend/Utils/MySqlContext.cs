@@ -41,7 +41,7 @@ namespace Model
         public DbSet<Article> Articles { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Renovation> Renovations { get; set; }
-        public DbSet<HospitalEquipment> HospitalEquipment { get; set; }
+        public DbSet<HospitalEquipment> HospitalEquipments { get; set; }
         public DbSet<Bed> Beds { get; set; }
         public DbSet<Vaccines> Vaccines { get; set; }
         public DbSet<Therapy> Therapies { get; set; }

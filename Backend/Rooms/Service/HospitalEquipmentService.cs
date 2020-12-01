@@ -16,16 +16,11 @@ namespace Service.RoomService
 {
     public class HospitalEquipmentService : IHospitalEquipmentService
     {
-        private MySqlContext _context;
-
-        public HospitalEquipmentService ( MySqlContext context )
-        {
-            _context = context;
-        }
+        public IHospitalEquipmentRepository _hospitalEquipmentRepository;
 
         public HospitalEquipmentService ( IHospitalEquipmentRepository hospitalEquipmentRepository )
         {
-            this._hospitalEquipmentRepository = hospitalEquipmentRepository;
+            _hospitalEquipmentRepository = hospitalEquipmentRepository;
         }
 
         
@@ -48,8 +43,8 @@ namespace Service.RoomService
             */
 
             if (Int32.TryParse(textBoxSearch, out int id))
-                return _context.HospitalEquipment.Where(med => med.Id == id).ToList();
-            return _context.HospitalEquipment.Where(med => med.EquipmentType.Name.ToLower().Contains(textBoxSearch.ToLower())).ToList();
+                return _hospitalEquipmentRepository.GetAll().Where(med => med.Id == id).ToList();
+            return _hospitalEquipmentRepository.GetAll().Where(med => med.EquipmentType.Name.ToLower().Contains(textBoxSearch.ToLower())).ToList();
         }
 
         public HospitalEquipment AddEquipment ( HospitalEquipment equipment ) => _hospitalEquipmentRepository.Create(equipment);
@@ -71,6 +66,5 @@ namespace Service.RoomService
 
         public IEnumerable<HospitalEquipment> GetAllEquipment ( ) => _hospitalEquipmentRepository.GetAll();
 
-        public IHospitalEquipmentRepository _hospitalEquipmentRepository;
     }
 }

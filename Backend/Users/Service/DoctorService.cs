@@ -5,26 +5,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Backend.Users.Repository;
 
 namespace Backend.Users.Service
 {
     public class DoctorService : IDoctorService
     {
-        private MySqlContext _context;
+        private IDoctorRepository _doctorRepository;
 
-        public DoctorService(MySqlContext context)
+        public DoctorService(IDoctorRepository doctorRepository)
         {
-            _context = context;
+            _doctorRepository = doctorRepository;
         }
 
         public Doctor GetDoctorByRoomExaminationRoom(int roomId)
         {
-            return _context.Doctors.ToList().Find(p => p.ExaminationRoomId == roomId);
+            return _doctorRepository.GetAll().ToList().Find(p => p.ExaminationRoomId == roomId);
         }
         public Doctor UpdateDoctorDataBase(Doctor doctor)
         {
-            _context.Doctors.Update(doctor);
-            _context.SaveChanges();
+            _doctorRepository.Update(doctor);
             return doctor;
         }
     }
