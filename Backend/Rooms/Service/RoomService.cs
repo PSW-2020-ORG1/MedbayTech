@@ -21,16 +21,9 @@ namespace Service.RoomService
 
         private const string APPOINTMENTS_SCHEDULED = "Room has appointments shceduled in future.";
 
-        private MySqlContext _context;
-
         public RoomService ( IRoomRepository roomRepository )
         {
             _roomRepository = roomRepository;
-        }
-
-        public RoomService ( MySqlContext context )
-        {
-            _context = context;
         }
 
         public IEnumerable<Room> GetAllRooms ( ) => _roomRepository.GetAll();
@@ -51,24 +44,23 @@ namespace Service.RoomService
         public List<Room> GetRoomsByRoomLabelorRoomUse(string textBoxSearch)
         {
             List<Room> rooms = new List<Room>();
-            rooms = _context.Rooms.ToList().Where(p => p.RoomLabel.ToLower().Contains(textBoxSearch)).ToList();
+            rooms = _roomRepository.GetAll().ToList().Where(p => p.RoomLabel.ToLower().Contains(textBoxSearch)).ToList();
             if (rooms.Count != 0)
             {
                 return rooms;
             }
-            rooms = _context.Rooms.ToList().Where(p => p.RoomUse.ToLower().Contains(textBoxSearch)).ToList();
+            rooms = _roomRepository.GetAll().ToList().Where(p => p.RoomUse.ToLower().Contains(textBoxSearch)).ToList();
             return rooms;
         }
 
         public Room GetRoomById(int id)
         {
-            return _context.Rooms.ToList().Find(p => p.Id == id);
+            return _roomRepository.GetAll().ToList().Find(p => p.Id == id);
         }
 
         public Room UpdateRoomDataBase(Room room)
         {
-            _context.Rooms.Update(room);
-            _context.SaveChanges();
+            _roomRepository.Update(room);
             return room;
         }
 
