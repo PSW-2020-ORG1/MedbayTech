@@ -7,19 +7,52 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
-    <Resource Include="View\Building1\arrowUp.png" />
+    <Compile Remove="View\Building1\**" />
+    <Compile Remove="View\Building2\**" />
+    <EmbeddedResource Remove="View\Building1\**" />
+    <EmbeddedResource Remove="View\Building2\**" />
+    <None Remove="View\Building1\**" />
+    <None Remove="View\Building2\**" />
+    <Page Remove="View\Building1\**" />
+    <Page Remove="View\Building2\**" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Building1\arrowDown.png" />
+    <None Remove="appsettings.Development.json" />
+    <None Remove="appsettings.json" />
+    <None Remove="View\arrowDown.png" />
+    <None Remove="View\arrowUp.png" />
+    <None Remove="View\WhiteLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Building2\arrowDown.png" />
+    <Content Include="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Building2\arrowUp.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.9" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.3" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Backend\Backend.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\arrowDown.png" />
+    <Resource Include="View\arrowUp.png" />
+    <Resource Include="View\WhiteLogo.png" />
   </ItemGroup>
 </Project>

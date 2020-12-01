@@ -5,25 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicEditor"
         mc:Ignorable="d"
-        Title="AdditionalInformationPatientRoom" Height="350" Width="400" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" BorderBrush="Black">
-    <Grid>
-        <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Top" Background="#006481">
-            <Image Width="60" Margin="5,0,0,0" Source="GraphicEditor/WhiteLogo.png"/>
+        Title="AdditionalInformationPatientRoom" Height="350" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" BorderBrush="Black" WindowStyle="None">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="40" VerticalAlignment="Top" Background="#006481">
+            <Image Name="imageLogo" Width="60" Margin="5,0,0,0" />
             <Label Content="Additiondal information" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="25" Foreground="White" Width="327" Height="40"/>
         </StackPanel>
-        <Label Content="Floor" HorizontalAlignment="Left" Margin="98,61,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-        <Label Content="Ward" HorizontalAlignment="Left" Margin="96,93,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-        <Label Content="Room label" HorizontalAlignment="Left" Margin="75,121,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-        <Label Content="Bed capacity" HorizontalAlignment="Left" Margin="70,153,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-        <Label Content="Occupied beds" HorizontalAlignment="Left" Margin="62,183,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-        <Label Content="Available beds" HorizontalAlignment="Left" Margin="64,215,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-        <TextBox HorizontalAlignment="Left" Height="24" Margin="210,68,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Height="24" Margin="210,96,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="210,128,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="210,159,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Height="24" Margin="210,189,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Height="24" Margin="210,221,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
-        <Button x:Name="Ok" Content="Ok" HorizontalAlignment="Left" Height="30" Margin="138,274,0,0" VerticalAlignment="Top" Width="130" Foreground="White" Background="#2B78E4" FontSize="20" Click="Ok_Click" />
-
-    </Grid>
+        <DockPanel DockPanel.Dock="Bottom">
+            <Button DockPanel.Dock="Left" x:Name="buttonSave" Content="Save" HorizontalAlignment="Left" Height="30" Margin="5,5,5,5" VerticalAlignment="Top" Width="130" Foreground="White" Background="#2B78E4" Click="Save_Click" FontSize="20"/>
+            <Button DockPanel.Dock="Right" x:Name="buttonCancel" Content="Cancel" Height="30" Margin="5,5,5,5" VerticalAlignment="Top" Width="130" Foreground="White" Background="#2B78E4" FontSize="20" Click="Cancel_Click" HorizontalAlignment="Right"/>
+        </DockPanel>
+        <Grid>
+            <Label Content="Floor" HorizontalAlignment="Left" Margin="98,61,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+            <Label Content="Ward" HorizontalAlignment="Left" Margin="96,93,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+            <Label Content="Room label" HorizontalAlignment="Left" Margin="75,121,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+            <Label Content="Bed capacity" HorizontalAlignment="Left" Margin="70,153,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+            <Label Content="Occupied beds" HorizontalAlignment="Left" Margin="62,183,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+            <Label Content="Available beds" HorizontalAlignment="Left" Margin="64,215,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+            <TextBox HorizontalAlignment="Left" Height="24" Margin="210,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Text="{Binding Department.Floor, Mode=TwoWay}" />
+            <TextBox HorizontalAlignment="Left" Height="24" Margin="210,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Text="{Binding Department.Name, Mode=TwoWay}"/>
+            <TextBox HorizontalAlignment="Left" Height="22" Margin="210,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Text="{Binding RoomLabel, Mode=TwoWay}"/>
+            <TextBox HorizontalAlignment="Left" Height="22" Margin="210,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Text="{Binding BedsCapacity, Mode=TwoWay}"/>
+            <TextBox Name ="textBoxOccupiedBeds"  HorizontalAlignment="Left" Height="24" Margin="210,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" IsReadOnly="True"/>
+            <TextBox HorizontalAlignment="Left" Height="24" Margin="210,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Text="{Binding BedsFree, Mode=TwoWay}" IsReadOnly="True"/>
+        </Grid>
+    </DockPanel>
 </Window>

@@ -4,11 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GraphicEditor"
-             mc:Ignorable="d" 
-             d:DesignHeight="220" d:DesignWidth="250" x:Name="legend">
+             mc:Ignorable="d" d:DesignWidth="250" x:Name="legend" Height="250">
     <StackPanel VerticalAlignment="Center" Margin="0,0,-0.4,0">
-        <Label DockPanel.Dock="Top" Content="Legend:" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White"/>
-        <Grid Height="150" RenderTransformOrigin="0.5,0.5" Margin="20,20,50,20">
+        <Label DockPanel.Dock="Top" Content="Legend:" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White" Height="39"/>
+        <Grid Height="177" RenderTransformOrigin="0.5,0.5" Margin="20,20,50,20">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1"/>
@@ -28,11 +27,23 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Rectangle Fill="#dca0d3" Stroke="Black" StrokeThickness="2"  Margin="5" Grid.Row="3"></Rectangle>
             <Rectangle Fill="#77c588" Stroke="Black" StrokeThickness="2" Margin="5" Grid.Row="2" Grid.RowSpan="1"/>
             <Rectangle Fill="#208e38" Stroke="Black" StrokeThickness="2" Grid.ColumnSpan="1" Grid.Row="1" Margin="5"/>
             <Rectangle Fill="#9da49f" Stroke="Black" StrokeThickness="2" Grid.ColumnSpan="1" Margin="5,1,5,10"/>
+            <Rectangle Fill="#ffdf99" Stroke="Black" StrokeThickness="2"  Margin="5" Grid.Row="4"></Rectangle>
+            <Label Grid.ColumnSpan="3" Margin="3,1,1,3" Grid.Row="4" RenderTransformOrigin="0.5,0.5" Foreground="White" FontWeight="SemiBold" Grid.Column="1">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Label.RenderTransform> Storage room
+            </Label>
             <Label Grid.ColumnSpan="3" Margin="3,1,1,3" Grid.Row="3" RenderTransformOrigin="0.5,0.5" Foreground="White" FontWeight="SemiBold" Grid.Column="1">
                 <Label.RenderTransform>
                     <TransformGroup>

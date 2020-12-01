@@ -98,7 +98,7 @@ namespace MedbayTechUnitTests
             Address address = new Address(1, "Radnicka", 2, 4, 1, city);
             InsurancePolicy insurancePolicy = new InsurancePolicy("001", "Dunav Osiguranje", new DateTime(2015, 1, 1), new DateTime(2025, 1, 1));
             Department department = new Department(1, "dep1", 2, new Hospital(1, ".", "Bolnica", address));
-            Room room = new Room(1, 1, RoomType.Examr, department);
+            Room room = new Room(1, 1, RoomType.ExaminationRoom, department);
             Doctor doctor = new Doctor("Petar", "Petrovic", new DateTime(1980, 1, 1), "001", "pera@gmail.com", "pera", "01234", "sifra", EducationLevel.bachelor, Gender.MALE,
                 "lekar", city, address, insurancePolicy, ".", department, "001", room, room, ".");
             Patient patient = new Patient("Marko", "Markovic", new DateTime(1975, 6, 9), "2406978890046", "marko@gmail.com", "marko12", "password",

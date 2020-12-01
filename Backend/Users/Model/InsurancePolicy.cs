@@ -15,8 +15,12 @@ namespace Model.Users
    public class InsurancePolicy : IIdentifiable<string>
     {
         [Key]
-        public string Id { get;  set; }
-        public string Company { get;  set; }
+        public string Id { get; set; }
+        public string Company { get; set; }
+
+        [NotMapped]
+        public Period Period { get; set; }
+
         public DateTime StartTime { get; set; }
 
         public DateTime EndTime { get; set; }

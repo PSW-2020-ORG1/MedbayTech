@@ -5,29 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicEditor"
         mc:Ignorable="d"
-        Title="AdditionalInformationExaminationRoom" Height="450" Width="500" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" BorderBrush="Black">
-    <Grid>
-        <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Top" Background="#006481">
-            <Image Width="60" Margin="5,0,0,0" Source="WhiteLogo.png"/>
+        Title="AdditionalInformationExaminationRoom" Height="450" Width="500" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" BorderBrush="Black" WindowStyle="None">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="40" VerticalAlignment="Top" Background="#006481">
+            <Image Name="imageLogo" Width="60" Margin="5,0,0,0" />
             <Label Content="Additiondal information" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="25" Foreground="White" Width="327" Height="40"/>
         </StackPanel>
-        <Label Content="Room label" HorizontalAlignment="Left" Margin="124,45,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-        <Label Content="Room use" HorizontalAlignment="Left" Margin="128,75,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-        <Label Content="Ward" HorizontalAlignment="Left" Margin="145,107,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-        <Label Content="Doctor" HorizontalAlignment="Left" Margin="140,139,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="252,51,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Height="24" Margin="252,81,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Height="24" Margin="252,113,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Height="24" Margin="252,145,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
+        <DockPanel DockPanel.Dock="Bottom">
+            <Button DockPanel.Dock="Left" x:Name="buttonSave" Content="Save" HorizontalAlignment="Left" Height="30" Margin="5,5,5,5" VerticalAlignment="Top" Width="130" Foreground="White" Background="#2B78E4" Click="Save_Click" FontSize="20"/>
+            <Button DockPanel.Dock="Right" x:Name="buttonCancel" Content="Cancel" Height="30" Margin="5,5,5,5" VerticalAlignment="Top" Width="130" Foreground="White" Background="#2B78E4" FontSize="20" Click="Cancel_Click" HorizontalAlignment="Right"/>
+        </DockPanel>
+        <Grid>
+            <Label Content="Room label" HorizontalAlignment="Left" Margin="124,45,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+            <Label Content="Room use" HorizontalAlignment="Left" Margin="128,75,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+            <Label Content="Ward" HorizontalAlignment="Left" Margin="145,107,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+            <Label Content="Doctor" HorizontalAlignment="Left" Margin="140,139,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+            <TextBox HorizontalAlignment="Left" Height="22" Margin="252,51,0,0" TextWrapping="Wrap" Text="{Binding RoomLabel}" VerticalAlignment="Top" Width="150"/>
+            <TextBox HorizontalAlignment="Left" Height="24" Margin="252,81,0,0" TextWrapping="Wrap" Text="{Binding RoomUse}" VerticalAlignment="Top" Width="150"/>
+            <TextBox HorizontalAlignment="Left" Height="24" Margin="252,113,0,0" TextWrapping="Wrap" Text="{Binding Department.Name}" VerticalAlignment="Top" Width="150"/>
+            <TextBox Name="textBoxDoctor" HorizontalAlignment="Left" Height="24" Margin="252,145,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150"/>
 
-        <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" Width="370" Height="175" Margin="70,179,54,0" RenderTransformOrigin="1.059,-0.838">
-            <DataGrid.Columns>
-                <DataGridTextColumn  Header="Date" Width="125"/>
-                <DataGridTextColumn Header="Time" Width="125"/>
-                <DataGridTextColumn Header="Patient" Width="125"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button x:Name="Ok" Content="Ok" HorizontalAlignment="Center" Height="30" Margin="184,370,180,0" VerticalAlignment="Top" Width="130" Foreground="White" Background="#2B78E4" FontSize="20" Click="Ok_Click" />
-
-    </Grid>
+            <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" Width="370" Height="175" Margin="70,179,54,0" RenderTransformOrigin="1.059,-0.838">
+                <DataGrid.Columns>
+                    <DataGridTextColumn  Header="Date" Width="125"/>
+                    <DataGridTextColumn Header="Time" Width="125"/>
+                    <DataGridTextColumn Header="Patient" Width="125"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
 </Window>

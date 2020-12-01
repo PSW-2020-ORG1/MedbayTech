@@ -230,8 +230,14 @@ namespace Backend.Migrations
                     b.Property<string>("Company")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("Dosage")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("Med")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("MedicalRecordId")
+                        .HasColumnType("int");
 
                     b.Property<int>("MedicationCategoryId")
                         .HasColumnType("int");
@@ -242,12 +248,17 @@ namespace Backend.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MedicationId");
+
+                    b.HasIndex("RoomId");
 
                     b.ToTable("Medications");
 
@@ -256,18 +267,1200 @@ namespace Backend.Migrations
                         {
                             Id = 1,
                             Company = "Famar",
+                            Dosage = "400mg",
                             Med = "Brufen",
+                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 10,
+                            RoomId = 1111,
                             Status = 0
                         },
                         new
                         {
                             Id = 2,
                             Company = "Goodwill",
-                            Med = "Metafex",
+                            Dosage = "20mg",
+                            Med = "Xanax",
+                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
+                            RoomId = 1111,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Company = "Hemofarm",
+                            Dosage = "500mg",
+                            Med = "Panadon",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1111,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Company = "Famar",
+                            Dosage = "30mg",
+                            Med = "Diazepam",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1111,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Company = "Goodwill",
+                            Dosage = "200mg",
+                            Med = "Andol",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1111,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Company = "Famar",
+                            Dosage = "100mg",
+                            Med = "Reglan",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1111,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Company = "Bosnalijek",
+                            Dosage = "400mg",
+                            Med = "Caffetin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1111,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Company = "Galenika",
+                            Dosage = "50mg",
+                            Med = "Plavix",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1111,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Company = "Famar",
+                            Dosage = "25mg",
+                            Med = "Ambien",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1111,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Company = "Galenika",
+                            Dosage = "200mg",
+                            Med = "Ranisan",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1111,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Company = "Hemofarm",
+                            Dosage = "50mg",
+                            Med = "Vicodin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1112,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Company = "Famar",
+                            Dosage = "40mg",
+                            Med = "Adderall",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1112,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Company = "Hemofarm",
+                            Dosage = "100mg",
+                            Med = "Hemomicin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1112,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Company = "Galenika",
+                            Dosage = "20mg",
+                            Med = "Klonopin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1112,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Company = "Hemofarm",
+                            Dosage = "30mg",
+                            Med = "Demerol",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1112,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Company = "Famar",
+                            Dosage = "40mg",
+                            Med = "OxyCotin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1112,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Company = "Goodwill",
+                            Dosage = "60mg",
+                            Med = "Percocet",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1112,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Company = "Bosnalijek",
+                            Dosage = "80mg",
+                            Med = "Ritalin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1112,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Company = "Famar",
+                            Dosage = "100mg",
+                            Med = "Eritromicin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1112,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Company = "Bosnalijek",
+                            Dosage = "200mg",
+                            Med = "Penicillin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1112,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Company = "Hemofarm",
+                            Dosage = "150mg",
+                            Med = "Amoksicilin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1213,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Company = "Galenika",
+                            Dosage = "200mg",
+                            Med = "Cefaleksin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1213,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Company = "Goodwill",
+                            Dosage = "500mg",
+                            Med = "Zoloft",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1213,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Company = "Famar",
+                            Dosage = "40mg",
+                            Med = "Lexilium",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1213,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Company = "Hemofarm",
+                            Dosage = "50mg",
+                            Med = "Bensedin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1213,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Company = "Hemofarm",
+                            Dosage = "50mg",
+                            Med = "Benedril",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1213,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Company = "Galenika",
+                            Dosage = "100mg",
+                            Med = "Letrox",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1213,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Company = "Famar",
+                            Dosage = "25mg",
+                            Med = "Claritin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1213,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Company = "Hemofarm",
+                            Dosage = "500mg",
+                            Med = "Flobian",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1213,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Company = "Galenika",
+                            Dosage = "75mg",
+                            Med = "Lasix",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1213,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Company = "Famar",
+                            Dosage = "200mg",
+                            Med = "Brufen",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 10,
+                            RoomId = 1214,
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Company = "Goodwill",
+                            Dosage = "40mg",
+                            Med = "Xanax",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1214,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Company = "Hemofarm",
+                            Dosage = "200mg",
+                            Med = "Panadon",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1214,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Company = "Famar",
+                            Dosage = "60mg",
+                            Med = "Diazepam",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1214,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Company = "Goodwill",
+                            Dosage = "400mg",
+                            Med = "Andol",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1214,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Company = "Hemofarm",
+                            Dosage = "50mg",
+                            Med = "Vicodin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1214,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Company = "Famar",
+                            Dosage = "80mg",
+                            Med = "Adderall",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1214,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Company = "Hemofarm",
+                            Dosage = "100mg",
+                            Med = "Hemomicin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1214,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Company = "Galenika",
+                            Dosage = "20mg",
+                            Med = "Klonopin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1214,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Company = "Hemofarm",
+                            Dosage = "30mg",
+                            Med = "Demerol",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 1214,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Company = "Famar",
+                            Dosage = "400mg",
+                            Med = "Brufen",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 10,
+                            RoomId = 2102,
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Company = "Goodwill",
+                            Dosage = "20mg",
+                            Med = "Xanax",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2102,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Company = "Hemofarm",
+                            Dosage = "500mg",
+                            Med = "Panadon",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2102,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Company = "Famar",
+                            Dosage = "30mg",
+                            Med = "Diazepam",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2102,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Company = "Goodwill",
+                            Dosage = "200mg",
+                            Med = "Andol",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2102,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Company = "Famar",
+                            Dosage = "100mg",
+                            Med = "Reglan",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2102,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Company = "Bosnalijek",
+                            Dosage = "400mg",
+                            Med = "Caffetin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2102,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Company = "Galenika",
+                            Dosage = "50mg",
+                            Med = "Plavix",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2102,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Company = "Famar",
+                            Dosage = "25mg",
+                            Med = "Ambien",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2102,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Company = "Galenika",
+                            Dosage = "200mg",
+                            Med = "Ranisan",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2102,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Company = "Hemofarm",
+                            Dosage = "50mg",
+                            Med = "Vicodin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2103,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Company = "Famar",
+                            Dosage = "40mg",
+                            Med = "Adderall",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2103,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Company = "Hemofarm",
+                            Dosage = "100mg",
+                            Med = "Hemomicin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2103,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Company = "Galenika",
+                            Dosage = "20mg",
+                            Med = "Klonopin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2103,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Company = "Hemofarm",
+                            Dosage = "30mg",
+                            Med = "Demerol",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2103,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Company = "Famar",
+                            Dosage = "40mg",
+                            Med = "OxyCotin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2103,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Company = "Goodwill",
+                            Dosage = "60mg",
+                            Med = "Percocet",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2103,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Company = "Bosnalijek",
+                            Dosage = "80mg",
+                            Med = "Ritalin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2103,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Company = "Famar",
+                            Dosage = "100mg",
+                            Med = "Eritromicin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2103,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Company = "Bosnalijek",
+                            Dosage = "200mg",
+                            Med = "Penicillin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2103,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Company = "Hemofarm",
+                            Dosage = "150mg",
+                            Med = "Amoksicilin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2106,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Company = "Galenika",
+                            Dosage = "200mg",
+                            Med = "Cefaleksin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2106,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Company = "Goodwill",
+                            Dosage = "500mg",
+                            Med = "Zoloft",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2106,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Company = "Famar",
+                            Dosage = "40mg",
+                            Med = "Lexilium",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2106,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 65,
+                            Company = "Hemofarm",
+                            Dosage = "50mg",
+                            Med = "Bensedin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2106,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 67,
+                            Company = "Galenika",
+                            Dosage = "100mg",
+                            Med = "Letrox",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2106,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 68,
+                            Company = "Famar",
+                            Dosage = "25mg",
+                            Med = "Claritin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2106,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 69,
+                            Company = "Hemofarm",
+                            Dosage = "500mg",
+                            Med = "Flobian",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2106,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Company = "Galenika",
+                            Dosage = "75mg",
+                            Med = "Lasix",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2106,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Company = "Famar",
+                            Dosage = "200mg",
+                            Med = "Brufen",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 10,
+                            RoomId = 2106,
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Company = "Goodwill",
+                            Dosage = "40mg",
+                            Med = "Xanax",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2107,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 73,
+                            Company = "Hemofarm",
+                            Dosage = "200mg",
+                            Med = "Panadon",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2107,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 74,
+                            Company = "Famar",
+                            Dosage = "60mg",
+                            Med = "Diazepam",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2107,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 75,
+                            Company = "Goodwill",
+                            Dosage = "400mg",
+                            Med = "Andol",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2107,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 76,
+                            Company = "Hemofarm",
+                            Dosage = "50mg",
+                            Med = "Vicodin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2107,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 77,
+                            Company = "Famar",
+                            Dosage = "80mg",
+                            Med = "Adderall",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2107,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 78,
+                            Company = "Hemofarm",
+                            Dosage = "100mg",
+                            Med = "Hemomicin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2107,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 79,
+                            Company = "Galenika",
+                            Dosage = "20mg",
+                            Med = "Klonopin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2107,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 80,
+                            Company = "Hemofarm",
+                            Dosage = "30mg",
+                            Med = "Demerol",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2107,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Company = "Hemofarm",
+                            Dosage = "250mg",
+                            Med = "Amoksicilin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2107,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Company = "Galenika",
+                            Dosage = "100mg",
+                            Med = "Cefaleksin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2202,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Company = "Goodwill",
+                            Dosage = "200mg",
+                            Med = "Zoloft",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2202,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Company = "Famar",
+                            Dosage = "80mg",
+                            Med = "Lexilium",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2202,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Company = "Hemofarm",
+                            Dosage = "10mg",
+                            Med = "Bensedin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2202,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Company = "Famar",
+                            Dosage = "100mg",
+                            Med = "Brufen",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 10,
+                            RoomId = 2202,
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Company = "Goodwill",
+                            Dosage = "60mg",
+                            Med = "Xanax",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2202,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Company = "Hemofarm",
+                            Dosage = "250mg",
+                            Med = "Panadon",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2202,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Company = "Famar",
+                            Dosage = "800mg",
+                            Med = "Diazepam",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2202,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Company = "Goodwill",
+                            Dosage = "150mg",
+                            Med = "Andol",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2202,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Company = "Famar",
+                            Dosage = "125mg",
+                            Med = "Reglan",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2202,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Company = "Bosnalijek",
+                            Dosage = "200mg",
+                            Med = "Caffetin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2206,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Company = "Galenika",
+                            Dosage = "100mg",
+                            Med = "Plavix",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2206,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Company = "Famar",
+                            Dosage = "50mg",
+                            Med = "Ambien",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2206,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Company = "Galenika",
+                            Dosage = "100mg",
+                            Med = "Ranisan",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2206,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Company = "Hemofarm",
+                            Dosage = "60mg",
+                            Med = "Demerol",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2206,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Company = "Famar",
+                            Dosage = "25mg",
+                            Med = "OxyCotin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2206,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Company = "Goodwill",
+                            Dosage = "30mg",
+                            Med = "Percocet",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2206,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Company = "Bosnalijek",
+                            Dosage = "40mg",
+                            Med = "Ritalin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2206,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Company = "Famar",
+                            Dosage = "100mg",
+                            Med = "Eritromicin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2206,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 101,
+                            Company = "Bosnalijek",
+                            Dosage = "100mg",
+                            Med = "Penicillin",
+                            MedicalRecordId = 0,
+                            MedicationCategoryId = 1,
+                            Quantity = 15,
+                            RoomId = 2206,
                             Status = 1
                         });
                 });
@@ -664,8 +1857,92 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
+                            Floor = 0,
+                            HospitalId = 1,
+                            Name = "General H1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Floor = 0,
+                            HospitalId = 1,
+                            Name = "Cardiology"
+                        },
+                        new
+                        {
+                            Id = 3,
                             Floor = 1,
                             HospitalId = 1,
+                            Name = "Oncology"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Floor = 1,
+                            HospitalId = 1,
+                            Name = "Radiology"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Floor = 2,
+                            HospitalId = 1,
+                            Name = "Neurology"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Floor = 2,
+                            HospitalId = 1,
+                            Name = "Intensive Care"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Floor = 0,
+                            HospitalId = 2,
+                            Name = "General H2"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Floor = 0,
+                            HospitalId = 2,
+                            Name = "Dialysis"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Floor = 1,
+                            HospitalId = 2,
+                            Name = "Gastroenterology"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Floor = 1,
+                            HospitalId = 2,
+                            Name = "Hematology"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Floor = 2,
+                            HospitalId = 2,
+                            Name = "Rheumatology"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Floor = 2,
+                            HospitalId = 2,
+                            Name = "Infectous Diseases"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Floor = 1,
+                            HospitalId = 3,
                             Name = "Infektivno"
                         });
                 });
@@ -687,7 +1964,202 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Krevet"
+                            Name = "Mamogram"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "X-ray"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "CT"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "MRI"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Ultra sound"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "EKG"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Holter"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Heart rate monitor"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Blood preasure monitor"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Blood shugar monitor"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Defibrilator"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Oxygen"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Respirator"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Gastroscope"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Colonoscope"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "Blood test machine"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "Stethoscope"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "Suringe"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Name = "Needle"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Name = "Scalpel"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Name = "Pean"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Name = "Scissors"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Name = "Tweezers"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Name = "Surgical mask"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Name = "Surgical gloves"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Name = "Bandage"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Name = "Gauze"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Name = "Cotton pad"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Name = "Adhesive tape"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Name = "Alcohol"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Name = "Iodine"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Name = "Hydrogen peroxide"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Name = "Bed"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Name = "Table"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Name = "Chair"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Name = "Computer"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Name = "Examining table"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Name = "Weelchair"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Name = "Thermometer"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Name = "Dialysis machine"
                         });
                 });
 
@@ -715,16 +2187,952 @@ namespace Backend.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("HospitalEquipment");
+                    b.ToTable("HospitalEquipments");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            EquipmentTypeId = 1,
-                            QuantityInRoom = 5,
+                            EquipmentTypeId = 9,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 8,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 2,
+                            EquipmentTypeId = 10,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 8,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 3,
+                            EquipmentTypeId = 17,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 5,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 4,
+                            EquipmentTypeId = 18,
+                            QuantityInRoom = 20,
+                            QuantityInStorage = 100,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 5,
+                            EquipmentTypeId = 19,
+                            QuantityInRoom = 20,
+                            QuantityInStorage = 100,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 6,
+                            EquipmentTypeId = 22,
+                            QuantityInRoom = 2,
+                            QuantityInStorage = 9,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 7,
+                            EquipmentTypeId = 23,
+                            QuantityInRoom = 2,
+                            QuantityInStorage = 11,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 8,
+                            EquipmentTypeId = 24,
+                            QuantityInRoom = 20,
+                            QuantityInStorage = 100,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 9,
+                            EquipmentTypeId = 25,
+                            QuantityInRoom = 50,
+                            QuantityInStorage = 200,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 10,
+                            EquipmentTypeId = 26,
+                            QuantityInRoom = 70,
+                            QuantityInStorage = 250,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 11,
+                            EquipmentTypeId = 27,
+                            QuantityInRoom = 90,
+                            QuantityInStorage = 300,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 12,
+                            EquipmentTypeId = 28,
+                            QuantityInRoom = 100,
+                            QuantityInStorage = 500,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 13,
+                            EquipmentTypeId = 29,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 6,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 14,
+                            EquipmentTypeId = 30,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 12,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 15,
+                            EquipmentTypeId = 31,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 13,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 16,
+                            EquipmentTypeId = 32,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 14,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 17,
+                            EquipmentTypeId = 34,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 10,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 18,
+                            EquipmentTypeId = 35,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 20,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 19,
+                            EquipmentTypeId = 36,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 5,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 20,
+                            EquipmentTypeId = 37,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 5,
+                            RoomId = 1003
+                        },
+                        new
+                        {
+                            Id = 21,
+                            EquipmentTypeId = 6,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 2,
+                            RoomId = 1012
+                        },
+                        new
+                        {
+                            Id = 22,
+                            EquipmentTypeId = 7,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 16,
+                            RoomId = 1012
+                        },
+                        new
+                        {
+                            Id = 23,
+                            EquipmentTypeId = 8,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 8,
+                            RoomId = 1014
+                        },
+                        new
+                        {
+                            Id = 24,
+                            EquipmentTypeId = 9,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 8,
+                            RoomId = 1014
+                        },
+                        new
+                        {
+                            Id = 25,
+                            EquipmentTypeId = 10,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 8,
+                            RoomId = 1014
+                        },
+                        new
+                        {
+                            Id = 26,
+                            EquipmentTypeId = 11,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 2,
+                            RoomId = 1014
+                        },
+                        new
+                        {
+                            Id = 27,
+                            EquipmentTypeId = 12,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 2,
+                            RoomId = 1014
+                        },
+                        new
+                        {
+                            Id = 28,
+                            EquipmentTypeId = 33,
+                            QuantityInRoom = 4,
                             QuantityInStorage = 15,
-                            RoomId = 1
+                            RoomId = 1014
+                        },
+                        new
+                        {
+                            Id = 29,
+                            EquipmentTypeId = 34,
+                            QuantityInRoom = 2,
+                            QuantityInStorage = 10,
+                            RoomId = 1014
+                        },
+                        new
+                        {
+                            Id = 30,
+                            EquipmentTypeId = 35,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 20,
+                            RoomId = 1014
+                        },
+                        new
+                        {
+                            Id = 31,
+                            EquipmentTypeId = 5,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 4,
+                            RoomId = 1019
+                        },
+                        new
+                        {
+                            Id = 32,
+                            EquipmentTypeId = 6,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 2,
+                            RoomId = 1019
+                        },
+                        new
+                        {
+                            Id = 33,
+                            EquipmentTypeId = 3,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 0,
+                            RoomId = 1110
+                        },
+                        new
+                        {
+                            Id = 34,
+                            EquipmentTypeId = 1,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 1,
+                            RoomId = 1113
+                        },
+                        new
+                        {
+                            Id = 35,
+                            EquipmentTypeId = 2,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 0,
+                            RoomId = 1114
+                        },
+                        new
+                        {
+                            Id = 36,
+                            EquipmentTypeId = 1,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 1,
+                            RoomId = 1115
+                        },
+                        new
+                        {
+                            Id = 37,
+                            EquipmentTypeId = 3,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 0,
+                            RoomId = 1116
+                        },
+                        new
+                        {
+                            Id = 38,
+                            EquipmentTypeId = 4,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 0,
+                            RoomId = 1119
+                        },
+                        new
+                        {
+                            Id = 39,
+                            EquipmentTypeId = 34,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 10,
+                            RoomId = 1210
+                        },
+                        new
+                        {
+                            Id = 40,
+                            EquipmentTypeId = 35,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 20,
+                            RoomId = 1210
+                        },
+                        new
+                        {
+                            Id = 41,
+                            EquipmentTypeId = 36,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 5,
+                            RoomId = 1210
+                        },
+                        new
+                        {
+                            Id = 42,
+                            EquipmentTypeId = 8,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 8,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 43,
+                            EquipmentTypeId = 11,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 2,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 44,
+                            EquipmentTypeId = 12,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 2,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 45,
+                            EquipmentTypeId = 13,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 2,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 46,
+                            EquipmentTypeId = 18,
+                            QuantityInRoom = 20,
+                            QuantityInStorage = 100,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 47,
+                            EquipmentTypeId = 19,
+                            QuantityInRoom = 20,
+                            QuantityInStorage = 100,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 48,
+                            EquipmentTypeId = 20,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 30,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 49,
+                            EquipmentTypeId = 21,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 30,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 50,
+                            EquipmentTypeId = 22,
+                            QuantityInRoom = 2,
+                            QuantityInStorage = 9,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 51,
+                            EquipmentTypeId = 23,
+                            QuantityInRoom = 2,
+                            QuantityInStorage = 11,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 52,
+                            EquipmentTypeId = 24,
+                            QuantityInRoom = 20,
+                            QuantityInStorage = 100,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 53,
+                            EquipmentTypeId = 25,
+                            QuantityInRoom = 50,
+                            QuantityInStorage = 200,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 54,
+                            EquipmentTypeId = 26,
+                            QuantityInRoom = 70,
+                            QuantityInStorage = 250,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 55,
+                            EquipmentTypeId = 27,
+                            QuantityInRoom = 90,
+                            QuantityInStorage = 300,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 56,
+                            EquipmentTypeId = 28,
+                            QuantityInRoom = 100,
+                            QuantityInStorage = 500,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 57,
+                            EquipmentTypeId = 29,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 6,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 58,
+                            EquipmentTypeId = 30,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 12,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 59,
+                            EquipmentTypeId = 31,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 13,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 60,
+                            EquipmentTypeId = 32,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 14,
+                            RoomId = 1217
+                        },
+                        new
+                        {
+                            Id = 61,
+                            EquipmentTypeId = 9,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 8,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 62,
+                            EquipmentTypeId = 10,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 8,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 63,
+                            EquipmentTypeId = 17,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 5,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 64,
+                            EquipmentTypeId = 18,
+                            QuantityInRoom = 20,
+                            QuantityInStorage = 100,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 65,
+                            EquipmentTypeId = 19,
+                            QuantityInRoom = 20,
+                            QuantityInStorage = 100,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 66,
+                            EquipmentTypeId = 22,
+                            QuantityInRoom = 2,
+                            QuantityInStorage = 9,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 67,
+                            EquipmentTypeId = 23,
+                            QuantityInRoom = 2,
+                            QuantityInStorage = 11,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 68,
+                            EquipmentTypeId = 24,
+                            QuantityInRoom = 20,
+                            QuantityInStorage = 100,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 69,
+                            EquipmentTypeId = 25,
+                            QuantityInRoom = 50,
+                            QuantityInStorage = 200,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 70,
+                            EquipmentTypeId = 26,
+                            QuantityInRoom = 70,
+                            QuantityInStorage = 250,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 71,
+                            EquipmentTypeId = 27,
+                            QuantityInRoom = 90,
+                            QuantityInStorage = 300,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 72,
+                            EquipmentTypeId = 28,
+                            QuantityInRoom = 100,
+                            QuantityInStorage = 500,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 73,
+                            EquipmentTypeId = 29,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 6,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 74,
+                            EquipmentTypeId = 30,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 12,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 75,
+                            EquipmentTypeId = 31,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 13,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 76,
+                            EquipmentTypeId = 32,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 14,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 77,
+                            EquipmentTypeId = 34,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 10,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 78,
+                            EquipmentTypeId = 35,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 20,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 79,
+                            EquipmentTypeId = 36,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 5,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 80,
+                            EquipmentTypeId = 37,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 5,
+                            RoomId = 2005
+                        },
+                        new
+                        {
+                            Id = 81,
+                            EquipmentTypeId = 8,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 8,
+                            RoomId = 2009
+                        },
+                        new
+                        {
+                            Id = 82,
+                            EquipmentTypeId = 9,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 8,
+                            RoomId = 2009
+                        },
+                        new
+                        {
+                            Id = 83,
+                            EquipmentTypeId = 10,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 8,
+                            RoomId = 2009
+                        },
+                        new
+                        {
+                            Id = 84,
+                            EquipmentTypeId = 11,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 2,
+                            RoomId = 2009
+                        },
+                        new
+                        {
+                            Id = 85,
+                            EquipmentTypeId = 12,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 2,
+                            RoomId = 2009
+                        },
+                        new
+                        {
+                            Id = 86,
+                            EquipmentTypeId = 33,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 15,
+                            RoomId = 2009
+                        },
+                        new
+                        {
+                            Id = 87,
+                            EquipmentTypeId = 34,
+                            QuantityInRoom = 2,
+                            QuantityInStorage = 10,
+                            RoomId = 2009
+                        },
+                        new
+                        {
+                            Id = 88,
+                            EquipmentTypeId = 35,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 20,
+                            RoomId = 2009
+                        },
+                        new
+                        {
+                            Id = 89,
+                            EquipmentTypeId = 39,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 40,
+                            RoomId = 2009
+                        },
+                        new
+                        {
+                            Id = 90,
+                            EquipmentTypeId = 40,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 8,
+                            RoomId = 2010
+                        },
+                        new
+                        {
+                            Id = 91,
+                            EquipmentTypeId = 40,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 8,
+                            RoomId = 2013
+                        },
+                        new
+                        {
+                            Id = 92,
+                            EquipmentTypeId = 14,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 5,
+                            RoomId = 2105
+                        },
+                        new
+                        {
+                            Id = 93,
+                            EquipmentTypeId = 15,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 6,
+                            RoomId = 2108
+                        },
+                        new
+                        {
+                            Id = 94,
+                            EquipmentTypeId = 16,
+                            QuantityInRoom = 2,
+                            QuantityInStorage = 7,
+                            RoomId = 2117
+                        },
+                        new
+                        {
+                            Id = 95,
+                            EquipmentTypeId = 16,
+                            QuantityInRoom = 2,
+                            QuantityInStorage = 7,
+                            RoomId = 2118
+                        },
+                        new
+                        {
+                            Id = 96,
+                            EquipmentTypeId = 34,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 10,
+                            RoomId = 2208
+                        },
+                        new
+                        {
+                            Id = 97,
+                            EquipmentTypeId = 35,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 20,
+                            RoomId = 2208
+                        },
+                        new
+                        {
+                            Id = 98,
+                            EquipmentTypeId = 36,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 5,
+                            RoomId = 2208
+                        },
+                        new
+                        {
+                            Id = 99,
+                            EquipmentTypeId = 34,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 10,
+                            RoomId = 2209
+                        },
+                        new
+                        {
+                            Id = 100,
+                            EquipmentTypeId = 35,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 20,
+                            RoomId = 2209
+                        },
+                        new
+                        {
+                            Id = 101,
+                            EquipmentTypeId = 36,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 5,
+                            RoomId = 2209
+                        },
+                        new
+                        {
+                            Id = 102,
+                            EquipmentTypeId = 17,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 5,
+                            RoomId = 2210
+                        },
+                        new
+                        {
+                            Id = 103,
+                            EquipmentTypeId = 24,
+                            QuantityInRoom = 20,
+                            QuantityInStorage = 100,
+                            RoomId = 2210
+                        },
+                        new
+                        {
+                            Id = 104,
+                            EquipmentTypeId = 25,
+                            QuantityInRoom = 50,
+                            QuantityInStorage = 200,
+                            RoomId = 2210
+                        },
+                        new
+                        {
+                            Id = 105,
+                            EquipmentTypeId = 34,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 10,
+                            RoomId = 2210
+                        },
+                        new
+                        {
+                            Id = 106,
+                            EquipmentTypeId = 35,
+                            QuantityInRoom = 3,
+                            QuantityInStorage = 20,
+                            RoomId = 2210
+                        },
+                        new
+                        {
+                            Id = 107,
+                            EquipmentTypeId = 36,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 5,
+                            RoomId = 2210
+                        },
+                        new
+                        {
+                            Id = 108,
+                            EquipmentTypeId = 37,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 5,
+                            RoomId = 2210
+                        },
+                        new
+                        {
+                            Id = 109,
+                            EquipmentTypeId = 8,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 8,
+                            RoomId = 2217
+                        },
+                        new
+                        {
+                            Id = 110,
+                            EquipmentTypeId = 9,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 8,
+                            RoomId = 2217
+                        },
+                        new
+                        {
+                            Id = 111,
+                            EquipmentTypeId = 10,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 8,
+                            RoomId = 2217
+                        },
+                        new
+                        {
+                            Id = 112,
+                            EquipmentTypeId = 11,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 2,
+                            RoomId = 2217
+                        },
+                        new
+                        {
+                            Id = 113,
+                            EquipmentTypeId = 12,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 2,
+                            RoomId = 2217
+                        },
+                        new
+                        {
+                            Id = 114,
+                            EquipmentTypeId = 13,
+                            QuantityInRoom = 1,
+                            QuantityInStorage = 2,
+                            RoomId = 2217
+                        },
+                        new
+                        {
+                            Id = 115,
+                            EquipmentTypeId = 33,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 15,
+                            RoomId = 2217
+                        },
+                        new
+                        {
+                            Id = 116,
+                            EquipmentTypeId = 34,
+                            QuantityInRoom = 2,
+                            QuantityInStorage = 10,
+                            RoomId = 2217
+                        },
+                        new
+                        {
+                            Id = 117,
+                            EquipmentTypeId = 35,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 20,
+                            RoomId = 2217
+                        },
+                        new
+                        {
+                            Id = 118,
+                            EquipmentTypeId = 39,
+                            QuantityInRoom = 4,
+                            QuantityInStorage = 40,
+                            RoomId = 2217
                         });
                 });
 
@@ -753,14 +3161,26 @@ namespace Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("BedsCapacity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BedsFree")
+                        .HasColumnType("int");
+
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
+
+                    b.Property<string>("RoomLabel")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");
 
                     b.Property<int>("RoomType")
                         .HasColumnType("int");
+
+                    b.Property<string>("RoomUse")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
@@ -772,16 +3192,1388 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
                             DepartmentId = 1,
+                            RoomLabel = "null",
                             RoomNumber = 1,
-                            RoomType = 1
+                            RoomType = 1,
+                            RoomUse = "null"
                         },
                         new
                         {
                             Id = 2,
-                            DepartmentId = 1,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 2,
+                            RoomLabel = "null",
                             RoomNumber = 2,
-                            RoomType = 0
+                            RoomType = 1,
+                            RoomUse = "null"
+                        },
+                        new
+                        {
+                            Id = 1001,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 1,
+                            RoomLabel = "0F-GN1",
+                            RoomNumber = 1,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1002,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 1,
+                            RoomLabel = "0F-GN2",
+                            RoomNumber = 2,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1003,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 1,
+                            RoomLabel = "0F-GN3",
+                            RoomNumber = 3,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1004,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 1,
+                            RoomLabel = "0F-GN4",
+                            RoomNumber = 4,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1005,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 1,
+                            RoomLabel = "0F-GN5",
+                            RoomNumber = 5,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1006,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 1,
+                            RoomLabel = "0F-GN6",
+                            RoomNumber = 6,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1007,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 1,
+                            RoomLabel = "0F-GN7",
+                            RoomNumber = 7,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1008,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 1,
+                            RoomLabel = "0F-GN8",
+                            RoomNumber = 8,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1009,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 1,
+                            RoomLabel = "0F-GN9",
+                            RoomNumber = 9,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1010,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 1,
+                            RoomLabel = "0F-GN10",
+                            RoomNumber = 10,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1011,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 1,
+                            RoomLabel = "0F-GN11",
+                            RoomNumber = 11,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1012,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 2,
+                            RoomLabel = "0F-CA1",
+                            RoomNumber = 12,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1013,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 2,
+                            RoomLabel = "0F-CA2",
+                            RoomNumber = 13,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1014,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 2,
+                            RoomLabel = "0F-CA3",
+                            RoomNumber = 14,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1015,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 2,
+                            RoomLabel = "0F-CA4",
+                            RoomNumber = 15,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1016,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 2,
+                            RoomLabel = "0F-CA5",
+                            RoomNumber = 16,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1017,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 2,
+                            RoomLabel = "0F-CA6",
+                            RoomNumber = 17,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1018,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 2,
+                            RoomLabel = "0F-CA7",
+                            RoomNumber = 18,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1019,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 2,
+                            RoomLabel = "0F-CA8",
+                            RoomNumber = 19,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1020,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 2,
+                            RoomLabel = "0F-CA9",
+                            RoomNumber = 20,
+                            RoomType = 3,
+                            RoomUse = "Elevator"
+                        },
+                        new
+                        {
+                            Id = 1021,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 2,
+                            RoomLabel = "0F-CA10",
+                            RoomNumber = 21,
+                            RoomType = 3,
+                            RoomUse = "Elevator"
+                        },
+                        new
+                        {
+                            Id = 1101,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 3,
+                            RoomLabel = "1F-ON1",
+                            RoomNumber = 1,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1102,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 3,
+                            RoomLabel = "1F-ON2",
+                            RoomNumber = 2,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1103,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 3,
+                            RoomLabel = "1F-ON3",
+                            RoomNumber = 3,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1104,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 3,
+                            RoomLabel = "1F-ON4",
+                            RoomNumber = 4,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1105,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 3,
+                            RoomLabel = "1F-ON5",
+                            RoomNumber = 5,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1106,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 3,
+                            RoomLabel = "1F-ON6",
+                            RoomNumber = 6,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1107,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 3,
+                            RoomLabel = "1F-ON7",
+                            RoomNumber = 7,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1108,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 3,
+                            RoomLabel = "1F-ON8",
+                            RoomNumber = 8,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1109,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 3,
+                            RoomLabel = "1F-ON9",
+                            RoomNumber = 9,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1110,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 3,
+                            RoomLabel = "1F-ON10",
+                            RoomNumber = 10,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1111,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 3,
+                            RoomLabel = "1F-ON11",
+                            RoomNumber = 11,
+                            RoomType = 4,
+                            RoomUse = "Storage room"
+                        },
+                        new
+                        {
+                            Id = 1112,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 3,
+                            RoomLabel = "1F-ON12",
+                            RoomNumber = 12,
+                            RoomType = 4,
+                            RoomUse = "Storage room"
+                        },
+                        new
+                        {
+                            Id = 1113,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 4,
+                            RoomLabel = "1F-ON13",
+                            RoomNumber = 13,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1114,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 4,
+                            RoomLabel = "1F-RD1",
+                            RoomNumber = 14,
+                            RoomType = 2,
+                            RoomUse = "Operation room"
+                        },
+                        new
+                        {
+                            Id = 1115,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 4,
+                            RoomLabel = "1F-RD2",
+                            RoomNumber = 15,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1116,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 4,
+                            RoomLabel = "1F-RD3",
+                            RoomNumber = 16,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1117,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 4,
+                            RoomLabel = "1F-RD4",
+                            RoomNumber = 17,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1118,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 4,
+                            RoomLabel = "1F-RD5",
+                            RoomNumber = 18,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1119,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 4,
+                            RoomLabel = "1F-RD6",
+                            RoomNumber = 19,
+                            RoomType = 2,
+                            RoomUse = "Operation room"
+                        },
+                        new
+                        {
+                            Id = 1120,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 4,
+                            RoomLabel = "1F-RD7",
+                            RoomNumber = 20,
+                            RoomType = 3,
+                            RoomUse = "Elevator"
+                        },
+                        new
+                        {
+                            Id = 1121,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 4,
+                            RoomLabel = "1F-RD8",
+                            RoomNumber = 21,
+                            RoomType = 3,
+                            RoomUse = "Elevator"
+                        },
+                        new
+                        {
+                            Id = 1201,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 5,
+                            RoomLabel = "2F-NE1",
+                            RoomNumber = 1,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1202,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 5,
+                            RoomLabel = "2F-NE2",
+                            RoomNumber = 2,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1203,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 5,
+                            RoomLabel = "2F-NE3",
+                            RoomNumber = 3,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1204,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 5,
+                            RoomLabel = "2F-NE4",
+                            RoomNumber = 4,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1205,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 5,
+                            RoomLabel = "2F-NE5",
+                            RoomNumber = 5,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 1206,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 5,
+                            RoomLabel = "2F-NE6",
+                            RoomNumber = 6,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1207,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 5,
+                            RoomLabel = "2F-NE7",
+                            RoomNumber = 7,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1208,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 5,
+                            RoomLabel = "2F-NE8",
+                            RoomNumber = 8,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1209,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 5,
+                            RoomLabel = "2F-NE9",
+                            RoomNumber = 9,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1210,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 5,
+                            RoomLabel = "2F-NE10",
+                            RoomNumber = 10,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1211,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 5,
+                            RoomLabel = "2F-NE11",
+                            RoomNumber = 11,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1212,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 5,
+                            RoomLabel = "2F-NE12",
+                            RoomNumber = 12,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 1213,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 5,
+                            RoomLabel = "2F-NE13",
+                            RoomNumber = 13,
+                            RoomType = 4,
+                            RoomUse = "Storage room"
+                        },
+                        new
+                        {
+                            Id = 1214,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 5,
+                            RoomLabel = "2F-NE14",
+                            RoomNumber = 14,
+                            RoomType = 4,
+                            RoomUse = "Storage room"
+                        },
+                        new
+                        {
+                            Id = 1215,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 6,
+                            RoomLabel = "2F-IC1",
+                            RoomNumber = 15,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1216,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 6,
+                            RoomLabel = "2F-IC2",
+                            RoomNumber = 16,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1217,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 6,
+                            RoomLabel = "2F-IC3",
+                            RoomNumber = 17,
+                            RoomType = 2,
+                            RoomUse = "Operation room"
+                        },
+                        new
+                        {
+                            Id = 1218,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 6,
+                            RoomLabel = "2F-IC4",
+                            RoomNumber = 18,
+                            RoomType = 2,
+                            RoomUse = "Operation room"
+                        },
+                        new
+                        {
+                            Id = 1219,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 6,
+                            RoomLabel = "2F-IC5",
+                            RoomNumber = 19,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1220,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 6,
+                            RoomLabel = "2F-IC6",
+                            RoomNumber = 20,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 1221,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 6,
+                            RoomLabel = "2F-IC7",
+                            RoomNumber = 21,
+                            RoomType = 3,
+                            RoomUse = "Elevator"
+                        },
+                        new
+                        {
+                            Id = 1222,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 6,
+                            RoomLabel = "2F-IC7",
+                            RoomNumber = 22,
+                            RoomType = 3,
+                            RoomUse = "Elevator"
+                        },
+                        new
+                        {
+                            Id = 2001,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 7,
+                            RoomLabel = "0F-EM1",
+                            RoomNumber = 1,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 2002,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 7,
+                            RoomLabel = "0F-EM2",
+                            RoomNumber = 2,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 2003,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 7,
+                            RoomLabel = "0F-EM3",
+                            RoomNumber = 3,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 2004,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 7,
+                            RoomLabel = "0F-EM4",
+                            RoomNumber = 4,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 2005,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 7,
+                            RoomLabel = "0F-EM5",
+                            RoomNumber = 5,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 2006,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 7,
+                            RoomLabel = "0F-EM6",
+                            RoomNumber = 6,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 2007,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 7,
+                            RoomLabel = "0F-EM7",
+                            RoomNumber = 7,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 2008,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 7,
+                            RoomLabel = "0F-EM8",
+                            RoomNumber = 8,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 2009,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 8,
+                            RoomLabel = "0F-DY1",
+                            RoomNumber = 9,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2010,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 8,
+                            RoomLabel = "0F-DY2",
+                            RoomNumber = 10,
+                            RoomType = 2,
+                            RoomUse = "Operation room"
+                        },
+                        new
+                        {
+                            Id = 2011,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 8,
+                            RoomLabel = "0F-DY3",
+                            RoomNumber = 11,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2012,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 8,
+                            RoomLabel = "0F-DY4",
+                            RoomNumber = 12,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2013,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 8,
+                            RoomLabel = "0F-DY5",
+                            RoomNumber = 13,
+                            RoomType = 2,
+                            RoomUse = "Operation room"
+                        },
+                        new
+                        {
+                            Id = 2014,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 8,
+                            RoomLabel = "0F-DY6",
+                            RoomNumber = 14,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2015,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 8,
+                            RoomLabel = "0F-DY7",
+                            RoomNumber = 15,
+                            RoomType = 3,
+                            RoomUse = "Elevator"
+                        },
+                        new
+                        {
+                            Id = 2016,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 8,
+                            RoomLabel = "0F-DY8",
+                            RoomNumber = 16,
+                            RoomType = 3,
+                            RoomUse = "Elevator"
+                        },
+                        new
+                        {
+                            Id = 2101,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 9,
+                            RoomLabel = "1F-GE1",
+                            RoomNumber = 1,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 2102,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 9,
+                            RoomLabel = "1F-GE2",
+                            RoomNumber = 2,
+                            RoomType = 4,
+                            RoomUse = "Storage room"
+                        },
+                        new
+                        {
+                            Id = 2103,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 9,
+                            RoomLabel = "1F-GE3",
+                            RoomNumber = 3,
+                            RoomType = 4,
+                            RoomUse = "Storage room"
+                        },
+                        new
+                        {
+                            Id = 2104,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 9,
+                            RoomLabel = "1F-GE4",
+                            RoomNumber = 4,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 2105,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 9,
+                            RoomLabel = "1F-GE5",
+                            RoomNumber = 5,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 2106,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 9,
+                            RoomLabel = "1F-GE6",
+                            RoomNumber = 6,
+                            RoomType = 4,
+                            RoomUse = "Storage room"
+                        },
+                        new
+                        {
+                            Id = 2107,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 9,
+                            RoomLabel = "1F-GE7",
+                            RoomNumber = 7,
+                            RoomType = 4,
+                            RoomUse = "Storage room"
+                        },
+                        new
+                        {
+                            Id = 2108,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 9,
+                            RoomLabel = "1F-GE8",
+                            RoomNumber = 8,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 2109,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 9,
+                            RoomLabel = "1F-GE9",
+                            RoomNumber = 9,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2110,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 9,
+                            RoomLabel = "1F-GE10",
+                            RoomNumber = 10,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 2111,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 9,
+                            RoomLabel = "1F-GE11",
+                            RoomNumber = 11,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2112,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 9,
+                            RoomLabel = "1F-GE12",
+                            RoomNumber = 12,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2113,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 9,
+                            RoomLabel = "1F-GE13",
+                            RoomNumber = 13,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 2114,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 9,
+                            RoomLabel = "1F-GE14",
+                            RoomNumber = 14,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2115,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 10,
+                            RoomLabel = "1F-HM1",
+                            RoomNumber = 15,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2116,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 10,
+                            RoomLabel = "1F-HM2",
+                            RoomNumber = 16,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2117,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 10,
+                            RoomLabel = "1F-HM3",
+                            RoomNumber = 17,
+                            RoomType = 2,
+                            RoomUse = "Operation room"
+                        },
+                        new
+                        {
+                            Id = 2118,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 10,
+                            RoomLabel = "1F-HM4",
+                            RoomNumber = 18,
+                            RoomType = 2,
+                            RoomUse = "Operation room"
+                        },
+                        new
+                        {
+                            Id = 2119,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 10,
+                            RoomLabel = "1F-HM5",
+                            RoomNumber = 19,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2120,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 10,
+                            RoomLabel = "1F-HM6",
+                            RoomNumber = 20,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2121,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 10,
+                            RoomLabel = "1F-HM7",
+                            RoomNumber = 21,
+                            RoomType = 3,
+                            RoomUse = "Elevator"
+                        },
+                        new
+                        {
+                            Id = 2122,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 10,
+                            RoomLabel = "1F-HM8",
+                            RoomNumber = 22,
+                            RoomType = 3,
+                            RoomUse = "Elevator"
+                        },
+                        new
+                        {
+                            Id = 2201,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 11,
+                            RoomLabel = "2F-RM1",
+                            RoomNumber = 1,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2202,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 11,
+                            RoomLabel = "2F-RM2",
+                            RoomNumber = 2,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 2203,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 11,
+                            RoomLabel = "2F-RM3",
+                            RoomNumber = 3,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 2204,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 11,
+                            RoomLabel = "2F-RM4",
+                            RoomNumber = 4,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 2205,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 11,
+                            RoomLabel = "2F-RM5",
+                            RoomNumber = 5,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 2206,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 11,
+                            RoomLabel = "2F-RM6",
+                            RoomNumber = 6,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 2207,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 11,
+                            RoomLabel = "2F-RM7",
+                            RoomNumber = 7,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 2208,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 11,
+                            RoomLabel = "2F-RM8",
+                            RoomNumber = 8,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 2209,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 11,
+                            RoomLabel = "2F-RM9",
+                            RoomNumber = 9,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 2210,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 11,
+                            RoomLabel = "2F-RM10",
+                            RoomNumber = 10,
+                            RoomType = 1,
+                            RoomUse = "Examination room"
+                        },
+                        new
+                        {
+                            Id = 2211,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 11,
+                            RoomLabel = "2F-RM11",
+                            RoomNumber = 11,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 2212,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 11,
+                            RoomLabel = "2F-RM12",
+                            RoomNumber = 12,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 2213,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 11,
+                            RoomLabel = "2F-RM13",
+                            RoomNumber = 13,
+                            RoomType = 3,
+                            RoomUse = "Auxiliary room"
+                        },
+                        new
+                        {
+                            Id = 2214,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 11,
+                            RoomLabel = "2F-RM14",
+                            RoomNumber = 14,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2215,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 12,
+                            RoomLabel = "2F-ID1",
+                            RoomNumber = 15,
+                            RoomType = 2,
+                            RoomUse = "Operation room"
+                        },
+                        new
+                        {
+                            Id = 2216,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 12,
+                            RoomLabel = "2F-ID2",
+                            RoomNumber = 16,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2217,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 12,
+                            RoomLabel = "2F-ID3",
+                            RoomNumber = 17,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2218,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 12,
+                            RoomLabel = "2F-ID4",
+                            RoomNumber = 18,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2219,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 12,
+                            RoomLabel = "2F-ID5",
+                            RoomNumber = 19,
+                            RoomType = 0,
+                            RoomUse = "Patient room"
+                        },
+                        new
+                        {
+                            Id = 2220,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 12,
+                            RoomLabel = "2F-ID6",
+                            RoomNumber = 20,
+                            RoomType = 2,
+                            RoomUse = "Operation room"
+                        },
+                        new
+                        {
+                            Id = 2221,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 12,
+                            RoomLabel = "2F-ID7",
+                            RoomNumber = 21,
+                            RoomType = 3,
+                            RoomUse = "Elevator"
+                        },
+                        new
+                        {
+                            Id = 2222,
+                            BedsCapacity = 10,
+                            BedsFree = 3,
+                            DepartmentId = 12,
+                            RoomLabel = "2F-ID8",
+                            RoomNumber = 22,
+                            RoomType = 3,
+                            RoomUse = "Elevator"
                         });
                 });
 
@@ -874,6 +4666,24 @@ namespace Backend.Migrations
                             Floor = 0,
                             Number = 5,
                             Street = "Gospodara Vucica"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Apartment = 0,
+                            CityId = 11000,
+                            Floor = 0,
+                            Number = 28,
+                            Street = "Stefana Nemanje"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Apartment = 0,
+                            CityId = 11000,
+                            Floor = 0,
+                            Number = 27,
+                            Street = "Stefana Nemanje"
                         });
                 });
 
@@ -1068,10 +4878,24 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = 3,
                             AddressId = 1,
                             Description = "blablal",
                             Name = "Medbay"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            AddressId = 3,
+                            Description = "Hospital 1",
+                            Name = "Hospital 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddressId = 4,
+                            Description = "Hospital 2",
+                            Name = "Hospital 2"
                         });
                 });
 
@@ -1476,7 +5300,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2020, 11, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ExaminationSurgeryId = 1,
                             Type = 0,
                             EndDate = new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -1488,7 +5312,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(2020, 11, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ExaminationSurgeryId = 1,
                             Type = 0,
                             EndDate = new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -1627,10 +5451,10 @@ namespace Backend.Migrations
                             VacationLeave = false,
                             WorkersID = 0,
                             DepartmentId = 1,
-                            ExaminationRoomId = 1,
+                            ExaminationRoomId = 1003,
                             LicenseNumber = "001",
                             OnCall = true,
-                            OperationRoomId = 2,
+                            OperationRoomId = 1114,
                             PatientReview = 4.5
                         });
                 });
@@ -1714,6 +5538,12 @@ namespace Backend.Migrations
                     b.HasOne("Backend.Medications.Model.Medication", null)
                         .WithMany("AlternativeMedication")
                         .HasForeignKey("MedicationId");
+
+                    b.HasOne("Model.Rooms.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Backend.Medications.Model.MedicationCategory", b =>
@@ -1761,7 +5591,7 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Records.Model.Diagnosis", b =>
                 {
-                    b.HasOne("Backend.Examinations.Model.ExaminationSurgery", null)
+                    b.HasOne("Backend.Examinations.Model.ExaminationSurgery", "ExaminationSurgery")
                         .WithMany("Diagnoses")
                         .HasForeignKey("ExaminationSurgeryId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -20,6 +20,11 @@ namespace Model.Rooms
         [Key]
         public int Id { get; set; }
         public int RoomNumber { get; set; }
+        public string RoomLabel { get; set; }
+        public string RoomUse { get; set; }
+        public int BedsCapacity { get; set; }
+        public int BedsFree { get; set; }
+
         public RoomType RoomType { get; set; }
         [ForeignKey("Department")]
         public int DepartmentId { get; set; }
