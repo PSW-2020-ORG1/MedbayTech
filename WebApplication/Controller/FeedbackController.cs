@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Model.Users;
 using WebApplication.DTO;
-using WebApplicationService.GeneralService;
 using WebApplication.Adapters;
 using Backend.Users.WebApiController;
+using Backend.Users.WebApiService;
 
 namespace WebApplication
 {
@@ -72,7 +72,7 @@ namespace WebApplication
                 return BadRequest("Failed to post feedback");
             }
 
-            FeedbackService feedbackService = new FeedbackService();
+           
             Feedback feedbackSuccessfullyCreated = feedbackController.CreateFeedback(postFeedbackDTO.UserId, postFeedbackDTO.AdditionalNotes, postFeedbackDTO.Anonymous, postFeedbackDTO.AllowedForPublishing);
 
             if (feedbackSuccessfullyCreated==null)

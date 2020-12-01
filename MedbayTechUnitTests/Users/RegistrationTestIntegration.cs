@@ -12,7 +12,7 @@ using Xunit;
 
 namespace MedbayTechUnitTests.Users
 {
-    public class RegistrationTests
+    public class RegistrationTestIntegration
     {
 
         [Fact]
