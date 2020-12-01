@@ -9,8 +9,8 @@ using Model;
 namespace Backend.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201130052908_firt_migration")]
-    partial class firt_migration
+    [Migration("20201201201409_test_migration1")]
+    partial class test_migration1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -165,6 +165,22 @@ namespace Backend.Migrations
                     b.HasIndex("MedicationId");
 
                     b.ToTable("Allergens");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Allergen = "Polen",
+                            MedicalRecordId = 1,
+                            MedicationId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Allergen = "Prasina",
+                            MedicalRecordId = 1,
+                            MedicationId = 2
+                        });
                 });
 
             modelBuilder.Entity("Backend.Medications.Model.DosageOfIngredient", b =>
@@ -2173,7 +2189,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("HospitalEquipment");
+                    b.ToTable("HospitalEquipments");
 
                     b.HasData(
                         new
@@ -5286,7 +5302,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ExaminationSurgeryId = 1,
                             Type = 0,
                             EndDate = new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -5298,7 +5314,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ExaminationSurgeryId = 1,
                             Type = 0,
                             EndDate = new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -5437,10 +5453,10 @@ namespace Backend.Migrations
                             VacationLeave = false,
                             WorkersID = 0,
                             DepartmentId = 1,
-                            ExaminationRoomId = 1,
+                            ExaminationRoomId = 1003,
                             LicenseNumber = "001",
                             OnCall = true,
-                            OperationRoomId = 2,
+                            OperationRoomId = 1114,
                             PatientReview = 4.5
                         });
                 });

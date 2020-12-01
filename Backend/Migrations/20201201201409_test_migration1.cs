@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Backend.Migrations
 {
-    public partial class firt_migration : Migration
+    public partial class test_migration1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -206,7 +206,7 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "HospitalEquipment",
+                name: "HospitalEquipments",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -218,15 +218,15 @@ namespace Backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HospitalEquipment", x => x.Id);
+                    table.PrimaryKey("PK_HospitalEquipments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_HospitalEquipment_EquipmentType_EquipmentTypeId",
+                        name: "FK_HospitalEquipments_EquipmentType_EquipmentTypeId",
                         column: x => x.EquipmentTypeId,
                         principalTable: "EquipmentType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_HospitalEquipment_Rooms_RoomId",
+                        name: "FK_HospitalEquipments_Rooms_RoomId",
                         column: x => x.RoomId,
                         principalTable: "Rooms",
                         principalColumn: "Id",
@@ -245,8 +245,8 @@ namespace Backend.Migrations
                     Quantity = table.Column<int>(nullable: false),
                     MedicalRecordId = table.Column<int>(nullable: false),
                     Dosage = table.Column<string>(nullable: true),
-                    MedicationCategoryId = table.Column<int>(nullable: false),
                     RoomId = table.Column<int>(nullable: false),
+                    MedicationCategoryId = table.Column<int>(nullable: false),
                     MedicationId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -1319,7 +1319,7 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "HospitalEquipment",
+                table: "HospitalEquipments",
                 columns: new[] { "Id", "EquipmentTypeId", "QuantityInRoom", "QuantityInStorage", "RoomId" },
                 values: new object[,]
                 {
@@ -1404,23 +1404,23 @@ namespace Backend.Migrations
                     { 38, 4, 1, 0, 1119 },
                     { 37, 3, 1, 0, 1116 },
                     { 36, 1, 1, 1, 1115 },
+                    { 20, 37, 1, 5, 1003 },
                     { 35, 2, 1, 0, 1114 },
-                    { 34, 1, 1, 1, 1113 },
-                    { 26, 11, 1, 2, 1014 },
+                    { 27, 12, 1, 2, 1014 },
                     { 21, 6, 1, 2, 1012 },
+                    { 22, 7, 4, 16, 1012 },
+                    { 26, 11, 1, 2, 1014 },
                     { 25, 10, 4, 8, 1014 },
                     { 24, 9, 4, 8, 1014 },
-                    { 23, 8, 4, 8, 1014 },
                     { 33, 3, 1, 0, 1110 },
                     { 32, 6, 1, 2, 1019 },
                     { 31, 5, 1, 4, 1019 },
                     { 30, 35, 4, 20, 1014 },
                     { 29, 34, 2, 10, 1014 },
                     { 28, 33, 4, 15, 1014 },
-                    { 27, 12, 1, 2, 1014 },
                     { 39, 34, 3, 10, 1210 },
                     { 40, 35, 3, 20, 1210 },
-                    { 20, 37, 1, 5, 1003 },
+                    { 34, 1, 1, 1, 1113 },
                     { 19, 36, 1, 5, 1003 },
                     { 2, 10, 1, 8, 1003 },
                     { 3, 17, 1, 5, 1003 },
@@ -1430,14 +1430,14 @@ namespace Backend.Migrations
                     { 7, 23, 2, 11, 1003 },
                     { 8, 24, 20, 100, 1003 },
                     { 9, 25, 50, 200, 1003 },
-                    { 10, 26, 70, 250, 1003 },
                     { 41, 36, 3, 5, 1210 },
-                    { 22, 7, 4, 16, 1012 },
+                    { 23, 8, 4, 8, 1014 },
                     { 18, 35, 3, 20, 1003 },
                     { 17, 34, 1, 10, 1003 },
                     { 16, 32, 1, 14, 1003 },
                     { 15, 31, 1, 13, 1003 },
                     { 14, 30, 1, 12, 1003 },
+                    { 10, 26, 70, 250, 1003 },
                     { 13, 29, 3, 6, 1003 },
                     { 12, 28, 100, 500, 1003 },
                     { 11, 27, 90, 300, 1003 }
@@ -1448,22 +1448,22 @@ namespace Backend.Migrations
                 columns: new[] { "Id", "Company", "Dosage", "Med", "MedicalRecordId", "MedicationCategoryId", "MedicationId", "Quantity", "RoomId", "Status" },
                 values: new object[,]
                 {
-                    { 70, "Galenika", "75mg", "Lasix", 0, 1, null, 15, 2106, 1 },
-                    { 67, "Galenika", "100mg", "Letrox", 0, 1, null, 15, 2106, 1 },
-                    { 69, "Hemofarm", "500mg", "Flobian", 0, 1, null, 15, 2106, 1 },
+                    { 68, "Famar", "25mg", "Claritin", 0, 1, null, 15, 2106, 1 },
                     { 81, "Hemofarm", "250mg", "Amoksicilin", 0, 1, null, 15, 2107, 1 },
+                    { 80, "Hemofarm", "30mg", "Demerol", 0, 1, null, 15, 2107, 1 },
                     { 79, "Galenika", "20mg", "Klonopin", 0, 1, null, 15, 2107, 1 },
                     { 78, "Hemofarm", "100mg", "Hemomicin", 0, 1, null, 15, 2107, 1 },
                     { 77, "Famar", "80mg", "Adderall", 0, 1, null, 15, 2107, 1 },
                     { 76, "Hemofarm", "50mg", "Vicodin", 0, 1, null, 15, 2107, 1 },
-                    { 68, "Famar", "25mg", "Claritin", 0, 1, null, 15, 2106, 1 },
-                    { 74, "Famar", "60mg", "Diazepam", 0, 1, null, 15, 2107, 1 },
+                    { 75, "Goodwill", "400mg", "Andol", 0, 1, null, 15, 2107, 1 },
                     { 73, "Hemofarm", "200mg", "Panadon", 0, 1, null, 15, 2107, 1 },
                     { 72, "Goodwill", "40mg", "Xanax", 0, 1, null, 15, 2107, 1 },
                     { 71, "Famar", "200mg", "Brufen", 0, 1, null, 10, 2106, 0 },
-                    { 80, "Hemofarm", "30mg", "Demerol", 0, 1, null, 15, 2107, 1 },
-                    { 75, "Goodwill", "400mg", "Andol", 0, 1, null, 15, 2107, 1 },
-                    { 92, "Bosnalijek", "200mg", "Caffetin", 0, 1, null, 15, 2206, 1 },
+                    { 70, "Galenika", "75mg", "Lasix", 0, 1, null, 15, 2106, 1 },
+                    { 69, "Hemofarm", "500mg", "Flobian", 0, 1, null, 15, 2106, 1 },
+                    { 67, "Galenika", "100mg", "Letrox", 0, 1, null, 15, 2106, 1 },
+                    { 74, "Famar", "60mg", "Diazepam", 0, 1, null, 15, 2107, 1 },
+                    { 93, "Galenika", "100mg", "Plavix", 0, 1, null, 15, 2206, 1 },
                     { 83, "Goodwill", "200mg", "Zoloft", 0, 1, null, 15, 2202, 1 },
                     { 101, "Bosnalijek", "100mg", "Penicillin", 0, 1, null, 15, 2206, 1 },
                     { 100, "Famar", "100mg", "Eritromicin", 0, 1, null, 15, 2206, 1 },
@@ -1474,7 +1474,7 @@ namespace Backend.Migrations
                     { 95, "Galenika", "100mg", "Ranisan", 0, 1, null, 15, 2206, 1 },
                     { 94, "Famar", "50mg", "Ambien", 0, 1, null, 15, 2206, 1 },
                     { 82, "Galenika", "100mg", "Cefaleksin", 0, 1, null, 15, 2202, 1 },
-                    { 93, "Galenika", "100mg", "Plavix", 0, 1, null, 15, 2206, 1 },
+                    { 65, "Hemofarm", "50mg", "Bensedin", 0, 1, null, 15, 2106, 1 },
                     { 91, "Famar", "125mg", "Reglan", 0, 1, null, 15, 2202, 1 },
                     { 90, "Goodwill", "150mg", "Andol", 0, 1, null, 15, 2202, 1 },
                     { 89, "Famar", "800mg", "Diazepam", 0, 1, null, 15, 2202, 1 },
@@ -1483,7 +1483,7 @@ namespace Backend.Migrations
                     { 86, "Famar", "100mg", "Brufen", 0, 1, null, 10, 2202, 0 },
                     { 85, "Hemofarm", "10mg", "Bensedin", 0, 1, null, 15, 2202, 1 },
                     { 84, "Famar", "80mg", "Lexilium", 0, 1, null, 15, 2202, 1 },
-                    { 65, "Hemofarm", "50mg", "Bensedin", 0, 1, null, 15, 2106, 1 },
+                    { 92, "Bosnalijek", "200mg", "Caffetin", 0, 1, null, 15, 2206, 1 },
                     { 64, "Famar", "40mg", "Lexilium", 0, 1, null, 15, 2106, 1 },
                     { 56, "Famar", "40mg", "OxyCotin", 0, 1, null, 15, 2103, 1 },
                     { 62, "Galenika", "200mg", "Cefaleksin", 0, 1, null, 15, 2106, 1 },
@@ -1553,7 +1553,7 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "RegisteredUsers",
                 columns: new[] { "Id", "CurrResidenceId", "DateOfBirth", "DateOfCreation", "Discriminator", "EducationLevel", "Email", "Gender", "InsurancePolicyId", "Name", "NotificationId", "Password", "Phone", "PlaceOfBirthId", "Profession", "ProfileImage", "Surname", "Username", "Biography", "CurrentlyWorking", "VacationLeave", "WorkersID", "DepartmentId", "ExaminationRoomId", "LicenseNumber", "OnCall", "OperationRoomId", "PatientReview" },
-                values: new object[] { "2406978890047", 1, new DateTime(1978, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Doctor", 2, "mika@gmail.com", 0, "policy1", "Milan", null, "mika1978", "065/123-4554", 11000, "vodoinstalater", ".", "Milanovic", "mika", null, false, false, 0, 1, 1, "001", true, 2, 4.5 });
+                values: new object[] { "2406978890047", 1, new DateTime(1978, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Doctor", 2, "mika@gmail.com", 0, "policy1", "Milan", null, "mika1978", "065/123-4554", 11000, "vodoinstalater", ".", "Milanovic", "mika", null, false, false, 0, 1, 1003, "001", true, 1114, 4.5 });
 
             migrationBuilder.InsertData(
                 table: "DosageOfIngredient",
@@ -1587,6 +1587,15 @@ namespace Backend.Migrations
                 table: "MedicationCategories",
                 columns: new[] { "Id", "CategoryName", "MedicationId", "SpecializationId" },
                 values: new object[] { 1, "Kategorija1", 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Allergens",
+                columns: new[] { "Id", "Allergen", "MedicalRecordId", "MedicationId" },
+                values: new object[,]
+                {
+                    { 1, "Polen", 1, 1 },
+                    { 2, "Prasina", 1, 2 }
+                });
 
             migrationBuilder.InsertData(
                 table: "ExaminationSurgeries",
@@ -1638,8 +1647,8 @@ namespace Backend.Migrations
                 columns: new[] { "Id", "AdditionalNotes", "Date", "Discriminator", "ExaminationSurgeryId", "Type", "EndDate", "HourlyIntake", "MedicationId", "Reserved", "StartDate" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Local), "Prescription", 1, 0, new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, null, new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Local), "Prescription", 1, 0, new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, null, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "Prescription", 1, 0, new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, null, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Prescription", 1, 0, new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 1, true, new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -1792,13 +1801,13 @@ namespace Backend.Migrations
                 column: "RegisteredUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HospitalEquipment_EquipmentTypeId",
-                table: "HospitalEquipment",
+                name: "IX_HospitalEquipments_EquipmentTypeId",
+                table: "HospitalEquipments",
                 column: "EquipmentTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HospitalEquipment_RoomId",
-                table: "HospitalEquipment",
+                name: "IX_HospitalEquipments_RoomId",
+                table: "HospitalEquipments",
                 column: "RoomId");
 
             migrationBuilder.CreateIndex(
@@ -2035,7 +2044,7 @@ namespace Backend.Migrations
                 name: "Feedbacks");
 
             migrationBuilder.DropTable(
-                name: "HospitalEquipment");
+                name: "HospitalEquipments");
 
             migrationBuilder.DropTable(
                 name: "MedicationCategories");

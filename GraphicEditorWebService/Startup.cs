@@ -1,5 +1,6 @@
 using Backend.Medications.Service;
 using Backend.Rooms.Service;
+using Backend.Users.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,6 +16,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Backend.Medications.Repository.FileRepository;
+using Backend.Medications.Repository.MySqlRepository;
+using Repository.RoomRepository;
+using Backend.Rooms.Repository.MySqlRepository;
+using Backend.Users.Repository;
+using Backend.Users.Repository.MySqlRepository;
 
 namespace GraphicEditorWebService
 {
@@ -31,11 +38,18 @@ namespace GraphicEditorWebService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MySqlContext>();
+            services.AddTransient<IRoomRepository, RoomSqlRepository>();
+            services.AddTransient<IHospitalEquipmentRepository, HospitalEquipmentSqlRepository>();
+            services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
+            services.AddTransient<IDoctorRepository, DoctorSqlRepository>();
+
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IHospitalEquipmentService, HospitalEquipmentService>();
             services.AddScoped<IMedicationService, MedicationService>();
+            services.AddScoped<IDoctorService, DoctorService>();
             services.AddControllers();
             services.AddCors();
         }

@@ -26,7 +26,6 @@ namespace MedbayTechUnitTests
         {
             var retVal = new List<object[]>();
             retVal.Add(new object[] { "asd", false });
-            retVal.Add(new object[] { "Lalala", false });
             retVal.Add(new object[] { "asdasdasdasdadasd", true });
             return retVal;
         }

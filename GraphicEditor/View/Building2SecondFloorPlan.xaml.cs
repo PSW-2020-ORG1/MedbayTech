@@ -160,26 +160,46 @@ namespace GraphicEditor.View.Building2
 
         private void AdditionalInformationPatientRoom(object sender, MouseButtonEventArgs e)
         {
-            AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom();
-            additionalInformation.ShowDialog();
+            System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
+            int roomId = Int32.Parse(r.Uid);
+            if (page.getRestriction() == 0)
+            {
+                AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom(roomId);
+                additionalInformation.ShowDialog();
+            }
         }
 
         private void AdditionalInformationOperatingRoom(object sender, MouseButtonEventArgs e)
         {
-            AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom();
-            additionalInformation.ShowDialog();
+            System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
+            int roomId = Int32.Parse(r.Uid);
+            if(page.getRestriction() == 0)
+            {
+                AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom(roomId);
+                additionalInformation.ShowDialog();
+            }
         }
 
         private void AdditionalInformationExaminationRoom(object sender, MouseButtonEventArgs e)
         {
-            AdditionalInformationExaminationRoom additionalInformation = new AdditionalInformationExaminationRoom();
-            additionalInformation.ShowDialog();
+            System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
+            int roomId = Int32.Parse(r.Uid);
+            if (page.getRestriction() == 0)
+            {
+                AdditionalInformationExaminationRoom additionalInformation = new AdditionalInformationExaminationRoom(roomId);
+                additionalInformation.ShowDialog();
+            }
         }
 
         private void AdditionalInformationAuxiliaryRoom(object sender, MouseButtonEventArgs e)
         {
-            AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom();
-            additionalInformation.ShowDialog();
+            System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
+            int roomId = Int32.Parse(r.Uid);
+            if (page.getRestriction() == 0)
+            {
+                AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom(roomId);
+                additionalInformation.ShowDialog();
+            }
         }
     }
 }

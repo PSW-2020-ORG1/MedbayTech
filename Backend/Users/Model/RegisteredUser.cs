@@ -38,6 +38,7 @@ namespace Model.Users
         public string InsurancePolicyId { get; set; }
         public virtual InsurancePolicy InsurancePolicy { get; set; }
 
+
         public RegisteredUser() { }
 
         public RegisteredUser(string name, string surname, DateTime dateOfBirth,

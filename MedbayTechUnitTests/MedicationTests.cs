@@ -14,7 +14,7 @@ namespace MedbayTechUnitTests
 {
     public class MedicationTests
     {
-        /*
+
         [Theory]
         [MemberData(nameof(MedicationQueries))]
         public void Medicine_search ( string query, bool isEmpty )
@@ -54,6 +54,6 @@ namespace MedbayTechUnitTests
             medications.Add(m2);
             medications.Add(m3);
             return medications;
-        }*/
+        }
     }
 }
