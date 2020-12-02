@@ -15,7 +15,7 @@ using Backend.Records.WebApiController;
 namespace MedbayTechUnitTests
 {
     
-    public class MedicalRecordTests
+    public class MedicalRecordTestIntegration
     {
         [Fact]
         public void Find_patients_medical_record_Integration()

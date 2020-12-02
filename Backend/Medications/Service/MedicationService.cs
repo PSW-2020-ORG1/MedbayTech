@@ -27,10 +27,30 @@ namespace Backend.Medications.Service
 
         public List<Medication> GetAllMedicationsByNameOrId(string query)
         {
-             if (Int32.TryParse(query, out int id))
+            if (Int32.TryParse(query, out int id))
                 return _medicationRepository.GetAll().Where(med => med.Id == id).ToList();
             return _medicationRepository.GetAll().Where(med => med.Med.ToLower().Contains(query.ToLower())).ToList();
 
+        }
+   
+        public MedicationService(IMedicationRepository medicationRepository)
+        {
+            _medicationRepository = medicationRepository;
+        }
+
+        public Medication UpdateMedicationDataBase(Medication medication)
+        {
+            _medicationRepository.Update(medication);
+            return medication;
+        }
+
+        public List<Medication> GetAllMedicationByRoomId(string query)
+        {
+            if (Int32.TryParse(query, out int id))
+            {
+                return _medicationRepository.GetAll().ToList().Where(med => med.RoomId == id).ToList();
+            }
+            return new List<Medication>();
         }
 
         public Medication RejectMedication(Medication medication)
@@ -50,6 +70,7 @@ namespace Backend.Medications.Service
             Medication fullMedication = medication;
             _medicationRepository.Create(medication);
             _notificationService.MedForValidationNotification(medication);
+
             return medication;
         }
         public Medication UpdateMedication(Medication medication) => 
@@ -58,22 +79,10 @@ namespace Backend.Medications.Service
         public bool DeleteMedication(Medication medication) => 
             _medicationRepository.Delete(medication);
 
-        public Medication GetMedication(int id) => 
+
+        public Medication GetMedication(int id) =>
             _medicationRepository.GetObject(id);
 
-        /*public IEnumerable<Medication> GetAllOnValidationFor(Doctor doctor)
-        {
-            List<Medication> allOnValidation = (List<Medication>)_medicationRepository.GetAllOnValidation().ToList();
-            List<Medication> validations = new List<Medication>();
-            foreach (Medication medication in allOnValidation)
-            {
-                Specialization specialization = medication.MedicationCategory.Specialization;
-                if (doctor.IsMySpecialization(specialization) && medication.IsOnValidation())
-
-                    validations.Add((medication));
-            }
-            return validations;
-        }*/
        
         public IEnumerable<Medication> GetAllOnValidation() => 
             _medicationRepository.GetAllOnValidation();
@@ -84,7 +93,7 @@ namespace Backend.Medications.Service
         public IEnumerable<Medication> GetAllRejected() => 
             _medicationRepository.GetAllRejected();
 
-        public IEnumerable<Medication> GetAllApproved() => 
+        public IEnumerable<Medication> GetAllApproved() =>
             _medicationRepository.GetAllApproved();
 
         public Medication AddAmount(Medication medication, int amount)

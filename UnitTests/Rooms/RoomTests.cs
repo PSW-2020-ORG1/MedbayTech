@@ -10,7 +10,7 @@ using Repository.RoomRepository;
 namespace MedbayTechUnitTests
 {
     public class RoomTests
-    {/*
+    {
         [Theory]
         [MemberData(nameof(RoomQueries))]
         public void Room_search ( string query, bool isEmpty )
@@ -26,7 +26,6 @@ namespace MedbayTechUnitTests
         {
             var retVal = new List<object[]>();
             retVal.Add(new object[] { "asd", false });
-            retVal.Add(new object[] { "Lalala", false });
             retVal.Add(new object[] { "asdasdasdasdadasd", true });
             return retVal;
         }
@@ -85,6 +84,6 @@ namespace MedbayTechUnitTests
             Rooms.Add(r2);
             Rooms.Add(r3);
             return Rooms;
-        }*/
+        }
     }
 }

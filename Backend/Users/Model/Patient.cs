@@ -5,6 +5,7 @@
 
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Model.Users
 {
    public class Patient : RegisteredUser

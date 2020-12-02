@@ -9,7 +9,7 @@ using Model;
 namespace Backend.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201130231352_migration0")]
+    [Migration("20201202173944_migration0")]
     partial class migration0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -2168,7 +2168,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("HospitalEquipment");
+                    b.ToTable("HospitalEquipments");
 
                     b.HasData(
                         new
@@ -5530,10 +5530,10 @@ namespace Backend.Migrations
                             VacationLeave = false,
                             WorkersID = 0,
                             DepartmentId = 1,
-                            ExaminationRoomId = 1,
+                            ExaminationRoomId = 1003,
                             LicenseNumber = "001",
                             OnCall = true,
-                            OperationRoomId = 2,
+                            OperationRoomId = 1114,
                             PatientReview = 4.5
                         });
                 });

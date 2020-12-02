@@ -1,5 +1,6 @@
 ﻿using Backend.Rooms.Service;
 using Microsoft.AspNetCore.Mvc;
+using Model.Rooms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,16 +14,33 @@ namespace GraphicEditorService.Controller
     public class RoomController : ControllerBase
     {
         private IRoomService _roomService;
- 
-        public RoomController (IRoomService roomService)
+
+        public RoomController(IRoomService roomService)
         {
             _roomService = roomService;
         }
 
-        [HttpGet("{textBoxSearch?}")]
-        public IActionResult Get(string textBoxSearch)
+        [HttpGet("{textBoxSearch?}/{operation}")]
+        public IActionResult Get(string textBoxSearch, int operation)
         {
-            return Ok(_roomService.GetRoomsByRoomLabelorRoomUse(textBoxSearch.ToLower().Trim()));
+            if(operation == 0)
+            {
+                return Ok(_roomService.GetRoomsByRoomLabelorRoomUse(textBoxSearch.ToLower().Trim()));
+            }
+            else
+            {
+                if (Int32.TryParse(textBoxSearch, out int id))
+                {
+                    return Ok(_roomService.GetRoomById(id));
+                }
+                else return Ok();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Post(Room room)
+        {
+            return Ok(_roomService.UpdateRoomDataBase(room));
         }
     }
 }

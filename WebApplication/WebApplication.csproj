@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Backend\Backend.csproj" />
-    <ProjectReference Include="..\WebApplicationService\WebApplicationService.csproj" />
   </ItemGroup>
 
   <ItemGroup>
