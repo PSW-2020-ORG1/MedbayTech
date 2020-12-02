@@ -1,11 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-<<<<<<< HEAD
 import { Prescription } from 'src/app/model/prescription';
-=======
-import { Prescription } from 'src/app/model/prescriptionSearch';
->>>>>>> graphic_editorV1
 import { environment } from 'src/environments/environment';
 
 @Injectable({
