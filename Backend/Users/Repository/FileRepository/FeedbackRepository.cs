@@ -114,5 +114,11 @@ namespace Backend.Users.Repository.MySqlRepository
         {
             throw new NotImplementedException();
         }
+
+        public bool CheckIfExists(Feedback feedback)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

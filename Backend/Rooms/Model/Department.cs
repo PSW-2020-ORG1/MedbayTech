@@ -15,10 +15,11 @@ namespace Model.Rooms
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get;  set; }
+
+        public string Name { get; set; }
         public int Floor { get; set; }
         [ForeignKey("Hospital")]
-        public int HospitalId { get;  set; }
+        public int HospitalId { get; set; }
         public virtual Hospital Hospital { get; set; }
 
         public Department (int id, string name, int floor, Hospital hospital)

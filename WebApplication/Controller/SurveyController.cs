@@ -7,9 +7,9 @@ using Backend.Users.WebApiController;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.Users;
+using Service.GeneralService;
 using WebApplication.Adapters;
 using WebApplication.DTO;
-using WebApplicationService.GeneralService;
 
 namespace WebApplication.Controller
 {

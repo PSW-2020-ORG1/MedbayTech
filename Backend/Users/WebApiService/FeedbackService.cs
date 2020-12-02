@@ -1,6 +1,7 @@
 ﻿using Backend.Users.Repository.MySqlRepository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Model;
 using Model.Users;
@@ -30,7 +31,7 @@ namespace Backend.Users.WebApiService
         {
             return feedbackRepository.UpdateStatus(feedbackId, status);
         }
-        public bool CreateFeedback(string userId, string additionalNotes, Boolean anonymous, Boolean allowed)
+        public Feedback CreateFeedback(string userId, string additionalNotes, Boolean anonymous, Boolean allowed)
         {
             int feedbackId = GenerateFeedbackId();
             Feedback feedback = new Feedback();
@@ -45,14 +46,8 @@ namespace Backend.Users.WebApiService
                 feedback.RegisteredUserId = userId;
             }
 
-            Feedback createdFeedback = feedbackRepository.Create(feedback);
+            return feedbackRepository.Create(feedback);
 
-            if (createdFeedback == null)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         public int GenerateFeedbackId()
@@ -61,5 +56,20 @@ namespace Backend.Users.WebApiService
             id = feedbackRepository.GetLastId();
             return ++id;
         }
+
+        public Feedback CheckIfExists(Feedback feedback)
+        {
+            List<Feedback> feedbacks = feedbackRepository.GetAll().ToList();
+            bool exists = feedbacks.Any(s => s.Id == feedback.Id);
+            if (exists)
+            {
+                return feedbacks.FirstOrDefault(s => s.Id == feedback.Id);
+            }
+            return null;
+
+
+
+        }
+
     }
 }

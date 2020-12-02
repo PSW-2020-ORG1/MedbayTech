@@ -4,7 +4,11 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Model;
 using Backend.Users.Repository.MySqlRepository;
+
 using Backend.Users.Repository.FileRepository;
+
+using Backend.Records.Repository.MySqlRepository;
+
 
 namespace Repository
 {
@@ -14,6 +18,7 @@ namespace Repository
         private MySqlContext context = new MySqlContext();
 
         private FeedbackSqlRepository feedbackRepository;
+        private MedicalRecordSqlRepository medicalRecordRepository;
 
         private SurveyQuestionSqlRepository surveyQuestionRepository;
 
@@ -30,6 +35,7 @@ namespace Repository
             }
         }
 
+
         public SurveyQuestionSqlRepository SurveyQuestionRepository
         {
             get
@@ -40,6 +46,19 @@ namespace Repository
 
                 }
                 return this.surveyQuestionRepository;
+            }
+        }
+
+        public MedicalRecordSqlRepository MedicalRecordRepository 
+        {
+            get
+            {
+                if (this.medicalRecordRepository == null)
+                {
+                    this.medicalRecordRepository = new MedicalRecordSqlRepository(context);
+                }
+                return this.medicalRecordRepository;
+
             }
         }
         /// <summary>

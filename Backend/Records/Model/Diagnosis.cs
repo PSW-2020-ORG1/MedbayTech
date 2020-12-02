@@ -22,6 +22,10 @@ namespace Backend.Records.Model
         [ForeignKey("MedicalRecord")]
         public int MedicalRecordId { get; set; }
         public virtual MedicalRecord MedicalRecord { get; set; }
+        public virtual ExaminationSurgery ExaminationSurgery { get; set; }
+
+        [ForeignKey("ExaminationSurgery")]
+        public int ExaminationSurgeryId { get; set; }
 
         public Diagnosis() 
         {
@@ -50,7 +54,7 @@ namespace Backend.Records.Model
         {
             Id = id;
         }
-
+      
         public bool IsMySymptom(IEnumerable<Symptoms> symptoms)
         {
             foreach (Symptoms symptom in symptoms)

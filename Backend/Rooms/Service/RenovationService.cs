@@ -45,7 +45,7 @@ namespace Service.RoomService
         public void MoveAllToStorage(Renovation renovation)
         {
             Room roomToUpdate = roomService.GetRoom(renovation.Room.Id);
-            var storages = roomService.GetAllRoomsFromOneType(RoomType.storage).ToList();
+            var storages = roomService.GetAllRoomsFromOneType(RoomType.StorageRoom).ToList();
             foreach(HospitalEquipment equipment in hospitalEquipmentService.GetEquipmentByRoomNumber(roomToUpdate.Id))
             {
                 hospitalEquipmentService.UpdateEquipment(equipment);

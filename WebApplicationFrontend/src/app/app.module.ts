@@ -23,19 +23,35 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatTableModule} from '@angular/material/table'; 
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+
 import {MatIconModule} from '@angular/material/icon';
-import { MatNativeDateModule } from '@angular/material/core';
-import {MatSelectModule} from '@angular/material/select';
+
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatTabsModule} from '@angular/material/tabs';
+
+
+
 
 import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-feedback/approved-feedback.component';
 import { AllFeedbackComponent } from './feedback/all-feedback/all-feedback.component';
 
 import { PostFeedbackComponent } from './feedback/post-feedback/post-feedback.component';
 import { FeedbackService } from './service/feedback/feedback.service';
+
 import { SurveyComponent } from './survey/do-survey/survey/survey/survey.component';
 import { SurveyService } from './service/survey/survey.service';
 
+import { PrescriptionSearchComponent } from './search/prescription-search/prescription-search.component';
+import {MatSelectModule} from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReportSearchComponent } from './search/report-search/report-search.component';
+
+
+import {MedicalRecordComponent} from './medical-record/medical-record.component';
+import {MedicalRecordService} from './service/medicalRecord/medicalRecord.service';
+import { PrescriptionSimpleSearchComponent } from './search/prescription-simple-search/prescription-simple-search.component';
+import { ReportSimpleSearchComponent } from './search/report-simple-search/report-simple-search.component';
 
 @NgModule({
   declarations: [
@@ -44,8 +60,13 @@ import { SurveyService } from './service/survey/survey.service';
     AllFeedbackComponent,
     PostFeedbackComponent,
     SurveyComponent,
-    PatientRegistrationComponent
-   
+    PatientRegistrationComponent,
+    PrescriptionSearchComponent,
+    ReportSearchComponent,
+    PatientRegistrationComponent,
+    MedicalRecordComponent,
+    PrescriptionSimpleSearchComponent,
+    ReportSimpleSearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,15 +74,22 @@ import { SurveyService } from './service/survey/survey.service';
     HttpClientModule,
     BrowserAnimationsModule,
     MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatCardModule,
     MatDividerModule,
     MatButtonModule,
     MatTableModule,
     RouterModule,
     FormsModule,
+    MatDatepickerModule,
     MatRadioModule,
     MatInputModule,
+    MatTabsModule,
+    MatTableModule,
     RouterModule,
+    MatSelectModule,
+    MatNativeDateModule,
     FormsModule,
     MatIconModule,
     MatSelectModule,
@@ -69,6 +97,11 @@ import { SurveyService } from './service/survey/survey.service';
     MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatInputModule,
+    MatSelectModule,
     ToastrModule.forRoot(),
 
     
@@ -77,8 +110,8 @@ import { SurveyService } from './service/survey/survey.service';
     FeedbackService,
     MatDatepickerModule,
     MatNativeDateModule,
-    SurveyService
-  
+    SurveyService,
+    MedicalRecordService,
   ],
   bootstrap: [AppComponent]
 })

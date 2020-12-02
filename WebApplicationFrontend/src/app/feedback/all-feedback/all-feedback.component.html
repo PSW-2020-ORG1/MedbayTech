@@ -6,35 +6,35 @@
                     <mat-card>
                         
                             <mat-card-title>
-                                <p class="title-paragraph" *ngIf="feedback.Anonymous">Anonymous</p>
-                                <p class="title-paragraph" *ngIf="!feedback.Anonymous"> {{ feedback.Name}} {{feedback.Surname}}</p>
+                                <p class="title-paragraph" *ngIf="feedback.anonymous">Anonymous</p>
+                                <p class="title-paragraph" *ngIf="!feedback.anonymous"> {{ feedback.name}} {{feedback.surname}}</p>
                                
                             </mat-card-title>
                             
                             <mat-card-subtitle>
-                                <p class="subtitle-paragraph">{{ feedback.Date | date: 'dd/MM/yyyy'}}</p>
+                                <p class="subtitle-paragraph">{{ feedback.date | date: 'dd/MM/yyyy'}}</p>
                             </mat-card-subtitle>
                        
                         <mat-divider></mat-divider>
                         <mat-card-content>
-                            <p class="content-paragraph">{{ feedback.AdditionalNotes }}</p>
+                            <p class="content-paragraph">{{ feedback.additionalNotes }}</p>
                         </mat-card-content>
                         <mat-divider></mat-divider>
                         <mat-card-content>
-                            <p class="content-paragraph" *ngIf="feedback.AllowedForPublishing">Publishing: Allowed</p>
-                            <p class="content-paragraph" *ngIf="!feedback.AllowedForPublishing">Publishing: Not Allowed</p>
+                            <p class="content-paragraph" *ngIf="feedback.allowedForPublishing">Publishing: Allowed</p>
+                            <p class="content-paragraph" *ngIf="!feedback.allowedForPublishing">Publishing: Not Allowed</p>
                         </mat-card-content>
                         <mat-divider></mat-divider>
                         <mat-card-content>
-                            <p class="content-paragraph" *ngIf="feedback.Approved">Status: Approved</p>
-                            <p class="content-paragraph" *ngIf="!feedback.Approved">Status: Not Approved</p>
+                            <p class="content-paragraph" *ngIf="feedback.approved">Status: Approved</p>
+                            <p class="content-paragraph" *ngIf="!feedback.approved">Status: Not Approved</p>
                             
                         </mat-card-content>
                            
-                       <mat-card-actions *ngIf="feedback.AllowedForPublishing">
+                       <mat-card-actions *ngIf="feedback.allowedForPublishing">
                            
-                            <button mat-raised-button id="button" (click)="updateStatus(feedback.Id,!feedback.Approved, $event.target)" *ngIf="!feedback.Approved">Approve</button>
-                            <button mat-raised-button id="button" (click)="updateStatus(feedback.Id,!feedback.Approved, $event.target)" *ngIf="feedback.Approved">Deny</button>
+                            <button mat-raised-button id="button" (click)="updateStatus(feedback.id,!feedback.approved, $event.target)" *ngIf="!feedback.approved">Approve</button>
+                            <button mat-raised-button id="button" (click)="updateStatus(feedback.id,!feedback.approved, $event.target)" *ngIf="feedback.approved">Deny</button>
                             
                         </mat-card-actions>
                     </mat-card>

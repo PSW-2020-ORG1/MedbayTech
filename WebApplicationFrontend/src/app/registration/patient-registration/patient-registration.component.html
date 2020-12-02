@@ -8,7 +8,7 @@
     </div>
 
     <div class="sections">
-        <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+        <form enctype="multipart/form-data" [formGroup]="createForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 
                 <mat-form-field>
@@ -62,7 +62,7 @@
 
                 <mat-form-field>
                     <mat-label>Gender*</mat-label>
-                    <mat-select id="gender" name="gender" formControlName="gender">
+                    <mat-select id="gender" name="gender" formControlName="gender" (selectionChange)=selectedGender($event)>
                         <mat-option value="M">Male</mat-option>
                         <mat-option value="F">Female</mat-option>
                     </mat-select>
@@ -114,7 +114,7 @@
                 <div class="inputField">
                     <mat-form-field>
                         <mat-label>Education level*</mat-label>
-                        <mat-select id="educationLevel" name="educationLevel" formControlName="educationLevel">
+                        <mat-select id="educationLevel" name="educationLevel" formControlName="educationLevel" (selectionChange)=selectedEducationalLevel($event)>
                             <mat-option value="primary">Primary</mat-option>
                             <mat-option value="secondary">Secondary</mat-option>
                             <mat-option value="bachelor">Bechelor</mat-option>
@@ -126,11 +126,14 @@
                     </mat-form-field>
                 </div>
 
+                <div class="inputField" style="margin-top:10px">
+                        <input type="file" #file id="photo" name="photo" formControlName="photo" (change)="uploadFile(file.files)" style="display: none;">   
+                        <button type="button" mat-raised-button (click)="file.click()">Upload Image</button>
+                </div>
                 <div class="inputField">
-                    <mat-form-field>
-                        <mat-label>Choose photo</mat-label>
-                        <input matInput id="photo" name="photo"> 
-                    </mat-form-field>
+                    <div class="row-sections" style="margin-top:18px">
+                        <mat-icon aria-hidden="false" *ngIf="selected" aria-label="Example home icon">done</mat-icon>
+                    </div>
                 </div>
             </div>
 
@@ -188,18 +191,48 @@
                 </div>
                 <div class="inputField">
                     <mat-form-field>
-                        <mat-label>Apartment</mat-label>
+                        <mat-label>Apartment*</mat-label>
                         <input matInput matTooltip="Please enter apartment number or 0" id="apartment" placeholder="Apartment" formControlName="apartment">
                         <mat-error *ngIf="!createForm.get('apartment').valid && createForm.get('apartment').touched && createForm.get('apartment').errors['pattern']">Please enter vaid apartment</mat-error>
+                        <mat-error *ngIf="!createForm.get('apartment').valid && createForm.get('apartment').touched && createForm.get('apartment').errors['required']">Please enter apartment</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="inputField">
                     <mat-form-field>
-                        <mat-label>Floor</mat-label>
+                        <mat-label>Floor*</mat-label>
                         <input matInput matTooltip="Please enter floor number or 0" id="floor" placeholder="Floor" formControlName="floor">
-                        <mat-error *ngIf="!createForm.get('floor').valid && createForm.get('floor').touched && createForm.get('floor').errors['pattern']">Please enter vaid floor</mat-error>
+                        <mat-error *ngIf="!createForm.get('floor').valid && createForm.get('floor').touched && createForm.get('floor').errors['pattern']">Please enter valid floor</mat-error>
+                        <mat-error *ngIf="!createForm.get('floor').valid && createForm.get('floor').touched && createForm.get('floor').errors['required']">Please enter floor</mat-error>
                     </mat-form-field>
                 </div>
+                <div class="inputField">
+                    <mat-form-field>
+                        <mat-label>City*</mat-label>
+                        <input matInput id="city" placeholder="City" formControlName="city">
+                        <mat-error *ngIf="!createForm.get('city').valid && createForm.get('city').touched && createForm.get('city').errors['required']">Please enter city</mat-error>
+                    <mat-error *ngIf="!createForm.get('city').valid && createForm.get('city').touched && createForm.get('city').errors['pattern']">Please enter valid city</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row sections">
+                <mat-form-field>
+                    <mat-label>Postal code*</mat-label>
+                    <input matInput id="postalCode" placeholder="Postal code" formControlName="postalCode">
+                    <mat-error *ngIf="!createForm.get('postalCode').valid && createForm.get('postalCode').touched && createForm.get('postalCode').errors['required']">Please enter postal code</mat-error>
+                    <mat-error *ngIf="!createForm.get('postalCode').valid && createForm.get('postalCode').touched && createForm.get('postalCode').errors['pattern']">Please enter valid postal code</mat-error>
+                </mat-form-field>
+
+                <div class="inputField">
+                    <mat-form-field>
+                        <mat-label>State*</mat-label>
+                        <input matInput id="state" placeholder="State" formControlName="state">
+                        <mat-error *ngIf="!createForm.get('state').valid && createForm.get('state').touched && createForm.get('state').errors['required']">Please enter state</mat-error>
+                        <mat-error *ngIf="!createForm.get('state').valid && createForm.get('state').touched && createForm.get('state').errors['pattern']">Please valid state</mat-error>
+                    </mat-form-field>
+                </div>
+        
+               
+                
             </div>
 
             <div class="row heading-row">
@@ -251,7 +284,7 @@
                 <div class="row">
                     <mat-form-field>
                         <mat-label>Patient condition</mat-label>
-                        <mat-select id="patientCondition" name="patientCondition" formContronName="patientCondition">
+                        <mat-select id="patientCondition" name="patientCondition" formContronName="patientCondition" (selctionChange)=selectedPatientCondition($event)>
                             <mat-option value="Stable">Stable</mat-option>
                             <mat-option value="Urgent">Urgent</mat-option>
                             <mat-option value="HospitalTreatment">HospitalTreatment</mat-option>
@@ -262,7 +295,7 @@
                     <div class="inputField">
                         <mat-form-field>
                             <mat-label>Blood type</mat-label>
-                            <mat-select>
+                            <mat-select id="bloodType" name="bloodType" formControlName="bloodType" (selectionChange)=selectedBloodType($event)>
                                 <mat-option value="ONeg">ONeg</mat-option>
                                 <mat-option value="OPlus">OPlus</mat-option>
                                 <mat-option value="ANeg">ANeg</mat-option>
@@ -277,14 +310,18 @@
                     <div class="inputField">
                         <mat-form-field>
                             <mat-label>Choosen doctor*</mat-label>
-                            <input matInput id="choosenDoctor" name="choosenDoctor" formControlName="choosenDoctor">
+                            <mat-select id="choosenDoctor" name="choosenDoctor" formControlName="choosenDoctor" (selectionChange)="getDoctor($event)">
+                                <mat-option *ngFor="let doctor of searchDoctors" value={{doctor.id}}>
+                                    {{doctor.fullName}}
+                                </mat-option>
+                            </mat-select>
                             <mat-error *ngIf="!createForm.get('choosenDoctor').valid && createForm.get('choosenDoctor').touched && createForm.get('choosenDoctor').errors['required']">Please enter choosen doctor</mat-error>
                         </mat-form-field>
                     </div>
                 </div>
             </div>
             <div class="row sections">
-                <button mat-flat-button color="primary" type="submit" [disabled]="!createForm.valid">Register</button>
+                <button mat-flat-button color="primary" type="submit" [disabled]="!createForm.valid" style="margin-bottom: 50px;">Register</button>
             </div>
             
 

@@ -11,101 +11,116 @@ using System.Linq;
 using Backend.Medications.Repository.FileRepository;
 using Model.Users;
 using Service.GeneralService;
+using Model;
 
 namespace Backend.Medications.Service
 {
-   public class MedicationService
+   public class MedicationService : IMedicationService
    {
-        public IMedicationRepository medicationRepository;
-        public NotificationService notificationService;
-        public IValidationMedicationRepository validationMedicationRepository;
+        private INotificationService _notificationService;
+        private IMedicationRepository _medicationRepository;
 
-        public MedicationService(IMedicationRepository medicationRepository, IValidationMedicationRepository validationMedicationRepository)
+        public MedicationService(IMedicationRepository medicationRepository, INotificationService notificationService)
         {
-            this.validationMedicationRepository = validationMedicationRepository;
-            this.medicationRepository = medicationRepository;
+            _notificationService = notificationService;
+        }
+
+        public List<Medication> GetAllMedicationsByNameOrId(string query)
+        {
+            if (Int32.TryParse(query, out int id))
+                return _medicationRepository.GetAll().Where(med => med.Id == id).ToList();
+            return _medicationRepository.GetAll().Where(med => med.Med.ToLower().Contains(query.ToLower())).ToList();
+
+        }
+   
+        public MedicationService(IMedicationRepository medicationRepository)
+        {
+            _medicationRepository = medicationRepository;
+        }
+
+        public Medication UpdateMedicationDataBase(Medication medication)
+        {
+            _medicationRepository.Update(medication);
+            return medication;
+        }
+
+        public List<Medication> GetAllMedicationByRoomId(string query)
+        {
+            if (Int32.TryParse(query, out int id))
+            {
+                return _medicationRepository.GetAll().ToList().Where(med => med.RoomId == id).ToList();
+            }
+            return new List<Medication>();
         }
 
         public Medication RejectMedication(Medication medication)
         {
             medication.Status = MedStatus.Approved;
-            return medicationRepository.Update(medication);
+            return _medicationRepository.Update(medication);
         }
 
         public Medication ApproveMedication(Medication medication)
         {
             medication.Status = MedStatus.Rejected;
-            return medicationRepository.Update(medication);
+            return _medicationRepository.Update(medication);
         }
 
         public Medication CreateMedication(Medication medication)
         {
             Medication fullMedication = medication;
-            medicationRepository.Create(medication);
-            notificationService.MedForValidationNotification(medication);
+            _medicationRepository.Create(medication);
+            _notificationService.MedForValidationNotification(medication);
+
             return medication;
         }
-
         public Medication UpdateMedication(Medication medication) => 
-            medicationRepository.Update(medication);
+            _medicationRepository.Update(medication);
 
         public bool DeleteMedication(Medication medication) => 
-            medicationRepository.Delete(medication);
+            _medicationRepository.Delete(medication);
 
-        public Medication GetMedication(int id) => 
-            medicationRepository.GetObject(id);
-      
-        public IEnumerable<Medication> GetAllOnValidationFor(Doctor doctor)
-        {
-            List<Medication> allOnValidation = (List<Medication>) medicationRepository.GetAllOnValidation().ToList();
-            List<Medication> validations = new List<Medication>();
-            foreach (Medication medication in allOnValidation)
-            {
-                Specialization specialization = medication.MedicationCategory.Specialization;
-                if (doctor.IsMySpecialization(specialization) && medication.IsOnValidation())
-                
-                    validations.Add((medication));
-            }
-            return validations;
-        }
+
+        public Medication GetMedication(int id) =>
+            _medicationRepository.GetObject(id);
+
        
         public IEnumerable<Medication> GetAllOnValidation() => 
-            medicationRepository.GetAllOnValidation();
+            _medicationRepository.GetAllOnValidation();
 
         public IEnumerable<Medication> GetAll() => 
-            medicationRepository.GetAll();
+            _medicationRepository.GetAll();
 
         public IEnumerable<Medication> GetAllRejected() => 
-            medicationRepository.GetAllRejected();
+            _medicationRepository.GetAllRejected();
 
-        public IEnumerable<Medication> GetAllApproved() => 
-            medicationRepository.GetAllApproved();
+        public IEnumerable<Medication> GetAllApproved() =>
+            _medicationRepository.GetAllApproved();
 
         public Medication AddAmount(Medication medication, int amount)
         {
             medication.Quantity += amount;
-            return medicationRepository.Update(medication);
+            return _medicationRepository.Update(medication);
         }
 
         public Medication UpdateSideEffects(Medication medication, SideEffect sideEffects)
         {
             medication.SideEffects.Add(sideEffects);
-            return medicationRepository.Update(medication);
+            return _medicationRepository.Update(medication);
         }
 
         public Medication UpdateDosageOfIngredients(Medication medication, DosageOfIngredient dosageOfIngredient)
         {
             medication.MedicationContent.Add(dosageOfIngredient);
-            return medicationRepository.Update(medication);
+            return _medicationRepository.Update(medication);
         }
 
         public Medication UpdateAllergens(Medication medication, Allergens allergens)
         {
             medication.Allergens.Add(allergens);
-            return medicationRepository.Update(medication);
+            return _medicationRepository.Update(medication);
         }
 
-
-
+        // NOTE(Jovan): For PHIntegration testing purposes
+        public Medication Add(Medication medication) => _medicationRepository.Create(medication);
     }
 }

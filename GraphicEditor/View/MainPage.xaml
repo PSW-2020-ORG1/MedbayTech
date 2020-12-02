@@ -1,0 +1,112 @@
+﻿<Page x:Class="GraphicEditor.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GraphicEditor"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1024"
+      Title="MainPage">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="68" VerticalAlignment="Top" Background="#006481" Grid.ColumnSpan="2">
+            <Image Name="imageLogo" Width="60" Margin="5,0,0,0" />
+            <Label Content="Hospital map" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="White"/>
+        </StackPanel>
+        <DockPanel DockPanel.Dock="Left" Background="SteelBlue">
+            <DockPanel DockPanel.Dock="Top">
+                <DockPanel DockPanel.Dock="Top">
+                    <Label DockPanel.Dock="Top" Content="Informations" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White"/>
+                    <Label DockPanel.Dock="Left" Content="Search:" FontFamily="Arial" FontWeight="Bold" FontSize="25" Foreground="White" Width="102"/>
+                    <TextBox Name="textBoxSearch" DockPanel.Dock="Right" Height="25" Margin="0,0,10,0" TextWrapping="Wrap" TextAlignment="Left" FontSize="15" FontWeight="SemiBold"  BorderBrush="#3A6180" KeyDown="EnterKey"/>
+                </DockPanel>
+                <StackPanel DockPanel.Dock="Bottom" Margin="5,5,0,5" Orientation="Horizontal">
+                    <Viewbox Height="22" HorizontalAlignment="Left" Margin="0,0,10,0">
+                        <RadioButton x:Name="Equipment" GroupName="Search" Foreground="White" FontSize="15" FontWeight="Medium">Equipment</RadioButton>
+                    </Viewbox>
+                    <Viewbox Height="22" HorizontalAlignment="Left" Margin="0,0,10,0">
+                        <RadioButton x:Name="Medicines" GroupName="Search" Foreground="White" FontSize="15" FontWeight="Medium">Medicines</RadioButton>
+                    </Viewbox>
+                    <Viewbox Height="22" HorizontalAlignment="Left" Margin="0,0,10,0">
+                        <RadioButton x:Name="Rooms" IsChecked="True" GroupName="Search" Foreground="White" FontSize="15" FontWeight="Medium">Rooms</RadioButton>
+                    </Viewbox>
+                </StackPanel>
+            </DockPanel>
+
+            <DockPanel DockPanel.Dock="Bottom">
+                <local:Legend  x:Name="legenda"  VerticalAlignment="Center" HorizontalAlignment="Center"   Visibility="Visible" Height="300" Width="250"></local:Legend>
+            </DockPanel>
+            <TabControl SelectionChanged="TabControl_SelectionChanged" x:Name="tabControl">
+                <TabItem x:Name="MAP" Header="Map">
+                    <Grid Background="#FFE5E5E5">
+                        <Label Content="Wards:" HorizontalAlignment="Left" Margin="132,-7,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="110" Height="35"/>
+                        <ComboBox Name="comboBoxWardsMap" SelectionChanged="ComboBoxWardsMap_SelectionChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="132,28,0,0">
+                            <ComboBoxItem Content="General"/>
+                            <ComboBoxItem Content="Cardiology"/>
+                            <ComboBoxItem Content="Oncology"/>
+                            <ComboBoxItem Content="Radiology"/>
+                            <ComboBoxItem Content="Neurology"/>
+                            <ComboBoxItem Content="Intesive care"/>
+                            <ComboBoxItem Content="Emergency"/>
+                            <ComboBoxItem Content="Dialysis"/>
+                            <ComboBoxItem Content="Gastroenterology"/>
+                            <ComboBoxItem Content="Hematology"/>
+                            <ComboBoxItem Content="Rheumatology"/>
+                            <ComboBoxItem Content="Infectous Diseases"/>
+                        </ComboBox>
+                        <Label Content="H1 Floors:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="120" Margin="0,-7,0,0"/>
+                        <ComboBox SelectionChanged="comboBoxH1_SelectionChanged"  x:Name="comboBoxH1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,28,0,0">
+                            <ComboBoxItem Content="Ground floor"/>
+                            <ComboBoxItem Content="First floor" />
+                            <ComboBoxItem Content="Second floor" />
+                        </ComboBox>
+                        <Label Content="H2 Floors:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="120" Margin="0,109,0,0"/>
+                        <ComboBox SelectionChanged="comboBoxH2_SelectionChanged" x:Name="comboBoxH2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,143,0,0">
+                            <ComboBoxItem Content="Ground floor"/>
+                            <ComboBoxItem Content="First floor"/>
+                            <ComboBoxItem Content="Secod floor"/>
+                        </ComboBox>
+                    </Grid>
+                </TabItem>
+                <TabItem x:Name="H1" Header="H1">
+                    <Grid Background="#FFE5E5E5">
+                        <Label Content="Floors:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="120" Margin="0,-7,0,0" Grid.ColumnSpan="3"/>
+                        <ComboBox SelectionChanged="comboBoxHospital1_SelectionChanged" x:Name="comboBoxHospital1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,28,0,0" Grid.ColumnSpan="3">
+                            <ComboBoxItem>Ground level</ComboBoxItem>
+                            <ComboBoxItem>First floor</ComboBoxItem>
+                            <ComboBoxItem>Second floor</ComboBoxItem>
+                        </ComboBox>
+                        <Label Content="Wards:" HorizontalAlignment="Left" Margin="132,-7,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="110" Height="35" Grid.Column="2"/>
+                        <ComboBox Name="comboBoxWardsHospital1" SelectionChanged="ComboBoxWardsHospital1_SelectionChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="132,28,0,0" Grid.Column="2">
+                            <ComboBoxItem Content="General"/>
+                            <ComboBoxItem Content="Cardiology"/>
+                            <ComboBoxItem Content="Oncology"/>
+                            <ComboBoxItem Content="Radiology"/>
+                            <ComboBoxItem Content="Neurology"/> 
+                            <ComboBoxItem Content="Intesive care"/>
+                        </ComboBox>
+                    </Grid>
+                </TabItem>
+                <TabItem x:Name="H2" Header="H2">
+                    <Grid Background="#FFE5E5E5">
+                        <Label Content="Floors:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="120" Margin="0,-7,0,0"/>
+                        <ComboBox HorizontalAlignment="Left" SelectionChanged="comboBoxHospital2_SelectionChanged" x:Name="comboBoxHospital2" VerticalAlignment="Top" Width="120" Margin="0,28,0,0">
+                            <ComboBoxItem>Ground level</ComboBoxItem>
+                            <ComboBoxItem>First floor</ComboBoxItem>
+                            <ComboBoxItem>Second floor</ComboBoxItem>
+                        </ComboBox>
+                        <Label Content="Wards:" HorizontalAlignment="Left" Margin="132,-7,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Width="110" Height="35"/>
+                        <ComboBox Name="comboBoxWardsHospital2" SelectionChanged="ComboBoxWardsHospital2_SelectionChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="132,28,0,0">
+                            <ComboBoxItem Content="General"/>
+                            <ComboBoxItem Content="Dialysis"/>
+                            <ComboBoxItem Content="Gastroenterology"/>
+                            <ComboBoxItem Content="Hematology"/>
+                            <ComboBoxItem Content="Rheumatology"/>
+                            <ComboBoxItem Content="Infectous Diseases"/>
+                        </ComboBox>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+    </DockPanel>
+</Page>

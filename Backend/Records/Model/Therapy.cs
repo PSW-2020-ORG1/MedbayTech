@@ -14,6 +14,7 @@ namespace Backend.Records.Model
         [Key]
         public int Id { get; set; }
         public int HourConsumption { get; set; }
+        
         [ForeignKey("Medication")]
         public int MedicationId { get; set; }
         public virtual Medication Medication { get; set; }

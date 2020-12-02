@@ -1,0 +1,136 @@
+<div style="text-align: center;">
+    <h1>Prescription search</h1>
+</div>
+<form class="container" [formGroup]="prescriptionForm"> 
+<div>
+    <a mat-raised-button routerLink="/reportSearch" target="_blank">Search reports</a>
+</div>
+
+<div style="text-align: justify;margin-top: 15px;">
+    <div>
+        <mat-radio-group aria-label="Select an option" formControlName="radios" style="visibility: hidden;">
+            <mat-radio-button value="1">AND</mat-radio-button>
+            <mat-radio-button value="2">OR</mat-radio-button>
+        </mat-radio-group>
+    
+
+    
+        <mat-form-field appearance="fill" class="fix-margins">
+            <mat-label>Choose option</mat-label>
+            <mat-select formControlName="selectedOption">
+                <mat-option value="Search by medicine">Search by medicine</mat-option>
+                <mat-option value="Search by hourly intake">Search by hourly intake</mat-option>
+            </mat-select>
+        </mat-form-field>
+    
+    
+    
+        <span *ngIf="prescriptionForm.get('selectedOption').value === 'Search by medicine'">
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Medicine</mat-label>
+                <input matInput formControlName="medField">
+                <mat-error *ngIf="prescriptionForm.get('medField').hasError('pattern') && !prescriptionForm.get('medField').hasError('required')">
+                    Must contain letters only
+                </mat-error>
+                <mat-error *ngIf="prescriptionForm.get('medField').hasError('required')">
+                    Can not be empty
+                </mat-error>
+            </mat-form-field>
+        </span> 
+        
+        <span *ngIf="prescriptionForm.get('selectedOption').value === 'Search by hourly intake'">
+            <mat-form-field appearance="fill" class="fix-margins">
+                <mat-label>Hourly intake</mat-label>
+                <input matInput formControlName="hourField">
+                <mat-error *ngIf="prescriptionForm.get('hourField').hasError('pattern') && !prescriptionForm.get('hourField').hasError('required')">
+                    Must be a number 1-24
+                </mat-error>
+                <mat-error *ngIf="prescriptionForm.get('hourField').hasError('required')">
+                    Can not be empty
+                </mat-error>
+            </mat-form-field>
+        </span>  
+       
+    </div>   
+        
+       
+    
+    <div formArrayName="duplicates" *ngFor="let creds of prescriptionForm.get('duplicates')['controls']; let i = index;">
+    
+    <div [formGroupName]="i">
+    <mat-radio-group aria-label="Select an option" formControlName="radios2">
+    <mat-radio-button value="and">AND</mat-radio-button>
+    <mat-radio-button value="or">OR</mat-radio-button>
+    </mat-radio-group>
+
+
+
+    <mat-form-field appearance="fill" class="fix-margins">
+        <mat-label>Choose option</mat-label>
+        <mat-select formControlName="selectedOption2">
+            <mat-option value="Search by medicine">Search by medicine</mat-option>
+            <mat-option value="Search by hourly intake">Search by hourly intake</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+
+    <span *ngIf="prescriptionForm.get('duplicates.0').value.selectedOption2 === 'Search by medicine'">
+        <mat-form-field appearance="fill" class="fix-margins">
+            <mat-label>Medicine</mat-label>
+            <input matInput  formControlName="medField2">
+            <mat-error *ngIf="prescriptionForm.get('duplicates.0').get('medField2').hasError('pattern') && !prescriptionForm.get('duplicates.0').get('medField2').hasError('required')">
+                Must contain letters only
+            </mat-error>
+            <mat-error *ngIf="prescriptionForm.get('duplicates.0').get('medField2').hasError('required')">
+                Can not be empty
+            </mat-error>
+        </mat-form-field>
+    </span> 
+    
+    <span *ngIf="prescriptionForm.get('duplicates.0').value.selectedOption2 === 'Search by hourly intake'">
+        <mat-form-field appearance="fill" class="fix-margins">
+            <mat-label>Hourly intake</mat-label>
+            <input matInput formControlName="hourField2">
+            <mat-error *ngIf="prescriptionForm.get('duplicates.0').get('hourField2').hasError('pattern') && !prescriptionForm.get('duplicates.0').get('hourField2').hasError('required')">
+                Must be a number 1-24
+            </mat-error>
+            <mat-error *ngIf="prescriptionForm.get('duplicates.0').get('hourField2').hasError('required')">
+                Can not be empty
+            </mat-error>
+        </mat-form-field>
+    </span>  
+
+    <span style="margin-left: 10px;">
+    <button mat-raised-button color="warn" (click)="removeDuplicates(i)">Remove</button>
+    </span>
+    </div>
+    </div>
+
+    <div *ngIf="prescriptionForm.get('duplicates')['length']<3">
+        <button mat-raised-button color="primary" (click)="addDuplicates()">Add</button>
+    </div>
+
+    <div style="margin-top: 10px;" >
+        <button mat-raised-button color="primary" (click)="onSearch()">Search</button>
+    </div>
+</div>
+
+</form>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="medicine">
+      <th mat-header-cell *matHeaderCellDef> Medicine </th>
+      <td mat-cell *matCellDef="let element"> {{element.medication}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="hourly intake">
+      <th mat-header-cell *matHeaderCellDef> Hourly intake </th>
+      <td mat-cell *matCellDef="let element"> {{element.hourlyIntake}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

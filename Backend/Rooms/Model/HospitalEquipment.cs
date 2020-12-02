@@ -24,6 +24,7 @@ namespace Model.Rooms
         public int EquipmentTypeId { get;  set; }
         public virtual EquipmentType EquipmentType { get;  set; }
 
+
         public HospitalEquipment (int id, int quantityInRoom, int quantityinStorage, Room room, EquipmentType et)
         {
             QuantityInRoom = quantityInRoom;

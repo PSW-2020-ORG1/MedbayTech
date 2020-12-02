@@ -5,27 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicEditor"
         mc:Ignorable="d"
-        Title="AdditionalInformationAuxiliaryRoom" Height="400" Width="500" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" BorderBrush="Black">
-    <Grid>
-        <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Top" Background="#006481">
-            <Image Width="60" Margin="5,0,0,0" Source="WhiteLogo.png"/>
+        Title="AdditionalInformationAuxiliaryRoom" Height="450" Width="500" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" BorderBrush="Black" WindowStyle="None">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="40" VerticalAlignment="Top" Background="#006481">
+            <Image Name="imageLogo" Width="60" Margin="5,0,0,0" />
             <Label Content="Additiondal information" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="25" Foreground="White" Width="327" Height="40"/>
         </StackPanel>
-        <Label Content="Room label" HorizontalAlignment="Left" Margin="143,39,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-        <Label Content="Room use" HorizontalAlignment="Left" Margin="147,69,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-        <Label Content="Inventory" HorizontalAlignment="Left" Margin="149,101,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="256,45,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Height="24" Margin="256,75,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Height="24" Margin="256,107,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
-
-        <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" Width="370" Height="175" Margin="71,138,53,0" RenderTransformOrigin="1.059,-0.838">
-            <DataGrid.Columns>
-                <DataGridTextColumn  Header="Item" Width="125"/>
-                <DataGridTextColumn Header="Quantity" Width="125"/>
-                <DataGridTextColumn Header="State" Width="125"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button x:Name="Ok" Content="Ok" HorizontalAlignment="Center" Height="30" Margin="190,332,174,0" VerticalAlignment="Top" Width="130" Foreground="White" Background="#2B78E4" FontSize="20" Click="Ok_Click" />
-
-    </Grid>
+        <DockPanel DockPanel.Dock="Bottom">
+            <Button DockPanel.Dock="Left" x:Name="buttonSave" Content="Save" HorizontalAlignment="Left" Height="30" Margin="5,5,5,5" VerticalAlignment="Top" Width="130" Foreground="White" Background="#2B78E4" Click="Save_Click" FontSize="20"/>
+            <Button DockPanel.Dock="Right" x:Name="buttonCancel" Content="Cancel" Height="30" Margin="5,5,5,5" VerticalAlignment="Top" Width="130" Foreground="White" Background="#2B78E4" FontSize="20" Click="Cancel_Click" HorizontalAlignment="Right"/>
+        </DockPanel>
+        <DockPanel>
+            <Grid DockPanel.Dock="Top">
+                <Label Content="Room label" HorizontalAlignment="Left" Margin="143,39,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+                <Label Content="Room use" HorizontalAlignment="Left" Margin="147,69,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+                <Label Content="Ward" HorizontalAlignment="Left" Margin="149,101,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+                <TextBox HorizontalAlignment="Left" Height="22" Margin="256,45,0,0" TextWrapping="Wrap" Text="{Binding RoomLabel, Mode=TwoWay}" VerticalAlignment="Top" Width="150"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="256,75,0,0" TextWrapping="Wrap" Text="{Binding RoomUse, Mode=TwoWay}" VerticalAlignment="Top" Width="150"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="256,107,0,0" TextWrapping="Wrap" Text="{Binding Department.Name, Mode=TwoWay}" IsReadOnly="True" VerticalAlignment="Top" Width="150"/>
+            </Grid>
+            <Frame DockPanel.Dock="Bottom" Name="frameDataGrid" NavigationUIVisibility="Hidden"/>
+        </DockPanel>
+        
+    </DockPanel>
 </Window>

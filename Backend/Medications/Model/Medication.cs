@@ -7,20 +7,28 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Examinations.Model;
 using Backend.General.Model;
+using Model.Rooms;
 
 namespace Backend.Medications.Model
 {
    public class Medication : IIdentifiable<int>
    {
         [Key]
-        public int Id { get; set;  }
+        public int Id { get; set; }
         public string Med { get; set; }
         public MedStatus Status { get; set; }
         public string Company { get; set; }
         public int Quantity { get; set; }
+        public string Dosage { get; set; }
+        [ForeignKey ("Room")]
+        public int RoomId { get; set; } 
+        public virtual Room Room { get; set; }
         public virtual List<DosageOfIngredient> MedicationContent { get; set; }
+
+        [ForeignKey("MedicationCategory")]
         public int MedicationCategoryId { get; set; }
         public virtual MedicationCategory MedicationCategory { get; set; }
         public virtual List<Allergens> Allergens { get; set; }
@@ -34,6 +42,7 @@ namespace Backend.Medications.Model
             Company = company;
             MedicationContent = new List<DosageOfIngredient>();
             MedicationCategory = category;
+            MedicationCategoryId = category.Id;
             Allergens = new List<Allergens>();
             SideEffects = new List<SideEffect>();
             Status = MedStatus.Validation;

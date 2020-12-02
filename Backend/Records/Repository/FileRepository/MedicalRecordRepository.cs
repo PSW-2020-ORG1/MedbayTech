@@ -181,5 +181,10 @@ namespace Repository.MedicalRecordRepository
         {
             entity.Patient = (Patient) patientRepository.GetObject(entity.Patient.Username);
         }
+
+        MedicalRecord IMedicalRecordRepository.GetMedicalRecordByPatientId(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
-}
+} 
