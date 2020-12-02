@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\Unit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{AE1BF32F-2B70-4F53-9D75-FB3023E2AA9F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQService", "RabbitMQService\RabbitMQService.csproj", "{978AA648-87EC-4B17-8777-C0D6074AAFC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,15 @@ Global
 		{26BDF43A-2396-41AF-A220-DC7AB197F158}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26BDF43A-2396-41AF-A220-DC7AB197F158}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26BDF43A-2396-41AF-A220-DC7AB197F158}.Release|Any CPU.Build.0 = Release|Any CPU
+		{603DFEC4-9618-4530-880F-8C52393ABF5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{603DFEC4-9618-4530-880F-8C52393ABF5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{603DFEC4-9618-4530-880F-8C52393ABF5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{603DFEC4-9618-4530-880F-8C52393ABF5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{978AA648-87EC-4B17-8777-C0D6074AAFC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{978AA648-87EC-4B17-8777-C0D6074AAFC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{978AA648-87EC-4B17-8777-C0D6074AAFC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{978AA648-87EC-4B17-8777-C0D6074AAFC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		
 		{0A906169-3229-46B7-A714-FA087A3594AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0A906169-3229-46B7-A714-FA087A3594AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A906169-3229-46B7-A714-FA087A3594AF}.Release|Any CPU.ActiveCfg = Release|Any CPU

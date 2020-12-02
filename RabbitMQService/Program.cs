@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Model;
 using PharmacyIntegration.Service;
+using PharmacyIntegration.Repository;
+using Backend.Pharmacies.Repository.MySqlRepository;
 
 namespace RabbitMQService
 {
@@ -20,11 +22,15 @@ namespace RabbitMQService
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseWindowsService()
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddDbContext<MySqlContext>();
-                    services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
-                    services.AddHostedService<RabbitMQService>();
+
+                     services.AddDbContext<MySqlContext>();
+                     services.AddScoped<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
+                     services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
+                     services.AddTransient<IPharmacyNotificationService, PharmacyNotificationService>(); 
+                     services.AddHostedService<RabbitMQHosedService>();
                 });
     }
 }

@@ -14,7 +14,7 @@ namespace PharmacyIntegration.Controllers
             // TODO(Jovan): Fix hardcoded data
             var config = new SftpConfig
             {
-                Host = "https://schnabel.herokuapp.com/",
+                Host = "192.168.1.7",
                 Port = 2222,
                 Username = "psw",
                 Password = "psw"

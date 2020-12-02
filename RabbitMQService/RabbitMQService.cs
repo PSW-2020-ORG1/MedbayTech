@@ -12,6 +12,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using PharmacyIntegration.Model;
 using PharmacyIntegration.Service;
+using System.IO;
 
 namespace RabbitMQService
 {
@@ -20,46 +21,65 @@ namespace RabbitMQService
         IConnection connection;
         IModel channel;
 
+        private string url = "amqps://vmaqngrm:BHAFy2pYqDLrQxDduUD-03HH-N0ACEVW@squid.rmq.cloudamqp.com/vmaqngrm";
+
         private IPharmacyNotificationService _notificationService;
 
         public RabbitMQService(IPharmacyNotificationService notificationService)
+        //public RabbitMQService()
         {
             _notificationService = notificationService;
         }
-    
+
         public override Task StartAsync(CancellationToken cancellationToken)
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory();
+            factory.Uri = new Uri(url.Replace("amqp://", "amqps://"));
             connection = factory.CreateConnection();
             channel = connection.CreateModel();
-            channel.QueueDeclare(queue: "hello",
-                                    durable: false,
-                                    exclusive: false,
-                                    autoDelete: false,
-                                    arguments: null);
+
+            channel.ExchangeDeclare("psw-exchange", ExchangeType.Direct, true);
+
+            channel.QueueBind("psw-queue", "psw-exchange", "psw-key");
 
             var consumer = new EventingBasicConsumer(channel);
-            consumer.Received += (model, ea) =>
-            {
-                byte[] body = ea.Body.ToArray();
-                var jsonMessage = Encoding.UTF8.GetString(body);
-                Message message;
-                try
-                {   // try deserialize with default datetime format
-                    message = JsonConvert.DeserializeObject<Message>(jsonMessage);
-                }
-                catch (Exception)     // datetime format not default, deserialize with Java format (milliseconds since 1970/01/01)
+            bool recive = true;
+
+            //while(recive){
+            //    var reply = channel.BasicGet("psw-queue", false);
+            //    if (reply != null)
+            //    {
+            //        var body = reply.Body.ToArray();
+            //        var msg = Encoding.UTF8.GetString(body);
+
+            //        channel.BasicAck(reply.DeliveryTag, false);
+            //    }
+            //    else
+            //        recive = false;
+            //}
+
+            consumer.Received += (ch, ea) =>
                 {
-                    message = JsonConvert.DeserializeObject<Message>(jsonMessage, new MyDateTimeConverter());
-                }
-                Console.WriteLine(" [x] Received {0}", message);
+                    var body = ea.Body.ToArray();
+                    try
+                    {
+                        var msg = Encoding.UTF8.GetString(body);
+                        Console.WriteLine(msg);
+                        //WriteToFile(msg);
+                        _notificationService.Add(msg);
+                        channel.BasicAck(ea.DeliveryTag, false);
 
-                CreatePharmacyNotification(message);
+                    }
+                    catch
+                    {
+                        channel.BasicReject(ea.DeliveryTag, true);
+                    }
+                };
 
-            };
-            channel.BasicConsume(queue: "hello",
-                                    autoAck: true,
-                                    consumer: consumer);
+            channel.BasicConsume(queue: "psw-queue",
+                                 autoAck: false,
+                                 consumer: consumer);
+
             return base.StartAsync(cancellationToken);
         }
 
@@ -75,21 +95,37 @@ namespace RabbitMQService
             return Task.CompletedTask;
         }
 
-
-        private PharmacyNotification CreatePharmacyNotification(Message message)
+        public void WriteToFile(string Message)
         {
-            /*int index = _notificationService.GetNotificationLastId();
-            string content = message.Text;
+            string path = AppDomain.CurrentDomain.BaseDirectory + "\\Msgs";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string filepath = AppDomain.CurrentDomain.BaseDirectory + "\\Msgs\\ServiceLog_" + DateTime.Now.Date.ToShortDateString().Replace('/', '_') + ".txt";
+            if (!File.Exists(filepath))
+            {
+                // Create a file to write to.   
+                using (StreamWriter sw = File.CreateText(filepath))
+                {
+                    sw.WriteLine(Message);
+                }
+            }
+            else
+            {
+                try
+                {
+                    using (StreamWriter sw = File.AppendText(filepath))
+                    {
+                        sw.WriteLine(Message);
+                    }
+                }
+                catch (IOException e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+            }
 
-            // TODO: Hardokodovano je
-            Pharmacy pharmacy = _notificationService.GetPharmacy("Liman");
-
-            PharmacyNotification pharmacyNotification = new PharmacyNotification(index + 1, content, true, pharmacy);
-
-            _notificationService.AddNotification(pharmacyNotification);*/
-
-            return null;
         }
-       
     }
 }
