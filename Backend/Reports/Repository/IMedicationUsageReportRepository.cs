@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Backend.Reports.Repository
 {
-    public interface IMedicationUsageReportRepository : IRepository<MedicationUsageReport, int>
+    public interface IMedicationUsageReportRepository : IRepository<MedicationUsageReport, string>
     {
     }
 }

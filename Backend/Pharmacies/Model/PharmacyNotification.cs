@@ -14,9 +14,7 @@ namespace PharmacyIntegration.Model
         public int Id { get; set; }
         public string Content { get; set; }
         public bool Approved { get; set; }
-        [ForeignKey("Pharmacy")]
         public string PharmacyId { get; set; }
-        public virtual Pharmacy Pharmacy{ get; set;}
         public PharmacyNotification() { }
 
         public PharmacyNotification(string content,  string pharmacyId)

@@ -1,13 +1,8 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
-
-RUN groupadd -g 999 appuser && \
-    useradd -r -u 999 -g appuser appuser
-User appuser
-
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1.5 
 
 WORKDIR /app
 
-COPY ./Backend/Backend.csproj .
+COPY ./Backend/bin/Release/netcoreapp3.1/ .
 
 EXPOSE 5000
 

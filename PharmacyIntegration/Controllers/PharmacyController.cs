@@ -15,11 +15,9 @@ namespace PharmacyIntegration.Controllers
     [ApiController]
     public class PharmacyController : ControllerBase
     {
-        private MySqlContext _context;
         private IPharmacyService _pharmacyService;
-        public PharmacyController(MySqlContext context, IPharmacyService service)
+        public PharmacyController(IPharmacyService service)
         {
-            this._context = context;
             this._pharmacyService = service;
         }
 
@@ -41,6 +39,17 @@ namespace PharmacyIntegration.Controllers
         public IActionResult Post(Pharmacy pharmacy)
         {
             bool isSuccessfullyAdded = _pharmacyService.Add(pharmacy) != null;
+
+            if (isSuccessfullyAdded)
+                return Ok();
+            else
+                return BadRequest();
+        }
+
+        [HttpPost("update")]
+        public IActionResult ChangeSendNotificationPermision(Pharmacy pharmacy)
+        {
+            bool isSuccessfullyAdded = _pharmacyService.Update(pharmacy) != null;
 
             if (isSuccessfullyAdded)
                 return Ok();

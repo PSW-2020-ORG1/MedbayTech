@@ -11,19 +11,26 @@ using System.Linq;
 using Backend.Medications.Repository.FileRepository;
 using Model.Users;
 using Service.GeneralService;
+using Model;
 
 namespace Backend.Medications.Service
 {
    public class MedicationService : IMedicationService
    {
+        private INotificationService _notificationService;
         private IMedicationRepository _medicationRepository;
-        public NotificationService notificationService;
-        public IValidationMedicationRepository validationMedicationRepository;
 
-        public MedicationService(IMedicationRepository medicationRepository, IValidationMedicationRepository validationMedicationRepository)
+        public MedicationService(IMedicationRepository medicationRepository, INotificationService notificationService)
         {
-            this.validationMedicationRepository = validationMedicationRepository;
-            this._medicationRepository = medicationRepository;
+            _notificationService = notificationService;
+        }
+
+        public List<Medication> GetAllMedicationsByNameOrId(string query)
+        {
+             if (Int32.TryParse(query, out int id))
+                return _medicationRepository.GetAll().Where(med => med.Id == id).ToList();
+            return _medicationRepository.GetAll().Where(med => med.Med.ToLower().Contains(query.ToLower())).ToList();
+
         }
 
         public Medication RejectMedication(Medication medication)
@@ -42,10 +49,9 @@ namespace Backend.Medications.Service
         {
             Medication fullMedication = medication;
             _medicationRepository.Create(medication);
-            notificationService.MedForValidationNotification(medication);
+            _notificationService.MedForValidationNotification(medication);
             return medication;
         }
-
         public Medication UpdateMedication(Medication medication) => 
             _medicationRepository.Update(medication);
 
@@ -54,20 +60,20 @@ namespace Backend.Medications.Service
 
         public Medication GetMedication(int id) => 
             _medicationRepository.GetObject(id);
-      
-        public IEnumerable<Medication> GetAllOnValidationFor(Doctor doctor)
+
+        /*public IEnumerable<Medication> GetAllOnValidationFor(Doctor doctor)
         {
-            List<Medication> allOnValidation = (List<Medication>) _medicationRepository.GetAllOnValidation().ToList();
+            List<Medication> allOnValidation = (List<Medication>)_medicationRepository.GetAllOnValidation().ToList();
             List<Medication> validations = new List<Medication>();
             foreach (Medication medication in allOnValidation)
             {
                 Specialization specialization = medication.MedicationCategory.Specialization;
                 if (doctor.IsMySpecialization(specialization) && medication.IsOnValidation())
-                
+
                     validations.Add((medication));
             }
             return validations;
-        }
+        }*/
        
         public IEnumerable<Medication> GetAllOnValidation() => 
             _medicationRepository.GetAllOnValidation();
@@ -107,6 +113,5 @@ namespace Backend.Medications.Service
 
         // NOTE(Jovan): For PHIntegration testing purposes
         public Medication Add(Medication medication) => _medicationRepository.Create(medication);
-
     }
 }

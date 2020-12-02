@@ -9,10 +9,10 @@ using System.Text;
 
 namespace Backend.Reports.Model
 {
-    public class MedicationUsageReport : IIdentifiable<int>
+    public class MedicationUsageReport : IIdentifiable<string>
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         // NOTE(Jovan): Not working with entity framework, fix!
         //[NotMapped]
         // public Period Period { get; set; }
@@ -22,20 +22,26 @@ namespace Backend.Reports.Model
         public DateTime? Until { get; set; }
         public virtual List<MedicationUsage> MedicationUsages { get; set; }
         public MedicationUsageReport(){}
-        public MedicationUsageReport(int id, DateTime from, DateTime until)
+        public MedicationUsageReport(DateTime from, DateTime until)
         {
-            Id = id;
+            Id = PeriodToString(from, until);
             From = from;
             Until = until;
             MedicationUsages = new List<MedicationUsage>();
         }
 
-        public int GetId()
+        private String PeriodToString(DateTime from, DateTime until)
+        {
+            String format = "ddMMyy";
+            return from.ToString(format) + until.ToString(format);
+        }
+
+        public string GetId()
         {
             return Id;
         }
 
-        public void SetId(int id)
+        public void SetId(string id)
         {
             Id = id;
         }

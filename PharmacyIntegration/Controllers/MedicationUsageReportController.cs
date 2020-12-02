@@ -31,7 +31,7 @@ namespace PharmacyIntegration.Controllers
         public IActionResult Get() => Ok(_medicationUsageReportService.GetAll());
 
         [HttpGet("{id?}")]
-        public IActionResult Get(int id)
+        public IActionResult Get(string id)
         {
             MedicationUsageReport report = _medicationUsageReportService.Get(id);
             if (report == null)

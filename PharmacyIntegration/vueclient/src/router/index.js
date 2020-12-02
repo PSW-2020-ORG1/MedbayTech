@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-//import Pharmacy from '../views/Pharmacy.vue'
+import Pharmacy from '../views/Pharmacy.vue'
 import Messages from '../views/Messages.vue'
 import MedicationUsageReport from '../views/MedicationUsageReport.vue'
 import DeanPanel from '../views/DeanPanel.vue'
@@ -29,6 +29,11 @@ const routes = [
           path: 'pharmacies',
           name: 'Pharmacies',
           component: Pharmacies,
+        },
+        {
+          path: 'pharmacies/:id',
+          name: 'Pharmacy',
+          component: Pharmacy,
         },
         {
           path: 'medication_usage_report',

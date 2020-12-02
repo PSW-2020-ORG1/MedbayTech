@@ -26,16 +26,18 @@
                                 :items="pharmacies"
                                 :search="search">
                     <template v-slot:item="row">
-                        <tr>
-                            <td><router-link :to="{name:'Pharmacy', params: {id: row.item.id}}">{{row.item.id}}</router-link></td>
-                            <td>{{row.item.apiKey}}</td>
-                            <td>{{row.item.apiEndpoint}}</td>
-                            <td>
-                                <v-btn elevation="0" @click="remove(row.item.id)">
-                                    X
-                                </v-btn>
-                            </td>
-                        </tr>
+						<tr>
+							<td><router-link :to="{name:'Pharmacy', params: {id: row.item.id}}">{{row.item.id}}</router-link></td>
+							<td>{{row.item.apiKey}}</td>
+							<td>{{row.item.apiEndpoint}}</td>
+							<td>
+								<v-btn elevation="0" @click="remove(row.item.id)">
+									X
+								</v-btn>
+							</td>
+							<td v-if="row.item.recieveNotificationFrom"><v-btn class="red white--text" elevation="0" v-on:click="changeSendMessagePermision(row.item)">Don't allow</v-btn></td>
+							<td v-else><v-btn class="green white--text" elevation="0" v-on:click="changeSendMessagePermision(row.item)">Allow</v-btn></td>
+						</tr>
                     </template>
                 </v-data-table>
             </div>
@@ -53,6 +55,7 @@
 					{ text: "API_Key", value: "apiKey", },
 					{ text: "API_Endpoint", value: "apiEndpoint", },
 					{ text: "Remove" },
+                    { text: "Get notification" },
 				],
 				search: [],
 				valid: false,
@@ -107,7 +110,19 @@
 						console.log(response);
 					});
 			},
-
+			changeSendMessagePermision: function (pharmacy) {
+				pharmacy.recieveNotificationFrom = !pharmacy.recieveNotificationFrom;
+                this.axios.post("http://localhost:50202/api/Pharmacy/update", pharmacy)
+                    .then(response => {
+                        this.status = "Changed!";
+                        this.getPharmacies();
+                        console.log(response);
+                    })
+                    .catch(response => {
+                        this.status = "Failed!";
+                        console.log(response);
+                    });
+			},
 			getPharmacies: function () {
 				this.axios.get("http://localhost:50202/api/pharmacy")
 					.then(response => {
@@ -142,6 +157,7 @@
 	}
 
 	#ph-table {
+		margin-left: 2%;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;

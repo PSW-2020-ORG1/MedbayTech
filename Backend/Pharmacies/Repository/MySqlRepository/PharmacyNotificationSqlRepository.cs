@@ -33,6 +33,7 @@ namespace Backend.Pharmacies.Repository.MySqlRepository
                 return false;
             }
             _context.PharmacyNotifications.Remove(entity);
+            _context.SaveChanges();
             return true;
         }
 
@@ -46,6 +47,7 @@ namespace Backend.Pharmacies.Repository.MySqlRepository
         public PharmacyNotification Update(PharmacyNotification entity)
         {
             _context.PharmacyNotifications.Update(entity);
+            _context.SaveChanges();
             return entity;
         }
     }

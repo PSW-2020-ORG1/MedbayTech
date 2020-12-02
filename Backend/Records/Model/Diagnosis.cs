@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Backend.Examinations.Model;
 using Backend.General.Model;
@@ -18,6 +19,15 @@ namespace Backend.Records.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public virtual List<Symptoms> Symptoms { get; set; }
+        
+        [ForeignKey("MedicalRecord")]
+        public int MedicalRecordId { get; set; }
+        public virtual MedicalRecord MedicalRecord { get; set; }
+
+        public virtual ExaminationSurgery ExaminationSurgery { get; set; }
+
+        [ForeignKey("ExaminationSurgery")]
+        public int ExaminationSurgeryId { get; set; }
 
         public Diagnosis() 
         {

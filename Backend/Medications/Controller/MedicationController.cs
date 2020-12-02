@@ -28,8 +28,8 @@ namespace Backend.Medications.Controller
             medicationService.DeleteMedication(medication);
         public Medication GetMedication(int id) =>
             medicationService.GetMedication(id);
-        public IEnumerable<Medication> GetAllOnValidationFor(Doctor doctor) => 
-            medicationService.GetAllOnValidationFor(doctor);
+        /*public IEnumerable<Medication> GetAllOnValidationFor(Doctor doctor) => 
+            medicationService.GetAllOnValidationFor(doctor);*/
         public IEnumerable<Medication> GetAllOnValidation() => 
             medicationService.GetAllOnValidation();
         public IEnumerable<Medication> GetAll() => 
