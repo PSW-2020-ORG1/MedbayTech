@@ -27,6 +27,7 @@ namespace Backend.Medications.Model
         public int RoomId { get; set; } 
         public virtual Room Room { get; set; }
         public virtual List<DosageOfIngredient> MedicationContent { get; set; }
+
         [ForeignKey("MedicationCategory")]
         public int MedicationCategoryId { get; set; }
         public virtual MedicationCategory MedicationCategory { get; set; }

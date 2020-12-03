@@ -15,14 +15,15 @@ namespace Model.Rooms
     {
         [Key]
         public int Id { get; set; }
-        public int QuantityInRoom { get; set; }
+        public int QuantityInRoom { get;  set; }
         public int QuantityInStorage { get; set; }
         [ForeignKey("Room")]
-        public int RoomId { get; set; }
-        public virtual Room Room { get; set; }
+        public int RoomId { get;  set; }
+        public virtual Room Room { get;  set; }
         [ForeignKey("EquipmentType")]
-        public int EquipmentTypeId { get; set; }
-        public virtual EquipmentType EquipmentType { get; set; }
+        public int EquipmentTypeId { get;  set; }
+        public virtual EquipmentType EquipmentType { get;  set; }
+
 
         public HospitalEquipment (int id, int quantityInRoom, int quantityinStorage, Room room, EquipmentType et)
         {

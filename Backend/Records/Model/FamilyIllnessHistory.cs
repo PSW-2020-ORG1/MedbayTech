@@ -17,7 +17,6 @@ namespace Backend.Records.Model
         public int Id { get; set; }
         public Relative RelativeMember { get; set; }
         public virtual List<Diagnosis> Diagnosis { get; set; }
-
         [ForeignKey("MedicalRecord")]
         public int MedicalRecordId { get; set; }
         public virtual MedicalRecord MedicalRecord { get; set; }

@@ -1,0 +1,23 @@
+.survey{
+    border: 5px outset grey;
+    text-align: center;
+}
+
+.example-radio-group{
+    text-align: center;
+   
+}
+
+#questions{
+    font-size: 20px;
+}
+
+#grade{
+    padding-right: 10px;
+}
+
+#Doctor{
+    font-size: 25px;
+
+}
+

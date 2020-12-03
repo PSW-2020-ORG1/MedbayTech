@@ -41,4 +41,5 @@ namespace Model.Users
             Id = id;
         }
     }
-}
+
+}   

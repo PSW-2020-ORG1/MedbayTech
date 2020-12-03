@@ -9,15 +9,16 @@ using Backend.Records.Model;
 using Backend.Medications;
 using Model.Schedule;
 using Model.Users;
-using MySql.Data.MySqlClient;
 using Backend.Utils;
 using Model.Rooms;
-using System.Linq;
 using Backend.Medications.Model;
+using Backend.Users.Model.Enums;
+using Backend.Records.Model.Enums;
+using Newtonsoft.Json;
 using PharmacyIntegration.Model;
 using Backend.Reports.Model;
-using Backend.Records.Model.Enums;
 using Backend.Examinations.Model.Enums;
+
 
 namespace Model
 {
@@ -171,11 +172,6 @@ namespace Model
 
                 }
                 );
-
-            modelBuilder.Entity<MedicationIngredient>().HasData(
-                new MedicationIngredient { Id = 1, Name = "Ibuprofen" },
-                new MedicationIngredient { Id = 2, Name = "Paracetamol" }
-            );
          
 
             modelBuilder.Entity<Feedback>().HasData(
@@ -220,6 +216,183 @@ namespace Model
                 }
             );
 
+            modelBuilder.Entity<SurveyQuestion>().HasData(
+                new SurveyQuestion { Id = 1, Question = "How would you rate the kindness of your doctor?", QuestionType = QuestionType.DOCTOR, Status = true },
+                new SurveyQuestion { Id = 2, Question = "To what extent has your doctor clearly stated what your examination will look like and instructed you on how to behave?", QuestionType = QuestionType.DOCTOR, Status = true },
+                new SurveyQuestion { Id = 3, Question = "How would you rate the clarity and expertise of the doctor in making the diagnosis?", QuestionType = QuestionType.DOCTOR, Status = true },
+                new SurveyQuestion { Id = 4, Question = "How would you rate the competence of your doctor during the treatment?", QuestionType = QuestionType.DOCTOR, Status = true },
+                new SurveyQuestion { Id = 5, Question = "To what extent has your doctor paid attention to you and contributed to your more comfortable stay in the hospital?", QuestionType = QuestionType.DOCTOR, Status = true },
+                new SurveyQuestion { Id = 6, Question = "How would you rate the helpfulness and kindness of the information counter employees?", QuestionType = QuestionType.MEDICAL_STUFF, Status = true },
+                new SurveyQuestion { Id = 7, Question = "How would you rate the helpfulness and kindness of nurses and technicians?", QuestionType = QuestionType.MEDICAL_STUFF, Status = true },
+                new SurveyQuestion { Id = 8, Question = "To what extent were nurses and technicians professional in treatment?", QuestionType = QuestionType.MEDICAL_STUFF, Status = true },
+                new SurveyQuestion { Id = 9, Question = "To what extent have nurses and technicians paid attention to you and your comfortable hospital stay?", QuestionType = QuestionType.MEDICAL_STUFF, Status = true },
+                new SurveyQuestion { Id = 10, Question = "To what extent have nurses and technicians instructed you in the procedures they will perform during your treatment?", QuestionType = QuestionType.MEDICAL_STUFF, Status = true },
+                new SurveyQuestion { Id = 11, Question = "How would you rate the cleanliness of hospital hallways and waiting rooms?", QuestionType = QuestionType.HOSPITAL, Status = true },
+                new SurveyQuestion { Id = 12, Question = "How would you rate the cleanliness of the toilet in the hospital?", QuestionType = QuestionType.HOSPITAL, Status = true },
+                new SurveyQuestion { Id = 13, Question = "How would you rate the cleanliness and comfort of the patient's room?", QuestionType = QuestionType.HOSPITAL, Status = true },
+                new SurveyQuestion { Id = 14, Question = "To what extent are you satisfied with the equipment of the hospital for the needs of your treatment?", QuestionType = QuestionType.HOSPITAL, Status = true },
+                new SurveyQuestion { Id = 15, Question = "How would you rate the organization of the hospital when scheduling an examination?", QuestionType = QuestionType.HOSPITAL, Status = true }
+
+            );
+            modelBuilder.Entity<Survey>()
+                .Property(b => b.SurveyQuestions)
+                .HasConversion(
+                    v => JsonConvert.SerializeObject(v),
+                    v => JsonConvert.DeserializeObject<List<int>>(v)
+            );
+            modelBuilder.Entity<Survey>()
+                .Property(b => b.SurveyAnswers)
+                .HasConversion(
+                    v => JsonConvert.SerializeObject(v),
+                    v => JsonConvert.DeserializeObject<List<Grade>>(v)
+            );
+            modelBuilder.Entity<Appointment>().HasData(
+                new Appointment 
+                { 
+                    Id = 1, 
+                    TypeOfAppointment = TypeOfAppointment.Examination, 
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1
+                },
+                new Appointment
+                {
+                    Id = 2,
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1
+                },
+                new Appointment
+                {
+                    Id = 3,
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1
+                },
+                new Appointment
+                {
+                    Id = 4,
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1
+                },
+                new Appointment
+                {
+                    Id = 5,
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1
+                },
+                new Appointment
+                {
+                    Id = 6,
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1
+                }
+            );
+
+
+            modelBuilder.Entity<Doctor>().HasData(
+             new Doctor
+             {
+                 Id = "2406978890047",
+                 CurrResidenceId = 1,
+                 DateOfBirth = new DateTime(1978, 6, 24),
+                 DateOfCreation = new DateTime(),
+                 EducationLevel = EducationLevel.bachelor,
+                 Email = "mika@gmail.com",
+                 Gender = Gender.MALE,
+                 InsurancePolicyId = "policy1",
+                 Name = "Milan",
+                 Surname = "Milanovic",
+                 Username = "mika",
+                 Password = "mika1978",
+                 Phone = "065/123-4554",
+                 PlaceOfBirthId = 11000,
+                 Profession = "vodoinstalater",
+                 ProfileImage = ".",
+                 LicenseNumber = "001",
+                 OnCall = true,
+                 PatientReview = 4.5,
+                 DepartmentId = 1,
+                 ExaminationRoomId = 1,
+                 OperationRoomId = 2,
+                 Specializations = new List<Specialization>()
+             }
+            );
+
+            modelBuilder.Entity<MedicalRecord>().HasData(
+                new MedicalRecord
+                {
+                    Id = 1,
+                    CurrHealthState = PatientCondition.HospitalTreatment,
+                    BloodType = BloodType.ANeg,
+                    Allergies = new List<Allergens>(),
+                    Vaccines = new List<Vaccines>(),
+                    IllnessHistory = new List<Diagnosis>(),
+                    FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
+                    PatientId = "2406978890046",
+                    Therapies = new List<Therapy>()
+                }
+            );
+
+
+         
+
+            modelBuilder.Entity<MedicationIngredient>().HasData(
+                new MedicationIngredient { Id = 1, Name = "Ibuprofen" },
+                new MedicationIngredient { Id = 2, Name = "Paracetamol" }
+            );
+
+            modelBuilder.Entity<DosageOfIngredient>().HasData(
+                new DosageOfIngredient { Id = 1, Amount = 100.0, MedicationIngredientId = 1, /*MedicationId = 1*/ },
+                new DosageOfIngredient { Id = 2, Amount = 120.0, MedicationIngredientId = 2, /*MedicationId = 1 */}
+            );
+           
+
+
+            modelBuilder.Entity<Therapy>().HasData(
+                new Therapy { Id = 1, HourConsumption = 6, MedicationId = 1, MedicalRecordId = 1 },
+                new Therapy { Id = 2, HourConsumption = 10, MedicationId = 2, MedicalRecordId = 1 }
+            );
+      
+
             modelBuilder.Entity<Vaccines>().HasData(
                 new Vaccines { Id = 1, Name = "Grip", MedicalRecordId = 1},
                 new Vaccines { Id = 2, Name = "Male boginje", MedicalRecordId = 1}
@@ -242,11 +415,6 @@ namespace Model
             );
 
            
-
-            modelBuilder.Entity<DosageOfIngredient>().HasData(
-                new DosageOfIngredient { Id = 1, Amount = 100.0, MedicationIngredientId = 1 },
-                new DosageOfIngredient { Id = 2, Amount = 120.0, MedicationIngredientId = 2 }
-            );
 
             modelBuilder.Entity<Specialization>().HasData(
                 new Specialization { Id = 1, SpecializationName = "Interna medicina"/*, DoctorId = "2406978890047"*/},
@@ -376,12 +544,7 @@ namespace Model
                     new MedicationUsage { Id = 3, Usage = 50, MedicationId = 1, Date = new DateTime(2020, 1, 1) },
                     new MedicationUsage { Id = 4, Usage = 1, MedicationId = 2, Date = new DateTime(2020, 5, 1) }
                 );
-
-            modelBuilder.Entity<Therapy>().HasData(
-                new Therapy { Id = 1, HourConsumption = 6, MedicationId = 1, MedicalRecordId = 1},
-                new Therapy { Id = 2, HourConsumption = 10, MedicationId = 2, MedicalRecordId = 1 }
-            );
-
+         
 
             modelBuilder.Entity<Allergens>().HasData(
 
@@ -413,48 +576,7 @@ namespace Model
                 } 
             );
 
-            modelBuilder.Entity<Doctor>().HasData(
-             new Doctor
-             {
-                 Id = "2406978890047",
-                 CurrResidenceId = 1,
-                 DateOfBirth = new DateTime(1978, 6, 24),
-                 DateOfCreation = new DateTime(),
-                 EducationLevel = EducationLevel.bachelor,
-                 Email = "mika@gmail.com",
-                 Gender = Gender.MALE,
-                 InsurancePolicyId = "policy1",
-                 Name = "Milan",
-                 Surname = "Milanovic",
-                 Username = "mika",
-                 Password = "mika1978",
-                 Phone = "065/123-4554",
-                 PlaceOfBirthId = 11000,
-                 Profession = "vodoinstalater",
-                 ProfileImage = ".",
-                 LicenseNumber = "001",
-                 OnCall = true,
-                 PatientReview = 4.5,
-                 DepartmentId = 1,
-                 ExaminationRoomId = 1003,
-                 OperationRoomId = 1114,
-                 Specializations = new List<Specialization>()
-             }
-            );
-
-            modelBuilder.Entity<MedicalRecord>().HasData(
-                new MedicalRecord { 
-                    Id = 1,
-                    CurrHealthState = PatientCondition.HospitalTreatment,
-                    BloodType = BloodType.ANeg,
-                    Allergies = new List<Allergens>(),
-                    Vaccines = new List<Vaccines>(),
-                    IllnessHistory = new List<Diagnosis>(),
-                    FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
-                    PatientId = "2406978890046",
-                    Therapies = new List<Therapy>()
-                }
-            );
+          
 
             modelBuilder.Entity<Hospital>().HasData(
 

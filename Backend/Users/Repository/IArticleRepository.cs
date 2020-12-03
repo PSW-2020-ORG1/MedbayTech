@@ -12,7 +12,7 @@ namespace Backend.Users.Repository.MySqlRepository
 {
    public interface IArticleRepository : IRepository<Article,int>
    {
-      IEnumerable<Article> GetArticlesWroteByDoctor(Model.Users.Doctor doctor);
+      IEnumerable<Article> GetArticlesWroteByDoctor(Doctor doctor);
    
    }
 }

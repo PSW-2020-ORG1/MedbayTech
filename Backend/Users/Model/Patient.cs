@@ -10,14 +10,14 @@ namespace Model.Users
 {
    public class Patient : RegisteredUser
    {
-        public bool IsGuestAccount { get; set; }
+        public bool IsGuestAccount { get;  set; }
+        [ForeignKey("ChosenDoctor")]
+        public string ChosenDoctorId { get;  set; }
+        public virtual Doctor ChosenDoctor { get; set; }
+
         public bool Confirmed { get; set; }
         public bool Blocked { get; set; }
         public string Token { get; set; }
-
-        [ForeignKey("ChosenDoctor")]
-        public string ChosenDoctorId { get; set; }
-        public virtual Doctor ChosenDoctor { get; set; }
 
 
         public Patient(string name, string surname, DateTime dateOfBirth,

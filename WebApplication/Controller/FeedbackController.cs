@@ -29,7 +29,7 @@ namespace WebApplication
         {
             List<Feedback> approvedFeedback = feedbackController.GetAllApprovedFeedback().ToList();
             List<ApprovedFeedbackDTO> approvedFeedbackDTOs = FeedbackAdapter.ListApprovedFeedbackToListApprovedFeedbackDTO(approvedFeedback);
-            return Ok(approvedFeedbackDTOs);
+            return Ok(approvedFeedbackDTOs); 
         }
 
         /// <summary>

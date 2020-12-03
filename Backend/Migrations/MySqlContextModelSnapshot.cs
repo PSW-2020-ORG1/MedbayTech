@@ -4616,6 +4616,86 @@ namespace Backend.Migrations
                     b.HasIndex("RoomId");
 
                     b.ToTable("Appointments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Deleted = false,
+                            DoctorId = "2406978890047",
+                            Finished = true,
+                            MedicalRecordId = 1,
+                            RoomId = 1,
+                            ShortDescription = "standard appointment",
+                            TypeOfAppointment = 0,
+                            Urgent = true,
+                            WeeklyAppointmentReportId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Deleted = false,
+                            DoctorId = "2406978890047",
+                            Finished = true,
+                            MedicalRecordId = 1,
+                            RoomId = 1,
+                            ShortDescription = "standard appointment",
+                            TypeOfAppointment = 0,
+                            Urgent = true,
+                            WeeklyAppointmentReportId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Deleted = false,
+                            DoctorId = "2406978890047",
+                            Finished = true,
+                            MedicalRecordId = 1,
+                            RoomId = 1,
+                            ShortDescription = "standard appointment",
+                            TypeOfAppointment = 0,
+                            Urgent = true,
+                            WeeklyAppointmentReportId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Deleted = false,
+                            DoctorId = "2406978890047",
+                            Finished = true,
+                            MedicalRecordId = 1,
+                            RoomId = 1,
+                            ShortDescription = "standard appointment",
+                            TypeOfAppointment = 0,
+                            Urgent = true,
+                            WeeklyAppointmentReportId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Deleted = false,
+                            DoctorId = "2406978890047",
+                            Finished = true,
+                            MedicalRecordId = 1,
+                            RoomId = 1,
+                            ShortDescription = "standard appointment",
+                            TypeOfAppointment = 0,
+                            Urgent = true,
+                            WeeklyAppointmentReportId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Deleted = false,
+                            DoctorId = "2406978890047",
+                            Finished = true,
+                            MedicalRecordId = 1,
+                            RoomId = 1,
+                            ShortDescription = "standard appointment",
+                            TypeOfAppointment = 0,
+                            Urgent = true,
+                            WeeklyAppointmentReportId = 1
+                        });
                 });
 
             modelBuilder.Entity("Model.Users.Address", b =>
@@ -5179,21 +5259,21 @@ namespace Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("AdditionalNotes")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<int>("AverageGrade")
+                    b.Property<int>("AppointmentId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("PatientId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                    b.Property<string>("SurveyAnswers")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("SurveyQuestions")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PatientId");
+                    b.HasIndex("AppointmentId");
 
                     b.ToTable("Surveys");
                 });
@@ -5204,20 +5284,233 @@ namespace Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Grade")
-                        .HasColumnType("int");
+                    b.Property<double>("AverageGrade")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Excellent")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Good")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Poor")
+                        .HasColumnType("double");
 
                     b.Property<string>("Question")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("SurveyId")
+                    b.Property<int>("QuestionType")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<double>("VeryGood")
+                        .HasColumnType("double");
+
+                    b.Property<double>("VeryPoor")
+                        .HasColumnType("double");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SurveyId");
-
                     b.ToTable("SurveyQuestions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the kindness of your doctor?",
+                            QuestionType = 0,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "To what extent has your doctor clearly stated what your examination will look like and instructed you on how to behave?",
+                            QuestionType = 0,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the clarity and expertise of the doctor in making the diagnosis?",
+                            QuestionType = 0,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the competence of your doctor during the treatment?",
+                            QuestionType = 0,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "To what extent has your doctor paid attention to you and contributed to your more comfortable stay in the hospital?",
+                            QuestionType = 0,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the helpfulness and kindness of the information counter employees?",
+                            QuestionType = 1,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the helpfulness and kindness of nurses and technicians?",
+                            QuestionType = 1,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "To what extent were nurses and technicians professional in treatment?",
+                            QuestionType = 1,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "To what extent have nurses and technicians paid attention to you and your comfortable hospital stay?",
+                            QuestionType = 1,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "To what extent have nurses and technicians instructed you in the procedures they will perform during your treatment?",
+                            QuestionType = 1,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the cleanliness of hospital hallways and waiting rooms?",
+                            QuestionType = 2,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the cleanliness of the toilet in the hospital?",
+                            QuestionType = 2,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the cleanliness and comfort of the patient's room?",
+                            QuestionType = 2,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 14,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "To what extent are you satisfied with the equipment of the hospital for the needs of your treatment?",
+                            QuestionType = 2,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 15,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the organization of the hospital when scheduling an examination?",
+                            QuestionType = 2,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        });
                 });
 
             modelBuilder.Entity("Model.Users.VacationRequest", b =>
@@ -5528,10 +5821,10 @@ namespace Backend.Migrations
                             VacationLeave = false,
                             WorkersID = 0,
                             DepartmentId = 1,
-                            ExaminationRoomId = 1003,
+                            ExaminationRoomId = 1,
                             LicenseNumber = "001",
                             OnCall = true,
-                            OperationRoomId = 1114,
+                            OperationRoomId = 2,
                             PatientReview = 4.5
                         });
                 });
@@ -5949,16 +6242,9 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Model.Users.Survey", b =>
                 {
-                    b.HasOne("Model.Users.Patient", "Patient")
+                    b.HasOne("Model.Schedule.Appointment", "Appointment")
                         .WithMany()
-                        .HasForeignKey("PatientId");
-                });
-
-            modelBuilder.Entity("Model.Users.SurveyQuestion", b =>
-                {
-                    b.HasOne("Model.Users.Survey", "Survey")
-                        .WithMany("SurveyQuestions")
-                        .HasForeignKey("SurveyId")
+                        .HasForeignKey("AppointmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

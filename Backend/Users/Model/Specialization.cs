@@ -10,17 +10,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Users
 {
-   public class Specialization : IIdentifiable<int>
-   {
+    public class Specialization : IIdentifiable<int>
+    {
         [Key]
         public int Id { get; set; }
         public string SpecializationName { get; set; }
+
 
         /*[ForeignKey("Doctor")]
         public string DoctorId { get; set; }
         public virtual Doctor Doctor { get; set; }*/
 
-        public Specialization() {}
+        public Specialization() { }
         public Specialization(int id, string specialization)
         {
             Id = id;
@@ -37,4 +38,5 @@ namespace Model.Users
             Id = id;
         }
     }
+    
 }

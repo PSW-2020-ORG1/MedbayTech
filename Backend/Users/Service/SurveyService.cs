@@ -8,6 +8,7 @@ using Model.Users;
 using Backend.Users.Repository.MySqlRepository;
 using System;
 using System.Collections.Generic;
+using Backend.Users.Repository;
 
 namespace Service.GeneralService
 {
@@ -18,10 +19,19 @@ namespace Service.GeneralService
             this.surveyRepository = surveyRepository;
         }
 
+        public SurveyService(ISurveyQuestionRepository @object)
+        {
+            this.@object = @object;
+        }
+
+        public SurveyService()
+        {
+        }
+
         public Survey CreateSurvey(Survey survey) => surveyRepository.Create(survey);
         public IEnumerable<Survey> GetAllSurveys() => surveyRepository.GetAll();
       
         public ISurveyRepository surveyRepository;
-   
-   }
+        private ISurveyQuestionRepository @object;
+    }
 }
