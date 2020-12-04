@@ -31,12 +31,12 @@
 							<td>{{row.item.apiKey}}</td>
 							<td>{{row.item.apiEndpoint}}</td>
 							<td>
-								<v-btn elevation="0" @click="remove(row.item.id)">
-									X
+								<v-btn class="white red--text" elevation="0" @click="remove(row.item.id)">
+									<i class="fa fa-trash" aria-hidden="true"></i>
 								</v-btn>
 							</td>
-							<td v-if="row.item.recieveNotificationFrom"><v-btn class="red white--text" elevation="0" v-on:click="changeSendMessagePermision(row.item)">Don't allow</v-btn></td>
-							<td v-else><v-btn class="green white--text" elevation="0" v-on:click="changeSendMessagePermision(row.item)">Allow</v-btn></td>
+							<td v-if="row.item.recieveNotificationFrom"><v-btn class="white red--text" elevation="0" v-on:click="changeSendMessagePermision(row.item)">Don't allow</v-btn></td>
+							<td v-else><v-btn class="white green--text" elevation="0" v-on:click="changeSendMessagePermision(row.item)">Allow</v-btn></td>
 						</tr>
                     </template>
                 </v-data-table>
@@ -71,10 +71,11 @@
 				apiEndpointRules: [
 					v => !!v || "API Endpoint is required",
 				],
-				status: ""
+				status: "",
 			}
 		},
 		methods: {
+
 			add: function () {
 				if (!this.valid) return;
 				this.status = "";

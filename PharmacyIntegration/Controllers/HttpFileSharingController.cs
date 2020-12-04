@@ -15,12 +15,19 @@ namespace PharmacyIntegration.Controllers
     [ApiController]
     public class HttpFileSharingController : Controller
     {
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(Directory.GetFiles("GeneratedUsageReports"));
+        }
+
         [HttpPost]
         public IActionResult Post(FileMetadata fileInfo)
         {
             WebClient myWebClient = new WebClient();
             byte[] responseArray = myWebClient.UploadFile(fileInfo.URL, fileInfo.Filename);
-            return Ok(responseArray);
+            return Ok(myWebClient.Encoding.GetString(responseArray));
         }
     }
 }
