@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Backend.Examinations.Model;
-using Backend.Examinations.WebApiController;
+using Backend.Examinations.Service.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Adapters;
@@ -16,11 +16,11 @@ namespace WebApplication.Controller
     [ApiController]
     public class PrescriptionController : ControllerBase
     {
-        private PrescriptionSearchWebController controller;
+        private IPrescriptionSearchService _prescriptionSearchService;
 
-        public PrescriptionController()
+        public PrescriptionController(IPrescriptionSearchService prescriptionSearchService)
         {
-            this.controller = new PrescriptionSearchWebController();
+            _prescriptionSearchService = prescriptionSearchService;
         }
 
         [HttpPost]
@@ -35,7 +35,7 @@ namespace WebApplication.Controller
                 return BadRequest(e.Message);
             }
 
-            List<Prescription> prescriptions = controller.GetSearchedReports(dto.Medicine, dto.HourlyIntake, dto.StartDate, dto.EndDate);
+            List<Prescription> prescriptions = _prescriptionSearchService.GetSearchedPrescription(dto.Medicine, dto.HourlyIntake, dto.StartDate, dto.EndDate);
             List<PrescriptionDTO> prescriptionDTOs = PrescriptionsAdapter.ListPrescriptionToPrescriptionDTO(prescriptions);
 
             return Ok(prescriptionDTOs);
@@ -52,7 +52,7 @@ namespace WebApplication.Controller
                 return BadRequest(e.Message);
             }
 
-            List<Prescription> prescriptions = controller.AdvancedSearchPrescriptions(dto);
+            List<Prescription> prescriptions = _prescriptionSearchService.AdvancedSearchPrescriptions(dto);
 
             return Ok(prescriptions);
         }

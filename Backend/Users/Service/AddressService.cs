@@ -1,29 +1,40 @@
-// File:    AddressService.cs
-// Author:  Vlajkov
-// Created: Wednesday, May 20, 2020 4:38:49 AM
-// Purpose: Definition of Class AddressService
-
+﻿using Backend.Users.Repository.MySqlRepository;
+using Backend.Users.Service.Interfaces;
 using Model.Users;
-using Backend.Users.Repository.MySqlRepository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Service.GeneralService
+namespace Backend.Users.WebApiService
 {
-   public class AddressService
-   {
+    public class AddressService : IAddressService
+    {
+        IAddressRepository addressRepository;
         public AddressService(IAddressRepository addressRepository)
         {
             this.addressRepository = addressRepository;
         }
 
-        public IEnumerable<Address> GetAdressesByCity(City city) => addressRepository.GetAdressesByCity(city);
-        public Address CreateAddress(Address request) => addressRepository.Create(request);
-        public IEnumerable<Address> GetAll() => addressRepository.GetAll();
-        public bool CheckIfExists(Address address) => addressRepository.CheckIfExists(address);
+        public Address Save(Address addressToSave)
+        {
+            Address address = CheckIfExists(addressToSave);
+            if (address == null)
+            {
+                return addressRepository.Create(addressToSave);
+            }
+            return address;
+        }
 
-        public IAddressRepository addressRepository;
-
-        public Address GetExistentAddress(Address address) => addressRepository.GetExistentAddress(address);
+        public Address CheckIfExists(Address address)
+        {
+            List<Address> addresses = addressRepository.GetAll().ToList();
+            bool exists = addresses.Any(s => s.Id == address.Id);
+            if(exists)
+            {
+                return addresses.FirstOrDefault(s => s.Id == address.Id);
+            }
+            return null;
+        }
     }
 }

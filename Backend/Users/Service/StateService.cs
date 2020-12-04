@@ -1,28 +1,41 @@
-// File:    StateService.cs
-// Author:  Vlajkov
-// Created: Wednesday, May 20, 2020 4:38:46 AM
-// Purpose: Definition of Class StateService
-
+﻿using Backend.Users.Repository.MySqlRepository;
+using Backend.Users.Service.Interfaces;
 using Model.Users;
-using Backend.Users.Repository.MySqlRepository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Service.GeneralService
+namespace Backend.Users.WebApiService
 {
-   public class StateService
-   {
+    public class StateService : IStateService
+    {
+        IStateRepository stateRepository;
+
         public StateService(IStateRepository stateRepository)
         {
             this.stateRepository = stateRepository;
         }
 
-        public IEnumerable<State> GetAllStates() => stateRepository.GetAll();
-        public State CreateState(State request) => stateRepository.Create(request);
-        public State GetState(string id) => stateRepository.GetObject(id);
-        public bool CheckIfExists(State state) => stateRepository.CheckIfExists(state);
+        public State Save(State stateToSave)
+        {
+            State state = CheckIfExists(stateToSave);
+            if(state == null)
+            {
+                return stateRepository.Create(stateToSave);
+            }
+            return state;
+        }
 
-        public IStateRepository stateRepository;
-   
-   }
+        public State CheckIfExists(State state)
+        {
+            List<State> states = stateRepository.GetAll().ToList();
+            bool exists = states.Any(s => s.Id == state.Id);
+            if(exists)
+            {
+                return states.FirstOrDefault(s => s.Id == state.Id);
+            }
+            return null;
+        }
+    }
 }

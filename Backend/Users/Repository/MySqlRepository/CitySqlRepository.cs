@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Backend.Users.Repository.MySqlRepository
 {
-    class CitySqlRepository : MySqlrepository<City, int>,
+    public class CitySqlRepository : MySqlrepository<City, int>,
         ICityRepository
     {
         public CitySqlRepository(MySqlContext context) : base(context) { }

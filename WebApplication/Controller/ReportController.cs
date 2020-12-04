@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Backend.Examinations.Model;
-using Backend.Examinations.WebApiController;
+using Backend.Examinations.Service.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Adapters;
@@ -16,11 +16,11 @@ namespace WebApplication.Controller
     [ApiController]
     public class ReportController : ControllerBase
     {
-        private ReportSearchWebController controller;
+        private IReportSearchService _reportSearchService;
 
-        public ReportController()
+        public ReportController(IReportSearchService reportSearchService)
         {
-            this.controller = new ReportSearchWebController();
+            _reportSearchService = reportSearchService;
         }
 
         [HttpPost("advancedSearch")]
@@ -35,7 +35,7 @@ namespace WebApplication.Controller
                 return BadRequest(e.Message);
             }
 
-            List<ExaminationSurgery> reports = controller.AdvancedSearchPrescriptions(dto);
+            List<ExaminationSurgery> reports = _reportSearchService.AdvancedSearchReports(dto);
 
             return Ok(reports);
         }
@@ -54,7 +54,7 @@ namespace WebApplication.Controller
             }
             
 
-            List<ExaminationSurgery> reports = controller.GetSearchedReports(dto.Doctor, dto.startDate, dto.endDate, dto.type);
+            List<ExaminationSurgery> reports = _reportSearchService.GetSearchedReports(dto.Doctor, dto.startDate, dto.endDate, dto.type);
             List<ReportDTO> reportDTOs = ReportAdapter.ListExaminationSurgeryToReport(reports);
             return Ok(reportDTOs);
         }

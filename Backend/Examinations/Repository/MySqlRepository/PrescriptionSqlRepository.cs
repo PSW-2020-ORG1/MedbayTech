@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Backend.Examinations.Repository.MySqlRepository
 {
-    class PrescriptionSqlRepository : MySqlrepository<Prescription, int>,
+    public class PrescriptionSqlRepository : MySqlrepository<Prescription, int>,
         IPrescriptionRepository
     {
         public PrescriptionSqlRepository(MySqlContext mySqlContext) : base(mySqlContext)

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Backend.Users.Repository.MySqlRepository
 {
-    class StateSqlRepository : MySqlrepository<State, long>,
+    public class StateSqlRepository : MySqlrepository<State, long>,
         IStateRepository
     {
 

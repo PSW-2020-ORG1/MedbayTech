@@ -24,7 +24,7 @@ namespace MedbayTechUnitTests.Examinations
         {
             var stubRepository = CreateStubRepository();
             ReportAdvancedDTO dto = CreateFalseDTO();
-            ReportSearchWebService service = new ReportSearchWebService(stubRepository);
+            ReportSearchService service = new ReportSearchService(stubRepository);
 
             List<ExaminationSurgery> reports = service.AdvancedSearchReports(dto);
 
