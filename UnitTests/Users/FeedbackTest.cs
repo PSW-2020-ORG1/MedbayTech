@@ -10,7 +10,6 @@ using Model.Users;
 using Backend.Records.Model.Enums;
 using Backend.Records.WebApiService;
 using System.Linq;
-using Backend.Records.WebApiController;
 using Backend.Users.Repository.MySqlRepository;
 using Backend.Users.WebApiService;
 

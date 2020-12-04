@@ -8,7 +8,7 @@ using Model;
 
 namespace Backend.Users.Repository.MySqlRepository
 {
-    class PatientSqlRepository : MySqlrepository<Patient, string>,
+    public class PatientSqlRepository : MySqlrepository<Patient, string>,
         IPatientRepository
     {
 

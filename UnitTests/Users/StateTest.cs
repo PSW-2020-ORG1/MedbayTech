@@ -1,5 +1,4 @@
 ﻿using Backend.Users.Repository.MySqlRepository;
-using Backend.Users.WebApiController;
 using Backend.Users.WebApiService;
 using Model.Users;
 using Moq;
