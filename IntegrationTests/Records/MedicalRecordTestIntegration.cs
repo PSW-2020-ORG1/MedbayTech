@@ -10,22 +10,34 @@ using Model.Users;
 using Backend.Records.Model.Enums;
 using Backend.Records.WebApiService;
 using System.Linq;
-using Backend.Records.WebApiController;
+using System.Net.Http;
+using Microsoft.AspNetCore.Mvc.Testing;
+using WebApplication;
+using System.Net;
+using Newtonsoft.Json;
 
 namespace MedbayTechUnitTests
 {
     
-    public class MedicalRecordTestIntegration
+    public class MedicalRecordTestIntegration : IClassFixture<WebApplicationFactory<Startup>>
     {
-        [Fact]
-        public void Find_patients_medical_record_Integration()
+        private readonly WebApplicationFactory<Startup> _factory;
+
+        public MedicalRecordTestIntegration(WebApplicationFactory<Startup> factory)
         {
-            MedicalRecordWebController controller = new MedicalRecordWebController();
+            _factory = factory;
+        }
+        [Fact]
+        public async System.Threading.Tasks.Task Find_patients_medical_record_IntegrationAsync()
+        {
+            HttpClient client = _factory.CreateClient();
+
+            
             var patient = CreatePatient();
 
-            MedicalRecord medicalRecord = controller.GetMedicalRecordByPatientId(patient.Id);
+            HttpResponseMessage response = await client.GetAsync("api/medicalRecord");
 
-            medicalRecord.ShouldNotBeNull();
+            response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
         } 
 
         [Fact]

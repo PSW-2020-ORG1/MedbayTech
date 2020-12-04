@@ -4,7 +4,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model.Users;
 using Moq;
 using System.Collections.Generic;
-using Backend.Users.WebApiController;
 using Backend.Users.WebApiService;
 using Shouldly;
 using System;
@@ -12,32 +11,43 @@ using System.Text;
 using Xunit;
 using Backend.Users.Model;
 using Model.Schedule;
+using WebApplication.DTO;
+using Microsoft.AspNetCore.Mvc.Testing;
+using WebApplication;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace MedbayTechUnitTests
 {
-    public class SurveyTest
+    public class SurveyTest : IClassFixture<WebApplicationFactory<Startup>>
     {
-        [Fact]
-        public void Post_survey_integration()
+        private readonly WebApplicationFactory<Startup> _factory;
+
+        public SurveyTest(WebApplicationFactory<Startup> factory)
         {
-            WebSurveyController controller = new WebSurveyController();
+            _factory = factory;
+        }
+        [Fact]
+        public async void Post_survey_integration()
+        {
+            HttpClient client = _factory.CreateClient();
             var survey = CreateSurvey();
-            Survey postedSurvey = controller.CreateSurvey(survey.SurveyQuestions, survey.SurveyAnswers, survey.AppointmentId);
-            postedSurvey.ShouldNotBeNull();
+            StringContent content = new StringContent(JsonConvert.SerializeObject(survey), System.Text.Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync("/api/survey/createSurvey", content);
+            response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
         }
 
-        public static Survey CreateSurvey()
+        public static PostSurveyDTO CreateSurvey()
         {
 
-            Survey survey = new Survey
+            PostSurveyDTO surveyDTO = new PostSurveyDTO
             {
-                Id = 1,
-                Date = DateTime.Now,
-                AppointmentId = 1,
-                SurveyQuestions = CreateListOfQuestions(),
-                SurveyAnswers = CreateListOfAnswers(),
+                appointmentId = 5,
+                surveyQuestions = CreateListOfQuestions(),
+                surveyAnswers = CreateListOfAnswers(),
             };
-            return survey;
+            return surveyDTO;
         }
 
         public static List<int> CreateListOfQuestions()

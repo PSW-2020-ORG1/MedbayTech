@@ -1,5 +1,4 @@
 ﻿using Backend.Examinations.Model;
-using Backend.Examinations.WebApiController;
 using Shouldly;
 using System;
 using System.Collections.Generic;
