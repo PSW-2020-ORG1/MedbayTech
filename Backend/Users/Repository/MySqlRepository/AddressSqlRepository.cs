@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Backend.Users.Repository.MySqlRepository
 {
-    class AddressSqlRepository : MySqlrepository<Address, int>,
+    public class AddressSqlRepository : MySqlrepository<Address, int>,
         IAddressRepository
     {
         public AddressSqlRepository(MySqlContext context) : base(context) { }

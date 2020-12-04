@@ -5,7 +5,9 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Backend.Records.Model;
-using Backend.Users.WebApiController;
+using Backend.Users.Service.Interfaces;
+using Backend.Users.TableBuilder.Interfaces;
+using Backend.Users.WebApiService;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,17 +26,17 @@ namespace WebApplication.Controller
     [ApiController]
     public class RegistrationController : ControllerBase
     {
-        WebRegistrationController registrationController;
-        PatientRegistrationBuilder registrationBuilder;
+        IRegistrationService _registrationService;
+        IPatientTableBuilder _registrationBuilder;
 
         private IWebHostEnvironment _hostEnvironment;
 
 
         private readonly IMailService mailService;
-        public RegistrationController(IMailService mailService, IWebHostEnvironment environment)
+        public RegistrationController(IMailService mailService, IWebHostEnvironment environment, IRegistrationService registrationService, IPatientTableBuilder registrationBuilder)
         {
-            this.registrationController = new WebRegistrationController();
-            this.registrationBuilder = new PatientRegistrationBuilder();
+            _registrationService = registrationService;
+            _registrationBuilder = registrationBuilder;
             this.mailService = mailService;
             _hostEnvironment = environment;
         }
@@ -62,7 +64,7 @@ namespace WebApplication.Controller
         [Route("activate")]
         public IActionResult Activate(string userId, string token)
         {
-            Patient patient = registrationController.ActivateAccount(userId, token);
+            Patient patient = _registrationService.ActivateAccount(userId, token);
             if (patient == null) return BadRequest();
 
             return Ok("Login Page");
@@ -74,7 +76,7 @@ namespace WebApplication.Controller
             if (dto.File == null)
             {
                 string defaultPath = "Resources/Images/Default/default.jpg";
-                registrationController.SetImagePath(defaultPath, dto.Id);
+                _registrationService.SetImagePath(defaultPath, dto.Id);
                 return Ok();
             }
             if (dto.Id.Equals("null")) return BadRequest("null");
@@ -96,7 +98,7 @@ namespace WebApplication.Controller
                 }
 
                 string pathForDb = GetDomain() + "/" + "Resources/Images/" + dto.Id + "/" + fileName;
-                registrationController.SetImagePath(pathForDb, dto.Id);
+                _registrationService.SetImagePath(pathForDb, dto.Id);
                 return Ok(dto.Id);
             }
            
@@ -115,19 +117,19 @@ namespace WebApplication.Controller
                 return BadRequest(e.Message);
             }
 
-            if (registrationController.PatientExists(dto.Id, dto.Username))
+            if (_registrationService.PatientExists(dto.Id, dto.Username))
                 return BadRequest("Patient already exists");
 
-            InsurancePolicy insurancePolicy = registrationBuilder.SavePolicy(dto.PolicyNumber, dto.Company, dto.PolicyStart, dto.PolicyEnd);
+            InsurancePolicy insurancePolicy = _registrationBuilder.SavePolicy(dto.PolicyNumber, dto.Company, dto.PolicyStart, dto.PolicyEnd);
             if (insurancePolicy == null)
                 return BadRequest("Policy already exists");
 
-            State stateOfBirth = registrationBuilder.SaveState(dto.StateOfBirth);
-            City cityOfBirth = registrationBuilder.SaveCity(dto.PostalCodeBirth, dto.CityOfBirth, stateOfBirth.Id);
+            State stateOfBirth = _registrationBuilder.SaveState(dto.StateOfBirth);
+            City cityOfBirth = _registrationBuilder.SaveCity(dto.PostalCodeBirth, dto.CityOfBirth, stateOfBirth.Id);
 
-            State currResidenceState = registrationBuilder.SaveState(dto.State);
-            City currResidenceCity = registrationBuilder.SaveCity(dto.PostalCode, dto.City, currResidenceState.Id);
-            Address currResidenceAddress = registrationBuilder.SaveAddress(dto.Street, dto.Number, dto.Floor, dto.Apartment, currResidenceCity.Id);
+            State currResidenceState = _registrationBuilder.SaveState(dto.State);
+            City currResidenceCity = _registrationBuilder.SaveCity(dto.PostalCode, dto.City, currResidenceState.Id);
+            Address currResidenceAddress = _registrationBuilder.SaveAddress(dto.Street, dto.Number, dto.Floor, dto.Apartment, currResidenceCity.Id);
 
             dto.PolicyNumber = insurancePolicy.Id;
             dto.PlaceOfBirthId = cityOfBirth.Id;
@@ -137,12 +139,12 @@ namespace WebApplication.Controller
 
             patient.Token = Token.GenerateGuidToken();
 
-            Patient registeredPatient = registrationController.Register(patient);
+            Patient registeredPatient = _registrationService.Register(patient);
 
             if (registeredPatient == null)
                 return BadRequest("Patient already exists");
 
-            registrationBuilder.SaveMedicalRecord(registeredPatient.Id, "", dto.BloodType);
+            _registrationBuilder.SaveMedicalRecord(registeredPatient.Id, "", dto.BloodType);
 
             GenerateEmailInfo(patient);
 

@@ -22,7 +22,7 @@ namespace MedbayTechUnitTests
         [Fact]
         public void Find_searched_prescription()
         {
-            PrescriptionSearchWebService service = new PrescriptionSearchWebService(CreatePrescriptionStubRepository());
+            PrescriptionSearchService service = new PrescriptionSearchService(CreatePrescriptionStubRepository());
             List<Prescription> prescriptions = service.GetSearchedPrescription("Metafex", 6, new DateTime(2020, 11, 24), new DateTime(2020, 12, 1)).ToList();
 
             prescriptions.FirstOrDefault().ShouldNotBeNull();
@@ -31,7 +31,7 @@ namespace MedbayTechUnitTests
         [Fact]
         public void Dont_find_searched_prescription()
         {
-            PrescriptionSearchWebService service = new PrescriptionSearchWebService(CreatePrescriptionStubRepository());
+            PrescriptionSearchService service = new PrescriptionSearchService(CreatePrescriptionStubRepository());
             List<Prescription> prescriptions = service.GetSearchedPrescription("Brufen", 6, new DateTime(2020, 11, 24), new DateTime(2020, 11, 25)).ToList();
 
             prescriptions.FirstOrDefault().ShouldBeNull();
@@ -41,7 +41,7 @@ namespace MedbayTechUnitTests
         [Fact]
         public void Find_searched_report()
         {
-            ReportSearchWebService service = new ReportSearchWebService(CreateReportStubRepository());
+            ReportSearchService service = new ReportSearchService(CreateReportStubRepository());
             List<ExaminationSurgery> reports = service.GetSearchedReports("Petar", new DateTime(2020, 11, 26), new DateTime(2020, 11, 30), "Examination").ToList();
 
             reports.FirstOrDefault().ShouldNotBeNull();
@@ -51,7 +51,7 @@ namespace MedbayTechUnitTests
         [Fact]
         public void Dont_find_searched_report()
         {
-            ReportSearchWebService service = new ReportSearchWebService(CreateReportStubRepository());
+            ReportSearchService service = new ReportSearchService(CreateReportStubRepository());
             List<ExaminationSurgery> reports = service.GetSearchedReports("Petar", new DateTime(2020, 11, 24), new DateTime(2020, 11, 25), "Examination").ToList();
 
             reports.FirstOrDefault().ShouldBeNull();

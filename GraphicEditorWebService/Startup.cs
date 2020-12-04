@@ -1,6 +1,5 @@
 using Backend.Medications.Service;
 using Backend.Rooms.Service;
-using Backend.Users.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -22,6 +21,7 @@ using Repository.RoomRepository;
 using Backend.Rooms.Repository.MySqlRepository;
 using Backend.Users.Repository;
 using Backend.Users.Repository.MySqlRepository;
+using Backend.Users.WebApiService;
 
 namespace GraphicEditorWebService
 {

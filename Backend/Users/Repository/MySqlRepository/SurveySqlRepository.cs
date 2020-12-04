@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Backend.Users.Repository.MySqlRepository
 {
-    class SurveySqlRepository : MySqlrepository<Survey, int>,
+    public class SurveySqlRepository : MySqlrepository<Survey, int>,
         ISurveyRepository
     {
         public SurveySqlRepository(MySqlContext context) : base(context) { }

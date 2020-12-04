@@ -31,7 +31,7 @@ namespace MedbayTechUnitTests
         [Fact]
         public void Find_patients_medical_record()
         {
-            MedicalRecordWebService service = new MedicalRecordWebService(CreateStubRepository());
+            MedicalRecordService service = new MedicalRecordService(CreateStubRepository());
             MedicalRecord medicalRecord = service.GetMedicalRecordByPatientId("001");
 
             medicalRecord.ShouldNotBeNull();
@@ -40,7 +40,7 @@ namespace MedbayTechUnitTests
         [Fact]
         public void Doesnt_find_patients_record()
         {
-            MedicalRecordWebService service = new MedicalRecordWebService(CreateStubRepository());
+            MedicalRecordService service = new MedicalRecordService(CreateStubRepository());
             MedicalRecord medicalRecord = service.GetMedicalRecordByPatientId("003");
 
             medicalRecord.ShouldBeNull();

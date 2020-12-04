@@ -29,7 +29,7 @@ namespace MedbayTechUnitTests.Users
         public void Exists_by_id()
         {
             var stubRepository = CreateStubRepository();
-            RegistrationService service = new RegistrationService(stubRepository);
+            IRegistrationService service = new IRegistrationService(stubRepository);
 
             bool existsById = service.ExistsById("2406978890044");
 
