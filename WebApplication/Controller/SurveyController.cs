@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Backend.Users.Model;
-using Backend.Users.WebApiController;
+using Backend.Users.Service.Interfaces;
+using Backend.Users.WebApiService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.Users;
@@ -17,16 +18,16 @@ namespace WebApplication.Controller
     [ApiController]
     public class SurveyController : ControllerBase
     {
-        private WebSurveyController surveyContoller;
+        private ISurveyService _surveyService;
 
-        public SurveyController()
+        public SurveyController(ISurveyService surveyService)
         {
-            this.surveyContoller = new WebSurveyController();
+            _surveyService = surveyService;
         }   
         [HttpGet("allQuestions")]
         public IActionResult GetAllQuestions()
         {
-            List<SurveyQuestion> allQuestions = surveyContoller.GetAllActiveQuestions().ToList();
+            List<SurveyQuestion> allQuestions = _surveyService.GetAllActiveQuestions().ToList();
             List<SurveyQuestionDTO> allQuestionsDTOs = SurveyAdapter.ListActiveQuestionsToListSurveyQuestionDTO(allQuestions);
             return Ok(allQuestionsDTOs);
         }
@@ -34,9 +35,8 @@ namespace WebApplication.Controller
         [HttpPost("createSurvey")]
         public IActionResult Post(PostSurveyDTO postSurveyDTO)
         {
-
-            SurveyService surveyService = new SurveyService();           
-            Survey surveySuccessfullyCreated = surveyContoller.CreateSurvey(postSurveyDTO.surveyQuestions, postSurveyDTO.surveyAnswers, postSurveyDTO.appointmentId);
+         
+            Survey surveySuccessfullyCreated = _surveyService.CreateSurvey(postSurveyDTO.surveyQuestions, postSurveyDTO.surveyAnswers, postSurveyDTO.appointmentId);
 
             if (surveySuccessfullyCreated == null)
             {

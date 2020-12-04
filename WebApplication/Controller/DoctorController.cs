@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Backend.Users.WebApiController;
+using Backend.Rooms.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.Users;
@@ -16,15 +16,15 @@ namespace WebApplication.Controller
     public class DoctorController : ControllerBase
     {
 
-        private WebDoctorController doctorController;
-        public DoctorController()
+        private IDoctorService _doctorService;
+        public DoctorController(IDoctorService doctorService)
         {
-            this.doctorController = new WebDoctorController();
+            _doctorService = doctorService;
         }
         [HttpGet("searchDoctor")]
         public IActionResult GetAll()
         {
-            List<Doctor> doctors = doctorController.GetAll().ToList();
+            List<Doctor> doctors = _doctorService.GetAll().ToList();
             List<DoctorSearchDTO> doctorSearchList = DoctorAdapter.ListDoctorToListDoctorSearchDTO(doctors);
             return Ok(doctorSearchList);
 

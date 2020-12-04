@@ -34,8 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Examinations\WebApiService\" />
     <Folder Include="Exceptions\Examinations\" />
     <Folder Include="Resources\Images\" />
+    <Folder Include="Users\WebApiService\" />
   </ItemGroup>
 
 </Project>

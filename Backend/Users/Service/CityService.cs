@@ -1,34 +1,42 @@
-// File:    CityService.cs
-// Author:  Vlajkov
-// Created: Wednesday, May 20, 2020 4:38:35 AM
-// Purpose: Definition of Class CityService
-
+﻿using Backend.Users.Repository.MySqlRepository;
+using Backend.Users.Service.Interfaces;
 using Model.Users;
-using Repository;
-using Backend.Users.Repository.MySqlRepository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Service.GeneralService
+namespace Backend.Users.WebApiService
 {
-   public class CityService
-   {
+    public class CityService : ICityService
+    {
+        ICityRepository cityRepository;
+
         public CityService(ICityRepository cityRepository)
         {
             this.cityRepository = cityRepository;
         }
 
-        public IEnumerable<City> GetAllCitiesByState(State state) => cityRepository.GetAllCitiesByState(state);
+        public City Save(City cityToSave)
+        {
+            City city = CheckIfExists(cityToSave);
+            if (city == null)
+            {
+                return cityRepository.Create(cityToSave);
+            }
+            return city;
+        }
 
-        public City CreateCity(City city) => cityRepository.Create(city);
+        public City CheckIfExists(City city)
+        {
+            List<City> cities = cityRepository.GetAll().ToList();
+            bool exists = cities.Any(c => c.Id == city.Id);
+            if(exists)
+            {
+                return cities.FirstOrDefault(c => c.Id == city.Id);
+            }
+            return null;
 
-        public City GetCityByName(City city) => cityRepository.GetCityByName(city);
-
-        public IEnumerable<City> GetAll() => cityRepository.GetAll();
-
-        public bool CheckIfExists(City city) => cityRepository.CheckIfExists(city);
-
-        public ICityRepository cityRepository;
-   
-   }
+        }
+    }
 }

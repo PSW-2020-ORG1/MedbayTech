@@ -1,30 +1,34 @@
 ﻿using Backend.Rooms.Service;
-using Model;
+using Backend.Users.Repository;
 using Model.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Backend.Users.Repository;
 
-namespace Backend.Users.Service
+namespace Backend.Users.WebApiService
 {
     public class DoctorService : IDoctorService
     {
-        private IDoctorRepository _doctorRepository;
+        private IDoctorRepository doctorRepository;
 
         public DoctorService(IDoctorRepository doctorRepository)
         {
-            _doctorRepository = doctorRepository;
+            this.doctorRepository = doctorRepository;
+
         }
 
+        public IEnumerable<Doctor> GetAll()
+        {
+            return doctorRepository.GetAll();
+        }
         public Doctor GetDoctorByRoomExaminationRoom(int roomId)
         {
-            return _doctorRepository.GetAll().ToList().Find(p => p.ExaminationRoomId == roomId);
+            return doctorRepository.GetAll().ToList().Find(p => p.ExaminationRoomId == roomId);
         }
         public Doctor UpdateDoctorDataBase(Doctor doctor)
         {
-            _doctorRepository.Update(doctor);
+            doctorRepository.Update(doctor);
             return doctor;
         }
     }
