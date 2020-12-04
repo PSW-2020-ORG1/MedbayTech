@@ -15,7 +15,7 @@
                         <td v-if="row.item.approved"><v-btn class="white red--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Disapprove</v-btn></td>
                         <td v-else><v-btn class="white green--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Approve</v-btn></td>
                         <td>
-                            <v-btn elevation="0" class="red white--text" v-on:click="deleteMessage(row.item)">
+                            <v-btn elevation="0" class="white red--text" v-on:click="deleteMessage(row.item)">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                             </v-btn>
                         </td>

@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Model;
 using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
+using System.IO;
 
 namespace PharmacyIntegration
 {
@@ -29,6 +30,9 @@ namespace PharmacyIntegration
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // NOTE(Jovan): Init directory for usage reports
+            Directory.CreateDirectory("GeneratedUsageReports");
+
             services.AddDbContext<MySqlContext>();
 
             services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
