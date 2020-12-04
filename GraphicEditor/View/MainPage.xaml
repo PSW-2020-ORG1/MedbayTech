@@ -33,7 +33,11 @@
             </DockPanel>
 
             <DockPanel DockPanel.Dock="Bottom">
-                <local:Legend  x:Name="legenda"  VerticalAlignment="Center" HorizontalAlignment="Center"   Visibility="Visible" Height="300" Width="250"></local:Legend>
+                <DockPanel DockPanel.Dock="Bottom">
+                    <Button DockPanel.Dock="Left" Content="Exit" HorizontalAlignment="Left" Width="120" Height="30" Margin="5,5,5,5" FontWeight="Bold" Click="buttonExit" />
+                    <Button DockPanel.Dock="Right" Content="Appointment search" HorizontalAlignment="Right" Width="140" Height="30" Margin="5,5,5,5" FontWeight="Bold" Click="buttonAppointmentSearch" />
+                </DockPanel>
+                <local:Legend DockPanel.Dock="Top" x:Name="legenda"  VerticalAlignment="Center" HorizontalAlignment="Center"   Visibility="Visible" Height="300" Width="250"></local:Legend>
             </DockPanel>
             <TabControl SelectionChanged="TabControl_SelectionChanged" x:Name="tabControl">
                 <TabItem x:Name="MAP" Header="Map">
