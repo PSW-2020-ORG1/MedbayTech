@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using GraphicEditor.View;
 
 namespace GraphicEditor
 {
@@ -24,10 +25,12 @@ namespace GraphicEditor
     {
         private Boolean dontRefreshMap;
         private static int Restriction;
+        private MainWindow mainWindow;
 
-        public MainPage(String user)
+        public MainPage(String user, MainWindow mainWindow)
         {
             InitializeComponent();
+            this.mainWindow = mainWindow;
             MainFrame.Content = new HospitalMap(this);
             setRestrictionType(user);
             string path = Directory.GetCurrentDirectory();
@@ -335,6 +338,16 @@ namespace GraphicEditor
                 comboBoxHospital2.SelectedIndex = 2;
             }
             dontRefreshMap = true;
+        }
+
+        private void buttonAppointmentSearch(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new SearchAppointment(this);
+        }
+
+        private void buttonExit(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Close();
         }
     }
 }
