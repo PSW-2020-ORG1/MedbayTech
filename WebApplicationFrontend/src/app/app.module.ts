@@ -52,6 +52,7 @@ import {MedicalRecordComponent} from './medical-record/medical-record.component'
 import {MedicalRecordService} from './service/medicalRecord/medicalRecord.service';
 import { PrescriptionSimpleSearchComponent } from './search/prescription-simple-search/prescription-simple-search.component';
 import { ReportSimpleSearchComponent } from './search/report-simple-search/report-simple-search.component';
+import { ObserveAppointmentComponent } from './appointment/observe-appointment/observe-appointment.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { ReportSimpleSearchComponent } from './search/report-simple-search/repor
     MedicalRecordComponent,
     PrescriptionSimpleSearchComponent,
     ReportSimpleSearchComponent,
+    ObserveAppointmentComponent,
   ],
   imports: [
     BrowserModule,
