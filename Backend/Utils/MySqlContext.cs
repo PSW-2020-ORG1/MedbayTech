@@ -416,8 +416,8 @@ namespace Model
            
 
             modelBuilder.Entity<Specialization>().HasData(
-                new Specialization { Id = 1, SpecializationName = "Interna medicina"/*, DoctorId = "2406978890047"*/},
-                new Specialization { Id = 2, SpecializationName = "Hirurgija"/*, DoctorId = "2406978890047"*/ }
+                new Specialization { Id = 1, SpecializationName = "Interna medicina", DoctorId = "2406978890047"},
+                new Specialization { Id = 2, SpecializationName = "Hirurgija" }
             );
 
 

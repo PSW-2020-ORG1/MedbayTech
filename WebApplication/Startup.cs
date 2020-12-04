@@ -14,6 +14,7 @@ using Backend.Records.WebApiService;
 using Backend.Rooms.Service;
 using Backend.Users.Repository;
 using Backend.Users.Repository.MySqlRepository;
+using Backend.Users.Service;
 using Backend.Users.Service.Interfaces;
 using Backend.Users.TableBuilder.Interfaces;
 using Backend.Users.WebApiService;
@@ -29,6 +30,7 @@ using Microsoft.Extensions.Logging;
 using Model;
 using Newtonsoft.Json;
 using Repository.MedicalRecordRepository;
+using Repository.UserRepository;
 using WebApplication.MailService;
 using WebApplication.ObjectBuilder;
 
@@ -76,6 +78,7 @@ namespace WebApplication
             services.AddTransient<IExaminationSurgeryRepository, ExaminationSurgerySqlRepository>();
             services.AddTransient<ISurveyRepository, SurveySqlRepository>();
             services.AddTransient<ISurveyQuestionRepository, SurveyQuestionSqlRepository>();
+            services.AddTransient<ISpecializationRepository, SpecializationSqlRepository>();
 
             services.AddScoped<IDoctorService, DoctorService>();
             services.AddScoped<IFeedbackService, FeedbackService>();
@@ -89,6 +92,7 @@ namespace WebApplication
             services.AddScoped<IReportSearchService, ReportSearchService>();
             services.AddScoped<ISurveyService, SurveyService>();
             services.AddScoped<IRegistrationService, RegistrationService>();
+            services.AddScoped<ISpecializationService, SpecializationService>();
 
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
