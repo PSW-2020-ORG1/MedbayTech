@@ -1,0 +1,20 @@
+<div style="margin-bottom: 50px;text-align: center;">
+    <h1>Block malicious users</h1>
+</div>
+
+<div class="container">
+    <table class="table"> 
+        <th> Id </th>
+        <th> Username </th>
+        <th> Name </th>
+        <th> Surname </th>
+        <tr *ngFor="let blocked of dataSource;let i=index" [class.data-selected]="blocked.isSelected">
+            <td> {{blocked.id}} </td>
+            <td> {{blocked.username}} </td>
+            <td> {{blocked.name}} </td>
+            <td> {{blocked.surname}} </td>
+            <td> <button [disabled]="blocked.clicked" (click)="blocked.isSelected = true;blocked.clicked = true" mat-raised-button color="warn">Block</button> </td>
+        </tr>
+       
+    </table>
+</div>
