@@ -30,11 +30,11 @@ namespace UnitTests.Schedules
         }
 
         [Fact]
-        public void Schedule_appointment()
+        public void Schedule_appointment_success()
         {
             var doctorWorkDayStubRepository = CreateDoctorWorkDayStubRepository();
             var appointmentStubRepository = CreateAppointmentStubRepository();
-            var appointment = CreateAppointment();
+            var appointment = CreateAppointmentSuccess();
             AppointmentService appointmentService = new AppointmentService(doctorWorkDayStubRepository, appointmentStubRepository);
 
             var createdAppointment = appointmentService.ScheduleAppointment(appointment);
@@ -42,11 +42,24 @@ namespace UnitTests.Schedules
 
         }
 
+        [Fact]
+        public void Schedule_appointment_fail()
+        {
+            var doctorWorkDayStubRepository = CreateDoctorWorkDayStubRepository();
+            var appointmentStubRepository = CreateAppointmentStubRepository();
+            var appointment = CreateAppointmentFail();
+            AppointmentService appointmentService = new AppointmentService(doctorWorkDayStubRepository, appointmentStubRepository);
+
+            var createdAppointment = appointmentService.ScheduleAppointment(appointment);
+
+            createdAppointment.ShouldBe(null);
+
+        }
         public IAppointmentRepository CreateAppointmentStubRepository()
         {
             var stubRepository = new Mock<IAppointmentRepository>();
             var appointments = CreateListOfAppointments();
-            var appointment = CreateAppointment();
+            var appointment = CreateAppointmentSuccess();
             stubRepository.Setup(x => x.Create(It.IsAny<Appointment>())).Returns(appointment);
             stubRepository.Setup(x => x.GetByDoctorIdAndDate(It.IsAny<string>(), It.IsAny<DateTime>())).Returns(
                 (string id, DateTime date) =>
@@ -63,7 +76,20 @@ namespace UnitTests.Schedules
                     workDays.Where(wd => wd.DoctorId.Equals(id) && wd.Date.CompareTo(date) == 0).FirstOrDefault());
             return stubRepository.Object;
         }
-        public static Appointment CreateAppointment()
+
+        public static Appointment CreateAppointmentFail()
+        {
+            return new Appointment
+            {
+                Id = 9,
+                DoctorId = "2406978890047",
+                Start = new DateTime(2020, 12, 10, 8, 0, 0, 0),
+                End = new DateTime(2020, 12, 9, 8, 30, 0),
+                MedicalRecordId = 1,
+                RoomId = 1
+            };
+        }
+        public static Appointment CreateAppointmentSuccess()
         {
             return new Appointment
             {
