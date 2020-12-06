@@ -30,7 +30,7 @@ namespace Backend.Users.WebApiService
             doctorRepository.Update(doctor);
             return doctor;
         }
-        public IEnumerable<Doctor> GetDoctors(int specializationId)
+        public IEnumerable<Doctor> GetDoctorsBy(int specializationId)
         {
             List<Doctor> allDoctors = GetAll().ToList();
             List<Doctor> doctors = new List<Doctor>();

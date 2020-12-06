@@ -14,6 +14,7 @@ namespace Backend.Schedules.Service
 {
     public class AppointmentService : IAppointmentService
     {
+        private const int appointmentDuration = 30;
         IDoctorWorkDayRepository _doctorWorkDayRepository;
         IAppointmentRepository _appointmentRepository;
         public AppointmentService(IDoctorWorkDayRepository doctorWorkDayRepository, IAppointmentRepository appointmentRepository)
@@ -24,7 +25,7 @@ namespace Backend.Schedules.Service
 
         public Appointment ScheduleAppointment(Appointment appointment)
         {
-            List<Appointment> available = GetAvailableByDoctorAndDate(appointment.DoctorId, appointment.Start);
+            List<Appointment> available = GetAvailableBy(appointment.DoctorId, appointment.Start);
             bool isAvailable = available.Any(a => a.isOccupied(appointment.Start, appointment.End));
             if (isAvailable)
                 return _appointmentRepository.Create(appointment);
@@ -36,11 +37,11 @@ namespace Backend.Schedules.Service
             List<Appointment> availableAppointments = new List<Appointment>();
             for (DateTime date = start; date.Date <= end.Date; date = date.AddDays(1))
             {
-                availableAppointments.AddRange(GetAvailableByDoctorAndDate(doctorId, date));
+                availableAppointments.AddRange(GetAvailableBy(doctorId, date));
             }
             return availableAppointments;
         }
-        public List<Appointment> GetAvailableByDoctorAndDate(string doctorId, DateTime date)
+        public List<Appointment> GetAvailableBy(string doctorId, DateTime date)
         {
             List<Appointment> occupied = GetByDoctorAndDate(doctorId, date);
             List<Appointment> allAppointments = InitializeAppointments(doctorId, date);
@@ -48,19 +49,15 @@ namespace Backend.Schedules.Service
             foreach(Appointment appointmentIt in allAppointments)
             {
                 Appointment appointment = occupied.FirstOrDefault(a => a.isOccupied(appointmentIt.Start, appointmentIt.End));
-                if (isOccupied(appointment))
+                
+                if (appointment != null && !appointment.canceledByPatient)
                     available.Remove(appointmentIt);
             }
             return available;
         }
-        private bool isOccupied(Appointment appointment)
-        {
-            return appointment != null && !appointment.canceledByPatient;
-        }
-    
         public List<Appointment> GetByDoctorAndDate(string doctorId, DateTime date)
         {
-            return _appointmentRepository.GetByDoctorIdAndDate(doctorId, date).ToList();
+            return _appointmentRepository.GetBy(doctorId, date).ToList();
         }
 
         public List<Appointment> InitializeAppointments(string doctorId, DateTime date)
@@ -74,7 +71,7 @@ namespace Backend.Schedules.Service
             int startTime = doctorWorkDays.StartTime;
             int endTime = doctorWorkDays.EndTime;
             DateTime appointmentStart = new DateTime(date.Year, date.Month, date.Day, startTime, 0, 0);
-            int appointmentDuration = 30;
+            
             for (int i = 0; i < endTime - 1; i++)
             {
                 Appointment appointment = new Appointment

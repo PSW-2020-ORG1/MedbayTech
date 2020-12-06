@@ -10,7 +10,7 @@ namespace Backend.Rooms.Service
         Doctor GetDoctorByRoomExaminationRoom(int roomId);
         Doctor UpdateDoctorDataBase(Doctor doctor);
         IEnumerable<Doctor> GetAll();
-        IEnumerable<Doctor> GetDoctors(int specializationId);
+        IEnumerable<Doctor> GetDoctorsBy(int specializationId);
 
     }
 }
