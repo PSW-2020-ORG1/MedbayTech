@@ -25,7 +25,7 @@ namespace UnitTests.Schedules
             var appointmentStubRepository = CreateAppointmentStubRepository();
             AppointmentService appointmentService = new AppointmentService(doctorWorkDayStubRepository, appointmentStubRepository);
 
-            var workDay = appointmentService.GetAvailableByDoctorAndDate("2406978890047", new DateTime(2020, 12, 5));
+            var workDay = appointmentService.GetAvailableBy("2406978890047", new DateTime(2020, 12, 5));
             workDay.Count.ShouldBe(13);
         }
 
@@ -61,7 +61,7 @@ namespace UnitTests.Schedules
             var appointments = CreateListOfAppointments();
             var appointment = CreateAppointmentSuccess();
             stubRepository.Setup(x => x.Create(It.IsAny<Appointment>())).Returns(appointment);
-            stubRepository.Setup(x => x.GetByDoctorIdAndDate(It.IsAny<string>(), It.IsAny<DateTime>())).Returns(
+            stubRepository.Setup(x => x.GetBy(It.IsAny<string>(), It.IsAny<DateTime>())).Returns(
                 (string id, DateTime date) =>
                     appointments.Where(a => a.DoctorId.Equals(id) && a.Start.Date.CompareTo(date.Date) == 0).ToList());
 
