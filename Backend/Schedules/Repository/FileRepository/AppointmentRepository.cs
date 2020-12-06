@@ -116,7 +116,7 @@ namespace Repository.ScheduleRepository
             
         }
 
-        public IEnumerable<Appointment> GetByDoctorIdAndDate(string id, DateTime date)
+        public IEnumerable<Appointment> GetBy(string doctorId, DateTime date)
         {
             throw new NotImplementedException();
         }
