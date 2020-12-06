@@ -115,5 +115,10 @@ namespace Repository.ScheduleRepository
             return appointmentsByDate;
             
         }
+
+        public IEnumerable<Appointment> GetAppointmentsByPatientId(string Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

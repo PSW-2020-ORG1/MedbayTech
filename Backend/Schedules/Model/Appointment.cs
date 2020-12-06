@@ -20,11 +20,14 @@ namespace Model.Schedule
         public int Id { get; set; }
         [NotMapped]
         public Period Period { get; protected set; }
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
         public TypeOfAppointment TypeOfAppointment { get; set; }
         public string ShortDescription { get; set; }
         public bool Urgent { get; set; }
         public bool Deleted { get; set; }
         public bool Finished { get; set; }
+        public bool canceledByPatient { get; set; }
         [ForeignKey("Room")]
         public int RoomId { get;  set; }
         public virtual Room Room { get; set; }
