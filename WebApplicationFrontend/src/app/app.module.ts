@@ -29,6 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 
@@ -52,6 +53,7 @@ import {MedicalRecordComponent} from './medical-record/medical-record.component'
 import {MedicalRecordService} from './service/medicalRecord/medicalRecord.service';
 import { PrescriptionSimpleSearchComponent } from './search/prescription-simple-search/prescription-simple-search.component';
 import { ReportSimpleSearchComponent } from './search/report-simple-search/report-simple-search.component';
+import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,7 @@ import { ReportSimpleSearchComponent } from './search/report-simple-search/repor
     MedicalRecordComponent,
     PrescriptionSimpleSearchComponent,
     ReportSimpleSearchComponent,
+    SchedulingComponent,
   ],
   imports: [
     BrowserModule,
@@ -102,6 +105,7 @@ import { ReportSimpleSearchComponent } from './search/report-simple-search/repor
     MatRadioModule,
     MatInputModule,
     MatSelectModule,
+    MatStepperModule,
     ToastrModule.forRoot(),
 
     

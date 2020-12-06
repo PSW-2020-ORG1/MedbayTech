@@ -1,0 +1,52 @@
+<div class="container">
+    <mat-horizontal-stepper linear #stepper>
+        <mat-step [stepControl]="dateFormGroup">
+            <ng-template>Select date</ng-template>
+            <form [formGroup]="dateFormGroup">
+                <mat-form-field>
+                    <mat-label>Select date*</mat-label>
+                    <input matInput [matDatepicker]="picker2">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="doctorFormGroup" [optional]="isOptional">
+            <ng-template matStepLabel>Select doctor</ng-template>
+            <form [formGroup]="doctorFormGroup">
+                <div class="container">
+                    <div class="row" style="margin-bottom: 100px;">
+                        <mat-form-field>
+                            <mat-label>Select specialization*</mat-label>
+                            <mat-select placeholder="Select specialization" place id="specialization"
+                                name="specialization" formControlName="specialization"
+                                (selectionChange)="selectSpecialization($event)">
+                                <mat-option *ngFor="let specialization of specializations" value={{specialization.id}}>
+                                    {{specialization.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <mat-form-field>
+                            <mat-label>Select doctor*</mat-label>
+                            <mat-select placeholder="Select doctor" place id="choosenDoctor" name="chosenDoctor"
+                                formControlName="chosenDoctor" (selectionChange)="getDoctor($event)">
+                                <mat-option *ngFor="let doctor of searchDoctors" value={{doctor.id}}>
+                                    {{doctor.fullName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Select appointment</ng-template>
+
+
+            <button mat-raised-button>Schedule</button>
+            <button mat-raised-button>Cancel</button>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>
