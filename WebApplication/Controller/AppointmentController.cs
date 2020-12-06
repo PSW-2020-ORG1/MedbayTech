@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.Schedule;
 using WebApplication.Adapters;
+using WebApplication.Validators;
 
 namespace WebApplication.Controller
 {
@@ -39,34 +40,40 @@ namespace WebApplication.Controller
             return Ok(dto);
         }
 
-        [HttpGet("available2")]
-        public IActionResult GetAvailable2()
+        [HttpPost("availableStrategy")]
+        public IActionResult GetAvailable2(SearchAppointmentsDTO appoitmentsDTO)
         {
-            List<Appointment> appointments = _appointmentService.GetAvailableByDoctorAndDateRange("2406978890047", new DateTime(2020, 12, 5), new DateTime(2020, 12, 9)).ToList();
+            List<Appointment> appointments = _appointmentService.GetAvailableByDoctorAndDateRange(appoitmentsDTO.DoctorId, appoitmentsDTO.StartInterval, appoitmentsDTO.EndInterval).ToList();
             List<AvailableAppointmentsDTO> dto = AppointmentAdapter.Transform(appointments);
             return Ok(dto);
         }
 
-        [HttpGet("schedule")]
-        public IActionResult Schedule()
+        [HttpPost("schedule")]
+        public IActionResult Schedule(ScheduleAppointmentDTO dto)
         {
-            MedicalRecord medicalRecord = _mediaRecordService.GetMedicalRecordByPatientId("2406978890046");
-            if (medicalRecord == null)
-                return BadRequest();
 
-            Appointment appointment = new Appointment
+            try
             {
-                DoctorId = "2406978890047",
-                Start =  new DateTime(2020, 12, 9, 18, 30, 0),
-                End = new DateTime(2020, 12, 9, 19, 0, 0),
-                MedicalRecordId =  medicalRecord.Id,
-                RoomId = 1
-            };
-            Appointment ap = _appointmentService.ScheduleAppointment(appointment);
-            if (ap == null)
-            {
-                return BadRequest("Can not schedule exam");
+                ValidateScheduleAppointment.Validate(dto);
             }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            dto.PatientId =  "2406978890046";
+
+            MedicalRecord medicalRecord = _mediaRecordService.GetMedicalRecordByPatientId(dto.PatientId);
+            
+            if (medicalRecord == null)
+                return BadRequest("Can not schedule appointment");
+
+            Appointment appointment = AppointmentAdapter.ScheduleAppointmentDTOToAppointment(dto);
+            appointment.MedicalRecordId = medicalRecord.Id;
+            Appointment scheduledAppointment = _appointmentService.ScheduleAppointment(appointment);
+            
+            if (scheduledAppointment == null)
+                return BadRequest("Can not schedule appointment");
+            
             return Ok("Scheduled!");
         }
     }

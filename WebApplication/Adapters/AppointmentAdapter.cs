@@ -24,5 +24,16 @@ namespace WebApplication.Adapters
             }
             return availableAppointmentsDTO;
         }
+
+        public static Appointment ScheduleAppointmentDTOToAppointment(ScheduleAppointmentDTO dto)
+        {
+            return new Appointment
+            {
+                DoctorId = dto.DoctorId,
+                Start = dto.StartTime,
+                End = dto.EndTime,
+                RoomId = 1
+            };
+        }
     }
 }

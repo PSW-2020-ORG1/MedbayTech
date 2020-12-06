@@ -9,7 +9,7 @@ namespace Backend.Utils.DTO
         public string DoctorId { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public int MedicalRecordId { get; set; }
+        public string PatientId { get; set; }
         public ScheduleAppointmentDTO() {}
 
     }
