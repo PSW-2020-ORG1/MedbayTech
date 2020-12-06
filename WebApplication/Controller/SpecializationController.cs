@@ -25,7 +25,7 @@ namespace WebApplication.Controller
         public IActionResult GetAll()
         {
             List<Specialization> specializations = _specializationService.GetAll().ToList();
-            List<SpecializationDTO> specializationDTOs = SpecializationAdapter.ListSpecializationDTOToListSpecialization(specializations);
+            List<SpecializationDTO> specializationDTOs = SpecializationAdapter.ListSpecializationToListSpecializationDTO(specializations);
             return Ok(specializationDTOs);
         }
     }

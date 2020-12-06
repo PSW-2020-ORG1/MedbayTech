@@ -33,7 +33,7 @@ namespace WebApplication.Controller
         [HttpGet("specialization/{specializationId}")]
         public IActionResult GetDoctorsBySpecialization(int specializationId)
         {
-            List<Doctor> doctors = _doctorService.GetDoctorsBySpecialization(specializationId).ToList();
+            List<Doctor> doctors = _doctorService.GetDoctors(specializationId).ToList();
             List<DoctorSearchDTO> doctorSearchList = DoctorAdapter.ListDoctorToListDoctorSearchDTO(doctors);
             return Ok(doctorSearchList);
 

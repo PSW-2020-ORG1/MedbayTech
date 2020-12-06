@@ -12,6 +12,7 @@ using Backend.Records.Repository.MySqlRepository;
 using Backend.Records.Service.Interfaces;
 using Backend.Records.WebApiService;
 using Backend.Rooms.Service;
+using Backend.Schedules.Service;
 using Backend.Users.Repository;
 using Backend.Users.Repository.MySqlRepository;
 using Backend.Users.Service;
@@ -27,12 +28,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Backend.Schedules.Service.Interfaces;
 using Model;
 using Newtonsoft.Json;
 using Repository.MedicalRecordRepository;
 using Repository.UserRepository;
 using WebApplication.MailService;
 using WebApplication.ObjectBuilder;
+using Repository.ScheduleRepository;
+using Backend.Schedules.Repository.MySqlRepository;
 
 namespace WebApplication
 {
@@ -79,6 +83,8 @@ namespace WebApplication
             services.AddTransient<ISurveyRepository, SurveySqlRepository>();
             services.AddTransient<ISurveyQuestionRepository, SurveyQuestionSqlRepository>();
             services.AddTransient<ISpecializationRepository, SpecializationSqlRepository>();
+            services.AddTransient<IDoctorWorkDayRepository, DoctorWorkDaySqlRepository>();
+            services.AddTransient<IAppointmentRepository, AppointmentSqlRepository>();
 
             services.AddScoped<IDoctorService, DoctorService>();
             services.AddScoped<IFeedbackService, FeedbackService>();
@@ -93,6 +99,8 @@ namespace WebApplication
             services.AddScoped<ISurveyService, SurveyService>();
             services.AddScoped<IRegistrationService, RegistrationService>();
             services.AddScoped<ISpecializationService, SpecializationService>();
+            services.AddScoped<IDoctorWorkDayService, DoctorWorkDayService>();
+            services.AddScoped<IAppointmentService, Backend.Schedules.Service.AppointmentService>();
 
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
