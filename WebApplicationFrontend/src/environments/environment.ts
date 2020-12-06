@@ -24,7 +24,10 @@ export const environment = {
   prescriptionSimpleSearch : 'api/prescription',
   reportSimpleSearch : 'api/report',
   allSpecializations : 'api/specialization',
-  doctorsBySpecialization : "specialization"
+  doctorsBySpecialization : "specialization",
+  appointments : 'api/appointment',
+  availableStrategy : 'availableStrategy',
+  scheduleAppointment : 'schedule'
 };
 
 /*
