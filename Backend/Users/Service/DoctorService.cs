@@ -30,21 +30,21 @@ namespace Backend.Users.WebApiService
             doctorRepository.Update(doctor);
             return doctor;
         }
-        public IEnumerable<Doctor> GetDoctorsBySpecialization(int id)
+        public IEnumerable<Doctor> GetDoctors(int specializationId)
         {
-            List<Doctor> doctors = GetAll().ToList();
-            List<Doctor> doctors2 = new List<Doctor>();
+            List<Doctor> allDoctors = GetAll().ToList();
+            List<Doctor> doctors = new List<Doctor>();
 
-            foreach(Doctor doctorIt in doctors)
+            foreach(Doctor doctorIt in allDoctors)
             {
                 List<Specialization> specializations = doctorIt.Specializations;
                 foreach(Specialization specializationIt in specializations)
                 {
-                    if (specializationIt.Id == id)
-                        doctors2.Add(doctorIt);
+                    if (specializationIt.Id == specializationId)
+                        doctors.Add(doctorIt);
                 }
             }
-            return doctors2;
+            return doctors;
         }
     }
 }
