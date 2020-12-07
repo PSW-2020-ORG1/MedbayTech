@@ -1,11 +1,14 @@
 ﻿using Backend.Records.Model;
+using Backend.Users.Repository.MySqlRepository;
 using Model.Schedule;
+using Model.Users;
 using Moq;
 using Repository.ScheduleRepository;
 using Service.ScheduleService;
 using Shouldly;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
 
@@ -16,26 +19,65 @@ namespace UnitTests.Schedules
         [Fact]
         public void Find_patients_Appointments() 
         {
-            AppointmentService service = new AppointmentService(CreateStubRepository());
+            AppointmentService service = new AppointmentService(CreateAppointmentStubRepository(), CreateSurveyStubRepository());
             List<Appointment> appointments = service.GetAppointmentsByPatientId("2505998800045");
-            appointments.ShouldNotBeNull();
+            appointments.Count.ShouldNotBe(0);
         }
 
         [Fact]
         public void Doesnt_find_patinents_Appointments()
         {
+            AppointmentService service = new AppointmentService(CreateAppointmentStubRepository(), CreateSurveyStubRepository());
+            List<Appointment> appointments = service.GetAppointmentsByPatientId("2541998800045");
+            appointments.Count.ShouldBe(0);
         }
 
-        private static IAppointmentRepository CreateStubRepository()
+        [Fact]
+        public void Find_surveyable_Appointments()
+        {
+            AppointmentService service = new AppointmentService(CreateAppointmentStubRepository(), CreateSurveyStubRepository());
+            List<Appointment> appointments = service.GetSurveyableAppointments("2505998800045");
+            appointments.Count.ShouldNotBe(0);
+        }
+
+        private static IAppointmentRepository CreateAppointmentStubRepository()
         {
             var stubRepository = new Mock<IAppointmentRepository>();
             var appointments = CreateListOfAppointments();
             var appointment = CreateAppointment();
             stubRepository.Setup(x => x.Create(It.IsAny<Appointment>())).Returns(appointment);
-          
+            stubRepository.Setup(x => x.GetAppointmentsByPatientId(It.IsAny<string>())).Returns(
+                (string id) =>
+                appointments.Where(a => a.MedicalRecord.PatientId.Equals(id)).ToList());
 
             return stubRepository.Object;
         }
+        private static ISurveyRepository CreateSurveyStubRepository()
+        {
+            var stubRepository = new Mock<ISurveyRepository>();
+            var surveys = CreateSurveys();
+            stubRepository.Setup(m => m.GetAll()).Returns(surveys);
+            return stubRepository.Object;
+        }
+        public static List<Survey> CreateSurveys()
+        {
+            List<Survey> surveys = new List<Survey>();
+            Survey s1 = new Survey
+            {
+                AppointmentId = 1,
+            };
+
+            Survey s2 = new Survey
+            {
+                AppointmentId = 2,
+            };
+
+            surveys.Add(s1);
+            surveys.Add(s2);
+
+            return surveys;
+        }
+
         public static MedicalRecord CreateMedicalRecord()
         {
             return new MedicalRecord
