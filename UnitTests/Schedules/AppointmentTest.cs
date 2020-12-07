@@ -37,8 +37,37 @@ namespace UnitTests.Schedules
         {
             AppointmentService service = new AppointmentService(CreateAppointmentStubRepository(), CreateSurveyStubRepository());
             List<Appointment> appointments = service.GetSurveyableAppointments("2505998800045");
-            appointments.Count.ShouldNotBe(0);
+            appointments.Count.ShouldBe(2);
         }
+
+        [Fact]
+        public void Doesnt_find_surveyable_Appointments()
+        {
+            AppointmentService service = new AppointmentService(CreateAppointmentStubRepository(), CreateSurveyStubRepository());
+            List<Appointment> appointments = service.GetSurveyableAppointments("2541998800045");
+            appointments.Count.ShouldBe(0);
+        }
+
+        [Fact]
+        public void Find_all_other_Appointments()
+        {
+            
+            AppointmentService service = new AppointmentService(CreateAppointmentStubRepository(), CreateSurveyStubRepository());
+            List<Appointment> appointments = service.GetAllOtherAppointments("2505998800045");
+            appointments.Count.ShouldBe(2);
+            
+        }
+
+        [Fact]
+        public void Doesnt_find_all_other_Appointments()
+        {
+            
+            AppointmentService service = new AppointmentService(CreateAppointmentStubRepository(), CreateSurveyStubRepository());
+            List<Appointment> appointments = service.GetAllOtherAppointments("2541998800045");
+            appointments.Count.ShouldBe(0);
+            
+        }
+
 
         private static IAppointmentRepository CreateAppointmentStubRepository()
         {
