@@ -1,23 +1,23 @@
 <div class = "container">
+    <div class="row" *ngFor="let appointment of surveyableAppointments">
+        <mat-card class="card">
+            <mat-card-header>
+                <mat-card-title>{{appointment.typeOfAppointment}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>        
+                <p class="content-paragraph">Doctor : <strong>{{appointment.name}} {{appointment.surname}}</strong></p>    
+                <p class="content-paragraph">Date : <strong>{{appointment.start | date: 'dd/MM/yyyy'}}</strong></p>    
+                <p class="content-paragraph">Time : <strong>{{appointment.start | date: 'HH:mm'}} - {{appointment.end | date: 'HH:mm'}}</strong></p>
+                <p class="content-paragraph">Status : <strong>Finished</strong></p>
+                <p class="content-paragraph">Room : <strong>{{appointment.roomType}}-{{appointment.roomNumber}}</strong></p>
+            </mat-card-content>
+            <mat-card-actions>
+                    <button mat-raised-button class="button1" (click)="saveAppointment(appointment)" routerLink="/survey" target="_blank" >Survey</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
     
-    <mat-card class="card">
-        <mat-card-header>
-            <mat-card-title>Examination</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>        
-            <p class="content-paragraph">Doctor : <strong>Mika Mikic</strong></p>    
-            <p class="content-paragraph">Date : <strong>01.12.2020.</strong></p>    
-            <p class="content-paragraph">Time : <strong>12:15 - 13:00</strong></p>
-            <p class="content-paragraph">Status : <strong>Finished</strong></p>
-            <p class="content-paragraph">Room : <strong>Patient Room - 1</strong></p>
-        </mat-card-content>
-        <mat-card-actions>
-                <button mat-raised-button class="button1" >Survey</button>
-            <!--<button mat-raised-button class="button2" >Cancel</button>-->
-        </mat-card-actions>
-    </mat-card>
-    
-
+    <!--
     <mat-card class="card">
         <mat-card-header>
             <mat-card-title>Surgery</mat-card-title>
@@ -30,27 +30,27 @@
             <p class="content-paragraph">Room : <strong>Operation Room - 2</strong></p>
         </mat-card-content>
         <mat-card-actions>
-        <!--<button mat-raised-button class="button1" >Survey</button>-->
+            <button mat-raised-button class="button1" >Survey</button>
             <button mat-raised-button class="button1" >Cancel</button>
         </mat-card-actions>
     </mat-card>
-
-    <mat-card class="card">
-        <mat-card-header>
-            <mat-card-title>Surgery</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>        
-            <p class="content-paragraph">Doctor : <strong>Pera Peric</strong></p>    
-            <p class="content-paragraph">Date : <strong>13.12.2020.</strong></p>    
-            <p class="content-paragraph">Time : <strong>10:15 - 13:00</strong></p>
-            <p class="content-paragraph">Status : <strong>Canceled</strong></p>
-            <p class="content-paragraph">Room : <strong>Operation Room - 1</strong></p>
-        </mat-card-content>
-        <mat-card-actions>
-        <!--<button mat-raised-button class="button1" >Survey</button>-->
-        <!--<button mat-raised-button class="button1" >Cancel</button>-->
-        </mat-card-actions>
-    </mat-card>
+-->
+    <div class="row1" *ngFor="let appointment of allOtherAppointments">
+        <mat-card class="card">
+            <mat-card-header>
+                <mat-card-title>{{appointment.typeOfAppointment}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>        
+                <p class="content-paragraph">Doctor : <strong>{{appointment.name}} {{appointment.surname}}</strong></p>    
+                <p class="content-paragraph">Date : <strong>{{appointment.start | date: 'dd/MM/yyyy'}}</strong></p>    
+                <p class="content-paragraph">Time : <strong>{{appointment.start | date: 'HH:mm'}} - {{appointment.end | date: 'HH:mm'}}</strong></p>
+                <p class="content-paragraph" *ngIf="appointment.finished == true">Status : <strong>Finished</strong></p>
+                <p class="content-paragraph" *ngIf="appointment.finished == false">Status : <strong>Upcoming</strong></p>
+                <p class="content-paragraph" *ngIf="appointment.canceledByPatient == true">Status : <strong>Canceled</strong></p>
+                <p class="content-paragraph">Room : <strong>{{appointment.roomType}}-{{appointment.roomNumber}}</strong></p>
+            </mat-card-content>         
+        </mat-card>
+    </div>
     
 </div>    
 

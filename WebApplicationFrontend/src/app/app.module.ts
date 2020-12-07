@@ -53,6 +53,7 @@ import {MedicalRecordService} from './service/medicalRecord/medicalRecord.servic
 import { PrescriptionSimpleSearchComponent } from './search/prescription-simple-search/prescription-simple-search.component';
 import { ReportSimpleSearchComponent } from './search/report-simple-search/report-simple-search.component';
 import { ObserveAppointmentComponent } from './appointment/observe-appointment/observe-appointment.component';
+import { AppointmentService } from './service/appointment/appointment.service';
 
 @NgModule({
   declarations: [
@@ -114,6 +115,7 @@ import { ObserveAppointmentComponent } from './appointment/observe-appointment/o
     MatNativeDateModule,
     SurveyService,
     MedicalRecordService,
+    AppointmentService,
   ],
   bootstrap: [AppComponent]
 })

@@ -22,7 +22,10 @@ export const environment = {
   searchDoctor : 'searchDoctor',
   medicalRecord : 'api/medicalRecord',
   prescriptionSimpleSearch : 'api/prescription',
-  reportSimpleSearch : 'api/report'
+  reportSimpleSearch : 'api/report',
+  appointment : 'api/appointment',
+  allSurveyableAppointments : 'allSurveyableAppointments',
+  allOtherAppointments : 'allOtherAppointments'
 };
 
 /*
