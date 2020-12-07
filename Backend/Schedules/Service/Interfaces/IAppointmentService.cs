@@ -5,9 +5,10 @@ using System.Text;
 
 namespace Backend.Schedules.Service.Interfaces
 {
-    interface IAppointmentService
+    public interface IAppointmentService
     {
         List<Appointment> GetAppointmentsByPatientId(string id);
+        List<Appointment> GetSurveyableAppointments(string id);
         Appointment CreateAppointment(Appointment appointment);
     }
 }

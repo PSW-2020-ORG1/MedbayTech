@@ -27,7 +27,7 @@ namespace Model.Schedule
         public bool Urgent { get; set; }
         public bool Deleted { get; set; }
         public bool Finished { get; set; }
-        public bool canceledByPatient { get; set; }
+        public bool CanceledByPatient { get; set; }
         [ForeignKey("Room")]
         public int RoomId { get;  set; }
         public virtual Room Room { get; set; }

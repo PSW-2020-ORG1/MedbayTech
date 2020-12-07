@@ -16,15 +16,18 @@ using System.Collections.Generic;
 using System.Linq;
 using Backend.Exceptions.Schedules;
 using Backend.Schedules.Service.Interfaces;
+using Backend.Users.Repository.MySqlRepository;
 
 namespace Service.ScheduleService
 {
    public class AppointmentService : IAppointmentService
    {
         IAppointmentRepository _appointmentRepository;
-        public AppointmentService(IAppointmentRepository appointmentRepository)
+        ISurveyRepository _surveyRepository;
+        public AppointmentService(IAppointmentRepository appointmentRepository, ISurveyRepository surveyRepository)
         {      
-            _appointmentRepository = appointmentRepository;       
+            _appointmentRepository = appointmentRepository;
+            _surveyRepository = surveyRepository;
         }
 
         public Appointment CreateAppointment(Appointment appointment)
@@ -35,6 +38,36 @@ namespace Service.ScheduleService
         public List<Appointment> GetAppointmentsByPatientId(string id)
         {
             return _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
+        }
+
+        public List<Appointment> GetSurveyableAppointments(string id)
+        {
+            List<Survey> surveys = _surveyRepository.GetAll().ToList();
+            List<Appointment> appointments = _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
+            List<Appointment> surveyableAppointments = new List<Appointment>();
+            foreach (Appointment a in appointments)
+            {
+                if (!(surveys.Count == 0))
+                {
+                    foreach (Survey s in surveys)
+                    {
+                        if (a.Id != s.AppointmentId && a.Finished == true)
+                        {
+                            surveyableAppointments.Add(a);
+                            break;
+                        }
+                    }
+                }
+                else 
+                {
+                    if (a.Finished == true) 
+                    {
+                        surveyableAppointments.Add(a);
+                    }
+                }
+            }
+            return surveyableAppointments;
+            
         }
     }
 }

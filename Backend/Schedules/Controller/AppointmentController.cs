@@ -19,6 +19,7 @@ namespace Backend.Examinations.Controller.ScheduleController
         {
             this.appointmentService = appointmentService;
         }
+        /*
         public Appointment AddAppointment(Appointment appointment, bool ifUrgent) => 
             appointmentService.AddAppointment(appointment, ifUrgent);
 
@@ -57,7 +58,7 @@ namespace Backend.Examinations.Controller.ScheduleController
 
         public int GetNumberOfAppointmentsFor(Doctor doctor, TypeOfAppointment type) => 
             appointmentService.GetNumberOfAppointmentsFor(doctor, type);
-
+        */
 
         public AppointmentService appointmentService;
     
