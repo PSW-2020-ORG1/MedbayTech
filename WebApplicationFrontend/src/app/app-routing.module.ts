@@ -12,6 +12,7 @@ import { ReportSearchComponent } from './search/report-search/report-search.comp
 import { MedicalRecordComponent } from './medical-record/medical-record.component';
 import { PrescriptionSimpleSearchComponent } from './search/prescription-simple-search/prescription-simple-search.component';
 import { ReportSimpleSearchComponent } from './search/report-simple-search/report-simple-search.component';
+import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
 
 
 
@@ -58,10 +59,13 @@ const routes: Routes = [
     component : ReportSimpleSearchComponent
   },
   {
+    path : 'appointmentRecommendation',
+    component : RecommendationComponent
+  },
+  {
     path : "**",
     component : AppComponent
   }
-
   
 ];
 

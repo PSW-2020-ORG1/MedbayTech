@@ -42,7 +42,7 @@ namespace MedbayTechUnitTests.Users
             stubRepository.Setup(p => p.GetAll()).Returns(patients);
             stubRepository.Setup(m => m.ExistsById(It.IsAny<string>()))
                 .Returns((string id) => patients.Exists(p => p.Id.Equals(id)));
-            stubRepository.Setup(p => p.Create(patient)).Returns(patient);
+            stubRepository.Setup(p => p.Create(It.IsAny<Patient>())).Returns(It.IsAny<Patient>());
 
             return stubRepository.Object;
         }
