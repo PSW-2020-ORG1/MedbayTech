@@ -30,6 +30,7 @@ namespace IntegrationTests.Schedules
 
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
         }
+
         [Fact]
         public async System.Threading.Tasks.Task Find_patients_all_other_appointments_IntegrationAsync()
         {
@@ -38,6 +39,18 @@ namespace IntegrationTests.Schedules
             var patient = CreatePatient();
 
             HttpResponseMessage response = await client.GetAsync("api/appointment/allOtherAppointments");
+
+            response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
+        }
+
+        [Fact]
+        public async System.Threading.Tasks.Task Find_patients_cancelable_appointments_IntegrationAsync()
+        {
+            HttpClient client = _factory.CreateClient();
+
+            var patient = CreatePatient();
+
+            HttpResponseMessage response = await client.GetAsync("api/appointment/allCancelableAppointments");
 
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
         }

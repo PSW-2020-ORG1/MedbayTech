@@ -21,7 +21,7 @@ namespace UnitTests.Schedules
         {
             AppointmentService service = new AppointmentService(CreateAppointmentStubRepository(), CreateSurveyStubRepository());
             List<Appointment> appointments = service.GetAppointmentsByPatientId("2505998800045");
-            appointments.Count.ShouldNotBe(0);
+            appointments.Count.ShouldBe(6);
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace UnitTests.Schedules
             
             AppointmentService service = new AppointmentService(CreateAppointmentStubRepository(), CreateSurveyStubRepository());
             List<Appointment> appointments = service.GetAllOtherAppointments("2505998800045");
-            appointments.Count.ShouldBe(2);
+            appointments.Count.ShouldBe(3);
             
         }
 
@@ -68,6 +68,40 @@ namespace UnitTests.Schedules
             
         }
 
+        [Fact]
+        public void Find_cancelable_Appointments()
+        {
+
+            AppointmentService service = new AppointmentService(CreateAppointmentStubRepository(), CreateSurveyStubRepository());
+            List<Appointment> appointments = service.GetCancelableAppointments("2505998800045");
+            appointments.Count.ShouldBe(1);
+
+        }
+
+        [Fact]
+        public void Doesnt_find_cancelable_Appointments()
+        {
+
+            AppointmentService service = new AppointmentService(CreateAppointmentStubRepository(), CreateSurveyStubRepository());
+            List<Appointment> appointments = service.GetCancelableAppointments("2541998800045");
+            appointments.Count.ShouldBe(0);
+
+        }
+
+        [Fact]
+        public void Cancel_appointment()
+        {
+
+            AppointmentService service = new AppointmentService(CreateAppointmentStubRepository(), CreateSurveyStubRepository());
+            bool b = service.UpdateCanceled(6);
+            b.ShouldBeTrue();
+
+        }
+
+
+
+
+
 
         private static IAppointmentRepository CreateAppointmentStubRepository()
         {
@@ -75,9 +109,16 @@ namespace UnitTests.Schedules
             var appointments = CreateListOfAppointments();
             var appointment = CreateAppointment();
             stubRepository.Setup(x => x.Create(It.IsAny<Appointment>())).Returns(appointment);
+
             stubRepository.Setup(x => x.GetAppointmentsByPatientId(It.IsAny<string>())).Returns(
                 (string id) =>
                 appointments.Where(a => a.MedicalRecord.PatientId.Equals(id)).ToList());
+
+            stubRepository.Setup(x => x.getAppointmentById(It.IsAny<int>())).Returns(
+                (int id) =>
+                appointments.Where(a => a.Id == id).FirstOrDefault());
+
+            stubRepository.Setup(x => x.Update(appointment)).Returns(appointment);
 
             return stubRepository.Object;
         }
@@ -124,6 +165,7 @@ namespace UnitTests.Schedules
                 Start = new DateTime(2020, 12, 5, 14, 30, 0),
                 End = new DateTime(2020, 12, 5, 15, 0, 0),
                 MedicalRecordId = 1,
+                CanceledByPatient = true,
                 MedicalRecord = CreateMedicalRecord(),
                 RoomId = 1
             };
@@ -191,11 +233,45 @@ namespace UnitTests.Schedules
                 DoctorId = "2406978890047",
                 WeeklyAppointmentReportId = 1
             };
+            Appointment ap5 = new Appointment
+            {
+                Id = 5,
+                TypeOfAppointment = TypeOfAppointment.Examination,
+                ShortDescription = "standard appointment",
+                Start = new DateTime(2020, 12, 8, 8, 0, 0),
+                End = new DateTime(2020, 12, 8, 8, 30, 0),
+                Urgent = true,
+                Deleted = false,
+                Finished = false,
+                RoomId = 1,
+                MedicalRecordId = 1,
+                MedicalRecord = CreateMedicalRecord(),
+                DoctorId = "2406978890047",
+                WeeklyAppointmentReportId = 1
+            };
+            Appointment ap6 = new Appointment
+            {
+                Id = 6,
+                TypeOfAppointment = TypeOfAppointment.Examination,
+                ShortDescription = "standard appointment",
+                Start = new DateTime(2020, 12, 15, 8, 0, 0),
+                End = new DateTime(2020, 12, 15, 8, 30, 0),
+                Urgent = true,
+                Deleted = false,
+                Finished = false,
+                RoomId = 1,
+                MedicalRecordId = 1,
+                MedicalRecord = CreateMedicalRecord(),
+                DoctorId = "2406978890047",
+                WeeklyAppointmentReportId = 1
+            };
 
             appointments.Add(ap1);
             appointments.Add(ap2);
             appointments.Add(ap3);
             appointments.Add(ap4);
+            appointments.Add(ap5);
+            appointments.Add(ap6);
 
             return appointments;
         }
