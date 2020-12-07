@@ -1,14 +1,17 @@
 <div class="container">
     <mat-horizontal-stepper linear #stepper>
         <mat-step [stepControl]="dateFormGroup">
-            <ng-template>Select date</ng-template>
+            <ng-template matStepLabel>Select date</ng-template>
             <form [formGroup]="dateFormGroup">
                 <mat-form-field>
                     <mat-label>Select date*</mat-label>
-                    <input matInput [matDatepicker]="picker2">
+                    <input matInput id="date" name="date" formControlName="date" [matDatepicker]="picker2">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
             </form>
         </mat-step>
         <mat-step [stepControl]="doctorFormGroup" [optional]="isOptional">
@@ -30,7 +33,7 @@
                     <div class="row">
                         <mat-form-field>
                             <mat-label>Select doctor*</mat-label>
-                            <mat-select placeholder="Select doctor" place id="choosenDoctor" name="chosenDoctor"
+                            <mat-select placeholder="Select doctor" place id="chosenDoctor" name="chosenDoctor"
                                 formControlName="chosenDoctor" (selectionChange)="getDoctor($event)">
                                 <mat-option *ngFor="let doctor of searchDoctors" value={{doctor.id}}>
                                     {{doctor.fullName}}
@@ -40,13 +43,14 @@
                     </div>
                 </div>
             </form>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Select appointment</ng-template>
 
-
-            <button mat-raised-button>Schedule</button>
-            <button mat-raised-button>Cancel</button>
+            
         </mat-step>
     </mat-horizontal-stepper>
 </div>

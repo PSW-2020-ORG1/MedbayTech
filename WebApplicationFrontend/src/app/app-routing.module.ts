@@ -62,6 +62,8 @@ const routes: Routes = [
   {
     path : 'scheduleAppointment',
     component : SchedulingComponent
+  },
+  {
     path : 'appointmentRecommendation',
     component : RecommendationComponent
   },
