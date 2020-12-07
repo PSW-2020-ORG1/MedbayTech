@@ -18,7 +18,7 @@ using Newtonsoft.Json;
 using PharmacyIntegration.Model;
 using Backend.Reports.Model;
 using Backend.Examinations.Model.Enums;
-
+using Backend.Users.Model;
 
 namespace Model
 {
@@ -28,7 +28,7 @@ namespace Model
         private int mySqlConnectionPort = 3306;
         private string mySqlConnectionUid = "root";
         private string mySqlConnectionPassword = "root";
-        private string mySqlDatabaseName = "newdb";
+        private string mySqlDatabaseName = "newdb6";
         private string mySqlHostAddress = "localhost";
 
         public DbSet<MedicationUsage> MedicationUsages { get; set; }
@@ -82,6 +82,7 @@ namespace Model
         public DbSet<State> States { get; set; }
         public DbSet<RegisteredUser> RegisteredUsers { get; set; }
         public DbSet<InsurancePolicy> InsurancePolicies { get; set; }
+        public DbSet<DoctorWorkDay> DoctorWorkDays { get; set; }
 
         public MySqlContext(DbContextOptions<MySqlContext> options) : base(options)
         {
@@ -246,10 +247,10 @@ namespace Model
                     v => JsonConvert.DeserializeObject<List<Grade>>(v)
             );
             modelBuilder.Entity<Appointment>().HasData(
-                new Appointment 
-                { 
-                    Id = 1, 
-                    TypeOfAppointment = TypeOfAppointment.Examination, 
+                new Appointment
+                {
+                    Id = 1,
+                    TypeOfAppointment = TypeOfAppointment.Examination,
                     ShortDescription = "standard appointment",
                     Urgent = true,
                     Deleted = false,
@@ -290,6 +291,8 @@ namespace Model
                     Id = 4,
                     TypeOfAppointment = TypeOfAppointment.Examination,
                     ShortDescription = "standard appointment",
+                    Start = new DateTime(2020, 12, 5, 8, 0, 0),
+                    End = new DateTime(2020, 12, 5, 8, 30, 0),
                     Urgent = true,
                     Deleted = false,
                     Finished = true,
@@ -416,8 +419,8 @@ namespace Model
            
 
             modelBuilder.Entity<Specialization>().HasData(
-                new Specialization { Id = 1, SpecializationName = "Interna medicina"/*, DoctorId = "2406978890047"*/},
-                new Specialization { Id = 2, SpecializationName = "Hirurgija"/*, DoctorId = "2406978890047"*/ }
+                new Specialization { Id = 1, SpecializationName = "Interna medicina", DoctorId = "2406978890047"},
+                new Specialization { Id = 2, SpecializationName = "Hirurgija" }
             );
 
 
@@ -979,6 +982,15 @@ namespace Model
                 }
 
             );
+
+            modelBuilder.Entity<DoctorWorkDay>().HasData(
+                new DoctorWorkDay { Id = 1, Date = new DateTime(2020, 12, 5), StartTime = 8, EndTime = 15, DoctorId = "2406978890047"},
+                new DoctorWorkDay { Id = 2, Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2406978890047"},
+                new DoctorWorkDay { Id = 3, Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" },
+                new DoctorWorkDay { Id = 4, Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" },
+                new DoctorWorkDay { Id = 5, Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" }
+
+                );
         }
     }
 }

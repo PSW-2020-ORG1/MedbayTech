@@ -5,11 +5,14 @@
 
 using Model.Users;
 using System;
+using System.Collections.Generic;
 
 namespace Repository.UserRepository
 {
    public interface ISpecializationRepository : ICreate<Specialization>, IDelete<Specialization>, IGetAll<Specialization>
    {
         Specialization GetGeneralSpecialization();
-   }
+        IEnumerable<Specialization> GetAll();
+        
+    }
 }

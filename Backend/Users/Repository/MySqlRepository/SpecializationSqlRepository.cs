@@ -1,4 +1,5 @@
-﻿using Model.Users;
+﻿using Model;
+using Model.Users;
 using Repository;
 using Repository.UserRepository;
 using System;
@@ -8,9 +9,10 @@ using System.Text;
 
 namespace Backend.Users.Repository.MySqlRepository
 {
-    class SpecializationSqlRepository : MySqlrepository<Specialization, int>,
+    public class SpecializationSqlRepository : MySqlrepository<Specialization, int>,
         ISpecializationRepository
     {
+        public SpecializationSqlRepository(MySqlContext context) : base(context) { }
         public Specialization GetGeneralSpecialization()
         {
             // NOTE(Jovan): Not sure what "General" means

@@ -11,9 +11,11 @@ using System.Collections.Generic;
 
 namespace Repository.ScheduleRepository
 {
-   public interface IAppointmentRepository : IRepository<Appointment,int>
+   public interface IAppointmentRepository : ICreate<Appointment>, IGet<Appointment, int>, IDelete<Appointment>, IGetAll<Appointment>, IUpdate<Appointment>
    {
         Dictionary<int, Appointment> GetAppointmentsBy(DateTime date);
         Dictionary<int, Appointment> GetScheduledFromToday();
+
+        IEnumerable<Appointment> GetBy(string doctorId, DateTime date);
     }
 }
