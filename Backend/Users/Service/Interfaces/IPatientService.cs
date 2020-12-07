@@ -6,6 +6,6 @@ namespace Backend.Users.Service.Interfaces
 {
     interface IPatientService
     {
-        bool UpdateStatus(string patientId, bool status);
+        bool UpdateStatus(string patientId);
     }
 }

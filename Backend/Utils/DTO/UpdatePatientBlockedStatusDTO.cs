@@ -4,13 +4,13 @@ using System.Text;
 
 namespace Backend.Utils.DTO
 {
-    class UpdatePatientBlockedStatusDTO
+    public class UpdatePatientBlockedStatusDTO
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public Boolean Blocked { get; set; }
 
         public UpdatePatientBlockedStatusDTO() { }
-        public UpdatePatientBlockedStatusDTO(int id, Boolean blocked)
+        public UpdatePatientBlockedStatusDTO(string id, Boolean blocked)
         {
             Id = id;
             Blocked = blocked;

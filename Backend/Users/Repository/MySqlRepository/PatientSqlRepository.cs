@@ -40,12 +40,12 @@ namespace Backend.Users.Repository.MySqlRepository
             return false;
         }
 
-        public bool UpdateStatus(string patientId, bool status)
+        public bool UpdateStatus(string patientId)
         {
             if (ExistsInSystem(patientId))
             {
                 Patient patient = GetObject(patientId);
-                patient.Blocked = status;
+                patient.Blocked = true;
                 context.SaveChanges();
                 return true;
             }

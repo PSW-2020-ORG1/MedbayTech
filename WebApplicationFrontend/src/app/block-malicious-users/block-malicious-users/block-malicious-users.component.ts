@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UpdatePatientBlockedStatus } from 'src/app/model/updatePatientBlockedStatus';
+import { PatientService } from 'src/app/service/patient/patient.service';
 
 @Component({
   selector: 'app-block-malicious-users',
@@ -12,7 +14,7 @@ export class BlockMaliciousUsersComponent implements OnInit {
   dataSource = [{ id: "3012235234123", username: "stefan23", name: "Stefan", surname: "Petrovic"},
                 { id: "2351235212421", username: "marko998", name: "Marko", surname: "Markovic"}];
 
-  constructor() {
+  constructor(private service: PatientService) {
     this.dataSource = this.dataSource.map(item => ({
       ...item,
       isSelected: false,
@@ -21,6 +23,11 @@ export class BlockMaliciousUsersComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  updateStatus(patientId, status, element) { 
+    this.service.updatePatientStatus(new UpdatePatientBlockedStatus(patientId, status)).subscribe();
+    //location.reload();
   }
 
  

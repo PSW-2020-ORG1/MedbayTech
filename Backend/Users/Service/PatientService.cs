@@ -14,9 +14,9 @@ namespace Backend.Users.Service
         {
             this.patientRepository = patientRepository;
         }
-        public bool UpdateStatus(string patientId, bool status)
+        public bool UpdateStatus(string patientId)
         {
-            return patientRepository.UpdateStatus(patientId, status);
+            return patientRepository.UpdateStatus(patientId);
         }
     }
 }

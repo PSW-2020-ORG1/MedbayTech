@@ -19,7 +19,7 @@ namespace UnitTests.Users
             var stubRepository = CreateStubRepository();
             PatientService service = new PatientService(stubRepository);
 
-            bool patient = service.UpdateStatus("2406978890046", false);
+            bool patient = service.UpdateStatus("2406978890046");
 
             patient.ShouldBeTrue();
         }
@@ -30,7 +30,7 @@ namespace UnitTests.Users
             var stubRepository = CreateStubRepository();
             PatientService service = new PatientService(stubRepository);
 
-            bool patient = service.UpdateStatus("2406978890047", false);
+            bool patient = service.UpdateStatus("2406978890047");
 
             patient.ShouldBeFalse();
         }
@@ -40,7 +40,7 @@ namespace UnitTests.Users
             var stubRepository = new Mock<IPatientRepository>();
             bool patient = CreatePatient().Blocked;
 
-            stubRepository.Setup(p => p.UpdateStatus("2406978890046",false)).Returns(patient);
+            stubRepository.Setup(p => p.UpdateStatus("2406978890046")).Returns(patient);
 
             return stubRepository.Object;
         }
