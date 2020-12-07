@@ -1,30 +1,23 @@
-// File:    SpecializationService.cs
-// Author:  Vlajkov
-// Created: Thursday, May 14, 2020 2:57:05 AM
-// Purpose: Definition of Class SpecializationService
-
+﻿using Backend.Users.Service.Interfaces;
 using Model.Users;
 using Repository.UserRepository;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace Service.UserService
+namespace Backend.Users.Service
 {
-   public class SpecializationService
-   {
+    public class SpecializationService : ISpecializationService
+    {
+        private ISpecializationRepository _specializationRepository;
+
         public SpecializationService(ISpecializationRepository specializationRepository)
         {
-            this.specializationRepository = specializationRepository;
+            _specializationRepository = specializationRepository;
         }
-
-        public Specialization AddSpecialization(Specialization specialization) => specializationRepository.Create(specialization);
-
-        public Specialization GetGeneralSpecialization() => specializationRepository.GetGeneralSpecialization();
-
-        public bool DeleteSpecialization(Specialization specialization) => specializationRepository.Delete(specialization);
-        public IEnumerable<Specialization> GetAllSpecializations() => specializationRepository.GetAll();
-      
-        public ISpecializationRepository specializationRepository;
-     
-   }
+        public IEnumerable<Specialization> GetAll()
+        {
+            return _specializationRepository.GetAll();
+        }
+    }
 }

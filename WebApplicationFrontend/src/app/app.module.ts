@@ -54,6 +54,7 @@ import {MedicalRecordService} from './service/medicalRecord/medicalRecord.servic
 import { PrescriptionSimpleSearchComponent } from './search/prescription-simple-search/prescription-simple-search.component';
 import { ReportSimpleSearchComponent } from './search/report-simple-search/report-simple-search.component';
 import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
+import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { SchedulingComponent } from './appointment/scheduling/scheduling.compone
     PrescriptionSimpleSearchComponent,
     ReportSimpleSearchComponent,
     SchedulingComponent,
+    RecommendationComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +94,7 @@ import { SchedulingComponent } from './appointment/scheduling/scheduling.compone
     MatTableModule,
     RouterModule,
     MatSelectModule,
+    MatStepperModule,
     MatNativeDateModule,
     FormsModule,
     MatIconModule,
