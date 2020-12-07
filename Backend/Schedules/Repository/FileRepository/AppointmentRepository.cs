@@ -120,5 +120,15 @@ namespace Repository.ScheduleRepository
         {
             throw new NotImplementedException();
         }
+
+        public Appointment getAppointmentById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Appointment update(Appointment appointment)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
