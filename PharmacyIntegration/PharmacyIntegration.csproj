@@ -10,6 +10,15 @@
 	<SonarQubeExclude>true</SonarQubeExclude>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.12.4" />
+    <PackageReference Include="Grpc" Version="2.30.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.30.0" />
+    <PackageReference Include="Grpc.Core" Version="2.30.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.30.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.30.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
@@ -60,5 +69,9 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
+  
+  <ItemGroup>
+    <Protobuf Include="gRPC\Protos\model.proto" GrpcServices="Client" />
+  </ItemGroup>
 
 </Project>
