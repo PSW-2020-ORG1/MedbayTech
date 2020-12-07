@@ -17,6 +17,8 @@ using Backend.Users.Repository.MySqlRepository;
 using Backend.Users.Service.Interfaces;
 using Backend.Users.TableBuilder.Interfaces;
 using Backend.Users.WebApiService;
+using Backend.Schedules.Service.Interfaces;
+using Backend.Schedules.Repository.MySqlRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
@@ -29,8 +31,10 @@ using Microsoft.Extensions.Logging;
 using Model;
 using Newtonsoft.Json;
 using Repository.MedicalRecordRepository;
+using Repository.ScheduleRepository;
 using WebApplication.MailService;
 using WebApplication.ObjectBuilder;
+using Service.ScheduleService;
 
 namespace WebApplication
 {
@@ -76,6 +80,7 @@ namespace WebApplication
             services.AddTransient<IExaminationSurgeryRepository, ExaminationSurgerySqlRepository>();
             services.AddTransient<ISurveyRepository, SurveySqlRepository>();
             services.AddTransient<ISurveyQuestionRepository, SurveyQuestionSqlRepository>();
+            services.AddTransient<IAppointmentRepository, AppointmentSqlRepository>();
 
             services.AddScoped<IDoctorService, DoctorService>();
             services.AddScoped<IFeedbackService, FeedbackService>();
@@ -89,6 +94,7 @@ namespace WebApplication
             services.AddScoped<IReportSearchService, ReportSearchService>();
             services.AddScoped<ISurveyService, SurveyService>();
             services.AddScoped<IRegistrationService, RegistrationService>();
+            services.AddScoped<IAppointmentService, AppointmentService>();
 
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 

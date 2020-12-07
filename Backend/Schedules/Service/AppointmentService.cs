@@ -35,6 +35,17 @@ namespace Service.ScheduleService
             throw new NotImplementedException();
         }
 
+        public List<Appointment> GetAllOtherAppointments(string id)
+        {
+            List<Appointment> allAppointments = _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
+            List<Appointment> surveyableAppointments = GetSurveyableAppointments(id);
+            List<Appointment> allOtherAppointments = new List<Appointment>();
+
+            allOtherAppointments = allAppointments.Where(p => !surveyableAppointments.Any(l => p.Id == l.Id)).ToList();
+
+            return allOtherAppointments;
+        }
+
         public List<Appointment> GetAppointmentsByPatientId(string id)
         {
             return _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
@@ -45,7 +56,8 @@ namespace Service.ScheduleService
             List<Survey> surveys = _surveyRepository.GetAll().ToList();
             List<Appointment> appointments = _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
             List<Appointment> surveyableAppointments = new List<Appointment>();
-            foreach (Appointment a in appointments)
+            surveyableAppointments = appointments.Where(p => !surveys.Any(l => p.Id == l.AppointmentId) && p.Finished == true).ToList();
+            /*foreach (Appointment a in appointments)
             {
                 if (!(surveys.Count == 0))
                 {
@@ -65,7 +77,7 @@ namespace Service.ScheduleService
                         surveyableAppointments.Add(a);
                     }
                 }
-            }
+            }*/
             return surveyableAppointments;
             
         }

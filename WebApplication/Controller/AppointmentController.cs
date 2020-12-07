@@ -23,12 +23,27 @@ namespace WebApplication.Controller
         }
 
         [HttpGet] //GET api/Appointment
+        public IActionResult Get()
+        {
+            List<Appointment> appointments = _appointmentService.GetAppointmentsByPatientId("2406978890046");
+            List<GetAppointmentDTO> appointmentsDTO = AppointmentAdapter.ListAppointmentToListGetAppointmentDTO(appointments);
+            return Ok(appointmentsDTO);
+        }
+
+        [HttpGet("allSurveyableAppointments")] //GET api/Appointment
         public IActionResult GetSurveyableAppointments()
         {
             List<Appointment> appointments = _appointmentService.GetSurveyableAppointments("2406978890046");
             List<GetAppointmentDTO> appointmentsDTO = AppointmentAdapter.ListAppointmentToListGetAppointmentDTO(appointments);
             return Ok(appointmentsDTO);
+        }
 
+        [HttpGet("allOtherAppointments")] //GET api/Appointment
+        public IActionResult GetAllOtherAppointments()
+        {
+            List<Appointment> appointments = _appointmentService.GetAllOtherAppointments("2406978890046");
+            List<GetAppointmentDTO> appointmentsDTO = AppointmentAdapter.ListAppointmentToListGetAppointmentDTO(appointments);
+            return Ok(appointmentsDTO);
         }
     }
 }

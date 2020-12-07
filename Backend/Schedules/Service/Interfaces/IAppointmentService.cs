@@ -9,6 +9,7 @@ namespace Backend.Schedules.Service.Interfaces
     {
         List<Appointment> GetAppointmentsByPatientId(string id);
         List<Appointment> GetSurveyableAppointments(string id);
+        List<Appointment> GetAllOtherAppointments(string id);
         Appointment CreateAppointment(Appointment appointment);
     }
 }
