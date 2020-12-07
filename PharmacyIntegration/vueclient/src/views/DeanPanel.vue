@@ -4,6 +4,7 @@
             <li><router-link to="/dean/">Messages</router-link></li>
             <li><router-link to="/dean/pharmacies">Pharmacies</router-link></li> <!-- TODO(Jovan): Add /:id -->
             <li><router-link to="/dean/medication_usage_report">Medication usage report</router-link></li>
+            <li><router-link to="/dean/medication">Medication</router-link></li>
         </sidebar>
         <div id="main-content">
             <router-view />
