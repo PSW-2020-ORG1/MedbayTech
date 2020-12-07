@@ -31,6 +31,7 @@ namespace Model
         private string mySqlDatabaseName = "newdb6";
         private string mySqlHostAddress = "localhost";
 
+        public DbSet<EquipmentType> EquipmentTypes { get; set; }
         public DbSet<MedicationUsage> MedicationUsages { get; set; }
         public DbSet<MedicationUsageReport> MedicationUsageReports { get; set; }
         public DbSet<Pharmacy> Pharmacies { get; set; }
@@ -419,7 +420,7 @@ namespace Model
            
 
             modelBuilder.Entity<Specialization>().HasData(
-                new Specialization { Id = 1, SpecializationName = "Interna medicina", DoctorId = "2406978890047"},
+                new Specialization { Id = 1, SpecializationName = "Interna medicina"/*, DoctorId = "2406978890047"*/},
                 new Specialization { Id = 2, SpecializationName = "Hirurgija" }
             );
 
