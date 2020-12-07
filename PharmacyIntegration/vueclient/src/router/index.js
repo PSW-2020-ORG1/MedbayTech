@@ -6,7 +6,7 @@ import Messages from '../views/Messages.vue'
 import MedicationUsageReport from '../views/MedicationUsageReport.vue'
 import DeanPanel from '../views/DeanPanel.vue'
 import Pharmacies from '../views/Pharmacies.vue'
-import Pharmacies from '../views/Medication.vue'
+import Medication from '../views/Medication.vue'
 
 Vue.use(VueRouter)
 

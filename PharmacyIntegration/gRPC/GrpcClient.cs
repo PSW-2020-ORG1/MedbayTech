@@ -18,7 +18,7 @@ namespace PharmacyIntegration.gRPC
             var channel = new Channel("localhost:6565", ChannelCredentials.Insecure);
             var client = new CheckForMedication.CheckForMedicationClient(channel);
 
-            MessageResponseProto response = await client.checkAsync(new MessageProto() { Message = "Aspirin" });
+            MessageResponseProto response = await client.checkAsync(new MessageProto() { Message = name });
             Console.WriteLine(response.Response + " odgovor");
 
             return response.Response;

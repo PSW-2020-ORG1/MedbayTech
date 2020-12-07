@@ -24,11 +24,9 @@ export default {
 
     methods: {
         checkForMedication: function () {
-            this.axios.get("http://localhost:50202/api/MedicationCheck/" + this.search)
+            this.axios.get("http://localhost:50202/api/Medication/check/" + this.search)
                 .then(response => {
-                    console.log(this.newMessage)
-                    this.newMessage = response.data;
-                    this.messages.push(this.newMessage)
+                    this.status = response.data;
                 })
                 .catch(response => {
                     console.log(response.data);
