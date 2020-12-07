@@ -39,9 +39,11 @@ namespace Service.ScheduleService
         {
             List<Appointment> allAppointments = _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
             List<Appointment> surveyableAppointments = GetSurveyableAppointments(id);
+            List<Appointment> cancelableAppointments = GetCancelableAppointments(id);
             List<Appointment> allOtherAppointments = new List<Appointment>();
 
             allOtherAppointments = allAppointments.Where(p => !surveyableAppointments.Any(l => p.Id == l.Id)).ToList();
+            allOtherAppointments = allOtherAppointments.Where(p => !cancelableAppointments.Any(l => p.Id == l.Id)).ToList();
 
             return allOtherAppointments;
         }
@@ -51,35 +53,40 @@ namespace Service.ScheduleService
             return _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
         }
 
+        public List<Appointment> GetCancelableAppointments(string id)
+        {
+            List<Appointment> appointments = _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
+            List<Appointment> cancelableAppointments = new List<Appointment>();
+            cancelableAppointments = appointments.Where(p => p.Finished == false && ((p.Start - DateTime.Now).TotalDays > 2.00)).ToList();
+
+            return cancelableAppointments;
+        }
+
         public List<Appointment> GetSurveyableAppointments(string id)
         {
             List<Survey> surveys = _surveyRepository.GetAll().ToList();
             List<Appointment> appointments = _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
             List<Appointment> surveyableAppointments = new List<Appointment>();
             surveyableAppointments = appointments.Where(p => !surveys.Any(l => p.Id == l.AppointmentId) && p.Finished == true).ToList();
-            /*foreach (Appointment a in appointments)
-            {
-                if (!(surveys.Count == 0))
-                {
-                    foreach (Survey s in surveys)
-                    {
-                        if (a.Id != s.AppointmentId && a.Finished == true)
-                        {
-                            surveyableAppointments.Add(a);
-                            break;
-                        }
-                    }
-                }
-                else 
-                {
-                    if (a.Finished == true) 
-                    {
-                        surveyableAppointments.Add(a);
-                    }
-                }
-            }*/
-            return surveyableAppointments;
             
+            return surveyableAppointments;
+        }
+
+        public bool UpdateCanceled(int appointmentId)
+        {
+            Appointment appointment = _appointmentRepository.getAppointmentById(appointmentId);
+            if (appointment == null) {
+                return false;
+            }
+            if (appointment.CanceledByPatient)
+            {
+                return false;
+            }
+            appointment.CanceledByPatient = true;
+            _appointmentRepository.Update(appointment);
+            return true;
+
+
         }
     }
 }

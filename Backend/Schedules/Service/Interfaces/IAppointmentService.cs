@@ -10,6 +10,8 @@ namespace Backend.Schedules.Service.Interfaces
         List<Appointment> GetAppointmentsByPatientId(string id);
         List<Appointment> GetSurveyableAppointments(string id);
         List<Appointment> GetAllOtherAppointments(string id);
+        List<Appointment> GetCancelableAppointments(string id);
+        bool UpdateCanceled(int appointmentId);
         Appointment CreateAppointment(Appointment appointment);
     }
 }

@@ -45,5 +45,20 @@ namespace WebApplication.Controller
             List<GetAppointmentDTO> appointmentsDTO = AppointmentAdapter.ListAppointmentToListGetAppointmentDTO(appointments);
             return Ok(appointmentsDTO);
         }
+
+        [HttpGet("allCancelableAppointments")] //GET api/Appointment
+        public IActionResult GetCancelableAppointments()
+        {
+            List<Appointment> appointments = _appointmentService.GetCancelableAppointments("2406978890046");
+            List<GetAppointmentDTO> appointmentsDTO = AppointmentAdapter.ListAppointmentToListGetAppointmentDTO(appointments);
+            return Ok(appointmentsDTO);
+        }
+
+        [HttpPost("cancelAppointment")]
+        public IActionResult cancelAppointment(int id)
+        {
+            bool canceledAppointment = _appointmentService.UpdateCanceled(id);
+            return Ok(canceledAppointment);
+        }
     }
 }
