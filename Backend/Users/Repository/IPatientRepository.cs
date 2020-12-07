@@ -14,5 +14,7 @@ namespace Backend.Users.Repository
         public bool ExistsById(string id);
         public Patient Update(Patient patient);
 
+        public bool UpdateStatus(string patientId, bool status);
+
     }
 }
