@@ -25,7 +25,9 @@ export const environment = {
   reportSimpleSearch : 'api/report',
   appointment : 'api/appointment',
   allSurveyableAppointments : 'allSurveyableAppointments',
-  allOtherAppointments : 'allOtherAppointments'
+  allOtherAppointments : 'allOtherAppointments',
+  allCancelableAppointments : 'allCancelableAppointments',
+  cancelAppointment : 'cancelAppointment'
 };
 
 /*

@@ -8,6 +8,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AppointmentService {
+  getCancelableAppointments() {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private http : HttpClient) { 
     
@@ -23,4 +26,15 @@ export class AppointmentService {
     return this.http.get<GetAppointment[]>(`${environment.baseUrl}/${environment.appointment}/${environment.allOtherAppointments}`)
 
   }
+
+  getAllCancelableAppointments() : Observable<GetAppointment[]>{
+
+    return this.http.get<GetAppointment[]>(`${environment.baseUrl}/${environment.appointment}/${environment.allCancelableAppointments}`)
+
+  }
+
+  cancelAppointment(data: number) : Observable<number>{
+
+    return this.http.post<number>(`${environment.baseUrl}/${environment.appointment}/${environment.cancelAppointment}`, data)
+  }   
 }
