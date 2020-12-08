@@ -28,7 +28,7 @@ namespace Model
         private int mySqlConnectionPort = 3306;
         private string mySqlConnectionUid = "root";
         private string mySqlConnectionPassword = "root";
-        private string mySqlDatabaseName = "newdb";
+        private string mySqlDatabaseName = "newdb6";
         private string mySqlHostAddress = "localhost";
 
         public DbSet<MedicationUsage> MedicationUsages { get; set; }
