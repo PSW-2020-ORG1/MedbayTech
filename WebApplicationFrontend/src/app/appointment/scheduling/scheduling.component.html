@@ -14,33 +14,36 @@
                 </div>
             </form>
         </mat-step>
+        <mat-step [stepControl]="specializationFormGroup" [optional]="isOptional">
+            <ng-template matStepLabel>Select specialization</ng-template>
+            <form [formGroup]="specializationFormGroup">
+                <mat-form-field>
+                    <mat-label>Select specialization*</mat-label>
+                    <mat-select placeholder="Select specialization" place id="specialization" name="specialization"
+                        formControlName="specialization" (selectionChange)="selectSpecialization($event)">
+                        <mat-option *ngFor="let specialization of specializations" value={{specialization.id}}>
+                            {{specialization.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
         <mat-step [stepControl]="doctorFormGroup" [optional]="isOptional">
             <ng-template matStepLabel>Select doctor</ng-template>
             <form [formGroup]="doctorFormGroup">
                 <div class="container">
-                    <div class="row" style="margin-bottom: 100px;">
-                        <mat-form-field>
-                            <mat-label>Select specialization*</mat-label>
-                            <mat-select placeholder="Select specialization" place id="specialization"
-                                name="specialization" formControlName="specialization"
-                                (selectionChange)="selectSpecialization($event)">
-                                <mat-option *ngFor="let specialization of specializations" value={{specialization.id}}>
-                                    {{specialization.name}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div class="row">
-                        <mat-form-field>
-                            <mat-label>Select doctor*</mat-label>
-                            <mat-select placeholder="Select doctor" place id="chosenDoctor" name="chosenDoctor"
-                                formControlName="chosenDoctor" (selectionChange)="getDoctor($event)">
-                                <mat-option *ngFor="let doctor of searchDoctors" value={{doctor.id}}>
-                                    {{doctor.fullName}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
+                    <mat-form-field>
+                        <mat-label>Select doctor*</mat-label>
+                        <mat-select placeholder="Select doctor" place id="chosenDoctor" name="chosenDoctor"
+                            formControlName="chosenDoctor" (selectionChange)="getDoctor($event)">
+                            <mat-option *ngFor="let doctor of searchDoctors" value={{doctor.id}}>
+                                {{doctor.fullName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
             </form>
             <div>
@@ -50,7 +53,7 @@
         <mat-step>
             <ng-template matStepLabel>Select appointment</ng-template>
 
-            
+
         </mat-step>
     </mat-horizontal-stepper>
 </div>

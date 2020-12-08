@@ -19,6 +19,7 @@ import { SpecializationService } from 'src/app/service/specialization/specializa
 export class SchedulingComponent implements OnInit {
 
   dateFormGroup : FormGroup;
+  specializationFormGroup : FormGroup;
   doctorFormGroup : FormGroup;
   doctor : string;
   specializationId: SpecializationId;
@@ -39,9 +40,12 @@ export class SchedulingComponent implements OnInit {
       'date' : new FormControl(null, Validators.required)
     })
 
-    this.doctorFormGroup = new FormGroup({
-      'chosenDoctor': new FormControl(null, Validators.required),
+    this.specializationFormGroup = new FormGroup({
       'specialization' : new FormControl(null, Validators.required)
+    })
+
+    this.doctorFormGroup = new FormGroup({
+      'chosenDoctor': new FormControl(null, Validators.required)
     })
     this.getSpecializations();
   }
