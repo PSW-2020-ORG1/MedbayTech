@@ -1,14 +1,20 @@
 
 <template>
-    <div id="win">
-        <div id="msg-table">
-            <v-text-field v-model="search"
-                            label="Check for medication"
-                            hide-details />
-            <v-btn class="blue white--text" elevation="0" v-on:click="checkForMedication(search)">Check</v-btn>
+    <div>
+        <div id="search">
+            <v-row>
+                    <v-text-field id="type-search" v-model="search"
+                                    :append-outer-icon="'mdi-send'"
+                                    label="Check for medication"
+                                    filled
+                                    clearable
+                                    @click:append-outer="checkForMedication(search)"
+                                    @keyup.enter="checkForMedication(search)">
+                    </v-text-field>
+            </v-row>
         </div>
         <div v-if="status !== '' ">
-            <h1>Response: {{status}} </h1>
+            <h6>Response: {{status}} </h6>
         </div>
     </div>
 </template>
@@ -33,50 +39,24 @@ export default {
                 })
         },
     },
+    watch: {
+        search: function () {
+            this.status = '';
+        }
+    }
 
 }
 </script>
 
 <style scoped>
-    #win {
-        height: 100%;
-    }
-    h1 {
-        font-size: 3rem;
+    h6 {
+        font-size: 2rem;
         text-align: center;
         color: #3e3e3e;
+        max-width: 100%;
     }
-
-    #header {
-        margin-top: 10vh;
-        width: 100%;
-        height: 30vh;
-    }
-
-    #msg-table {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        max-width: 70%;
+    #search {
+        max-width:50%;
         margin: 0 auto;
     }
-
-    .buttons {
-        margin-left: auto;
-        margin-right: auto;
-        margin: 4px;
-        padding: 3px;
-        float: none;
-        border: 1px solid transparent;
-        background-color: #ff6a00;
-        color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.38);
-    }
-    .buttons:hover {
-        border: 1px solid #ff6a00;
-        background-color: #fff;
-        color: #ff6a00;
-    }
-   
 </style>
