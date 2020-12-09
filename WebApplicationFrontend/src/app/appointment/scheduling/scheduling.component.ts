@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AppointmentScheduling } from 'src/app/model/appointmentScheduling';
 import { AvailableAppointments } from 'src/app/model/availableAppointments';
 import { ScheduleAppointment } from 'src/app/model/scheduleAppointment';
 import { SearchDoctor } from 'src/app/model/searchDoctor';
@@ -27,6 +28,7 @@ export class SchedulingComponent implements OnInit {
 
   availableAppointments : AvailableAppointments[] = new Array();
   scheduleAppointment : ScheduleAppointment;
+  appointmentScheduling : AppointmentScheduling;
 
   searchDoctors : SearchDoctor[] = new Array();
   specializations : Specialization[] = new Array();
@@ -76,6 +78,35 @@ export class SchedulingComponent implements OnInit {
     this.specializationId = new SpecializationId(event.value);
     console.log(this.specializationId.specializationId);
     this.getDoctorsBySpecialization(event.value)
+  }
+
+  submit() {
+    this.getAvailableAppointments();
+  }
+
+  getAvailableAppointments() {
+    var date = new Date(this.dateFormGroup.value.date.getTime() - this.dateFormGroup.value.date.getTimezoneOffset() * 60000);
+    var doctor = this.doctor;
+
+    this.appointmentScheduling = new AppointmentScheduling(doctor, date);
+
+    this.appointmentService.getAvailableByDate(this.appointmentScheduling).subscribe(data => {
+      this.availableAppointments = data;
+    })
+  }
+
+  schedule(appointment) {
+    var doctor = this.doctorFormGroup.value.choosenDoctor;
+    this.scheduleAppointment = new ScheduleAppointment(appointment.start, appointment.end , "", doctor);
+    this.appointmentService.scheduleAppointment(this.scheduleAppointment).subscribe(
+      res => {
+        this.toastr.success(res);
+        this.getAvailableAppointments();
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    );
   }
 
 }
