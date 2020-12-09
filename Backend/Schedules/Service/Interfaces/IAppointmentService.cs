@@ -17,5 +17,6 @@ namespace Backend.Schedules.Service.Interfaces
         List<Appointment> GetAvailableByPriorityDoctor(string doctorId, DateTime startTime, DateTime endTime);
         List<Appointment> GetAvailableByPriorityTimeInterval(DateTime startTime, DateTime endTime);
         List<Appointment> GetAvailableByDoctorTimeIntervalAndEquipment(string doctorId, int hospitalEquipmentId, DateTime startTime, DateTime endTime, string priority);
+        List<Appointment> GetApppointmentsScheduledForSpecificRoom(int roomId);
     }
 }

@@ -95,6 +95,10 @@ namespace Backend.Schedules.Service
             }
             return appointments;
         }
+        public List<Appointment> GetApppointmentsScheduledForSpecificRoom(int roomId)
+        {
+            return _appointmentRepository.GetAll().ToList().Where(a => a.RoomId == roomId).ToList();
+        }
         public List<Appointment> GetAvailableByDoctorAndDateRange(string doctorId, DateTime start, DateTime end)
         {
             List<Appointment> availableAppointments = new List<Appointment>();

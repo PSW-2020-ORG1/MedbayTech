@@ -1,4 +1,5 @@
 ﻿using Model.Rooms;
+using Model.Schedule;
 using Model.Users;
 using Newtonsoft.Json;
 using System;
@@ -26,6 +27,7 @@ namespace GraphicEditor
     {
         private Room room;
         private Doctor doctor;
+        private List<Appointment> appointments;
         public AdditionalInformationExaminationRoom(int roomId)
         {
             InitializeComponent();
@@ -35,11 +37,13 @@ namespace GraphicEditor
             imageLogo.Source = new BitmapImage(new Uri(@logo, UriKind.Absolute));
             room = searchDataBaseForRoom(roomId);
             doctor = searchDataBaseForDoctor(room.Id);
+            appointments = searchDataBaseForAppointments(room.Id.ToString());
             this.DataContext = room;
             if(doctor != null)
             {
                 textBoxDoctor.Text = doctor.Name + " " + doctor.Surname;
             }
+            dataGridAppointments.ItemsSource = appointments;
         }
         private Room searchDataBaseForRoom(int roomId)
         {
@@ -71,6 +75,23 @@ namespace GraphicEditor
             task.Wait();
             return doctor;
         }
+
+        private List<Appointment> searchDataBaseForAppointments(string roomId)
+        {
+            appointments = new List<Appointment>();
+            HttpClient httpClient = new HttpClient();
+            var task = httpClient.GetAsync("http://localhost:53109/api/appointment/" + roomId + "/0")
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    appointments = JsonConvert.DeserializeObject<List<Appointment>>(jsonString.Result);
+                });
+            task.Wait();
+            return appointments;
+        }
+
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             string jsonRoom = JsonConvert.SerializeObject(room);

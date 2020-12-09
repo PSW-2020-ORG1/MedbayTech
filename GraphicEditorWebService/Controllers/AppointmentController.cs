@@ -21,15 +21,12 @@ namespace GraphicEditorWebService.Controllers
             _appointmentService = appointmentService;
         }
 
-        [HttpGet("{doctorId?}/{operation?}")]
-        public IActionResult Get(string doctorId, int operation)
+        [HttpGet("{roomId?}/{operation?}")]
+        public IActionResult Get(string roomId, int operation)
         {
-            if(operation == 0)
+            if (operation == 0)
             {
-                //return Ok(_appointmentService.GetAvailableByDoctorAndTimeInterval(doctorId, new DateTime(2020, 12, 9, 9, 30, 0), new DateTime(2020, 12, 9, 12, 30, 0)));
-                //return Ok(_appointmentService.GetAvailableByPriorityDoctor(doctorId, new DateTime(2020, 12, 7, 9, 30, 0), new DateTime(2020, 12, 7, 12, 30, 0)));
-                //return Ok(_appointmentService.GetAvailableByPriorityTimeInterval(new DateTime(2020, 12, 7, 9, 30, 0), new DateTime(2020, 12, 7, 12, 30, 0)));
-                return Ok(_appointmentService.GetAvailableByDoctorTimeIntervalAndEquipment(doctorId,9, new DateTime(2020, 12, 7, 9, 30, 0), new DateTime(2020, 12, 7, 12, 30, 0),"doctor"));
+                return Ok(_appointmentService.GetApppointmentsScheduledForSpecificRoom(Int32.Parse(roomId)));
             }
             else
             {

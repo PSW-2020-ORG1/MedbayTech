@@ -181,7 +181,6 @@ namespace GraphicEditor.View
                 return;
             }
             Room room = appointment.Room;
-            MessageBox.Show(room.Id.ToString());
             if (room == null)
             {
                 MessageBox.Show("Nothing is selected!");
