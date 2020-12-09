@@ -35,7 +35,7 @@ namespace WebApplication.Controller
         [HttpPost("available")]
         public IActionResult GetAvailable(SearchAppointmentsStandardDTO appointmentsDTO)
         {
-            List<Appointment> appointments = _appointmentService.GetByDoctorAndDate(appointmentsDTO.DoctorId, appointmentsDTO.Date).ToList();
+            List<Appointment> appointments = _appointmentService.GetAvailableBy(appointmentsDTO.DoctorId, appointmentsDTO.Date).ToList();
             List<AvailableAppointmentsDTO> dto = AppointmentAdapter.Transform(appointments);
             return Ok(dto);
         }
