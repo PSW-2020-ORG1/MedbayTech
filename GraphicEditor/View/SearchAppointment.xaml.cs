@@ -77,7 +77,7 @@ namespace GraphicEditor.View
             return hospitalEquipments;
         }
 
-        private async void searchDataBaseForAppointment(Doctor doctor, EquipmentType hospitalEquipment, DateTime startTime, DateTime endTime)
+        private void searchDataBaseForAppointment(Doctor doctor, EquipmentType hospitalEquipment, DateTime startTime, DateTime endTime)
         {
             SearchAppointmentsDTO searchAppointmentsDTO;
             if ((bool)radioButtonDoctor.IsChecked)
@@ -85,10 +85,12 @@ namespace GraphicEditor.View
                 if (hospitalEquipment == null)
                 {
                     searchAppointmentsDTO = new SearchAppointmentsDTO() { operation = 1, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
+                    HttpRequestToAppointmentController(searchAppointmentsDTO);
                 }
                 else
                 {
                     searchAppointmentsDTO = new SearchAppointmentsDTO() { operation = 4, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
+                    HttpRequestToAppointmentFilterController(searchAppointmentsDTO);
                 }
             }
             else if ((bool)radioButtonInterval.IsChecked)
@@ -96,10 +98,12 @@ namespace GraphicEditor.View
                 if (hospitalEquipment == null)
                 {
                     searchAppointmentsDTO = new SearchAppointmentsDTO() { operation = 2, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
+                    HttpRequestToAppointmentFilterController(searchAppointmentsDTO);
                 }
                 else
                 {
                     searchAppointmentsDTO = new SearchAppointmentsDTO() { operation = 5, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
+                    HttpRequestToAppointmentFilterController(searchAppointmentsDTO);
                 }
             }
             else
@@ -107,13 +111,32 @@ namespace GraphicEditor.View
                 if (hospitalEquipment == null)
                 {
                     searchAppointmentsDTO = new SearchAppointmentsDTO() { operation = 0, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
+                    HttpRequestToAppointmentController(searchAppointmentsDTO);
                 }
                 else
                 {
                     searchAppointmentsDTO = new SearchAppointmentsDTO() { operation = 3, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
+                    HttpRequestToAppointmentFilterController(searchAppointmentsDTO);
                 }
             }
 
+            
+        }
+
+        private async void HttpRequestToAppointmentFilterController(SearchAppointmentsDTO searchAppointmentsDTO)
+        {
+            string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(searchAppointmentsDTO);
+            HttpClient client = new HttpClient();
+            var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointmentfilter/", content);
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+            appointments = new List<Appointment>(JsonConvert.DeserializeObject<List<Appointment>>(responseBody));
+            dataGridAppointment.ItemsSource = appointments;
+        }
+
+        private async void HttpRequestToAppointmentController(SearchAppointmentsDTO searchAppointmentsDTO)
+        {
             string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(searchAppointmentsDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");

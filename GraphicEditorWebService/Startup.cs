@@ -70,6 +70,7 @@ namespace GraphicEditorWebService
             services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<IMedicalRecordService, MedicalRecordService>();
             services.AddScoped<IEquipmentTypeService, EquipmentTypeService>();
+            services.AddScoped<IAppointmentFilterService, AppointmentFilterService>();
             services.AddControllers();
             services.AddCors();
         }

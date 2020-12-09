@@ -18,17 +18,14 @@ namespace Backend.Schedules.Service
     public class AppointmentService : IAppointmentService
     {
         private const int appointmentDuration = 30;
+        private const int datePriorityRange = 2;
         IDoctorWorkDayRepository _doctorWorkDayRepository;
         IAppointmentRepository _appointmentRepository;
-        IDoctorRepository _doctorRepository;
-        IHospitalEquipmentRepository _hospitalEquipmentRepository;
 
-        public AppointmentService(IDoctorWorkDayRepository doctorWorkDayRepository, IAppointmentRepository appointmentRepository, IDoctorRepository doctorRepository, IHospitalEquipmentRepository hospitalEquipmentRepository)
+        public AppointmentService(IDoctorWorkDayRepository doctorWorkDayRepository, IAppointmentRepository appointmentRepository)
         {
-            _appointmentRepository = appointmentRepository;
-            _doctorWorkDayRepository = doctorWorkDayRepository;
-            _doctorRepository = doctorRepository;
-            _hospitalEquipmentRepository = hospitalEquipmentRepository;
+           _appointmentRepository = appointmentRepository;
+           _doctorWorkDayRepository = doctorWorkDayRepository;
         }
 
         public Appointment ScheduleAppointment(Appointment appointment)
@@ -40,53 +37,11 @@ namespace Backend.Schedules.Service
 
             return null;
         }
-        public List<Appointment> GetAvailableByDoctorTimeIntervalAndEquipment(string doctorId, int hospitalEquipmentId, DateTime startTime, DateTime endTime, string priority)
-        {
-            List<Appointment> appointments = new List<Appointment>();
-            List<Appointment> allAppointments;
-            if(priority.Equals("doctor"))
-            {
-                allAppointments = GetAvailableByPriorityDoctor(doctorId, startTime, endTime);
-            }
-            else if(priority.Equals("timeinterval"))
-            {
-                allAppointments = GetAvailableByPriorityTimeInterval(startTime, endTime);
-            }
-            else
-            {
-                allAppointments = GetAvailableByDoctorAndTimeInterval(doctorId, startTime, endTime);
-            }
-            List<HospitalEquipment> hospitalEquipments = _hospitalEquipmentRepository.GetAll().ToList().Where(h => h.EquipmentTypeId == hospitalEquipmentId).ToList();
-            foreach(Appointment appointment in allAppointments)
-            {
-                foreach(HospitalEquipment hospitalEquipment in hospitalEquipments)
-                {
-                    if(appointment.Room.Id == hospitalEquipment.RoomId) appointments.Add(appointment);
-
-                }
-            }
-            return appointments;
-        }
         public List<Appointment> GetAvailableByPriorityDoctor(string doctorId, DateTime startTime, DateTime endTime)
         {
-            DateTime newStartTime = startTime.AddDays(-2);
-            DateTime newEndTime = endTime.AddDays(2);
+            DateTime newStartTime = startTime.AddDays(-datePriorityRange);
+            DateTime newEndTime = endTime.AddDays(datePriorityRange);
             List<Appointment> appointments = GetAvailableByDoctorAndDateRange(doctorId, newStartTime, newEndTime);
-            return appointments;
-        }
-        public List<Appointment> GetAvailableByPriorityTimeInterval(DateTime startTime, DateTime endTime)
-        {
-            List<Appointment> appointmentsForAllDoctors = new List<Appointment>();
-            foreach (Doctor doctor in _doctorRepository.GetAll())
-            {
-                appointmentsForAllDoctors.AddRange(GetAvailableByDoctorAndTimeInterval(doctor.Id, startTime, endTime));
-            }
-            
-            List<Appointment> appointments = new List<Appointment>();
-            foreach (Appointment appointment in appointmentsForAllDoctors)
-            {
-                if (appointment.Start >= startTime && appointment.End <= endTime) appointments.Add(appointment);
-            }
             return appointments;
         }
         public List<Appointment> GetAvailableByDoctorAndTimeInterval(string doctorId, DateTime startTime, DateTime endTime)
@@ -147,11 +102,8 @@ namespace Backend.Schedules.Service
             {
                 Appointment appointment = new Appointment
                 {
-                    Id = 7 + i,
                     DoctorId = doctorId,
                     Doctor = doctorWorkDays.Doctor,
-                    RoomId = doctorWorkDays.Doctor.ExaminationRoom.Id,
-                    Room = doctorWorkDays.Doctor.ExaminationRoom,
                     Start = appointmentStart.AddMinutes(appointmentDuration * i),
                     End = appointmentStart.AddMinutes(appointmentDuration * (i + 1))
                 };

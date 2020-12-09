@@ -18,7 +18,7 @@ namespace UnitTests.Schedules
 {
     public class AppointmentTests
     {
-        /*[Fact]
+        [Fact]
         public void Get_available()
         {
             var doctorWorkDayStubRepository = CreateDoctorWorkDayStubRepository();
@@ -190,6 +190,6 @@ namespace UnitTests.Schedules
             appointments.Add(ap4);
 
             return appointments;
-        }*/
+        }
     }
 }

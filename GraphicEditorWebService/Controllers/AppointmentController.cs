@@ -45,22 +45,6 @@ namespace GraphicEditorWebService.Controllers
             {
                 return Ok(_appointmentService.GetAvailableByPriorityDoctor(searchAppointmentsDTO.DoctorId, searchAppointmentsDTO.StartInterval, searchAppointmentsDTO.EndInterval));
             }
-            else if(searchAppointmentsDTO.operation == 2)
-            {
-                return Ok(_appointmentService.GetAvailableByPriorityTimeInterval(searchAppointmentsDTO.StartInterval, searchAppointmentsDTO.EndInterval));
-            }
-            else if(searchAppointmentsDTO.operation == 3 && searchAppointmentsDTO.HospitalEquipmentId != -1)
-            {
-                return Ok(_appointmentService.GetAvailableByDoctorTimeIntervalAndEquipment(searchAppointmentsDTO.DoctorId, searchAppointmentsDTO.HospitalEquipmentId, searchAppointmentsDTO.StartInterval, searchAppointmentsDTO.EndInterval, "nopriority"));
-            }
-            else if (searchAppointmentsDTO.operation == 4 && searchAppointmentsDTO.HospitalEquipmentId != -1)
-            {
-                return Ok(_appointmentService.GetAvailableByDoctorTimeIntervalAndEquipment(searchAppointmentsDTO.DoctorId, searchAppointmentsDTO.HospitalEquipmentId, searchAppointmentsDTO.StartInterval, searchAppointmentsDTO.EndInterval, "doctor"));
-            }
-            else if(searchAppointmentsDTO.operation == 5 && searchAppointmentsDTO.HospitalEquipmentId != -1)
-            {
-                return Ok(_appointmentService.GetAvailableByDoctorTimeIntervalAndEquipment(searchAppointmentsDTO.DoctorId, searchAppointmentsDTO.HospitalEquipmentId, searchAppointmentsDTO.StartInterval, searchAppointmentsDTO.EndInterval, "timeinterval"));
-            }
             else
             {
                 return Ok(_appointmentService.ScheduleAppointment(searchAppointmentsDTO.appointment));
