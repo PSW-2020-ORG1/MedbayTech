@@ -8,7 +8,8 @@ using System;
 
 namespace Repository.RoomRepository
 {
-   public interface IEquipmentTypeRepository : ICreate<EquipmentType>, IGetAll<EquipmentType>
+   public interface IEquipmentTypeRepository : IRepository<EquipmentType, int>
    {
+
    }
 }

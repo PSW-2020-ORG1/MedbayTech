@@ -49,7 +49,7 @@ namespace Model
         public DbSet<Renovation> Renovations { get; set; }
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<HospitalEquipment> HospitalEquipments { get; set; }
-
+        public DbSet<EquipmentType> EquipmentTypes { get; set; }
         public DbSet<Bed> Beds { get; set; }
         public DbSet<Vaccines> Vaccines { get; set; }
         public DbSet<Therapy> Therapies { get; set; }

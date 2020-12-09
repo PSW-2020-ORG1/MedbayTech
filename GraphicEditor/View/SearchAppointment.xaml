@@ -32,8 +32,8 @@
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Rectangle Fill="{Binding EquipmentType.Name}" Width="16" Height="16" />
-                                    <TextBlock Text="{Binding EquipmentType.Name}" />
+                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" />
+                                    <TextBlock Text="{Binding Name}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>

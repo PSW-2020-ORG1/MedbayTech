@@ -33,7 +33,7 @@ namespace GraphicEditor.View
         private MainPage page;
         private List<Doctor> doctors;
         private List<Appointment> appointments;
-        private List<HospitalEquipment> hospitalEquipments;
+        private List<EquipmentType> hospitalEquipments;
 
         public SearchAppointment(MainPage page)
         {
@@ -61,24 +61,23 @@ namespace GraphicEditor.View
             return doctors;
         }
 
-        private List<HospitalEquipment> searchDataBaseForHospitalEquipment()
+        private List<EquipmentType> searchDataBaseForHospitalEquipment()
         {
-            hospitalEquipments = new List<HospitalEquipment>();
+            hospitalEquipments = new List<EquipmentType>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/hospitalequipment/" + "empty" + "/1")
+            var task = httpClient.GetAsync("http://localhost:53109/api/equipmenttype/" + "empty" + "/0")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
                     var jsonString = response.Content.ReadAsStringAsync();
                     jsonString.Wait();
-                    hospitalEquipments = JsonConvert.DeserializeObject<List<HospitalEquipment>>(jsonString.Result);
+                    hospitalEquipments = JsonConvert.DeserializeObject<List<EquipmentType>>(jsonString.Result);
                 });
             task.Wait();
-
             return hospitalEquipments;
         }
 
-        private async void searchDataBaseForAppointment(Doctor doctor, HospitalEquipment hospitalEquipment, DateTime startTime, DateTime endTime)
+        private async void searchDataBaseForAppointment(Doctor doctor, EquipmentType hospitalEquipment, DateTime startTime, DateTime endTime)
         {
             SearchAppointmentsDTO searchAppointmentsDTO;
             if ((bool)radioButtonDoctor.IsChecked)
@@ -154,7 +153,7 @@ namespace GraphicEditor.View
             DateTime beginningTime = time.Item1;
             DateTime endTime = time.Item2;
             Doctor doctor = (Doctor)comboBoxDoctor.SelectedItem;
-            HospitalEquipment hospitalEquipment = (HospitalEquipment)comboBoxEquipment.SelectedItem;
+            EquipmentType hospitalEquipment = (EquipmentType)comboBoxEquipment.SelectedItem;
             dataGridAppointment.ItemsSource = null;
             searchDataBaseForAppointment(doctor, hospitalEquipment, beginningTime, endTime);
         }

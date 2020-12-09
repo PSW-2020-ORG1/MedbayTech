@@ -9,8 +9,6 @@ using Backend.Examinations.Repository.MySqlRepository;
 using Backend.Examinations.Service.Interfaces;
 using Backend.Examinations.WebApiService;
 using Backend.Records.Repository.MySqlRepository;
-using Backend.Records.Service.Interfaces;
-using Backend.Records.WebApiService;
 using Backend.Rooms.Service;
 using Backend.Schedules.Service;
 using Backend.Users.Repository;
@@ -37,6 +35,7 @@ using WebApplication.MailService;
 using WebApplication.ObjectBuilder;
 using Repository.ScheduleRepository;
 using Backend.Schedules.Repository.MySqlRepository;
+using Backend.Examinations.Service;
 
 namespace WebApplication
 {

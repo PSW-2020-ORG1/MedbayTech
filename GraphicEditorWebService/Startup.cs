@@ -32,6 +32,7 @@ using Repository.MedicalRecordRepository;
 using Backend.Examinations.Service;
 using Backend.Examinations.Service.Interfaces;
 using Backend.Records.Repository.MySqlRepository;
+using SimsProjekat.Service.RoomService;
 
 namespace GraphicEditorWebService
 {
@@ -56,6 +57,7 @@ namespace GraphicEditorWebService
             services.AddTransient<IDoctorWorkDayRepository, DoctorWorkDaySqlRepository>();
             services.AddTransient<IPatientRepository,PatientSqlRepository>();
             services.AddTransient<IMedicalRecordRepository, MedicalRecordSqlRepository>();
+            services.AddTransient<IEquipmentTypeRepository, EquipmentTypeSqlRepository>();
 
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -67,6 +69,7 @@ namespace GraphicEditorWebService
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<IMedicalRecordService, MedicalRecordService>();
+            services.AddScoped<IEquipmentTypeService, EquipmentTypeService>();
             services.AddControllers();
             services.AddCors();
         }

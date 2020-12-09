@@ -56,10 +56,14 @@ namespace Backend.Schedules.Service
             {
                 allAppointments = GetAvailableByDoctorAndTimeInterval(doctorId, startTime, endTime);
             }
-            HospitalEquipment hospitalEquipment = _hospitalEquipmentRepository.GetObject(hospitalEquipmentId);
+            List<HospitalEquipment> hospitalEquipments = _hospitalEquipmentRepository.GetAll().ToList().Where(h => h.EquipmentTypeId == hospitalEquipmentId).ToList();
             foreach(Appointment appointment in allAppointments)
             {
-                if (appointment.Room.Id == hospitalEquipment.RoomId) appointments.Add(appointment);
+                foreach(HospitalEquipment hospitalEquipment in hospitalEquipments)
+                {
+                    if(appointment.Room.Id == hospitalEquipment.RoomId) appointments.Add(appointment);
+
+                }
             }
             return appointments;
         }

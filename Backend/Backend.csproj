@@ -10,6 +10,11 @@
     <EmbeddedResource Remove="Users\dsadsa\**" />
     <None Remove="Users\dsadsa\**" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20201209170114_ThirdMigration.cs" />
+    <Compile Remove="Migrations\20201209170114_ThirdMigration.Designer.cs" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
