@@ -27,13 +27,17 @@ namespace GraphicEditorWebService.Controllers
             {
                 return Ok();
             }
-            else
+            else if(operation == 1)
             {
                 if (Int32.TryParse(textBoxSearch, out int id))
                 {
                     return Ok(_doctorService.GetDoctorByRoomExaminationRoom(id));
                 }
                 else return Ok();
+            }
+            else
+            {
+                return Ok(_doctorService.GetAll());
             }
         }
 

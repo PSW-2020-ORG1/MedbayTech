@@ -22,6 +22,16 @@ using Backend.Rooms.Repository.MySqlRepository;
 using Backend.Users.Repository;
 using Backend.Users.Repository.MySqlRepository;
 using Backend.Users.WebApiService;
+using Backend.Schedules.Service.Interfaces;
+using Backend.Schedules.Service;
+using Backend.Schedules.Repository.MySqlRepository;
+using Repository.ScheduleRepository;
+using Backend.Users.Service.Interfaces;
+using Backend.Users.Service;
+using Repository.MedicalRecordRepository;
+using Backend.Examinations.Service;
+using Backend.Examinations.Service.Interfaces;
+using Backend.Records.Repository.MySqlRepository;
 
 namespace GraphicEditorWebService
 {
@@ -42,6 +52,10 @@ namespace GraphicEditorWebService
             services.AddTransient<IHospitalEquipmentRepository, HospitalEquipmentSqlRepository>();
             services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
             services.AddTransient<IDoctorRepository, DoctorSqlRepository>();
+            services.AddTransient<IAppointmentRepository, AppointmentSqlRepository>();
+            services.AddTransient<IDoctorWorkDayRepository, DoctorWorkDaySqlRepository>();
+            services.AddTransient<IPatientRepository,PatientSqlRepository>();
+            services.AddTransient<IMedicalRecordRepository, MedicalRecordSqlRepository>();
 
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -50,6 +64,9 @@ namespace GraphicEditorWebService
             services.AddScoped<IHospitalEquipmentService, HospitalEquipmentService>();
             services.AddScoped<IMedicationService, MedicationService>();
             services.AddScoped<IDoctorService, DoctorService>();
+            services.AddScoped<IAppointmentService, AppointmentService>();
+            services.AddScoped<IPatientService, PatientService>();
+            services.AddScoped<IMedicalRecordService, MedicalRecordService>();
             services.AddControllers();
             services.AddCors();
         }

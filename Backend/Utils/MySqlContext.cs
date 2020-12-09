@@ -28,7 +28,7 @@ namespace Model
         private int mySqlConnectionPort = 3306;
         private string mySqlConnectionUid = "root";
         private string mySqlConnectionPassword = "root";
-        private string mySqlDatabaseName = "newdb6";
+        private string mySqlDatabaseName = "newdb";
         private string mySqlHostAddress = "localhost";
 
         public DbSet<MedicationUsage> MedicationUsages { get; set; }
@@ -255,7 +255,7 @@ namespace Model
                     Urgent = true,
                     Deleted = false,
                     Finished = true,
-                    RoomId = 1,
+                    RoomId = 1003,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1
@@ -268,7 +268,7 @@ namespace Model
                     Urgent = true,
                     Deleted = false,
                     Finished = true,
-                    RoomId = 1,
+                    RoomId = 1003,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1
@@ -281,7 +281,7 @@ namespace Model
                     Urgent = true,
                     Deleted = false,
                     Finished = true,
-                    RoomId = 1,
+                    RoomId = 1003,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1
@@ -296,7 +296,7 @@ namespace Model
                     Urgent = true,
                     Deleted = false,
                     Finished = true,
-                    RoomId = 1,
+                    RoomId = 1003,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1
@@ -309,7 +309,7 @@ namespace Model
                     Urgent = true,
                     Deleted = false,
                     Finished = true,
-                    RoomId = 1,
+                    RoomId = 1003,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1
@@ -322,7 +322,7 @@ namespace Model
                     Urgent = true,
                     Deleted = false,
                     Finished = true,
-                    RoomId = 1,
+                    RoomId = 1003,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1
@@ -353,8 +353,8 @@ namespace Model
                  OnCall = true,
                  PatientReview = 4.5,
                  DepartmentId = 1,
-                 ExaminationRoomId = 1,
-                 OperationRoomId = 2,
+                 ExaminationRoomId = 1003,
+                 OperationRoomId = 1119,
                  Specializations = new List<Specialization>()
              }
             );

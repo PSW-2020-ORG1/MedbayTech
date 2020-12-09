@@ -77,7 +77,6 @@ namespace GraphicEditor
         public static string Id;
         private void buttonShowOnMap(object sender, RoutedEventArgs e)
         {
-
             Room room = (Room)dataGridRoom.SelectedItem;
             if (room == null)
             {

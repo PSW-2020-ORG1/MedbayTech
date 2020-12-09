@@ -13,11 +13,31 @@
             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" HorizontalAlignment="Left">
                 <DockPanel Margin="5,5,5,5">
                     <Label DockPanel.Dock="Top" Content="Select doctor:" FontWeight="Bold"/>
-                    <ComboBox DockPanel.Dock="Bottom" Name="comboBoxDoctor" Width="100"/>
+                    <ComboBox DockPanel.Dock="Bottom" Name="comboBoxDoctor">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" />
+                                    <TextBlock Text="{Binding Name}" />
+                                    <TextBlock Text=" " />
+                                    <TextBlock Text="{Binding Surname}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </DockPanel>
                 <DockPanel Margin="0,5,5,5">
                     <Label DockPanel.Dock="Top" Content="Select equipment:" FontWeight="Bold"/>
-                    <ComboBox DockPanel.Dock="Bottom" Name="comboBoxEquipment" Width="120"/>
+                    <ComboBox DockPanel.Dock="Bottom" Name="comboBoxEquipment">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding EquipmentType.Name}" Width="16" Height="16" />
+                                    <TextBlock Text="{Binding EquipmentType.Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </DockPanel>
                 <DockPanel Margin="0,5,5,5">
                     <Label DockPanel.Dock="Top" Content="Select beginning date:" FontWeight="Bold"/>
@@ -28,32 +48,32 @@
                     <TextBox DockPanel.Dock="Bottom" Name="textBoxTo" Width="140"/>
                 </DockPanel>
             </StackPanel>
-            <Button DockPanel.Dock="Right" Name="buttonSearch" Margin="0,5,5,5" Content="Search for available appointments" Width="190" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+            <Button DockPanel.Dock="Right" Name="buttonSearch" Margin="0,5,5,5" Content="Search for available appointments" Width="190" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="buttonSearchForAvailableAppointments"/>
         </DockPanel>
         
         <DockPanel DockPanel.Dock="Bottom">
-            <Button DockPanel.Dock="Left" Content="Show on map" Width="208" Margin="5,5,0,5" FontWeight="Bold" HorizontalAlignment="Left"/>
-            <Button DockPanel.Dock="Right" Content="Schedule examination" Width="208" Margin="5,5,5,5" FontWeight="Bold" HorizontalAlignment="Right"/>
+            <Button DockPanel.Dock="Left" Content="Show on map" Width="208" Margin="5,5,0,5" FontWeight="Bold" HorizontalAlignment="Left" Click="buttonShowOnMap"/>
+            <Button DockPanel.Dock="Right" Content="Schedule examination" Width="208" Margin="5,5,5,5" FontWeight="Bold" HorizontalAlignment="Right" Click="buttonScheduleExamination"/>
         </DockPanel>
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">
                 <Label DockPanel.Dock="Top" Content="Select priority:" FontWeight="Bold" Margin="5,0,5,5"/>
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
                     <Viewbox Height="15" HorizontalAlignment="Left" Margin="5,0,5,5">
-                        <RadioButton x:Name="radioButtonDoctor" GroupName="Search" Foreground="Black" FontWeight="Medium">Doctor</RadioButton>
+                        <RadioButton x:Name="radioButtonDoctor" GroupName="SearchAppointment" Foreground="Black" FontWeight="Medium">Doctor</RadioButton>
                     </Viewbox>
                     <Viewbox Height="15" HorizontalAlignment="Left" Margin="0,0,5,5">
-                        <RadioButton x:Name="radioButtonInterval" GroupName="Search" Foreground="Black" FontWeight="Medium">Date interval</RadioButton>
+                        <RadioButton x:Name="radioButtonInterval" GroupName="SearchAppointment" Foreground="Black" FontWeight="Medium">Date interval</RadioButton>
                     </Viewbox>
                 </StackPanel>
             </DockPanel>
             <DataGrid DockPanel.Dock="Bottom" Name="dataGridAppointment" Margin="5,0,5,0" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Appointment type" Width="149"/>
-                    <DataGridTextColumn Header="Doctor" Width="149"/>
-                    <DataGridTextColumn Header="Room" Width="149"/>
-                    <DataGridTextColumn Header="Beginning date" Width="149"/>
-                    <DataGridTextColumn Header="End date" Width="149"/>
+                    <DataGridTextColumn Header="Appointment type" Width="149" Binding="{Binding TypeOfAppointment}"/>
+                    <DataGridTextColumn Header="Doctor" Width="149" Binding="{Binding Doctor.Name}"/>
+                    <DataGridTextColumn Header="Room" Width="149" Binding="{Binding Room.RoomLabel}"/>
+                    <DataGridTextColumn Header="Beginning date" Width="149" Binding="{Binding Start}"/>
+                    <DataGridTextColumn Header="End date" Width="149" Binding="{Binding End}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>

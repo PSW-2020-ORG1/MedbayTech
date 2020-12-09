@@ -19,10 +19,17 @@ namespace GraphicEditorWebService.Controllers
             _hospitalEquipmentService = hospitalEquipmentService;
         }
 
-        [HttpGet("{textBoxSearch?}")]
-        public IActionResult Get(string textBoxSearch)
+        [HttpGet("{textBoxSearch?}/{operation?}")]
+        public IActionResult Get(string textBoxSearch, int operation)
         {
-            return Ok(_hospitalEquipmentService.GetHospitalEquipmentsByNameOrId(textBoxSearch.ToLower().Trim()));
+            if(operation == 0)
+            {
+                return Ok(_hospitalEquipmentService.GetHospitalEquipmentsByNameOrId(textBoxSearch.ToLower().Trim()));
+            }
+            else
+            {
+                return Ok(_hospitalEquipmentService.GetAllEquipment());
+            }
         }
     }
 }

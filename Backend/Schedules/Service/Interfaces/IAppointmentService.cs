@@ -13,5 +13,9 @@ namespace Backend.Schedules.Service.Interfaces
         List<Appointment> GetByDoctorAndDate(string doctorId, DateTime date);
         Appointment ScheduleAppointment(Appointment appointment);
         List<Appointment> GetAvailableByDoctorAndDateRange(string doctorId, DateTime start, DateTime end);
+        List<Appointment> GetAvailableByDoctorAndTimeInterval(string doctorId, DateTime startTime, DateTime endTime);
+        List<Appointment> GetAvailableByPriorityDoctor(string doctorId, DateTime startTime, DateTime endTime);
+        List<Appointment> GetAvailableByPriorityTimeInterval(DateTime startTime, DateTime endTime);
+        List<Appointment> GetAvailableByDoctorTimeIntervalAndEquipment(string doctorId, int hospitalEquipmentId, DateTime startTime, DateTime endTime, string priority);
     }
 }
