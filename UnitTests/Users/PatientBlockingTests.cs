@@ -35,6 +35,12 @@ namespace UnitTests.Users
             patient.ShouldBeNull();
         }
 
+        [Fact]
+        public void Get_all_blockable_patients()
+        {
+            throw new NotImplementedException();
+        }
+
         public static IPatientRepository CreateStubRepository()
         {
             var stubRepository = new Mock<IPatientRepository>();

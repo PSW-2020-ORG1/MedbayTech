@@ -572,7 +572,76 @@ namespace Model
                     ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
                     IsGuestAccount = false,
                     ChosenDoctorId = "2406978890047"
-                } 
+                },
+                new Patient
+                {
+                    Id = "2406978890048",
+                    CurrResidenceId = 1,
+                    DateOfBirth = new DateTime(1978, 6, 24),
+                    DateOfCreation = new DateTime(),
+                    EducationLevel = EducationLevel.bachelor,
+                    Email = "pera@gmail.com",
+                    Gender = Gender.MALE,
+                    InsurancePolicyId = "policy1",
+                    Name = "Petar",
+                    Surname = "Petrovic",
+                    Username = "pera",
+                    Password = "pera1978",
+                    Phone = "065/123-4554",
+                    PlaceOfBirthId = 11000,
+                    Profession = "vodoinstalater",
+                    ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
+                    IsGuestAccount = false,
+                    ChosenDoctorId = "2406978890047",
+                    ShouldBeBlocked = true,
+                    Blocked = false
+                },
+                new Patient
+                {
+                    Id = "2406978890049",
+                    CurrResidenceId = 1,
+                    DateOfBirth = new DateTime(1978, 6, 24),
+                    DateOfCreation = new DateTime(),
+                    EducationLevel = EducationLevel.bachelor,
+                    Email = "pera@gmail.com",
+                    Gender = Gender.MALE,
+                    InsurancePolicyId = "policy1",
+                    Name = "Petar",
+                    Surname = "Petrovic",
+                    Username = "pera",
+                    Password = "pera1978",
+                    Phone = "065/123-4554",
+                    PlaceOfBirthId = 11000,
+                    Profession = "vodoinstalater",
+                    ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
+                    IsGuestAccount = false,
+                    ChosenDoctorId = "2406978890047",
+                    ShouldBeBlocked = true,
+                    Blocked = false
+                },
+                new Patient
+                {
+                    Id = "2406978890050",
+                    CurrResidenceId = 1,
+                    DateOfBirth = new DateTime(1978, 6, 24),
+                    DateOfCreation = new DateTime(),
+                    EducationLevel = EducationLevel.bachelor,
+                    Email = "pera@gmail.com",
+                    Gender = Gender.MALE,
+                    InsurancePolicyId = "policy1",
+                    Name = "Petar",
+                    Surname = "Petrovic",
+                    Username = "pera",
+                    Password = "pera1978",
+                    Phone = "065/123-4554",
+                    PlaceOfBirthId = 11000,
+                    Profession = "vodoinstalater",
+                    ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
+                    IsGuestAccount = false,
+                    ChosenDoctorId = "2406978890047",
+                    ShouldBeBlocked = true,
+                    Blocked = false
+                }
             );
 
           
