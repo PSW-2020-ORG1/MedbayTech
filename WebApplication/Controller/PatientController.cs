@@ -6,6 +6,7 @@ using Backend.Users.Service;
 using Backend.Utils.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Model.Users;
 
 namespace WebApplication.Controller
 {
@@ -22,8 +23,8 @@ namespace WebApplication.Controller
         [HttpPost("updatePatientStatus")]
         public IActionResult UpdatePatientStatus(UpdatePatientBlockedStatusDTO dto)
         {
-            bool updatedStatus = _patientService.UpdateStatus(dto.Id);
-            return Ok(updatedStatus);
+            Patient updatedStatus = _patientService.UpdateStatus(dto.Id);
+            return Ok("Patient blocked successfully");
         }
     }
 }

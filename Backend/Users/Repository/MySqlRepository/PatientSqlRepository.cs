@@ -39,19 +39,5 @@ namespace Backend.Users.Repository.MySqlRepository
             if (GetAll().FirstOrDefault(p => p.Id.Equals(id)) != null) return true;
             return false;
         }
-
-        public bool UpdateStatus(string patientId)
-        {
-            if (ExistsInSystem(patientId))
-            {
-                Patient patient = GetObject(patientId);
-                patient.Blocked = true;
-                context.SaveChanges();
-                return true;
-            }
-
-
-            return false;
-        }
     }
 }

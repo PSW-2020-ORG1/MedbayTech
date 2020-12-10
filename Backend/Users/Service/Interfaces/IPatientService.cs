@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Model.Users;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Backend.Users.Service.Interfaces
 {
-    interface IPatientService
+    public interface IPatientService
     {
-        bool UpdateStatus(string patientId);
+        Patient UpdateStatus(string patientId);
     }
 }

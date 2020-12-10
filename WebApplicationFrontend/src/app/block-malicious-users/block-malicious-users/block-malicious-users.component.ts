@@ -25,8 +25,8 @@ export class BlockMaliciousUsersComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  updateStatus(patientId, status, element) { 
-    this.service.updatePatientStatus(new UpdatePatientBlockedStatus(patientId, status)).subscribe();
+  updateStatus(patientId, element) { 
+    this.service.updatePatientStatus(new UpdatePatientBlockedStatus(patientId)).subscribe();
     //location.reload();
   }
 

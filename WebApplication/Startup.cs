@@ -14,6 +14,7 @@ using Backend.Records.WebApiService;
 using Backend.Rooms.Service;
 using Backend.Users.Repository;
 using Backend.Users.Repository.MySqlRepository;
+using Backend.Users.Service;
 using Backend.Users.Service.Interfaces;
 using Backend.Users.TableBuilder.Interfaces;
 using Backend.Users.WebApiService;
@@ -85,6 +86,7 @@ namespace WebApplication
             services.AddScoped<IStateService, StateService>();
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<IInsurancePolicyService, InsurancePolicyService>();
+            services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<IPatientTableBuilder, PatientTableBuilder>();
             services.AddScoped<IReportSearchService, ReportSearchService>();
             services.AddScoped<ISurveyService, SurveyService>();

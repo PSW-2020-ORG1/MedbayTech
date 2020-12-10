@@ -7,14 +7,11 @@ namespace Backend.Utils.DTO
     public class UpdatePatientBlockedStatusDTO
     {
         public string Id { get; set; }
-        public Boolean Blocked { get; set; }
 
         public UpdatePatientBlockedStatusDTO() { }
-        public UpdatePatientBlockedStatusDTO(string id, Boolean blocked)
+        public UpdatePatientBlockedStatusDTO(string id)
         {
-            Id = id;
-            Blocked = blocked;
-
+            Id = id; 
         }
     }
 }

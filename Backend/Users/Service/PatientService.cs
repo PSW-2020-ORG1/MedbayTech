@@ -1,5 +1,6 @@
 ﻿using Backend.Users.Repository;
 using Backend.Users.Service.Interfaces;
+using Model.Users;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,9 +15,18 @@ namespace Backend.Users.Service
         {
             this.patientRepository = patientRepository;
         }
-        public bool UpdateStatus(string patientId)
-        {
-            return patientRepository.UpdateStatus(patientId);
+        public Patient UpdateStatus(string patientId)
+        {        
+            Patient patient = patientRepository.GetById(patientId);
+
+            if (patient != null)
+            {
+                patient.Blocked = true;
+                patientRepository.Update(patient);
+                return patient;
+            }
+ 
+            return null;
         }
     }
 }
