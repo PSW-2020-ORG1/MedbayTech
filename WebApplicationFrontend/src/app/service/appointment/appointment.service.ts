@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CancelAppointment } from 'src/app/model/cancelAppointment';
 import { GetAppointment } from 'src/app/model/getAppointment';
 import { environment } from 'src/environments/environment';
 
@@ -33,8 +34,8 @@ export class AppointmentService {
 
   }
 
-  cancelAppointment(data: number) : Observable<number>{
+  cancelAppointment(data: CancelAppointment) : Observable<CancelAppointment>{
 
-    return this.http.post<number>(`${environment.baseUrl}/${environment.appointment}/${environment.cancelAppointment}`, data)
+    return this.http.post<CancelAppointment>(`${environment.baseUrl}/${environment.appointment}/${environment.cancelAppointment}`, data)
   }   
 }

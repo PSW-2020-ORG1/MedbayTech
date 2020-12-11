@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CancelAppointment } from 'src/app/model/cancelAppointment';
 import { GetAppointment } from 'src/app/model/getAppointment';
 import { AppointmentService } from 'src/app/service/appointment/appointment.service';
 
@@ -39,8 +40,8 @@ export class ObserveAppointmentComponent implements OnInit {
         this.allCancelableAppointments = data;
       });
   }
-  cancelAppointment(id,element){
-    this.appointmentService.cancelAppointment(id).subscribe();
+  cancelAppointment(appointmentId,element){
+    this.appointmentService.cancelAppointment(new CancelAppointment(appointmentId)).subscribe();
     location.reload();
   }
   saveAppointment(appointment : GetAppointment){
