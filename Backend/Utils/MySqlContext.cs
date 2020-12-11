@@ -27,7 +27,7 @@ namespace Model
 
         private int mySqlConnectionPort = 3306;
         private string mySqlConnectionUid = "root";
-        private string mySqlConnectionPassword = "root";
+        private string mySqlConnectionPassword = "asgkagagdml456+";
         private string mySqlDatabaseName = "newdb6";
         private string mySqlHostAddress = "localhost";
 
@@ -249,6 +249,8 @@ namespace Model
                 new Appointment 
                 { 
                     Id = 1, 
+                    Start = new DateTime(2020, 12, 5, 14, 00, 0),
+                    End = new DateTime(2020, 12, 5, 14, 30, 0),
                     TypeOfAppointment = TypeOfAppointment.Examination, 
                     ShortDescription = "standard appointment",
                     Urgent = true,
@@ -262,6 +264,8 @@ namespace Model
                 new Appointment
                 {
                     Id = 2,
+                    Start = new DateTime(2020, 12, 4, 14, 00, 0),
+                    End = new DateTime(2020, 12, 4, 14, 30, 0),
                     TypeOfAppointment = TypeOfAppointment.Examination,
                     ShortDescription = "standard appointment",
                     Urgent = true,
@@ -275,6 +279,8 @@ namespace Model
                 new Appointment
                 {
                     Id = 3,
+                    Start = new DateTime(2020, 12, 3, 14, 00, 0),
+                    End = new DateTime(2020, 12, 3, 14, 30, 0),
                     TypeOfAppointment = TypeOfAppointment.Examination,
                     ShortDescription = "standard appointment",
                     Urgent = true,
@@ -288,6 +294,8 @@ namespace Model
                 new Appointment
                 {
                     Id = 4,
+                    Start = new DateTime(2020, 12, 1, 14, 00, 0),
+                    End = new DateTime(2020, 12, 1, 14, 30, 0),
                     TypeOfAppointment = TypeOfAppointment.Examination,
                     ShortDescription = "standard appointment",
                     Urgent = true,
@@ -301,11 +309,13 @@ namespace Model
                 new Appointment
                 {
                     Id = 5,
+                    Start = new DateTime(2020, 12, 15, 14, 00, 0),
+                    End = new DateTime(2020, 12, 15, 14, 30, 0),
                     TypeOfAppointment = TypeOfAppointment.Examination,
                     ShortDescription = "standard appointment",
                     Urgent = true,
                     Deleted = false,
-                    Finished = true,
+                    Finished = false,
                     RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
@@ -314,16 +324,33 @@ namespace Model
                 new Appointment
                 {
                     Id = 6,
+                    Start = new DateTime(2020, 12, 8, 14, 00, 0),
+                    End = new DateTime(2020, 12, 8, 14, 30, 0),
                     TypeOfAppointment = TypeOfAppointment.Examination,
                     ShortDescription = "standard appointment",
                     Urgent = true,
                     Deleted = false,
-                    Finished = true,
+                    Finished = false,
                     RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1
-                }
+                },
+                new Appointment
+                 {
+                     Id = 7,
+                     Start = new DateTime(2020, 12, 16, 14, 00, 0),
+                     End = new DateTime(2020, 12, 16, 14, 30, 0),
+                     TypeOfAppointment = TypeOfAppointment.Examination,
+                     ShortDescription = "standard appointment",
+                     Urgent = true,
+                     Deleted = false,
+                     Finished = false,
+                     RoomId = 1,
+                     MedicalRecordId = 1,
+                     DoctorId = "2406978890047",
+                     WeeklyAppointmentReportId = 1
+                 }
             );
 
 
