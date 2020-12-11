@@ -27,7 +27,7 @@ namespace Model
 
         private int mySqlConnectionPort = 3306;
         private string mySqlConnectionUid = "root";
-        private string mySqlConnectionPassword = "asgkagagdml456+";
+        private string mySqlConnectionPassword = "root";
         private string mySqlDatabaseName = "newdb";
         private string mySqlHostAddress = "localhost";
 
