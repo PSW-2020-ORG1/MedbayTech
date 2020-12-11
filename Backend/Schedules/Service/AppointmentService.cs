@@ -110,7 +110,7 @@ namespace Backend.Schedules.Service
             {
                 Appointment appointment = occupied.FirstOrDefault(a => a.isOccupied(appointmentIt.Start, appointmentIt.End));
                 
-                if (appointment != null && !appointment.canceledByPatient)
+                if (appointment != null && !appointment.CanceledByPatient)
                     available.Remove(appointmentIt);
             }
             return available;

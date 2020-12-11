@@ -29,7 +29,7 @@ export class AppointmentService {
   }
 
   cancelAppointment(data: CancelAppointment) : Observable<CancelAppointment>{
-    return this.http.post<CancelAppointment>(`${environment.baseUrl}/${environment.appointments}/${environment.cancelAppointment}`, data)
+    return this.http.post<CancelAppointment>(`${environment.baseUrl}/${environment.appointments}/${environment.cancelAppointment}`, data);
   }   
 
   getAvailableByDateRange(data : AppointmentRecommendation) : Observable<AvailableAppointments[]> {

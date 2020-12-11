@@ -27,7 +27,7 @@ namespace Model
 
         private int mySqlConnectionPort = 3306;
         private string mySqlConnectionUid = "root";
-        private string mySqlConnectionPassword = "root";
+        private string mySqlConnectionPassword = "asgkagagdml456+";
         private string mySqlDatabaseName = "newdb";
         private string mySqlHostAddress = "localhost";
 
@@ -298,9 +298,7 @@ namespace Model
                     Start = new DateTime(2020, 12, 1, 14, 00, 0),
                     End = new DateTime(2020, 12, 1, 14, 30, 0),
                     TypeOfAppointment = TypeOfAppointment.Examination,
-                    ShortDescription = "standard appointment",
-                    Start = new DateTime(2020, 12, 5, 8, 0, 0),
-                    End = new DateTime(2020, 12, 5, 8, 30, 0),
+                    ShortDescription = "standard appointment",                
                     Urgent = true,
                     Deleted = false,
                     Finished = true,

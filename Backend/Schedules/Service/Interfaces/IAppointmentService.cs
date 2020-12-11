@@ -13,7 +13,6 @@ namespace Backend.Schedules.Service.Interfaces
         List<Appointment> GetAllOtherAppointments(string id);
         List<Appointment> GetCancelableAppointments(string id);
         bool UpdateCanceled(int appointmentId);
-        Appointment CreateAppointment(Appointment appointment);
         List<Appointment> InitializeAppointments(string doctorId, DateTime date);
         List<Appointment> GetAvailableBy(string doctorId, DateTime date);
         List<Appointment> GetByDoctorAndDate(string doctorId, DateTime date);
