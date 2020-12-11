@@ -10,6 +10,10 @@ using Model.Schedule;
 using Repository.ScheduleRepository;
 using Shouldly;
 using Castle.Core.Internal;
+using Model.Users;
+using Repository.RoomRepository;
+using Model.Rooms;
+using Backend.Schedules.Service.Interfaces;
 
 namespace MedbayTechUnitTests
 {
@@ -30,6 +34,16 @@ namespace MedbayTechUnitTests
             gotAppointment.IsNullOrEmpty();
         }
 
+        [Fact]
+        public void GetAvailableAppointmentByPriorityTimeIntervalFail()
+        {
+            AppointmentService appointmentsService = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
+            AppointmentFilterService service = new AppointmentFilterService(appointmentsService, CreateStubRepositoryDoctor(), CreateStupRepositoryEquipment());
+            var gotAppointments = service.GetAvailableByPriorityTimeInterval(new DateTime(2022, 12, 5, 8, 0, 0), new DateTime(2022, 12, 5, 8, 30, 0));
+
+            gotAppointments.IsNullOrEmpty();
+        }
+
         public static IAppointmentRepository CreateStubRepositoryAppointment()
         {
             var stubRepository = new Mock <IAppointmentRepository>();
@@ -44,6 +58,11 @@ namespace MedbayTechUnitTests
             return stubRepository.Object;
         }
 
+        public static IAppointmentService CreateStubAppointmentService()
+        {
+            var stubService = new Mock<IAppointmentService>();
+            return stubService.Object;
+        }
         public static IDoctorWorkDayRepository CreateStubRepositoryDoctorWork()
         {
             var stubRepository = new Mock <IDoctorWorkDayRepository>();
@@ -55,6 +74,114 @@ namespace MedbayTechUnitTests
         }
 
 
+        public static IDoctorRepository CreateStubRepositoryDoctor()
+        {
+            var stubRepository = new Mock<IDoctorRepository>();
+            var doctorList = CreateListOfDoctor();
+            stubRepository.Setup(m => m.GetAll()).Returns(doctorList);
+            return stubRepository.Object;
+        }
+
+
+        public IHospitalEquipmentRepository CreateStupRepositoryEquipment()
+        {
+            var stubRepository = new Mock<IHospitalEquipmentRepository>();
+            var equipment = GetListOfEquipment();
+            stubRepository.Setup(m => m.GetAll()).Returns(equipment);
+            return stubRepository.Object;
+        }
+
+        public static List<Doctor> CreateListOfDoctor()
+        {
+            List<Doctor> doctors = new List<Doctor>();
+            Doctor doc1 = new Doctor
+            {
+                Id = "2406978890047",
+                CurrResidenceId = 1,
+                DateOfBirth = new DateTime(1978, 6, 24),
+                DateOfCreation = new DateTime(),
+                EducationLevel = EducationLevel.bachelor,
+                Email = "mika@gmail.com",
+                Gender = Gender.MALE,
+                InsurancePolicyId = "policy1",
+                Name = "Milan",
+                Surname = "Milanovic",
+                Username = "mika",
+                Password = "mika1978",
+                Phone = "065/123-4554",
+                PlaceOfBirthId = 11000,
+                Profession = "doktor",
+                ProfileImage = ".",
+                LicenseNumber = "001",
+                OnCall = true,
+                PatientReview = 4.5,
+                DepartmentId = 1,
+                ExaminationRoomId = 1003,
+                OperationRoomId = 1119,
+                Specializations = new List<Specialization>()
+            };
+            Doctor doc2 = new Doctor
+            {
+                Id = "2406978890048",
+                CurrResidenceId = 1,
+                DateOfBirth = new DateTime(1978, 6, 24),
+                DateOfCreation = new DateTime(),
+                EducationLevel = EducationLevel.bachelor,
+                Email = "zika@gmail.com",
+                Gender = Gender.MALE,
+                InsurancePolicyId = "policy1",
+                Name = "Zivorad",
+                Surname = "Zivoradovic",
+                Username = "zika",
+                Password = "zika1978",
+                Phone = "065/123-4555",
+                PlaceOfBirthId = 11000,
+                Profession = "doktor",
+                ProfileImage = ".",
+                LicenseNumber = "001",
+                OnCall = true,
+                PatientReview = 4.5,
+                DepartmentId = 1,
+                ExaminationRoomId = 1003,
+                OperationRoomId = 1119,
+                Specializations = new List<Specialization>()
+            };
+            doctors.Add(doc1);
+            doctors.Add(doc2); 
+            return doctors;
+        }
+
+        public static Doctor CreateDoctor()
+        {
+            Doctor doc2 = new Doctor
+            {
+                Id = "2406978890048",
+                CurrResidenceId = 1,
+                DateOfBirth = new DateTime(1978, 6, 24),
+                DateOfCreation = new DateTime(),
+                EducationLevel = EducationLevel.bachelor,
+                Email = "zika@gmail.com",
+                Gender = Gender.MALE,
+                InsurancePolicyId = "policy1",
+                Name = "Zivorad",
+                Surname = "Zivoradovic",
+                Username = "zika",
+                Password = "zika1978",
+                Phone = "065/123-4555",
+                PlaceOfBirthId = 11000,
+                Profession = "doktor",
+                ProfileImage = ".",
+                LicenseNumber = "001",
+                OnCall = true,
+                PatientReview = 4.5,
+                DepartmentId = 1,
+                ExaminationRoomId = 1003,
+                OperationRoomId = 1119,
+                Specializations = new List<Specialization>()
+            };
+
+            return doc2;
+        }
         public static List<Appointment> CreateLisfOfAppointments()
         {
             List<Appointment> appointments = new List<Appointment>();
@@ -130,6 +257,24 @@ namespace MedbayTechUnitTests
                 WeeklyAppointmentReportId = 1
             };
             return app;
+        }
+
+        private static IEnumerable<HospitalEquipment> GetListOfEquipment()
+        {
+            var h1 = new HospitalEquipment { Id = 1, QuantityInRoom = 1, QuantityInStorage = 8, RoomId = 1003, EquipmentTypeId = 9 };
+            var h2 = new HospitalEquipment { Id = 2, QuantityInRoom = 1, QuantityInStorage = 8, RoomId = 1003, EquipmentTypeId = 10 };
+            var h3 = new HospitalEquipment { Id = 3, QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 1003, EquipmentTypeId = 17 };
+            var h4 = new HospitalEquipment { Id = 4, QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 1003, EquipmentTypeId = 18 };
+            var h5 = new HospitalEquipment { Id = 5, QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 1003, EquipmentTypeId = 19 };
+            var h6 = new HospitalEquipment { Id = 6, QuantityInRoom = 2, QuantityInStorage = 9, RoomId = 1003, EquipmentTypeId = 22 };
+            var hospitalEquipment = new List<HospitalEquipment>();
+            hospitalEquipment.Add(h1);
+            hospitalEquipment.Add(h2);
+            hospitalEquipment.Add(h3);
+            hospitalEquipment.Add(h4);
+            hospitalEquipment.Add(h5);
+            hospitalEquipment.Add(h6);
+            return hospitalEquipment;
         }
     }
 }
