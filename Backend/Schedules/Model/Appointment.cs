@@ -122,14 +122,5 @@ namespace Model.Schedule
         {
             return Period.StartTime.Date.CompareTo(DateTime.Today.Date) > 0;
         }
-        /*
-        public bool Cancel()
-        {
-            if (CanceledByPatient) {
-                return false;
-            }
-            CanceledByPatient = true;
-            return true;
-        }*/
     }
 }

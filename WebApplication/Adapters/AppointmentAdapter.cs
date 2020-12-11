@@ -26,10 +26,8 @@ namespace WebApplication.Adapters
                 string name = appointmentIt.Doctor.Name;
                 string surname = appointmentIt.Doctor.Surname;
 
-
                 appointmentList.Add(new GetAppointmentDTO(id, start, end, typeOfAppointment, finished, canceledByPatient, roomNumber, roomType, doctorId, name, surname));
             }
-
             return appointmentList;
         }
     }

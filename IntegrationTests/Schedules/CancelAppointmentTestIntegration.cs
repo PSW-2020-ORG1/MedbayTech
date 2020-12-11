@@ -31,7 +31,6 @@ namespace IntegrationTests.Schedules
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
         }
 
-
         private static CancelAppointmentDTO AppointmentId()
         {
             CancelAppointmentDTO cancelDTO = new CancelAppointmentDTO
