@@ -12,6 +12,7 @@ using Backend.Records.Repository.MySqlRepository;
 using Backend.Records.Service.Interfaces;
 using Backend.Records.WebApiService;
 using Backend.Rooms.Service;
+using Backend.Schedules.Repository.MySqlRepository;
 using Backend.Users.Repository;
 using Backend.Users.Repository.MySqlRepository;
 using Backend.Users.Service;
@@ -30,6 +31,7 @@ using Microsoft.Extensions.Logging;
 using Model;
 using Newtonsoft.Json;
 using Repository.MedicalRecordRepository;
+using Repository.ScheduleRepository;
 using WebApplication.MailService;
 using WebApplication.ObjectBuilder;
 
@@ -77,6 +79,7 @@ namespace WebApplication
             services.AddTransient<IExaminationSurgeryRepository, ExaminationSurgerySqlRepository>();
             services.AddTransient<ISurveyRepository, SurveySqlRepository>();
             services.AddTransient<ISurveyQuestionRepository, SurveyQuestionSqlRepository>();
+            services.AddTransient<IAppointmentRepository, AppointmentSqlRepository>();
 
             services.AddScoped<IDoctorService, DoctorService>();
             services.AddScoped<IFeedbackService, FeedbackService>();

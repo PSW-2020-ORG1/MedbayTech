@@ -115,5 +115,10 @@ namespace Repository.ScheduleRepository
             return appointmentsByDate;
             
         }
+
+        public List<Appointment> GetCanceledAppointmentsByPatientId(string Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

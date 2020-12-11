@@ -323,7 +323,76 @@ namespace Model
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1
+                },
+                new Appointment
+                {
+                    Id = 7,
+                    Start = new DateTime(2020, 12, 5, 14, 00, 0),
+                    End = new DateTime(2020, 12, 5, 14, 30, 0),
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1,
+                    CanceledByPatient = true,
+                    CancelationDate = new DateTime(2020, 6, 5)
+                },
+                new Appointment
+                {
+                    Id = 8,
+                    Start = new DateTime(2020, 12, 5, 14, 00, 0),
+                    End = new DateTime(2020, 12, 5, 14, 30, 0),
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1,
+                    CanceledByPatient = true,
+                    CancelationDate = new DateTime(2020, 6, 6)
+                },
+                new Appointment
+                {
+                    Id = 9,
+                    Start = new DateTime(2020, 12, 5, 14, 00, 0),
+                    End = new DateTime(2020, 12, 5, 14, 30, 0),
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1,
+                    CanceledByPatient = true,
+                    CancelationDate = new DateTime(2020, 6, 6)
+                },
+                new Appointment
+                {
+                    Id = 10,
+                    Start = new DateTime(2020, 12, 5, 14, 00, 0),
+                    End = new DateTime(2020, 12, 5, 14, 30, 0),
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1,
+                    CanceledByPatient = true,
+                    CancelationDate = new DateTime(2020, 7, 1)
                 }
+                    
             );
 
 
