@@ -257,7 +257,8 @@ namespace Model
                     RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
-                    WeeklyAppointmentReportId = 1
+                    WeeklyAppointmentReportId = 1,
+                    PatientId = "2406978890046"
                 },
                 new Appointment
                 {
@@ -270,7 +271,8 @@ namespace Model
                     RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
-                    WeeklyAppointmentReportId = 1
+                    WeeklyAppointmentReportId = 1,
+                    PatientId = "2406978890046"
                 },
                 new Appointment
                 {
@@ -283,7 +285,8 @@ namespace Model
                     RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
-                    WeeklyAppointmentReportId = 1
+                    WeeklyAppointmentReportId = 1,
+                    PatientId = "2406978890046"
                 },
                 new Appointment
                 {
@@ -296,7 +299,8 @@ namespace Model
                     RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
-                    WeeklyAppointmentReportId = 1
+                    WeeklyAppointmentReportId = 1,
+                    PatientId = "2406978890046"
                 },
                 new Appointment
                 {
@@ -309,7 +313,8 @@ namespace Model
                     RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
-                    WeeklyAppointmentReportId = 1
+                    WeeklyAppointmentReportId = 1,
+                    PatientId = "2406978890046"
                 },
                 new Appointment
                 {
@@ -322,7 +327,8 @@ namespace Model
                     RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
-                    WeeklyAppointmentReportId = 1
+                    WeeklyAppointmentReportId = 1,
+                    PatientId = "2406978890046"
                 },
                 new Appointment
                 {
@@ -339,7 +345,8 @@ namespace Model
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1,
                     CanceledByPatient = true,
-                    CancelationDate = new DateTime(2020, 6, 5)
+                    CancelationDate = new DateTime(2020, 6, 5),
+                    PatientId = "2406978890046"
                 },
                 new Appointment
                 {
@@ -356,7 +363,8 @@ namespace Model
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1,
                     CanceledByPatient = true,
-                    CancelationDate = new DateTime(2020, 6, 6)
+                    CancelationDate = new DateTime(2020, 6, 6),
+                    PatientId = "2406978890046"
                 },
                 new Appointment
                 {
@@ -373,7 +381,8 @@ namespace Model
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1,
                     CanceledByPatient = true,
-                    CancelationDate = new DateTime(2020, 6, 6)
+                    CancelationDate = new DateTime(2020, 6, 6),
+                    PatientId = "2406978890046"
                 },
                 new Appointment
                 {
@@ -390,7 +399,8 @@ namespace Model
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1,
                     CanceledByPatient = true,
-                    CancelationDate = new DateTime(2020, 7, 1)
+                    CancelationDate = new DateTime(2020, 7, 1),
+                    PatientId = "2406978890046"
                 }
                     
             );
