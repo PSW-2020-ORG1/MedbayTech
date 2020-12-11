@@ -55,9 +55,9 @@ namespace WebApplication.Controller
         }
 
         [HttpPost("cancelAppointment")]
-        public IActionResult cancelAppointment(int id)
+        public IActionResult cancelAppointment(CancelAppointmentDTO cancelAppointmentDTO)
         {
-            bool canceledAppointment = _appointmentService.UpdateCanceled(id);
+            bool canceledAppointment = _appointmentService.UpdateCanceled(cancelAppointmentDTO.AppointmentId);
             return Ok(canceledAppointment);
         }
     }

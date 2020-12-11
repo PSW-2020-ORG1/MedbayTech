@@ -57,7 +57,7 @@ namespace Service.ScheduleService
         {
             List<Appointment> appointments = _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
             List<Appointment> cancelableAppointments = new List<Appointment>();
-            cancelableAppointments = appointments.Where(p => p.Finished == false && ((p.Start - DateTime.Now).TotalDays > 2.00)).ToList();
+            cancelableAppointments = appointments.Where(p => !(p.CanceledByPatient) && !(p.Finished) && ((p.Start - DateTime.Now).TotalDays > 2.00)).ToList();
 
             return cancelableAppointments;
         }
@@ -83,7 +83,7 @@ namespace Service.ScheduleService
                 return false;
             }
             appointment.CanceledByPatient = true;
-            _appointmentRepository.Update(appointment);
+            _appointmentRepository.update(appointment);
             return true;
 
 
