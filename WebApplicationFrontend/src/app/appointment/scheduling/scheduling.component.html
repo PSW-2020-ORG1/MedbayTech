@@ -1,0 +1,88 @@
+<div class="container">
+    <mat-horizontal-stepper linear #stepper>
+        <mat-step [stepControl]="dateFormGroup">
+            <ng-template matStepLabel>Select date</ng-template>
+            <form [formGroup]="dateFormGroup">
+                <mat-form-field>
+                    <mat-label>Select date*</mat-label>
+                    <input matInput id="date" name="date" formControlName="date" [matDatepicker]="picker2">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="specializationFormGroup" [optional]="isOptional">
+            <ng-template matStepLabel>Select specialization</ng-template>
+            <form [formGroup]="specializationFormGroup">
+                <mat-form-field>
+                    <mat-label>Select specialization*</mat-label>
+                    <mat-select placeholder="Select specialization" place id="specialization" name="specialization"
+                        formControlName="specialization" (selectionChange)="selectSpecialization($event)">
+                        <mat-option *ngFor="let specialization of specializations" value={{specialization.id}}>
+                            {{specialization.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="doctorFormGroup" [optional]="isOptional">
+            <ng-template matStepLabel>Select doctor</ng-template>
+            <form [formGroup]="doctorFormGroup">
+                <div class="container">
+                    <mat-form-field>
+                        <mat-label>Select doctor*</mat-label>
+                        <mat-select placeholder="Select doctor" place id="chosenDoctor" name="chosenDoctor"
+                            formControlName="chosenDoctor" (selectionChange)="getDoctor($event)">
+                            <mat-option *ngFor="let doctor of searchDoctors" value={{doctor.id}}>
+                                {{doctor.fullName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </form>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Select appointment</ng-template>
+            <button mat-raised-button color="primary" style="margin-top: 30px;" (click)="submit()">Submit</button>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>
+
+<div class="container" id="tableContainer">
+    <table mat-table [dataSource]="availableAppointments" class="mat-elevation-z8">
+        <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element; index as i"> {{i+1}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.start | date: 'dd/MM/yyyy'}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Time">
+        <th mat-header-cell *matHeaderCellDef> Time </th>
+        <td mat-cell *matCellDef="let element"> {{element.start | date : 'shortTime'}} - {{element.end | date : 'shortTime'}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="#">
+            <th mat-header-cell *matHeaderCellDef> # </th>
+            <td mat-cell *matCellDef="let element"> 
+                <button mat-raised-button color="primary" id="button" (click)="schedule(element)">Schedule</button>
+            </td>
+            </ng-container>
+    
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

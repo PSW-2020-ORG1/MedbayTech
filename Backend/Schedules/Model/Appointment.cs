@@ -27,7 +27,8 @@ namespace Model.Schedule
         public bool Urgent { get; set; }
         public bool Deleted { get; set; }
         public bool Finished { get; set; }
-        public bool CanceledByPatient { get; set; }
+        public bool canceledByPatient { get; set; }
+
         [ForeignKey("Room")]
         public int RoomId { get;  set; }
         public virtual Room Room { get; set; }
@@ -59,8 +60,10 @@ namespace Model.Schedule
             Doctor = doctor;
             DoctorId = doctor.Id;
         }
-
-     
+        public bool isOccupied(DateTime start, DateTime end)
+        {
+            return DateTime.Compare(Start, start) == 0 && DateTime.Compare(End, end) == 0;
+        }
         public override int GetHashCode()
         {
             return (Period.StartTime.Year + 76) * (Period.StartTime.Day + 13) * (Period.StartTime.Hour + 17)  * (Period.StartTime.Minute + 21) * (Period.StartTime.Second  + 15) * (Period.StartTime.Month + 47)

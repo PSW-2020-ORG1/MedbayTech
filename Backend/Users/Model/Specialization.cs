@@ -17,9 +17,9 @@ namespace Model.Users
         public string SpecializationName { get; set; }
 
 
-        /*[ForeignKey("Doctor")]
+        [ForeignKey("Doctor")]
         public string DoctorId { get; set; }
-        public virtual Doctor Doctor { get; set; }*/
+        public virtual Doctor Doctor { get; set; }
 
         public Specialization() { }
         public Specialization(int id, string specialization)

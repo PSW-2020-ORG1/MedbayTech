@@ -30,5 +30,32 @@ namespace WebApplication.Adapters
             }
             return appointmentList;
         }
+        
+        public static List<AvailableAppointmentsDTO> Transform(List<Appointment> appointments)
+        {
+            List<AvailableAppointmentsDTO> availableAppointmentsDTO = new List<AvailableAppointmentsDTO>();
+
+            foreach(Appointment appointmentIt in appointments)
+            {
+                AvailableAppointmentsDTO dto = new AvailableAppointmentsDTO
+                {
+                    Start = appointmentIt.Start,
+                    End = appointmentIt.End,
+                };
+                availableAppointmentsDTO.Add(dto);
+            }
+            return availableAppointmentsDTO;
+        }
+
+        public static Appointment ScheduleAppointmentDTOToAppointment(ScheduleAppointmentDTO dto)
+        {
+            return new Appointment
+            {
+                DoctorId = dto.DoctorId,
+                Start = dto.StartTime,
+                End = dto.EndTime,
+                RoomId = 1
+            };
+        }
     }
 }

@@ -23,11 +23,16 @@ export const environment = {
   medicalRecord : 'api/medicalRecord',
   prescriptionSimpleSearch : 'api/prescription',
   reportSimpleSearch : 'api/report',
-  appointment : 'api/appointment',
   allSurveyableAppointments : 'allSurveyableAppointments',
   allOtherAppointments : 'allOtherAppointments',
   allCancelableAppointments : 'allCancelableAppointments',
-  cancelAppointment : 'cancelAppointment'
+  cancelAppointment : 'cancelAppointment',
+  allSpecializations : 'api/specialization',
+  doctorsBySpecialization : "specialization",
+  appointments : 'api/appointment',
+  availableStrategy : 'availableStrategy',
+  availableStandard : 'available',
+  scheduleAppointment : 'schedule'
 };
 
 /*

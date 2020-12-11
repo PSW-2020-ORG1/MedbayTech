@@ -28,7 +28,6 @@ namespace Backend.Schedules.Repository.MySqlRepository
         {
             List<Appointment> patientAppointments = new List<Appointment>();
             List<Appointment> appointments = GetAll().ToList();
-
             foreach (Appointment a in appointments) 
             {
                 if (a.MedicalRecord.PatientId.Equals(Id)) 
@@ -36,8 +35,12 @@ namespace Backend.Schedules.Repository.MySqlRepository
                     patientAppointments.Add(a);
                 }
             }
-
             return patientAppointments;
+        }
+
+        public IEnumerable<Appointment> GetBy(string doctorId, DateTime date)
+        {
+            return GetAll().Where(a => a.DoctorId.Equals(doctorId) && a.Start.Date.CompareTo(date.Date) == 0);
         }
 
         public Dictionary<int, Appointment> GetScheduledFromToday()

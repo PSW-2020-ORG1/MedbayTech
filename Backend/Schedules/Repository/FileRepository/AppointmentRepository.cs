@@ -130,5 +130,10 @@ namespace Repository.ScheduleRepository
         {
             throw new NotImplementedException();
         }
+        
+        public IEnumerable<Appointment> GetBy(string doctorId, DateTime date)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

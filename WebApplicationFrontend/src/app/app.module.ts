@@ -29,6 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 
@@ -54,6 +55,8 @@ import { PrescriptionSimpleSearchComponent } from './search/prescription-simple-
 import { ReportSimpleSearchComponent } from './search/report-simple-search/report-simple-search.component';
 import { ObserveAppointmentComponent } from './appointment/observe-appointment/observe-appointment.component';
 import { AppointmentService } from './service/appointment/appointment.service';
+import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
+import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +73,8 @@ import { AppointmentService } from './service/appointment/appointment.service';
     PrescriptionSimpleSearchComponent,
     ReportSimpleSearchComponent,
     ObserveAppointmentComponent,
+    SchedulingComponent,
+    RecommendationComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +97,7 @@ import { AppointmentService } from './service/appointment/appointment.service';
     MatTableModule,
     RouterModule,
     MatSelectModule,
+    MatStepperModule,
     MatNativeDateModule,
     FormsModule,
     MatIconModule,
@@ -105,6 +111,7 @@ import { AppointmentService } from './service/appointment/appointment.service';
     MatRadioModule,
     MatInputModule,
     MatSelectModule,
+    MatStepperModule,
     ToastrModule.forRoot(),
 
     
