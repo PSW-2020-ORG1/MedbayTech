@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -28,10 +28,9 @@ namespace Model
         private int mySqlConnectionPort = 3306;
         private string mySqlConnectionUid = "root";
         private string mySqlConnectionPassword = "root";
-        private string mySqlDatabaseName = "newdb6";
+        private string mySqlDatabaseName = "newdb";
         private string mySqlHostAddress = "localhost";
 
-        public DbSet<EquipmentType> EquipmentTypes { get; set; }
         public DbSet<MedicationUsage> MedicationUsages { get; set; }
         public DbSet<MedicationUsageReport> MedicationUsageReports { get; set; }
         public DbSet<Pharmacy> Pharmacies { get; set; }
@@ -420,7 +419,7 @@ namespace Model
            
 
             modelBuilder.Entity<Specialization>().HasData(
-                new Specialization { Id = 1, SpecializationName = "Interna medicina"/*, DoctorId = "2406978890047"*/},
+                new Specialization { Id = 1, SpecializationName = "Interna medicina", DoctorId = "2406978890047"},
                 new Specialization { Id = 2, SpecializationName = "Hirurgija" }
             );
 

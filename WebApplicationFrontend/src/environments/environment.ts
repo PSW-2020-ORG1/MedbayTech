@@ -27,6 +27,7 @@ export const environment = {
   doctorsBySpecialization : "specialization",
   appointments : 'api/appointment',
   availableStrategy : 'availableStrategy',
+  availableStandard : 'available',
   scheduleAppointment : 'schedule'
 };
 

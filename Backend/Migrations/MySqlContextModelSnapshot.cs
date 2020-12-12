@@ -5317,6 +5317,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
+                            DoctorId = "2406978890047",
                             SpecializationName = "Interna medicina"
                         },
                         new
@@ -6336,7 +6337,7 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Model.Users.Specialization", b =>
                 {
-                    b.HasOne("Model.Users.Doctor", null)
+                    b.HasOne("Model.Users.Doctor", "Doctor")
                         .WithMany("Specializations")
                         .HasForeignKey("DoctorId");
                 });

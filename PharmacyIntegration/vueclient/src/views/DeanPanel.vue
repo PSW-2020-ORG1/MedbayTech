@@ -31,4 +31,5 @@ export default {
         min-height: 100vh;
         background-color: #fafafa;
     }
+
 </style>

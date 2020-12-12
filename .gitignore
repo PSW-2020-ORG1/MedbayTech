@@ -34,3 +34,6 @@ msbuild.wrn
 # Pharmacy Integration
 GeneratedUsageReports/
 node_modules/
+
+#Backend
+Migrations/
