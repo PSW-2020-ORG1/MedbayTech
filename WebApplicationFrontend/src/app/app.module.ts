@@ -53,6 +53,7 @@ import {MedicalRecordComponent} from './medical-record/medical-record.component'
 import {MedicalRecordService} from './service/medicalRecord/medicalRecord.service';
 import { PrescriptionSimpleSearchComponent } from './search/prescription-simple-search/prescription-simple-search.component';
 import { ReportSimpleSearchComponent } from './search/report-simple-search/report-simple-search.component';
+import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
 
 @NgModule({
@@ -69,6 +70,7 @@ import { RecommendationComponent } from './appointment/recommendation/recommenda
     MedicalRecordComponent,
     PrescriptionSimpleSearchComponent,
     ReportSimpleSearchComponent,
+    SchedulingComponent,
     RecommendationComponent,
   ],
   imports: [
@@ -106,6 +108,7 @@ import { RecommendationComponent } from './appointment/recommendation/recommenda
     MatRadioModule,
     MatInputModule,
     MatSelectModule,
+    MatStepperModule,
     ToastrModule.forRoot(),
 
     

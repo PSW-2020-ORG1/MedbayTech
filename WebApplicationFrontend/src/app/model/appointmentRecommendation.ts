@@ -1,5 +1,4 @@
 
-
 export class AppointmentRecommendation {
     public startInterval : Date;
     public endInterval : Date;

@@ -29,7 +29,7 @@ namespace Model
         private int mySqlConnectionPort = 3306;
         private string mySqlConnectionUid = "root";
         private string mySqlConnectionPassword = "root";
-        private string mySqlDatabaseName = "newdb8";
+        private string mySqlDatabaseName = "newdb";
         private string mySqlHostAddress = "localhost";
 
         public DbSet<MedicationUsage> MedicationUsages { get; set; }
@@ -432,7 +432,6 @@ namespace Model
 
             modelBuilder.Entity<Specialization>().HasData(
                 new Specialization { Id = 1, SpecializationName = "Interna medicina"},
-                new Specialization { Id = 2, SpecializationName = "Interna medicina"},
                 new Specialization { Id = 3, SpecializationName = "Hirurgija" }
             );
 

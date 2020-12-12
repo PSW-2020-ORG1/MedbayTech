@@ -84,6 +84,7 @@ namespace Backend.Schedules.Service
                 if (appointment != null && !appointment.canceledByPatient)
                     available.Remove(appointmentIt);
             }
+
             return available;
         }
         public List<Appointment> GetByDoctorAndDate(string doctorId, DateTime date)

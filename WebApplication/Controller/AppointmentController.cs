@@ -35,15 +35,15 @@ namespace WebApplication.Controller
         public IActionResult Get()
         {
             List<Appointment> appointments = _appointmentService.InitializeAppointments("2406978890047", new DateTime(2020, 12, 5));
-            List<AvailableAppointmentsDTO> dto = AppointmentAdapter.Transform(appointments);
+            List<AvailableAppointmentsDTO> dto = AppointmentAdapter.AppointmentsToAvailableAppointmentsDTO(appointments);
             return Ok(dto);
         }
 
-        [HttpGet("available")]
-        public IActionResult GetAvailable()
+        [HttpPost("available")]
+        public IActionResult GetAvailable(SearchAppointmentsStandardDTO appointmentsDTO)
         {
-            List<Appointment> appointments = _appointmentService.GetByDoctorAndDate("2406978890047", new DateTime(2020, 12, 5)).ToList();
-            List<AvailableAppointmentsDTO> dto = AppointmentAdapter.Transform(appointments);
+            List<Appointment> appointments = _appointmentService.GetAvailableBy(appointmentsDTO.DoctorId, appointmentsDTO.Date).ToList();
+            List<AvailableAppointmentsDTO> dto = AppointmentAdapter.AppointmentsToAvailableAppointmentsDTO(appointments);
             return Ok(dto);
         }
 
@@ -53,7 +53,7 @@ namespace WebApplication.Controller
             PriorityParameters parameters =
                 AppointmentAdapter.SearchAppointmentsDTOToPriorityParameters(appoitmentsDTO);
             List<Appointment> appointments = _appointmentService.GetAvailableByStrategy(parameters).ToList();
-            List<AvailableAppointmentsDTO> dto = AppointmentAdapter.Transform(appointments);
+            List<AvailableAppointmentsDTO> dto = AppointmentAdapter.AppointmentsToAvailableAppointmentsDTOWithDoctor(appointments);
             return Ok(dto);
         }
 

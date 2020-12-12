@@ -17,21 +17,24 @@ namespace Model.Users
         public int Id { get; set; }
         public string SpecializationName { get; set; }
 
-        /*[ForeignKey("Doctor")]
-        public string DoctorId { get; set; }
-        public virtual Doctor Doctor { get; set; }*/
-
-        public Specialization() { }
-        public Specialization(int id, string specialization)
+        public Specialization(int id, string name)
         {
             Id = id;
-            this.SpecializationName = specialization;
+            SpecializationName = name;
         }
 
+        public Specialization()
+        {
+
+        }
         public int GetId()
         {
             return Id;
         }
+
+        /*[ForeignKey("Doctor")]
+        public string DoctorId { get; set; }
+        public virtual Doctor Doctor { get; set; }*/
 
         public void SetId(int id)
         {

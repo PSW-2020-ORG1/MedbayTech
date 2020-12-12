@@ -87,7 +87,7 @@ namespace UnitTests.Schedules
             var workDay = appointmentService.GetAvailableBy("2407978890045", new DateTime(2020, 12, 20));
             workDay.Count.ShouldBe(14);
         }
-        
+
 
         [Fact]
         public void Schedule_appointment_success()
@@ -298,18 +298,18 @@ namespace UnitTests.Schedules
             List<DoctorWorkDay> doctorWorkDays = new List<DoctorWorkDay>();
 
             DoctorWorkDay dw1 = new DoctorWorkDay
-                {Id = 1, Date = new DateTime(2020, 12, 5), StartTime = 8, EndTime = 15, DoctorId = "2406978890047"};
+            { Id = 1, Date = new DateTime(2020, 12, 5), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" };
             DoctorWorkDay dw2 = new DoctorWorkDay
-                {Id = 2, Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2406978890047"};
+            { Id = 2, Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" };
             DoctorWorkDay dw3 = new DoctorWorkDay
-                {Id = 3, Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2406978890047"};
+            { Id = 3, Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" };
             DoctorWorkDay dw4 = new DoctorWorkDay
-                {Id = 4, Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2406978890047"};
+            { Id = 4, Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" };
             DoctorWorkDay dw5 = new DoctorWorkDay
-                {Id = 5, Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2406978890047"};
+            { Id = 5, Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" };
 
             DoctorWorkDay dw6 = new DoctorWorkDay
-                {Id = 5, Date = new DateTime(2020, 12, 20), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" };
+            { Id = 5, Date = new DateTime(2020, 12, 20), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" };
 
             doctorWorkDays.Add(dw6);
             doctorWorkDays.Add(dw1);
@@ -317,7 +317,7 @@ namespace UnitTests.Schedules
             doctorWorkDays.Add(dw3);
             doctorWorkDays.Add(dw4);
             doctorWorkDays.Add(dw5);
-            
+
 
 
             return doctorWorkDays;
@@ -381,7 +381,7 @@ namespace UnitTests.Schedules
                 DoctorId = "2406978890047",
                 WeeklyAppointmentReportId = 1
             };
-            
+
             appointments.Add(ap1);
             appointments.Add(ap2);
             appointments.Add(ap3);
