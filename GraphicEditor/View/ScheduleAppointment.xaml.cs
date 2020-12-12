@@ -72,8 +72,8 @@ namespace GraphicEditor.View
 
         private async void SaveToDataBase()
         {
-            SearchAppointmentsDTO searchAppointmentsDTO = new SearchAppointmentsDTO() {operation = 6, appointment = this.appointment };
-            string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(searchAppointmentsDTO);
+            AppointmentFilterDTO appointmentFilterDTO = new AppointmentFilterDTO() {operation = 6, appointment = this.appointment };
+            string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentFilterDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointment/", content);

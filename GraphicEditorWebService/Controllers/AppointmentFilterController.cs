@@ -21,28 +21,29 @@ namespace GraphicEditorWebService.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(SearchAppointmentsDTO searchAppointmentsDTO)
+        public IActionResult Post(AppointmentFilterDTO appointmentFilterDTO)
         {
-            if (searchAppointmentsDTO.operation == 2)
+            if (appointmentFilterDTO.operation == 2)
             {
-                return Ok(_appointmentFilterService.GetAvailableByPriorityTimeInterval(searchAppointmentsDTO.StartInterval,searchAppointmentsDTO.EndInterval));
+                return Ok(_appointmentFilterService.GetAvailableByPriorityTimeInterval(appointmentFilterDTO.StartInterval, appointmentFilterDTO.EndInterval));
             }
-            else if (searchAppointmentsDTO.operation == 3 && searchAppointmentsDTO.HospitalEquipmentId != -1)
+            else if (appointmentFilterDTO.operation == 3 && appointmentFilterDTO.HospitalEquipmentId != -1)
             {
-                return Ok(_appointmentFilterService.GetAvailableByDoctorTimeIntervalAndEquipment(searchAppointmentsDTO.DoctorId, searchAppointmentsDTO.HospitalEquipmentId, searchAppointmentsDTO.StartInterval, searchAppointmentsDTO.EndInterval, "nopriority"));
+                return Ok(_appointmentFilterService.GetAvailableByDoctorTimeIntervalAndEquipment(appointmentFilterDTO.DoctorId, appointmentFilterDTO.HospitalEquipmentId, appointmentFilterDTO.StartInterval, appointmentFilterDTO.EndInterval, "nopriority"));
             }
-            else if (searchAppointmentsDTO.operation == 4 && searchAppointmentsDTO.HospitalEquipmentId != -1)
+            else if (appointmentFilterDTO.operation == 4 && appointmentFilterDTO.HospitalEquipmentId != -1)
             {
-                return Ok(_appointmentFilterService.GetAvailableByDoctorTimeIntervalAndEquipment(searchAppointmentsDTO.DoctorId, searchAppointmentsDTO.HospitalEquipmentId, searchAppointmentsDTO.StartInterval, searchAppointmentsDTO.EndInterval, "doctor"));
+                return Ok(_appointmentFilterService.GetAvailableByDoctorTimeIntervalAndEquipment(appointmentFilterDTO.DoctorId, appointmentFilterDTO.HospitalEquipmentId, appointmentFilterDTO.StartInterval, appointmentFilterDTO.EndInterval, "doctor"));
             }
-            else if (searchAppointmentsDTO.operation == 5 && searchAppointmentsDTO.HospitalEquipmentId != -1)
+            else if (appointmentFilterDTO.operation == 5 && appointmentFilterDTO.HospitalEquipmentId != -1)
             {
-                return Ok(_appointmentFilterService.GetAvailableByDoctorTimeIntervalAndEquipment(searchAppointmentsDTO.DoctorId, searchAppointmentsDTO.HospitalEquipmentId, searchAppointmentsDTO.StartInterval, searchAppointmentsDTO.EndInterval, "timeinterval"));
+                return Ok(_appointmentFilterService.GetAvailableByDoctorTimeIntervalAndEquipment(appointmentFilterDTO.DoctorId, appointmentFilterDTO.HospitalEquipmentId, appointmentFilterDTO.StartInterval, appointmentFilterDTO.EndInterval, "timeinterval"));
             }
-            else
+            else if (appointmentFilterDTO.operation == 6)
             {
-                return Ok();
+                return Ok(_appointmentFilterService.AddRoomToAppointment(appointmentFilterDTO.appointments));
             }
+            else return Ok();
         }
     }
 }

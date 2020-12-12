@@ -79,53 +79,53 @@ namespace GraphicEditor.View
 
         private void searchDataBaseForAppointment(Doctor doctor, EquipmentType hospitalEquipment, DateTime startTime, DateTime endTime)
         {
-            SearchAppointmentsDTO searchAppointmentsDTO;
+            AppointmentFilterDTO appointmentFilterDTO;
             if ((bool)radioButtonDoctor.IsChecked)
             {
                 if (hospitalEquipment == null)
                 {
-                    searchAppointmentsDTO = new SearchAppointmentsDTO() { operation = 1, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
-                    HttpRequestToAppointmentController(searchAppointmentsDTO);
+                    appointmentFilterDTO = new AppointmentFilterDTO() { operation = 1, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
+                    HttpRequestToAppointmentController(appointmentFilterDTO);
                 }
                 else
                 {
-                    searchAppointmentsDTO = new SearchAppointmentsDTO() { operation = 4, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
-                    HttpRequestToAppointmentFilterController(searchAppointmentsDTO);
+                    appointmentFilterDTO = new AppointmentFilterDTO() { operation = 4, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
+                    HttpRequestToAppointmentFilterController(appointmentFilterDTO);
                 }
             }
             else if ((bool)radioButtonInterval.IsChecked)
             {
                 if (hospitalEquipment == null)
                 {
-                    searchAppointmentsDTO = new SearchAppointmentsDTO() { operation = 2, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
-                    HttpRequestToAppointmentFilterController(searchAppointmentsDTO);
+                    appointmentFilterDTO = new AppointmentFilterDTO() { operation = 2, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
+                    HttpRequestToAppointmentFilterController(appointmentFilterDTO);
                 }
                 else
                 {
-                    searchAppointmentsDTO = new SearchAppointmentsDTO() { operation = 5, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
-                    HttpRequestToAppointmentFilterController(searchAppointmentsDTO);
+                    appointmentFilterDTO = new AppointmentFilterDTO() { operation = 5, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
+                    HttpRequestToAppointmentFilterController(appointmentFilterDTO);
                 }
             }
             else
             {
                 if (hospitalEquipment == null)
                 {
-                    searchAppointmentsDTO = new SearchAppointmentsDTO() { operation = 0, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
-                    HttpRequestToAppointmentController(searchAppointmentsDTO);
+                    appointmentFilterDTO = new AppointmentFilterDTO() { operation = 0, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
+                    HttpRequestToAppointmentController(appointmentFilterDTO);
                 }
                 else
                 {
-                    searchAppointmentsDTO = new SearchAppointmentsDTO() { operation = 3, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
-                    HttpRequestToAppointmentFilterController(searchAppointmentsDTO);
+                    appointmentFilterDTO = new AppointmentFilterDTO() { operation = 3, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
+                    HttpRequestToAppointmentFilterController(appointmentFilterDTO);
                 }
             }
 
             
         }
 
-        private async void HttpRequestToAppointmentFilterController(SearchAppointmentsDTO searchAppointmentsDTO)
+        private async void HttpRequestToAppointmentFilterController(AppointmentFilterDTO appointmentFilterDTO)
         {
-            string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(searchAppointmentsDTO);
+            string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentFilterDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointmentfilter/", content);
@@ -135,15 +135,16 @@ namespace GraphicEditor.View
             dataGridAppointment.ItemsSource = appointments;
         }
 
-        private async void HttpRequestToAppointmentController(SearchAppointmentsDTO searchAppointmentsDTO)
+        private async void HttpRequestToAppointmentController(AppointmentFilterDTO appointmentFilterDTO)
         {
-            string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(searchAppointmentsDTO);
+            string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentFilterDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointment/", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             appointments = new List<Appointment>(JsonConvert.DeserializeObject<List<Appointment>>(responseBody));
+            HttpRequestToAppointmentFilterController(new AppointmentFilterDTO { operation = 6, appointments = appointments });
             dataGridAppointment.ItemsSource = appointments;
         }
 

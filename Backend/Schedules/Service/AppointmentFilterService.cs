@@ -39,15 +39,15 @@ namespace Backend.Schedules.Service
             {
                 allAppointments = _appointmentService.GetAvailableByDoctorAndTimeInterval(doctorId, startTime, endTime);
             }
-            allAppointments = AddRoomToAppointment(allAppointments, doctorId);
+            allAppointments = AddRoomToAppointment(allAppointments);
             return FilterAllApointments(allAppointments, hospitalEquipmentId);
         }
 
-        private List<Appointment> AddRoomToAppointment(List<Appointment> appointments, string doctorId)
+        public List<Appointment> AddRoomToAppointment(List<Appointment> appointments)
         {
-            Doctor doctor = _doctorRepository.GetObject(doctorId);
             foreach (Appointment appointment in appointments)
             {
+                Doctor doctor = _doctorRepository.GetObject(appointment.DoctorId);
                 appointment.RoomId = doctor.ExaminationRoomId;
                 appointment.Room = doctor.ExaminationRoom;
             }
@@ -81,6 +81,7 @@ namespace Backend.Schedules.Service
             {
                 if (appointment.Start >= startTime && appointment.End <= endTime) appointments.Add(appointment);
             }
+            AddRoomToAppointment(appointments);
             return appointments;
         }
     }

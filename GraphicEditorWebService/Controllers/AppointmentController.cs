@@ -35,19 +35,19 @@ namespace GraphicEditorWebService.Controllers
 
         }
         [HttpPost]
-        public IActionResult Post(SearchAppointmentsDTO searchAppointmentsDTO)
+        public IActionResult Post(AppointmentFilterDTO appointmentFilterDTO)
         {
-            if(searchAppointmentsDTO.operation == 0)
+            if(appointmentFilterDTO.operation == 0)
             {
-                return Ok(_appointmentService.GetAvailableByDoctorAndTimeInterval(searchAppointmentsDTO.DoctorId, searchAppointmentsDTO.StartInterval, searchAppointmentsDTO.EndInterval));
+                return Ok(_appointmentService.GetAvailableByDoctorAndTimeInterval(appointmentFilterDTO.DoctorId, appointmentFilterDTO.StartInterval, appointmentFilterDTO.EndInterval));
             }
-            else if(searchAppointmentsDTO.operation == 1)
+            else if(appointmentFilterDTO.operation == 1)
             {
-                return Ok(_appointmentService.GetAvailableByPriorityDoctor(searchAppointmentsDTO.DoctorId, searchAppointmentsDTO.StartInterval, searchAppointmentsDTO.EndInterval));
+                return Ok(_appointmentService.GetAvailableByPriorityDoctor(appointmentFilterDTO.DoctorId, appointmentFilterDTO.StartInterval, appointmentFilterDTO.EndInterval));
             }
             else
             {
-                return Ok(_appointmentService.ScheduleAppointment(searchAppointmentsDTO.appointment));
+                return Ok(_appointmentService.ScheduleAppointment(appointmentFilterDTO.appointment));
             }
         }
     }
