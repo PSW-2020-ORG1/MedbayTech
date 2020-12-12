@@ -8,5 +8,6 @@ namespace Backend.Users.Service.Interfaces
     public interface IPatientService
     {
         Patient UpdateStatus(string patientId);
+        List<Patient> GetPatientsThatShouldBeBlocked();
     }
 }

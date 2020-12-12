@@ -24,7 +24,8 @@ export const environment = {
   prescriptionSimpleSearch : 'api/prescription',
   reportSimpleSearch : 'api/report',
   patient: 'api/patient',
-  updatePatientStatus: 'updatePatientStatus'
+  updatePatientStatus: 'updatePatientStatus',
+  maliciousPatients: 'maliciousPatients'
 };
 
 /*

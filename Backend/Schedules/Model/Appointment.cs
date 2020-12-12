@@ -20,27 +20,35 @@ namespace Model.Schedule
         public int Id { get; set; }
         [NotMapped]
         public Period Period { get; protected set; }
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
+        public DateTime CancelationDate { get; set; }
         public TypeOfAppointment TypeOfAppointment { get; set; }
         public string ShortDescription { get; set; }
         public bool Urgent { get; set; }
         public bool Deleted { get; set; }
         public bool Finished { get; set; }
+        public bool CanceledByPatient { get; set; }
+
         [ForeignKey("Room")]
-        public int RoomId { get;  set; }
+        public int RoomId { get; set; }
         public virtual Room Room { get; set; }
         [ForeignKey("MedicalRecord")]
-        public int MedicalRecordId { get;  set; }
+        public int MedicalRecordId { get; set; }
         public virtual MedicalRecord MedicalRecord { get; set; }
         [ForeignKey("Doctor")]
-        public string DoctorId { get;  set; }
+        public string DoctorId { get; set; }
         public virtual Doctor Doctor { get; set; }
+        [ForeignKey("Patient")]
+        public string PatientId { get; set; }
+        public virtual Patient Patient { get; set; }
 
-        public int WeeklyAppointmentReportId { get;  set; }
+        public int WeeklyAppointmentReportId { get; set; }
 
         public Appointment() { }
 
         public Appointment(int id, Period period, TypeOfAppointment type, string shortDescription,
-            bool urgent, bool deleted, Room room, MedicalRecord medicalRecord, Doctor doctor)
+            bool urgent, bool deleted, Room room, MedicalRecord medicalRecord, Doctor doctor, Patient patient)
         {
             Id = id;
             Period = period;
@@ -55,13 +63,17 @@ namespace Model.Schedule
             MedicalRecordId = medicalRecord.Id;
             Doctor = doctor;
             DoctorId = doctor.Id;
+            Patient = patient;
+            PatientId = patient.Id;
         }
-
-     
+        public bool isOccupied(DateTime start, DateTime end)
+        {
+            return DateTime.Compare(Start, start) == 0 && DateTime.Compare(End, end) == 0;
+        }
         public override int GetHashCode()
         {
-            return (Period.StartTime.Year + 76) * (Period.StartTime.Day + 13) * (Period.StartTime.Hour + 17)  * (Period.StartTime.Minute + 21) * (Period.StartTime.Second  + 15) * (Period.StartTime.Month + 47)
-                + Doctor.WorkersID*25;
+            return (Period.StartTime.Year + 76) * (Period.StartTime.Day + 13) * (Period.StartTime.Hour + 17) * (Period.StartTime.Minute + 21) * (Period.StartTime.Second + 15) * (Period.StartTime.Month + 47)
+                + Doctor.WorkersID * 25;
         }
 
         public int GetId()

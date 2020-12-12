@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MaliciousPatient } from 'src/app/model/maliciousPatient';
 import { UpdatePatientBlockedStatus } from 'src/app/model/updatePatientBlockedStatus';
 import { PatientService } from 'src/app/service/patient/patient.service';
 
@@ -10,12 +11,13 @@ import { PatientService } from 'src/app/service/patient/patient.service';
 export class BlockMaliciousUsersComponent implements OnInit {
 
   selectedRow: number;
+  public maliciousPatients: MaliciousPatient[] = new Array();
   
-  dataSource = [{ id: "3012235234123", username: "stefan23", name: "Stefan", surname: "Petrovic"},
-                { id: "2351235212421", username: "marko998", name: "Marko", surname: "Markovic"}];
+ 
 
   constructor(private service: PatientService) {
-    this.dataSource = this.dataSource.map(item => ({
+    this.getMaliciousPatients();
+    this.maliciousPatients = this.maliciousPatients.map(item => ({
       ...item,
       isSelected: false,
       clicked: false
@@ -23,11 +25,19 @@ export class BlockMaliciousUsersComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    
   }
 
-  updateStatus(patientId, element) { 
+  updateStatus(patientId) { 
     this.service.updatePatientStatus(new UpdatePatientBlockedStatus(patientId)).subscribe();
     //location.reload();
+  }
+
+  getMaliciousPatients(){
+    this.service.getAllMaliciousPatients().subscribe(data => 
+      {
+        this.maliciousPatients = data
+      });
   }
 
  
