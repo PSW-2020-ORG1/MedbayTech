@@ -68,6 +68,22 @@ namespace MedbayTechUnitTests
             var gotAppointments = service.GetAvailableByPriorityDoctor("2406978890047", new DateTime(2020, 12, 6, 8, 0, 0), new DateTime(2020, 12, 6, 15, 0, 0));
             gotAppointments.ShouldNotBeEmpty();
         }
+        [Fact]
+        public void GetAvailableAppointmentByPriorityEquipmentSuccess()
+        {   
+            AppointmentService appService = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
+            AppointmentFilterService filterService = new AppointmentFilterService(appService, CreateStubRepositoryDoctor(), CreateStupRepositoryEquipment());
+            var gotAppointments = filterService.GetAvailableByDoctorTimeIntervalAndEquipment("2406978890047", 1, new DateTime(2020, 12, 5, 8, 0, 0), new DateTime(2020, 12, 5, 8, 30, 0), "doctor");
+            gotAppointments.ShouldNotBeEmpty();
+        }
+        [Fact]
+        public void GetAvailableAppointmentByPriorityEquipmentFail()
+        {
+            AppointmentService appService = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
+            AppointmentFilterService filterService = new AppointmentFilterService(appService, CreateStubRepositoryDoctor(), CreateStupRepositoryEquipment());
+            var gotAppointments = filterService.GetAvailableByDoctorTimeIntervalAndEquipment("2406978890047", 1, new DateTime(2020, 12, 10, 8, 0, 0), new DateTime(2020, 12, 10, 8, 30, 0), "doctor");
+            gotAppointments.IsNullOrEmpty();
+        }
 
         public static IAppointmentRepository CreateStubRepositoryAppointment()
         {
@@ -216,7 +232,7 @@ namespace MedbayTechUnitTests
                 TypeOfAppointment = TypeOfAppointment.Examination,
                 ShortDescription = "standard appointment",
                 Start = new DateTime(2020, 12, 5, 8, 0, 0),
-                End = new DateTime(2020, 12, 5, 8, 30, 0),
+                End = new DateTime(2020, 12, 5, 8, 30, 0), 
                 Urgent = true,
                 Deleted = false,
                 Finished = true,
