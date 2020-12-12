@@ -45,8 +45,6 @@
         flex-direction: column;
         justify-content: flex-start;
         height: 100%;
-        width: 15vw;
-        position: fixed;
         z-index: 1;
         top: 0;
         left: 0;
