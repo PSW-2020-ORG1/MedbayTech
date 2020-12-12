@@ -8,6 +8,10 @@ namespace Backend.Utils.DTO
     {
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
+
+        public string DoctorFullName { get; set; }
+
+        public string DoctorId { get; set; }
         public AvailableAppointmentsDTO() { }
     }
 }

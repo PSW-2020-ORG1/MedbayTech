@@ -2,17 +2,15 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Model;
 
 namespace Backend.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20201201101237_test")]
-    partial class test
+    partial class MySqlContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,7 +153,7 @@ namespace Backend.Migrations
                     b.Property<int>("MedicalRecordId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MedicationId")
+                    b.Property<int?>("MedicationId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -171,15 +169,13 @@ namespace Backend.Migrations
                         {
                             Id = 1,
                             Allergen = "Polen",
-                            MedicalRecordId = 1,
-                            MedicationId = 1
+                            MedicalRecordId = 1
                         },
                         new
                         {
                             Id = 2,
                             Allergen = "Prasina",
-                            MedicalRecordId = 1,
-                            MedicationId = 2
+                            MedicalRecordId = 1
                         });
                 });
 
@@ -192,7 +188,7 @@ namespace Backend.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("double");
 
-                    b.Property<int>("MedicationId")
+                    b.Property<int?>("MedicationId")
                         .HasColumnType("int");
 
                     b.Property<int>("MedicationIngredientId")
@@ -211,14 +207,12 @@ namespace Backend.Migrations
                         {
                             Id = 1,
                             Amount = 100.0,
-                            MedicationId = 1,
                             MedicationIngredientId = 1
                         },
                         new
                         {
                             Id = 2,
                             Amount = 120.0,
-                            MedicationId = 1,
                             MedicationIngredientId = 2
                         });
                 });
@@ -238,9 +232,6 @@ namespace Backend.Migrations
                     b.Property<string>("Med")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("MedicalRecordId")
-                        .HasColumnType("int");
-
                     b.Property<int>("MedicationCategoryId")
                         .HasColumnType("int");
 
@@ -258,6 +249,8 @@ namespace Backend.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MedicationCategoryId");
+
                     b.HasIndex("MedicationId");
 
                     b.HasIndex("RoomId");
@@ -271,7 +264,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "400mg",
                             Med = "Brufen",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 10,
                             RoomId = 1111,
@@ -283,7 +275,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "20mg",
                             Med = "Xanax",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1111,
@@ -295,7 +286,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "500mg",
                             Med = "Panadon",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1111,
@@ -307,7 +297,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "30mg",
                             Med = "Diazepam",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1111,
@@ -319,7 +308,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "200mg",
                             Med = "Andol",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1111,
@@ -331,7 +319,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "100mg",
                             Med = "Reglan",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1111,
@@ -343,7 +330,6 @@ namespace Backend.Migrations
                             Company = "Bosnalijek",
                             Dosage = "400mg",
                             Med = "Caffetin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1111,
@@ -355,7 +341,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "50mg",
                             Med = "Plavix",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1111,
@@ -367,7 +352,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "25mg",
                             Med = "Ambien",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1111,
@@ -379,7 +363,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "200mg",
                             Med = "Ranisan",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1111,
@@ -391,7 +374,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "50mg",
                             Med = "Vicodin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1112,
@@ -403,7 +385,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "40mg",
                             Med = "Adderall",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1112,
@@ -415,7 +396,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "100mg",
                             Med = "Hemomicin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1112,
@@ -427,7 +407,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "20mg",
                             Med = "Klonopin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1112,
@@ -439,7 +418,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "30mg",
                             Med = "Demerol",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1112,
@@ -451,7 +429,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "40mg",
                             Med = "OxyCotin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1112,
@@ -463,7 +440,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "60mg",
                             Med = "Percocet",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1112,
@@ -475,7 +451,6 @@ namespace Backend.Migrations
                             Company = "Bosnalijek",
                             Dosage = "80mg",
                             Med = "Ritalin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1112,
@@ -487,7 +462,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "100mg",
                             Med = "Eritromicin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1112,
@@ -499,7 +473,6 @@ namespace Backend.Migrations
                             Company = "Bosnalijek",
                             Dosage = "200mg",
                             Med = "Penicillin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1112,
@@ -511,7 +484,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "150mg",
                             Med = "Amoksicilin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1213,
@@ -523,7 +495,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "200mg",
                             Med = "Cefaleksin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1213,
@@ -535,7 +506,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "500mg",
                             Med = "Zoloft",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1213,
@@ -547,7 +517,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "40mg",
                             Med = "Lexilium",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1213,
@@ -559,7 +528,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "50mg",
                             Med = "Bensedin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1213,
@@ -571,7 +539,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "50mg",
                             Med = "Benedril",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1213,
@@ -583,7 +550,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "100mg",
                             Med = "Letrox",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1213,
@@ -595,7 +561,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "25mg",
                             Med = "Claritin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1213,
@@ -607,7 +572,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "500mg",
                             Med = "Flobian",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1213,
@@ -619,7 +583,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "75mg",
                             Med = "Lasix",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1213,
@@ -631,7 +594,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "200mg",
                             Med = "Brufen",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 10,
                             RoomId = 1214,
@@ -643,7 +605,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "40mg",
                             Med = "Xanax",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1214,
@@ -655,7 +616,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "200mg",
                             Med = "Panadon",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1214,
@@ -667,7 +627,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "60mg",
                             Med = "Diazepam",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1214,
@@ -679,7 +638,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "400mg",
                             Med = "Andol",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1214,
@@ -691,7 +649,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "50mg",
                             Med = "Vicodin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1214,
@@ -703,7 +660,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "80mg",
                             Med = "Adderall",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1214,
@@ -715,7 +671,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "100mg",
                             Med = "Hemomicin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1214,
@@ -727,7 +682,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "20mg",
                             Med = "Klonopin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1214,
@@ -739,7 +693,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "30mg",
                             Med = "Demerol",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 1214,
@@ -751,7 +704,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "400mg",
                             Med = "Brufen",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 10,
                             RoomId = 2102,
@@ -763,7 +715,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "20mg",
                             Med = "Xanax",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2102,
@@ -775,7 +726,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "500mg",
                             Med = "Panadon",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2102,
@@ -787,7 +737,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "30mg",
                             Med = "Diazepam",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2102,
@@ -799,7 +748,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "200mg",
                             Med = "Andol",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2102,
@@ -811,7 +759,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "100mg",
                             Med = "Reglan",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2102,
@@ -823,7 +770,6 @@ namespace Backend.Migrations
                             Company = "Bosnalijek",
                             Dosage = "400mg",
                             Med = "Caffetin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2102,
@@ -835,7 +781,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "50mg",
                             Med = "Plavix",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2102,
@@ -847,7 +792,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "25mg",
                             Med = "Ambien",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2102,
@@ -859,7 +803,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "200mg",
                             Med = "Ranisan",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2102,
@@ -871,7 +814,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "50mg",
                             Med = "Vicodin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2103,
@@ -883,7 +825,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "40mg",
                             Med = "Adderall",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2103,
@@ -895,7 +836,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "100mg",
                             Med = "Hemomicin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2103,
@@ -907,7 +847,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "20mg",
                             Med = "Klonopin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2103,
@@ -919,7 +858,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "30mg",
                             Med = "Demerol",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2103,
@@ -931,7 +869,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "40mg",
                             Med = "OxyCotin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2103,
@@ -943,7 +880,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "60mg",
                             Med = "Percocet",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2103,
@@ -955,7 +891,6 @@ namespace Backend.Migrations
                             Company = "Bosnalijek",
                             Dosage = "80mg",
                             Med = "Ritalin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2103,
@@ -967,7 +902,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "100mg",
                             Med = "Eritromicin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2103,
@@ -979,7 +913,6 @@ namespace Backend.Migrations
                             Company = "Bosnalijek",
                             Dosage = "200mg",
                             Med = "Penicillin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2103,
@@ -991,7 +924,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "150mg",
                             Med = "Amoksicilin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2106,
@@ -1003,7 +935,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "200mg",
                             Med = "Cefaleksin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2106,
@@ -1015,7 +946,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "500mg",
                             Med = "Zoloft",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2106,
@@ -1027,7 +957,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "40mg",
                             Med = "Lexilium",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2106,
@@ -1039,7 +968,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "50mg",
                             Med = "Bensedin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2106,
@@ -1051,7 +979,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "100mg",
                             Med = "Letrox",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2106,
@@ -1063,7 +990,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "25mg",
                             Med = "Claritin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2106,
@@ -1075,7 +1001,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "500mg",
                             Med = "Flobian",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2106,
@@ -1087,7 +1012,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "75mg",
                             Med = "Lasix",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2106,
@@ -1099,7 +1023,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "200mg",
                             Med = "Brufen",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 10,
                             RoomId = 2106,
@@ -1111,7 +1034,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "40mg",
                             Med = "Xanax",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2107,
@@ -1123,7 +1045,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "200mg",
                             Med = "Panadon",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2107,
@@ -1135,7 +1056,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "60mg",
                             Med = "Diazepam",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2107,
@@ -1147,7 +1067,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "400mg",
                             Med = "Andol",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2107,
@@ -1159,7 +1078,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "50mg",
                             Med = "Vicodin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2107,
@@ -1171,7 +1089,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "80mg",
                             Med = "Adderall",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2107,
@@ -1183,7 +1100,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "100mg",
                             Med = "Hemomicin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2107,
@@ -1195,7 +1111,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "20mg",
                             Med = "Klonopin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2107,
@@ -1207,7 +1122,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "30mg",
                             Med = "Demerol",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2107,
@@ -1219,7 +1133,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "250mg",
                             Med = "Amoksicilin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2107,
@@ -1231,7 +1144,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "100mg",
                             Med = "Cefaleksin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2202,
@@ -1243,7 +1155,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "200mg",
                             Med = "Zoloft",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2202,
@@ -1255,7 +1166,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "80mg",
                             Med = "Lexilium",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2202,
@@ -1267,7 +1177,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "10mg",
                             Med = "Bensedin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2202,
@@ -1279,7 +1188,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "100mg",
                             Med = "Brufen",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 10,
                             RoomId = 2202,
@@ -1291,7 +1199,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "60mg",
                             Med = "Xanax",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2202,
@@ -1303,7 +1210,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "250mg",
                             Med = "Panadon",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2202,
@@ -1315,7 +1221,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "800mg",
                             Med = "Diazepam",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2202,
@@ -1327,7 +1232,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "150mg",
                             Med = "Andol",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2202,
@@ -1339,7 +1243,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "125mg",
                             Med = "Reglan",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2202,
@@ -1351,7 +1254,6 @@ namespace Backend.Migrations
                             Company = "Bosnalijek",
                             Dosage = "200mg",
                             Med = "Caffetin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2206,
@@ -1363,7 +1265,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "100mg",
                             Med = "Plavix",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2206,
@@ -1375,7 +1276,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "50mg",
                             Med = "Ambien",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2206,
@@ -1387,7 +1287,6 @@ namespace Backend.Migrations
                             Company = "Galenika",
                             Dosage = "100mg",
                             Med = "Ranisan",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2206,
@@ -1399,7 +1298,6 @@ namespace Backend.Migrations
                             Company = "Hemofarm",
                             Dosage = "60mg",
                             Med = "Demerol",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2206,
@@ -1411,7 +1309,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "25mg",
                             Med = "OxyCotin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2206,
@@ -1423,7 +1320,6 @@ namespace Backend.Migrations
                             Company = "Goodwill",
                             Dosage = "30mg",
                             Med = "Percocet",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2206,
@@ -1435,7 +1331,6 @@ namespace Backend.Migrations
                             Company = "Bosnalijek",
                             Dosage = "40mg",
                             Med = "Ritalin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2206,
@@ -1447,7 +1342,6 @@ namespace Backend.Migrations
                             Company = "Famar",
                             Dosage = "100mg",
                             Med = "Eritromicin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2206,
@@ -1459,7 +1353,6 @@ namespace Backend.Migrations
                             Company = "Bosnalijek",
                             Dosage = "100mg",
                             Med = "Penicillin",
-                            MedicalRecordId = 0,
                             MedicationCategoryId = 1,
                             Quantity = 15,
                             RoomId = 2206,
@@ -1476,16 +1369,10 @@ namespace Backend.Migrations
                     b.Property<string>("CategoryName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("MedicationId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SpecializationId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MedicationId")
-                        .IsUnique();
 
                     b.HasIndex("SpecializationId");
 
@@ -1495,8 +1382,13 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
+                            CategoryName = "Drug",
+                            SpecializationId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
                             CategoryName = "Kategorija1",
-                            MedicationId = 1,
                             SpecializationId = 1
                         });
                 });
@@ -1536,7 +1428,7 @@ namespace Backend.Migrations
                     b.Property<int>("Frequency")
                         .HasColumnType("int");
 
-                    b.Property<int>("MedicationId")
+                    b.Property<int?>("MedicationId")
                         .HasColumnType("int");
 
                     b.Property<int>("SideEffectsId")
@@ -1555,14 +1447,12 @@ namespace Backend.Migrations
                         {
                             Id = 1,
                             Frequency = 2,
-                            MedicationId = 1,
                             SideEffectsId = 1
                         },
                         new
                         {
                             Id = 2,
                             Frequency = 1,
-                            MedicationId = 1,
                             SideEffectsId = 1
                         });
                 });
@@ -1813,6 +1703,200 @@ namespace Backend.Migrations
                             MedicalRecordId = 1,
                             Name = "Male boginje"
                         });
+                });
+
+            modelBuilder.Entity("Backend.Reports.Model.MedicationUsage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("MedicationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MedicationUsageReportId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<int>("Usage")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MedicationId");
+
+                    b.HasIndex("MedicationUsageReportId");
+
+                    b.ToTable("MedicationUsages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Date = new DateTime(2020, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicationId = 1,
+                            Usage = 4
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Date = new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicationId = 2,
+                            Usage = 10
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Date = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicationId = 1,
+                            Usage = 50
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Date = new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicationId = 2,
+                            Usage = 1
+                        });
+                });
+
+            modelBuilder.Entity("Backend.Reports.Model.MedicationUsageReport", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime?>("From")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime?>("Until")
+                        .HasColumnType("date");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MedicationUsageReports");
+                });
+
+            modelBuilder.Entity("Backend.Users.Model.DoctorWorkDay", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("DoctorId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<int>("EndTime")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StartTime")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("DoctorWorkDays");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Date = new DateTime(2020, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = "2406978890047",
+                            EndTime = 15,
+                            StartTime = 8
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Date = new DateTime(2020, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = "2406978890047",
+                            EndTime = 15,
+                            StartTime = 8
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Date = new DateTime(2020, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = "2406978890047",
+                            EndTime = 15,
+                            StartTime = 8
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Date = new DateTime(2020, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = "2406978890047",
+                            EndTime = 15,
+                            StartTime = 8
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Date = new DateTime(2020, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = "2406978890047",
+                            EndTime = 15,
+                            StartTime = 8
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Date = new DateTime(2020, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = "2407978890045",
+                            EndTime = 15,
+                            StartTime = 8
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Date = new DateTime(2020, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = "2407978890045",
+                            EndTime = 15,
+                            StartTime = 8
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Date = new DateTime(2020, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = "2407978890045",
+                            EndTime = 15,
+                            StartTime = 8
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Date = new DateTime(2020, 12, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = "2407978890045",
+                            EndTime = 15,
+                            StartTime = 8
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Date = new DateTime(2020, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DoctorId = "2407978890045",
+                            EndTime = 15,
+                            StartTime = 8
+                        });
+                });
+
+            modelBuilder.Entity("Backend.Utils.Period", b =>
+                {
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.ToTable("Period");
                 });
 
             modelBuilder.Entity("Model.Rooms.Bed", b =>
@@ -3136,6 +3220,24 @@ namespace Backend.Migrations
                             QuantityInStorage = 40,
                             RoomId = 2217
                         });
+                });
+
+            modelBuilder.Entity("Model.Rooms.Occupation", b =>
+                {
+                    b.Property<int>("BedId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MedicalRecordId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PatientId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasIndex("BedId");
+
+                    b.HasIndex("MedicalRecordId");
+
+                    b.ToTable("Occupation");
                 });
 
             modelBuilder.Entity("Model.Rooms.Renovation", b =>
@@ -4591,6 +4693,9 @@ namespace Backend.Migrations
                     b.Property<string>("DoctorId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
+                    b.Property<DateTime>("End")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<bool>("Finished")
                         .HasColumnType("tinyint(1)");
 
@@ -4603,6 +4708,9 @@ namespace Backend.Migrations
                     b.Property<string>("ShortDescription")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("TypeOfAppointment")
                         .HasColumnType("int");
 
@@ -4611,6 +4719,9 @@ namespace Backend.Migrations
 
                     b.Property<int>("WeeklyAppointmentReportId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("canceledByPatient")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
 
@@ -4621,6 +4732,104 @@ namespace Backend.Migrations
                     b.HasIndex("RoomId");
 
                     b.ToTable("Appointments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Deleted = false,
+                            DoctorId = "2406978890047",
+                            End = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Finished = true,
+                            MedicalRecordId = 1,
+                            RoomId = 1,
+                            ShortDescription = "standard appointment",
+                            Start = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TypeOfAppointment = 0,
+                            Urgent = true,
+                            WeeklyAppointmentReportId = 1,
+                            canceledByPatient = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Deleted = false,
+                            DoctorId = "2406978890047",
+                            End = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Finished = true,
+                            MedicalRecordId = 1,
+                            RoomId = 1,
+                            ShortDescription = "standard appointment",
+                            Start = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TypeOfAppointment = 0,
+                            Urgent = true,
+                            WeeklyAppointmentReportId = 1,
+                            canceledByPatient = false
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Deleted = false,
+                            DoctorId = "2406978890047",
+                            End = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Finished = true,
+                            MedicalRecordId = 1,
+                            RoomId = 1,
+                            ShortDescription = "standard appointment",
+                            Start = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TypeOfAppointment = 0,
+                            Urgent = true,
+                            WeeklyAppointmentReportId = 1,
+                            canceledByPatient = false
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Deleted = false,
+                            DoctorId = "2406978890047",
+                            End = new DateTime(2020, 12, 5, 8, 30, 0, 0, DateTimeKind.Unspecified),
+                            Finished = true,
+                            MedicalRecordId = 1,
+                            RoomId = 1,
+                            ShortDescription = "standard appointment",
+                            Start = new DateTime(2020, 12, 5, 8, 0, 0, 0, DateTimeKind.Unspecified),
+                            TypeOfAppointment = 0,
+                            Urgent = true,
+                            WeeklyAppointmentReportId = 1,
+                            canceledByPatient = false
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Deleted = false,
+                            DoctorId = "2406978890047",
+                            End = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Finished = true,
+                            MedicalRecordId = 1,
+                            RoomId = 1,
+                            ShortDescription = "standard appointment",
+                            Start = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TypeOfAppointment = 0,
+                            Urgent = true,
+                            WeeklyAppointmentReportId = 1,
+                            canceledByPatient = false
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Deleted = false,
+                            DoctorId = "2406978890047",
+                            End = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Finished = true,
+                            MedicalRecordId = 1,
+                            RoomId = 1,
+                            ShortDescription = "standard appointment",
+                            Start = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TypeOfAppointment = 0,
+                            Urgent = true,
+                            WeeklyAppointmentReportId = 1,
+                            canceledByPatient = false
+                        });
                 });
 
             modelBuilder.Entity("Model.Users.Address", b =>
@@ -4926,6 +5135,13 @@ namespace Backend.Migrations
                             Company = "Dunav osiguranje d.o.o",
                             EndTime = new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StartTime = new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = "policy2",
+                            Company = "Delta generali",
+                            EndTime = new DateTime(2021, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartTime = new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -5115,21 +5331,27 @@ namespace Backend.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Model.Users.Shift", b =>
+                {
+                    b.Property<int>("EndHour")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StartHour")
+                        .HasColumnType("int");
+
+                    b.ToTable("Shift");
+                });
+
             modelBuilder.Entity("Model.Users.Specialization", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("DoctorId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.Property<string>("SpecializationName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DoctorId");
 
                     b.ToTable("Specializations");
 
@@ -5137,8 +5359,17 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            DoctorId = "2406978890047",
                             SpecializationName = "Interna medicina"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            SpecializationName = "Interna medicina"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            SpecializationName = "Hirurgija"
                         });
                 });
 
@@ -5169,21 +5400,21 @@ namespace Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("AdditionalNotes")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<int>("AverageGrade")
+                    b.Property<int>("AppointmentId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("PatientId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                    b.Property<string>("SurveyAnswers")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("SurveyQuestions")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PatientId");
+                    b.HasIndex("AppointmentId");
 
                     b.ToTable("Surveys");
                 });
@@ -5194,20 +5425,233 @@ namespace Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Grade")
-                        .HasColumnType("int");
+                    b.Property<double>("AverageGrade")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Excellent")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Good")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Poor")
+                        .HasColumnType("double");
 
                     b.Property<string>("Question")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("SurveyId")
+                    b.Property<int>("QuestionType")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<double>("VeryGood")
+                        .HasColumnType("double");
+
+                    b.Property<double>("VeryPoor")
+                        .HasColumnType("double");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SurveyId");
-
                     b.ToTable("SurveyQuestions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the kindness of your doctor?",
+                            QuestionType = 0,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "To what extent has your doctor clearly stated what your examination will look like and instructed you on how to behave?",
+                            QuestionType = 0,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the clarity and expertise of the doctor in making the diagnosis?",
+                            QuestionType = 0,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the competence of your doctor during the treatment?",
+                            QuestionType = 0,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "To what extent has your doctor paid attention to you and contributed to your more comfortable stay in the hospital?",
+                            QuestionType = 0,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the helpfulness and kindness of the information counter employees?",
+                            QuestionType = 1,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the helpfulness and kindness of nurses and technicians?",
+                            QuestionType = 1,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "To what extent were nurses and technicians professional in treatment?",
+                            QuestionType = 1,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "To what extent have nurses and technicians paid attention to you and your comfortable hospital stay?",
+                            QuestionType = 1,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "To what extent have nurses and technicians instructed you in the procedures they will perform during your treatment?",
+                            QuestionType = 1,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the cleanliness of hospital hallways and waiting rooms?",
+                            QuestionType = 2,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the cleanliness of the toilet in the hospital?",
+                            QuestionType = 2,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the cleanliness and comfort of the patient's room?",
+                            QuestionType = 2,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 14,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "To what extent are you satisfied with the equipment of the hospital for the needs of your treatment?",
+                            QuestionType = 2,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        },
+                        new
+                        {
+                            Id = 15,
+                            AverageGrade = 0.0,
+                            Excellent = 0.0,
+                            Good = 0.0,
+                            Poor = 0.0,
+                            Question = "How would you rate the organization of the hospital when scheduling an examination?",
+                            QuestionType = 2,
+                            Status = true,
+                            VeryGood = 0.0,
+                            VeryPoor = 0.0
+                        });
                 });
 
             modelBuilder.Entity("Model.Users.VacationRequest", b =>
@@ -5254,6 +5698,77 @@ namespace Backend.Migrations
                     b.ToTable("WorkDays");
                 });
 
+            modelBuilder.Entity("PharmacyIntegration.Model.Pharmacy", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("APIEndpoint")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("APIKey")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("RecieveNotificationFrom")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pharmacies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "Jankovic",
+                            APIEndpoint = "jankovic.rs",
+                            APIKey = "ID1APIKEYAAAA",
+                            RecieveNotificationFrom = true
+                        },
+                        new
+                        {
+                            Id = "Liman",
+                            APIEndpoint = "liman.li",
+                            APIKey = "ID2APIKEYAAAA",
+                            RecieveNotificationFrom = true
+                        });
+                });
+
+            modelBuilder.Entity("PharmacyIntegration.Model.PharmacyNotification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Approved")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("PharmacyId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PharmacyNotifications");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Approved = true,
+                            Content = "Lexapro on sale! Get 15% off!",
+                            PharmacyId = "Jankovic"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Approved = true,
+                            Content = "Aspirin on sale! Get 11% off!",
+                            PharmacyId = "Liman"
+                        });
+                });
+
             modelBuilder.Entity("Backend.Examinations.Model.HospitalTreatment", b =>
                 {
                     b.HasBaseType("Backend.Examinations.Model.Treatment");
@@ -5296,7 +5811,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2020, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ExaminationSurgeryId = 1,
                             Type = 0,
                             EndDate = new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -5308,7 +5823,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2020, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ExaminationSurgeryId = 1,
                             Type = 0,
                             EndDate = new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -5416,11 +5931,16 @@ namespace Backend.Migrations
                     b.Property<double>("PatientReview")
                         .HasColumnType("double");
 
+                    b.Property<int>("SpecializationId")
+                        .HasColumnType("int");
+
                     b.HasIndex("DepartmentId");
 
                     b.HasIndex("ExaminationRoomId");
 
                     b.HasIndex("OperationRoomId");
+
+                    b.HasIndex("SpecializationId");
 
                     b.HasDiscriminator().HasValue("Doctor");
 
@@ -5447,11 +5967,41 @@ namespace Backend.Migrations
                             VacationLeave = false,
                             WorkersID = 0,
                             DepartmentId = 1,
-                            ExaminationRoomId = 1003,
+                            ExaminationRoomId = 1,
                             LicenseNumber = "001",
                             OnCall = true,
-                            OperationRoomId = 1114,
-                            PatientReview = 4.5
+                            OperationRoomId = 2,
+                            PatientReview = 4.5,
+                            SpecializationId = 1
+                        },
+                        new
+                        {
+                            Id = "2407978890045",
+                            CurrResidenceId = 1,
+                            DateOfBirth = new DateTime(1978, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfCreation = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EducationLevel = 2,
+                            Email = "ivan@gmail.com",
+                            Gender = 0,
+                            InsurancePolicyId = "policy2",
+                            Name = "Ivan",
+                            Password = "ivan123",
+                            Phone = "065/123-4554",
+                            PlaceOfBirthId = 11000,
+                            Profession = "doctor",
+                            ProfileImage = ".",
+                            Surname = "Ivanovic",
+                            Username = "ivan",
+                            CurrentlyWorking = false,
+                            VacationLeave = false,
+                            WorkersID = 0,
+                            DepartmentId = 1,
+                            ExaminationRoomId = 1,
+                            LicenseNumber = "001",
+                            OnCall = true,
+                            OperationRoomId = 2,
+                            PatientReview = 4.5,
+                            SpecializationId = 1
                         });
                 });
 
@@ -5507,20 +6057,16 @@ namespace Backend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Backend.Medications.Model.Medication", "Medication")
+                    b.HasOne("Backend.Medications.Model.Medication", null)
                         .WithMany("Allergens")
-                        .HasForeignKey("MedicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MedicationId");
                 });
 
             modelBuilder.Entity("Backend.Medications.Model.DosageOfIngredient", b =>
                 {
-                    b.HasOne("Backend.Medications.Model.Medication", "Medication")
+                    b.HasOne("Backend.Medications.Model.Medication", null)
                         .WithMany("MedicationContent")
-                        .HasForeignKey("MedicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MedicationId");
 
                     b.HasOne("Backend.Medications.Model.MedicationIngredient", "MedicationIngredient")
                         .WithMany()
@@ -5531,6 +6077,12 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Medications.Model.Medication", b =>
                 {
+                    b.HasOne("Backend.Medications.Model.MedicationCategory", "MedicationCategory")
+                        .WithMany()
+                        .HasForeignKey("MedicationCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Backend.Medications.Model.Medication", null)
                         .WithMany("AlternativeMedication")
                         .HasForeignKey("MedicationId");
@@ -5544,12 +6096,6 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Medications.Model.MedicationCategory", b =>
                 {
-                    b.HasOne("Backend.Medications.Model.Medication", "Medication")
-                        .WithOne("MedicationCategory")
-                        .HasForeignKey("Backend.Medications.Model.MedicationCategory", "MedicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Model.Users.Specialization", "Specialization")
                         .WithMany()
                         .HasForeignKey("SpecializationId")
@@ -5559,11 +6105,9 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Medications.Model.SideEffect", b =>
                 {
-                    b.HasOne("Backend.Medications.Model.Medication", "Medication")
+                    b.HasOne("Backend.Medications.Model.Medication", null)
                         .WithMany("SideEffects")
-                        .HasForeignKey("MedicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MedicationId");
 
                     b.HasOne("Backend.Records.Model.Symptoms", "SideEffects")
                         .WithMany()
@@ -5587,7 +6131,7 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Records.Model.Diagnosis", b =>
                 {
-                    b.HasOne("Backend.Examinations.Model.ExaminationSurgery", null)
+                    b.HasOne("Backend.Examinations.Model.ExaminationSurgery", "ExaminationSurgery")
                         .WithMany("Diagnoses")
                         .HasForeignKey("ExaminationSurgeryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -5653,6 +6197,26 @@ namespace Backend.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Backend.Reports.Model.MedicationUsage", b =>
+                {
+                    b.HasOne("Backend.Medications.Model.Medication", "Medication")
+                        .WithMany()
+                        .HasForeignKey("MedicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Backend.Reports.Model.MedicationUsageReport", null)
+                        .WithMany("MedicationUsages")
+                        .HasForeignKey("MedicationUsageReportId");
+                });
+
+            modelBuilder.Entity("Backend.Users.Model.DoctorWorkDay", b =>
+                {
+                    b.HasOne("Model.Users.Doctor", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId");
+                });
+
             modelBuilder.Entity("Model.Rooms.Bed", b =>
                 {
                     b.HasOne("Model.Rooms.Room", "Room")
@@ -5682,6 +6246,21 @@ namespace Backend.Migrations
                     b.HasOne("Model.Rooms.Room", "Room")
                         .WithMany("HospitalEquipment")
                         .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Model.Rooms.Occupation", b =>
+                {
+                    b.HasOne("Model.Rooms.Bed", "Bed")
+                        .WithMany()
+                        .HasForeignKey("BedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Backend.Records.Model.MedicalRecord", "MedicalRecord")
+                        .WithMany()
+                        .HasForeignKey("MedicalRecordId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -5837,25 +6416,11 @@ namespace Backend.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Model.Users.Specialization", b =>
-                {
-                    b.HasOne("Model.Users.Doctor", "Doctor")
-                        .WithMany("Specializations")
-                        .HasForeignKey("DoctorId");
-                });
-
             modelBuilder.Entity("Model.Users.Survey", b =>
                 {
-                    b.HasOne("Model.Users.Patient", "Patient")
+                    b.HasOne("Model.Schedule.Appointment", "Appointment")
                         .WithMany()
-                        .HasForeignKey("PatientId");
-                });
-
-            modelBuilder.Entity("Model.Users.SurveyQuestion", b =>
-                {
-                    b.HasOne("Model.Users.Survey", "Survey")
-                        .WithMany("SurveyQuestions")
-                        .HasForeignKey("SurveyId")
+                        .HasForeignKey("AppointmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -5916,6 +6481,12 @@ namespace Backend.Migrations
                     b.HasOne("Model.Rooms.Room", "OperationRoom")
                         .WithMany()
                         .HasForeignKey("OperationRoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Model.Users.Specialization", "Specialization")
+                        .WithMany()
+                        .HasForeignKey("SpecializationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -8,7 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Backend.Rooms.Service;
+using Backend.Schedules.Service.StrategyPattern;
+using Castle.Core.Internal;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using Service.ScheduleService;
 
 namespace Backend.Schedules.Service
 {
@@ -17,10 +21,15 @@ namespace Backend.Schedules.Service
         private const int appointmentDuration = 30;
         IDoctorWorkDayRepository _doctorWorkDayRepository;
         IAppointmentRepository _appointmentRepository;
-        public AppointmentService(IDoctorWorkDayRepository doctorWorkDayRepository, IAppointmentRepository appointmentRepository)
+        IDoctorService _doctorService;
+
+        private IPriorityStrategy _priorityStrategy;
+
+        public AppointmentService(IDoctorWorkDayRepository doctorWorkDayRepository, IAppointmentRepository appointmentRepository, IDoctorService doctorService)
         {
             _appointmentRepository = appointmentRepository;
             _doctorWorkDayRepository = doctorWorkDayRepository;
+            _doctorService = doctorService;
         }
 
         public Appointment ScheduleAppointment(Appointment appointment)
@@ -32,14 +41,36 @@ namespace Backend.Schedules.Service
 
             return null;
         }
-        public List<Appointment> GetAvailableByDoctorAndDateRange(string doctorId, DateTime start, DateTime end)
+        public List<Appointment> GetAvailableByDoctorAndDateRange(PriorityParameters parameters)
         {
+            DateTime start = parameters.ChosenStartDate;
+            DateTime end = parameters.ChosenEndDate;
             List<Appointment> availableAppointments = new List<Appointment>();
             for (DateTime date = start; date.Date <= end.Date; date = date.AddDays(1))
             {
-                availableAppointments.AddRange(GetAvailableBy(doctorId, date));
+                availableAppointments.AddRange(GetAvailableBy(parameters.DoctorId, date));
             }
+
             return availableAppointments;
+        }
+
+        public List<Appointment> GetAvailableByStrategy(PriorityParameters parameters)
+        {
+            List<Appointment> appointments = GetAvailableByDoctorAndDateRange(parameters);
+            if (appointments.IsNullOrEmpty())
+            {
+                SwitchStrategy(parameters.Priority);
+                appointments.AddRange(_priorityStrategy.Recommend(parameters));
+            }
+
+            return AddDoctors(appointments);
+        }
+        private void SwitchStrategy(PriorityType priorityType)
+        {
+            if(priorityType == PriorityType.doctor)
+                _priorityStrategy = new DoctorPriorityStrategy(this);
+            else 
+                _priorityStrategy = new DatePriorityStrategy(this, _doctorService);
         }
         public List<Appointment> GetAvailableBy(string doctorId, DateTime date)
         {
@@ -60,6 +91,15 @@ namespace Backend.Schedules.Service
             return _appointmentRepository.GetBy(doctorId, date).ToList();
         }
 
+        public List<Appointment> AddDoctors(List<Appointment> appointments)
+        {
+            foreach (Appointment appointmentIt in appointments)
+            {
+                appointmentIt.Doctor = _doctorService.GetDoctorBy(appointmentIt.DoctorId);
+            }
+
+            return appointments;
+        }
         public List<Appointment> InitializeAppointments(string doctorId, DateTime date)
         {
             List<Appointment> appointments = new List<Appointment>();
