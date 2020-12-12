@@ -24,6 +24,8 @@ export class RecommendationComponent implements OnInit {
   isOptional = false;
   doctor : string;
   specializationId : SpecializationId;
+  specializationIdNum : number;
+  priority : number;
 
   searchDoctors : SearchDoctor[] = new Array();
   specializations : Specialization[] = new Array();
@@ -34,7 +36,7 @@ export class RecommendationComponent implements OnInit {
 
   scheduleAppointmen : ScheduleAppointment;
 
-  displayedColumns: string[] = ['position', 'Date', 'Time', '#'];
+  displayedColumns: string[] = ['position', 'Date', 'Time', 'Doctor', '#'];
 
   constructor(private doctorService : DoctorServiceService, private appointmentService : AppointmentService, private specializationService : SpecializationService, private toastr : ToastrService) { }
 
@@ -79,6 +81,11 @@ export class RecommendationComponent implements OnInit {
     this.getDoctorsBySpecialization(event.value)
   }
 
+  selectedPriority(event) {
+    this.priority = event.value;
+    console.log(this.priority);
+  }
+
   submit() {
     this.getAvailableAppointments();
     console.log("Start: " + this.intervalFormGroup.value.startInterval);
@@ -92,8 +99,10 @@ export class RecommendationComponent implements OnInit {
     var start = new Date(this.intervalFormGroup.value.startInterval.getTime() - this.intervalFormGroup.value.startInterval.getTimezoneOffset() * 60000)
     var end = new Date(this.intervalFormGroup.value.endInterval.getTime() - this.intervalFormGroup.value.endInterval.getTimezoneOffset() * 60000)
     var doctor = this.doctor;
+    var priority = this.priority;
+    var specializationId = this.specializationId.specializationId;
 
-    this.appointmentRecommendation = new AppointmentRecommendation(start, end, doctor, 0);
+    this.appointmentRecommendation = new AppointmentRecommendation(start, end, doctor, priority, specializationId);
     
     this.appointmentService.getAvailableByDateRange(this.appointmentRecommendation).subscribe(data => {
       this.availableAppointments = data;
@@ -101,8 +110,7 @@ export class RecommendationComponent implements OnInit {
   }
 
   schedule(appointment) {
-    var doctor = this.doctorFormGroup.value.choosenDoctor;
-    this.scheduleAppointmen = new ScheduleAppointment(appointment.start, appointment.end , "", doctor);
+    this.scheduleAppointmen = new ScheduleAppointment(appointment.start, appointment.end , "", appointment.doctorId);
     this.appointmentService.scheduleAppointment(this.scheduleAppointmen).subscribe(
       res => {
         this.toastr.success(res);
