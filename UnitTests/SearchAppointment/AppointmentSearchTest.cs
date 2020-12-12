@@ -21,7 +21,7 @@ namespace MedbayTechUnitTests
     {
         //dodajem i oduzimam dva dana na start/end
         [Fact]
-        public void GetAppointmentsScheduledForDoctorAndTimeFail()
+        public void GetAvailableAppointmentsForDoctorAndTimeFail()
         {
             var doctorWorkDayRepository = CreateStubRepositoryDoctorWork();
             var appointmentsRepository = CreateStubRepositoryAppointment();
@@ -34,7 +34,7 @@ namespace MedbayTechUnitTests
             gotAppointment.IsNullOrEmpty();
         }
         [Fact]
-        public void GetAppointmentsScheduledForDoctorAndTimeSuccess()
+        public void GetAvailableAppointmentsForDoctorAndTimeSuccess()
         {
             var doctorWorkDayRepository = CreateStubRepositoryDoctorWork();
             var appointmentsRepository = CreateStubRepositoryAppointment();
@@ -54,13 +54,19 @@ namespace MedbayTechUnitTests
 
             gotAppointments.IsNullOrEmpty();
         }
-
         [Fact]
-        public void GetAvailableAppointmentByPriorityDoctor()
+        public void GetAvailableAppointmentByPriorityDoctorFail()
         {
             AppointmentService service = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
             var gotAppointments = service.GetAvailableByPriorityDoctor("2406978890047", new DateTime(2020, 12, 3, 8, 0, 0), new DateTime(2020, 12, 5, 8, 30, 0));
             gotAppointments.IsNullOrEmpty();
+        }
+        [Fact]
+        public void GetAvailableAppointmentByPriorityDoctorSuccess()
+        {
+            AppointmentService service = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
+            var gotAppointments = service.GetAvailableByPriorityDoctor("2406978890047", new DateTime(2020, 12, 6, 8, 0, 0), new DateTime(2020, 12, 6, 15, 0, 0));
+            gotAppointments.ShouldNotBeEmpty();
         }
 
         public static IAppointmentRepository CreateStubRepositoryAppointment()
