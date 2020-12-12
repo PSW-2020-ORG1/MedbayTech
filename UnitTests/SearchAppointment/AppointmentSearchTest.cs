@@ -29,11 +29,22 @@ namespace MedbayTechUnitTests
             String id = "2406978890047";
             DateTime start_date = new DateTime(1999, 12, 5, 8, 0, 0);
             DateTime end_date = new DateTime(1999, 12, 5, 8, 30, 0);
-            var gotAppointment = service.GetAvailableByDoctorAndDateRange(id, start_date, end_date);
+            var gotAppointment = service.GetAvailableByDoctorAndTimeInterval(id, start_date, end_date);
 
             gotAppointment.IsNullOrEmpty();
         }
+        [Fact]
+        public void GetAppointmentsScheduledForDoctorAndTimeSuccess()
+        {
+            var doctorWorkDayRepository = CreateStubRepositoryDoctorWork();
+            var appointmentsRepository = CreateStubRepositoryAppointment();
+            AppointmentService service = new AppointmentService(doctorWorkDayRepository, appointmentsRepository);
+            String id = "2406978890047";
 
+            var gotAppointment = service.GetAvailableByDoctorAndTimeInterval(id, new DateTime(2020, 12, 6, 8, 0, 0), new DateTime(2020, 12, 6, 8, 30, 0));
+
+            gotAppointment.ShouldNotBeEmpty();
+        }
         [Fact]
         public void GetAvailableAppointmentByPriorityTimeIntervalFail()
         {
@@ -41,6 +52,14 @@ namespace MedbayTechUnitTests
             AppointmentFilterService service = new AppointmentFilterService(appointmentsService, CreateStubRepositoryDoctor(), CreateStupRepositoryEquipment());
             var gotAppointments = service.GetAvailableByPriorityTimeInterval(new DateTime(2022, 12, 5, 8, 0, 0), new DateTime(2022, 12, 5, 8, 30, 0));
 
+            gotAppointments.IsNullOrEmpty();
+        }
+
+        [Fact]
+        public void GetAvailableAppointmentByPriorityDoctor()
+        {
+            AppointmentService service = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
+            var gotAppointments = service.GetAvailableByPriorityDoctor("2406978890047", new DateTime(2020, 12, 3, 8, 0, 0), new DateTime(2020, 12, 5, 8, 30, 0));
             gotAppointments.IsNullOrEmpty();
         }
 
