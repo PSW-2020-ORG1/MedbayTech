@@ -139,5 +139,10 @@ namespace Backend.Examinations.WebApiService
             }
             return prescriptions;
         }
+
+        public List<Prescription> GetAll()
+        {
+            return repository.GetAll().ToList();
+        }
     }
 }
