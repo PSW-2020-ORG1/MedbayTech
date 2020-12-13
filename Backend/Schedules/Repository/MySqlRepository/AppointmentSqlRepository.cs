@@ -18,6 +18,25 @@ namespace Backend.Schedules.Repository.MySqlRepository
             return GetAll().ToList().Where(a => a.Period.StartTime.CompareTo(date) <= 0).ToDictionary(a => a.Id);
         }
 
+        public List<Appointment> GetCanceledAppointments()
+        {
+            return GetAll().Where(a => a.CanceledByPatient).ToList();
+        }
+
+        public IEnumerable<Appointment> GetAppointmentsByPatientId(string Id)
+        {
+            List<Appointment> patientAppointments = new List<Appointment>();
+            List<Appointment> appointments = GetAll().ToList();
+            foreach (Appointment a in appointments) 
+            {
+                if (a.MedicalRecord.PatientId.Equals(Id)) 
+                {
+                    patientAppointments.Add(a);
+                }
+            }
+            return patientAppointments;
+        }
+
         public IEnumerable<Appointment> GetBy(string doctorId, DateTime date)
         {
             return GetAll().Where(a => a.DoctorId.Equals(doctorId) && a.Start.Date.CompareTo(date.Date) == 0);

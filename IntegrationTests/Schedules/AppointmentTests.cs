@@ -44,8 +44,8 @@ namespace IntegrationTests.Schedule
             {
                 DoctorId = "2406978890047",
                 PatientId = "2406978890046",
-                StartTime = new DateTime(2020, 12, 9, 13, 30, 0),
-                EndTime =  new DateTime(2020, 12, 9, 14, 0, 0)
+                StartTime = new DateTime(2020, 12, 14, 13, 30, 0),
+                EndTime =  new DateTime(2020, 12, 14, 14, 0, 0)
             };
         }
     }

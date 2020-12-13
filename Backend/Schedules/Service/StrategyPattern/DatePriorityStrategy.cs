@@ -4,90 +4,66 @@
 // Purpose: Definition of Class DatePriorityStrategy
 
 using Model.Schedule;
-using Backend.General.Model.ScheduleRepository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Backend.Rooms.Service;
+using Backend.Schedules.Service.Interfaces;
 using Backend.Utils;
+using Model.Users;
 
 namespace Service.ScheduleService
 {
-   public class DatePriorityStrategy : IPriorityStrategy
-   {
-        public Appointment Recommend(PriorityParameters parameters)
+    public class DatePriorityStrategy : IPriorityStrategy
+    {
+        private IAppointmentService _appointmentService;
+        private IDoctorService _doctorService;
+
+        private const int NUMBER_OF_RECOMMENDED_APPOINTMENTS = 5;
+        public DatePriorityStrategy(IAppointmentService appointmentService, IDoctorService doctorService)
         {
-            Period period = parameters.SetStartTime(startWorkingHours, endWorkingHours);
-            List<Appointment> allAppointmentsInTimePeriod = new List<Appointment>();
-            while (period.IsPeriodActive())
+            _appointmentService = appointmentService;
+            _doctorService = doctorService;
+        }
+
+        public List<Appointment> Recommend(PriorityParameters parameters)
+        {
+            List<Appointment> recommendedAppointments = new List<Appointment>();
+            List<Doctor> doctors = GetDoctorsBy(parameters.SpecializationId);
+
+            recommendedAppointments = RecommendationResult(doctors, parameters);
+
+            return recommendedAppointments;
+        }
+
+        public List<Appointment> RecommendationResult(List<Doctor> doctors, PriorityParameters parameters)
+        {
+            List<Appointment> result = new List<Appointment>();
+            foreach (Doctor doctorIt in doctors)
             {
-                var appointmentsForDoctors = appointmentService.AvailableExaminationsFor(parameters.ChosenDoctor, period.StartTime.Date, false);
-                allAppointmentsInTimePeriod.AddRange(appointmentsForDoctors.Values);
-                period.AddDay();
+                parameters.DoctorId = doctorIt.Id;
+                List<Appointment> appointments = _appointmentService.GetAvailableByDoctorAndDateRange(parameters);
+                result.AddRange(appointments);
+                if (result.Count >= NUMBER_OF_RECOMMENDED_APPOINTMENTS)
+                    return result.Where(ap => result.IndexOf(ap) < NUMBER_OF_RECOMMENDED_APPOINTMENTS).ToList();
             }
-            return RecommendResults(allAppointmentsInTimePeriod, parameters);
-        }
 
-        public Appointment RecommendResults(List<Appointment> allAppointmentsInTimePeriod, PriorityParameters parameters)
-        {
-            if (allAppointmentsInTimePeriod.Count > 0)
-                return RecommendBest(allAppointmentsInTimePeriod, parameters);
-            return FindAnyOtherAppointment(parameters);
+            return result;
         }
-
-        private Appointment FindAnyOtherAppointment(PriorityParameters parameters)
+        public List<Appointment> GetAvailable(string doctorId, DateTime startDate, DateTime endDate)
         {
-            Period period = parameters.SetStartTime(startWorkingHours, endWorkingHours);
-            List<Appointment> allAppointmentsInTimePeriod = new List<Appointment>();
-            while (period.IsPeriodActive())
+
+            List<Appointment> availableAppointments = new List<Appointment>();
+            while(startDate.AddDays(1) <= endDate)
             {
-                var appointmentsForDoctors = appointmentService.ScheduleAppointments(period.StartTime, TypeOfAppointment.Examination);
-                allAppointmentsInTimePeriod.AddRange(appointmentsForDoctors.Values);
-                period.AddDay();
+                availableAppointments.AddRange(_appointmentService.GetAvailableBy(doctorId, startDate));
             }
-            return RecommendAnyOtherResults(allAppointmentsInTimePeriod, parameters);
-        }
 
-        private Appointment RecommendAnyOtherResults(List<Appointment> allAppointmentsInTimePeriod, PriorityParameters parameters)
+            return availableAppointments;
+        }
+        public List<Doctor> GetDoctorsBy(int specializationId)
         {
-            DateTime minimumDate = parameters.ChosenEndDate.Date;
-            Appointment bestAppointment = null;
-            foreach (Appointment appointment in allAppointmentsInTimePeriod)
-            {
-                if (appointment.Period.StartTime.CompareTo(minimumDate) < 0)
-                {
-                    minimumDate = appointment.Period.StartTime;
-                    bestAppointment = appointment;
-                }
-            }
-            return bestAppointment;
+            return _doctorService.GetDoctorsBy(specializationId).ToList();
         }
-
-        private Appointment RecommendBest(List<Appointment> allAppointmentsInTimePeriod, PriorityParameters parameters)
-        {
-            DateTime minimumDate = parameters.ChosenEndDate.Date;
-            Appointment bestAppointment = null;
-            foreach (Appointment appointment in allAppointmentsInTimePeriod)
-            {
-                if (appointment.Period.StartTime.CompareTo(minimumDate) < 0)
-                {
-                    minimumDate = appointment.Period.StartTime;
-                    bestAppointment = appointment;
-                }
-            }
-            return bestAppointment;
-        }
-
-        public DatePriorityStrategy(AvailableAppointmentService appointmentService, int startHours, int endHours)
-        {
-            startWorkingHours = startHours;
-            endWorkingHours = endHours;
-            this.appointmentService = appointmentService;
-        }
-
-
-        private readonly int startWorkingHours;
-        private readonly int endWorkingHours;
-
-        public AvailableAppointmentService appointmentService;
-   
-   }
+    }
 }

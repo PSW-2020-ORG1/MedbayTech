@@ -116,9 +116,24 @@ namespace Repository.ScheduleRepository
             
         }
 
+        public IEnumerable<Appointment> GetAppointmentsByPatientId(string Id)
+        {
+            return null;
+        }
+        
         public IEnumerable<Appointment> GetBy(string doctorId, DateTime date)
         {
-            throw new NotImplementedException();
+            return null;
+        }
+
+        public Appointment GetAppointmentById(int id)
+        {
+            return null;
+        }
+
+        public List<Appointment> GetCanceledAppointments()
+        {
+            return null;
         }
     }
 }

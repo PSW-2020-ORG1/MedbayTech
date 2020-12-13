@@ -4,6 +4,7 @@ using Model.Rooms;
 using Model.Schedule;
 using Model.Users;
 using Repository.RoomRepository;
+using Service.ScheduleService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,20 +25,20 @@ namespace Backend.Schedules.Service
             _hospitalEquipmentRepository = hospitalEquipmentRepository;
         }
 
-        public List<Appointment> GetAvailableByDoctorTimeIntervalAndEquipment(string doctorId, int hospitalEquipmentId, DateTime startTime, DateTime endTime, string priority)
+        public List<Appointment> GetAvailableByDoctorTimeIntervalAndEquipment(PriorityParameters parameters, int hospitalEquipmentId, string priority)
         {
             List<Appointment> allAppointments;
             if (priority.Equals("doctor"))
             {
-                allAppointments = _appointmentService.GetAvailableByPriorityDoctor(doctorId, startTime, endTime);
+                allAppointments = _appointmentService.GetAvailableByPriorityDoctor(parameters);
             }
             else if (priority.Equals("timeinterval"))
             {
-                allAppointments = GetAvailableByPriorityTimeInterval(startTime, endTime);
+                allAppointments = GetAvailableByPriorityTimeInterval(parameters);
             }
             else
             {
-                allAppointments = _appointmentService.GetAvailableByDoctorAndTimeInterval(doctorId, startTime, endTime);
+                allAppointments = _appointmentService.GetAvailableByDoctorAndTimeInterval(parameters);
             }
             allAppointments = AddRoomToAppointment(allAppointments);
             return FilterAllApointments(allAppointments, hospitalEquipmentId);
@@ -69,18 +70,20 @@ namespace Backend.Schedules.Service
             return appointments;
         }
 
-        public List<Appointment> GetAvailableByPriorityTimeInterval(DateTime startTime, DateTime endTime)
+        public List<Appointment> GetAvailableByPriorityTimeInterval(PriorityParameters parameters)
         {
             List<Appointment> appointmentsForAllDoctors = new List<Appointment>();
-            foreach (Doctor doctor in _doctorRepository.GetAll())
+            List<Doctor> doctors = _doctorRepository.GetAll().ToList();
+            foreach (Doctor doctor in doctors)
             {
-                appointmentsForAllDoctors.AddRange(_appointmentService.GetAvailableByDoctorAndTimeInterval(doctor.Id, startTime, endTime));
+                parameters.DoctorId = doctor.Id;
+                appointmentsForAllDoctors.AddRange(_appointmentService.GetAvailableByDoctorAndTimeInterval(parameters));
             }
 
             List<Appointment> appointments = new List<Appointment>();
             foreach (Appointment appointment in appointmentsForAllDoctors)
             {
-                if (appointment.Start >= startTime && appointment.End <= endTime) appointments.Add(appointment);
+                if (appointment.Start >= parameters.ChosenStartDate && appointment.End <= parameters.ChosenEndDate) appointments.Add(appointment);
             }
             AddRoomToAppointment(appointments);
             return appointments;

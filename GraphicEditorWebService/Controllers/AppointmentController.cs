@@ -2,6 +2,7 @@
 using Backend.Utils.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Model.Users;
+using Service.ScheduleService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,11 +40,11 @@ namespace GraphicEditorWebService.Controllers
         {
             if(appointmentFilterDTO.operation == 0)
             {
-                return Ok(_appointmentService.GetAvailableByDoctorAndTimeInterval(appointmentFilterDTO.DoctorId, appointmentFilterDTO.StartInterval, appointmentFilterDTO.EndInterval));
+                return Ok(_appointmentService.GetAvailableByDoctorAndTimeInterval(new PriorityParameters { DoctorId = appointmentFilterDTO.DoctorId, ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval}));
             }
             else if(appointmentFilterDTO.operation == 1)
             {
-                return Ok(_appointmentService.GetAvailableByPriorityDoctor(appointmentFilterDTO.DoctorId, appointmentFilterDTO.StartInterval, appointmentFilterDTO.EndInterval));
+                return Ok(_appointmentService.GetAvailableByPriorityDoctor(new PriorityParameters { DoctorId = appointmentFilterDTO.DoctorId, ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval }));
             }
             else
             {

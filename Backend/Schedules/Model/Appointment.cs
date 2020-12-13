@@ -22,12 +22,13 @@ namespace Model.Schedule
         public Period Period { get; protected set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
+        public DateTime CancelationDate { get; set; }
         public TypeOfAppointment TypeOfAppointment { get; set; }
         public string ShortDescription { get; set; }
         public bool Urgent { get; set; }
         public bool Deleted { get; set; }
         public bool Finished { get; set; }
-        public bool canceledByPatient { get; set; }
+        public bool CanceledByPatient { get; set; }
 
         [ForeignKey("Room")]
         public int RoomId { get;  set; }
@@ -38,6 +39,9 @@ namespace Model.Schedule
         [ForeignKey("Doctor")]
         public string DoctorId { get;  set; }
         public virtual Doctor Doctor { get; set; }
+        [ForeignKey("Patient")]
+        public string PatientId { get; set; }
+        public virtual Patient Patient { get; set; }
 
         public int WeeklyAppointmentReportId { get;  set; }
 

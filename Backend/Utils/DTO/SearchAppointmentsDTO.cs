@@ -11,6 +11,7 @@ namespace Backend.Utils.DTO
         public DateTime EndInterval { get; set; }
         public string DoctorId { get; set; }
         public int Priority { get; set; }
+        public int SpecializationId { get; set; }
 
         public SearchAppointmentsDTO() { }
 

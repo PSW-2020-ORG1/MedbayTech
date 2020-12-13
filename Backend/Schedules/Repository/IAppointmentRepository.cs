@@ -15,7 +15,8 @@ namespace Repository.ScheduleRepository
    {
         Dictionary<int, Appointment> GetAppointmentsBy(DateTime date);
         Dictionary<int, Appointment> GetScheduledFromToday();
-
+        List<Appointment> GetCanceledAppointments();
+        IEnumerable<Appointment> GetAppointmentsByPatientId(string Id);
         IEnumerable<Appointment> GetBy(string doctorId, DateTime date);
     }
 }

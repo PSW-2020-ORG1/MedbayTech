@@ -1,0 +1,35 @@
+
+mat-card {
+    margin-left: 9vw;
+    width: 30vw;
+}
+
+mat-card-header {
+    background-color: pink;
+    justify-content: center;
+}
+
+mat-card-content {
+    margin-top: 10px;
+    margin-left: 1.5vw;
+}
+
+mat-card-title {
+    align-items: center;
+}
+mat-card-actions{
+    text-align: right;
+}
+
+.button1 {
+    background-color: pink;
+
+}
+.button2 {
+    background-color: pink;
+
+}
+.card {
+    margin-bottom: 10px;
+
+}

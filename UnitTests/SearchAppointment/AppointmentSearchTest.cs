@@ -14,6 +14,7 @@ using Model.Users;
 using Repository.RoomRepository;
 using Model.Rooms;
 using Backend.Schedules.Service.Interfaces;
+using Service.ScheduleService;
 
 namespace MedbayTechUnitTests
 {
@@ -29,7 +30,7 @@ namespace MedbayTechUnitTests
             String id = "2406978890047";
             DateTime start_date = new DateTime(1999, 12, 5, 8, 0, 0);
             DateTime end_date = new DateTime(1999, 12, 5, 8, 30, 0);
-            var gotAppointment = service.GetAvailableByDoctorAndTimeInterval(id, start_date, end_date);
+            var gotAppointment = service.GetAvailableByDoctorAndTimeInterval(new PriorityParameters {DoctorId = id, ChosenStartDate=start_date, ChosenEndDate = end_date  });
 
             gotAppointment.IsNullOrEmpty();
         }
@@ -40,8 +41,9 @@ namespace MedbayTechUnitTests
             var appointmentsRepository = CreateStubRepositoryAppointment();
             AppointmentService service = new AppointmentService(doctorWorkDayRepository, appointmentsRepository);
             String id = "2406978890047";
-
-            var gotAppointment = service.GetAvailableByDoctorAndTimeInterval(id, new DateTime(2020, 12, 6, 8, 0, 0), new DateTime(2020, 12, 6, 8, 30, 0));
+            DateTime start_date = new DateTime(2020, 12, 6, 8, 0, 0);
+            DateTime end_date = new DateTime(2020, 12, 6, 8, 30, 0);
+            var gotAppointment = service.GetAvailableByDoctorAndTimeInterval(new PriorityParameters { DoctorId = id, ChosenStartDate = start_date, ChosenEndDate = end_date });
 
             gotAppointment.ShouldNotBeEmpty();
         }
@@ -50,7 +52,9 @@ namespace MedbayTechUnitTests
         {
             AppointmentService appointmentsService = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
             AppointmentFilterService service = new AppointmentFilterService(appointmentsService, CreateStubRepositoryDoctor(), CreateStupRepositoryEquipment());
-            var gotAppointments = service.GetAvailableByPriorityTimeInterval(new DateTime(2022, 12, 5, 8, 0, 0), new DateTime(2022, 12, 5, 8, 30, 0));
+            DateTime start_date = new DateTime(2022, 12, 5, 8, 0, 0);
+            DateTime end_date = new DateTime(2022, 12, 5, 8, 30, 0);
+            var gotAppointments = service.GetAvailableByPriorityTimeInterval(new PriorityParameters { ChosenStartDate = start_date, ChosenEndDate = end_date });
 
             gotAppointments.IsNullOrEmpty();
         }
@@ -59,7 +63,9 @@ namespace MedbayTechUnitTests
         {
             AppointmentService appointmentsService = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
             AppointmentFilterService service = new AppointmentFilterService(appointmentsService, CreateStubRepositoryDoctor(), CreateStupRepositoryEquipment());
-            var gotAppointments = service.GetAvailableByPriorityTimeInterval(new DateTime(2020, 12, 6, 8, 0, 0), new DateTime(2020, 12, 6, 15, 0, 0));
+            DateTime start_date = new DateTime(2020, 12, 6, 8, 0, 0);
+            DateTime end_date = new DateTime(2020, 12, 6, 15, 0, 0);
+            var gotAppointments = service.GetAvailableByPriorityTimeInterval(new PriorityParameters { ChosenStartDate = start_date, ChosenEndDate = end_date });
 
             gotAppointments.ShouldNotBeEmpty();
         }
@@ -67,14 +73,20 @@ namespace MedbayTechUnitTests
         public void GetAvailableAppointmentByPriorityDoctorFail()
         {
             AppointmentService service = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
-            var gotAppointments = service.GetAvailableByPriorityDoctor("2406978890047", new DateTime(2020, 12, 3, 8, 0, 0), new DateTime(2020, 12, 5, 8, 30, 0));
+            String id = "2406978890047";
+            DateTime start_date = new DateTime(2020, 12, 3, 8, 0, 0);
+            DateTime end_date = new DateTime(2020, 12, 5, 8, 30, 0);
+            var gotAppointments = service.GetAvailableByPriorityDoctor(new PriorityParameters { DoctorId = id, ChosenStartDate = start_date, ChosenEndDate = end_date });
             gotAppointments.IsNullOrEmpty();
         }
         [Fact]
         public void GetAvailableAppointmentByPriorityDoctorSuccess()
         {
             AppointmentService service = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
-            var gotAppointments = service.GetAvailableByPriorityDoctor("2406978890047", new DateTime(2020, 12, 6, 8, 0, 0), new DateTime(2020, 12, 6, 15, 0, 0));
+            String id = "2406978890047";
+            DateTime start_date = new DateTime(2020, 12, 6, 8, 0, 0);
+            DateTime end_date = new DateTime(2020, 12, 6, 15, 0, 0);
+            var gotAppointments = service.GetAvailableByPriorityDoctor(new PriorityParameters { DoctorId = id, ChosenStartDate = start_date, ChosenEndDate = end_date });
             gotAppointments.ShouldNotBeEmpty();
         }
         [Fact]
@@ -82,7 +94,10 @@ namespace MedbayTechUnitTests
         {   
             AppointmentService appService = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
             AppointmentFilterService filterService = new AppointmentFilterService(appService, CreateStubRepositoryDoctor(), CreateStupRepositoryEquipment());
-            var gotAppointments = filterService.GetAvailableByDoctorTimeIntervalAndEquipment("2406978890047", 9, new DateTime(2020, 12, 6, 8, 0, 0), new DateTime(2020, 12, 6, 15, 0, 0), "doctor");
+            String id = "2406978890047";
+            DateTime start_date = new DateTime(2020, 12, 6, 8, 0, 0);
+            DateTime end_date = new DateTime(2020, 12, 6, 15, 0, 0);
+            var gotAppointments = filterService.GetAvailableByDoctorTimeIntervalAndEquipment(new PriorityParameters { DoctorId = id, ChosenStartDate = start_date, ChosenEndDate = end_date }, 9, "doctor");
             gotAppointments.ShouldNotBeEmpty();
         }
         [Fact]
@@ -90,7 +105,10 @@ namespace MedbayTechUnitTests
         {
             AppointmentService appService = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
             AppointmentFilterService filterService = new AppointmentFilterService(appService, CreateStubRepositoryDoctor(), CreateStupRepositoryEquipment());
-            var gotAppointments = filterService.GetAvailableByDoctorTimeIntervalAndEquipment("2406978890047", 1, new DateTime(2020, 12, 10, 8, 0, 0), new DateTime(2020, 12, 10, 8, 30, 0), "doctor");
+            String id = "2406978890047";
+            DateTime start_date = new DateTime(2020, 12, 10, 8, 0, 0);
+            DateTime end_date = new DateTime(2020, 12, 10, 8, 30, 0);
+            var gotAppointments = filterService.GetAvailableByDoctorTimeIntervalAndEquipment(new PriorityParameters { DoctorId = id, ChosenStartDate = start_date, ChosenEndDate = end_date }, 1, "doctor");
             gotAppointments.IsNullOrEmpty();
         }
 
@@ -164,7 +182,7 @@ namespace MedbayTechUnitTests
                 DepartmentId = 1,
                 ExaminationRoomId = 1003,
                 OperationRoomId = 1119,
-                Specializations = new List<Specialization>()
+                SpecializationId = 1
             };
             Doctor doc2 = new Doctor
             {
@@ -190,7 +208,7 @@ namespace MedbayTechUnitTests
                 DepartmentId = 1,
                 ExaminationRoomId = 1003,
                 OperationRoomId = 1119,
-                Specializations = new List<Specialization>()
+                SpecializationId = 1
             };
             doctors.Add(doc1);
             doctors.Add(doc2); 
