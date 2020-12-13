@@ -48,6 +48,16 @@ namespace PharmacyIntegration
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
+            // NOTE(Jovan): Does not work
+            /*services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                options.JsonSerializerOptions.DictionaryKeyPolicy = null;
+
+            });*/
+
             services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
 
 

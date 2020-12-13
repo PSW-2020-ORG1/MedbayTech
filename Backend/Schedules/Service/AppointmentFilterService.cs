@@ -82,7 +82,7 @@ namespace Backend.Schedules.Service
             {
                 if (appointment.Start >= startTime && appointment.End <= endTime) appointments.Add(appointment);
             }
-            //AddRoomToAppointment(appointments);
+            AddRoomToAppointment(appointments);
             return appointments;
         }
     }

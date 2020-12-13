@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -255,7 +255,7 @@ namespace Model
                     Urgent = true,
                     Deleted = false,
                     Finished = true,
-                    RoomId = 1003,
+                    RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1
@@ -268,7 +268,7 @@ namespace Model
                     Urgent = true,
                     Deleted = false,
                     Finished = true,
-                    RoomId = 1003,
+                    RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1
@@ -281,7 +281,7 @@ namespace Model
                     Urgent = true,
                     Deleted = false,
                     Finished = true,
-                    RoomId = 1003,
+                    RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1
@@ -296,7 +296,7 @@ namespace Model
                     Urgent = true,
                     Deleted = false,
                     Finished = true,
-                    RoomId = 1003,
+                    RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1
@@ -309,7 +309,7 @@ namespace Model
                     Urgent = true,
                     Deleted = false,
                     Finished = true,
-                    RoomId = 1003,
+                    RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1
@@ -322,7 +322,7 @@ namespace Model
                     Urgent = true,
                     Deleted = false,
                     Finished = true,
-                    RoomId = 1003,
+                    RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
                     WeeklyAppointmentReportId = 1
@@ -353,8 +353,86 @@ namespace Model
                  OnCall = true,
                  PatientReview = 4.5,
                  DepartmentId = 1,
+                 ExaminationRoomId = 1,
+                 OperationRoomId = 2,
+                 Specializations = new List<Specialization>()
+             },
+             new Doctor
+             {
+                 Id = "2406978890048",
+                 CurrResidenceId = 1,
+                 DateOfBirth = new DateTime(1978, 6, 24),
+                 DateOfCreation = new DateTime(),
+                 EducationLevel = EducationLevel.bachelor,
+                 Email = "mika@gmail.com",
+                 Gender = Gender.MALE,
+                 InsurancePolicyId = "policy1",
+                 Name = "Petar",
+                 Surname = "Petrovic",
+                 Username = "mika",
+                 Password = "mika1978",
+                 Phone = "065/123-4554",
+                 PlaceOfBirthId = 11000,
+                 Profession = "vodoinstalater",
+                 ProfileImage = ".",
+                 LicenseNumber = "001",
+                 OnCall = true,
+                 PatientReview = 4.5,
+                 DepartmentId = 1,
                  ExaminationRoomId = 1003,
                  OperationRoomId = 1119,
+                 Specializations = new List<Specialization>()
+             },
+             new Doctor
+             {
+                 Id = "2406978890049",
+                 CurrResidenceId = 1,
+                 DateOfBirth = new DateTime(1978, 6, 24),
+                 DateOfCreation = new DateTime(),
+                 EducationLevel = EducationLevel.bachelor,
+                 Email = "mika@gmail.com",
+                 Gender = Gender.FEMALE,
+                 InsurancePolicyId = "policy1",
+                 Name = "Mirjana",
+                 Surname = "Lakic",
+                 Username = "mima",
+                 Password = "mima2003",
+                 Phone = "065/123-4554",
+                 PlaceOfBirthId = 11000,
+                 Profession = "vodoinstalater",
+                 ProfileImage = ".",
+                 LicenseNumber = "001",
+                 OnCall = true,
+                 PatientReview = 4.5,
+                 DepartmentId = 1,
+                 ExaminationRoomId = 2005,
+                 OperationRoomId = 1114,
+                 Specializations = new List<Specialization>()
+             },
+             new Doctor
+             {
+                 Id = "2406978890050",
+                 CurrResidenceId = 1,
+                 DateOfBirth = new DateTime(1978, 6, 24),
+                 DateOfCreation = new DateTime(),
+                 EducationLevel = EducationLevel.bachelor,
+                 Email = "mika@gmail.com",
+                 Gender = Gender.FEMALE,
+                 InsurancePolicyId = "policy1",
+                 Name = "Jovana",
+                 Surname = "Ivanovic",
+                 Username = "joksi",
+                 Password = "joksi1998",
+                 Phone = "065/123-4554",
+                 PlaceOfBirthId = 11000,
+                 Profession = "vodoinstalater",
+                 ProfileImage = ".",
+                 LicenseNumber = "001",
+                 OnCall = true,
+                 PatientReview = 4.5,
+                 DepartmentId = 1,
+                 ExaminationRoomId = 1012,
+                 OperationRoomId = 2117,
                  Specializations = new List<Specialization>()
              }
             );
@@ -988,10 +1066,26 @@ namespace Model
                 new DoctorWorkDay { Id = 2, Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2406978890047"},
                 new DoctorWorkDay { Id = 3, Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" },
                 new DoctorWorkDay { Id = 4, Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" },
-                new DoctorWorkDay { Id = 5, Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" }
+                new DoctorWorkDay { Id = 5, Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" },
 
+                new DoctorWorkDay { Id = 6, Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2406978890048" },
+                new DoctorWorkDay { Id = 7, Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2406978890048" },
+                new DoctorWorkDay { Id = 8, Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2406978890048" },
+                new DoctorWorkDay { Id = 9, Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2406978890048" },
+                new DoctorWorkDay { Id = 10, Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2406978890048" },
+
+                new DoctorWorkDay { Id = 11, Date = new DateTime(2020, 12, 5), StartTime = 8, EndTime = 15, DoctorId = "2406978890049" },
+                new DoctorWorkDay { Id = 12, Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2406978890049" },
+                new DoctorWorkDay { Id = 13, Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2406978890049" },
+                new DoctorWorkDay { Id = 14, Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2406978890049" },
+                new DoctorWorkDay { Id = 15, Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2406978890049" },
+
+                new DoctorWorkDay { Id = 16, Date = new DateTime(2020, 12, 5), StartTime = 8, EndTime = 15, DoctorId = "2406978890050" },
+                new DoctorWorkDay { Id = 17, Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2406978890050" },
+                new DoctorWorkDay { Id = 18, Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2406978890050" },
+                new DoctorWorkDay { Id = 19, Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2406978890050" },
+                new DoctorWorkDay { Id = 20, Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2406978890050" }
                 );
         }
     }
 }
-

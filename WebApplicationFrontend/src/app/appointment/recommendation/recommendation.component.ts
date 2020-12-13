@@ -32,7 +32,7 @@ export class RecommendationComponent implements OnInit {
 
   appointmentRecommendation : AppointmentRecommendation;
 
-  scheduleAppointmen : ScheduleAppointment;
+  scheduleAppointment : ScheduleAppointment;
 
   displayedColumns: string[] = ['position', 'Date', 'Time', '#'];
 
@@ -102,8 +102,8 @@ export class RecommendationComponent implements OnInit {
 
   schedule(appointment) {
     var doctor = this.doctorFormGroup.value.choosenDoctor;
-    this.scheduleAppointmen = new ScheduleAppointment(appointment.start, appointment.end , "", doctor);
-    this.appointmentService.scheduleAppointment(this.scheduleAppointmen).subscribe(
+    this.scheduleAppointment = new ScheduleAppointment(appointment.start, appointment.end , "", doctor);
+    this.appointmentService.scheduleAppointment(this.scheduleAppointment).subscribe(
       res => {
         this.toastr.success(res);
         this.getAvailableAppointments();
