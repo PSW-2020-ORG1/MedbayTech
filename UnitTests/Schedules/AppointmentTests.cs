@@ -24,8 +24,7 @@ namespace UnitTests.Schedules
         {
             var doctorWorkDayStubRepository = CreateDoctorWorkDayStubRepository();
             var appointmentStubRepository = CreateAppointmentStubRepository();
-            var surveyStubRepository = CreateSurveyStubRepository();
-            AppointmentService appointmentService = new AppointmentService(appointmentStubRepository, surveyStubRepository, doctorWorkDayStubRepository);
+            AppointmentService appointmentService = new AppointmentService(doctorWorkDayStubRepository, appointmentStubRepository);
 
             var workDay = appointmentService.GetAvailableBy("2406978890047", new DateTime(2020, 12, 5));
             workDay.Count.ShouldBe(13);
@@ -36,9 +35,8 @@ namespace UnitTests.Schedules
         {
             var doctorWorkDayStubRepository = CreateDoctorWorkDayStubRepository();
             var appointmentStubRepository = CreateAppointmentStubRepository();
-            var surveyStubRepository = CreateSurveyStubRepository();
             var appointment = CreateAppointmentSuccess();
-            AppointmentService appointmentService = new AppointmentService(appointmentStubRepository, surveyStubRepository, doctorWorkDayStubRepository);
+            AppointmentService appointmentService = new AppointmentService(doctorWorkDayStubRepository, appointmentStubRepository);
 
             var createdAppointment = appointmentService.ScheduleAppointment(appointment);
             createdAppointment.ShouldNotBe(null);
@@ -50,9 +48,8 @@ namespace UnitTests.Schedules
         {
             var doctorWorkDayStubRepository = CreateDoctorWorkDayStubRepository();
             var appointmentStubRepository = CreateAppointmentStubRepository();
-            var surveyStubRepository = CreateSurveyStubRepository();
             var appointment = CreateAppointmentFail();
-            AppointmentService appointmentService = new AppointmentService(appointmentStubRepository, surveyStubRepository, doctorWorkDayStubRepository);
+            AppointmentService appointmentService = new AppointmentService(doctorWorkDayStubRepository, appointmentStubRepository);
 
             var createdAppointment = appointmentService.ScheduleAppointment(appointment);
 
@@ -177,10 +174,6 @@ namespace UnitTests.Schedules
             stubRepository.Setup(x => x.GetAppointmentsByPatientId(It.IsAny<string>())).Returns(
                 (string id) =>
                 appointments.Where(a => a.MedicalRecord.PatientId.Equals(id)).ToList());
-
-            stubRepository.Setup(x => x.getAppointmentById(It.IsAny<int>())).Returns(
-                (int id) =>
-                appointments.Where(a => a.Id == id).FirstOrDefault());
 
             stubRepository.Setup(x => x.Update(appointmentCancel)).Returns(appointmentCancel);
 
