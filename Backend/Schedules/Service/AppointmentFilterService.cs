@@ -47,6 +47,7 @@ namespace Backend.Schedules.Service
         {
             foreach (Appointment appointment in appointments)
             {
+                List<Doctor> doctors = _doctorRepository.GetAll().ToList();
                 Doctor doctor = _doctorRepository.GetObject(appointment.DoctorId);
                 appointment.RoomId = doctor.ExaminationRoomId;
                 appointment.Room = doctor.ExaminationRoom;
@@ -62,7 +63,7 @@ namespace Backend.Schedules.Service
             {
                 foreach (HospitalEquipment hospitalEquipment in hospitalEquipments)
                 {
-                    if (appointment.Room.Id == hospitalEquipment.RoomId) appointments.Add(appointment);
+                    if (appointment.RoomId == hospitalEquipment.RoomId) appointments.Add(appointment);
                 }
             }
             return appointments;
@@ -81,7 +82,7 @@ namespace Backend.Schedules.Service
             {
                 if (appointment.Start >= startTime && appointment.End <= endTime) appointments.Add(appointment);
             }
-            AddRoomToAppointment(appointments);
+            //AddRoomToAppointment(appointments);
             return appointments;
         }
     }

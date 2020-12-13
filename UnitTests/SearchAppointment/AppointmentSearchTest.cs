@@ -55,6 +55,15 @@ namespace MedbayTechUnitTests
             gotAppointments.IsNullOrEmpty();
         }
         [Fact]
+        public void GetAvailableAppointmentByPriorityTimeIntervalSuccess()
+        {
+            AppointmentService appointmentsService = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
+            AppointmentFilterService service = new AppointmentFilterService(appointmentsService, CreateStubRepositoryDoctor(), CreateStupRepositoryEquipment());
+            var gotAppointments = service.GetAvailableByPriorityTimeInterval(new DateTime(2020, 12, 6, 8, 0, 0), new DateTime(2020, 12, 6, 15, 0, 0));
+
+            gotAppointments.ShouldNotBeEmpty();
+        }
+        [Fact]
         public void GetAvailableAppointmentByPriorityDoctorFail()
         {
             AppointmentService service = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
@@ -73,7 +82,7 @@ namespace MedbayTechUnitTests
         {   
             AppointmentService appService = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
             AppointmentFilterService filterService = new AppointmentFilterService(appService, CreateStubRepositoryDoctor(), CreateStupRepositoryEquipment());
-            var gotAppointments = filterService.GetAvailableByDoctorTimeIntervalAndEquipment("2406978890047", 1, new DateTime(2020, 12, 5, 8, 0, 0), new DateTime(2020, 12, 5, 8, 30, 0), "doctor");
+            var gotAppointments = filterService.GetAvailableByDoctorTimeIntervalAndEquipment("2406978890047", 9, new DateTime(2020, 12, 6, 8, 0, 0), new DateTime(2020, 12, 6, 15, 0, 0), "doctor");
             gotAppointments.ShouldNotBeEmpty();
         }
         [Fact]
@@ -99,11 +108,6 @@ namespace MedbayTechUnitTests
             return stubRepository.Object;
         }
 
-        public static IAppointmentService CreateStubAppointmentService()
-        {
-            var stubService = new Mock<IAppointmentService>();
-            return stubService.Object;
-        }
         public static IDoctorWorkDayRepository CreateStubRepositoryDoctorWork()
         {
             var stubRepository = new Mock <IDoctorWorkDayRepository>();
@@ -120,6 +124,7 @@ namespace MedbayTechUnitTests
             var stubRepository = new Mock<IDoctorRepository>();
             var doctorList = CreateListOfDoctor();
             stubRepository.Setup(m => m.GetAll()).Returns(doctorList);
+            stubRepository.Setup(m => m.GetObject(It.IsAny<string>())).Returns((string id) => doctorList.Find(d => d.Id.Equals(id)));
             return stubRepository.Object;
         }
 
@@ -192,37 +197,6 @@ namespace MedbayTechUnitTests
             return doctors;
         }
 
-        public static Doctor CreateDoctor()
-        {
-            Doctor doc2 = new Doctor
-            {
-                Id = "2406978890048",
-                CurrResidenceId = 1,
-                DateOfBirth = new DateTime(1978, 6, 24),
-                DateOfCreation = new DateTime(),
-                EducationLevel = EducationLevel.bachelor,
-                Email = "zika@gmail.com",
-                Gender = Gender.MALE,
-                InsurancePolicyId = "policy1",
-                Name = "Zivorad",
-                Surname = "Zivoradovic",
-                Username = "zika",
-                Password = "zika1978",
-                Phone = "065/123-4555",
-                PlaceOfBirthId = 11000,
-                Profession = "doktor",
-                ProfileImage = ".",
-                LicenseNumber = "001",
-                OnCall = true,
-                PatientReview = 4.5,
-                DepartmentId = 1,
-                ExaminationRoomId = 1003,
-                OperationRoomId = 1119,
-                Specializations = new List<Specialization>()
-            };
-
-            return doc2;
-        }
         public static List<Appointment> CreateLisfOfAppointments()
         {
             List<Appointment> appointments = new List<Appointment>();
