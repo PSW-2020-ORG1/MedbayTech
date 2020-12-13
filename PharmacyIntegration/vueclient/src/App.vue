@@ -20,4 +20,11 @@
         padding: 0;
         min-height: 100vh;
     }
+    .v-application {
+        font-family: Poppins, sans-serif !important;
+    }
+    
+    .v-application > .title {
+    font-family: Poppins, sans-serif !important;
+    }
 </style>
