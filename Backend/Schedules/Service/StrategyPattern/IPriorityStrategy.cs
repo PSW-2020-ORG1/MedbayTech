@@ -4,12 +4,14 @@
 // Purpose: Definition of Interface IPriorityStrategy
 
 using System;
+using System.Collections.Generic;
+using Model.Schedule;
 
 namespace Service.ScheduleService
 {
    public interface IPriorityStrategy
    {
-      Model.Schedule.Appointment Recommend(PriorityParameters parameters);
+      List<Appointment> Recommend(PriorityParameters parameters);
    
    }
 }

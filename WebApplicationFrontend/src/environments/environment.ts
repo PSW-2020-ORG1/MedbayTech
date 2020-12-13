@@ -25,7 +25,13 @@ export const environment = {
   reportSimpleSearch : 'api/report',
   patient: 'api/patient',
   updatePatientStatus: 'updatePatientStatus',
-  maliciousPatients: 'maliciousPatients'
+  maliciousPatients: 'maliciousPatients',
+  allSpecializations : 'api/specialization',
+  doctorsBySpecialization : "specialization",
+  appointments : 'api/appointment',
+  availableStrategy : 'availableStrategy',
+  availableStandard : 'available',
+  scheduleAppointment : 'schedule'
 };
 
 /*

@@ -29,5 +29,14 @@ namespace WebApplication.Controller
             return Ok(doctorSearchList);
 
         }
+
+        [HttpGet("specialization/{specializationId}")]
+        public IActionResult GetDoctorsBySpecialization(int specializationId)
+        {
+            List<Doctor> doctors = _doctorService.GetDoctorsBy(specializationId).ToList();
+            List<DoctorSearchDTO> doctorSearchList = DoctorAdapter.ListDoctorToListDoctorSearchDTO(doctors);
+            return Ok(doctorSearchList);
+
+        }
     }
 }

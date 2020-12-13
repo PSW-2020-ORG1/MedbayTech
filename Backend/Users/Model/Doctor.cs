@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using Model.Users;
 
 namespace Model.Users
@@ -28,12 +29,15 @@ namespace Model.Users
         [ForeignKey("OperationRoom")]
         public int OperationRoomId { get;  set; }
         public virtual Room OperationRoom { get;  set; }
-        public virtual List<Specialization> Specializations { get; set; }
+        [ForeignKey("Specialization")]
+        public int SpecializationId { get; set; }
+
+        public virtual Specialization Specialization { get; set; }
 
 
         public Doctor() 
         {
-            Specializations = new List<Specialization>();
+            //Specializations = new List<Specialization>();
         }
 
         public Doctor(string name, string surname, DateTime dateOfBirth,
@@ -47,7 +51,7 @@ namespace Model.Users
                   profileImage)
         {
             LicenseNumber = licenseNumber;
-            Specializations = new List<Specialization>();
+            Specialization = new Specialization();
             Department = department;
             DepartmentId = department.Id;
             PatientReview = 0.0;
@@ -56,21 +60,6 @@ namespace Model.Users
             ExaminationRoomId = examinationRoom.Id;
             OperationRoom = operationRoom;
             OperationRoomId = operationRoom.Id;
-        }
-
-        internal bool IsMySpecialization(Specialization toCheck)
-        {
-            if (Specializations.Count > 0)
-            {
-                foreach (Specialization specialization in  Specializations) 
-                {
-                    if (specialization.SpecializationName.Equals(toCheck.SpecializationName))
-                        return true;
-                    
-                }
-            }
-
-            return false;
         }
     }
 }

@@ -97,22 +97,7 @@ namespace Repository.UserRepository
             return allDoctors;
         }
 
-        public IEnumerable<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
-        {
-            var allDoctors = GetAllDoctors();
-            List<Doctor> doctorsBySpecialization = new List<Doctor>();
-            foreach (Doctor doctor in allDoctors)
-            {
-                foreach (Specialization specialty in doctor.Specializations)
-                {
-                    if (specialty.SpecializationName.Equals(specialization.SpecializationName))
-                    {
-                        doctorsBySpecialization.Add(doctor);
-                    }
-                }
-            }
-            return doctorsBySpecialization;
-        }
+        
 
         public IEnumerable<Employee> GetAllEmployees()
         {
@@ -234,6 +219,11 @@ namespace Repository.UserRepository
         {
             var doctors = GetAllDoctors().Where(entity => entity.Department != null);
             return doctors.Where(entity => entity.Department.Id == department.Id);
+        }
+
+        public IEnumerable<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
+        {
+            throw new NotImplementedException();
         }
     }
 }

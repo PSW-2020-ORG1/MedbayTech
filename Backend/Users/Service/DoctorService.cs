@@ -17,7 +17,6 @@ namespace Backend.Users.WebApiService
             this.doctorRepository = doctorRepository;
 
         }
-
         public IEnumerable<Doctor> GetAll()
         {
             return doctorRepository.GetAll();
@@ -30,6 +29,15 @@ namespace Backend.Users.WebApiService
         {
             doctorRepository.Update(doctor);
             return doctor;
+        }
+        public IEnumerable<Doctor> GetDoctorsBy(int specializationId)
+        {
+            return GetAll().Where(d => d.SpecializationId == specializationId);
+        }
+
+        public Doctor GetDoctorBy(string id)
+        {
+            return doctorRepository.GetObject(id);
         }
     }
 }

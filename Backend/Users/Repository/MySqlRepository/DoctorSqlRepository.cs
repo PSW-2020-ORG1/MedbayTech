@@ -9,17 +9,14 @@ using System.Text;
 
 namespace Backend.Users.Repository.MySqlRepository
 {
-    public class DoctorSqlRepository : IDoctorRepository
+    public class DoctorSqlRepository : MySqlrepository<Doctor, string>, IDoctorRepository
     {
 
         private MySqlContext _context;
 
-        public DoctorSqlRepository(MySqlContext context)
-        {
-            _context = context;
-        }
-
-        public Doctor Create(Doctor entity)
+        public DoctorSqlRepository(MySqlContext context) : base(context) {}
+        
+        /*public Doctor Create(Doctor entity)
         {
             if (ExistsInSystem(entity.Id))
             {
@@ -47,11 +44,12 @@ namespace Backend.Users.Repository.MySqlRepository
         {
             return _context.Doctors.ToList();
 
-        }
+        }*/
         
         public IEnumerable<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
         {
-            return GetAll().ToList().Where(d => d.IsMySpecialization(specialization));
+           // return GetAll().ToList().Where(d => d.SpecializationId == specialization.Id);
+           return null;
         }
 
         public Doctor GetByUsername(string username)
@@ -64,7 +62,7 @@ namespace Backend.Users.Repository.MySqlRepository
             return GetAll().ToList().Where(d => d.DepartmentId.Equals(department.Id));
         }
 
-        public Doctor GetObject(string id)
+        /*public Doctor GetObject(string id)
         {
             return _context.Doctors.ToList().Find(p => p.Id.Equals(id));
         }
@@ -74,6 +72,6 @@ namespace Backend.Users.Repository.MySqlRepository
             _context.Doctors.Update(entity);
             _context.SaveChanges();
             return entity;
-        }
+        }*/
     }
 }

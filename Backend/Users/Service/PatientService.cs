@@ -12,6 +12,8 @@ namespace Backend.Users.Service
 {
     public class PatientService : IPatientService
     {
+        private const int daysInMonth = 30;
+        private const int numberOfCancelableAppointments = 4;
         private IPatientRepository patientRepository;
         private IAppointmentRepository appointmentRepository;
 
@@ -24,7 +26,7 @@ namespace Backend.Users.Service
         {
             Patient patient = patientRepository.GetById(patientId);
 
-            if (patient != null && !patient.Blocked)
+            if (patient != null)
             {
                 patient.Blocked = true;
                 patientRepository.Update(patient);
@@ -45,32 +47,32 @@ namespace Backend.Users.Service
                 {
                     if (CheckIfPatientBlockable(canceledAppointments))
                     {
-                        p.ShouldBeBlocked = true;
                         blockablePatients.Add(p);
-                }});
+                    }
+                });
 
             return blockablePatients;
         }
 
         private bool CheckIfPatientBlockable(List<Appointment> canceledAppointments)
         {
-            if (canceledAppointments.Count <= 3)
+            if (canceledAppointments.Count < numberOfCancelableAppointments)
                 return false;
             
             canceledAppointments.Sort((x, y) => DateTime.Compare(x.CancelationDate, y.CancelationDate));
-            bool dayDiffernce = DayDifference(canceledAppointments);
-           
-            return dayDiffernce;
+            bool dayDifference = DayDifference(canceledAppointments);
+
+            return dayDifference;
         }
 
         private bool DayDifference(List<Appointment> canceledAppointments)
         {
-            int index = canceledAppointments.Count - 3;
+            int index = canceledAppointments.Count - numberOfCancelableAppointments;
             Appointment fourthAppointment = canceledAppointments.ElementAt(index);
             Appointment lastAppointment = canceledAppointments.Last();
             double dayDifference = (lastAppointment.CancelationDate - fourthAppointment.CancelationDate).TotalDays;
 
-            if (dayDifference <= 30)
+            if (dayDifference <= daysInMonth)
                 return true;
 
             return false;

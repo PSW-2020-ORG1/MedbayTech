@@ -126,7 +126,7 @@ namespace MedbayTechUnitTests.Examinations
                 DepartmentId = 1,
                 ExaminationRoomId = 1,
                 OperationRoomId = 2,
-                Specializations = new List<Specialization>()
+                //Specialization = new Specialization(1, "Interna medicina")
             };
 
             return doctor;

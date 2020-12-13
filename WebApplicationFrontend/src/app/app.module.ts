@@ -29,6 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 
@@ -53,6 +54,8 @@ import {MedicalRecordService} from './service/medicalRecord/medicalRecord.servic
 import { PrescriptionSimpleSearchComponent } from './search/prescription-simple-search/prescription-simple-search.component';
 import { ReportSimpleSearchComponent } from './search/report-simple-search/report-simple-search.component';
 import { BlockMaliciousUsersComponent } from './block-malicious-users/block-malicious-users/block-malicious-users.component';
+import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
+import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +72,8 @@ import { BlockMaliciousUsersComponent } from './block-malicious-users/block-mali
     PrescriptionSimpleSearchComponent,
     ReportSimpleSearchComponent,
     BlockMaliciousUsersComponent,
+    SchedulingComponent,
+    RecommendationComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,6 +96,7 @@ import { BlockMaliciousUsersComponent } from './block-malicious-users/block-mali
     MatTableModule,
     RouterModule,
     MatSelectModule,
+    MatStepperModule,
     MatNativeDateModule,
     FormsModule,
     MatIconModule,
@@ -104,6 +110,7 @@ import { BlockMaliciousUsersComponent } from './block-malicious-users/block-mali
     MatRadioModule,
     MatInputModule,
     MatSelectModule,
+    MatStepperModule,
     ToastrModule.forRoot(),
 
     

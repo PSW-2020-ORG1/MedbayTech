@@ -1,156 +1,130 @@
-/***********************************************************************
- * Module:  AppointmentService.cs
- * Author:  Vlajkov
- * Purpose: Definition of the Class Service.AppointmentService
- ***********************************************************************/
-
-using Backend.Records.Model;
-using Model.Rooms;
+﻿using Backend.Schedules.Service.Interfaces;
+using Backend.Users.Model;
+using Backend.Users.Repository;
 using Model.Schedule;
 using Model.Users;
 using Repository.ScheduleRepository;
-using Service.GeneralService;
-using Service.UserService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Backend.Exceptions.Schedules;
+using System.Text;
+using Backend.Rooms.Service;
+using Backend.Schedules.Service.StrategyPattern;
+using Castle.Core.Internal;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using Service.ScheduleService;
 
-namespace Service.ScheduleService
+namespace Backend.Schedules.Service
 {
-   public class AppointmentService
-   {
-        public AppointmentService(IAppointmentRepository appointmentRepository, WorkDayService workDayService, NotificationService notificationService,
-            int allowedPeriodOfTime, int appointmentTimePeriod, int surgeryPeriod, int appointmentHourStart, int appointmentHourEnd)
+    public class AppointmentService : IAppointmentService
+    {
+        private const int appointmentDuration = 30;
+        IDoctorWorkDayRepository _doctorWorkDayRepository;
+        IAppointmentRepository _appointmentRepository;
+        IDoctorService _doctorService;
+
+        private IPriorityStrategy _priorityStrategy;
+
+        public AppointmentService(IDoctorWorkDayRepository doctorWorkDayRepository, IAppointmentRepository appointmentRepository, IDoctorService doctorService)
         {
-            this.appointmentHourStart = appointmentHourStart;
-            this.appointmentHourEnd = appointmentHourEnd;
-            this.appointmentRepository = appointmentRepository;
-            this.workDayService = workDayService;
-            this.allowedPeriodOfTime = allowedPeriodOfTime;
-            this.appointmentTimePeriod = appointmentTimePeriod;
-            this.surgeryPeriod = surgeryPeriod;
-            this.notificationService = notificationService;
+            _appointmentRepository = appointmentRepository;
+            _doctorWorkDayRepository = doctorWorkDayRepository;
+            _doctorService = doctorService;
         }
 
-
-        public Appointment GetAppointment(int appointmentId) => appointmentRepository.GetObject(appointmentId);
-
-        public Appointment AddAppointment(Appointment appointment, bool ifUrgent)
+        public Appointment ScheduleAppointment(Appointment appointment)
         {
-            Appointment fullAppointment = appointment;
-            if (CheckAllParameters(appointment, ifUrgent))
-            {
-                appointmentRepository.Create(appointment);
-                notificationService.AppointmentNotifyForDoctors(fullAppointment);
-                notificationService.AppointmentNotifyForPatients(fullAppointment);
-                return appointment;
-            }
+            List<Appointment> available = GetAvailableBy(appointment.DoctorId, appointment.Start);
+            appointment.PatientId = "2406978890046";
+            bool isAvailable = available.Any(a => a.isOccupied(appointment.Start, appointment.End));
+            if (isAvailable)
+                return _appointmentRepository.Create(appointment);
+
             return null;
         }
-        public Appointment ChangeRoomForAppointment(Appointment appointment, Room room)
+        public List<Appointment> GetAvailableByDoctorAndDateRange(PriorityParameters parameters)
         {
-            Appointment appointmentToUpdate = appointmentRepository.GetObject(appointment.Id);
-            appointmentToUpdate.Room = room;
-            return appointmentRepository.Update(appointmentToUpdate);
-        }
-        public IEnumerable<Appointment> NotFinishedByDoctorAndDay(Doctor doctor, DateTime day)
-        {
-            var doctorsDay = GetScheduledBy(doctor, day);
-            return doctorsDay.Where(entity => !entity.Finished);
-        }
-        public int GetNumberOfAppointmentsFor(Doctor doctor, TypeOfAppointment type)
-        {
-            var allExams = appointmentRepository.GetAll().ToList().Where(entity => entity.IsDoctor(doctor));
-            return allExams.Where(entity => entity.Finished == true && entity.TypeOfAppointment == type).ToList().Count;
-        }
-
-        public Appointment FinishAppointment(Appointment appointment)
-        {
-            appointment.Finished = true;
-            return appointmentRepository.Update(appointment);
-        }
-
-        public Appointment GetCurrentAppointment(Doctor doctor, MedicalRecord medicalRecord)
-        {
-            var doctorsDay = GetScheduledBy(doctor, DateTime.Today);
-            return doctorsDay.SingleOrDefault(entity => entity.IsMedicalRecord(medicalRecord));
-        }
-        public Appointment ChangeDoctorForAppointment(Doctor doctor, Appointment appointment)
-        {
-            Appointment appointmentToUpdate = appointmentRepository.GetObject(appointment.Id);
-            appointmentToUpdate.Doctor = doctor;
-            return appointmentRepository.Update(appointmentToUpdate);
-        }
-      
-        public Appointment ChangeTimeOfAppointment(Appointment appointment, DateTime termOfAppointment)
-        {
-            Appointment appointmentToUpdate = appointmentRepository.GetObject(appointment.Id);
-            appointmentToUpdate.Period.StartTime = termOfAppointment;
-            int ifSurgeryMultiply = appointment.TypeOfAppointment == TypeOfAppointment.Surgery ? surgeryPeriod : 1;
-            appointmentToUpdate.Period.EndTime = termOfAppointment.AddMinutes(appointmentTimePeriod * ifSurgeryMultiply);
-            return appointmentRepository.Update(appointmentToUpdate);
-        }
-
-        public bool DeleteAppointment(Appointment appointment) => 
-            appointmentRepository.Delete(appointment);
-
-        public IEnumerable<Appointment> GetScheduledBy(DateTime date) => 
-            appointmentRepository.GetAppointmentsBy(date).Values;
-
-        public IEnumerable<Appointment> GetScheduledBy(Doctor doctor, DateTime date)
-        {
-            var allScheduledByDay = GetScheduledBy(date);
-            List<Appointment> appointmentsByDoctor = new List<Appointment>();
-            foreach (Appointment appointment in allScheduledByDay)
+            DateTime start = parameters.ChosenStartDate;
+            DateTime end = parameters.ChosenEndDate;
+            List<Appointment> availableAppointments = new List<Appointment>();
+            for (DateTime date = start; date.Date <= end.Date; date = date.AddDays(1))
             {
-                if (appointment.IsDoctor(doctor))
-                    appointmentsByDoctor.Add(appointment);
+                availableAppointments.AddRange(GetAvailableBy(parameters.DoctorId, date));
             }
-            return appointmentsByDoctor;
+
+            return availableAppointments;
         }
-      
-        public Appointment GetScheduledFor(Patient patient)
+
+        public List<Appointment> GetAvailableByStrategy(PriorityParameters parameters)
         {
-            var scheduledByDate = appointmentRepository.GetScheduledFromToday();
-            List<Appointment> scheduled = new List<Appointment>();
-            foreach (Appointment appointment in scheduledByDate.Values)
+            List<Appointment> appointments = GetAvailableByDoctorAndDateRange(parameters);
+            if (appointments.IsNullOrEmpty())
             {
-                if (appointment.IsPatient(patient))
-                    return appointment;
+                SwitchStrategy(parameters.Priority);
+                appointments.AddRange(_priorityStrategy.Recommend(parameters));
             }
-            throw new NoAppointmentsFound();
-        } 
 
-        public bool CheckAllParameters(Appointment appointment, bool ifUrgent)
+            return AddDoctors(appointments);
+        }
+        private void SwitchStrategy(PriorityType priorityType)
         {
-            var appointmentsForPatient = GetScheduledFor(appointment.MedicalRecord.Patient);
-            if (appointmentsForPatient != null && !ifUrgent)
-                throw new AppointmentAlreadyOccupied(PATIENT_ALREADY_HAS_SCHEDULED);
-            if (appointment.IsTooEarlyToSchedule(allowedPeriodOfTime))
-                throw new NotValidTimeForScheduling(string.Format(CANT_SCHEDULE, allowedPeriodOfTime));
-            if (appointmentRepository.GetAll().Any(ent => ent.IsAlreadyScheduled(appointment.Period.StartTime) 
-                                                          && ent.Doctor.Username.Equals(appointment.Doctor.Username)))
-                throw new AppointmentAlreadyOccupied(string.Format(ALREADY_SCHEDULED, appointment.Period.StartTime.ToString("dd.MM.yyyy. HH:mm")));
-            return true;
+            if(priorityType == PriorityType.doctor)
+                _priorityStrategy = new DoctorPriorityStrategy(this);
+            else 
+                _priorityStrategy = new DatePriorityStrategy(this, _doctorService);
+        }
+        public List<Appointment> GetAvailableBy(string doctorId, DateTime date)
+        {
+            List<Appointment> occupied = GetByDoctorAndDate(doctorId, date);
+            List<Appointment> allAppointments = InitializeAppointments(doctorId, date);
+            List<Appointment> available = new List<Appointment>(allAppointments);
+            foreach(Appointment appointmentIt in allAppointments)
+            {
+                Appointment appointment = occupied.FirstOrDefault(a => a.isOccupied(appointmentIt.Start, appointmentIt.End));
+                
+                if (appointment != null && !appointment.CanceledByPatient)
+                    available.Remove(appointmentIt);
+            }
+
+            return available;
+        }
+        public List<Appointment> GetByDoctorAndDate(string doctorId, DateTime date)
+        {
+            return _appointmentRepository.GetBy(doctorId, date).ToList();
         }
 
-        private const string ALREADY_SCHEDULED = "Appointment with start time {0} already scheduled!";
-        private const string CANT_SCHEDULE = "Appointments can be scheduled after {0} hours from now!";
-        private const string PATIENT_ALREADY_HAS_SCHEDULED = "Patient already has scheduled appointment.";
+        public List<Appointment> AddDoctors(List<Appointment> appointments)
+        {
+            foreach (Appointment appointmentIt in appointments)
+            {
+                appointmentIt.Doctor = _doctorService.GetDoctorBy(appointmentIt.DoctorId);
+            }
 
-        public int allowedPeriodOfTime;
-        public int appointmentTimePeriod;
-        public int appointmentHourStart;
-        public int appointmentHourEnd;
-        public int surgeryPeriod;
+            return appointments;
+        }
+        public List<Appointment> InitializeAppointments(string doctorId, DateTime date)
+        {
+            List<Appointment> appointments = new List<Appointment>();
+            DoctorWorkDay doctorWorkDays = _doctorWorkDayRepository.GetByDoctorIdAndDate(doctorId, date.Date);
 
+            if (doctorWorkDays == null)
+                return appointments;
 
-        public IAppointmentRepository appointmentRepository;
-        public WorkDayService workDayService;
-        public NotificationService notificationService;
-        public IPriorityStrategy strategy;
-        
-   
-   }
+            int startTime = doctorWorkDays.StartTime;
+            int endTime = doctorWorkDays.EndTime;
+            DateTime appointmentStart = new DateTime(date.Year, date.Month, date.Day, startTime, 0, 0);
+            
+            for (int i = 0; i < endTime - 1; i++)
+            {
+                Appointment appointment = new Appointment
+                {
+                    DoctorId = doctorId,
+                    Start = appointmentStart.AddMinutes(appointmentDuration * i),
+                    End = appointmentStart.AddMinutes(appointmentDuration * (i + 1))
+                };
+                appointments.Add(appointment);
+            }
+            return appointments;
+        }
+    }
 }

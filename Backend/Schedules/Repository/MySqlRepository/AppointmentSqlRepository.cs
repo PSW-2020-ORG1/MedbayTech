@@ -26,6 +26,11 @@ namespace Backend.Schedules.Repository.MySqlRepository
             return appointments;
         }
 
+        public IEnumerable<Appointment> GetBy(string doctorId, DateTime date)
+        {
+            return GetAll().Where(a => a.DoctorId.Equals(doctorId) && a.Start.Date.CompareTo(date.Date) == 0);
+        }
+
         public Dictionary<int, Appointment> GetScheduledFromToday()
         {
             return GetAll().ToList().Where(a => a.Period.StartTime.CompareTo(DateTime.Now) <= 0).ToDictionary(a => a.Id);

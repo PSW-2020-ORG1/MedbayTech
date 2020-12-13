@@ -1,65 +1,70 @@
-// File:    DoctorPriorityStrategy.cs
-// Author:  Vlajkov
-// Created: Tuesday, June 02, 2020 1:09:09 AM
-// Purpose: Definition of Class DoctorPriorityStrategy
-
-using Model.Schedule;
-using Model.Users;
-using Backend.General.Model.ScheduleRepository;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Backend.Exceptions.Schedules;
-using Backend.Utils;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using Backend.Schedules.Service.Interfaces;
+using Model.Schedule;
+using Service.ScheduleService;
 
-namespace Service.ScheduleService
+namespace Backend.Schedules.Service.StrategyPattern
 {
-   public class DoctorPriorityStrategy : IPriorityStrategy
-   {
-        public Appointment Recommend(PriorityParameters parameters)
-        {
-            Period period = parameters.SetStartTime(startWorkingHours, endWorkingHours);
+    public class DoctorPriorityStrategy : IPriorityStrategy
+    {
+        private const int MIN_DAYS = -10;
+        private const int MAX_DAYS = 10;
+        private const int NUMBER_OF_RECOMMENDED_APPOINTMENTS = 3;
+        private IAppointmentService _appointmentService;
 
-            List<Appointment> allAppointmentsInTimePeriod = new List<Appointment>();
-            while (period.StartTime.Date.CompareTo(parameters.ChosenEndDate) < 0)
+        public DoctorPriorityStrategy(IAppointmentService appointmentService)
+        {
+            _appointmentService = appointmentService;
+        }
+
+        public List<Appointment> Recommend(PriorityParameters parameters)
+        {
+            List<Appointment> appointmentsBeforeDate = new List<Appointment>();
+            List<Appointment> appointentsAfterDate = GetAppointmentsAfterDate(parameters);
+            List<Appointment> recommendedAppointments = GetAppointmentsBeforeDate(parameters);
+
+            recommendedAppointments.AddRange(appointmentsBeforeDate);
+            recommendedAppointments.AddRange(appointentsAfterDate);
+
+            return recommendedAppointments;
+        }
+
+        private List<Appointment> GetAppointmentsAfterDate(PriorityParameters parameters)
+        {
+            DateTime endDate = parameters.ChosenEndDate.Date.AddDays(1);
+            DateTime maxDate = parameters.ChosenEndDate.Date.AddDays(MAX_DAYS);
+            List<Appointment> availableAppointments = new List<Appointment>();
+
+            while (endDate <= maxDate)
             {
-                var appointmentsForDoctors = appointmentService.AvailableExaminationsFor(parameters.ChosenDoctor, period.StartTime, false);
-                allAppointmentsInTimePeriod.AddRange(appointmentsForDoctors.Values);
-                period.AddDay();
+                List<Appointment> availaAppointments2 =
+                    _appointmentService.GetAvailableBy(parameters.DoctorId, endDate);
+                availableAppointments.AddRange(availaAppointments2);
+                endDate = endDate.AddDays(1);
             }
-            return RecommendResults(allAppointmentsInTimePeriod, parameters);
+
+            return availableAppointments.Where(ap => availableAppointments.IndexOf(ap) < NUMBER_OF_RECOMMENDED_APPOINTMENTS).ToList();
         }
 
-        public Appointment RecommendResults(List<Appointment> allAppointmentsInTimePeriod, PriorityParameters parameters)
+        private List<Appointment> GetAppointmentsBeforeDate(PriorityParameters parameters)
         {
-            if (allAppointmentsInTimePeriod.Count > 0)
-                return allAppointmentsInTimePeriod[rndGen.Next(0, allAppointmentsInTimePeriod.Count)];
-            return RecommendAfterDate(parameters);   
+            DateTime startDate = parameters.ChosenStartDate.Date.AddDays(-1);
+            DateTime minDate = parameters.ChosenStartDate.Date.AddDays(MIN_DAYS);
+            List<Appointment> allAvailableAppointments = new List<Appointment>();
+
+            while (startDate >= minDate || startDate == DateTime.Now.Date)
+            {
+                List<Appointment> availableAppointments2 =
+                    _appointmentService.GetAvailableBy(parameters.DoctorId, startDate);
+                allAvailableAppointments.AddRange(availableAppointments2);
+                startDate = startDate.AddDays(-1);
+            }
+            return allAvailableAppointments.Where(ap => allAvailableAppointments.IndexOf(ap) < NUMBER_OF_RECOMMENDED_APPOINTMENTS).ToList();
         }
 
-        private Appointment RecommendAfterDate(PriorityParameters parameters)
-        {
-            DateTime startFrom = parameters.ChosenEndDate.Date.AddDays(1);
-            List<Appointment> allAppointmentsInTimePeriod = new List<Appointment>();
-
-            var appointmentsForDoctors = appointmentService.AvailableExaminationsFor(parameters.ChosenDoctor, startFrom, false);
-            foreach (Appointment appointment in appointmentsForDoctors.Values)
-                return appointment;
-            throw  new NoAppointmentsFound();
-        }
-
-        public DoctorPriorityStrategy(AvailableAppointmentService appointmentService, int startHours, int endHours)
-        {
-            startWorkingHours = startHours;
-            endWorkingHours = endHours;
-            rndGen = new Random();
-            this.appointmentService = appointmentService;
-        }
-
-        private readonly int startWorkingHours;
-        private readonly int endWorkingHours;
-        private readonly Random rndGen;
-
-        public AvailableAppointmentService appointmentService;
-   
-   }
+    }
 }
