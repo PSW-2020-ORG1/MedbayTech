@@ -30,20 +30,19 @@ namespace MedbayTechUnitTests.Examinations
 
             reports.ShouldBeEmpty();
         }
-        /*
+        
         [Fact]
         public void Advanced_report_found()
         {
             var stubRepository = CreateStubRepository();
             ReportAdvancedDTO dto = CreateDTO();
-            ReportSearchWebService service = new ReportSearchWebService(stubRepository);
+            ReportSearchService service = new ReportSearchService(stubRepository);
 
             List<ExaminationSurgery> reports = service.AdvancedSearchReports(dto);
 
             reports.ShouldNotBeEmpty();
         } 
-        */
-
+ 
         public static IExaminationSurgeryRepository CreateStubRepository()
         {
             var stubRepository = new Mock<IExaminationSurgeryRepository>();
@@ -126,7 +125,6 @@ namespace MedbayTechUnitTests.Examinations
                 DepartmentId = 1,
                 ExaminationRoomId = 1,
                 OperationRoomId = 2,
-                Specializations = new List<Specialization>()
             };
 
             return doctor;

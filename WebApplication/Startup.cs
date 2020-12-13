@@ -12,6 +12,7 @@ using Backend.Records.Repository.MySqlRepository;
 using Backend.Records.Service.Interfaces;
 using Backend.Records.WebApiService;
 using Backend.Rooms.Service;
+using Backend.Schedules.Repository.MySqlRepository;
 using Backend.Schedules.Service;
 using Backend.Users.Repository;
 using Backend.Users.Repository.MySqlRepository;
@@ -19,6 +20,8 @@ using Backend.Users.Service;
 using Backend.Users.Service.Interfaces;
 using Backend.Users.TableBuilder.Interfaces;
 using Backend.Users.WebApiService;
+using Backend.Schedules.Service.Interfaces;
+using Backend.Schedules.Repository.MySqlRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
@@ -32,11 +35,11 @@ using Backend.Schedules.Service.Interfaces;
 using Model;
 using Newtonsoft.Json;
 using Repository.MedicalRecordRepository;
+using Repository.ScheduleRepository;
+using Service.ScheduleService;
 using Repository.UserRepository;
 using WebApplication.MailService;
 using WebApplication.ObjectBuilder;
-using Repository.ScheduleRepository;
-using Backend.Schedules.Repository.MySqlRepository;
 
 namespace WebApplication
 {
@@ -85,6 +88,7 @@ namespace WebApplication
             services.AddTransient<ISpecializationRepository, SpecializationSqlRepository>();
             services.AddTransient<IDoctorWorkDayRepository, DoctorWorkDaySqlRepository>();
             services.AddTransient<IAppointmentRepository, AppointmentSqlRepository>();
+            services.AddTransient<ISpecializationRepository, SpecializationSqlRepository>();
 
             services.AddScoped<IDoctorService, DoctorService>();
             services.AddScoped<IFeedbackService, FeedbackService>();
@@ -94,6 +98,7 @@ namespace WebApplication
             services.AddScoped<IStateService, StateService>();
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<IInsurancePolicyService, InsurancePolicyService>();
+            services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<IPatientTableBuilder, PatientTableBuilder>();
             services.AddScoped<IReportSearchService, ReportSearchService>();
             services.AddScoped<ISurveyService, SurveyService>();
@@ -101,6 +106,7 @@ namespace WebApplication
             services.AddScoped<ISpecializationService, SpecializationService>();
             services.AddScoped<IDoctorWorkDayService, DoctorWorkDayService>();
             services.AddScoped<IAppointmentService, Backend.Schedules.Service.AppointmentService>();
+            services.AddScoped<ISpecializationService, SpecializationService>();
 
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 

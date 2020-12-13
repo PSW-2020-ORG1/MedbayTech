@@ -32,19 +32,12 @@ namespace Backend.Users.WebApiService
         }
         public IEnumerable<Doctor> GetDoctorsBy(int specializationId)
         {
-            List<Doctor> allDoctors = GetAll().ToList();
-            List<Doctor> doctors = new List<Doctor>();
+            return GetAll().Where(d => d.SpecializationId == specializationId);
+        }
 
-            foreach(Doctor doctorIt in allDoctors)
-            {
-                List<Specialization> specializations = doctorIt.Specializations;
-                foreach(Specialization specializationIt in specializations)
-                {
-                    if (specializationIt.Id == specializationId)
-                        doctors.Add(doctorIt);
-                }
-            }
-            return doctors;
+        public Doctor GetDoctorBy(string id)
+        {
+            return doctorRepository.GetObject(id);
         }
     }
 }

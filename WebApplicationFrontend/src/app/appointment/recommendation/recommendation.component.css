@@ -1,5 +1,5 @@
 table {
-    width: 50vw;
+    width: 55vw;
 }
 
 #tableContainer {
@@ -7,4 +7,5 @@ table {
     justify-content: center;
     align-items: center;
     padding-top: 5vw;
+    padding-bottom: 5vw;
 }

@@ -45,7 +45,7 @@
         <mat-step>
             <ng-template matStepLabel>Submit</ng-template>
             <p>Select priority</p>
-            <mat-radio-group aria-label="Select an option">
+            <mat-radio-group aria-label="Select an option" (change)="selectedPriority($event)">
                 <div class="container">
                     <div class="row">
                         <mat-radio-button value="1" selected=true>Doctor</mat-radio-button>
@@ -73,16 +73,24 @@
         <td mat-cell *matCellDef="let element"> {{element.start | date: 'dd/MM/yyyy'}} </td>
         </ng-container>
     
+
+        
+
         <ng-container matColumnDef="Time">
         <th mat-header-cell *matHeaderCellDef> Time </th>
         <td mat-cell *matCellDef="let element"> {{element.start | date : 'shortTime'}} - {{element.end | date : 'shortTime'}}</td>
         </ng-container>
 
-        <ng-container matColumnDef="#">
-            <th mat-header-cell *matHeaderCellDef> # </th>
-            <td mat-cell *matCellDef="let element"> 
-                <button mat-raised-button color="primary" id="button" (click)="schedule(element)">Schedule</button>
-            </td>
+        <ng-container matColumnDef="Doctor">
+            <th mat-header-cell *matHeaderCellDef> Doctor </th>
+            <td mat-cell *matCellDef="let element">dr. {{element.doctorFullName }}</td>
+        </ng-container>
+
+            <ng-container matColumnDef="#">
+                <th mat-header-cell *matHeaderCellDef> # </th>
+                <td mat-cell *matCellDef="let element"> 
+                    <button mat-raised-button color="primary" id="button" (click)="schedule(element)">Schedule</button>
+                </td>
             </ng-container>
     
     
