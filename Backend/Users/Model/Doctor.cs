@@ -35,10 +35,7 @@ namespace Model.Users
         public virtual Specialization Specialization { get; set; }
 
 
-        public Doctor() 
-        {
-            //Specializations = new List<Specialization>();
-        }
+        public Doctor() {}
 
         public Doctor(string name, string surname, DateTime dateOfBirth,
             string identificationNumber, string email, string username, string phone,

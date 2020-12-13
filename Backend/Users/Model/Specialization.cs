@@ -32,10 +32,6 @@ namespace Model.Users
             return Id;
         }
 
-        /*[ForeignKey("Doctor")]
-        public string DoctorId { get; set; }
-        public virtual Doctor Doctor { get; set; }*/
-
         public void SetId(int id)
         {
             Id = id;
