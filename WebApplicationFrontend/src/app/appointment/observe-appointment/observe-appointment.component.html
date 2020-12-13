@@ -44,9 +44,9 @@
                 <p class="content-paragraph">Doctor : <strong>{{appointment.name}} {{appointment.surname}}</strong></p>    
                 <p class="content-paragraph">Date : <strong>{{appointment.start | date: 'dd/MM/yyyy'}}</strong></p>    
                 <p class="content-paragraph">Time : <strong>{{appointment.start | date: 'HH:mm'}} - {{appointment.end | date: 'HH:mm'}}</strong></p>
-                <p class="content-paragraph" *ngIf="appointment.finished == true">Status : <strong>Finished</strong></p>
-                <p class="content-paragraph" *ngIf="appointment.finished == false">Status : <strong>Upcoming</strong></p>
-                <p class="content-paragraph" *ngIf="appointment.canceledByPatient == true">Status : <strong>Canceled</strong></p>
+                <p class="content-paragraph" *ngIf="appointment.finished && !appointment.canceledByPatient ">Status : <strong>Finished</strong></p>
+                <p class="content-paragraph" *ngIf="!appointment.finished && !appointment.canceledByPatient">Status : <strong>Upcoming</strong></p>
+                <p class="content-paragraph" *ngIf="appointment.canceledByPatient">Status : <strong>Canceled</strong></p>
                 <p class="content-paragraph">Room : <strong>{{appointment.roomType}}-{{appointment.roomNumber}}</strong></p>
             </mat-card-content>         
         </mat-card>
