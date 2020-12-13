@@ -9,6 +9,8 @@ using Backend.Examinations.Repository.MySqlRepository;
 using Backend.Examinations.Service.Interfaces;
 using Backend.Examinations.WebApiService;
 using Backend.Records.Repository.MySqlRepository;
+using Backend.Records.Service.Interfaces;
+using Backend.Records.WebApiService;
 using Backend.Rooms.Service;
 using Backend.Schedules.Repository.MySqlRepository;
 using Backend.Schedules.Service;
@@ -38,9 +40,7 @@ using Service.ScheduleService;
 using Repository.UserRepository;
 using WebApplication.MailService;
 using WebApplication.ObjectBuilder;
-using Repository.ScheduleRepository;
-using Backend.Schedules.Repository.MySqlRepository;
-using Backend.Examinations.Service;
+using IMedicalRecordService = Backend.Records.Service.Interfaces.IMedicalRecordService;
 
 namespace WebApplication
 {
@@ -68,7 +68,7 @@ namespace WebApplication
 
             services.AddTransient<IMailService, MailService.MailService>();
 
-            
+
 
             //add cors package
             services.AddCors();
