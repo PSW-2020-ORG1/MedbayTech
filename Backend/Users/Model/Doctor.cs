@@ -37,7 +37,7 @@ namespace Model.Users
 
         public Doctor() 
         {
-            //Specializations = new List<Specialization>();
+            
         }
 
         public Doctor(string name, string surname, DateTime dateOfBirth,

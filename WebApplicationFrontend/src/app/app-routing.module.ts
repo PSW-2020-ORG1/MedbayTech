@@ -13,6 +13,7 @@ import { MedicalRecordComponent } from './medical-record/medical-record.componen
 import { PrescriptionSimpleSearchComponent } from './search/prescription-simple-search/prescription-simple-search.component';
 import { ReportSimpleSearchComponent } from './search/report-simple-search/report-simple-search.component';
 import { BlockMaliciousUsersComponent } from './block-malicious-users/block-malicious-users/block-malicious-users.component';
+import { ObserveAppointmentComponent } from './appointment/observe-appointment/observe-appointment.component';
 import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
 
@@ -63,6 +64,10 @@ const routes: Routes = [
   {
     path : 'blockMaliciousUsers',
     component : BlockMaliciousUsersComponent
+  },
+  {
+    path : 'observeAppointment',
+    component : ObserveAppointmentComponent
   },
   {
     path : 'scheduleAppointment',

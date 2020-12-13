@@ -26,6 +26,28 @@ namespace WebApplication.Adapters
             return availableAppointmentsDTO;
         }
 
+        public static List<GetAppointmentDTO> ListAppointmentToListGetAppointmentDTO(List<Appointment> appointments)
+        {
+            List<GetAppointmentDTO> appointmentList = new List<GetAppointmentDTO>();
+            foreach (Appointment appointmentIt in appointments)
+            {
+                int id = appointmentIt.Id;
+                DateTime start = appointmentIt.Start;
+                DateTime end = appointmentIt.End;
+                String typeOfAppointment = appointmentIt.TypeOfAppointment.ToString();
+                bool finished = appointmentIt.Finished;
+                bool canceledByPatient = appointmentIt.CanceledByPatient;
+                int roomNumber = appointmentIt.Room.RoomNumber;
+                string roomType = appointmentIt.Room.RoomType.ToString();
+                string doctorId = appointmentIt.DoctorId;
+                string name = appointmentIt.Doctor.Name;
+                string surname = appointmentIt.Doctor.Surname;
+
+                appointmentList.Add(new GetAppointmentDTO(id, start, end, typeOfAppointment, finished, canceledByPatient, roomNumber, roomType, doctorId, name, surname));
+            }
+            return appointmentList;
+        }
+
         public static List<AvailableAppointmentsDTO> AppointmentsToAvailableAppointmentsDTOWithDoctor(List<Appointment> appointments)
         {
             List<AvailableAppointmentsDTO> availableAppointmentsDTO = new List<AvailableAppointmentsDTO>();

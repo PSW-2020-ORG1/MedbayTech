@@ -4,7 +4,6 @@
 // Purpose: Definition of Class DatePriorityStrategy
 
 using Model.Schedule;
-using Backend.General.Model.ScheduleRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

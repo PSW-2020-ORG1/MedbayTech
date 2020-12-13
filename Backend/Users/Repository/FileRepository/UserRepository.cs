@@ -223,7 +223,7 @@ namespace Repository.UserRepository
 
         public IEnumerable<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }
