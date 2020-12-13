@@ -37,6 +37,7 @@
     <Folder Include="Examinations\WebApiService\" />
     <Folder Include="Exceptions\Examinations\" />
     <Folder Include="Resources\Images\" />
+    <Folder Include="Schedules\Controller\" />
     <Folder Include="Users\WebApiService\" />
   </ItemGroup>
 

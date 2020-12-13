@@ -22,7 +22,20 @@ export const environment = {
   searchDoctor : 'searchDoctor',
   medicalRecord : 'api/medicalRecord',
   prescriptionSimpleSearch : 'api/prescription',
-  reportSimpleSearch : 'api/report'
+  reportSimpleSearch : 'api/report',
+  patient: 'api/patient',
+  updatePatientStatus: 'updatePatientStatus',
+  maliciousPatients: 'maliciousPatients',
+  allSurveyableAppointments : 'allSurveyableAppointments',
+  allOtherAppointments : 'allOtherAppointments',
+  allCancelableAppointments : 'allCancelableAppointments',
+  cancelAppointment : 'cancelAppointment',
+  allSpecializations : 'api/specialization',
+  doctorsBySpecialization : "specialization",
+  appointments : 'api/appointment',
+  availableStrategy : 'availableStrategy',
+  availableStandard : 'available',
+  scheduleAppointment : 'schedule'
 };
 
 /*

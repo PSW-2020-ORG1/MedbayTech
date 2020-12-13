@@ -115,5 +115,25 @@ namespace Repository.ScheduleRepository
             return appointmentsByDate;
             
         }
+
+        public IEnumerable<Appointment> GetAppointmentsByPatientId(string Id)
+        {
+            return null;
+        }
+        
+        public IEnumerable<Appointment> GetBy(string doctorId, DateTime date)
+        {
+            return null;
+        }
+
+        public Appointment GetAppointmentById(int id)
+        {
+            return null;
+        }
+
+        public List<Appointment> GetCanceledAppointments()
+        {
+            return null;
+        }
     }
 }
