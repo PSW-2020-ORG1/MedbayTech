@@ -30,10 +30,15 @@ namespace Backend.Schedules.Service
 
         private IPriorityStrategy _priorityStrategy;
 
-        public AppointmentService(IDoctorWorkDayRepository doctorWorkDayRepository, IAppointmentRepository appointmentRepository, IDoctorService doctorService, ISurveyRepository surveyRepository)
-        {
+        public AppointmentService(IDoctorWorkDayRepository doctorWorkDayRepository, IAppointmentRepository appointmentRepository, IDoctorService doctorService, ISurveyRepository surveyRepository){
             _appointmentRepository = appointmentRepository;
             _surveyRepository = surveyRepository;
+            _doctorWorkDayRepository = doctorWorkDayRepository;
+            _doctorService = doctorService;
+        }
+        public AppointmentService(IDoctorWorkDayRepository doctorWorkDayRepository, IAppointmentRepository appointmentRepository, IDoctorService doctorService)
+        {
+            _appointmentRepository = appointmentRepository;
             _doctorWorkDayRepository = doctorWorkDayRepository;
             _doctorService = doctorService;
         }
@@ -86,6 +91,7 @@ namespace Backend.Schedules.Service
                 return false;
             }
             appointment.CanceledByPatient = true;
+            appointment.CancelationDate = DateTime.Now;
             _appointmentRepository.Update(appointment);
             return true;
 

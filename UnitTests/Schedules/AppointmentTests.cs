@@ -27,10 +27,9 @@ namespace UnitTests.Schedules
         {
             var doctorWorkDyRepository = CreateDoctorWorkDayStubRepository();
             var appointmentRepository = CreateAppointmentStubRepository();
-            var surveyStubRepository = CreateSurveyStubRepository();
             var doctorService = CreateDoctorService();
             var priorityParameters = CreatePriorityParametersForDatePrioritySuccess();
-            AppointmentService appointmentService = new AppointmentService(doctorWorkDyRepository, appointmentRepository, doctorService, surveyStubRepository);
+            AppointmentService appointmentService = new AppointmentService(doctorWorkDyRepository, appointmentRepository, doctorService);
 
             List<Appointment> recommendedAppointments = appointmentService.GetAvailableByStrategy(priorityParameters);
 
@@ -42,10 +41,9 @@ namespace UnitTests.Schedules
         {
             var doctorWorkDyRepository = CreateDoctorWorkDayStubRepository();
             var appointmentRepository = CreateAppointmentStubRepository();
-            var surveyStubRepository = CreateSurveyStubRepository();
             var doctorService = CreateDoctorService();
             var priorityParameters = CreatePriorityParametersForDatePriorityFail();
-            AppointmentService appointmentService = new AppointmentService(doctorWorkDyRepository, appointmentRepository, doctorService, surveyStubRepository);
+            AppointmentService appointmentService = new AppointmentService(doctorWorkDyRepository, appointmentRepository, doctorService);
 
             List<Appointment> recommendedAppointments = appointmentService.GetAvailableByStrategy(priorityParameters);
 
@@ -57,10 +55,9 @@ namespace UnitTests.Schedules
         {
             var doctorWorkDayRepository = CreateDoctorWorkDayStubRepository();
             var appointmentRepository = CreateAppointmentStubRepository();
-            var surveyStubRepository = CreateSurveyStubRepository();
             var doctorService = CreateDoctorService();
             var priorityParameters = CreatePriorityParametersForDoctorPrioritySuccess();
-            AppointmentService appointmentService = new AppointmentService(doctorWorkDayRepository, appointmentRepository, doctorService, surveyStubRepository);
+            AppointmentService appointmentService = new AppointmentService(doctorWorkDayRepository, appointmentRepository, doctorService);
 
             List<Appointment> recommendedAppointments = appointmentService.GetAvailableByStrategy(priorityParameters);
 
@@ -72,11 +69,10 @@ namespace UnitTests.Schedules
         {
             var doctorWorkDayRepository = CreateDoctorWorkDayStubRepository();
             var appointmentRepository = CreateAppointmentStubRepository();
-            var surveyStubRepository = CreateSurveyStubRepository();
             var doctorService = CreateDoctorService();
             var priorityParameters = CreatePriorityParametersForDoctorPriorityFail();
 
-            AppointmentService appointmentService = new AppointmentService(doctorWorkDayRepository, appointmentRepository, doctorService, surveyStubRepository);
+            AppointmentService appointmentService = new AppointmentService(doctorWorkDayRepository, appointmentRepository, doctorService);
 
             List<Appointment> recommendedAppointments = appointmentService.GetAvailableByStrategy(priorityParameters);
 
@@ -87,8 +83,7 @@ namespace UnitTests.Schedules
         {
             var doctorWorkDayStubRepository = CreateDoctorWorkDayStubRepository();
             var appointmentStubRepository = CreateAppointmentStubRepository();
-            var surveyStubRepository = CreateSurveyStubRepository();
-            AppointmentService appointmentService = new AppointmentService(doctorWorkDayStubRepository, appointmentStubRepository, null, surveyStubRepository);
+            AppointmentService appointmentService = new AppointmentService(doctorWorkDayStubRepository, appointmentStubRepository, null);
 
             var workDay = appointmentService.GetAvailableBy("2407978890045", new DateTime(2020, 12, 20));
             workDay.Count.ShouldBe(14);
@@ -102,7 +97,7 @@ namespace UnitTests.Schedules
             var appointmentStubRepository = CreateAppointmentStubRepository();
             var surveyStubRepository = CreateSurveyStubRepository();
             var appointment = CreateAppointmentSuccess();
-            AppointmentService appointmentService = new AppointmentService(doctorWorkDayStubRepository, appointmentStubRepository, null, surveyStubRepository);
+            AppointmentService appointmentService = new AppointmentService(doctorWorkDayStubRepository, appointmentStubRepository, null);
 
             var createdAppointment = appointmentService.ScheduleAppointment(appointment);
             createdAppointment.ShouldNotBe(null);
@@ -116,7 +111,7 @@ namespace UnitTests.Schedules
             var appointmentStubRepository = CreateAppointmentStubRepository();
             var surveyStubRepository = CreateSurveyStubRepository();
             var appointment = CreateAppointmentFail();
-            AppointmentService appointmentService = new AppointmentService(doctorWorkDayStubRepository, appointmentStubRepository, null, surveyStubRepository);
+            AppointmentService appointmentService = new AppointmentService(doctorWorkDayStubRepository, appointmentStubRepository, null);
 
             var createdAppointment = appointmentService.ScheduleAppointment(appointment);
 
@@ -278,6 +273,7 @@ namespace UnitTests.Schedules
 
             return stubRepository.Object;
         }
+
         private static ISurveyRepository CreateSurveyStubRepository()
         {
             var stubRepository = new Mock<ISurveyRepository>();

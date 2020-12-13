@@ -35,10 +35,7 @@ namespace Model.Users
         public virtual Specialization Specialization { get; set; }
 
 
-        public Doctor() 
-        {
-            
-        }
+        public Doctor() {}
 
         public Doctor(string name, string surname, DateTime dateOfBirth,
             string identificationNumber, string email, string username, string phone,
@@ -61,5 +58,8 @@ namespace Model.Users
             OperationRoom = operationRoom;
             OperationRoomId = operationRoom.Id;
         }
-    }
+
+        
+      
+   }
 }

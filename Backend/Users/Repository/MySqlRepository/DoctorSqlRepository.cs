@@ -15,10 +15,11 @@ namespace Backend.Users.Repository.MySqlRepository
         private MySqlContext _context;
 
         public DoctorSqlRepository(MySqlContext context) : base(context) {}
-    
+
         public IEnumerable<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
         {
-           return null;
+           return GetAll().ToList().Where(d => d.SpecializationId == specialization.Id);
+           
         }
 
         public Doctor GetByUsername(string username)
@@ -30,5 +31,6 @@ namespace Backend.Users.Repository.MySqlRepository
         {
             return GetAll().ToList().Where(d => d.DepartmentId.Equals(department.Id));
         }
+
     }
 }

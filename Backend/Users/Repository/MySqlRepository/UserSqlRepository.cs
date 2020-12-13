@@ -20,6 +20,7 @@ namespace Backend.Users.Repository.MySqlRepository
 
         public IEnumerable<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
         {
+            //return (IEnumerable<Doctor>) context.Doctors.ToList().Where(d => d.IsMySpecialization(specialization));
             return null;
         }
 
