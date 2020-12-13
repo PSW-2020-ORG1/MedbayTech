@@ -32,6 +32,38 @@ namespace WebApplication.Controller
             _mediaRecordService = mediaRecordService;
             
         }
+
+        [HttpGet("allSurveyableAppointments")] 
+        public IActionResult GetSurveyableAppointments()
+        {
+            List<Appointment> appointments = _appointmentService.GetSurveyableAppointments("2406978890046");
+            List<GetAppointmentDTO> appointmentsDTO = AppointmentAdapter.ListAppointmentToListGetAppointmentDTO(appointments);
+            return Ok(appointmentsDTO);
+        }
+
+        [HttpGet("allOtherAppointments")] 
+        public IActionResult GetAllOtherAppointments()
+        {
+            List<Appointment> appointments = _appointmentService.GetAllOtherAppointments("2406978890046");
+            List<GetAppointmentDTO> appointmentsDTO = AppointmentAdapter.ListAppointmentToListGetAppointmentDTO(appointments);
+            return Ok(appointmentsDTO);
+        }
+
+        [HttpGet("allCancelableAppointments")] 
+        public IActionResult GetCancelableAppointments()
+        {
+            List<Appointment> appointments = _appointmentService.GetCancelableAppointments("2406978890046");
+            List<GetAppointmentDTO> appointmentsDTO = AppointmentAdapter.ListAppointmentToListGetAppointmentDTO(appointments);
+            return Ok(appointmentsDTO);
+        }
+
+        [HttpPost("cancelAppointment")]
+        public IActionResult cancelAppointment(CancelAppointmentDTO cancelAppointmentDTO)
+        {
+            bool canceledAppointment = _appointmentService.UpdateCanceled(cancelAppointmentDTO.AppointmentId);
+            return Ok(canceledAppointment);
+        }
+   
         public IActionResult Get()
         {
             List<Appointment> appointments = _appointmentService.InitializeAppointments("2406978890047", new DateTime(2020, 12, 5));

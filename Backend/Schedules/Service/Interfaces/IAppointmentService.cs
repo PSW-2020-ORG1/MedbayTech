@@ -9,6 +9,11 @@ namespace Backend.Schedules.Service.Interfaces
 {
     public interface IAppointmentService
     {
+        List<Appointment> GetAppointmentsByPatientId(string id);
+        List<Appointment> GetSurveyableAppointments(string id);
+        List<Appointment> GetAllOtherAppointments(string id);
+        List<Appointment> GetCancelableAppointments(string id);
+        bool UpdateCanceled(int appointmentId);
         List<Appointment> InitializeAppointments(string doctorId, DateTime date);
         List<Appointment> GetAvailableBy(string doctorId, DateTime date);
         List<Appointment> GetByDoctorAndDate(string doctorId, DateTime date);

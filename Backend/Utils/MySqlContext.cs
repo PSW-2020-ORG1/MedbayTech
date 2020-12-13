@@ -259,10 +259,12 @@ namespace Model
                     v => JsonConvert.DeserializeObject<List<Grade>>(v)
             );
             modelBuilder.Entity<Appointment>().HasData(
-                new Appointment
-                {
-                    Id = 1,
-                    TypeOfAppointment = TypeOfAppointment.Examination,
+                new Appointment 
+                { 
+                    Id = 1, 
+                    Start = new DateTime(2020, 12, 5, 14, 00, 0),
+                    End = new DateTime(2020, 12, 5, 14, 30, 0),
+                    TypeOfAppointment = TypeOfAppointment.Examination, 
                     ShortDescription = "standard appointment",
                     Urgent = true,
                     Deleted = false,
@@ -270,11 +272,14 @@ namespace Model
                     RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
-                    WeeklyAppointmentReportId = 1
+                    WeeklyAppointmentReportId = 1,
+                    PatientId = "2406978890046"
                 },
                 new Appointment
                 {
                     Id = 2,
+                    Start = new DateTime(2020, 12, 4, 14, 00, 0),
+                    End = new DateTime(2020, 12, 4, 14, 30, 0),
                     TypeOfAppointment = TypeOfAppointment.Examination,
                     ShortDescription = "standard appointment",
                     Urgent = true,
@@ -283,11 +288,14 @@ namespace Model
                     RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
-                    WeeklyAppointmentReportId = 1
+                    WeeklyAppointmentReportId = 1,
+                    PatientId = "2406978890046"
                 },
                 new Appointment
                 {
                     Id = 3,
+                    Start = new DateTime(2020, 12, 3, 14, 00, 0),
+                    End = new DateTime(2020, 12, 3, 14, 30, 0),
                     TypeOfAppointment = TypeOfAppointment.Examination,
                     ShortDescription = "standard appointment",
                     Urgent = true,
@@ -296,39 +304,62 @@ namespace Model
                     RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
-                    WeeklyAppointmentReportId = 1
+                    WeeklyAppointmentReportId = 1,
+                    PatientId = "2406978890046"
                 },
                 new Appointment
                 {
                     Id = 4,
+                    Start = new DateTime(2020, 12, 1, 14, 00, 0),
+                    End = new DateTime(2020, 12, 1, 14, 30, 0),
                     TypeOfAppointment = TypeOfAppointment.Examination,
-                    ShortDescription = "standard appointment",
-                    Start = new DateTime(2020, 12, 5, 8, 0, 0),
-                    End = new DateTime(2020, 12, 5, 8, 30, 0),
+                    ShortDescription = "standard appointment",                
                     Urgent = true,
                     Deleted = false,
                     Finished = true,
                     RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
-                    WeeklyAppointmentReportId = 1
+                    WeeklyAppointmentReportId = 1,
+                    PatientId = "2406978890046"
                 },
                 new Appointment
                 {
                     Id = 5,
+                    Start = new DateTime(2020, 12, 15, 14, 00, 0),
+                    End = new DateTime(2020, 12, 15, 14, 30, 0),
                     TypeOfAppointment = TypeOfAppointment.Examination,
                     ShortDescription = "standard appointment",
                     Urgent = true,
                     Deleted = false,
-                    Finished = true,
+                    Finished = false,
                     RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
-                    WeeklyAppointmentReportId = 1
+                    WeeklyAppointmentReportId = 1,
+                    PatientId = "2406978890046"
                 },
                 new Appointment
                 {
                     Id = 6,
+                    Start = new DateTime(2020, 12, 8, 14, 00, 0),
+                    End = new DateTime(2020, 12, 8, 14, 30, 0),
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = false,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1,
+                    PatientId = "2406978890046"
+                },
+                new Appointment
+                {
+                    Id = 7,
+                    Start = new DateTime(2020, 12, 5, 14, 00, 0),
+                    End = new DateTime(2020, 12, 5, 14, 30, 0),
                     TypeOfAppointment = TypeOfAppointment.Examination,
                     ShortDescription = "standard appointment",
                     Urgent = true,
@@ -337,8 +368,84 @@ namespace Model
                     RoomId = 1,
                     MedicalRecordId = 1,
                     DoctorId = "2406978890047",
-                    WeeklyAppointmentReportId = 1
+                    WeeklyAppointmentReportId = 1,
+                    CanceledByPatient = true,
+                    CancelationDate = new DateTime(2020, 6, 5),
+                    PatientId = "2406978890046"
+                },
+                new Appointment
+                {
+                    Id = 8,
+                    Start = new DateTime(2020, 12, 5, 14, 00, 0),
+                    End = new DateTime(2020, 12, 5, 14, 30, 0),
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1,
+                    CanceledByPatient = true,
+                    CancelationDate = new DateTime(2020, 6, 6),
+                    PatientId = "2406978890046"
+                },
+                new Appointment
+                {
+                    Id = 9,
+                    Start = new DateTime(2020, 12, 5, 14, 00, 0),
+                    End = new DateTime(2020, 12, 5, 14, 30, 0),
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1,
+                    CanceledByPatient = true,
+                    CancelationDate = new DateTime(2020, 6, 6),
+                    PatientId = "2406978890046"
+                },
+                new Appointment
+                {
+                    Id = 10,
+                    Start = new DateTime(2020, 12, 5, 14, 00, 0),
+                    End = new DateTime(2020, 12, 5, 14, 30, 0),
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1,
+                    CanceledByPatient = true,
+                    CancelationDate = new DateTime(2020, 7, 1),
+                    PatientId = "2406978890046"
+                },
+                new Appointment
+                {
+                    Id = 11,
+                    Start = new DateTime(2020, 12, 14, 13, 30, 0),
+                    End = new DateTime(2020, 12, 14, 14, 0, 0),
+                    TypeOfAppointment = TypeOfAppointment.Examination,
+                    ShortDescription = "standard appointment",
+                    Urgent = true,
+                    Deleted = false,
+                    Finished = true,
+                    RoomId = 1,
+                    MedicalRecordId = 1,
+                    DoctorId = "2406978890047",
+                    WeeklyAppointmentReportId = 1,
+                    CanceledByPatient = true,
+                    CancelationDate = new DateTime(2020, 7, 1),
+                    PatientId = "2406978890046"
                 }
+
             );
 
             modelBuilder.Entity<Doctor>().HasData(
@@ -586,8 +693,78 @@ namespace Model
                     Profession = "vodoinstalater",
                     ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
                     IsGuestAccount = false,
-                    ChosenDoctorId = "2406978890047"
-                } 
+                    ChosenDoctorId = "2406978890047",
+
+                },
+                new Patient
+                {
+                    Id = "2406978890048",
+                    CurrResidenceId = 1,
+                    DateOfBirth = new DateTime(1978, 6, 24),
+                    DateOfCreation = new DateTime(),
+                    EducationLevel = EducationLevel.bachelor,
+                    Email = "pera@gmail.com",
+                    Gender = Gender.MALE,
+                    InsurancePolicyId = "policy1",
+                    Name = "Jovan",
+                    Surname = "Jovanovic",
+                    Username = "jova",
+                    Password = "jova98",
+                    Phone = "065/123-4554",
+                    PlaceOfBirthId = 11000,
+                    Profession = "vodoinstalater",
+                    ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
+                    IsGuestAccount = false,
+                    ChosenDoctorId = "2406978890047",
+                    Blocked = false,
+                    ShouldBeBlocked = true
+                },
+                new Patient
+                {
+                    Id = "2406978890049",
+                    CurrResidenceId = 1,
+                    DateOfBirth = new DateTime(1978, 6, 24),
+                    DateOfCreation = new DateTime(),
+                    EducationLevel = EducationLevel.bachelor,
+                    Email = "pera@gmail.com",
+                    Gender = Gender.MALE,
+                    InsurancePolicyId = "policy1",
+                    Name = "Stefan",
+                    Surname = "Stefanovic",
+                    Username = "stef",
+                    Password = "stef23",
+                    Phone = "065/123-4554",
+                    PlaceOfBirthId = 11000,
+                    Profession = "vodoinstalater",
+                    ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
+                    IsGuestAccount = false,
+                    ChosenDoctorId = "2406978890047",
+                    Blocked = false,
+                    ShouldBeBlocked = true
+                },
+                new Patient
+                {
+                    Id = "2406978890050",
+                    CurrResidenceId = 1,
+                    DateOfBirth = new DateTime(1978, 6, 24),
+                    DateOfCreation = new DateTime(),
+                    EducationLevel = EducationLevel.bachelor,
+                    Email = "pera@gmail.com",
+                    Gender = Gender.MALE,
+                    InsurancePolicyId = "policy1",
+                    Name = "Aleksa",
+                    Surname = "Aleksic",
+                    Username = "aleksa",
+                    Password = "aleksa1998",
+                    Phone = "065/123-4554",
+                    PlaceOfBirthId = 11000,
+                    Profession = "vodoinstalater",
+                    ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
+                    IsGuestAccount = false,
+                    ChosenDoctorId = "2406978890047",
+                    Blocked = false,
+                    ShouldBeBlocked = true
+                }
             );
 
           

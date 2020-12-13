@@ -17,6 +17,7 @@ namespace Model.Users
 
         public bool Confirmed { get; set; }
         public bool Blocked { get; set; }
+        public bool ShouldBeBlocked { get; set; }
         public string Token { get; set; }
 
 
