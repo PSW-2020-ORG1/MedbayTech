@@ -24,18 +24,9 @@ namespace WebApplication.Controller
         {
             _appointmentService = appointmentService;
             _mediaRecordService = mediaRecordService;
-        }
+        }  
 
-        /*
-        [HttpGet] //GET api/Appointment
-        public IActionResult Get()
-        {
-            List<Appointment> appointments = _appointmentService.GetAppointmentsByPatientId("2406978890046");
-            List<GetAppointmentDTO> appointmentsDTO = AppointmentAdapter.ListAppointmentToListGetAppointmentDTO(appointments);
-            return Ok(appointmentsDTO);
-        }*/
-
-        [HttpGet("allSurveyableAppointments")] //GET api/Appointment
+        [HttpGet("allSurveyableAppointments")]
         public IActionResult GetSurveyableAppointments()
         {
             List<Appointment> appointments = _appointmentService.GetSurveyableAppointments("2406978890046");
@@ -43,7 +34,7 @@ namespace WebApplication.Controller
             return Ok(appointmentsDTO);
         }
 
-        [HttpGet("allOtherAppointments")] //GET api/Appointment
+        [HttpGet("allOtherAppointments")]
         public IActionResult GetAllOtherAppointments()
         {
             List<Appointment> appointments = _appointmentService.GetAllOtherAppointments("2406978890046");
@@ -51,7 +42,7 @@ namespace WebApplication.Controller
             return Ok(appointmentsDTO);
         }
 
-        [HttpGet("allCancelableAppointments")] //GET api/Appointment
+        [HttpGet("allCancelableAppointments")]
         public IActionResult GetCancelableAppointments()
         {
             List<Appointment> appointments = _appointmentService.GetCancelableAppointments("2406978890046");

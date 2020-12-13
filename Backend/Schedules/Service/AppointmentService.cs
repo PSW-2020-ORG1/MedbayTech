@@ -21,6 +21,11 @@ namespace Backend.Schedules.Service
         IDoctorWorkDayRepository _doctorWorkDayRepository;
         IAppointmentRepository _appointmentRepository;
         ISurveyRepository _surveyRepository;
+        public AppointmentService(IDoctorWorkDayRepository doctorWorkDayRepository, IAppointmentRepository appointmentRepository)
+        {
+            _appointmentRepository = appointmentRepository;
+            _doctorWorkDayRepository = doctorWorkDayRepository;
+        }
         public AppointmentService(IAppointmentRepository appointmentRepository, ISurveyRepository surveyRepository, IDoctorWorkDayRepository doctorWorkDayRepository)
         {      
             _appointmentRepository = appointmentRepository;
@@ -50,7 +55,8 @@ namespace Backend.Schedules.Service
         {
             List<Appointment> appointments = _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
             List<Appointment> cancelableAppointments = new List<Appointment>();
-            cancelableAppointments = appointments.Where(p => !(p.CanceledByPatient) && !(p.Finished) && ((p.Start - DateTime.Now).TotalDays > 2.00)).ToList();
+            var cancelDays = 2.00;
+            cancelableAppointments = appointments.Where(p => !(p.CanceledByPatient) && !(p.Finished) && ((p.Start - DateTime.Now).TotalDays > cancelDays)).ToList();
 
             return cancelableAppointments;
         }
@@ -67,7 +73,7 @@ namespace Backend.Schedules.Service
 
         public bool UpdateCanceled(int appointmentId)
         {
-            Appointment appointment = _appointmentRepository.getAppointmentById(appointmentId);
+            Appointment appointment = _appointmentRepository.GetObject(appointmentId);
             if (appointment == null) {
                 return false;
             }
@@ -76,12 +82,9 @@ namespace Backend.Schedules.Service
                 return false;
             }
             appointment.CanceledByPatient = true;
-            _appointmentRepository.update(appointment);
+            _appointmentRepository.Update(appointment);
             return true;
-
-
         }
-   
 
         public Appointment ScheduleAppointment(Appointment appointment)
         {
@@ -92,6 +95,7 @@ namespace Backend.Schedules.Service
 
             return null;
         }
+
         public List<Appointment> GetAvailableByDoctorAndDateRange(string doctorId, DateTime start, DateTime end)
         {
             List<Appointment> availableAppointments = new List<Appointment>();
@@ -101,6 +105,7 @@ namespace Backend.Schedules.Service
             }
             return availableAppointments;
         }
+
         public List<Appointment> GetAvailableBy(string doctorId, DateTime date)
         {
             List<Appointment> occupied = GetByDoctorAndDate(doctorId, date);
@@ -115,6 +120,7 @@ namespace Backend.Schedules.Service
             }
             return available;
         }
+
         public List<Appointment> GetByDoctorAndDate(string doctorId, DateTime date)
         {
             return _appointmentRepository.GetBy(doctorId, date).ToList();

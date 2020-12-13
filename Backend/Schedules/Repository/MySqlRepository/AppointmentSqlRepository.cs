@@ -14,11 +14,6 @@ namespace Backend.Schedules.Repository.MySqlRepository
     {
         public AppointmentSqlRepository(MySqlContext context) : base(context) { }
 
-        public Appointment getAppointmentById(int id)
-        {
-            return GetAll().SingleOrDefault(entity => entity.Id.Equals(id));
-        }
-
         public Dictionary<int, Appointment> GetAppointmentsBy(DateTime date)
         {
             return GetAll().ToList().Where(a => a.Period.StartTime.CompareTo(date) <= 0).ToDictionary(a => a.Id);
@@ -46,11 +41,6 @@ namespace Backend.Schedules.Repository.MySqlRepository
         public Dictionary<int, Appointment> GetScheduledFromToday()
         {
             return GetAll().ToList().Where(a => a.Period.StartTime.CompareTo(DateTime.Now) <= 0).ToDictionary(a => a.Id);
-        }
-
-        public Appointment update(Appointment appointment)
-        {
-            return base.Update(appointment);
-        }
+        }     
     }
 }
