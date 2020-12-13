@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Backend.Users.Repository.MySqlRepository
 {
-    class NotificationSqlRepository : MySqlrepository<Notification, int>,
+    public class NotificationSqlRepository : MySqlrepository<Notification, int>,
         INotificationRepository
     {
     }

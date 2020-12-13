@@ -1,3 +1,12 @@
+using Backend.Examinations.Repository;
+using Backend.Examinations.Repository.MySqlRepository;
+using Backend.Examinations.Service;
+using Backend.Examinations.Service.Interfaces;
+using Service.GeneralService;
+using Backend.Records.Repository.MySqlRepository;
+using Repository.MedicalRecordRepository;
+using Repository.UserRepository;
+using Backend.Users.Repository.MySqlRepository;
 using Backend.Medications.Repository.FileRepository;
 using Backend.Medications.Repository.MySqlRepository;
 using Backend.Medications.Service;
@@ -14,6 +23,7 @@ using Microsoft.Extensions.Hosting;
 using Model;
 using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
+using Backend.Examinations.WebApiService;
 using System.IO;
 
 namespace PharmacyIntegration
@@ -39,11 +49,19 @@ namespace PharmacyIntegration
             services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
             services.AddTransient<IMedicationUsageRepository, MedicationUsageSqlRepository>();
             services.AddTransient<IMedicationUsageReportRepository, MedicationUsageReportSqlRepository>();
+            services.AddTransient<ITreatmentRepository, TreatmentSqlRepository>();
+            services.AddTransient<INotificationService, NotificationService>();
+            services.AddTransient<IMedicalRecordRepository, MedicalRecordSqlRepository>();
+            services.AddTransient<IUserRepository, UserSqlRepository>();
+            services.AddTransient<INotificationRepository, NotificationSqlRepository>();
+            services.AddTransient<IPrescriptionRepository, PrescriptionSqlRepository>();
 
             services.AddScoped<IPharmacyService, PharmacyService>();
             services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
             services.AddScoped<IMedicationUsageService, MedicationUsageService>();
             services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();
+            services.AddScoped<ITreatmentService, TreatmentService>();
+            services.AddScoped<IPrescriptionSearchService, PrescriptionSearchService>();
 
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
