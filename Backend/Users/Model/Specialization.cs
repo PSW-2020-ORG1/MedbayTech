@@ -5,6 +5,7 @@
 
 using Backend.General.Model;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,18 +17,16 @@ namespace Model.Users
         public int Id { get; set; }
         public string SpecializationName { get; set; }
 
-
-        [ForeignKey("Doctor")]
-        public string DoctorId { get; set; }
-        public virtual Doctor Doctor { get; set; }
-
-        public Specialization() { }
-        public Specialization(int id, string specialization)
+        public Specialization(int id, string name)
         {
             Id = id;
-            this.SpecializationName = specialization;
+            SpecializationName = name;
         }
 
+        public Specialization()
+        {
+
+        }
         public int GetId()
         {
             return Id;

@@ -4,11 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Backend.Records.Model;
 using Backend.Records.Service.Interfaces;
+using Backend.Rooms.Service;
 using Backend.Schedules.Service.Interfaces;
+using Backend.Users.Service.Interfaces;
 using Backend.Utils.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.Schedule;
+using Model.Users;
+using Repository.UserRepository;
+using Service.ScheduleService;
 using WebApplication.Adapters;
 using WebApplication.Validators;
 
@@ -20,15 +25,17 @@ namespace WebApplication.Controller
     {
         IAppointmentService _appointmentService;
         private IMedicalRecordService _mediaRecordService;
+     
         public AppointmentController(IAppointmentService appointmentService, IMedicalRecordService mediaRecordService)
         {
             _appointmentService = appointmentService;
             _mediaRecordService = mediaRecordService;
+            
         }
         public IActionResult Get()
         {
             List<Appointment> appointments = _appointmentService.InitializeAppointments("2406978890047", new DateTime(2020, 12, 5));
-            List<AvailableAppointmentsDTO> dto = AppointmentAdapter.Transform(appointments);
+            List<AvailableAppointmentsDTO> dto = AppointmentAdapter.AppointmentsToAvailableAppointmentsDTO(appointments);
             return Ok(dto);
         }
 
@@ -36,15 +43,17 @@ namespace WebApplication.Controller
         public IActionResult GetAvailable(SearchAppointmentsStandardDTO appointmentsDTO)
         {
             List<Appointment> appointments = _appointmentService.GetAvailableBy(appointmentsDTO.DoctorId, appointmentsDTO.Date).ToList();
-            List<AvailableAppointmentsDTO> dto = AppointmentAdapter.Transform(appointments);
+            List<AvailableAppointmentsDTO> dto = AppointmentAdapter.AppointmentsToAvailableAppointmentsDTO(appointments);
             return Ok(dto);
         }
 
         [HttpPost("availableStrategy")]
         public IActionResult GetAvailable2(SearchAppointmentsDTO appoitmentsDTO)
         {
-            List<Appointment> appointments = _appointmentService.GetAvailableByDoctorAndDateRange(appoitmentsDTO.DoctorId, appoitmentsDTO.StartInterval, appoitmentsDTO.EndInterval).ToList();
-            List<AvailableAppointmentsDTO> dto = AppointmentAdapter.Transform(appointments);
+            PriorityParameters parameters =
+                AppointmentAdapter.SearchAppointmentsDTOToPriorityParameters(appoitmentsDTO);
+            List<Appointment> appointments = _appointmentService.GetAvailableByStrategy(parameters).ToList();
+            List<AvailableAppointmentsDTO> dto = AppointmentAdapter.AppointmentsToAvailableAppointmentsDTOWithDoctor(appointments);
             return Ok(dto);
         }
 

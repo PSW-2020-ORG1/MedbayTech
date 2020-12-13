@@ -96,8 +96,8 @@ export class SchedulingComponent implements OnInit {
   }
 
   schedule(appointment) {
-    var doctor = this.doctorFormGroup.value.choosenDoctor;
-    this.scheduleAppointment = new ScheduleAppointment(appointment.start, appointment.end , "", doctor);
+    console.log(this.doctor)
+    this.scheduleAppointment = new ScheduleAppointment(appointment.start, appointment.end , "", this.doctor);
     this.appointmentService.scheduleAppointment(this.scheduleAppointment).subscribe(
       res => {
         this.toastr.success(res);

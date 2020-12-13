@@ -85,6 +85,7 @@ namespace WebApplication
             services.AddTransient<ISpecializationRepository, SpecializationSqlRepository>();
             services.AddTransient<IDoctorWorkDayRepository, DoctorWorkDaySqlRepository>();
             services.AddTransient<IAppointmentRepository, AppointmentSqlRepository>();
+            services.AddTransient<ISpecializationRepository, SpecializationSqlRepository>();
 
             services.AddScoped<IDoctorService, DoctorService>();
             services.AddScoped<IFeedbackService, FeedbackService>();
@@ -101,6 +102,7 @@ namespace WebApplication
             services.AddScoped<ISpecializationService, SpecializationService>();
             services.AddScoped<IDoctorWorkDayService, DoctorWorkDayService>();
             services.AddScoped<IAppointmentService, Backend.Schedules.Service.AppointmentService>();
+            services.AddScoped<ISpecializationService, SpecializationService>();
 
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 

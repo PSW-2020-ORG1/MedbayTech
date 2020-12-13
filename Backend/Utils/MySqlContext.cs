@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -18,8 +18,9 @@ using Newtonsoft.Json;
 using PharmacyIntegration.Model;
 using Backend.Reports.Model;
 using Backend.Examinations.Model.Enums;
+using Backend.Users;
 using Backend.Users.Model;
-
+using System.Linq;
 namespace Model
 {
     public class MySqlContext : DbContext
@@ -84,6 +85,7 @@ namespace Model
         public DbSet<InsurancePolicy> InsurancePolicies { get; set; }
         public DbSet<DoctorWorkDay> DoctorWorkDays { get; set; }
 
+
         public MySqlContext(DbContextOptions<MySqlContext> options) : base(options)
         {
         }
@@ -108,6 +110,9 @@ namespace Model
             modelBuilder.Entity<Period>().HasNoKey();
             modelBuilder.Entity<Occupation>().HasNoKey();
             modelBuilder.Entity<Shift>().HasNoKey();
+
+
+            
 
             modelBuilder.Entity<State>().HasData(
                 new State { Id = 1, Name = "Serbia" }
@@ -135,7 +140,7 @@ namespace Model
             );
 
             modelBuilder.Entity<MedicationCategory>().HasData(
-                    new MedicationCategory { Id = 1, CategoryName = "Drug", SpecializationId = 1 },
+                    new MedicationCategory { Id = 1, CategoryName = "Drug", SpecializationId = 1},
                     new MedicationCategory { Id = 2, CategoryName = "Kategorija1", SpecializationId = 1}
                 );
 
@@ -146,6 +151,13 @@ namespace Model
                     Id = "policy1",
                     StartTime = new DateTime(2020, 11, 1),
                     EndTime =  new DateTime(2020, 11, 1) 
+                },
+                new InsurancePolicy
+                {
+                    Company = "Delta generali",
+                    Id = "policy2",
+                    StartTime = new DateTime(2020, 11, 1),
+                    EndTime = new DateTime(2021, 11, 1)
                 }
 
             );
@@ -329,34 +341,34 @@ namespace Model
                 }
             );
 
-
             modelBuilder.Entity<Doctor>().HasData(
-             new Doctor
-             {
-                 Id = "2406978890047",
-                 CurrResidenceId = 1,
-                 DateOfBirth = new DateTime(1978, 6, 24),
-                 DateOfCreation = new DateTime(),
-                 EducationLevel = EducationLevel.bachelor,
-                 Email = "mika@gmail.com",
-                 Gender = Gender.MALE,
-                 InsurancePolicyId = "policy1",
-                 Name = "Milan",
-                 Surname = "Milanovic",
-                 Username = "mika",
-                 Password = "mika1978",
-                 Phone = "065/123-4554",
-                 PlaceOfBirthId = 11000,
-                 Profession = "vodoinstalater",
-                 ProfileImage = ".",
-                 LicenseNumber = "001",
-                 OnCall = true,
-                 PatientReview = 4.5,
-                 DepartmentId = 1,
-                 ExaminationRoomId = 1,
-                 OperationRoomId = 2,
-                 Specializations = new List<Specialization>()
-             }
+                new Doctor
+                {
+                    Id = "2406978890047",
+                    CurrResidenceId = 1,
+                    DateOfBirth = new DateTime(1978, 6, 24),
+                    DateOfCreation = new DateTime(),
+                    EducationLevel = EducationLevel.bachelor,
+                    Email = "mika@gmail.com",
+                    Gender = Gender.MALE,
+                    InsurancePolicyId = "policy1",
+                    Name = "Milan",
+                    Surname = "Milanovic",
+                    Username = "mika",
+                    Password = "mika1978",
+                    Phone = "065/123-4554",
+                    PlaceOfBirthId = 11000,
+                    Profession = "vodoinstalater",
+                    ProfileImage = ".",
+                    LicenseNumber = "001",
+                    OnCall = true,
+                    PatientReview = 4.5,
+                    DepartmentId = 1,
+                    ExaminationRoomId = 1,
+                    OperationRoomId = 2,
+                    //SpecializationId = 1
+                    SpecializationId = 1
+                }
             );
 
             modelBuilder.Entity<MedicalRecord>().HasData(
@@ -419,8 +431,8 @@ namespace Model
            
 
             modelBuilder.Entity<Specialization>().HasData(
-                new Specialization { Id = 1, SpecializationName = "Interna medicina", DoctorId = "2406978890047"},
-                new Specialization { Id = 2, SpecializationName = "Hirurgija" }
+                new Specialization { Id = 1, SpecializationName = "Interna medicina"},
+                new Specialization { Id = 3, SpecializationName = "Hirurgija" }
             );
 
 
@@ -984,13 +996,48 @@ namespace Model
             );
 
             modelBuilder.Entity<DoctorWorkDay>().HasData(
-                new DoctorWorkDay { Id = 1, Date = new DateTime(2020, 12, 5), StartTime = 8, EndTime = 15, DoctorId = "2406978890047"},
-                new DoctorWorkDay { Id = 2, Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2406978890047"},
-                new DoctorWorkDay { Id = 3, Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" },
-                new DoctorWorkDay { Id = 4, Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" },
-                new DoctorWorkDay { Id = 5, Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" }
+                new DoctorWorkDay { Id = 1, Date = new DateTime(2020, 12, 10), StartTime = 8, EndTime = 15, DoctorId = "2406978890047"},
+                new DoctorWorkDay { Id = 2, Date = new DateTime(2020, 12, 11), StartTime = 8, EndTime = 15, DoctorId = "2406978890047"},
+                new DoctorWorkDay { Id = 3, Date = new DateTime(2020, 12, 12), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" },
+                new DoctorWorkDay { Id = 4, Date = new DateTime(2020, 12, 13), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" },
+                new DoctorWorkDay { Id = 5, Date = new DateTime(2020, 12, 14), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" },
+
+                new DoctorWorkDay { Id = 6, Date = new DateTime(2020, 12, 20), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" },
+                new DoctorWorkDay { Id = 7, Date = new DateTime(2020, 12, 21), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" },
+                new DoctorWorkDay { Id = 8, Date = new DateTime(2020, 12, 22), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" },
+                new DoctorWorkDay { Id = 9, Date = new DateTime(2020, 12, 23), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" },
+                new DoctorWorkDay { Id = 10, Date = new DateTime(2020, 12, 24), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" }
 
                 );
+
+            modelBuilder.Entity<Doctor>().HasData(
+                new Doctor
+                {
+                    Id = "2407978890045",
+                    CurrResidenceId = 1,
+                    DateOfBirth = new DateTime(1978, 6, 24),
+                    DateOfCreation = new DateTime(),
+                    EducationLevel = EducationLevel.bachelor,
+                    Email = "ivan@gmail.com",
+                    Gender = Gender.MALE,
+                    InsurancePolicyId = "policy2",
+                    Name = "Ivan",
+                    Surname = "Ivanovic",
+                    Username = "ivan",
+                    Password = "ivan123",
+                    Phone = "065/123-4554",
+                    PlaceOfBirthId = 11000,
+                    Profession = "doctor",
+                    ProfileImage = ".",
+                    LicenseNumber = "001",
+                    OnCall = true,
+                    PatientReview = 4.5,
+                    DepartmentId = 1,
+                    ExaminationRoomId = 1,
+                    OperationRoomId = 2,
+                    SpecializationId = 1
+                }
+            );
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Backend.General.Model.ScheduleRepository
 {
     public class AvailableAppointmentService
     {
-        public AvailableAppointmentService(IAppointmentRepository appointmentRepository, WorkDayService workDayService,
+        /*public AvailableAppointmentService(IAppointmentRepository appointmentRepository, WorkDayService workDayService,
             int allowedPeriodOfTime, int appointmentTimePeriod, int appointmentHourStart, int appointmentHourEnd)
         {
             this.appointmentHourStart = appointmentHourStart;
@@ -191,6 +191,6 @@ namespace Backend.General.Model.ScheduleRepository
 
         public IAppointmentRepository appointmentRepository;
         public WorkDayService workDayService;
-        public IPriorityStrategy strategy;
+        public IPriorityStrategy strategy;*/
     }
 }
