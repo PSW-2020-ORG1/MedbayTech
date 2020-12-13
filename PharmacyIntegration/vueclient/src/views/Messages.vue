@@ -1,29 +1,34 @@
 ﻿
 <template>
-    <div id="win">
-        <div id="msg-table">
-            <v-btn icon color=accent elevation="0" @click="getNewMessage"><i class="fa fa-refresh"></i></v-btn>
-            <v-text-field v-model="search"
-                            label="Search messages"
-                            hide-details />
-            <v-data-table :headers="headers"
-                            :items="messages"
-                            :search="search">
-                <template v-slot:item="row">
-                    <tr>
-                        <td>{{row.item.content}}</td>
-                        <td v-if="row.item.approved"><v-btn class="white red--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Disapprove</v-btn></td>
-                        <td v-else><v-btn class="white green--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Approve</v-btn></td>
-                        <td>
-                            <v-btn elevation="0" class="white red--text" v-on:click="deleteMessage(row.item)">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                            </v-btn>
-                        </td>
-                        <td>{{row.item.pharmacyId}}</td>
-                    </tr>
-                </template>
-            </v-data-table>
-        </div>
+    <div id="msg-main">
+        <v-card id="msg-table" :loading="loadingMessages ? 'accent' : 'null'">
+            <v-card-title id="msg-title" class="primary secondary--text">
+                Pharmacy messages
+                <v-btn icon color=accent elevation="0" @click="getNewMessage"><i class="fa fa-refresh"></i></v-btn>
+            </v-card-title>
+            <v-card-text>
+                <v-text-field v-model="search"
+                                label="Search messages"
+                                hide-details />
+                <v-data-table :headers="headers"
+                                :items="messages"
+                                :search="search">
+                    <template v-slot:item="row">
+                        <tr>
+                            <td>{{row.item.content}}</td>
+                            <td v-if="row.item.approved"><v-btn class="white red--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Disapprove</v-btn></td>
+                            <td v-else><v-btn class="white green--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Approve</v-btn></td>
+                            <td>
+                                <v-btn elevation="0" class="white red--text" v-on:click="deleteMessage(row.item)">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                </v-btn>
+                            </td>
+                            <td>{{row.item.pharmacyId}}</td>
+                        </tr>
+                    </template>
+                </v-data-table>
+            </v-card-text>
+        </v-card>
 
     </div>
 </template>
@@ -38,15 +43,17 @@ export default {
 					{ text: "Delete" },
 					{ text: "Pharmacy", value: "pharmacyId" },
 				],
-            messages: [{id:"1", content: "Test message", approved:false}],
+            messages: [],
             newMessage: "",
             status: "",
             search: [],
+            loadingMessages: false,
         }
     },
 
     methods: {
         getNewMessage: function () {
+            this.loadingMessages = true;
             this.axios.get("http://localhost:50202/api/PharmacyNotification/id")
                 .then(response => {
                     console.log(this.newMessage)
@@ -56,6 +63,9 @@ export default {
                 .catch(response => {
                     console.log(response.data);
                 })
+                .finally(function(){
+                    this.loadingMessages = false;
+                });
         },
         getAllMessages: function () {
             this.axios.get("http://localhost:50202/api/pharmacyNotification")
@@ -101,45 +111,21 @@ export default {
 </script>
 
 <style scoped>
-    #win {
+    #msg-main {
+        display: grid;
+        place-items: center;
         height: 100%;
-    }
-    h1 {
-        font-size: 3rem;
-        text-align: center;
-        color: #3e3e3e;
-    }
-
-    #header {
-        margin-top: 10vh;
-        width: 100%;
-        height: 30vh;
     }
 
     #msg-table {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        max-width: 70%;
-        margin: 0 auto;
     }
 
-    .buttons {
-        margin-left: auto;
-        margin-right: auto;
-        margin: 4px;
-        padding: 3px;
-        float: none;
-        border: 1px solid transparent;
-        background-color: #ff6a00;
-        color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.38);
-    }
-    .buttons:hover {
-        border: 1px solid #ff6a00;
-        background-color: #fff;
-        color: #ff6a00;
+    #msg-title {
+        display: grid;
+        grid-template-columns: 1fr auto;
     }
    
 </style>

@@ -22,6 +22,12 @@ namespace PharmacyIntegration.Controllers
             return Ok(Directory.GetFiles("GeneratedUsageReports"));
         }
 
+        [HttpGet("{file?}")]
+        public IActionResult Get(string file)
+        {
+            return Ok();
+        }
+
         [HttpPost]
         public IActionResult Post(FileMetadata fileInfo)
         {

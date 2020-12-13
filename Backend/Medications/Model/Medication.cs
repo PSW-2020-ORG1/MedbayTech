@@ -11,11 +11,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Examinations.Model;
 using Backend.General.Model;
 using Model.Rooms;
+using Newtonsoft.Json;
 
 namespace Backend.Medications.Model
 {
    public class Medication : IIdentifiable<int>
    {
+        // TODO(Jovan): [JsonIgnore]s are only temporary until
+        // m:n relations are fixed
+
         [Key]
         public int Id { get; set; }
         public string Med { get; set; }
@@ -30,6 +34,7 @@ namespace Backend.Medications.Model
 
         [ForeignKey("MedicationCategory")]
         public int MedicationCategoryId { get; set; }
+        [JsonIgnore]
         public virtual MedicationCategory MedicationCategory { get; set; }
         public virtual List<Allergens> Allergens { get; set; }
         public virtual List<Medication> AlternativeMedication { get; set; }

@@ -1,55 +1,50 @@
 ﻿<template>
-    <div id="main-div">
-        <v-card id="medications">
-            <div id="medication-usage-table" class="usage-card">
-                <v-data-table :headers="headers_consumption"
-                              :items="medicationUsages">
+    <div id="mur-main">
+        <v-card id="medications" :loading="loadingMedicationUsages ? 'accent' : 'null'">
+            <v-card-title class="primary secondary--text">Medication usages</v-card-title>
+            <v-card-text>
+                <div id="medication-usage-table">
+                    <v-data-table :headers="headers_consumption"
+                                :items="medicationUsages">
+                        <template v-slot:item="row">
+                            <tr>
+                                <td>{{row.item.medication.med}}</td>
+                                <td>{{row.item.usage}}</td>
+                                <td>{{row.item.date}}</td>
+                            </tr>
+                        </template>
+                    </v-data-table>
+                </div>
+            </v-card-text>
+        </v-card>
+
+        <v-card id="reports" :loading="loadingUsageReports ? 'accent' : 'null'">
+            <v-card-title class="primary secondary--text">Medication usage reports</v-card-title>
+            <v-card-text id="reports-content">
+                <div id="calendar">
+                    <v-date-picker v-model="dateRange"
+                                range>
+                    </v-date-picker>
+                    <v-btn color="accent" @click="generateReport" :disabled="!dateRange[0] || !dateRange[1]">Generate</v-btn>
+                </div>
+                <v-data-table :headers="headers"
+                                :items="reports">
                     <template v-slot:item="row">
                         <tr>
-                            <td>{{row.item.medication.med}}</td>
-                            <td>{{row.item.usage}}</td>
-                            <td>{{row.item.date}}</td>
+                            <td>{{row.item.id}}</td>
+                            <td>{{row.item.from}}</td>
+                            <td>{{row.item.until}}</td>
+                            <td>
+                                <v-btn class="white black--text" @click="selectedReport = row.item">Show</v-btn>
+                            </td>
+                            <td>
+                                <v-btn elevation="0" class="white red--text" @click="deleteReport">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </v-btn>
+                            </td>
                         </tr>
                     </template>
                 </v-data-table>
-            </div>
-        </v-card>
-        <br/>
-        <v-card id="reports" class="usage-card">
-            <v-data-table :headers="headers"
-                            :items="reports">
-                <template v-slot:item="row">
-                    <tr>
-                        <td>{{row.item.id}}</td>
-                        <td>{{row.item.from}}</td>
-                        <td>{{row.item.until}}</td>
-                        <td>
-                            <v-btn class="white black--text" @click="selectedReport = row.item">Show</v-btn>
-                        </td>
-                        <td>
-                            <v-btn elevation="0" class="white red--text" @click="deleteReport">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </v-btn>
-                        </td>
-                    </tr>
-                </template>
-            </v-data-table>
-        </v-card>
-        <br/>
-        <v-card id="calendar" class="usage-card">
-            <v-date-picker v-model="dateRange"
-                            range>
-            </v-date-picker>
-            <v-btn color="accent" @click="generateReport" :disabled="!dateRange[0] || !dateRange[1]">Generate</v-btn>
-        </v-card>
-        <v-card>
-            <v-card-title>Usage report</v-card-title>
-            <v-card-subtitle>Report from: {{selectedReport.from}} - {{selectedReport.until}}</v-card-subtitle>
-            <v-card-text>
-            <b v-if="!selectedReport">None selected</b>
-            <ul v-else>
-                <li v-for="report in selectedReport.usages" :key="report.usage">{{report.usage.medicationId}} {{report.usage.date}}</li>
-            </ul>
             </v-card-text>
         </v-card>
     </div>
@@ -76,12 +71,15 @@
                 medicationUsages: [],
                 medications: [],
                 selectedReport: "",
+                loadingMedicationUsages: false,
+                loadingUsageReports: false,
             }
         },
 
         methods: {
             generateReport: function () {
                 // NOTE(Jovan): Sanity check
+                this.loadingUsageReports = true;
                 if (!this.dateRange[0] || !this.dateRange[1]) return;
                 let period = {
                     startTime: this.dateRange[0],
@@ -94,10 +92,14 @@
                     })
                     .catch(response => {
                         console.log(response.data);
+                    })
+                    .finally(function() {
+                        this.loadingUsageReports = false;
                     });
             },
 
             getAllMedicationUsages: function () {
+                this.loadingMedicationUsages = true;
                 this.axios.get("http://localhost:50202/api/MedicationUsage")
                     .then(response => {
                         console.log(response.data);
@@ -105,7 +107,10 @@
                     })
                     .catch(response => {
                         console.log(response.data);
-                    });
+                    })
+                    .finally(function() {
+                        this.loadingMedicationUsages = false;
+                    })
             },
 
             getAllMedications: function () {
@@ -139,17 +144,21 @@
 </script>
 
 <style scoped>
-    #main-div {
-        display: flex;
-        justify-content: space-around;
-        flex-direction: row;
-        flex-wrap: wrap;
+    #mur-main {
+        display: grid;
+        grid-template-columns: auto;
+        place-items: center;
+        min-height: 100%;
     }
-    .usage-card:nth-child(2n) {
-        flex-basis: 100%;
-    }
+    
     #calendar {
         display: flex;
         flex-direction: column;
+    }
+
+    #reports-content {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        padding-left: 0;
     }
 </style>
