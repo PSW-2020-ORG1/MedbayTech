@@ -16,8 +16,8 @@
                             <v-card-title><strong>Medication:</strong> </v-card-title>
                             <v-card-title>-{{prescription.medication.med}} {{prescription.medication.dosage}}</v-card-title>
                             <v-card-title>-Hourly Intake: {{prescription.hourlyIntake}}</v-card-title>
-                            <div v-if="status[index] === '' "><p style="color:white">.</p></div>
-                            <div v-else ><p style="color:forestgreen">{{status[index]}}</p></div>
+                            <p v-if="status.prescriptionIndex !== index || status.message === '' " style="color:white">.</p>
+                            <p v-else style="color:forestgreen">{{status.message}}</p>
                         </v-card-text>
                         <v-card-actions>
                             <v-btn text
@@ -28,7 +28,7 @@
                             <v-spacer></v-spacer>
                             <v-btn text
                                    color="teal accent-4"
-                                   @click="sendPrescription(index)">
+                                   @click="sendPrescription(prescription)">
                                 Sent to pharmacy
                             </v-btn>
                         </v-card-actions>
@@ -44,7 +44,7 @@ export default {
     data() {
         return {
             reveal: false,
-            status: [],
+            status: {prescriptionIndex: "", message: ""},
             prescriptions: []
         }
     },
@@ -53,7 +53,11 @@ export default {
         checkForMedication: function (medication, index) {
             this.axios.get("http://localhost:50202/api/Medication/check/" + medication)
                 .then(response => {
-                    this.status[index] = response.data;
+                    this.status.prescriptionIndex = index;
+                    this.status.message = response.data;
+                    
+
+                    console.log(this.status.message);
                 })
                 .catch(response => {
                     console.log(response.data);
@@ -74,7 +78,13 @@ export default {
                 })
         },
         sendPrescription: function (prescription) {
-            console.log(prescription)
+            this.axios.post("http://localhost:50202/api/Prescription/", prescription)
+                .then(response => {
+                    console.log("send");
+                })
+                .catch(response => {
+                    console.log(response);
+                });
         }
     },
     mounted() {
