@@ -35,7 +35,7 @@
                             <td>{{row.item.from}}</td>
                             <td>{{row.item.until}}</td>
                             <td>
-                                <v-btn class="white black--text" @click="selectedReport = row.item">Show</v-btn>
+                                <v-btn class="white black--text" @click="sendNotification">Send notification</v-btn>
                             </td>
                             <td>
                                 <v-btn elevation="0" class="white red--text" @click="deleteReport">
@@ -132,6 +132,17 @@
                     });
 
                 });
+
+            },
+
+            sendNotification: function () {
+                this.axios.post("http://localhost:50202/api/ReportNotification")
+                    .then(response => {
+                        console.log(response.data);
+                    })
+                    .catch(response => {
+                        console.log(response.data);
+                    });
 
             },
         },
