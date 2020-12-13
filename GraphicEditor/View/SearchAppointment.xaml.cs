@@ -132,7 +132,19 @@ namespace GraphicEditor.View
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             appointments = new List<Appointment>(JsonConvert.DeserializeObject<List<Appointment>>(responseBody));
+            if ((bool)radioButtonInterval.IsChecked) appointments = FilterSpecialization(appointments);
             dataGridAppointment.ItemsSource = appointments;
+        }
+
+        private List<Appointment> FilterSpecialization(List<Appointment> appointments)
+        {
+            List<Appointment> appointmentsFilter = new List<Appointment>();
+            Doctor doctor = (Doctor)comboBoxDoctor.SelectedItem;
+            foreach (Appointment appointment in appointments)
+            {
+                if (appointment.Doctor.Specialization.Id == doctor.SpecializationId) appointmentsFilter.Add(appointment);
+            }
+            return appointmentsFilter;
         }
 
         private async void HttpRequestToAppointmentController(AppointmentFilterDTO appointmentFilterDTO)

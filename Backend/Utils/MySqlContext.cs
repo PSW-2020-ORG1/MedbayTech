@@ -525,7 +525,7 @@ namespace Model
                  DepartmentId = 1,
                  ExaminationRoomId = 1003,
                  OperationRoomId = 1119,
-                 SpecializationId = 1
+                 SpecializationId = 3
              },
              new Doctor
              {

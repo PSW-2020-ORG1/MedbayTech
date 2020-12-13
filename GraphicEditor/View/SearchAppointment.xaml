@@ -10,7 +10,7 @@
 
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" HorizontalAlignment="Left">
+            <DockPanel DockPanel.Dock="Left" HorizontalAlignment="Left">
                 <DockPanel Margin="5,5,5,5">
                     <Label DockPanel.Dock="Top" Content="Select doctor:" FontWeight="Bold"/>
                     <ComboBox DockPanel.Dock="Bottom" Name="comboBoxDoctor">
@@ -21,6 +21,8 @@
                                     <TextBlock Text="{Binding Name}" />
                                     <TextBlock Text=" " />
                                     <TextBlock Text="{Binding Surname}" />
+                                    <TextBlock Text=" - " />
+                                    <TextBlock Text="{Binding Specialization.SpecializationName}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
@@ -47,8 +49,7 @@
                     <Label DockPanel.Dock="Top" Content="Select end date:" FontWeight="Bold"/>
                     <TextBox DockPanel.Dock="Bottom" Name="textBoxTo" Width="140"/>
                 </DockPanel>
-            </StackPanel>
-            <Button DockPanel.Dock="Right" Name="buttonSearch" Margin="0,5,5,5" Content="Search" Width="80" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="buttonSearchForAvailableAppointments" FontWeight="Bold"/>
+            </DockPanel>
         </DockPanel>
         
         <DockPanel DockPanel.Dock="Bottom">
@@ -57,6 +58,7 @@
         </DockPanel>
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">
+                <Button DockPanel.Dock="Right" Name="buttonSearch" Margin="0,5,5,5" Content="Search" Height="22" Width="80" VerticalAlignment="Center" HorizontalAlignment="Right" Click="buttonSearchForAvailableAppointments" FontWeight="Bold"/>
                 <Label DockPanel.Dock="Top" Content="Select priority:" FontWeight="Bold" Margin="5,0,5,5"/>
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
                     <Viewbox Height="15" HorizontalAlignment="Left" Margin="5,0,5,5">
