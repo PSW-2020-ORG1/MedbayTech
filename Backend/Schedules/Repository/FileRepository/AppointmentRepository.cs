@@ -116,21 +116,7 @@ namespace Repository.ScheduleRepository
             
         }
 
-        public List<Appointment> GetCanceledAppointmentsByPatientId(string Id){
-            return null;
-        }
-
         public IEnumerable<Appointment> GetAppointmentsByPatientId(string Id)
-        {
-            return null;
-        }
-
-        public Appointment getAppointmentById(int id)
-        {
-            return null;
-        }
-
-        public Appointment update(Appointment appointment)
         {
             return null;
         }
@@ -141,6 +127,11 @@ namespace Repository.ScheduleRepository
         }
 
         public Appointment GetAppointmentById(int id)
+        {
+            return null;
+        }
+
+        public List<Appointment> GetCanceledAppointments()
         {
             return null;
         }

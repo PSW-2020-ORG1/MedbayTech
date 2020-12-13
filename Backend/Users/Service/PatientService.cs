@@ -42,7 +42,7 @@ namespace Backend.Users.Service
             List<Patient> blockablePatients = new List<Patient>();
             List<Appointment> canceledAppointments = new List<Appointment>();
 
-            patients.ForEach(p => canceledAppointments = appointmentRepository.GetCanceledAppointmentsByPatientId(p.Id));
+            patients.ForEach(p => canceledAppointments = appointmentRepository.GetCanceledAppointments());
             patients.ForEach(p => 
                 {
                     if (CheckIfPatientBlockable(canceledAppointments))

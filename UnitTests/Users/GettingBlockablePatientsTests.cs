@@ -53,7 +53,7 @@ namespace UnitTests.Users
             var stubRepository = new Mock<IAppointmentRepository>();
             List<Appointment> appointments = CreateAppointments();
 
-            stubRepository.Setup(p => p.GetCanceledAppointmentsByPatientId("2406978890046")).Returns(appointments);
+            stubRepository.Setup(p => p.GetCanceledAppointments()).Returns(appointments);
 
             return stubRepository.Object;
         }
@@ -63,7 +63,7 @@ namespace UnitTests.Users
             var stubRepository = new Mock<IAppointmentRepository>();
             List<Appointment> badAppointments = CreateAppointmentsForBlockablePatients();
 
-            stubRepository.Setup(p => p.GetCanceledAppointmentsByPatientId("2406978890046")).Returns(badAppointments);
+            stubRepository.Setup(p => p.GetCanceledAppointments()).Returns(badAppointments);
 
             return stubRepository.Object;
         }

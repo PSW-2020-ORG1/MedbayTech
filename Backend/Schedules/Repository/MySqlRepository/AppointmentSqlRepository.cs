@@ -18,12 +18,9 @@ namespace Backend.Schedules.Repository.MySqlRepository
             return GetAll().ToList().Where(a => a.Period.StartTime.CompareTo(date) <= 0).ToDictionary(a => a.Id);
         }
 
-        public List<Appointment> GetCanceledAppointmentsByPatientId(string id)
+        public List<Appointment> GetCanceledAppointments()
         {
-            List<Appointment> appointments = GetAll().Where(a => a.CanceledByPatient).ToList();
-            List<Appointment> appointments2 = GetAll().Where(a => a.PatientId.Equals(id)).ToList();
-            appointments.Intersect(appointments2);
-            return appointments;
+            return GetAll().Where(a => a.CanceledByPatient).ToList();
         }
 
         public IEnumerable<Appointment> GetAppointmentsByPatientId(string Id)
