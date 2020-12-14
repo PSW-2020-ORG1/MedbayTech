@@ -147,10 +147,11 @@ namespace Backend.Examinations.WebApiService
             return repository.GetAll().ToList();
         }
 
-        public void GeneratePrescription(Prescription prescription)
+        public string GeneratePrescription(Prescription prescription)
         {
             char pathBase = Path.DirectorySeparatorChar;
-            string filePath = "." + pathBase + "GeneratedPrescription" + pathBase + prescription.Id + ".json";
+            string fileName = prescription.Id + ".txt";
+            string filePath = "." + pathBase + "GeneratedPrescription" + pathBase + fileName;
             string stringToWrite = prescription.GetStringForSharing();
             Console.WriteLine(stringToWrite);
             using (StreamWriter streamWriter = new StreamWriter(filePath))
@@ -162,6 +163,7 @@ namespace Backend.Examinations.WebApiService
                     streamWriter.WriteLine(line);
                 }
             }
+            return filePath;
         }
     }
 }

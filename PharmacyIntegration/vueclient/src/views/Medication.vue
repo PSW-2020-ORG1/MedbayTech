@@ -1,13 +1,11 @@
 
 <template>
-    <div id="app">
-        <v-app id="inspire">
-            <v-row>
-                <v-col cols="12" sm="3" md="4" v-for="(prescription, index) in prescriptions" :key="index">
-                    <v-card class="mx-auto"
-                            max-width="344">
+    <div id="med-main">
+                <div v-for="(prescription, index) in prescriptions" :key="index">
+                    <v-card >
+                        <v-card-title class="primary secondary--text">Prescription</v-card-title>
+                        <v-card-subtitle class="primary secondary--text">{{prescription.date}}</v-card-subtitle>
                         <v-card-text>
-                            <div>{{prescription.date}}</div>
                             <p class="display-1 text--primary">
                                 {{prescription.examinationSurgery.medicalRecord.patient.name}} {{prescription.examinationSurgery.medicalRecord.patient.surname}}
                             </p>
@@ -21,31 +19,41 @@
                         </v-card-text>
                         <v-card-actions>
                             <v-btn text
-                                   color="teal accent-4"
+                                    class="white accent--text"
                                    @click="checkForMedication(prescription.medication.med, index)">
                                 Ask pharmacy
                             </v-btn>
                             <v-spacer></v-spacer>
                             <v-btn text
-                                   color="teal accent-4"
+                                    class="white accent--text"
                                    @click="sendPrescription(prescription)">
                                 Sent to pharmacy
                             </v-btn>
                         </v-card-actions>
                     </v-card>
-                </v-col>
-            </v-row>
-        </v-app>
+
+                    <v-dialog v-model="showModal" width="800" height="800" hide-overlay>
+                        <v-card>
+                            <v-card-text>
+                                <h3>Prescription QR Code</h3>
+                                <img src="../../../qrcode.png" alt="Not found!" width="600" height="600" />
+                                <v-btn color="primary" text @click="showModal=false">Close</v-btn>
+                            </v-card-text>
+                        </v-card>
+                    </v-dialog>
+                </div>
     </div>
 </template>
 
 <script>
+    
 export default {
     data() {
         return {
             reveal: false,
             status: {prescriptionIndex: "", message: ""},
-            prescriptions: []
+            prescriptions: [],
+            showModal: false,
         }
     },
 
@@ -80,7 +88,12 @@ export default {
         sendPrescription: function (prescription) {
             this.axios.post("http://localhost:50202/api/Prescription/", prescription)
                 .then(response => {
-                    console.log("send");
+                    /*this.axios.get("http://localhost:50202/api/Sftp")
+                        .then(response => {
+                            console.log(response.data);
+                        })*/
+                    this.showModal = true;
+                    console.log(response.data);
                 })
                 .catch(response => {
                     console.log(response);
@@ -95,4 +108,10 @@ export default {
 </script>
 
 <style scoped>
+    #med-main {
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        place-items: center;
+
+    }
 </style>

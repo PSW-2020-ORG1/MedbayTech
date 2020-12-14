@@ -17,6 +17,6 @@ namespace Backend.Examinations.Service.Interfaces
         List<Prescription> AdvancedSearch(string medication, List<Prescription> prescriptions);
         List<Prescription> AdvancedSearch(int hourlyIntake, List<Prescription> prescriptions);
         List<Prescription> GetAll();
-        void GeneratePrescription(Prescription prescription);
+        string GeneratePrescription(Prescription prescription);
     }
 }

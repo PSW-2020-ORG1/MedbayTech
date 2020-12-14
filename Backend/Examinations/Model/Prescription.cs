@@ -57,11 +57,11 @@ namespace Backend.Examinations.Model
                 "\n\tIndetification Number: " + ExaminationSurgery.MedicalRecord.Patient.Id +
                 "\n\nMedication Information" +
                 "\n\tMedication name: " + Medication.Med +
-                "\n\tDosage:" + Medication.Dosage +
-                "\n\tHourly Intake" + HourlyIntake +
+                "\n\tDosage: " + Medication.Dosage +
+                "\n\tHourly Intake: " + HourlyIntake +
                 "\n\n\t\t\t Doctor: " +
                 "\n\t\t " + "Dr. " + ExaminationSurgery.Doctor.Surname + ", " + ExaminationSurgery.Doctor.Name +
-                "\n\t\t\t Date: " + Date; 
+                "\n\t\t Date: " + Date; 
             return result;
         }
     }
