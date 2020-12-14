@@ -25,7 +25,7 @@ namespace PharmacyIntegration.Controllers
         [HttpPost]
         public IActionResult Post(MedicationUsageReportNotification notification)
         {
-            notification.Endpoint = "192.168.1.19/api/httpfilesharing";
+            notification.Endpoint = "http://192.168.1.19:50202/api/httpfilesharing";
             notification.Message = "New usage report from MedbayTech";
 
             using (var conn = factory.CreateConnection())

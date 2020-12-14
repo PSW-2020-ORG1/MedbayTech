@@ -33,6 +33,7 @@ namespace PharmacyIntegration
             // NOTE(Jovan): Init directory for usage reports
             Directory.CreateDirectory("GeneratedUsageReports");
 
+            services.AddCors();
             services.AddDbContext<MySqlContext>();
 
             services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
@@ -61,7 +62,6 @@ namespace PharmacyIntegration
             services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
 
 
-            services.AddCors();
             
         }
 
@@ -72,6 +72,10 @@ namespace PharmacyIntegration
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true)); // allow any origin
 
             app.UseRouting();
 
@@ -97,10 +101,6 @@ namespace PharmacyIntegration
                     spa.UseVueDevelopmentServer();
                 }
             });
-            app.UseCors(x => x
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .SetIsOriginAllowed(origin => true)); // allow any origin
         }
     }
 }
