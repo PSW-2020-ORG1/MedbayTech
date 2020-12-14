@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Backend.Reports.Model;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
@@ -21,19 +23,20 @@ namespace PharmacyIntegration.Controllers
         public ReportNotificationController() { }
 
         [HttpPost]
-        public IActionResult Post()
+        public IActionResult Post(MedicationUsageReportNotification notification)
         {
-            //https://www.rabbitmq.com/tutorials/tutorial-one-dotnet.html
+            notification.Endpoint = "192.168.1.19/api/httpfilesharing";
+            notification.Message = "New usage report from MedbayTech";
+
             using (var conn = factory.CreateConnection())
             using (var channel = conn.CreateModel())
             {
-                //channel.ExchangeDeclare("psw-exchange", ExchangeType.Direct, true);
-                //channel.QueueBind("psw-queue", "psw-exchange", "psw-key");
 
-                channel.QueueDeclare("isa-queue", false, false, false, null);
-                String message = "New medication usage report from hospital";
-                var body = Encoding.UTF8.GetBytes(message);
-                channel.BasicPublish("", "psw-key", null, body);
+                channel.ExchangeDeclare("psw", ExchangeType.Direct, true);
+                channel.QueueBind("psw-usage-reports-queue", "psw", "psw.usagereports");
+                string json = JsonConvert.SerializeObject(notification);
+                var body = Encoding.UTF8.GetBytes(json);
+                channel.BasicPublish(exchange: "psw", routingKey: "psw.usagereports", basicProperties: null, body: body);
 
                 if (body == null)
                 {

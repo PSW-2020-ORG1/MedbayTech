@@ -39,11 +39,23 @@ export default {
     methods: {
 
         sendFile: function(filename) {
-            let file = {
+            /*let file = {
                 filename: filename,
                 url: this.pharmacy.apiEndpoint.replace("pswapi", "pswupload"),
             };
             this.axios.post("http://localhost:50202/api/httpfilesharing", file)
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(response => {
+                    console.log(response);
+                });*/
+            let notification = {
+                endpoint: "",
+                message: "",
+                filename: filename
+            };
+            this.axios.post("http://localhost:50202/api/reportnotification", notification)
                 .then(response => {
                     console.log(response);
                 })
