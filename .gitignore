@@ -33,6 +33,7 @@ msbuild.wrn
 
 # Pharmacy Integration
 GeneratedUsageReports/
+DrugSpecifications/
 node_modules/
 
 #Backend

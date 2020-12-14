@@ -32,6 +32,7 @@ namespace PharmacyIntegration
         {
             // NOTE(Jovan): Init directory for usage reports
             Directory.CreateDirectory("GeneratedUsageReports");
+            Directory.CreateDirectory("DrugSpecifications");
 
             services.AddCors();
             services.AddDbContext<MySqlContext>();
