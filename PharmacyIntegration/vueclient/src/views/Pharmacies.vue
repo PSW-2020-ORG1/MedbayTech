@@ -59,7 +59,7 @@
 					{ text: "Id", value: "id", },
 					{ text: "API_Key", value: "apiKey", },
 					{ text: "API_Endpoint", value: "apiEndpoint", },
-					{ text: "Remove" },
+					{ text: "Remove"},
                     { text: "Get notification" },
 				],
 				search: [],

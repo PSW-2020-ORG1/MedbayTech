@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -22,7 +23,11 @@ namespace PharmacyIntegration
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseContentRoot(Directory.GetCurrentDirectory())
+                    // TODO(Jovan): Find a betTE
+                    .UseIISIntegration()
+                    .UseUrls("http://*:50202")
+                    .UseStartup<Startup>();
                 });
     }
 }
