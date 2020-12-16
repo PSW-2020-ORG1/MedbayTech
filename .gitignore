@@ -34,6 +34,7 @@ msbuild.wrn
 # Pharmacy Integration
 GeneratedPrescription/
 GeneratedUsageReports/
+DrugSpecifications/
 node_modules/
 
 #Backend

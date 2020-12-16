@@ -35,9 +35,6 @@
                             <td>{{row.item.from}}</td>
                             <td>{{row.item.until}}</td>
                             <td>
-                                <v-btn class="white black--text" @click="selectedReport = row.item">Show</v-btn>
-                            </td>
-                            <td>
                                 <v-btn elevation="0" class="white red--text" @click="deleteReport">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </v-btn>

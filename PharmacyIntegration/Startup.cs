@@ -42,10 +42,11 @@ namespace PharmacyIntegration
         {
             // NOTE(Jovan): Init directory for usage reports
             Directory.CreateDirectory("GeneratedUsageReports");
+            Directory.CreateDirectory("DrugSpecifications");
             // Generated directory for prescription
             Directory.CreateDirectory("GeneratedPrescription");
 
-
+			services.AddCors();
             services.AddDbContext<MySqlContext>();
 
             services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
@@ -80,7 +81,7 @@ namespace PharmacyIntegration
             });*/
 
 
-            services.AddCors();
+            
             
         }
 
@@ -116,10 +117,6 @@ namespace PharmacyIntegration
                     spa.UseVueDevelopmentServer();
                 }
             });
-            app.UseCors(x => x
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .SetIsOriginAllowed(origin => true)); // allow any origin
         }
     }
 }

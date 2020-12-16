@@ -1,23 +1,44 @@
 <template>
     <div id="ph-main">
-        <v-card elevation="2">
-            <v-card-title><v-progress-circular v-if ="!pharmacy.id"></v-progress-circular>{{pharmacy.id}}</v-card-title>
-            <v-card-text>Greetings from <v-progress-circular v-if="!pharmacy.id"></v-progress-circular>{{pharmacy.id}} to <v-progress-circular v-if="!dummyData"></v-progress-circular>{{dummyData}}</v-card-text>
+        <v-card id="files-table" elevation="2">
+            <v-card-title class="primary secondary--text">Pharmacy files</v-card-title>
+            <v-card-text>
+                <v-data-table :headers="filesHeaders"
+                              :items="files">
+                    <template v-slot:item="row">
+                        <tr>
+                            <td>{{row.item}}</td>
+                            <td>
+                                <v-btn class="white accent--text" elevation="0" @click="sendFile(row.item)">
+                                    Send file
+                                </v-btn>
+                            </td>
+                        </tr>
+                    </template>
+                </v-data-table>
+            </v-card-text>
         </v-card>
-        <v-card id="files-table">
-            <v-data-table :headers="headers"
-                            :items="files">
-                <template v-slot:item="row">
-                    <tr>
-                        <td>{{row.item}}</td>
-                        <td>
-                            <v-btn class="white black--text" elevation="0" @click="sendFile(row.item)">
-                                Send file
-                            </v-btn>
-                        </td>
-                    </tr>
-                </template>
-            </v-data-table>
+        <v-card id="drugs-table" elevation="2">
+            <v-card-title class="primary secondary--text">Available drugs</v-card-title>
+            <v-card-text>
+                <v-text-field v-model="search"
+                              label="Search drugs"
+                              hide-details />
+                <v-data-table :headers="drugHeaders"
+                              :items="drugs"
+                              :search="search">
+                    <template v-slot:item="row">
+                        <tr>
+                            <td>{{row.item.name}}</td>
+                            <td>
+                                <v-btn class="white accent--text" elevation="0" @click="getSpecification(row.item)">
+                                    Specification
+                                </v-btn>
+                            </td>
+                        </tr>
+                    </template>
+                </v-data-table>
+            </v-card-text>
         </v-card>
     </div>
 </template>
@@ -26,24 +47,64 @@
 export default {
     data() {
         return {
+            search: [],
             pharmacy: "",
             dummyData: "",
             files: [],
-			headers: [
-                { text: "File" },
+			filesHeaders: [
+                { text: "File"},
                 { text: "Send file" },
             ],
+            drugHeaders: [
+                { text: "Name", value: "name" },
+            ],
+            drugs: [],
         }
     },
 
     methods: {
 
+        getSpecification: function(drug) {
+            if (!this.pharmacy) return;
+            this.axios.get(this.pharmacy.apiEndpoint + "drugs/" + drug.id)
+                .then(response => {
+                    let drug = response.data;
+                    console.log(drug);
+                    this.axios.post("http://localhost:50202/api/drugspecification", drug)
+                        .then(response => {
+                            console.log(response);
+                        })
+                        .then(response => {
+                            console.log(response);
+                        });
+                })
+                .catch(response => {
+                    console.log(response.data);
+                })
+                .finally(() => {
+                    console.log("Finally");
+                }); 
+        },
+
+        getDrugs: function() {
+            if (!this.pharmacy) return;
+            this.axios.get(this.pharmacy.apiEndpoint + "drugs")
+                .then(response => {
+                    this.drugs = response.data;
+                    console.log(response);
+                })
+                .catch(response => {
+                    console.log(response);
+                });
+        },
+
         sendFile: function(filename) {
-            let file = {
-                filename: filename,
-                url: this.pharmacy.apiEndpoint.replace("pswapi", "pswupload"),
+            let notification = {
+                endpoint: "",
+                message: "",
+                filename: filename
             };
-            this.axios.post("http://localhost:50202/api/httpfilesharing", file)
+            this.axios.post("http://localhost:50202/api/reportnotification", notification)
                 .then(response => {
                     console.log(response);
                 })
@@ -79,6 +140,7 @@ export default {
             this.axios.get(this.pharmacy.apiEndpoint + this.pharmacy.apiKey)
                 .then(response => {
                     this.dummyData = response.data;
+                    this.getDrugs();
                     console.log(response.data);
                 })
                 .catch(response => {
