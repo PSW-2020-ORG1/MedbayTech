@@ -36,7 +36,7 @@
                         <v-card>
                             <v-card-text>
                                 <h3>Prescription QR Code</h3>
-                                <img src="../../../qrcode.png" alt="Not found!" width="600" height="600" />
+                                <img :src="qrLink" alt="Not found!" width="400" height="400" />
                                 <v-btn color="primary" text @click="showModal=false">Close</v-btn>
                             </v-card-text>
                         </v-card>
@@ -54,12 +54,16 @@ export default {
             status: {prescriptionIndex: "", message: ""},
             prescriptions: [],
             showModal: false,
+            qrLink: {},  //require("../../../GeneratedPrescription/qrcode.png"),
+            qrLinkPath: "",
         }
     },
 
     methods: {
         checkForMedication: function (medication, index) {
-            this.axios.get("http://localhost:50202/api/Medication/check/" + medication)
+            // This is for gRPC
+            //this.axios.get("http://localhost:50202/api/Medication/check/" + medication)
+            this.axios.get("http://schnabel.herokuapp.com/pswapi/drugs/name/" + medication)
                 .then(response => {
                     this.status.prescriptionIndex = index;
                     this.status.message = response.data;
@@ -85,15 +89,32 @@ export default {
                     console.log(response.data);
                 })
         },
+        getQrCode: function () {
+            this.axios.get("http://localhost:50202/api/Prescription/qrcode")
+                .then(response => {
+                    this.qrLinkPath = "../../../" + response.data;
+                    console.log(this.qrLinkPath);
+                    this.qrLinkPath = this.qrLinkPath.replace("\\", "/");
+                    console.log(this.qrLinkPath);
+                    this.qrLink = this.qrLinkPath;
+                    //this.qrLink = require("../../../GeneratedPrescription/qrcode.png");
+                    console.log(this.qrLinkPath);
+                })
+                .catch(response => {
+                    console.log(response.data);
+                })
+        },
         sendPrescription: function (prescription) {
             this.axios.post("http://localhost:50202/api/Prescription/", prescription)
                 .then(response => {
+                    //This is for sftp
                     /*this.axios.get("http://localhost:50202/api/Sftp")
                         .then(response => {
                             console.log(response.data);
                         })*/
-                    this.showModal = true;
                     console.log(response.data);
+
+                    this.showModal = false;
                 })
                 .catch(response => {
                     console.log(response);

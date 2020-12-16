@@ -17,7 +17,7 @@ using System.Text;
 
 namespace PharmacyIntegration.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
     public class PrescriptionController : Controller
@@ -39,30 +39,39 @@ namespace PharmacyIntegration.Controllers
         public IActionResult SendPrescription(Prescription prescription)
         {
             string fileName = prescriptionSearchService.GeneratePrescription(prescription);
+            GenerateQRCode(prescription);
             WebClient webClient = new WebClient();
             FileMetadata fileInfo = new FileMetadata();
             fileInfo.Filename = fileName;
             fileInfo.URL = "http://schnabel.herokuapp.com/pswupload";
             byte[] responseArray = webClient.UploadFile(fileInfo.URL, fileInfo.Filename);
             string ur = webClient.Encoding.GetString(responseArray).ToString();
-
-            GenerateQRCode(prescription);
-            
             return Ok(webClient.Encoding.GetString(responseArray));
-            //return Ok();
+
         }
+
+        [HttpGet("qrcode")]
+        public IActionResult GetQrcode()
+        {
+            if (Directory.GetFiles("GeneratedPrescription").Contains("GeneratedPrescription" + Path.DirectorySeparatorChar + "qrcode.png"))
+            {
+                return Ok("GeneratedPrescription" + Path.DirectorySeparatorChar + "qrcode.png");       
+            }
+            return Ok("Not found!");
+        }
+
         private void GenerateQRCode(Prescription prescription)
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(prescription.GetStringForSharing(), QRCodeGenerator.ECCLevel.Q);
 
             PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
-            byte[] qrCodeAsPngByteArr = qrCode.GetGraphic(10);
+            byte[] qrCodeAsPngByteArr = qrCode.GetGraphic(5);
 
             using (var ms = new MemoryStream(qrCodeAsPngByteArr))
             {
                 var qrCodeImage = new Bitmap(ms);
-                qrCodeImage.Save("qrcode.png", ImageFormat.Png);  
+                qrCodeImage.Save("GeneratedPrescription" + Path.DirectorySeparatorChar + "qrcode.png", ImageFormat.Png);  
             }
         }
 
