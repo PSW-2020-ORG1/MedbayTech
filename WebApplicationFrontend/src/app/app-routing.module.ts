@@ -76,10 +76,6 @@ const routes: Routes = [
   {
     path : 'appointmentRecommendation',
     component : RecommendationComponent
-  },
-  {
-    path : "**",
-    component : AppComponent
   }
   
 ];

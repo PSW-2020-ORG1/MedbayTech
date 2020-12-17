@@ -1,44 +1,42 @@
 version: "3.8"
 
 volumes:
-  my-db:
+  mysql-data: {}
+  web-sql:
+  
+
+networks:
+  demo:
+    name: demo
+    driver: bridge
 
 services:
-  db:
-    image: mysql:5.7
+  mysql:
+    image: mysql:latest
+    container_name: mysql
     restart: always
+    networks:
+      - demo
     environment:
-      MYSQL_DATABASE: 'newdb4'
-        # So you don't have to use root, but you can if you like
-      MYSQL_USER: 'root'
-        # You can use whatever password you like
-      MYSQL_PASSWORD: 'root'
-        # Password for root access
-      MYSQL_ROOT_PASSWORD: 'root'
-    ports:
-        # <Port exposed> : < MySQL Port running inside container>
-      - '3306:3306'
-        # Where our data will be persisted
+      MYSQL_DATABASE: "newdb"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "root"
+      MYSQL_ROOT_PASSWORD: "root"
     volumes:
-      - my-db:/var/lib/mysql/data
-  Backend:
-    build: 
-      context: .
-      dockerfile: Backend/Dockerfile
-    image: stefan7/medbaytechback:latest-back
+      - mysql-data:/var/lib/mysql
+  
+  WebApplicationSql:
+    image: web
+    restart: on-failure
+    networks:
+      - demo
     depends_on:
-      - db
+      - mysql
+    environment:
+      DATABASE_USERNAME: "root"
+      DATABASE_PASSWORD: "root"
+      DATABASE_HOST: "mysql"
+      DATABASE_SCHEMA: "newdb"
+      PORT: 8080
     ports:
-      - "5000:5000"
-
-  WebApplication:
-    build: 
-      context: .
-      dockerfile: WebApplication/Dockerfile
-    image: stefan7/medbaytechweb:latest-web
-    depends_on:
-      - Backend
-    expose: 
-      - "3306"
-    ports:
-      - "3306:3306"
+      - "8080:8080"

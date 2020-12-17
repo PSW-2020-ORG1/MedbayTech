@@ -25,13 +25,6 @@ namespace Model
 {
     public class MySqlContext : DbContext
     {
-
-        private int mySqlConnectionPort = 3306;
-        private string mySqlConnectionUid = "root";
-        private string mySqlConnectionPassword = "root";
-        private string mySqlDatabaseName = "newdb";
-        private string mySqlHostAddress = "localhost";
-
         public DbSet<MedicationUsage> MedicationUsages { get; set; }
         public DbSet<MedicationUsageReport> MedicationUsageReports { get; set; }
         public DbSet<Pharmacy> Pharmacies { get; set; }
@@ -50,7 +43,6 @@ namespace Model
         public DbSet<Renovation> Renovations { get; set; }
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<HospitalEquipment> HospitalEquipments { get; set; }
-
         public DbSet<Bed> Beds { get; set; }
         public DbSet<Vaccines> Vaccines { get; set; }
         public DbSet<Therapy> Therapies { get; set; }
@@ -92,17 +84,26 @@ namespace Model
         public MySqlContext() { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            /*This is not good solution, must be refactored*/
-            //optionsBuilder.UseMySql(@"server=" + mySqlHostAddress + ";port=" + mySqlConnectionPort + ";database=" + mySqlDatabaseName + ";uid=" + mySqlConnectionUid + ";password=" + mySqlConnectionPassword);
-            //optionsBuilder.UseLazyLoadingProxies(true);
-
-            // NOTE(Jovan): When using Backend DB inside project, create appsettings.json inside
-            // that project
-
+            /*
         IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
-                optionsBuilder.UseMySql($"Server={mySqlHostAddress};port={mySqlConnectionPort};Database={mySqlDatabaseName};user={mySqlConnectionUid};password={mySqlConnectionPassword}").UseLazyLoadingProxies();
+                optionsBuilder.UseMySql(CreateConnectionStringFromEnvironment()).UseLazyLoadingProxies();
+            */
 
+            optionsBuilder.UseMySql(CreateConnectionStringFromEnvironment());
+            optionsBuilder.UseLazyLoadingProxies(true);
+        }
+
+        public string CreateConnectionStringFromEnvironment()
+        {
+            string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
+            string port = Environment.GetEnvironmentVariable("DATABASE_PORT") ?? "3306";
+            string database = Environment.GetEnvironmentVariable("DATABASE_SCHEMA") ?? "newdb";
+            string user = Environment.GetEnvironmentVariable("DATABASE_USERNAME") ?? "root";
+            string password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "root";
+
+
+            return $"server={server};port={port};database={database};user={user};password={password}";
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

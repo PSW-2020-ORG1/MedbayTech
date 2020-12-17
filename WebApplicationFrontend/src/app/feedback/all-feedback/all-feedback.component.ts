@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AllFeedback } from 'src/app/model/allFeedBack';
+import { AllFeedback } from 'src/app/model/allFeedback';
 import { FeedbackService } from 'src/app/service/feedback/feedback.service';
 import { UpdateFeedbackStatus } from 'src/app/model/updateFeedbackStatus'
 import { Button } from 'protractor';
