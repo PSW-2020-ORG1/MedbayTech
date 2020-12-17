@@ -25,6 +25,12 @@ using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
 using Backend.Examinations.WebApiService;
 using System.IO;
+using System;
+using Npgsql;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 
 namespace PharmacyIntegration
 {
@@ -47,7 +53,6 @@ namespace PharmacyIntegration
             Directory.CreateDirectory("GeneratedPrescription");
 
 			services.AddCors();
-            services.AddDbContext<MySqlContext>();
 
             services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
             services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
@@ -80,9 +85,32 @@ namespace PharmacyIntegration
 
             });*/
 
+            if (!IsPostgresDatabase() && !IsTestEnvironment())
+            {
+                services.AddDbContextPool<MySqlContext>(
+                options => options.UseMySql(CreateConnectionStringFromEnvironment(),
 
-            
-            
+                    mySqlOptions =>
+                    {
+                        mySqlOptions.ServerVersion(new Version(5, 7, 17), ServerType.MySql)
+                        .EnableRetryOnFailure(
+                        maxRetryCount: 10,
+                        maxRetryDelay: TimeSpan.FromSeconds(30),
+                        errorNumbersToAdd: null);
+                    }
+                ));
+                services.AddDbContext<MySqlContext>(options =>
+                    options.UseMySql(CreateConnectionStringFromEnvironment()));
+            }
+            else
+            {
+                services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                services.AddDbContext<MySqlContext>(options => options.UseNpgsql(CreateConnectionStringFromEnvironment()));
+            }
+            services.AddScoped<MySqlContext>();
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -117,6 +145,73 @@ namespace PharmacyIntegration
                     spa.UseVueDevelopmentServer();
                 }
             });
+
+            if (!IsLocalServer() || IsPostgresDatabase() || IsTestEnvironment())
+            {
+                using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+                {
+                    var context = serviceScope.ServiceProvider.GetRequiredService<MySqlContext>();
+
+                    RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
+                    if (!databaseCreator.HasTables())
+                        databaseCreator.CreateTables();
+                }
+            }
+        }
+
+        public string CreateConnectionStringFromEnvironment()
+        {
+            string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
+            string port = Environment.GetEnvironmentVariable("DATABASE_PORT") ?? "3306";
+            string database = Environment.GetEnvironmentVariable("DATABASE_SCHEMA") ?? "newdb";
+            string user = Environment.GetEnvironmentVariable("DATABASE_USERNAME") ?? "root";
+            string password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "root";
+
+
+            string url = Environment.GetEnvironmentVariable("DATABASE_URL") ?? "localhost";
+
+            if (url.Equals("localhost") && !IsTestEnvironment())
+                return $"server={server};port={port};database={database};user={user};password={password}";
+
+            else if (IsTestEnvironment())
+            {
+                return Environment.GetEnvironmentVariable("CONNECTION_STRING");
+            }
+
+            else
+            {
+                var databaseUri = new Uri(url);
+                var userInfo = databaseUri.UserInfo.Split(':');
+
+                var builder = new NpgsqlConnectionStringBuilder
+                {
+                    Host = databaseUri.Host,
+                    Port = databaseUri.Port,
+                    Username = userInfo[0],
+                    Password = userInfo[1],
+                    Database = databaseUri.LocalPath.TrimStart('/')
+                };
+                return builder.ToString();
+            }
+
+        }
+        public bool IsLocalServer()
+        {
+            string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
+            return server.Equals("localhost");
+        }
+
+        public bool IsPostgresDatabase()
+        {
+            string url = Environment.GetEnvironmentVariable("DATABASE_URL") ?? "localhost";
+            return !url.Equals("localhost");
+        }
+
+        public bool IsTestEnvironment()
+        {
+            string environment = Environment.GetEnvironmentVariable("TEST_ENVIRONMENT") ?? "FALSE";
+            return environment.Equals("TRUE");
         }
     }
 }
+
