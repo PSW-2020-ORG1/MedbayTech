@@ -91,8 +91,7 @@ namespace GraphicEditor
             task.Wait();
             return appointments;
         }
-
-        private void Save_Click(object sender, RoutedEventArgs e)
+        private void SaveDoctorAndRoom(Room room, Doctor doctor)
         {
             string jsonRoom = JsonConvert.SerializeObject(room);
             HttpClient httpClient = new HttpClient();
@@ -104,6 +103,11 @@ namespace GraphicEditor
             result = httpClient.PostAsync("http://localhost:53109/api/doctor/", content);
             result.Wait();
             MessageBox.Show("Saved to database!");
+        }
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            doctor.PlaceOfBirth.State = null;
+            SaveDoctorAndRoom(room, doctor);
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {

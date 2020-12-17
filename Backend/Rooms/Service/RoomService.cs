@@ -62,17 +62,16 @@ namespace Service.RoomService
 
         public Room UpdateRoomDataBase(Room room)
         {
-            _roomRepository.Update(room);
+            Room room_update = GetRoomById(room.Id);
+            //room_update.Id = room.Id;
+            //.
+            //.
+            //.
+            //trebalo bi svaki atribut od room_update setovati sto bi bilo ruzno, ne znam kako to uraditi, a da nije ruzno i glomazno
+            _roomRepository.Update(room_update);
+            //_roomRepository.Update(room); //ovo ne radi
             return room;
         }
-
-        /*
-        public List<Room> GetRoomsByRoomLabelorRoomUse ( string textBoxSearch ) =>
-            _roomRepository.GetAll().ToList().FindAll(r =>
-            r.RoomLabel.Contains(textBoxSearch, System.StringComparison.CurrentCultureIgnoreCase)
-            || r.RoomUse.Contains(textBoxSearch, System.StringComparison.CurrentCultureIgnoreCase));
-
-        */
 
         public Room UpdateRoom ( Room room ) => _roomRepository.Update(room);
 

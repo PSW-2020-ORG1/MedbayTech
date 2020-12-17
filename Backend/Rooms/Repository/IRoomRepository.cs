@@ -8,7 +8,7 @@ using System;
 
 namespace Repository.RoomRepository
 {
-   public interface IRoomRepository : IRepository<Room,int>
+   public interface IRoomRepository : IRepository<Room, int>
    {
    
    }

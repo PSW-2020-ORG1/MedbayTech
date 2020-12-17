@@ -29,8 +29,6 @@ namespace Service.RoomService
 
         public List<HospitalEquipment> GetHospitalEquipmentsByNameOrId ( string textBoxSearch )
         {
-
-
             if (Int32.TryParse(textBoxSearch, out int id))
                 return _hospitalEquipmentRepository.GetAll().Where(med => med.Id == id).ToList();
             return _hospitalEquipmentRepository.GetAll().Where(med => med.EquipmentType.Name.ToLower().Contains(textBoxSearch.ToLower())).ToList();
