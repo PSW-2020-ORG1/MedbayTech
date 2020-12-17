@@ -7,13 +7,13 @@ namespace Backend.Examinations.Service.Interfaces
 {
     public interface ITreatmentService
     {
-        public Treatment CreateTreatment(Treatment treatment);
-        public Treatment UpdateTreatment(Treatment treatment);
-        public bool DeleteTreatment(Treatment treatment);
-        public IEnumerable<HospitalTreatment> GetUnapprovedHospitalTreatments();
-        public IEnumerable<Prescription> GetAllPrescriptions() ;
-        public IEnumerable<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate);
-        public HospitalTreatment ApproveHospitalTreatment(HospitalTreatment hospitalTreatment);
-        public HospitalTreatment RejectHospitalTreatment(HospitalTreatment hospitalTreatment);
+        Treatment CreateTreatment(Treatment treatment);
+        Treatment UpdateTreatment(Treatment treatment);
+        bool DeleteTreatment(Treatment treatment);
+        IEnumerable<HospitalTreatment> GetUnapprovedHospitalTreatments();
+        IEnumerable<Prescription> GetAllPrescriptions() ;
+        IEnumerable<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate);
+        HospitalTreatment ApproveHospitalTreatment(HospitalTreatment hospitalTreatment);
+        HospitalTreatment RejectHospitalTreatment(HospitalTreatment hospitalTreatment);
     }
 }

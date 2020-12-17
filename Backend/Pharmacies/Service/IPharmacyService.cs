@@ -5,10 +5,10 @@ namespace PharmacyIntegration.Service
 {
     public interface IPharmacyService
     {
-        public Pharmacy Add(Pharmacy pharmacy);
-        public bool Remove(Pharmacy pharmacy);
-        public Pharmacy Update(Pharmacy pharmacy);
-        public Pharmacy Get(string id);
-        public IEnumerable<Pharmacy> GetAll();
+        Pharmacy Add(Pharmacy pharmacy);
+        bool Remove(Pharmacy pharmacy);
+        Pharmacy Update(Pharmacy pharmacy);
+        Pharmacy Get(string id);
+        IEnumerable<Pharmacy> GetAll();
     }
 }

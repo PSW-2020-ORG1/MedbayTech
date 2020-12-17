@@ -19,7 +19,6 @@ namespace PharmacyIntegration.gRPC
             var client = new CheckForMedication.CheckForMedicationClient(channel);
 
             MessageResponseProto response = await client.checkAsync(new MessageProto() { Message = name });
-            Console.WriteLine(response.Response + " odgovor");
 
             return response.Response;
         }
