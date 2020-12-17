@@ -48,5 +48,21 @@ namespace Backend.Examinations.Model
             return Date.CompareTo(startDate) > 0 &&
                    Date.CompareTo(endDate) < 0;
         }
+
+        public string GetStringForSharing()
+        {
+            string result = "\t\tPRESCRIPTION\t\t" + "\n\nPatient Ifnormation\t\n" +
+                "\tName: " + ExaminationSurgery.MedicalRecord.Patient.Name +
+                "\n\tSurname: " + ExaminationSurgery.MedicalRecord.Patient.Surname +
+                "\n\tIndetification Number: " + ExaminationSurgery.MedicalRecord.Patient.Id +
+                "\n\nMedication Information" +
+                "\n\tMedication name: " + Medication.Med +
+                "\n\tDosage: " + Medication.Dosage +
+                "\n\tHourly Intake: " + HourlyIntake +
+                "\n\n\t\t\t Doctor: " +
+                "\n\t\t " + "Dr. " + ExaminationSurgery.Doctor.Surname + ", " + ExaminationSurgery.Doctor.Name +
+                "\n\t\t Date: " + Date; 
+            return result;
+        }
     }
 }

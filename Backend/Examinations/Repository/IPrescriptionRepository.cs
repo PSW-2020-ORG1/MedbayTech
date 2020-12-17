@@ -9,7 +9,7 @@ namespace Backend.Examinations.Repository
     public interface IPrescriptionRepository : IRepository<Prescription, int>
     {
         IEnumerable<Prescription> GetPrescriptionsFor(string idPatient);
-        
-        
+
+        IEnumerable<Prescription> GetPrescriptions();
     }
 }

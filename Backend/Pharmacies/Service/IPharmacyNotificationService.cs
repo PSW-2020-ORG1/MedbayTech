@@ -6,15 +6,15 @@ namespace PharmacyIntegration.Service
     public interface IPharmacyNotificationService
     {
 
-        public PharmacyNotification Add(string recivedNotification);
+        PharmacyNotification Add(string recivedNotification);
 
-        public bool Remove(PharmacyNotification pharmacyNotification);
+        bool Remove(PharmacyNotification pharmacyNotification);
 
-        public PharmacyNotification Update(PharmacyNotification pharmacyNotification);
+        PharmacyNotification Update(PharmacyNotification pharmacyNotification);
 
-        public PharmacyNotification Get(int id);
+        PharmacyNotification Get(int id);
 
-        public IEnumerable<PharmacyNotification> GetAll();
+        IEnumerable<PharmacyNotification> GetAll();
 
     }
 }

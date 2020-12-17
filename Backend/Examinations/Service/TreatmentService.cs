@@ -11,32 +11,48 @@ using System;
 using System.Collections.Generic;
 using Backend.Examinations.Model.Enums;
 using Backend.Users.Repository.MySqlRepository;
+using Backend.Examinations.Service.Interfaces;
+using Backend.Medications.Service;
 
 namespace Backend.Examinations.Service
 {
-   public class TreatmentService
-   {
-        public TreatmentService(ITreatmentRepository treatmentRepository, NotificationService notificationService)
+    public class TreatmentService : ITreatmentService
+    {
+        public INotificationService notificationService;
+        public ITreatmentRepository treatmentRepository;
+
+        public TreatmentService(ITreatmentRepository treatmentRepository, INotificationService notificationService)
         {
             this.notificationService = notificationService;
             this.treatmentRepository = treatmentRepository;
         }
-
+        public HospitalTreatment ApproveHospitalTreatment(HospitalTreatment hospitalTreatment)
+        {
+            HospitalTreatment treatment = (HospitalTreatment)treatmentRepository.GetObject(hospitalTreatment.Id);
+            treatment.Status = Status.Approved;
+            return (HospitalTreatment)treatmentRepository.Update(treatment);
+        }
         public Treatment CreateTreatment(Treatment treatment)
         {
             if (treatment.IsPrescription())
             {
-                Prescription prescription = (Prescription) treatment;
+                Prescription prescription = (Prescription)treatment;
                 return treatmentRepository.Update(treatment);
             }
             if (treatment.IsHospitalTreatment())
-                notificationService.NewHospitalTreatment((HospitalTreatment) treatment);
+                notificationService.NewHospitalTreatment((HospitalTreatment)treatment);
             return treatmentRepository.Create(treatment);
         }
-        public Treatment UpdateTreatment(Treatment treatment) => 
-            treatmentRepository.Update(treatment);
-        public bool DeleteTreatment(Treatment treatment) => 
+
+        public bool DeleteTreatment(Treatment treatment) =>
             treatmentRepository.Delete(treatment);
+
+        public IEnumerable<Prescription> GetAllPrescriptions() =>
+            treatmentRepository.GetAllPrescriptions();
+
+        public IEnumerable<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate) =>
+            treatmentRepository.GetAllPrescriptionsInPeriod(startDate, endDate);
+
         public IEnumerable<HospitalTreatment> GetUnapprovedHospitalTreatments()
         {
             List<HospitalTreatment> allHospitalTreatments = (new List<HospitalTreatment>(treatmentRepository.GetAllHospitalTreatments()));
@@ -46,27 +62,19 @@ namespace Backend.Examinations.Service
                     unapprovedTreatments.Add(hospitalTreatment);
             return unapprovedTreatments;
         }
-        public IEnumerable<Prescription> GetAllPrescriptions() => 
-            treatmentRepository.GetAllPrescriptions();
 
-        public IEnumerable<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate) => 
-            treatmentRepository.GetAllPrescriptionsInPeriod(startDate, endDate);
-
-        public HospitalTreatment ApproveHospitalTreatment(HospitalTreatment hospitalTreatment)
-        {
-            HospitalTreatment treatment = (HospitalTreatment)treatmentRepository.GetObject(hospitalTreatment.Id);
-            treatment.Status = Status.Approved;
-            return (HospitalTreatment) treatmentRepository.Update(treatment);
-        }
         public HospitalTreatment RejectHospitalTreatment(HospitalTreatment hospitalTreatment)
         {
             HospitalTreatment treatment = (HospitalTreatment)treatmentRepository.GetObject(hospitalTreatment.Id);
             treatment.Status = Status.Rejected;
             return (HospitalTreatment)treatmentRepository.Update(treatment);
         }
+        public Treatment UpdateTreatment(Treatment treatment) =>
+            treatmentRepository.Update(treatment);
+ 
+    }
 
-        public NotificationService notificationService;
-        public ITreatmentRepository treatmentRepository;
-   
-   }
+    
+
+       
 }

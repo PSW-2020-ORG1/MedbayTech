@@ -1,3 +1,12 @@
+using Backend.Examinations.Repository;
+using Backend.Examinations.Repository.MySqlRepository;
+using Backend.Examinations.Service;
+using Backend.Examinations.Service.Interfaces;
+using Service.GeneralService;
+using Backend.Records.Repository.MySqlRepository;
+using Repository.MedicalRecordRepository;
+using Repository.UserRepository;
+using Backend.Users.Repository.MySqlRepository;
 using Backend.Medications.Repository.FileRepository;
 using Backend.Medications.Repository.MySqlRepository;
 using Backend.Medications.Service;
@@ -14,6 +23,7 @@ using Microsoft.Extensions.Hosting;
 using Model;
 using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
+using Backend.Examinations.WebApiService;
 using System.IO;
 
 namespace PharmacyIntegration
@@ -33,24 +43,34 @@ namespace PharmacyIntegration
             // NOTE(Jovan): Init directory for usage reports
             Directory.CreateDirectory("GeneratedUsageReports");
             Directory.CreateDirectory("DrugSpecifications");
+            // Generated directory for prescription
+            Directory.CreateDirectory("GeneratedPrescription");
 
-            services.AddCors();
+			services.AddCors();
             services.AddDbContext<MySqlContext>();
 
             services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
             services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
             services.AddTransient<IMedicationUsageRepository, MedicationUsageSqlRepository>();
             services.AddTransient<IMedicationUsageReportRepository, MedicationUsageReportSqlRepository>();
+            services.AddTransient<ITreatmentRepository, TreatmentSqlRepository>();
+            services.AddTransient<INotificationService, NotificationService>();
+            services.AddTransient<IMedicalRecordRepository, MedicalRecordSqlRepository>();
+            services.AddTransient<IUserRepository, UserSqlRepository>();
+            services.AddTransient<INotificationRepository, NotificationSqlRepository>();
+            services.AddTransient<IPrescriptionRepository, PrescriptionSqlRepository>();
 
             services.AddScoped<IPharmacyService, PharmacyService>();
             services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
             services.AddScoped<IMedicationUsageService, MedicationUsageService>();
             services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();
+            services.AddScoped<ITreatmentService, TreatmentService>();
+            services.AddScoped<IPrescriptionSearchService, PrescriptionSearchService>();
 
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
+            services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
 
             // NOTE(Jovan): Does not work
             /*services.AddControllers().AddJsonOptions(options =>
@@ -60,9 +80,8 @@ namespace PharmacyIntegration
 
             });*/
 
-            services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
 
-
+            
             
         }
 
@@ -73,10 +92,6 @@ namespace PharmacyIntegration
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(x => x
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .SetIsOriginAllowed(origin => true)); // allow any origin
 
             app.UseRouting();
 
