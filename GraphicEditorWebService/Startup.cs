@@ -40,7 +40,6 @@ namespace GraphicEditorWebService
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MedbayTechDbContext>();
             services.AddTransient<IRoomRepository, RoomSqlRepository>();
             services.AddTransient<IHospitalEquipmentRepository, HospitalEquipmentSqlRepository>();
             services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
