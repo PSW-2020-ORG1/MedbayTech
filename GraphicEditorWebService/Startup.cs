@@ -40,7 +40,6 @@ namespace GraphicEditorWebService
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MedbayTechDbContext>();
             services.AddTransient<IRoomRepository, RoomSqlRepository>();
             services.AddTransient<IHospitalEquipmentRepository, HospitalEquipmentSqlRepository>();
             services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
@@ -83,9 +82,12 @@ namespace GraphicEditorWebService
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
                 if (env.IsDevelopment())
                 {
-                    try
+                    if (stage.Equals("testing") || stage.Equals("production"))
                     {
                         databaseCreator.CreateTables();
+                    }
+                    try
+                    {
                         DataSeeder seeder = new DataSeeder();
                         seeder.SeedAllEntities(context);
                     }

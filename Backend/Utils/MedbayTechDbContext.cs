@@ -76,10 +76,8 @@ namespace Model
         public DbSet<DoctorWorkDay> DoctorWorkDays { get; set; }
 
 
-        public MedbayTechDbContext(DbContextOptions<MedbayTechDbContext> options) : base(options)
-        {
-        }
-        public MedbayTechDbContext() { }
+        public MedbayTechDbContext(DbContextOptions<MedbayTechDbContext> options) : base(options)  {}
+       // public MedbayTechDbContext() { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

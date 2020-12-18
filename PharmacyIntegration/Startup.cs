@@ -39,7 +39,6 @@ namespace PharmacyIntegration
             Directory.CreateDirectory("DrugSpecifications");
 
             services.AddCors();
-            services.AddDbContext<MedbayTechDbContext>();
 
             services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
             services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
@@ -84,9 +83,12 @@ namespace PharmacyIntegration
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
                 if (env.IsDevelopment())
                 {
-                    try
+                    if (stage.Equals("testing") || stage.Equals("production"))
                     {
                         databaseCreator.CreateTables();
+                    }
+                    try
+                    {
                         DataSeeder seeder = new DataSeeder();
                         seeder.SeedAllEntities(context);
                     }
