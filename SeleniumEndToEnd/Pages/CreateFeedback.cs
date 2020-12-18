@@ -60,8 +60,14 @@ namespace SeleniumEndToEnd.Pages
 
         public void WaitForFormSubmit()
         {
-            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+            //_webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
+            var wait = new WebDriverWait(_webDriver, new TimeSpan(0, 0, 40));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
+            
 
         }
+        public void ResolveAlertDialog()
+            => _webDriver.SwitchTo().Alert().Accept();
     }
 }

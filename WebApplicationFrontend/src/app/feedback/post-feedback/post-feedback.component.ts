@@ -43,10 +43,13 @@ export class PostFeedbackComponent implements OnInit {
     this.service.createFeedback(this.postFeedback).subscribe(
       res => {
         this.postForm.reset();
-        this.toastr.success(res);
+        //this.toastr.success(res);
+        alert('Success');
+
       },
       error => {
-        this.toastr.error("error");
+        //this.toastr.error("error");
+        alert('Error');
       }
     
     
