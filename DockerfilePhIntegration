@@ -1,4 +1,5 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+
 WORKDIR /app
 
 COPY Backend/Backend.csproj Backend/
@@ -6,28 +7,38 @@ COPY PharmacyIntegration/PharmacyIntegration.csproj PharmacyIntegration/
 
 RUN dotnet restore PharmacyIntegration/PharmacyIntegration.csproj
 
+RUN apt-get update -q && apt-get install -q -y \
+        curl apt-transport-https apt-utils dialog \
+        make g++ build-essential
+
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+
+RUN apt-get update \
+    && apt-get install -y nodejs
+
+
+COPY PharmacyIntegration/vueclient/package.json .
+RUN npm install npm@latest -g
+RUN npm install -g npm
+
+RUN npm install -g @vue/cli
+RUN npm install --save axios vue-axios
+RUN npm install
+
 COPY . .
 
 FROM build AS publish
-WORKDIR /app/Backend
-
-ENV PATH $PATH:/root/.dotnet/tools
-RUN dotnet tool install -g dotnet-ef --version 3.1.9
-RUN dotnet ef migrations add Init
-
-RUN apt-get update && apt-get upgrade -y && apt-get install -y nodejs npm
-RUN npm install npm@latest -g
-RUN npm install -g npm
-RUN npm install
-
 WORKDIR /app
 RUN dotnet publish PharmacyIntegration/PharmacyIntegration.csproj -c Release -o out
 
+
+
+
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS runtime
+
 RUN useradd -ms /bin/bash defaultuser
 WORKDIR /app
-ENV ASPNETCORE_URLS http://*:8080
-EXPOSE 8080
-COPY --from=publish /app/out .
-ENTRYPOINT ["dotnet", "PharmacyIntegration.dll"]
 
+COPY --from=publish /app/out .
+
+CMD ASPNETCORE_URLS=http://*:$50202 dotnet PharmacyIntegration.dll
