@@ -138,7 +138,7 @@ namespace PharmacyIntegration
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "client-app";
+                spa.Options.SourcePath = "ClientApp";
                 if (env.IsDevelopment())
                 {
                     // Launch development server for Vue.js
