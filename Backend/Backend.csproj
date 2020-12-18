@@ -7,10 +7,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <Compile Remove="Examinations\WebApiService\**" />
+    <Compile Remove="Exceptions\Examinations\**" />
     <Compile Remove="Users\dsadsa\**" />
     <EmbeddedResource Remove="Examinations\WebApiService\**" />
+    <EmbeddedResource Remove="Exceptions\Examinations\**" />
     <EmbeddedResource Remove="Users\dsadsa\**" />
     <None Remove="Examinations\WebApiService\**" />
+    <None Remove="Exceptions\Examinations\**" />
     <None Remove="Users\dsadsa\**" />
   </ItemGroup>
   <ItemGroup>
@@ -40,7 +43,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Exceptions\Examinations\" />
     <Folder Include="Resources\Images\" />
     <Folder Include="Schedules\Controller\" />
     <Folder Include="Users\WebApiService\" />

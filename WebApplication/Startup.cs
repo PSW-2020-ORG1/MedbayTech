@@ -109,18 +109,20 @@ namespace WebApplication
             {
                 string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
-                if (env.IsDevelopment()|| stage.Equals("testing"))
+                
+                if (stage.Equals("testing") || stage.Equals("production"))
                 {
-                    try
-                    {
-                        databaseCreator.CreateTables();
-                        DataSeeder seeder = new DataSeeder();
-                        seeder.SeedAllEntities(context);
-                    } catch (Exception e)
-                    {
-                        Console.WriteLine(e.StackTrace);
-                    }
-                } 
+                    databaseCreator.CreateTables();
+                }
+                
+                try
+                {
+                    DataSeeder seeder = new DataSeeder();
+                    seeder.SeedAllEntities(context);
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.StackTrace);
+                }
             }
 
             app.UseDefaultFiles();
