@@ -109,7 +109,7 @@ namespace WebApplication
             {
                 string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
-                if (!databaseCreator.HasTables() && stage.Equals("testing"))
+                if (env.IsDevelopment()|| stage.Equals("testing"))
                 {
                     try
                     {
@@ -120,7 +120,7 @@ namespace WebApplication
                     {
                         Console.WriteLine(e.StackTrace);
                     }
-                }
+                } 
             }
 
             app.UseDefaultFiles();

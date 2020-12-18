@@ -22,6 +22,9 @@ using Backend.Rooms.Repository.MySqlRepository;
 using Backend.Users.Repository;
 using Backend.Users.Repository.MySqlRepository;
 using Backend.Users.WebApiService;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
+using Backend.Utils;
 
 namespace GraphicEditorWebService
 {
@@ -34,7 +37,7 @@ namespace GraphicEditorWebService
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MedbayTechDbContext>();
@@ -52,14 +55,45 @@ namespace GraphicEditorWebService
             services.AddScoped<IDoctorService, DoctorService>();
             services.AddControllers();
             services.AddCors();
+
+
+
+            
+            services.AddDbContext<MedbayTechDbContext>(options =>
+                options.UseMySql(CreateConnectionStringFromEnvironment(),
+                x => x.MigrationsAssembly("Backend").EnableRetryOnFailure(
+                            5, new TimeSpan(0, 0, 0, 10), new List<int>())
+                        ).UseLazyLoadingProxies());
+            
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            using (var context = scope.ServiceProvider.GetService<MedbayTechDbContext>())
+            {
+                string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
+                RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
+                if (env.IsDevelopment())
+                {
+                    try
+                    {
+                        databaseCreator.CreateTables();
+                        DataSeeder seeder = new DataSeeder();
+                        seeder.SeedAllEntities(context);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.StackTrace);
+                    }
+                }
             }
 
             app.UseHttpsRedirection();
@@ -77,5 +111,18 @@ namespace GraphicEditorWebService
                 .AllowAnyHeader()
                 .SetIsOriginAllowed(origin => true));
         }
+
+
+        public string CreateConnectionStringFromEnvironment()
+        {
+            string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
+            string port = Environment.GetEnvironmentVariable("DATABASE_PORT") ?? "3306";
+            string database = Environment.GetEnvironmentVariable("DATABASE_SCHEMA") ?? "newdb";
+            string user = Environment.GetEnvironmentVariable("DATABASE_USERNAME") ?? "root";
+            string password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "root";
+
+            return $"server={server};port={port};database={database};user={user};password={password}";
+        }
+
     }
 }

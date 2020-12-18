@@ -5,15 +5,20 @@ using Backend.Pharmacies.Repository.MySqlRepository;
 using Backend.Reports.Repository;
 using Backend.Reports.Repository.MySqlRepository;
 using Backend.Reports.Service;
+using Backend.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Model;
 using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
+using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace PharmacyIntegration
@@ -26,11 +31,10 @@ namespace PharmacyIntegration
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+.
         public void ConfigureServices(IServiceCollection services)
         {
-            // NOTE(Jovan): Init directory for usage reports
+
             Directory.CreateDirectory("GeneratedUsageReports");
             Directory.CreateDirectory("DrugSpecifications");
 
@@ -52,31 +56,53 @@ namespace PharmacyIntegration
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 
-            // NOTE(Jovan): Does not work
-            /*services.AddControllers().AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.PropertyNamingPolicy = null;
-                options.JsonSerializerOptions.DictionaryKeyPolicy = null;
-
-            });*/
-
             services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
 
-
             
+            services.AddDbContext<MedbayTechDbContext>(options =>
+                options.UseMySql(CreateConnectionStringFromEnvironment(),
+                x => x.MigrationsAssembly("Backend").EnableRetryOnFailure(
+                            5, new TimeSpan(0, 0, 0, 10), new List<int>())
+                        ).UseLazyLoadingProxies());
+            
+
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            using (var context = scope.ServiceProvider.GetService<MedbayTechDbContext>())
+            {
+                string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
+                RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
+                if (env.IsDevelopment())
+                {
+                    try
+                    {
+                        databaseCreator.CreateTables();
+                        DataSeeder seeder = new DataSeeder();
+                        seeder.SeedAllEntities(context);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.StackTrace);
+                    }
+                }
+            }
+
+
             app.UseCors(x => x
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .SetIsOriginAllowed(origin => true)); // allow any origin
+                .SetIsOriginAllowed(origin => true)); 
+
 
             app.UseRouting();
 
@@ -91,17 +117,28 @@ namespace PharmacyIntegration
                 endpoints.MapControllers();
             });
 
-            // add following statements
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "client-app";
                 if (env.IsDevelopment())
                 {
-                    // Launch development server for Vue.js
                     spa.UseVueDevelopmentServer();
                 }
             });
         }
+
+        public string CreateConnectionStringFromEnvironment()
+        {
+            string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
+            string port = Environment.GetEnvironmentVariable("DATABASE_PORT") ?? "3306";
+            string database = Environment.GetEnvironmentVariable("DATABASE_SCHEMA") ?? "newdb";
+            string user = Environment.GetEnvironmentVariable("DATABASE_USERNAME") ?? "root";
+            string password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "root";
+
+            return $"server={server};port={port};database={database};user={user};password={password}";
+        }
+
+
     }
 }
