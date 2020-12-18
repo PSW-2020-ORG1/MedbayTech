@@ -31,6 +31,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using VueCliMiddleware;
 
 namespace PharmacyIntegration
 {
@@ -138,11 +139,15 @@ namespace PharmacyIntegration
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "ClientApp";
+                spa.Options.SourcePath = "vueclient";
                 if (env.IsDevelopment())
                 {
                     // Launch development server for Vue.js
                     spa.UseVueDevelopmentServer();
+                }
+                else
+                {
+                    spa.UseVueCli(npmScript: "serve", port: 8082);
                 }
             });
 
@@ -156,6 +161,11 @@ namespace PharmacyIntegration
                     if (!databaseCreator.HasTables())
                         databaseCreator.CreateTables();
                 }
+            }
+
+            if(!env.IsDevelopment())
+            {
+                app.UseHttpsRedirection();
             }
         }
 
