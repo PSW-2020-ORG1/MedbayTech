@@ -1,23 +1,23 @@
 <div class="container">
-    <h1 name="feedbacks">Feedbacks</h1>
 
     <h2 name="all_feedback_len">Currently there are: {{allFeedback.length}} feedbacks.</h2>
-
-                <div class="row" *ngFor="let feedback of allFeedback">  
+    <div>
+                <div [dataSource]="allFeedback" class="row" *ngFor="let feedback of allFeedback" class="container center-card">  
                     
                     <mat-card>
-                        
+                        <mat-card-header>
                             <mat-card-title>
                                 <p class="title-paragraph" *ngIf="feedback.anonymous">Anonymous</p>
                                 <p class="title-paragraph" *ngIf="!feedback.anonymous"> {{ feedback.name}} {{feedback.surname}}</p>
                                
                             </mat-card-title>
-                            
+                           
                             <mat-card-subtitle>
                                 <p class="subtitle-paragraph">{{ feedback.date | date: 'dd/MM/yyyy'}}</p>
                             </mat-card-subtitle>
-                       
-                        <mat-divider></mat-divider>
+                        </mat-card-header> 
+
+                        
                         <mat-card-content>
                             <p class="content-paragraph">{{ feedback.additionalNotes }}</p>
                         </mat-card-content>
@@ -32,16 +32,16 @@
                             <p class="content-paragraph" *ngIf="!feedback.approved">Status: Not Approved</p>
                             
                         </mat-card-content>
-                           
+                        <mat-divider></mat-divider>   
                        <mat-card-actions *ngIf="feedback.allowedForPublishing">
                            
-                            <button mat-raised-button id="button" (click)="updateStatus(feedback.id,!feedback.approved, $event.target)" *ngIf="!feedback.approved">Approve</button>
-                            <button mat-raised-button id="button" (click)="updateStatus(feedback.id,!feedback.approved, $event.target)" *ngIf="feedback.approved">Deny</button>
+                            <button mat-raised-button color="accent" id="button" (click)="updateStatus(feedback.id,!feedback.approved, $event.target)" *ngIf="!feedback.approved">Approve</button>
+                            <button mat-raised-button color="accent" id="button" (click)="updateStatus(feedback.id,!feedback.approved, $event.target)" *ngIf="feedback.approved">Deny</button>
                             
                         </mat-card-actions>
                     </mat-card>
-               
-           
+                </div>
+                </div>      
         
 
     
