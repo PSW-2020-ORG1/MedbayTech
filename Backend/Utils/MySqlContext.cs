@@ -21,6 +21,8 @@ using Backend.Examinations.Model.Enums;
 using Backend.Users;
 using Backend.Users.Model;
 using System.Linq;
+using Npgsql;
+
 namespace Model
 {
     public class MySqlContext : DbContext
@@ -90,20 +92,70 @@ namespace Model
         {
         }
         public MySqlContext() { }
+
+        public MySqlContext(string connectionString) { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            /*This is not good solution, must be refactored*/
-            //optionsBuilder.UseMySql(@"server=" + mySqlHostAddress + ";port=" + mySqlConnectionPort + ";database=" + mySqlDatabaseName + ";uid=" + mySqlConnectionUid + ";password=" + mySqlConnectionPassword);
-            //optionsBuilder.UseLazyLoadingProxies(true);
-
-            // NOTE(Jovan): When using Backend DB inside project, create appsettings.json inside
-            // that project
-
-        IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
-                optionsBuilder.UseMySql($"Server={mySqlHostAddress};port={mySqlConnectionPort};Database={mySqlDatabaseName};user={mySqlConnectionUid};password={mySqlConnectionPassword}").UseLazyLoadingProxies();
+            if (!IsPostgresDatabase() && !IsTestEnvironment())
+            {
+                optionsBuilder.UseMySql(CreateConnectionStringFromEnvironment());
+                optionsBuilder.UseLazyLoadingProxies(true);
+            }
+            else
+            {
+                optionsBuilder.UseNpgsql(CreateConnectionStringFromEnvironment());
+            }
 
         }
+        private bool IsPostgresDatabase()
+        {
+            string url = Environment.GetEnvironmentVariable("DATABASE_URL") ?? "localhost";
+            return !url.Equals("localhost");
+        }
+
+        private string CreateConnectionStringFromEnvironment()
+        {
+            string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
+            string port = Environment.GetEnvironmentVariable("DATABASE_PORT") ?? "3306";
+            string database = Environment.GetEnvironmentVariable("DATABASE_SCHEMA") ?? "newdb";
+            string user = Environment.GetEnvironmentVariable("DATABASE_USERNAME") ?? "root";
+            string password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "root";
+
+            string url = Environment.GetEnvironmentVariable("DATABASE_URL") ?? "localhost";
+
+            if (url.Equals("localhost") && !IsTestEnvironment())
+                return $"server={server};port={port};database={database};user={user};password={password}";
+
+            else if (IsTestEnvironment())
+            {
+                return Environment.GetEnvironmentVariable("CONNECTION_STRING");
+            }
+
+            else
+            {
+                var databaseUri = new Uri(url);
+                var userInfo = databaseUri.UserInfo.Split(':');
+
+                var builder = new NpgsqlConnectionStringBuilder
+                {
+                    Host = databaseUri.Host,
+                    Port = databaseUri.Port,
+                    Username = userInfo[0],
+                    Password = userInfo[1],
+                    Database = databaseUri.LocalPath.TrimStart('/')
+                };
+                return builder.ToString();
+            }
+
+
+        }
+        private bool IsTestEnvironment()
+        {
+            string environment = Environment.GetEnvironmentVariable("TEST_ENVIRONMENT") ?? "FALSE";
+            return environment.Equals("TRUE");
+        }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
