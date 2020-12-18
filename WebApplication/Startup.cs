@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
 using Backend.Examinations.Repository;
 using Backend.Examinations.Repository.MySqlRepository;
 using Backend.Examinations.Service.Interfaces;
@@ -21,26 +17,23 @@ using Backend.Users.Service.Interfaces;
 using Backend.Users.TableBuilder.Interfaces;
 using Backend.Users.WebApiService;
 using Backend.Schedules.Service.Interfaces;
-using Backend.Schedules.Repository.MySqlRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Backend.Schedules.Service.Interfaces;
 using Model;
 using Newtonsoft.Json;
 using Repository.MedicalRecordRepository;
 using Repository.ScheduleRepository;
-using Service.ScheduleService;
 using Repository.UserRepository;
 using WebApplication.MailService;
 using WebApplication.ObjectBuilder;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using Backend.Utils;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
@@ -70,6 +63,7 @@ namespace WebApplication
             services.AddTransient<IMailService, MailService.MailService>();
 
             services.AddCors();
+
             AddRepository(services);
             AddServices(services);
 
@@ -81,37 +75,53 @@ namespace WebApplication
 
             });
 
-            services.AddDbContext<MySqlContext>(options =>
-                options.UseMySql(CreateConnectionStringFromEnvironment()));
+
+            if (IsPostgres())
+            {
+                services.AddDbContext<MedbayTechDbContext>(options =>
+                    options.UseNpgsql(CreateConnectionStringFromEnvironmentPostgres(),
+                    x => x.MigrationsAssembly("Backend").EnableRetryOnFailure(
+                            5, new TimeSpan(0, 0, 0, 10), new List<string>())
+                        ).UseLazyLoadingProxies());
+            }
+            else
+            {
+                services.AddDbContext<MedbayTechDbContext>(options =>
+                    options.UseMySql(CreateConnectionStringFromEnvironment(),
+                    x => x.MigrationsAssembly("Backend").EnableRetryOnFailure(
+                            5, new TimeSpan(0, 0, 0, 10), new List<int>())
+                        ).UseLazyLoadingProxies());
+            }
         }
 
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
-            string origin = Environment.GetEnvironmentVariable("URL") ?? "localhost";
-            string port = Environment.GetEnvironmentVariable("PORT") ?? "4200";
-
-            app.UseCors(options => options.WithOrigins($"http://{origin}:{port}").AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(options => options.WithOrigins(GetDomain()).AllowAnyMethod().AllowAnyHeader());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
 
-                app.UseStaticFiles(new StaticFileOptions
+            }
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            using (var context = scope.ServiceProvider.GetService<MedbayTechDbContext>())
+            {
+                string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
+                RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
+                if (!databaseCreator.HasTables() && stage.Equals("testing"))
                 {
-                    FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
-                    RequestPath = "/Resources"
-                });
-            } else
-            {/*
-                app.UseStaticFiles(new StaticFileOptions
-                {
-                    FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "WebApplication", "Resources")),
-                    RequestPath = "/Resources"
-                });
-            */}
+                    try
+                    {
+                        databaseCreator.CreateTables();
+                        DataSeeder seeder = new DataSeeder();
+                        seeder.SeedAllEntities(context);
+                    } catch (Exception e)
+                    {
+                        Console.WriteLine(e.StackTrace);
+                    }
+                }
+            }
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
@@ -120,6 +130,12 @@ namespace WebApplication
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "dist"))
             });
 
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
+                RequestPath = "/Resources"
+            });
 
             app.UseRouting();
 
@@ -129,22 +145,15 @@ namespace WebApplication
             {
                 endpoints.MapControllers();
             });
-            
-            
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetRequiredService<MySqlContext>();
-                
-                RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
-                if (!databaseCreator.HasTables())
-                {
-                    context.Database.EnsureCreated();
-                    context.Database.Migrate();
-                    databaseCreator.CreateTables();
-                }
-            }
         }
 
+        private string GetDomain()
+        {
+            string origin = Environment.GetEnvironmentVariable("URL") ?? "localhost";
+            string port = Environment.GetEnvironmentVariable("PORT") ?? "4200";
+
+            return $"http://{origin}:{port}";
+        }
         public string CreateConnectionStringFromEnvironment()
         {
             string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
@@ -153,56 +162,31 @@ namespace WebApplication
             string user = Environment.GetEnvironmentVariable("DATABASE_USERNAME") ?? "root";
             string password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "root";
 
-
             return $"server={server};port={port};database={database};user={user};password={password}";
-            // string url = Environment.GetEnvironmentVariable("DATABASE_URL") ?? "localhost";
-            /*
-            if (url.Equals("localhost") && !IsTestEnvironment())
-
-            else if (IsTestEnvironment())
-            {
-                return Environment.GetEnvironmentVariable("CONNECTION_STRING");
-            }
-
-            else
-            {
-                var databaseUri = new Uri(url);
-                var userInfo = databaseUri.UserInfo.Split(':');
-
-                var builder = new NpgsqlConnectionStringBuilder
-                {
-                    Host = databaseUri.Host,
-                    Port = databaseUri.Port,
-                    Username = userInfo[0],
-                    Password = userInfo[1],
-                    Database = databaseUri.LocalPath.TrimStart('/')
-                };
-                return builder.ToString();
-            }*/
-
-
-
         }
-        public bool IsLocalServer()
+
+        public string CreateConnectionStringFromEnvironmentPostgres()
         {
             string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
-            return server.Equals("localhost");
+            string port = Environment.GetEnvironmentVariable("DATABASE_PORT") ?? "5432";
+            string database = Environment.GetEnvironmentVariable("DATABASE_SCHEMA") ?? "newdb";
+            string user = Environment.GetEnvironmentVariable("DATABASE_USERNAME") ?? "root";
+            string password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "root";
+            string testEnvironment = Environment.GetEnvironmentVariable("TEST_ENVIRONMENT") ?? "FALSE";
+
+            if (testEnvironment.Equals("TRUE"))
+                return "Server=postgres;Port=5432;Database=mydb1;User Id=root;Password=root";
+
+            return $"Server={server};Port={port};Database={database};User Id={user};Password={password}";
         }
 
-        public bool IsPostgresDatabase()
+        public bool IsPostgres()
         {
-            string url = Environment.GetEnvironmentVariable("DATABASE_URL") ?? "localhost";
-            return !url.Equals("localhost");
+            string host = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
+            return host.Equals("postgres");
         }
-
-        public bool IsTestEnvironment()
-        {
-            string environment = Environment.GetEnvironmentVariable("TEST_ENVIRONMENT") ?? "FALSE";
-            return environment.Equals("TRUE");
-        }
-
-
-
+        
+        
         private void AddServices(IServiceCollection services)
         {
             services.AddScoped<IDoctorService, DoctorService>();

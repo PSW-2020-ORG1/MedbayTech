@@ -12,7 +12,7 @@ namespace Backend.Examinations.Repository.MySqlRepository
         ITreatmentRepository
 
     {
-        public TreatmentSqlRepository(MySqlContext context) : base(context)
+        public TreatmentSqlRepository(MedbayTechDbContext context) : base(context)
         {
         }
 

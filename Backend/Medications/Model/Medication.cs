@@ -21,6 +21,7 @@ namespace Backend.Medications.Model
         // m:n relations are fixed
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Med { get; set; }
         public MedStatus Status { get; set; }

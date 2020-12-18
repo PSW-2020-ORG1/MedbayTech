@@ -13,7 +13,7 @@ namespace Backend.Examinations.Repository.MySqlRepository
     public class ExaminationSurgerySqlRepository : MySqlrepository<ExaminationSurgery, int>,
         IExaminationSurgeryRepository
     {
-        public ExaminationSurgerySqlRepository(MySqlContext context) : base(context)
+        public ExaminationSurgerySqlRepository(MedbayTechDbContext context) : base(context)
         {
         }
 

@@ -11,8 +11,8 @@ namespace Backend.Rooms.Repository.MySqlRepository
 {
     public class HospitalEquipmentSqlRepository : IHospitalEquipmentRepository
     {
-        private MySqlContext _context;
-        public HospitalEquipmentSqlRepository(MySqlContext context)
+        private MedbayTechDbContext _context;
+        public HospitalEquipmentSqlRepository(MedbayTechDbContext context)
         {
             _context = context;
         }

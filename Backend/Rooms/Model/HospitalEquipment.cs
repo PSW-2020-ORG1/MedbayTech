@@ -14,6 +14,7 @@ namespace Model.Rooms
     public class HospitalEquipment : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int QuantityInRoom { get;  set; }
         public int QuantityInStorage { get; set; }

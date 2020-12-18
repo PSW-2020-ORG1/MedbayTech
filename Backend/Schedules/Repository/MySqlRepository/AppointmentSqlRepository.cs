@@ -12,7 +12,7 @@ namespace Backend.Schedules.Repository.MySqlRepository
     public class AppointmentSqlRepository : MySqlrepository<Appointment, int>,
         IAppointmentRepository
     {
-        public AppointmentSqlRepository(MySqlContext context) : base(context) { }
+        public AppointmentSqlRepository(MedbayTechDbContext context) : base(context) { }
         public Dictionary<int, Appointment> GetAppointmentsBy(DateTime date)
         {
             return GetAll().ToList().Where(a => a.Period.StartTime.CompareTo(date) <= 0).ToDictionary(a => a.Id);

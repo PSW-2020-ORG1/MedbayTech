@@ -11,7 +11,7 @@ namespace Backend.Users.Repository.MySqlRepository
     public class FeedbackSqlRepository : MySqlrepository<Feedback, int>,
         IFeedbackRepository
     {
-        public FeedbackSqlRepository(MySqlContext context) : base(context) { }
+        public FeedbackSqlRepository(MedbayTechDbContext context) : base(context) { }
 
         /// <summary>
         /// Function that changes the status of an existing feedback
@@ -29,10 +29,8 @@ namespace Backend.Users.Repository.MySqlRepository
                 return true;
             }
 
-            
             return false;
         }
-
         /// <summary>
         /// Function that gets all feedback that is approved by the system administrator
         /// </summary>

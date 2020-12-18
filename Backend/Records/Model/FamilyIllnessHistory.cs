@@ -12,8 +12,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Backend.Records.Model
 {
    public class FamilyIllnessHistory
-   {
+    {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public Relative RelativeMember { get; set; }
         public virtual List<Diagnosis> Diagnosis { get; set; }

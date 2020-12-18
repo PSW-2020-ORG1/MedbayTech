@@ -12,6 +12,7 @@ namespace Model.Users
    public class City : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get;  set; }
         [ForeignKey("State")]

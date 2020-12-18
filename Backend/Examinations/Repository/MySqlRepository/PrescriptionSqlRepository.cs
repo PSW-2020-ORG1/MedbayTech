@@ -11,7 +11,7 @@ namespace Backend.Examinations.Repository.MySqlRepository
     public class PrescriptionSqlRepository : MySqlrepository<Prescription, int>,
         IPrescriptionRepository
     {
-        public PrescriptionSqlRepository(MySqlContext mySqlContext) : base(mySqlContext)
+        public PrescriptionSqlRepository(MedbayTechDbContext mySqlContext) : base(mySqlContext)
         {
         }
 

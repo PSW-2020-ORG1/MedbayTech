@@ -12,9 +12,9 @@ namespace Backend.Users.Repository.MySqlRepository
     public class DoctorSqlRepository : MySqlrepository<Doctor, string>, IDoctorRepository
     {
 
-        private MySqlContext _context;
+        private MedbayTechDbContext _context;
 
-        public DoctorSqlRepository(MySqlContext context) : base(context) {}
+        public DoctorSqlRepository(MedbayTechDbContext context) : base(context) {}
 
         public IEnumerable<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
         {

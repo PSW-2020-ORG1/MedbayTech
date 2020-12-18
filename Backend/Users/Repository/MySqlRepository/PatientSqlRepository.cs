@@ -12,7 +12,7 @@ namespace Backend.Users.Repository.MySqlRepository
         IPatientRepository
     {
 
-        public PatientSqlRepository(MySqlContext context) : base(context) { }
+        public PatientSqlRepository(MedbayTechDbContext context) : base(context) { }
 
         public Patient GetById(string id)
         {

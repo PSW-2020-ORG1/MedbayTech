@@ -17,6 +17,7 @@ namespace Model.Schedule
     public class Appointment : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [NotMapped]
         public Period Period { get; protected set; }

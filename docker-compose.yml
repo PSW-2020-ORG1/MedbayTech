@@ -3,6 +3,7 @@ version: "3.8"
 volumes:
   mysql-data: {}
   web-sql:
+  postgres-data: {}
   
 
 networks:
@@ -25,18 +26,34 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
   
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    networks:
+      - demo
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: mydb1
+    volumes:
+      - postgres-data:/var/lib/postgres
+
   WebApplicationSql:
     image: web
     restart: on-failure
     networks:
       - demo
     depends_on:
-      - mysql
+      - postgres
     environment:
       DATABASE_USERNAME: "root"
       DATABASE_PASSWORD: "root"
-      DATABASE_HOST: "mysql"
-      DATABASE_SCHEMA: "newdb"
+      DATABASE_HOST: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      DATABASE_URL: "postgres://root:root@postgres:5432/mydb1"
+      DATABASE_CONNECTION_STRING: "Server=postgres;Port=5432;Database=mydb1;User Id=root;Password=root"
       PORT: 8080
+      STAGE: "testing"
     ports:
       - "8080:8080"

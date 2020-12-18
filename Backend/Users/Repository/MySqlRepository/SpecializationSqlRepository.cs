@@ -12,7 +12,7 @@ namespace Backend.Users.Repository.MySqlRepository
     public class SpecializationSqlRepository : MySqlrepository<Specialization, int>,
         ISpecializationRepository
     {
-        public SpecializationSqlRepository(MySqlContext context) : base(context) { }
+        public SpecializationSqlRepository(MedbayTechDbContext context) : base(context) { }
         public Specialization GetGeneralSpecialization()
         {
             // NOTE(Jovan): Not sure what "General" means

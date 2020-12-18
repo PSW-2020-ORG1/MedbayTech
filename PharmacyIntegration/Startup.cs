@@ -35,7 +35,7 @@ namespace PharmacyIntegration
             Directory.CreateDirectory("DrugSpecifications");
 
             services.AddCors();
-            services.AddDbContext<MySqlContext>();
+            services.AddDbContext<MedbayTechDbContext>();
 
             services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
             services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();

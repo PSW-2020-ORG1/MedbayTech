@@ -10,7 +10,7 @@ namespace Backend.Users.Repository.MySqlRepository
 {
     public class DoctorWorkDaySqlRepository : MySqlrepository<DoctorWorkDay, int>, IDoctorWorkDayRepository
     {
-        public DoctorWorkDaySqlRepository(MySqlContext context) : base(context) { }
+        public DoctorWorkDaySqlRepository(MedbayTechDbContext context) : base(context) { }
         public IEnumerable<DoctorWorkDay> GetByDoctorId(string id)
         {
             return GetAll().Where(workDay => workDay.DoctorId.Equals(id));

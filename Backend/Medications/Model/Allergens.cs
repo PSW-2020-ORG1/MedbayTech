@@ -15,6 +15,7 @@ namespace Backend.Medications.Model
     public class Allergens : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Allergen { get; set; }
         [ForeignKey("MedicalRecord")]

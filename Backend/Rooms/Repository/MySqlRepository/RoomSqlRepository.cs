@@ -12,8 +12,8 @@ namespace Backend.Rooms.Repository.MySqlRepository
     public class RoomSqlRepository : IRoomRepository //MySqlrepository<Pharmacy, string>,
     {
 
-        private MySqlContext _context;
-        public RoomSqlRepository(MySqlContext context)
+        private MedbayTechDbContext _context;
+        public RoomSqlRepository(MedbayTechDbContext context)
         {
             _context = context;
         }

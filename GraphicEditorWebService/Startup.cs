@@ -37,7 +37,7 @@ namespace GraphicEditorWebService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MySqlContext>();
+            services.AddDbContext<MedbayTechDbContext>();
             services.AddTransient<IRoomRepository, RoomSqlRepository>();
             services.AddTransient<IHospitalEquipmentRepository, HospitalEquipmentSqlRepository>();
             services.AddTransient<IMedicationRepository, MedicationSqlRepository>();

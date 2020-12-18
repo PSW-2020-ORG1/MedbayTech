@@ -12,6 +12,7 @@ namespace Backend.Medications.Model
     public class DosageOfIngredient
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public double Amount { get; set; }
         [ForeignKey("MedicationIngredient")]

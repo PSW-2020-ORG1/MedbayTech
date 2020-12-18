@@ -11,9 +11,9 @@ namespace Backend.Reports.Repository.MySqlRepository
     public class MedicationUsageSqlRepository : IMedicationUsageRepository
     {
 
-        private MySqlContext _context;
+        private MedbayTechDbContext _context;
 
-        public MedicationUsageSqlRepository(MySqlContext context)
+        public MedicationUsageSqlRepository(MedbayTechDbContext context)
         {
             _context = context;
         }

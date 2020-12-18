@@ -5,12 +5,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Backend.General.Model;
 namespace Model.Users
 {
     public class Notification : IIdentifiable<int>
     {
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Content { get; set; }
         public virtual NotificationCategory NotificationCategory { get; set; }

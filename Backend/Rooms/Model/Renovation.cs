@@ -14,6 +14,7 @@ namespace Model.Rooms
     public class Renovation : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [NotMapped]
         public Period Period { get; set; }

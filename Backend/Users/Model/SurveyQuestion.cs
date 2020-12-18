@@ -14,6 +14,7 @@ namespace Model.Users
     public class SurveyQuestion : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Question { get; set; }
         public QuestionType QuestionType { get; set; }

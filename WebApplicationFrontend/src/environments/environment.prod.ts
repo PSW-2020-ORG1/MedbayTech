@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://localhost:8080',
+  baseUrl: window.location.href,
   fedback: 'api/feedback',
   allFeedback: 'allFeedback',
   updateFeedbackStatus: 'updateFeedbackStatus',

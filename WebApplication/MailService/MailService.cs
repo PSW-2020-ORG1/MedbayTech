@@ -21,7 +21,7 @@ namespace WebApplication.MailService
         public async Task SendMailAsync(MailRequest mailRequest)
         {
 
-            string FilePath = Directory.GetCurrentDirectory() + "\\MailService\\MailTemplate\\ConfirmationMailTemplate.html";
+            string FilePath = Directory.GetCurrentDirectory() + "/MailService/MailTemplate/ConfirmationMailTemplate.html";
             StreamReader streamReader = new StreamReader(FilePath);
             string mailText = streamReader.ReadToEnd();
             streamReader.Close();

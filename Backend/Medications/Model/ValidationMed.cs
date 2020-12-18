@@ -12,8 +12,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Backend.Medications.Model
 {
    public class ValidationMed : IIdentifiable<int>
-   {
+    {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public  string SideNotes { get; set; }
         public DateTime DateOfValidation { get; set; }

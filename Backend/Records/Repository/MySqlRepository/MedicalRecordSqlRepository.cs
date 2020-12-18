@@ -13,7 +13,7 @@ namespace Backend.Records.Repository.MySqlRepository
     public class MedicalRecordSqlRepository : MySqlrepository<MedicalRecord, int>,
         IMedicalRecordRepository
     {
-        public MedicalRecordSqlRepository(MySqlContext context) : base(context) { }
+        public MedicalRecordSqlRepository(MedbayTechDbContext context) : base(context) { }
 
         public IEnumerable<MedicalRecord> FilterRecordsByState(PatientCondition state)
         {

@@ -12,9 +12,9 @@ namespace Backend.Pharmacies.Repository.MySqlRepository
     public class PharmacyNotificationSqlRepository : IPharmacyNotificationRepository
     {
 
-        private MySqlContext _context;
+        private MedbayTechDbContext _context;
 
-        public PharmacyNotificationSqlRepository(MySqlContext context)
+        public PharmacyNotificationSqlRepository(MedbayTechDbContext context)
         {
             _context = context;
         }

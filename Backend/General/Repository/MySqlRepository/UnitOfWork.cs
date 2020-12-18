@@ -15,7 +15,7 @@ namespace Repository
     public class UnitOfWork : IDisposable 
     {
 
-        private MySqlContext context = new MySqlContext();
+        private MedbayTechDbContext context = new MedbayTechDbContext();
 
         private FeedbackSqlRepository feedbackRepository;
         private MedicalRecordSqlRepository medicalRecordRepository;

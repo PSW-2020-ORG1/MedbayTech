@@ -14,13 +14,13 @@ namespace Repository
         where ID : IComparable
     {
 
-        protected MySqlContext context;
+        protected MedbayTechDbContext context;
 
         internal DbSet<T> dbSet;
         
         public  MySqlrepository() {}
 
-        public MySqlrepository(MySqlContext mySqlContext)
+        public MySqlrepository(MedbayTechDbContext mySqlContext)
         {
             this.context = mySqlContext;
             this.dbSet = context.Set<T>();

@@ -10,7 +10,8 @@ namespace Backend.Users.Repository.MySqlRepository
     public class AddressSqlRepository : MySqlrepository<Address, int>,
         IAddressRepository
     {
-        public AddressSqlRepository(MySqlContext context) : base(context) { }
+        public AddressSqlRepository(MedbayTechDbContext context) : base(context) { }
+
         public bool CheckIfExists(Address address)
         {
             throw new NotImplementedException();

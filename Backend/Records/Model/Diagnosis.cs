@@ -16,6 +16,7 @@ namespace Backend.Records.Model
     public class Diagnosis : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
         public virtual List<Symptoms> Symptoms { get; set; }

@@ -34,9 +34,7 @@ namespace Backend.Users.WebApiService
         }
         public Feedback CreateFeedback(string userId, string additionalNotes, Boolean anonymous, Boolean allowed)
         {
-            int feedbackId = GenerateFeedbackId();
             Feedback feedback = new Feedback();
-            feedback.Id = feedbackId;
             feedback.AdditionalNotes = additionalNotes;
             feedback.Anonymous = anonymous;
             feedback.AllowedForPublishing = allowed;
@@ -49,13 +47,6 @@ namespace Backend.Users.WebApiService
 
             return feedbackRepository.Create(feedback);
 
-        }
-
-        public int GenerateFeedbackId()
-        {
-            int id;
-            id = feedbackRepository.GetLastId();
-            return ++id;
         }
 
         public Feedback CheckIfExists(Feedback feedback)

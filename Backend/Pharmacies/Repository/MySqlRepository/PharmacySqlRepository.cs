@@ -12,8 +12,8 @@ namespace Backend.Pharmacies.Repository.MySqlRepository
     public class PharmacySqlRepository : IPharmacyRepository //MySqlrepository<Pharmacy, string>,
     {
 
-        private MySqlContext _context;
-        public PharmacySqlRepository(MySqlContext context)
+        private MedbayTechDbContext _context;
+        public PharmacySqlRepository(MedbayTechDbContext context)
         {
             _context = context;
         }

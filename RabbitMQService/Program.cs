@@ -26,7 +26,7 @@ namespace RabbitMQService
                 .ConfigureServices((hostContext, services) =>
                 {
 
-                     services.AddDbContext<MySqlContext>();
+                     services.AddDbContext<MedbayTechDbContext>();
                      services.AddScoped<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
                      services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
                      services.AddTransient<IPharmacyNotificationService, PharmacyNotificationService>(); 

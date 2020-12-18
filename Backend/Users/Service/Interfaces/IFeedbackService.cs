@@ -11,7 +11,6 @@ namespace Backend.Users.Service.Interfaces
         IEnumerable<Feedback> GetAllApprovedFeedback();
         bool UpdateStatus(int feedbackId, bool status);
         Feedback CreateFeedback(string userId, string additionalNotes, Boolean anonymous, Boolean allowed);
-        int GenerateFeedbackId();
         Feedback CheckIfExists(Feedback feedback);
     }
 }

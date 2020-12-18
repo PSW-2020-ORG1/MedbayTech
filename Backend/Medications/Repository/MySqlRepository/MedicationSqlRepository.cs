@@ -14,10 +14,10 @@ namespace Backend.Medications.Repository.MySqlRepository
 
     {
 
-        private MySqlContext _context;
+        private MedbayTechDbContext _context;
 
 
-        public MedicationSqlRepository(MySqlContext context)
+        public MedicationSqlRepository(MedbayTechDbContext context)
         {
             _context = context;
         }
