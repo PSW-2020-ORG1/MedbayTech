@@ -6,6 +6,7 @@ using Backend.Medications.Model;
 using Backend.Medications.Service;
 using Microsoft.AspNetCore.Mvc;
 using Model.Users;
+using PharmacyIntegration.gRPC;
 
 namespace PharmacyIntegration.Controllers
 {
@@ -43,5 +44,15 @@ namespace PharmacyIntegration.Controllers
 
         [HttpGet]
         public IActionResult Get() => Ok(_inMemoryRepo);
+
+
+        [HttpGet("check/{search?}")]
+        public IActionResult Get(string search)
+        {
+            GrpcClient grpc = new GrpcClient();
+
+            string response = grpc.CheckForMedication(search).Result;
+            return Ok(response);
+        }
     }
 }

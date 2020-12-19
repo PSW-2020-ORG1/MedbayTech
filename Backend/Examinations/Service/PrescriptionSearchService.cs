@@ -1,8 +1,10 @@
 ﻿using Backend.Examinations.Model;
 using Backend.Examinations.Repository;
 using Backend.Examinations.Service.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using WebApplication.DTO;
@@ -138,6 +140,30 @@ namespace Backend.Examinations.WebApiService
                 prescriptions = prescriptions.Where(prescription => prescription.HourlyIntake == hourlyIntake).ToList();
             }
             return prescriptions;
+        }
+
+        public List<Prescription> GetAll()
+        {
+            return repository.GetAll().ToList();
+        }
+
+        public string GeneratePrescription(Prescription prescription)
+        {
+            char pathBase = Path.DirectorySeparatorChar;
+            string fileName = prescription.Id + ".txt";
+            string filePath = "." + pathBase + "GeneratedPrescription" + pathBase + fileName;
+            string stringToWrite = prescription.GetStringForSharing();
+            Console.WriteLine(stringToWrite);
+            using (StreamWriter streamWriter = new StreamWriter(filePath))
+            {
+
+                string[] split = stringToWrite.Split("\n");
+                foreach (string line in split)
+                {
+                    streamWriter.WriteLine(line);
+                }
+            }
+            return filePath;
         }
     }
 }

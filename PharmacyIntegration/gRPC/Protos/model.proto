@@ -1,0 +1,17 @@
+﻿syntax = "proto3";
+
+package com.schnabel.schnabel.pswregistration.grpc;
+
+option csharp_namespace = "PharmacyIntegration.grpc.Protos";
+
+message MessageProto {
+  string message = 1;
+}
+
+message MessageResponseProto {
+  string response = 1;
+}
+
+service CheckForMedication {
+  rpc check (MessageProto) returns (MessageResponseProto);
+}
