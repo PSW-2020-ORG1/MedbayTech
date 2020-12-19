@@ -55,15 +55,7 @@ namespace GraphicEditorWebService
             services.AddControllers();
             services.AddCors();
 
-
-
-            
-            services.AddDbContext<MedbayTechDbContext>(options =>
-                options.UseMySql(CreateConnectionStringFromEnvironment(),
-                x => x.MigrationsAssembly("Backend").EnableRetryOnFailure(
-                            5, new TimeSpan(0, 0, 0, 10), new List<int>())
-                        ).UseLazyLoadingProxies());
-            
+            services.AddDbContext<MedbayTechDbContext>();
         }
 
 
@@ -73,7 +65,6 @@ namespace GraphicEditorWebService
             {
                 app.UseDeveloperExceptionPage();
             }
-
 
             using (var scope = app.ApplicationServices.CreateScope())
             using (var context = scope.ServiceProvider.GetService<MedbayTechDbContext>())

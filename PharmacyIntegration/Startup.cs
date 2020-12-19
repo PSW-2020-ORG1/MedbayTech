@@ -57,14 +57,7 @@ namespace PharmacyIntegration
 
             services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
 
-            
-            services.AddDbContext<MedbayTechDbContext>(options =>
-                options.UseMySql(CreateConnectionStringFromEnvironment(),
-                x => x.MigrationsAssembly("Backend").EnableRetryOnFailure(
-                            5, new TimeSpan(0, 0, 0, 10), new List<int>())
-                        ).UseLazyLoadingProxies());
-            
-
+            services.AddDbContext<MedbayTechDbContext>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -88,7 +81,7 @@ namespace PharmacyIntegration
                     {
                         context.Database.Migrate();
                     }
-                } catch(Exception e)
+                } catch(Exception)
                 {
                     Console.WriteLine("Failed to execute migration");
                 }
@@ -98,7 +91,7 @@ namespace PharmacyIntegration
                     seeder.SeedAllEntities(context);
 
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     Console.WriteLine(e.StackTrace);
                 }

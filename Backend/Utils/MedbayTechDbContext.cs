@@ -92,7 +92,6 @@ namespace Model
             }
         }
 
-
         public string CreateConnectionStringFromEnvironment()
         {
             string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
@@ -120,7 +119,6 @@ namespace Model
             string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";
             return host.Equals("postgres");
         }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

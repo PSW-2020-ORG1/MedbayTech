@@ -74,22 +74,7 @@ namespace WebApplication
 
             });
 
-
-            if (IsPostgres())
-            {
-                services.AddDbContext<MedbayTechDbContext>(options =>
-                    options.UseNpgsql(CreateConnectionStringFromEnvironmentPostgres(),
-                    x => x.MigrationsAssembly("Backend").EnableRetryOnFailure(
-                            5, new TimeSpan(0, 0, 0, 10), new List<string>())
-                        ).UseLazyLoadingProxies());
-            }
-            else
-            {
-                services.AddDbContext<MedbayTechDbContext>(options =>
-                    options.UseMySql(CreateConnectionStringFromEnvironment(), 
-                    x => x.MigrationsAssembly("Backend").EnableRetryOnFailure(
-                            20, new TimeSpan(0, 0, 0, 10), new List<int>())).UseLazyLoadingProxies());
-            }
+            services.AddDbContext<MedbayTechDbContext>();
         }
 
 
@@ -114,7 +99,7 @@ namespace WebApplication
                         databaseCreator.CreateTables();
                     else
                         context.Database.Migrate();
-                } catch(Exception e)
+                } catch(Exception)
                 {
                     Console.WriteLine("Failed to execute migration");
                 }
@@ -123,7 +108,7 @@ namespace WebApplication
                     DataSeeder seeder = new DataSeeder();
                     seeder.SeedAllEntities(context);
                     
-                } catch (Exception e)
+                } catch (Exception)
                 {
                     Console.WriteLine("Failed to seed data");
                 }
@@ -162,27 +147,6 @@ namespace WebApplication
             string port = Environment.GetEnvironmentVariable("PORT") ?? "4200";
 
             return $"http://{origin}:{port}";
-        }
-        public string CreateConnectionStringFromEnvironment()
-        {
-            string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
-            string port = Environment.GetEnvironmentVariable("DATABASE_PORT") ?? "3306";
-            string database = Environment.GetEnvironmentVariable("DATABASE_SCHEMA") ?? "newdb";
-            string user = Environment.GetEnvironmentVariable("DATABASE_USERNAME") ?? "root";
-            string password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "root";
-
-            return $"server={server};port={port};database={database};user={user};password={password}";
-        }
-
-        public string CreateConnectionStringFromEnvironmentPostgres()
-        {
-            string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
-            string port = Environment.GetEnvironmentVariable("DATABASE_PORT") ?? "5432";
-            string database = Environment.GetEnvironmentVariable("DATABASE_SCHEMA") ?? "newdb";
-            string user = Environment.GetEnvironmentVariable("DATABASE_USERNAME") ?? "root";
-            string password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "root";
-
-            return $"Server={server};Port={port};Database={database};User Id={user};Password={password}";
         }
 
         public bool IsPostgres()
