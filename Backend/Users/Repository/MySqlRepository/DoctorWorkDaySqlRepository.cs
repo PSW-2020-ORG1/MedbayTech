@@ -4,16 +4,15 @@ using Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Backend.Users.Repository.MySqlRepository
 {
     public class DoctorWorkDaySqlRepository : MySqlrepository<DoctorWorkDay, int>, IDoctorWorkDayRepository
     {
         public DoctorWorkDaySqlRepository(MedbayTechDbContext context) : base(context) { }
-        public IEnumerable<DoctorWorkDay> GetByDoctorId(string id)
+        public List<DoctorWorkDay> GetByDoctorId(string id)
         {
-            return GetAll().Where(workDay => workDay.DoctorId.Equals(id));
+            return GetAll().Where(workDay => workDay.DoctorId.Equals(id)).ToList();
         }
 
         public DoctorWorkDay GetByDoctorIdAndDate(string id, DateTime date)

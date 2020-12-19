@@ -1,9 +1,7 @@
 ﻿using Backend.Users.Model;
 using Backend.Users.Repository;
 using Backend.Users.Service.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Backend.Users.Service
 {
@@ -15,7 +13,7 @@ namespace Backend.Users.Service
         {
             _doctorWorkDayRepository = doctorWorkDayRepository;
         }
-        public IEnumerable<DoctorWorkDay> GetAll()
+        public List<DoctorWorkDay> GetAll()
         {
             return _doctorWorkDayRepository.GetAll();
         }

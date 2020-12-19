@@ -38,7 +38,7 @@ namespace Backend.Reports.Repository.MySqlRepository
 
         public bool ExistsInSystem(int id) => GetObject(id) != null;
 
-        public IEnumerable<MedicationUsage> GetAll() => _context.MedicationUsages.ToList();
+        public List<MedicationUsage> GetAll() => _context.MedicationUsages.ToList();
 
         public MedicationUsage GetObject(int id) =>
             _context.MedicationUsages.ToList().Find(mu => mu.Id.Equals(id));

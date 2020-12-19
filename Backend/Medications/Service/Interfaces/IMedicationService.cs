@@ -1,8 +1,5 @@
 using Backend.Medications.Model;
-using Model.Users;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Backend.Medications.Service
 {
@@ -27,13 +24,13 @@ namespace Backend.Medications.Service
 
         /*IEnumerable<Medication> GetAllOnValidationFor(Doctor doctor);*/
 
-        IEnumerable<Medication> GetAllOnValidation();
+        List<Medication> GetAllOnValidation();
 
-        IEnumerable<Medication> GetAll();
+        List<Medication> GetAll();
 
-        IEnumerable<Medication> GetAllRejected();
+        List<Medication> GetAllRejected();
 
-        IEnumerable<Medication> GetAllApproved();
+        List<Medication> GetAllApproved();
 
         Medication AddAmount(Medication medication, int amount);
 

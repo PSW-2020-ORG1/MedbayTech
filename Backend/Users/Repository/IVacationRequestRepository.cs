@@ -4,14 +4,13 @@
 // Purpose: Definition of Interface IVacationRequestRepository
 
 using Model.Users;
-using System;
 using System.Collections.Generic;
 
 namespace Repository.UserRepository
 {
    public interface IVacationRequestRepository : IRepository<VacationRequest,int>
    {
-      IEnumerable<VacationRequest> GetAllUnapproved();
+        List<VacationRequest> GetAllUnapproved();
    
    }
 }

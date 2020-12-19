@@ -11,6 +11,6 @@ namespace Backend.Reports.Service
         public bool Remove(MedicationUsage medicationUsage);
         public MedicationUsage Update(MedicationUsage medicationUsage);
         public MedicationUsage Get(int id);
-        public IEnumerable<MedicationUsage> GetAll();
+        public List<MedicationUsage> GetAll();
     }
 }

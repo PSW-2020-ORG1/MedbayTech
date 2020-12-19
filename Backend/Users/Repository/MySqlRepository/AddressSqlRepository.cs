@@ -17,7 +17,7 @@ namespace Backend.Users.Repository.MySqlRepository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Address> GetAdressesByCity(City city)
+        public List<Address> GetAdressesByCity(City city)
         {
             throw new NotImplementedException();
         }

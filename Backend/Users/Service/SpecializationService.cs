@@ -15,7 +15,7 @@ namespace Backend.Users.Service
         {
             _specializationRepository = specializationRepository;
         }
-        public IEnumerable<Specialization> GetAll()
+        public List<Specialization> GetAll()
         {
             return _specializationRepository.GetAll();
         }

@@ -15,9 +15,9 @@ namespace Backend.Examinations.Repository.MySqlRepository
         {
         }
 
-        public IEnumerable<Prescription> GetPrescriptionsFor(string idPatient)
+        public List<Prescription> GetPrescriptionsFor(string idPatient)
         {
-            return GetAll().Where(prescription => prescription.IsPatient(idPatient));
+            return GetAll().Where(prescription => prescription.IsPatient(idPatient)).ToList();
         }
 
 

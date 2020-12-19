@@ -38,7 +38,7 @@ namespace Backend.Pharmacies.Repository.MySqlRepository
 
         public bool ExistsInSystem(string id) => GetObject(id) != null;
 
-        public IEnumerable<Pharmacy> GetAll() => _context.Pharmacies.ToList();
+        public List<Pharmacy> GetAll() => _context.Pharmacies.ToList();
 
         public Pharmacy GetObject(string id) => _context.Pharmacies.ToList().Find(p => p.Id.Equals(id));
 

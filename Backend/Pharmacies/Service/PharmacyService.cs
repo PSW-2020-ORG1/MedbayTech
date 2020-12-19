@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Model;
+﻿using System.Collections.Generic;
 using PharmacyIntegration.Model;
 using PharmacyIntegration.Repository;
 
@@ -33,7 +29,7 @@ namespace PharmacyIntegration.Service
         public Pharmacy Update(Pharmacy pharmacy) => _pharmacyRepository.Update(pharmacy);
 
         public Pharmacy Get(string id) => _pharmacyRepository.GetObject(id);
-        public IEnumerable<Pharmacy> GetAll() => _pharmacyRepository.GetAll();
+        public List<Pharmacy> GetAll() => _pharmacyRepository.GetAll();
 
     }
 }

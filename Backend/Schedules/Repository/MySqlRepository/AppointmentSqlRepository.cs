@@ -23,7 +23,7 @@ namespace Backend.Schedules.Repository.MySqlRepository
             return GetAll().Where(a => a.CanceledByPatient).ToList();
         }
 
-        public IEnumerable<Appointment> GetAppointmentsByPatientId(string Id)
+        public List<Appointment> GetAppointmentsByPatientId(string Id)
         {
             List<Appointment> patientAppointments = new List<Appointment>();
             List<Appointment> appointments = GetAll().ToList();
@@ -37,9 +37,9 @@ namespace Backend.Schedules.Repository.MySqlRepository
             return patientAppointments;
         }
 
-        public IEnumerable<Appointment> GetBy(string doctorId, DateTime date)
+        public List<Appointment> GetBy(string doctorId, DateTime date)
         {
-            return GetAll().Where(a => a.DoctorId.Equals(doctorId) && a.Start.Date.CompareTo(date.Date) == 0);
+            return GetAll().Where(a => a.DoctorId.Equals(doctorId) && a.Start.Date.CompareTo(date.Date) == 0).ToList();
         }
 
         public Dictionary<int, Appointment> GetScheduledFromToday()

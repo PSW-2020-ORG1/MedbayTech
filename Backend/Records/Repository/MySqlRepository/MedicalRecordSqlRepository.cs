@@ -15,7 +15,7 @@ namespace Backend.Records.Repository.MySqlRepository
     {
         public MedicalRecordSqlRepository(MedbayTechDbContext context) : base(context) { }
 
-        public IEnumerable<MedicalRecord> FilterRecordsByState(PatientCondition state)
+        public List<MedicalRecord> FilterRecordsByState(PatientCondition state)
         {
             throw new NotImplementedException();
         }
@@ -33,7 +33,7 @@ namespace Backend.Records.Repository.MySqlRepository
                 throw new NotImplementedException();
         }
 
-        public IEnumerable<MedicalRecord> GetRecordsFor(Doctor doctor)
+        public List<MedicalRecord> GetRecordsFor(Doctor doctor)
         {
             throw new NotImplementedException();
         }

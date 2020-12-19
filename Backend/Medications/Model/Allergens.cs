@@ -3,7 +3,6 @@
 // Created: Thursday, April 16, 2020 5:31:19 PM
 // Purpose: Definition of Class Allergens
 
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Records.Model;

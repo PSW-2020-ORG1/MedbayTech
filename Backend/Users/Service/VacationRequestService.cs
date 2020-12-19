@@ -78,7 +78,7 @@ namespace Service.UserService
             return vacationRequest;
         }
 
-        public IEnumerable<VacationRequest> GetAllUnapproved() => vacationRequestRepository.GetAllUnapproved();
+        public List<VacationRequest> GetAllUnapproved() => vacationRequestRepository.GetAllUnapproved();
       
         
    

@@ -42,7 +42,7 @@ namespace Backend.Rooms.Repository.MySqlRepository
             return GetObject(id) != null;
         }
 
-        public IEnumerable<Room> GetAll() => _context.Rooms.ToList();
+        public List<Room> GetAll() => _context.Rooms.ToList();
 
 
         public Room GetObject(int id)

@@ -20,12 +20,12 @@ namespace Backend.Users.Repository.MySqlRepository
             return entity;
         }
 
-        public IEnumerable<DoctorReview> GetAll()
+        public List<DoctorReview> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<DoctorReview> GetReviewsForDoctor(Doctor doctor)
+        public List<DoctorReview> GetReviewsForDoctor(Doctor doctor)
         {
             throw new NotImplementedException();
         }

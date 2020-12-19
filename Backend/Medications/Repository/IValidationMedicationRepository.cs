@@ -12,6 +12,6 @@ namespace Backend.Medications.Repository.FileRepository
 {
    public interface IValidationMedicationRepository : IRepository<ValidationMed,int>
    {
-        IEnumerable<ValidationMed> GetAllUnreviewed();
+        List<ValidationMed> GetAllUnreviewed();
     }
 }

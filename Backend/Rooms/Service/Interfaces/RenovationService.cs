@@ -26,7 +26,7 @@ namespace Service.RoomService
         public NotificationService notificationService;
         private const string HAS_APPOINTMENTS = "Can't schedule renovation for room {0} because it has appointments in the future";
 
-        public IEnumerable<Renovation> GetAllRenovations() => renovationRepository.GetAll();
+        public List<Renovation> GetAllRenovations() => renovationRepository.GetAll();
         public RenovationService(IRenovationRepository renovationRepository, RoomService roomService,
             IAppointmentRepository appointmentRepository,
             HospitalEquipmentService hospitalEquipmentService, 
@@ -83,7 +83,7 @@ namespace Service.RoomService
         }
         public bool DeleteRenovation(Renovation renovation) => renovationRepository.Delete(renovation);
       
-        public IEnumerable<Renovation> GetRenovationsFromOneRoom(int roomNumber)
+        public List<Renovation> GetRenovationsFromOneRoom(int roomNumber)
         {
             var allRenovations = renovationRepository.GetAll();
             List<Renovation> renovationsFromOneRoom = new List<Renovation>();
@@ -98,7 +98,7 @@ namespace Service.RoomService
             return renovationsFromOneRoom;
         }
       
-        public IEnumerable<Renovation> GetActiveRenovations()
+        public List<Renovation> GetActiveRenovations()
         {
             var allRenovations = renovationRepository.GetAll();
             List<Renovation> activeRenovations = new List<Renovation>();

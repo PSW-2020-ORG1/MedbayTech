@@ -17,10 +17,10 @@ namespace Backend.Reports.Controller
 
         }
 
-        public IEnumerable<MedicationUsageReport> GetAll() =>
+        public List<MedicationUsageReport> GetAll() =>
             medicationUsageReportService.GetAll();
 
-        public IEnumerable<MedicationUsageReport> GetForSpecificPeriod(Period period) =>
+        public List<MedicationUsageReport> GetForSpecificPeriod(Period period) =>
             medicationUsageReportService.GetForSpecificPeriod(period);
 
         public void GenerateMedicationUsageReport(Period period) =>

@@ -17,7 +17,7 @@ namespace Service.MedicalRecordService
             this.vaccinesRepository = vaccinesRepository;
         }
 
-        public IEnumerable<Vaccines> GetAllVaccines() => 
+        public List<Vaccines> GetAllVaccines() => 
             vaccinesRepository.GetAll();
 
         public Vaccines CreateVaccine(Vaccines vaccine) => 

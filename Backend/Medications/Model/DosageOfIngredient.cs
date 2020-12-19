@@ -3,7 +3,6 @@
 // Created: Saturday, April 18, 2020 5:40:32 PM
 // Purpose: Definition of Class DosageOfIngredient
 
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

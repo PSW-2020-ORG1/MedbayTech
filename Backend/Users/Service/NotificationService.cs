@@ -36,7 +36,7 @@ namespace Service.GeneralService
             notification.Content = "Novi zahtev za odsustvo!";
             notification.NotificationCategory = NotificationCategory.VACATION_REQUEST;
             notification.RegisteredUser = employee;
-            notification.NotificationTo = (List<RegisteredUser>)userRepository.GetAllManagers();
+            notification.NotificationTo = MakeListOfManagers(userRepository.GetAllManagers()).ToList(); ;
             return notificationRepository.Create(notification);
         }
       
@@ -151,7 +151,7 @@ namespace Service.GeneralService
             return notificationRepository.Create(notification);
         }
 
-        private IEnumerable<RegisteredUser> MakeListOfSecretaries(IEnumerable<Secretary> entities)
+        private List<RegisteredUser> MakeListOfSecretaries(IEnumerable<Secretary> entities)
         {
             List<RegisteredUser> users = new List<RegisteredUser>();
             foreach (Secretary secretary in entities)
@@ -160,7 +160,7 @@ namespace Service.GeneralService
             }
             return users;
         }
-        private IEnumerable<RegisteredUser> MakeListOfDoctors(IEnumerable<Doctor> entities)
+        private List<RegisteredUser> MakeListOfDoctors(IEnumerable<Doctor> entities)
         {
             List<RegisteredUser> users = new List<RegisteredUser>();
             foreach (Doctor doctor in entities)
@@ -169,7 +169,7 @@ namespace Service.GeneralService
             }
             return users;
         }
-        private IEnumerable<RegisteredUser> MakeListOfManagers(IEnumerable<Manager> entities)
+        private List<RegisteredUser> MakeListOfManagers(IEnumerable<Manager> entities)
         {
             List<RegisteredUser> users = new List<RegisteredUser>();
             foreach (Manager manager in entities)
@@ -178,7 +178,7 @@ namespace Service.GeneralService
             }
             return users;
         }
-        public IEnumerable<Notification> GetNotificationsForUser(string username)
+        public List<Notification> GetNotificationsForUser(string username)
         {
             var allNotification = notificationRepository.GetAll().ToList();
             List<Notification> notificationForUser = new List<Notification>();

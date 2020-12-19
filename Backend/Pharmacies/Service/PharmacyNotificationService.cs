@@ -62,7 +62,7 @@ namespace PharmacyIntegration.Service
             _pharmacyNotificationRepository.Update(pharmacyNotification);
 
         public PharmacyNotification Get(int id) => _pharmacyNotificationRepository.GetObject(id);
-        public IEnumerable<PharmacyNotification> GetAll() => _pharmacyNotificationRepository.GetAll();
+        public List<PharmacyNotification> GetAll() => _pharmacyNotificationRepository.GetAll();
 
         private bool CheckPermisionToSendNotification(string pharmacyId)
         {

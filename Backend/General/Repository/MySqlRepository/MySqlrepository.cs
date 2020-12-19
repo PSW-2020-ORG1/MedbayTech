@@ -77,9 +77,9 @@ namespace Repository
         /// Return all elements from database
         /// </summary>
         /// <returns>IEnumerable <typeparamref name="T"/></returns>
-        public IEnumerable<T> GetAll()
+        public List<T> GetAll()
         {
-            return dbSet;
+            return dbSet.ToList();
         }
 
         /// <summary>

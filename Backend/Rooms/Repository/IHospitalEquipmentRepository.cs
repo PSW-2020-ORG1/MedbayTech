@@ -11,9 +11,9 @@ namespace Repository.RoomRepository
 {
    public interface IHospitalEquipmentRepository : IRepository<HospitalEquipment,int>
    {
-      IEnumerable<HospitalEquipment> GetEquipmentByRoomNumber(int roomNumber);
-      
-      IEnumerable<HospitalEquipment> GetEquipmentByType(EquipmentType type);
+        List<HospitalEquipment> GetEquipmentByRoomNumber(int roomNumber);
+
+        List<HospitalEquipment> GetEquipmentByType(EquipmentType type);
    
    }
 }

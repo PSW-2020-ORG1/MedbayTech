@@ -42,19 +42,19 @@ namespace Backend.Rooms.Repository.MySqlRepository
 
         }
 
-        public IEnumerable<HospitalEquipment> GetAll()
+        public List<HospitalEquipment> GetAll()
         {
            return _context.HospitalEquipments.ToList();
         }
 
-        public IEnumerable<HospitalEquipment> GetEquipmentByRoomNumber(int roomNumber)
+        public List<HospitalEquipment> GetEquipmentByRoomNumber(int roomNumber)
         {
             return null;
         }
 
-        public IEnumerable<HospitalEquipment> GetEquipmentByType(EquipmentType type)
+        public List<HospitalEquipment> GetEquipmentByType(EquipmentType type)
         {
-            return GetAll().ToList().Where(he => he.EquipmentTypeId.Equals(type.Id));
+            return GetAll().ToList().Where(he => he.EquipmentTypeId.Equals(type.Id)).ToList();
         }
 
         public HospitalEquipment GetObject(int id)

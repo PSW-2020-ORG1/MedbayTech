@@ -9,9 +9,9 @@ namespace Backend.Rooms.Service
         HospitalEquipment AddEquipment(HospitalEquipment equipment);
         HospitalEquipment UpdateEquipment(HospitalEquipment equipment);
         bool DeleteEquipment(HospitalEquipment equipment);
-        IEnumerable<HospitalEquipment> GetEquipmentByRoomNumber(int id);
+        List<HospitalEquipment> GetEquipmentByRoomNumber(int id);
         HospitalEquipment GetHospitalEquipment(int id);
         HospitalEquipment UpdateAmountOfEquipment(HospitalEquipment equipment, int amount);
-        IEnumerable<HospitalEquipment> GetAllEquipment();
+        List<HospitalEquipment> GetAllEquipment();
     }
 }

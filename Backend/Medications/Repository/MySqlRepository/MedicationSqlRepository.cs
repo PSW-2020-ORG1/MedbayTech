@@ -35,7 +35,7 @@ namespace Backend.Medications.Repository.MySqlRepository
 
         public bool ExistsInSystem(int id) => GetObject(id) != null;
 
-        public IEnumerable<Medication> GetAll() =>
+        public List<Medication> GetAll() =>
             _context.Medications.ToList();
 
         public Medication Create(Medication entity)
@@ -49,17 +49,17 @@ namespace Backend.Medications.Repository.MySqlRepository
             return entity;
         }
 
-        public IEnumerable<Medication> GetAllApproved()
+        public List<Medication> GetAllApproved()
         {
             return _context.Medications.ToList();
         }
 
-        public IEnumerable<Medication> GetAllOnValidation()
+        public List<Medication> GetAllOnValidation()
         {
             return _context.Medications.ToList();
         }
 
-        public IEnumerable<Medication> GetAllRejected()
+        public List<Medication> GetAllRejected()
         {
             return _context.Medications.ToList();
         }

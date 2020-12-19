@@ -22,7 +22,7 @@ namespace Service.GeneralService
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Hospital> GetAllHospitals()
+        public List<Hospital> GetAllHospitals()
         {
             throw new NotImplementedException();
         }

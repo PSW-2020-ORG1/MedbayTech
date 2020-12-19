@@ -13,9 +13,9 @@ namespace Backend.Users.Repository.MySqlRepository
     {
         public SurveyQuestionSqlRepository(MedbayTechDbContext context) : base(context) { }
 
-        public IEnumerable<SurveyQuestion> GetAllActiveQuestions()
+        public List<SurveyQuestion> GetAllActiveQuestions()
         {
-            return GetAll().Where(surveyQuestion => surveyQuestion.Status == true);
+            return GetAll().Where(surveyQuestion => surveyQuestion.Status == true).ToList();
 
         }
         public bool UpdateSurveyQuestion(Survey survey)

@@ -16,19 +16,19 @@ namespace Backend.Examinations.Repository.MySqlRepository
         {
         }
 
-        public IEnumerable<HospitalTreatment> GetAllHospitalTreatments()
+        public List<HospitalTreatment> GetAllHospitalTreatments()
         {
-            return (IEnumerable<HospitalTreatment>) GetAll().ToList().Where(treatment => treatment.IsHospitalTreatment());
+            return (List<HospitalTreatment>) GetAll().ToList().Where(treatment => treatment.IsHospitalTreatment());
         }
 
-        public IEnumerable<Prescription> GetAllPrescriptions()
+        public List<Prescription> GetAllPrescriptions()
         {
-            return (IEnumerable<Prescription>)GetAll().Where(treatment => treatment.IsPrescription());
+            return (List<Prescription>)GetAll().Where(treatment => treatment.IsPrescription());
         }
 
-        public IEnumerable<Prescription> GetAllPrescriptionsInPeriod(DateTime startDate, DateTime endDate)
+        public List<Prescription> GetAllPrescriptionsInPeriod(DateTime startDate, DateTime endDate)
         {
-            return (IEnumerable<Prescription>)GetAll().ToList().Where(treatment => treatment.IsPrescription() 
+            return (List<Prescription>)GetAll().ToList().Where(treatment => treatment.IsPrescription() 
                 && ((Prescription)treatment).IsStillActive(startDate, endDate));
         }
     }

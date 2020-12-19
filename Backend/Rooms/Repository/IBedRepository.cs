@@ -4,14 +4,13 @@
 // Purpose: Definition of Interface IBedRepository
 
 using Model.Rooms;
-using System;
 using System.Collections.Generic;
 
 namespace Repository.RoomRepository
 {
    public interface IBedRepository : IRepository<Bed,int>
    {
-      IEnumerable<Bed> GetBedsByRoomNumber(int roomNumber);
+        List<Bed> GetBedsByRoomNumber(int roomNumber);
    
    }
 }

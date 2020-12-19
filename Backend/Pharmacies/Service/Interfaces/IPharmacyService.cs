@@ -9,6 +9,6 @@ namespace PharmacyIntegration.Service
         public bool Remove(Pharmacy pharmacy);
         public Pharmacy Update(Pharmacy pharmacy);
         public Pharmacy Get(string id);
-        public IEnumerable<Pharmacy> GetAll();
+        public List<Pharmacy> GetAll();
     }
 }

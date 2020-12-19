@@ -30,7 +30,7 @@ namespace Service.RoomService
         public Department GetDepartmentByName(string name) => departmentRepository.GetByName(name);
         public bool DeleteDepartment(Department department) => departmentRepository.Delete(department);
      
-        public IEnumerable<Department> GetAllDepartments() => departmentRepository.GetAll();
+        public List<Department> GetAllDepartments() => departmentRepository.GetAll();
 
 
         

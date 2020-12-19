@@ -35,9 +35,9 @@ namespace Backend.Users.Repository.MySqlRepository
         /// Function that gets all feedback that is approved by the system administrator
         /// </summary>
         /// <returns>all feedback that is approved</returns>
-        public IEnumerable<Feedback> GetAllApprovedFeedback()
+        public List<Feedback> GetAllApprovedFeedback()
         {
-            return GetAll().ToList().Where(f => f.Approved & f.AllowedForPublishing);
+            return GetAll().ToList().Where(f => f.Approved & f.AllowedForPublishing).ToList();
         }
 
         /// <summary>

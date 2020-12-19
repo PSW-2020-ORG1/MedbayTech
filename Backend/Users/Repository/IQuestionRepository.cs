@@ -4,7 +4,6 @@
 // Purpose: Definition of Interface IQuestionRepository
 
 using Model.Users;
-using System;
 using System.Collections.Generic;
 using Repository;
 
@@ -12,6 +11,6 @@ namespace Backend.Users.Repository.MySqlRepository
 {
    public interface IQuestionRepository : IRepository<Question,int>
    {
-        IEnumerable<Question> GetFAQ();
+        List<Question> GetFAQ();
    }
 }

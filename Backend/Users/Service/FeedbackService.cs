@@ -18,12 +18,12 @@ namespace Backend.Users.WebApiService
             this.feedbackRepository = feedbackRepository;
         }
 
-        public IEnumerable<Feedback> GetAll()
+        public List<Feedback> GetAll()
         {
             return feedbackRepository.GetAll();
         }
 
-        public IEnumerable<Feedback> GetAllApprovedFeedback()
+        public List<Feedback> GetAllApprovedFeedback()
         {
             return feedbackRepository.GetAllApprovedFeedback();
         }

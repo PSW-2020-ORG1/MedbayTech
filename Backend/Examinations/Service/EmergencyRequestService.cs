@@ -23,7 +23,7 @@ namespace Backend.Examinations.Service
             notificationService.NewEmergencyRequest(request);
             return emergencyRequestRepository.Create(request);
         }
-        public IEnumerable<EmergencyRequest> GetAllUnscheduled() => emergencyRequestRepository.GetAllUnScheduled();
+        public List<EmergencyRequest> GetAllUnscheduled() => emergencyRequestRepository.GetAllUnScheduled();
 
         public EmergencyRequest GetEmergencyRequest(int id) => emergencyRequestRepository.GetObject(id);
 

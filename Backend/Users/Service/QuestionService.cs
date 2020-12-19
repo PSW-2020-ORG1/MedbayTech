@@ -42,7 +42,7 @@ namespace Service.GeneralService
             return questionRepository.Update(questionToUpdate);
         }
       
-        public IEnumerable<Question> GetUnansweredQuestions()
+        public List<Question> GetUnansweredQuestions()
         {
             var allQuestions = questionRepository.GetAll().ToList();
             List<Question> unAnsweredQuestions = new List<Question>();
@@ -56,9 +56,9 @@ namespace Service.GeneralService
             return unAnsweredQuestions;
         }
 
-        public IEnumerable<Question> GetFAQ() => questionRepository.GetFAQ();
+        public List<Question> GetFAQ() => questionRepository.GetFAQ();
 
-        public IEnumerable<Question> GetAll() => questionRepository.GetAll();
+        public List<Question> GetAll() => questionRepository.GetAll();
 
         public bool DeleteQuestion(Question question) => questionRepository.Delete(question);
       

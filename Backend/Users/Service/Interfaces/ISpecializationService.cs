@@ -7,6 +7,6 @@ namespace Backend.Users.Service.Interfaces
 {
     public interface ISpecializationService
     {
-        IEnumerable<Specialization> GetAll();
+        List<Specialization> GetAll();
     }
 }

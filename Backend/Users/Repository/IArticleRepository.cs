@@ -4,7 +4,6 @@
 // Purpose: Definition of Interface IArticleRepository
 
 using Model.Users;
-using System;
 using System.Collections.Generic;
 using Repository;
 
@@ -12,7 +11,7 @@ namespace Backend.Users.Repository.MySqlRepository
 {
    public interface IArticleRepository : IRepository<Article,int>
    {
-      IEnumerable<Article> GetArticlesWroteByDoctor(Doctor doctor);
+        List<Article> GetArticlesWroteByDoctor(Doctor doctor);
    
    }
 }

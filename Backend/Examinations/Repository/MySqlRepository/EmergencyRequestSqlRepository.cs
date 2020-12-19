@@ -9,7 +9,7 @@ namespace Backend.Examinations.Repository.MySqlRepository
     class EmergencyRequestSqlRepository : MySqlrepository<EmergencyRequest, int>,
         IEmergencyRequestRepository
     {
-        public IEnumerable<EmergencyRequest> GetAllUnScheduled()
+        public List<EmergencyRequest> GetAllUnScheduled()
         {
             throw new NotImplementedException();
         }

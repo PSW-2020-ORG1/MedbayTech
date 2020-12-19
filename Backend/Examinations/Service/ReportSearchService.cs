@@ -4,7 +4,6 @@ using Backend.Examinations.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using WebApplication.DTO;
 
 namespace Backend.Examinations.WebApiService
