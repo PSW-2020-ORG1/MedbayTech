@@ -10,8 +10,20 @@
 
     <DockPanel>
         <DockPanel DockPanel.Dock="Bottom">
-            <Button DockPanel.Dock="Left" Content="Close" Width="120" Height="28" Margin="5,5,5,5" FontWeight="Bold" HorizontalAlignment="Left" Click="buttonClose"/>
-            <Button DockPanel.Dock="Right" Content="Schedule appointment" Width="150" Height="28" Margin="5,5,5,5" HorizontalAlignment="Right" FontWeight="Bold" Click="buttonScheduleAppointment"/>
+            <Button DockPanel.Dock="Left" Content="Close" Width="120" Height="28" Margin="5,5,5,5" FontWeight="Bold" HorizontalAlignment="Left" Click="buttonClose">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button DockPanel.Dock="Right" Content="Schedule appointment" Width="150" Height="28" Margin="5,5,5,5" HorizontalAlignment="Right" FontWeight="Bold" Click="buttonScheduleAppointment">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </DockPanel>
         <DataGrid DockPanel.Dock="Bottom" Name="dataGridPatients" Margin="5,5,5,0" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>

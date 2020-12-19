@@ -1,4 +1,5 @@
-﻿using Backend.Schedules.Service.Interfaces;
+﻿using Backend.Schedules.Service.Enum;
+using Backend.Schedules.Service.Interfaces;
 using Backend.Utils.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Service.ScheduleService;
@@ -24,23 +25,23 @@ namespace GraphicEditorWebService.Controllers
         [HttpPost]
         public IActionResult Post(AppointmentFilterDTO appointmentFilterDTO)
         {
-            if (appointmentFilterDTO.operation == 2)
+            if (appointmentFilterDTO.appointmentFilterCriteria == AppointmentFilterCriteria.ByTimeIntervalPriority)
             {
                 return Ok(_appointmentFilterService.GetAvailableByPriorityTimeInterval(new PriorityParameters { ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval }));
             }
-            else if (appointmentFilterDTO.operation == 3 && appointmentFilterDTO.HospitalEquipmentId != -1)
+            else if (appointmentFilterDTO.appointmentFilterCriteria == AppointmentFilterCriteria.BySpecialistNoPriority && appointmentFilterDTO.HospitalEquipmentId != -1)
             {
                 return Ok(_appointmentFilterService.GetAvailableByDoctorTimeIntervalAndEquipment(new PriorityParameters { DoctorId = appointmentFilterDTO.DoctorId, ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval }, appointmentFilterDTO.HospitalEquipmentId, "nopriority"));
             }
-            else if (appointmentFilterDTO.operation == 4 && appointmentFilterDTO.HospitalEquipmentId != -1)
+            else if (appointmentFilterDTO.appointmentFilterCriteria == AppointmentFilterCriteria.BySpecialistDoctorPriority && appointmentFilterDTO.HospitalEquipmentId != -1)
             {
                 return Ok(_appointmentFilterService.GetAvailableByDoctorTimeIntervalAndEquipment(new PriorityParameters { DoctorId = appointmentFilterDTO.DoctorId, ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval }, appointmentFilterDTO.HospitalEquipmentId, "doctor"));
             }
-            else if (appointmentFilterDTO.operation == 5 && appointmentFilterDTO.HospitalEquipmentId != -1)
+            else if (appointmentFilterDTO.appointmentFilterCriteria == AppointmentFilterCriteria.BySpecialistTimePriority && appointmentFilterDTO.HospitalEquipmentId != -1)
             {
                 return Ok(_appointmentFilterService.GetAvailableByDoctorTimeIntervalAndEquipment(new PriorityParameters { DoctorId = appointmentFilterDTO.DoctorId, ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval }, appointmentFilterDTO.HospitalEquipmentId, "timeinterval"));
             }
-            else if (appointmentFilterDTO.operation == 6)
+            else if (appointmentFilterDTO.appointmentFilterCriteria == AppointmentFilterCriteria.AddRoomToAppointment)
             {
                 return Ok(_appointmentFilterService.AddRoomToAppointment(appointmentFilterDTO.appointments));
             }

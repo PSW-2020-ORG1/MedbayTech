@@ -1,4 +1,5 @@
 ﻿using Backend.Records.Model;
+using Backend.Schedules.Service.Enum;
 using Backend.Utils.DTO;
 using Model.Schedule;
 using Model.Users;
@@ -41,7 +42,7 @@ namespace GraphicEditor.View
         {
             patients = new List<Patient>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/patient/" + "empty" + "/0")
+            var task = httpClient.GetAsync("http://localhost:53109/api/patient/" + "empty")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -54,11 +55,11 @@ namespace GraphicEditor.View
             return patients;
         }
 
-        private MedicalRecord searchDataBaseForPatient(string patientId)
+        private MedicalRecord searchDataBaseForMedicalRecord(string patientId)
         {
             MedicalRecord medicalRecord = new MedicalRecord();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/medicalrecord/" + patientId + "/0")
+            var task = httpClient.GetAsync("http://localhost:53109/api/medicalrecord/" + patientId)
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -72,7 +73,7 @@ namespace GraphicEditor.View
 
         private async void SaveToDataBase()
         {
-            AppointmentFilterDTO appointmentFilterDTO = new AppointmentFilterDTO() {operation = 6, appointment = this.appointment };
+            AppointmentFilterDTO appointmentFilterDTO = new AppointmentFilterDTO() {appointmentSearchOrSchedule = AppointmentSearchOrSchedule.ScheduleAppointment, appointment = this.appointment };
             string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentFilterDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
@@ -93,7 +94,7 @@ namespace GraphicEditor.View
                 MessageBox.Show("You didn't select patient!");
                 return;
             }
-            MedicalRecord medicalRecord = searchDataBaseForPatient(patient.Id);
+            MedicalRecord medicalRecord = searchDataBaseForMedicalRecord(patient.Id);
             appointment.MedicalRecordId = medicalRecord.Id;
             appointment.Doctor = null;
             appointment.Room = null;

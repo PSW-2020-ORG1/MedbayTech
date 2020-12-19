@@ -19,9 +19,6 @@
   <ItemGroup>
     <None Remove="appsettings.Development.json" />
     <None Remove="appsettings.json" />
-    <None Remove="View\arrowDown.png" />
-    <None Remove="View\arrowUp.png" />
-    <None Remove="View\WhiteLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="appsettings.Development.json">
@@ -49,10 +46,5 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Backend\Backend.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="View\arrowDown.png" />
-    <Resource Include="View\arrowUp.png" />
-    <Resource Include="View\WhiteLogo.png" />
   </ItemGroup>
 </Project>

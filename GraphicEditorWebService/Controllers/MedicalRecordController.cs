@@ -18,17 +18,10 @@ namespace GraphicEditorWebService.Controllers
             _medicalRecordService = medicalRecordService;
         }
 
-        [HttpGet("{textBoxSearch?}/{operation}")]
-        public IActionResult Get(string textBoxSearch, int operation)
+        [HttpGet("{textBoxSearch?}")]
+        public IActionResult Get(string textBoxSearch)
         {
-            if (operation == 0)
-            {
-                return Ok(_medicalRecordService.GetMedicalRecordByPatientId(textBoxSearch));
-            }
-            else
-            {
-                return Ok();
-            }
+            return Ok(_medicalRecordService.GetMedicalRecordByPatientId(textBoxSearch));
         }
     }
 }

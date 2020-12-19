@@ -1,4 +1,5 @@
 ﻿using Backend.Rooms.Service;
+using Backend.Users.Service.Enum;
 using Microsoft.AspNetCore.Mvc;
 using Model.Users;
 using System;
@@ -20,14 +21,14 @@ namespace GraphicEditorWebService.Controllers
             _doctorService = doctorService;
         }
 
-        [HttpGet("{textBoxSearch?}/{operation}")]
-        public IActionResult Get(string textBoxSearch, int operation)
+        [HttpGet("{textBoxSearch?}/{doctorSearch?}")]
+        public IActionResult Get(string textBoxSearch, DoctorSearch doctorSearch)
         {
-            if (operation == 0)
+            if (doctorSearch == DoctorSearch.All)
             {
-                return Ok();
+                return Ok(_doctorService.GetAll());
             }
-            else if(operation == 1)
+            else if(doctorSearch == DoctorSearch.ByExaminationRoom)
             {
                 if (Int32.TryParse(textBoxSearch, out int id))
                 {
@@ -37,7 +38,7 @@ namespace GraphicEditorWebService.Controllers
             }
             else
             {
-                return Ok(_doctorService.GetAll());
+                return Ok();
             }
         }
 

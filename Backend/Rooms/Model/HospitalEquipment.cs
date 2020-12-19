@@ -48,5 +48,15 @@ namespace Model.Rooms
         {
             this.Id = id;
         }
+        public void UpdateHospitalEquipment(HospitalEquipment hospitalEquipment)
+        {
+            Id = hospitalEquipment.Id;
+            QuantityInRoom = hospitalEquipment.QuantityInRoom;
+            QuantityInStorage = hospitalEquipment.QuantityInStorage;
+            RoomId = hospitalEquipment.RoomId;
+            Room = hospitalEquipment.Room;
+            EquipmentTypeId = hospitalEquipment.EquipmentTypeId;
+            EquipmentType = hospitalEquipment.EquipmentType;
+        }
     }
 }

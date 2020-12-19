@@ -53,12 +53,30 @@
         </DockPanel>
         
         <DockPanel DockPanel.Dock="Bottom">
-            <Button DockPanel.Dock="Left" Content="Show on map" Width="208" Margin="5,5,0,5" FontWeight="Bold" HorizontalAlignment="Left" Click="buttonShowOnMap"/>
-            <Button DockPanel.Dock="Right" Content="Schedule examination" Width="208" Margin="5,5,5,5" FontWeight="Bold" HorizontalAlignment="Right" Click="buttonScheduleExamination"/>
+            <Button DockPanel.Dock="Left" Content="Show on map" Width="208" Height="25" Margin="5,5,0,5" FontWeight="Bold" Background="SteelBlue" Foreground="White" HorizontalAlignment="Left" Click="buttonShowOnMap" FontSize="15">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button DockPanel.Dock="Right" Content="Schedule examination" Width="208" Height="25" Margin="5,5,5,5" FontSize="15" FontWeight="Bold" HorizontalAlignment="Right" Background="SteelBlue" Foreground="White" Click="buttonScheduleExamination">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </DockPanel>
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">
-                <Button DockPanel.Dock="Right" Name="buttonSearch" Margin="0,5,5,5" Content="Search" Height="22" Width="80" VerticalAlignment="Center" HorizontalAlignment="Right" Click="buttonSearchForAvailableAppointments" FontWeight="Bold"/>
+                <Button DockPanel.Dock="Right" Name="buttonSearch" Margin="0,5,5,5" Content="Search" Height="22" Width="80" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White" Background="#006481" Click="buttonSearchForAvailableAppointments" FontWeight="Bold">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
                 <Label DockPanel.Dock="Top" Content="Select priority:" FontWeight="Bold" Margin="5,0,5,5"/>
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
                     <Viewbox Height="15" HorizontalAlignment="Left" Margin="5,0,5,5">

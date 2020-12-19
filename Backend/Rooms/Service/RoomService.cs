@@ -62,14 +62,9 @@ namespace Service.RoomService
 
         public Room UpdateRoomDataBase(Room room)
         {
-            Room room_update = GetRoomById(room.Id);
-            //room_update.Id = room.Id;
-            //.
-            //.
-            //.
-            //trebalo bi svaki atribut od room_update setovati sto bi bilo ruzno, ne znam kako to uraditi, a da nije ruzno i glomazno
+            Room room_update = _roomRepository.GetAll().ToList().Find(r => r.Id == room.Id);
+            room_update.UpdateRoom(room);
             _roomRepository.Update(room_update);
-            //_roomRepository.Update(room); //ovo ne radi
             return room;
         }
 
@@ -148,7 +143,7 @@ namespace Service.RoomService
 
         public List<Room> GetAll ( )
         {
-            return ( List<Room> ) _roomRepository.GetAll();
+            return _roomRepository.GetAll().ToList();
         }
     }
 }

@@ -5,17 +5,9 @@ using GraphicEditor.View.Building2;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GraphicEditor
 {
@@ -62,7 +54,7 @@ namespace GraphicEditor
                 return;
             }
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/room/" + textBoxSearch + "/0")
+            var task = httpClient.GetAsync("http://localhost:53109/api/room/" + textBoxSearch + "/ByRoomLabelorRoomUse")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;

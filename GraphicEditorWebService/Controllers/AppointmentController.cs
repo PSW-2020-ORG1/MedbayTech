@@ -1,4 +1,5 @@
-﻿using Backend.Schedules.Service.Interfaces;
+﻿using Backend.Schedules.Service.Enum;
+using Backend.Schedules.Service.Interfaces;
 using Backend.Utils.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Model.Users;
@@ -22,34 +23,31 @@ namespace GraphicEditorWebService.Controllers
             _appointmentService = appointmentService;
         }
 
-        [HttpGet("{roomId?}/{operation?}")]
-        public IActionResult Get(string roomId, int operation)
+        [HttpGet("{roomId?}/{appointmentSearchOrSchedule?}")]
+        public IActionResult Get(string roomId, AppointmentSearchOrSchedule appointmentSearchOrSchedule)
         {
-            if (operation == 0)
+            if (appointmentSearchOrSchedule == AppointmentSearchOrSchedule.ByRoom)
             {
                 return Ok(_appointmentService.GetApppointmentsScheduledForSpecificRoom(Int32.Parse(roomId)));
             }
-            else
-            {
-                return Ok();
-            }
-
+            else return Ok();
         }
         [HttpPost]
         public IActionResult Post(AppointmentFilterDTO appointmentFilterDTO)
         {
-            if(appointmentFilterDTO.operation == 0)
+            if (appointmentFilterDTO.appointmentSearchOrSchedule == AppointmentSearchOrSchedule.ByDoctorAndTimeInterval)
             {
-                return Ok(_appointmentService.GetAvailableByDoctorAndTimeInterval(new PriorityParameters { DoctorId = appointmentFilterDTO.DoctorId, ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval}));
+                return Ok(_appointmentService.GetAvailableByDoctorAndTimeInterval(new PriorityParameters { DoctorId = appointmentFilterDTO.DoctorId, ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval }));
             }
-            else if(appointmentFilterDTO.operation == 1)
+            else if (appointmentFilterDTO.appointmentSearchOrSchedule == AppointmentSearchOrSchedule.ByDoctorPriority)
             {
                 return Ok(_appointmentService.GetAvailableByPriorityDoctor(new PriorityParameters { DoctorId = appointmentFilterDTO.DoctorId, ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval }));
             }
-            else
+            else if (appointmentFilterDTO.appointmentSearchOrSchedule == AppointmentSearchOrSchedule.ScheduleAppointment)
             {
                 return Ok(_appointmentService.ScheduleAppointment(appointmentFilterDTO.appointment));
             }
+            else return Ok();
         }
     }
 }

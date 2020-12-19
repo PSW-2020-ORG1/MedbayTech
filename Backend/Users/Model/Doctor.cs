@@ -58,8 +58,19 @@ namespace Model.Users
             OperationRoom = operationRoom;
             OperationRoomId = operationRoom.Id;
         }
-
-        
-      
+        public void UpdateDoctor(Doctor doctor)
+        {
+            LicenseNumber = doctor.LicenseNumber;
+            OnCall = doctor.OnCall;
+            PatientReview = doctor.PatientReview;
+            DepartmentId = doctor.DepartmentId;
+            Department = null;
+            ExaminationRoomId = doctor.ExaminationRoomId;
+            ExaminationRoom = null;
+            OperationRoomId = doctor.OperationRoomId;
+            OperationRoom = null;
+            SpecializationId = doctor.SpecializationId;
+            Specialization = null;
+        }
    }
 }

@@ -1,4 +1,5 @@
-﻿using Backend.Utils.DTO;
+﻿using Backend.Schedules.Service.Enum;
+using Backend.Utils.DTO;
 using GraphicEditor.View.Building1;
 using GraphicEditor.View.Building2;
 using Model.Rooms;
@@ -9,19 +10,10 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GraphicEditor.View
 {
@@ -49,7 +41,7 @@ namespace GraphicEditor.View
         {
             doctors = new List<Doctor>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/doctor/" + "empty" + "/2")
+            var task = httpClient.GetAsync("http://localhost:53109/api/doctor/" + "empty" + "/All")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -65,7 +57,7 @@ namespace GraphicEditor.View
         {
             hospitalEquipments = new List<EquipmentType>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/equipmenttype/" + "empty" + "/0")
+            var task = httpClient.GetAsync("http://localhost:53109/api/equipmenttype/" + "empty")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -84,12 +76,12 @@ namespace GraphicEditor.View
             {
                 if (hospitalEquipment == null)
                 {
-                    appointmentFilterDTO = new AppointmentFilterDTO() { operation = 1, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
+                    appointmentFilterDTO = new AppointmentFilterDTO() { appointmentSearchOrSchedule = AppointmentSearchOrSchedule.ByDoctorPriority, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
                     HttpRequestToAppointmentController(appointmentFilterDTO);
                 }
                 else
                 {
-                    appointmentFilterDTO = new AppointmentFilterDTO() { operation = 4, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
+                    appointmentFilterDTO = new AppointmentFilterDTO() { appointmentFilterCriteria = AppointmentFilterCriteria.BySpecialistDoctorPriority, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
                     HttpRequestToAppointmentFilterController(appointmentFilterDTO);
                 }
             }
@@ -97,12 +89,12 @@ namespace GraphicEditor.View
             {
                 if (hospitalEquipment == null)
                 {
-                    appointmentFilterDTO = new AppointmentFilterDTO() { operation = 2, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
+                    appointmentFilterDTO = new AppointmentFilterDTO() { appointmentFilterCriteria = AppointmentFilterCriteria.ByTimeIntervalPriority, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
                     HttpRequestToAppointmentFilterController(appointmentFilterDTO);
                 }
                 else
                 {
-                    appointmentFilterDTO = new AppointmentFilterDTO() { operation = 5, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
+                    appointmentFilterDTO = new AppointmentFilterDTO() { appointmentFilterCriteria = AppointmentFilterCriteria.BySpecialistTimePriority, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
                     HttpRequestToAppointmentFilterController(appointmentFilterDTO);
                 }
             }
@@ -110,12 +102,12 @@ namespace GraphicEditor.View
             {
                 if (hospitalEquipment == null)
                 {
-                    appointmentFilterDTO = new AppointmentFilterDTO() { operation = 0, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
+                    appointmentFilterDTO = new AppointmentFilterDTO() { appointmentSearchOrSchedule = AppointmentSearchOrSchedule.ByDoctorAndTimeInterval, DoctorId = doctor.Id, HospitalEquipmentId = -1, StartInterval = startTime, EndInterval = endTime };
                     HttpRequestToAppointmentController(appointmentFilterDTO);
                 }
                 else
                 {
-                    appointmentFilterDTO = new AppointmentFilterDTO() { operation = 3, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
+                    appointmentFilterDTO = new AppointmentFilterDTO() { appointmentFilterCriteria = AppointmentFilterCriteria.BySpecialistNoPriority, DoctorId = doctor.Id, HospitalEquipmentId = hospitalEquipment.Id, StartInterval = startTime, EndInterval = endTime };
                     HttpRequestToAppointmentFilterController(appointmentFilterDTO);
                 }
             }
@@ -156,7 +148,7 @@ namespace GraphicEditor.View
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             appointments = new List<Appointment>(JsonConvert.DeserializeObject<List<Appointment>>(responseBody));
-            HttpRequestToAppointmentFilterController(new AppointmentFilterDTO { operation = 6, appointments = appointments });
+            HttpRequestToAppointmentFilterController(new AppointmentFilterDTO { appointmentFilterCriteria = AppointmentFilterCriteria.AddRoomToAppointment, appointments = appointments });
             dataGridAppointment.ItemsSource = appointments;
         }
 

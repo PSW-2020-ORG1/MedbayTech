@@ -33,7 +33,7 @@ namespace GraphicEditor
             InitializeComponent();
             string path = Directory.GetCurrentDirectory();
             string new_path = path.Replace('\\', '/');
-            string logo = new_path + "/View/WhiteLogo.png";
+            string logo = new_path + "/Icons/WhiteLogo.png";
             imageLogo.Source = new BitmapImage(new Uri(@logo, UriKind.Absolute));
             room = searchDataBaseForRoom(roomId);
             doctor = searchDataBaseForDoctor(room.Id);
@@ -49,7 +49,7 @@ namespace GraphicEditor
         {
             room = new Room();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/1")
+            var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/ByRoomId")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -64,7 +64,7 @@ namespace GraphicEditor
         {
             doctor = new Doctor();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/doctor/" + roomId + "/1")
+            var task = httpClient.GetAsync("http://localhost:53109/api/doctor/" + roomId + "/ByExaminationRoom")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -80,7 +80,7 @@ namespace GraphicEditor
         {
             appointments = new List<Appointment>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/appointment/" + roomId + "/0")
+            var task = httpClient.GetAsync("http://localhost:53109/api/appointment/" + roomId + "/ByRoom")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -106,6 +106,7 @@ namespace GraphicEditor
         }
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            if (doctor == null) return;
             doctor.PlaceOfBirth.State = null;
             SaveDoctorAndRoom(room, doctor);
         }
