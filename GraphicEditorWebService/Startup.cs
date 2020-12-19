@@ -80,23 +80,22 @@ namespace GraphicEditorWebService
             {
                 string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
-                if (env.IsDevelopment())
+                if (stage.Equals("test"))
                 {
-                    if (stage.Equals("test"))
-                    {
-                        context.Database.EnsureDeleted();
-                    }
-                    try
-                    {
-                        context.Database.EnsureCreated();
-                        context.Database.Migrate();
-                        DataSeeder seeder = new DataSeeder();
-                        seeder.SeedAllEntities(context);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.StackTrace);
-                    }
+                    context.Database.EnsureDeleted();
+                }
+
+
+                try
+                {
+                    context.Database.EnsureCreated();
+                    context.Database.Migrate();
+                    DataSeeder seeder = new DataSeeder();
+                    seeder.SeedAllEntities(context);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.StackTrace);
                 }
             }
 

@@ -107,12 +107,15 @@ namespace WebApplication
             using (var scope = app.ApplicationServices.CreateScope())
             using (var context = scope.ServiceProvider.GetService<MedbayTechDbContext>())
             {
+
                 string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
                 if (stage.Equals("test"))
                 {
                     context.Database.EnsureDeleted();
                 }
+
+                
                 try
                 {
                     context.Database.EnsureCreated();
