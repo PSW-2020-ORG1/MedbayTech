@@ -9,8 +9,7 @@ using System.Text;
 
 namespace Backend.Schedules.Repository.MySqlRepository
 {
-    public class AppointmentSqlRepository : MySqlrepository<Appointment, int>,
-        IAppointmentRepository
+    public class AppointmentSqlRepository : MySqlrepository<Appointment, int>, IAppointmentRepository
     {
         public AppointmentSqlRepository(MedbayTechDbContext context) : base(context) { }
         public Dictionary<int, Appointment> GetAppointmentsBy(DateTime date)

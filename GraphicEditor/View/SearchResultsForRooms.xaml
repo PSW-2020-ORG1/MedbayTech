@@ -9,7 +9,13 @@
       Title="SearchResultsForRooms">
 
     <Grid>
-        <Button Name="btnShowOnMap" Margin="246,588,246,24" Content="Shown on map" FontWeight="Bold" FontSize="22" Click="buttonShowOnMap" />
+        <Button Name="btnShowOnMap" Margin="246,588,246,24" Content="Shown on map" FontWeight="Bold" Background="SteelBlue" Foreground="White" FontSize="22" Click="buttonShowOnMap">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
         <DataGrid Name="dataGridRoom" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" Width="710" Height="550" IsReadOnly="True" Margin="0,25,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Room label" Width="140" Binding="{Binding RoomLabel}"/>

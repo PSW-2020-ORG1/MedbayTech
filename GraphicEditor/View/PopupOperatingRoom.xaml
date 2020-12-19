@@ -40,15 +40,15 @@
                    VerticalAlignment="Center" Height="65" Width="175">
             <Run BaselineAlignment="Bottom" Text="Operating room lbl:" Foreground="White" FontWeight="DemiBold"/>
             <InlineUIContainer BaselineAlignment="Bottom">
-                <TextBox Height="18" TextWrapping="Wrap" Text="S1-C4" Width="46" TextAlignment="Center" FontSize="11" FontWeight="DemiBold"/>
+                <TextBox Height="18" TextWrapping="Wrap" Text="{Binding Path=RoomLabel}" Width="46" TextAlignment="Center" FontSize="11" FontWeight="DemiBold"/>
             </InlineUIContainer>
-            <Run BaselineAlignment="Bottom" Text="&#x0a;Available appointments:" Foreground="White" FontWeight="SemiBold"/>
+            <Run BaselineAlignment="Bottom" Text="&#x0a;Department:" Foreground="White" FontWeight="SemiBold"/>
             <InlineUIContainer BaselineAlignment="Center">
-                <TextBox Height="18" TextWrapping="Wrap" Text="18" Width="22" TextAlignment="Left"  FontSize="10" FontWeight="Heavy" Foreground="White" Background="#3A6180" BorderBrush="#3A6180"/>
+                <TextBox Height="18" TextWrapping="Wrap" Text="{Binding Path=Department.Name}" Width="90" TextAlignment="Left"  FontSize="10" FontWeight="Heavy"/>
             </InlineUIContainer>
-            <Run BaselineAlignment="Center" Text="&#x0a;Inventory:" Foreground="White" FontWeight="Medium"/>
+            <Run BaselineAlignment="Center" Text="&#x0a;Room use:" Foreground="White" FontWeight="Medium"/>
             <InlineUIContainer BaselineAlignment="Center">
-                <TextBox Height="22" TextWrapping="Wrap" Text="Stocked" Width="86" FontWeight="Medium" TextAlignment="Center"/>
+                <TextBox Height="22" TextWrapping="Wrap" Text="{Binding Path=RoomUse}" Width="86" FontWeight="Medium" TextAlignment="Center"/>
             </InlineUIContainer>
         </TextBlock>
     </Grid>

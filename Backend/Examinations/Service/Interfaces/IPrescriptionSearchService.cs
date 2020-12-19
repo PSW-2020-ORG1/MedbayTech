@@ -15,5 +15,7 @@ namespace Backend.Examinations.Service.Interfaces
         List<Prescription> SearchByFirstParameter(List<Prescription> prescriptions, PrescriptionAdvancedDTO dto);
         List<Prescription> AdvancedSearch(string medication, List<Prescription> prescriptions);
         List<Prescription> AdvancedSearch(int hourlyIntake, List<Prescription> prescriptions);
+        List<Prescription> GetAll();
+        string GeneratePrescription(Prescription prescription);
     }
 }

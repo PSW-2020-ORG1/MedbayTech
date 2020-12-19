@@ -41,8 +41,13 @@ export class ObserveAppointmentComponent implements OnInit {
       });
   }
   cancelAppointment(appointmentId,element){
-    this.appointmentService.cancelAppointment(new CancelAppointment(appointmentId)).subscribe();
-    location.reload();
+    this.appointmentService.cancelAppointment(new CancelAppointment(appointmentId)).subscribe(data =>
+      {
+      this.loadCancelableAppointments();
+      this.loadSurveyableAppointments();
+      this.loadAllOtherAppointments();
+      });
+    
   }
   saveAppointment(appointment : GetAppointment){
     localStorage.setItem('appointment',JSON.stringify(appointment.id));

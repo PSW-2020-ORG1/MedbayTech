@@ -15,6 +15,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using GraphicEditor.View;
+using Model.Rooms;
+using System.Net.Http;
+using Newtonsoft.Json;
+using Model.Users;
 
 namespace GraphicEditor
 {
@@ -35,7 +39,7 @@ namespace GraphicEditor
             setRestrictionType(user);
             string path = Directory.GetCurrentDirectory();
             string new_path = path.Replace('\\', '/');
-            string logo = new_path + "/View/WhiteLogo.png";
+            string logo = new_path + "/Icons/WhiteLogo.png";
             imageLogo.Source = new BitmapImage(new Uri(@logo, UriKind.Absolute));
         }
 
@@ -113,7 +117,7 @@ namespace GraphicEditor
                 }
                 else if ((bool)Medicines.IsChecked)
                 {
-                    if (Restriction == 0)
+                    if (Restriction != 1)
                     {
                         MainFrame.Content = new SearchResultsForMedicines(this, textBoxSearch.Text);
                     }
@@ -121,7 +125,7 @@ namespace GraphicEditor
                 }
                 else if ((bool)Equipment.IsChecked)
                 {
-                    if (Restriction == 0)
+                    if (Restriction != 1)
                     {
                         MainFrame.Content = new SearchResultsForEquipment(this, textBoxSearch.Text);
                     }
@@ -269,27 +273,27 @@ namespace GraphicEditor
             }
             else if (comboBoxWardsMap.SelectedIndex == 2 || comboBoxWardsMap.SelectedIndex == 3)
             {
-                comboBoxH1.SelectedItem = null;
-                ShowBuilding2GroundFloor(null, null);
-                comboBoxH2.SelectedIndex = 0;
-            }
-            else if (comboBoxWardsMap.SelectedIndex == 4 || comboBoxWardsMap.SelectedIndex == 5)
-            {
                 comboBoxH2.SelectedItem = null;
                 ShowBuilding1FirstFloor(null, null);
                 comboBoxH1.SelectedIndex = 1;
             }
-            else if (comboBoxWardsMap.SelectedIndex == 6 || comboBoxWardsMap.SelectedIndex == 7)
-            {
-                comboBoxH1.SelectedItem = null;
-                ShowBuilding2FirstFloor(null, null);
-                comboBoxH2.SelectedIndex = 1;
-            }
-            else if (comboBoxWardsMap.SelectedIndex == 8 || comboBoxWardsMap.SelectedIndex == 9)
+            else if (comboBoxWardsMap.SelectedIndex == 4 || comboBoxWardsMap.SelectedIndex == 5)
             {
                 comboBoxH2.SelectedItem = null;
                 ShowBuilding1SecondFloor(null, null);
                 comboBoxH1.SelectedIndex = 2;
+            }
+            else if (comboBoxWardsMap.SelectedIndex == 6 || comboBoxWardsMap.SelectedIndex == 7)
+            {
+                comboBoxH1.SelectedItem = null;
+                ShowBuilding2GroundFloor(null, null);
+                comboBoxH2.SelectedIndex = 0;
+            }
+            else if (comboBoxWardsMap.SelectedIndex == 8 || comboBoxWardsMap.SelectedIndex == 9)
+            {
+                comboBoxH1.SelectedItem = null;
+                ShowBuilding2FirstFloor(null, null);
+                comboBoxH2.SelectedIndex = 1;
             }
             else if (comboBoxWardsMap.SelectedIndex == 10 || comboBoxWardsMap.SelectedIndex == 11)
             {
@@ -342,12 +346,50 @@ namespace GraphicEditor
 
         private void buttonAppointmentSearch(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new SearchAppointment(this);
+            if(Restriction == 2)
+            {
+                MainFrame.Content = new SearchAppointment(this);
+            }
+            else
+            {
+                MessageBox.Show("You don't have permission to search appointment!");
+            }
         }
 
         private void buttonExit(object sender, RoutedEventArgs e)
         {
             mainWindow.Close();
+        }
+
+        public Room SearchDataBaseForRoom(int roomId)
+        {
+            Room room = new Room();
+            HttpClient httpClient = new HttpClient();
+            var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/ByRoomId")
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    room = JsonConvert.DeserializeObject<Room>(jsonString.Result);
+                });
+            task.Wait();
+            return room;
+        }
+        public Doctor searchDataBaseForDoctor(int roomId)
+        {
+            Doctor doctor = new Doctor();
+            HttpClient httpClient = new HttpClient();
+            var task = httpClient.GetAsync("http://localhost:53109/api/doctor/" + roomId + "/ByExaminationRoom")
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    doctor = JsonConvert.DeserializeObject<Doctor>(jsonString.Result);
+                });
+            task.Wait();
+            return doctor;
         }
     }
 }

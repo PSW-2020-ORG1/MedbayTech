@@ -8,7 +8,7 @@ using Repository;
 
 namespace Backend.Examinations.Repository.MySqlRepository
 {
-    class TreatmentSqlRepository : MySqlrepository<Treatment, int>,
+    public class TreatmentSqlRepository : MySqlrepository<Treatment, int>,
         ITreatmentRepository
 
     {

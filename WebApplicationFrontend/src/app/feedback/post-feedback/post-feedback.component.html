@@ -1,36 +1,30 @@
-<link rel="stylesheet" href="post-feedback.component.css">
-<div class="jumbotron">
-    <h1 class="display-4">Post patient's feedback</h1>
-</div>
-<div class="container">
+
+<div class="container" style="padding-top: 15px;">
     <form id="post-form" [formGroup]="postForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-        <textarea rows="4" cols="5" name="additionalNotes" class="form-control" placeholder="Comment..." id="additionalNotes" formControlName="additionalNotes"></textarea>
-        <span *ngIf="!postForm.get('additionalNotes').valid && postForm.get('additionalNotes').touched">
-            <span *ngIf="postForm.get('additionalNotes').errors['minLength']">Minimum length of a comment is 2 characters.
-            </span>
-        </span>
-        <br>
-        <label for="allowed">Let others see your post?</label>
-            <div>
-                <input id="allowedYes" type="radio" value="yes" name="allowed" formControlName="allowed" checked>
-                <label for="yes">Yes</label>
-            </div>
 
-            <div>
-                <input id="allowedNo" type="radio" value="no" name="allowed" formControlName="allowed">
-                <label for="no">No</label>
-            </div>
-        <label for="anonymous">Would you like to stay anonymous?</label>
-            <div>
-                <input id="anonymousYes" type="radio" value="yes" name="anonymous" formControlName="anonymous" checked> 
-                <label for="yes">Yes</label>
-            </div>
-            <div>
-                <input id="anonymousNo" type="radio" value="no" name="anonymous" formControlName="anonymous">
-                <label for="no">No</label>
-            </div>
-        <button type="submit" class="btn btn-success btn-lg" value="submit" [disabled]="postForm.invalid">Submit</button>
+            <mat-form-field appearance="fill"  [style.width.px]=1100>
+                <mat-label>Comment</mat-label>
+                <textarea rows="4" cols="5" matInput formControlName="additionalNotes"></textarea>
+                <mat-error *ngIf="postForm.get('additionalNotes').hasError('required')">Minimum length is 1</mat-error>
+                <mat-error *ngIf="postForm.get('additionalNotes').hasError('maxlength')">Maximum length is 500</mat-error>
+            </mat-form-field>
+
+        
+
+        <label for="allowed" class="allowed-margin">Let others see your post?</label><br>
+        <mat-radio-group aria-label="Select an option" formControlName="allowed">
+            <mat-radio-button value="yes">Yes</mat-radio-button><br>
+            <mat-radio-button value="no">No</mat-radio-button>
+        </mat-radio-group><br>
+
+        <label for="allowed">Would you like to stay anonymous?</label><br>
+        <mat-radio-group aria-label="Select an option" formControlName="anonymous">
+            <mat-radio-button value="yes">Yes</mat-radio-button><br>
+            <mat-radio-button value="no">No</mat-radio-button>
+        </mat-radio-group><br>
+
+        <button mat-raised-button color="accent" value="submit" [disabled]="postForm.invalid">Submit</button>
         </div>
     </form>
    

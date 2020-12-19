@@ -8,9 +8,6 @@ namespace Backend.Users.Repository.MySqlRepository
 {
     public class DoctorSqlRepository : MySqlrepository<Doctor, string>, IDoctorRepository
     {
-
-        private MedbayTechDbContext _context;
-
         public DoctorSqlRepository(MedbayTechDbContext context) : base(context) {}
 
         public List<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
@@ -18,16 +15,13 @@ namespace Backend.Users.Repository.MySqlRepository
            return GetAll().ToList().Where(d => d.SpecializationId == specialization.Id).ToList();
            
         }
-
         public Doctor GetByUsername(string username)
         {
             return GetAll().ToList().FirstOrDefault(d => d.Username.Equals(username));
         }
-
         public List<Doctor> GetDoctorsFromDepartment(Department department)
         {
             return GetAll().ToList().Where(d => d.DepartmentId.Equals(department.Id)).ToList();
         }
-
     }
 }

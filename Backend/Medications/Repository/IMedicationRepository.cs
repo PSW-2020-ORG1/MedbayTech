@@ -18,7 +18,6 @@ namespace Backend.Medications.Repository.FileRepository
 
         List<Medication> GetAllApproved();
 
-        bool ExistsInSystem(int id);
         int GetNextID();
     }
 }

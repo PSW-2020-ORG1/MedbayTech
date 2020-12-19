@@ -20,6 +20,12 @@ namespace Backend.Examinations.Repository.MySqlRepository
             return GetAll().Where(prescription => prescription.IsPatient(idPatient)).ToList();
         }
 
+        public List<Prescription> GetPrescriptions()
+        {
+            return GetAll().Where(prescription => prescription.IsPrescription()).ToList();
+        }
+
+
 
     }
 }

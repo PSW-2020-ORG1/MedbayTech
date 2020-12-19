@@ -8,7 +8,7 @@ using System.Linq;
 namespace Backend.Users.Repository.MySqlRepository
 {
     // TODO(Jovan): Implement
-    class UserSqlRepository : MySqlrepository<RegisteredUser, string>,
+    public class UserSqlRepository : MySqlrepository<RegisteredUser, string>,
         IUserRepository
     {
         public List<Doctor> GetAllDoctors()

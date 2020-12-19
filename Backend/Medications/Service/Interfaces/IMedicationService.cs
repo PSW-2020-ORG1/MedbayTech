@@ -12,7 +12,6 @@ namespace Backend.Medications.Service
       
         List<Medication> GetAllMedicationByRoomId(string textSearchBox);
 
-
         Medication ApproveMedication(Medication medication);
 
         Medication CreateMedication(Medication medication);
@@ -21,8 +20,6 @@ namespace Backend.Medications.Service
 
         bool DeleteMedication(Medication medication);
         Medication GetMedication(int id);
-
-        /*IEnumerable<Medication> GetAllOnValidationFor(Doctor doctor);*/
 
         List<Medication> GetAllOnValidation();
 

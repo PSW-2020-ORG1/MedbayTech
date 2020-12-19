@@ -58,10 +58,11 @@ namespace Service.RoomService
 
         public Room UpdateRoomDataBase(Room room)
         {
-            _roomRepository.Update(room);
+            Room room_update = _roomRepository.GetAll().ToList().Find(r => r.Id == room.Id);
+            room_update.UpdateRoom(room);
+            _roomRepository.Update(room_update);
             return room;
         }
-
 
         public Room UpdateRoom ( Room room ) => _roomRepository.Update(room);
 

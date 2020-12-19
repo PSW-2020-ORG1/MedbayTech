@@ -16,9 +16,9 @@ namespace GraphicEditor
     {
         public MainWindow()
         {
-            String userType = "administrator";
+            //String userType = "administrator";
             //String userType = "patient";
-            //String userType = "secretary";
+            String userType = "secretary";
             //String userType = "doctor";
             InitializeComponent();
             Frame.Content = new MainPage(userType, this);

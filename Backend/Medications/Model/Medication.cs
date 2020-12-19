@@ -29,7 +29,8 @@ namespace Backend.Medications.Model
         public int Quantity { get; set; }
         public string Dosage { get; set; }
         [ForeignKey ("Room")]
-        public int RoomId { get; set; } 
+        public int RoomId { get; set; }
+        [JsonIgnore]
         public virtual Room Room { get; set; }
         public virtual List<DosageOfIngredient> MedicationContent { get; set; }
 
@@ -72,6 +73,23 @@ namespace Backend.Medications.Model
         public bool IsOnValidation()
         {
             return Status == MedStatus.Validation;
+        }
+        public void UpdateMedication(Medication medication)
+        {
+            Id = medication.Id;
+            Med = medication.Med;
+            Status = medication.Status;
+            Company = medication.Company;
+            Quantity = medication.Quantity;
+            Dosage = medication.Dosage;
+            RoomId = medication.RoomId;
+            Room = medication.Room;
+            MedicationContent = medication.MedicationContent;
+            MedicationCategoryId = medication.MedicationCategoryId;
+            MedicationCategory = medication.MedicationCategory;
+            Allergens = medication.Allergens;
+            AlternativeMedication = medication.AlternativeMedication;
+            SideEffects = medication.SideEffects;
         }
     }
 }

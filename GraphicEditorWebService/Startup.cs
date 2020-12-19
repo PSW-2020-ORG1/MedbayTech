@@ -34,10 +34,12 @@ namespace GraphicEditorWebService
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             AddRepository(services); 
             AddServices(services);
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.AddCors();
             services.AddDbContext<MedbayTechDbContext>();
         }

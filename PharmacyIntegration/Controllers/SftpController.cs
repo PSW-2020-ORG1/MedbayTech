@@ -11,15 +11,15 @@ namespace PharmacyIntegration.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            // TODO(Jovan): Fix hardcoded data
+            // TODO(Jovan): Fix hardcoded data!!!!!
             var config = new SftpConfig
             {
-                Host = "192.168.1.7",
+                Host = "192.168.0.12",
                 Port = 2222,
                 Username = "psw",
                 Password = "psw"
             };
-            string localFile = "test.txt";
+            string localFile = "GeneratedPrescription/1.txt";
             using var client = new SftpClient(config.Host, config.Port, config.Username, config.Password);
             try
             {

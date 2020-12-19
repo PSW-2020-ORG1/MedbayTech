@@ -1,10 +1,15 @@
 version: "3.8"
 
 volumes:
+<<<<<<< HEAD
   mysql-data: {}
   web-sql:
   postgres-data: {}
   
+=======
+  mysql-data:
+  #web-sql:
+>>>>>>> develop
 
 networks:
   demo:
@@ -23,6 +28,7 @@ services:
       MYSQL_USER: "root"
       MYSQL_PASSWORD: "root"
       MYSQL_ROOT_PASSWORD: "root"
+<<<<<<< HEAD
     volumes:
       - mysql-data:/var/lib/mysql
   
@@ -106,10 +112,23 @@ services:
     depends_on:
       - mysql
     environment:
+=======
+    volumes:
+      - mysql-data:/var/lib/mysql:rw
+
+
+  PhIntegrationSql:
+    image: ph
+    container_name: phintegration
+    restart: on-failure
+    environment:
+      PORT: 50202
+>>>>>>> develop
       DATABASE_USERNAME: "root"
       DATABASE_PASSWORD: "root"
       DATABASE_HOST: "mysql"
       DATABASE_SCHEMA: "newdb"
+<<<<<<< HEAD
       STAGE: "test"
       PORT: 8082
     ports:
@@ -122,3 +141,11 @@ services:
     image: unit-tests
     container_name: unit-tests-container
     restart: on-failure
+=======
+    ports:
+      - "8091:50202"
+    networks:
+      - demo
+    depends_on:
+      - mysql
+>>>>>>> develop

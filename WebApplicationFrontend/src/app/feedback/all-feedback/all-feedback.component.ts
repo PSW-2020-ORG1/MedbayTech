@@ -28,8 +28,11 @@ export class AllFeedbackComponent implements OnInit {
   }
 
   updateStatus(feedbackId, feedbackStatus, element) { 
-      this.feedbackService.updateFeedbackStatus(new UpdateFeedbackStatus(feedbackId, feedbackStatus)).subscribe();
-      location.reload();
+      this.feedbackService.updateFeedbackStatus(new UpdateFeedbackStatus(feedbackId, feedbackStatus)).subscribe(data =>
+        {
+          this.loadAllFeedback()
+        });
+      
   }
 
 }

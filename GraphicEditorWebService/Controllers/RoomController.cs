@@ -1,4 +1,5 @@
 ﻿using Backend.Rooms.Service;
+using Backend.Rooms.Service.Enum;
 using Microsoft.AspNetCore.Mvc;
 using Model.Rooms;
 using System;
@@ -20,14 +21,14 @@ namespace GraphicEditorService.Controller
             _roomService = roomService;
         }
 
-        [HttpGet("{textBoxSearch?}/{operation}")]
-        public IActionResult Get(string textBoxSearch, int operation)
+        [HttpGet("{textBoxSearch?}/{roomSearch?}")]
+        public IActionResult Get(string textBoxSearch, RoomSearch roomSearch)
         {
-            if(operation == 0)
+            if (roomSearch == RoomSearch.ByRoomLabelorRoomUse)
             {
                 return Ok(_roomService.GetRoomsByRoomLabelorRoomUse(textBoxSearch.ToLower().Trim()));
             }
-            else
+            else if (roomSearch == RoomSearch.ByRoomId)
             {
                 if (Int32.TryParse(textBoxSearch, out int id))
                 {
@@ -35,6 +36,7 @@ namespace GraphicEditorService.Controller
                 }
                 else return Ok();
             }
+            else return Ok();
         }
 
         [HttpPost]

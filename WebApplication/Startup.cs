@@ -5,7 +5,6 @@ using Backend.Examinations.Repository.MySqlRepository;
 using Backend.Examinations.Service.Interfaces;
 using Backend.Examinations.WebApiService;
 using Backend.Records.Repository.MySqlRepository;
-using Backend.Records.Service.Interfaces;
 using Backend.Records.WebApiService;
 using Backend.Rooms.Service;
 using Backend.Schedules.Repository.MySqlRepository;
@@ -30,10 +29,11 @@ using Repository.ScheduleRepository;
 using Repository.UserRepository;
 using WebApplication.MailService;
 using WebApplication.ObjectBuilder;
-using Microsoft.EntityFrameworkCore;
-using Backend.Utils;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Backend.Utils;
+using Microsoft.EntityFrameworkCore;
+using IMedicalRecordService = Backend.Records.Service.Interfaces.IMedicalRecordService;
 
 namespace WebApplication
 {
@@ -91,14 +91,15 @@ namespace WebApplication
             using (var context = scope.ServiceProvider.GetService<MedbayTechDbContext>())
             {
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
-                
+
                 try
                 {
                     if (stage.Equals("test") && IsPostgres())
                         databaseCreator.CreateTables();
                     else
                         context.Database.Migrate();
-                } catch(Exception)
+                }
+                catch (Exception)
                 {
                     Console.WriteLine("Failed to execute migration");
                 }
@@ -106,8 +107,9 @@ namespace WebApplication
                 {
                     DataSeeder seeder = new DataSeeder();
                     seeder.SeedAllEntities(context);
-                    
-                } catch (Exception)
+
+                }
+                catch (Exception)
                 {
                     Console.WriteLine("Failed to seed data");
                 }
@@ -153,8 +155,8 @@ namespace WebApplication
             string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";
             return host.Equals("postgres");
         }
-        
-        
+
+
         private void AddServices(IServiceCollection services)
         {
             services.AddScoped<IDoctorService, DoctorService>();
@@ -196,5 +198,5 @@ namespace WebApplication
             services.AddTransient<ISpecializationRepository, SpecializationSqlRepository>();
         }
     }
-}
 
+}

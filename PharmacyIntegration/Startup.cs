@@ -1,11 +1,3 @@
-using Backend.Medications.Repository.FileRepository;
-using Backend.Medications.Repository.MySqlRepository;
-using Backend.Medications.Service;
-using Backend.Pharmacies.Repository.MySqlRepository;
-using Backend.Reports.Repository;
-using Backend.Reports.Repository.MySqlRepository;
-using Backend.Reports.Service;
-using Backend.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -14,12 +6,29 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.IO;
+using Backend.Examinations.Repository;
+using Backend.Examinations.Repository.MySqlRepository;
+using Backend.Examinations.Service;
+using Backend.Examinations.Service.Interfaces;
+using Service.GeneralService;
+using Backend.Records.Repository.MySqlRepository;
+using Repository.MedicalRecordRepository;
+using Repository.UserRepository;
+using Backend.Users.Repository.MySqlRepository;
+using Backend.Medications.Repository.FileRepository;
+using Backend.Medications.Repository.MySqlRepository;
+using Backend.Medications.Service;
+using Backend.Pharmacies.Repository.MySqlRepository;
+using Backend.Reports.Repository;
+using Backend.Reports.Repository.MySqlRepository;
+using Backend.Reports.Service;
 using Model;
+using Backend.Utils;
 using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
-using System;
-using System.Collections.Generic;
-using System.IO;
+using Backend.Examinations.WebApiService;
 
 namespace PharmacyIntegration
 {
@@ -34,9 +43,9 @@ namespace PharmacyIntegration
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             Directory.CreateDirectory("GeneratedUsageReports");
             Directory.CreateDirectory("DrugSpecifications");
+            Directory.CreateDirectory("GeneratedPrescription");
 
             services.AddCors();
             AddRepository(services);
@@ -118,18 +127,26 @@ namespace PharmacyIntegration
 
         private static void AddServices(IServiceCollection services)
         {
-            services.AddScoped<IPharmacyService, PharmacyService>();
-            services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
-            services.AddScoped<IMedicationUsageService, MedicationUsageService>();
-            services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();
-        }
-
-        private static void AddRepository(IServiceCollection services)
-        {
             services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
             services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
             services.AddTransient<IMedicationUsageRepository, MedicationUsageSqlRepository>();
             services.AddTransient<IMedicationUsageReportRepository, MedicationUsageReportSqlRepository>();
+            services.AddTransient<ITreatmentRepository, TreatmentSqlRepository>();
+            services.AddTransient<INotificationService, NotificationService>();
+            services.AddTransient<IMedicalRecordRepository, MedicalRecordSqlRepository>();
+            services.AddTransient<IUserRepository, UserSqlRepository>();
+            services.AddTransient<INotificationRepository, NotificationSqlRepository>();
+            services.AddTransient<IPrescriptionRepository, PrescriptionSqlRepository>();
+        }
+
+        private static void AddRepository(IServiceCollection services)
+        {
+            services.AddScoped<IPharmacyService, PharmacyService>();
+            services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
+            services.AddScoped<IMedicationUsageService, MedicationUsageService>();
+            services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();
+            services.AddScoped<ITreatmentService, TreatmentService>();
+            services.AddScoped<IPrescriptionSearchService, PrescriptionSearchService>();
         }
 
 
