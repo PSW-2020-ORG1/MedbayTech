@@ -80,18 +80,23 @@ namespace GraphicEditorWebService
             {
                 string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
-                if (stage.Equals("test"))
-                {
-                    context.Database.EnsureDeleted();
-                }
-
 
                 try
                 {
-                    context.Database.EnsureCreated();
-                    context.Database.Migrate();
+                    if (stage.Equals("test"))
+                    {
+                        context.Database.Migrate();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Failed to execute migration");
+                }
+                try
+                {
                     DataSeeder seeder = new DataSeeder();
                     seeder.SeedAllEntities(context);
+
                 }
                 catch (Exception e)
                 {

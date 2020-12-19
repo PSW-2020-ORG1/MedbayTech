@@ -5,11 +5,8 @@ using PharmacyIntegration.Model;
 using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
 using Shouldly;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using Xunit;
 
 namespace UnitTests.PhIntegrationTests

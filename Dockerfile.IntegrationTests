@@ -1,0 +1,37 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+WORKDIR /app
+
+COPY Backend/Backend.csproj Backend/
+COPY WebApplication/WebApplication.csproj WebApplication/
+COPY IntegrationTests/IntegrationTests.csproj IntegrationTests/
+COPY PharmacyIntegration/PharmacyIntegration.csproj PharmacyIntegration/
+
+ENV DATABASE_USERNAME = $DATABASE_USERNAME
+ENV DATABASE_PASSWORD = $DATABASE_PASSWORD
+ENV DATABASE_HOST = $DATABASE_HOST
+ENV DATABASE_SCHEMA = $DATABASE_SCHEMA
+
+RUN dotnet restore PharmacyIntegration/PharmacyIntegration.csproj
+RUN dotnet restore WebApplication/WebApplication.csproj
+RUN dotnet restore IntegrationTests/IntegrationTests.csproj
+
+
+RUN apt-get update && apt-get upgrade -y && apt-get install -y nodejs npm
+RUN npm install npm@latest -g
+RUN npm install -g npm
+RUN npm install
+
+COPY . .
+
+FROM build AS publish
+WORKDIR /app/Backend
+ENV PATH $PATH:/root/.dotnet/tools
+RUN dotnet tool install -g dotnet-ef --version 3.1.9
+RUN dotnet ef migrations add Init
+
+FROM build AS test
+LABEL test=true
+
+WORKDIR /app/IntegrationTests
+CMD ["dotnet", "test"]
+

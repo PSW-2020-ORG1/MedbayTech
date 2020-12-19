@@ -9,12 +9,15 @@
     <Compile Remove="Examinations\WebApiService\**" />
     <Compile Remove="Exceptions\Examinations\**" />
     <Compile Remove="Users\dsadsa\**" />
+    <Compile Remove="Users\WebApiService\**" />
     <EmbeddedResource Remove="Examinations\WebApiService\**" />
     <EmbeddedResource Remove="Exceptions\Examinations\**" />
     <EmbeddedResource Remove="Users\dsadsa\**" />
+    <EmbeddedResource Remove="Users\WebApiService\**" />
     <None Remove="Examinations\WebApiService\**" />
     <None Remove="Exceptions\Examinations\**" />
     <None Remove="Users\dsadsa\**" />
+    <None Remove="Users\WebApiService\**" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
@@ -45,7 +48,6 @@
   <ItemGroup>
     <Folder Include="Resources\Images\" />
     <Folder Include="Schedules\Controller\" />
-    <Folder Include="Users\WebApiService\" />
   </ItemGroup>
 
 </Project>

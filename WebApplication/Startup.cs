@@ -9,7 +9,6 @@ using Backend.Records.Service.Interfaces;
 using Backend.Records.WebApiService;
 using Backend.Rooms.Service;
 using Backend.Schedules.Repository.MySqlRepository;
-using Backend.Schedules.Service;
 using Backend.Users.Repository;
 using Backend.Users.Repository.MySqlRepository;
 using Backend.Users.Service;
@@ -87,10 +86,9 @@ namespace WebApplication
             else
             {
                 services.AddDbContext<MedbayTechDbContext>(options =>
-                    options.UseMySql(CreateConnectionStringFromEnvironment(),
+                    options.UseMySql(CreateConnectionStringFromEnvironment(), 
                     x => x.MigrationsAssembly("Backend").EnableRetryOnFailure(
-                            5, new TimeSpan(0, 0, 0, 10), new List<int>())
-                        ).UseLazyLoadingProxies());
+                            20, new TimeSpan(0, 0, 0, 10), new List<int>())).UseLazyLoadingProxies());
             }
         }
 
@@ -103,45 +101,51 @@ namespace WebApplication
                 app.UseDeveloperExceptionPage();
 
             }
+            string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
 
             using (var scope = app.ApplicationServices.CreateScope())
             using (var context = scope.ServiceProvider.GetService<MedbayTechDbContext>())
             {
-
-                string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
-                if (stage.Equals("test"))
-                {
-                    context.Database.EnsureDeleted();
-                }
-
                 
                 try
                 {
-                    context.Database.EnsureCreated();
-                    context.Database.Migrate();
+                    if (stage.Equals("test") && IsPostgres())
+                        databaseCreator.CreateTables();
+                    else
+                        context.Database.Migrate();
+                } catch(Exception e)
+                {
+                    Console.WriteLine("Failed to execute migration");
+                }
+                try
+                {
                     DataSeeder seeder = new DataSeeder();
                     seeder.SeedAllEntities(context);
+                    
                 } catch (Exception e)
                 {
-                    Console.WriteLine(e.StackTrace);
+                    Console.WriteLine("Failed to seed data");
                 }
             }
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "dist"))
-            });
 
+
+            if (!stage.Equals("development"))
+            {
+                app.UseStaticFiles(new StaticFileOptions
+                {
+                    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "dist"))
+                });
+            }
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
+                    Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
                 RequestPath = "/Resources"
             });
-
             app.UseRouting();
 
             app.UseAuthorization();
@@ -177,17 +181,13 @@ namespace WebApplication
             string database = Environment.GetEnvironmentVariable("DATABASE_SCHEMA") ?? "newdb";
             string user = Environment.GetEnvironmentVariable("DATABASE_USERNAME") ?? "root";
             string password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "root";
-            string testEnvironment = Environment.GetEnvironmentVariable("TEST_ENVIRONMENT") ?? "FALSE";
-
-            if (testEnvironment.Equals("TRUE"))
-                return "Server=postgres;Port=5432;Database=mydb1;User Id=root;Password=root";
 
             return $"Server={server};Port={port};Database={database};User Id={user};Password={password}";
         }
 
         public bool IsPostgres()
         {
-            string host = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
+            string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";
             return host.Equals("postgres");
         }
         

@@ -1,0 +1,18 @@
+services:
+  WebApplicationPostgres:
+    image: web
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "root"
+      DATABASE_PASSWORD: "root"
+      DATABASE_TYPE: "postgres"
+      DATABASE_HOST: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      PORT: 8080
+      STAGE: "test"
+    ports:
+      - "8080:8080"
