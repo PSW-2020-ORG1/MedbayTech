@@ -40,15 +40,15 @@
                    VerticalAlignment="Center" Height="65" Width="175">
             <Run BaselineAlignment="Bottom" Text="Room label:" Foreground="White" FontWeight="DemiBold"/>
             <InlineUIContainer BaselineAlignment="Bottom">
-                <TextBox Height="18" TextWrapping="Wrap" Text="F2-C2" Width="96" TextAlignment="Center" FontSize="11" FontWeight="DemiBold"/>
+                <TextBox Height="18" TextWrapping="Wrap" Text="{Binding Path=RoomLabel}" Width="96" TextAlignment="Center" FontSize="11" FontWeight="DemiBold"/>
             </InlineUIContainer>
             <Run BaselineAlignment="Bottom" Text="&#x0a;Room use:" Foreground="White" FontWeight="SemiBold"/>
             <InlineUIContainer BaselineAlignment="Center">
-                <TextBox Height="22" TextWrapping="Wrap" Text="Patient room" Width="106" TextAlignment="Center" FontSize="12" FontWeight="SemiBold"  BorderBrush="#3A6180"/>
+                <TextBox Height="22" TextWrapping="Wrap" Text="{Binding Path=RoomUse}" Width="106" TextAlignment="Center" FontSize="12" FontWeight="SemiBold"  BorderBrush="#3A6180"/>
             </InlineUIContainer>
             <Run BaselineAlignment="Bottom" Text="&#x0a;Ward:" Foreground="White" FontWeight="Medium"/>
             <InlineUIContainer BaselineAlignment="TextTop">
-                <TextBox Height="20" TextWrapping="Wrap" Text="Cardiology" Width="135" TextAlignment="Center" FontSize="11" FontWeight="Medium" BorderBrush="#3A6180"/>
+                <TextBox Height="20" TextWrapping="Wrap" Text="{Binding Path=Department.Name}" Width="135" TextAlignment="Center" FontSize="11" FontWeight="Medium" BorderBrush="#3A6180"/>
             </InlineUIContainer>
         </TextBlock>
     </Grid>

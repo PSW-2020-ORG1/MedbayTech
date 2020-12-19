@@ -27,8 +27,9 @@ namespace Backend.Users.WebApiService
         }
         public Doctor UpdateDoctorDataBase(Doctor doctor)
         {
-            doctorRepository.Update(doctor);
-            return doctor;
+            Doctor doctor_update = doctorRepository.GetAll().ToList().Find(d => d.Id == doctor.Id);
+            doctor_update.UpdateDoctor(doctor);
+            return doctorRepository.Update(doctor_update);
         }
         public IEnumerable<Doctor> GetDoctorsBy(int specializationId)
         {

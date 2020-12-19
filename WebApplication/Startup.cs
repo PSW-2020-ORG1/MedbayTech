@@ -40,6 +40,7 @@ using Service.ScheduleService;
 using Repository.UserRepository;
 using WebApplication.MailService;
 using WebApplication.ObjectBuilder;
+using IMedicalRecordService = Backend.Records.Service.Interfaces.IMedicalRecordService;
 
 namespace WebApplication
 {
@@ -67,7 +68,7 @@ namespace WebApplication
 
             services.AddTransient<IMailService, MailService.MailService>();
 
-            
+
 
             //add cors package
             services.AddCors();

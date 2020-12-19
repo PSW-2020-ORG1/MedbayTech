@@ -18,6 +18,9 @@ namespace Backend.Schedules.Service.Interfaces
         List<Appointment> GetAvailableBy(string doctorId, DateTime date);
         List<Appointment> GetByDoctorAndDate(string doctorId, DateTime date);
         Appointment ScheduleAppointment(Appointment appointment);
+        List<Appointment> GetAvailableByDoctorAndTimeInterval(PriorityParameters parameters);
+        List<Appointment> GetAvailableByPriorityDoctor(PriorityParameters parameters);
+        List<Appointment> GetApppointmentsScheduledForSpecificRoom(int roomId);
         List<Appointment> GetAvailableByDoctorAndDateRange(PriorityParameters parameters);
 
         List<Appointment> GetAvailableByStrategy(PriorityParameters parameters);

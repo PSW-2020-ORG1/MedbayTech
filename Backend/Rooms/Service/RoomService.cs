@@ -62,17 +62,11 @@ namespace Service.RoomService
 
         public Room UpdateRoomDataBase(Room room)
         {
-            _roomRepository.Update(room);
+            Room room_update = _roomRepository.GetAll().ToList().Find(r => r.Id == room.Id);
+            room_update.UpdateRoom(room);
+            _roomRepository.Update(room_update);
             return room;
         }
-
-        /*
-        public List<Room> GetRoomsByRoomLabelorRoomUse ( string textBoxSearch ) =>
-            _roomRepository.GetAll().ToList().FindAll(r =>
-            r.RoomLabel.Contains(textBoxSearch, System.StringComparison.CurrentCultureIgnoreCase)
-            || r.RoomUse.Contains(textBoxSearch, System.StringComparison.CurrentCultureIgnoreCase));
-
-        */
 
         public Room UpdateRoom ( Room room ) => _roomRepository.Update(room);
 
@@ -149,7 +143,7 @@ namespace Service.RoomService
 
         public List<Room> GetAll ( )
         {
-            return ( List<Room> ) _roomRepository.GetAll();
+            return _roomRepository.GetAll().ToList();
         }
     }
 }

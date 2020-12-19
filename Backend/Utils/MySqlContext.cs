@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -21,8 +21,6 @@ using Backend.Examinations.Model.Enums;
 using Backend.Users;
 using Backend.Users.Model;
 using System.Linq;
-using Npgsql;
-
 namespace Model
 {
     public class MySqlContext : DbContext
@@ -52,7 +50,7 @@ namespace Model
         public DbSet<Renovation> Renovations { get; set; }
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<HospitalEquipment> HospitalEquipments { get; set; }
-
+        public DbSet<EquipmentType> EquipmentTypes { get; set; }
         public DbSet<Bed> Beds { get; set; }
         public DbSet<Vaccines> Vaccines { get; set; }
         public DbSet<Therapy> Therapies { get; set; }
@@ -92,70 +90,20 @@ namespace Model
         {
         }
         public MySqlContext() { }
-
-        public MySqlContext(string connectionString) { }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!IsPostgresDatabase() && !IsTestEnvironment())
-            {
-                optionsBuilder.UseMySql(CreateConnectionStringFromEnvironment());
-                optionsBuilder.UseLazyLoadingProxies(true);
-            }
-            else
-            {
-                optionsBuilder.UseNpgsql(CreateConnectionStringFromEnvironment());
-            }
+            /*This is not good solution, must be refactored*/
+            //optionsBuilder.UseMySql(@"server=" + mySqlHostAddress + ";port=" + mySqlConnectionPort + ";database=" + mySqlDatabaseName + ";uid=" + mySqlConnectionUid + ";password=" + mySqlConnectionPassword);
+            //optionsBuilder.UseLazyLoadingProxies(true);
+
+            // NOTE(Jovan): When using Backend DB inside project, create appsettings.json inside
+            // that project
+
+        IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
+                optionsBuilder.UseMySql($"Server={mySqlHostAddress};port={mySqlConnectionPort};Database={mySqlDatabaseName};user={mySqlConnectionUid};password={mySqlConnectionPassword}").UseLazyLoadingProxies();
 
         }
-        private bool IsPostgresDatabase()
-        {
-            string url = Environment.GetEnvironmentVariable("DATABASE_URL") ?? "localhost";
-            return !url.Equals("localhost");
-        }
-
-        private string CreateConnectionStringFromEnvironment()
-        {
-            string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
-            string port = Environment.GetEnvironmentVariable("DATABASE_PORT") ?? "3306";
-            string database = Environment.GetEnvironmentVariable("DATABASE_SCHEMA") ?? "newdb";
-            string user = Environment.GetEnvironmentVariable("DATABASE_USERNAME") ?? "root";
-            string password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "root";
-
-            string url = Environment.GetEnvironmentVariable("DATABASE_URL") ?? "localhost";
-
-            if (url.Equals("localhost") && !IsTestEnvironment())
-                return $"server={server};port={port};database={database};user={user};password={password}";
-
-            else if (IsTestEnvironment())
-            {
-                return Environment.GetEnvironmentVariable("CONNECTION_STRING");
-            }
-
-            else
-            {
-                var databaseUri = new Uri(url);
-                var userInfo = databaseUri.UserInfo.Split(':');
-
-                var builder = new NpgsqlConnectionStringBuilder
-                {
-                    Host = databaseUri.Host,
-                    Port = databaseUri.Port,
-                    Username = userInfo[0],
-                    Password = userInfo[1],
-                    Database = databaseUri.LocalPath.TrimStart('/')
-                };
-                return builder.ToString();
-            }
-
-
-        }
-        private bool IsTestEnvironment()
-        {
-            string environment = Environment.GetEnvironmentVariable("TEST_ENVIRONMENT") ?? "FALSE";
-            return environment.Equals("TRUE");
-        }
-        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -525,9 +473,112 @@ namespace Model
                     DepartmentId = 1,
                     ExaminationRoomId = 1,
                     OperationRoomId = 2,
-                    //SpecializationId = 1
                     SpecializationId = 1
-                }
+                },
+                new Doctor
+                {
+                    Id = "2407978890045",
+                    CurrResidenceId = 1,
+                    DateOfBirth = new DateTime(1978, 6, 24),
+                    DateOfCreation = new DateTime(),
+                    EducationLevel = EducationLevel.bachelor,
+                    Email = "ivan@gmail.com",
+                    Gender = Gender.MALE,
+                    InsurancePolicyId = "policy2",
+                    Name = "Ivan",
+                    Surname = "Ivanovic",
+                    Username = "ivan",
+                    Password = "ivan123",
+                    Phone = "065/123-4554",
+                    PlaceOfBirthId = 11000,
+                    Profession = "doctor",
+                    ProfileImage = ".",
+                    LicenseNumber = "001",
+                    OnCall = true,
+                    PatientReview = 4.5,
+                    DepartmentId = 1,
+                    ExaminationRoomId = 1,
+                    OperationRoomId = 2,
+                    SpecializationId = 1
+                },
+                new Doctor
+                {
+                 Id = "2406978890051",
+                 CurrResidenceId = 1,
+                 DateOfBirth = new DateTime(1978, 6, 24),
+                 DateOfCreation = new DateTime(),
+                 EducationLevel = EducationLevel.bachelor,
+                 Email = "mika@gmail.com",
+                 Gender = Gender.MALE,
+                 InsurancePolicyId = "policy1",
+                 Name = "Petar",
+                 Surname = "Petrovic",
+                 Username = "mika",
+                 Password = "mika1978",
+                 Phone = "065/123-4554",
+                 PlaceOfBirthId = 11000,
+                 Profession = "vodoinstalater",
+                 ProfileImage = ".",
+                 LicenseNumber = "001",
+                 OnCall = true,
+                 PatientReview = 4.5,
+                 DepartmentId = 1,
+                 ExaminationRoomId = 1003,
+                 OperationRoomId = 1119,
+                 SpecializationId = 3
+             },
+             new Doctor
+             {
+                 Id = "2406978890052",
+                 CurrResidenceId = 1,
+                 DateOfBirth = new DateTime(1978, 6, 24),
+                 DateOfCreation = new DateTime(),
+                 EducationLevel = EducationLevel.bachelor,
+                 Email = "mika@gmail.com",
+                 Gender = Gender.FEMALE,
+                 InsurancePolicyId = "policy1",
+                 Name = "Mirjana",
+                 Surname = "Lakic",
+                 Username = "mima",
+                 Password = "mima2003",
+                 Phone = "065/123-4554",
+                 PlaceOfBirthId = 11000,
+                 Profession = "vodoinstalater",
+                 ProfileImage = ".",
+                 LicenseNumber = "001",
+                 OnCall = true,
+                 PatientReview = 4.5,
+                 DepartmentId = 1,
+                 ExaminationRoomId = 2005,
+                 OperationRoomId = 1114,
+                 SpecializationId = 1
+             },
+             new Doctor
+             {
+                 Id = "2406978890053",
+                 CurrResidenceId = 1,
+                 DateOfBirth = new DateTime(1978, 6, 24),
+                 DateOfCreation = new DateTime(),
+                 EducationLevel = EducationLevel.bachelor,
+                 Email = "mika@gmail.com",
+                 Gender = Gender.FEMALE,
+                 InsurancePolicyId = "policy1",
+                 Name = "Jovana",
+                 Surname = "Ivanovic",
+                 Username = "joksi",
+                 Password = "joksi1998",
+                 Phone = "065/123-4554",
+                 PlaceOfBirthId = 11000,
+                 Profession = "vodoinstalater",
+                 ProfileImage = ".",
+                 LicenseNumber = "001",
+                 OnCall = true,
+                 PatientReview = 4.5,
+                 DepartmentId = 1,
+                 ExaminationRoomId = 1012,
+                 OperationRoomId = 2117,
+                 SpecializationId = 1
+             }
             );
 
             modelBuilder.Entity<MedicalRecord>().HasData(
@@ -541,6 +592,42 @@ namespace Model
                     IllnessHistory = new List<Diagnosis>(),
                     FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
                     PatientId = "2406978890046",
+                    Therapies = new List<Therapy>()
+                },
+                new MedicalRecord
+                {
+                    Id = 2,
+                    CurrHealthState = PatientCondition.HospitalTreatment,
+                    BloodType = BloodType.ANeg,
+                    Allergies = new List<Allergens>(),
+                    Vaccines = new List<Vaccines>(),
+                    IllnessHistory = new List<Diagnosis>(),
+                    FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
+                    PatientId = "2406978890048",
+                    Therapies = new List<Therapy>()
+                },
+                new MedicalRecord
+                {
+                    Id = 3,
+                    CurrHealthState = PatientCondition.HospitalTreatment,
+                    BloodType = BloodType.ANeg,
+                    Allergies = new List<Allergens>(),
+                    Vaccines = new List<Vaccines>(),
+                    IllnessHistory = new List<Diagnosis>(),
+                    FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
+                    PatientId = "2406978890049",
+                    Therapies = new List<Therapy>()
+                },
+                new MedicalRecord
+                {
+                    Id = 4,
+                    CurrHealthState = PatientCondition.HospitalTreatment,
+                    BloodType = BloodType.ANeg,
+                    Allergies = new List<Allergens>(),
+                    Vaccines = new List<Vaccines>(),
+                    IllnessHistory = new List<Diagnosis>(),
+                    FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
+                    PatientId = "2406978890050",
                     Therapies = new List<Therapy>()
                 }
             );
@@ -1235,39 +1322,27 @@ namespace Model
                 new DoctorWorkDay { Id = 7, Date = new DateTime(2020, 12, 21), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" },
                 new DoctorWorkDay { Id = 8, Date = new DateTime(2020, 12, 22), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" },
                 new DoctorWorkDay { Id = 9, Date = new DateTime(2020, 12, 23), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" },
-                new DoctorWorkDay { Id = 10, Date = new DateTime(2020, 12, 24), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" }
+                new DoctorWorkDay { Id = 10, Date = new DateTime(2020, 12, 24), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" },
+
+                new DoctorWorkDay { Id = 11, Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2406978890051" },
+                new DoctorWorkDay { Id = 12, Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2406978890051" },
+                new DoctorWorkDay { Id = 13, Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2406978890051" },
+                new DoctorWorkDay { Id = 14, Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2406978890051" },
+                new DoctorWorkDay { Id = 15, Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2406978890051" },
+
+                new DoctorWorkDay { Id = 16, Date = new DateTime(2020, 12, 5), StartTime = 8, EndTime = 15, DoctorId = "2406978890052" },
+                new DoctorWorkDay { Id = 17, Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2406978890052" },
+                new DoctorWorkDay { Id = 18, Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2406978890052" },
+                new DoctorWorkDay { Id = 19, Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2406978890052" },
+                new DoctorWorkDay { Id = 20, Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2406978890052" },
+
+                new DoctorWorkDay { Id = 21, Date = new DateTime(2020, 12, 5), StartTime = 8, EndTime = 15, DoctorId = "2406978890053" },
+                new DoctorWorkDay { Id = 22, Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2406978890053" },
+                new DoctorWorkDay { Id = 23, Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2406978890053" },
+                new DoctorWorkDay { Id = 24, Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2406978890053" },
+                new DoctorWorkDay { Id = 25, Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2406978890053" }
 
                 );
-
-            modelBuilder.Entity<Doctor>().HasData(
-                new Doctor
-                {
-                    Id = "2407978890045",
-                    CurrResidenceId = 1,
-                    DateOfBirth = new DateTime(1978, 6, 24),
-                    DateOfCreation = new DateTime(),
-                    EducationLevel = EducationLevel.bachelor,
-                    Email = "ivan@gmail.com",
-                    Gender = Gender.MALE,
-                    InsurancePolicyId = "policy2",
-                    Name = "Ivan",
-                    Surname = "Ivanovic",
-                    Username = "ivan",
-                    Password = "ivan123",
-                    Phone = "065/123-4554",
-                    PlaceOfBirthId = 11000,
-                    Profession = "doctor",
-                    ProfileImage = ".",
-                    LicenseNumber = "001",
-                    OnCall = true,
-                    PatientReview = 4.5,
-                    DepartmentId = 1,
-                    ExaminationRoomId = 1,
-                    OperationRoomId = 2,
-                    SpecializationId = 1
-                }
-            );
         }
     }
 }
-

@@ -44,5 +44,14 @@ namespace Model.Rooms
         {
             Id = id;
         }
+
+        public void UpdateDepartment(Department department)
+        {
+            Id = department.Id;
+            Name = department.Name;
+            Floor = department.Floor;
+            HospitalId = department.HospitalId;
+            Hospital = department.Hospital;
+        }
     }
 }
