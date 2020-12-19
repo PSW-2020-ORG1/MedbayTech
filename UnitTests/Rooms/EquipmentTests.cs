@@ -34,7 +34,7 @@ namespace MedbayTechUnitTests
         public IHospitalEquipmentRepository CreateRepositoryStub ( )
         {
             var stubRepository = new Mock<IHospitalEquipmentRepository>();
-            var equipment = GetEquipment();
+            var equipment = GetEquipment().ToList();
             stubRepository.Setup(m => m.GetAll()).Returns(equipment);
             return stubRepository.Object;
         }
