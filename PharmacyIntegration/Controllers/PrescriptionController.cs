@@ -14,6 +14,7 @@ using System.Security.Policy;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Text;
+using Backend.Utils.DTO;
 
 namespace PharmacyIntegration.Controllers
 {
@@ -30,13 +31,13 @@ namespace PharmacyIntegration.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Prescription> Get()
+        public IEnumerable<PrescriptionForSendingDTO> Get()
         {
             return prescriptionSearchService.GetAll();
         }
 
         [HttpPost]
-        public IActionResult SendPrescription(Prescription prescription)
+        public IActionResult SendPrescription(PrescriptionForSendingDTO prescription)
         {
             string fileName = prescriptionSearchService.GeneratePrescription(prescription);
             GenerateQRCode(prescription);
@@ -60,10 +61,10 @@ namespace PharmacyIntegration.Controllers
             return Ok("Not found!");
         }
 
-        private void GenerateQRCode(Prescription prescription)
+        private void GenerateQRCode(PrescriptionForSendingDTO prescription)
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(prescription.GetStringForSharing(), QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(prescription.ToString(), QRCodeGenerator.ECCLevel.Q);
 
             PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
             byte[] qrCodeAsPngByteArr = qrCode.GetGraphic(5);
@@ -71,7 +72,7 @@ namespace PharmacyIntegration.Controllers
             using (var ms = new MemoryStream(qrCodeAsPngByteArr))
             {
                 var qrCodeImage = new Bitmap(ms);
-                qrCodeImage.Save("GeneratedPrescription" + Path.DirectorySeparatorChar + "qrcode.png", ImageFormat.Png);  
+                qrCodeImage.Save("GeneratedPrescription" + Path.DirectorySeparatorChar + prescription.FileName() + "qrcode.png", ImageFormat.Png);  
             }
         }
 
