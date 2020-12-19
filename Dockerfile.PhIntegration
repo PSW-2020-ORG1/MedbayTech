@@ -1,0 +1,46 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS build
+
+WORKDIR /app
+
+COPY Backend/Backend.csproj Backend/
+COPY PharmacyIntegration/PharmacyIntegration.csproj PharmacyIntegration/
+
+RUN dotnet restore PharmacyIntegration/PharmacyIntegration.csproj
+
+COPY . .
+
+
+FROM build AS publish
+WORKDIR /app
+RUN dotnet publish PharmacyIntegration/PharmacyIntegration.csproj -c Release -o out
+
+
+FROM node:alpine as buildvue
+
+WORKDIR /app/vueclient
+
+COPY PharmacyIntegration/vueclient/package.json .
+RUN npm install -g @vue/cli
+RUN npm install --save axios vue-axios
+
+RUN npm install
+
+
+
+
+COPY PharmacyIntegration .
+RUN npm run build
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS runtime
+
+RUN useradd -ms /bin/bash defaultuser
+WORKDIR /app
+
+COPY --from=buildvue /app/dist /app/wwwroot
+
+COPY --from=publish /app/out .
+
+ENV ASPNETCORE_ENVIRONMENT Production
+ENV ASPNETCORE_URLS http://*:50202
+EXPOSE 5000
+CMD [ "dotnet" "PharmacyIntegration.dll"] 

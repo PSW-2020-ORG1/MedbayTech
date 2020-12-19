@@ -76,7 +76,7 @@ namespace PharmacyIntegration
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
+            services.AddSpaStaticFiles(options => options.RootPath = "vueclient" + Path.DirectorySeparatorChar + "dist");
 
             // NOTE(Jovan): Does not work
             /*services.AddControllers().AddJsonOptions(options =>
