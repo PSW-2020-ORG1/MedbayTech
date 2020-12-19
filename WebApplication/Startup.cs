@@ -107,16 +107,11 @@ namespace WebApplication
             using (var scope = app.ApplicationServices.CreateScope())
             using (var context = scope.ServiceProvider.GetService<MedbayTechDbContext>())
             {
-                string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
-                
-                if (stage.Equals("testing") || stage.Equals("production"))
-                {
-                    databaseCreator.CreateTables();
-                }
-                
                 try
                 {
+                    context.Database.EnsureCreated();
+                    context.Database.Migrate();
                     DataSeeder seeder = new DataSeeder();
                     seeder.SeedAllEntities(context);
                 } catch (Exception e)

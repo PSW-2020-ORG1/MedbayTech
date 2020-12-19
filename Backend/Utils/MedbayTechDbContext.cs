@@ -77,7 +77,7 @@ namespace Model
 
 
         public MedbayTechDbContext(DbContextOptions<MedbayTechDbContext> options) : base(options)  {}
-       // public MedbayTechDbContext() { }
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

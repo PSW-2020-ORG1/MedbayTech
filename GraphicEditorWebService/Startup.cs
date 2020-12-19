@@ -82,12 +82,10 @@ namespace GraphicEditorWebService
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
                 if (env.IsDevelopment())
                 {
-                    if (stage.Equals("testing") || stage.Equals("production"))
-                    {
-                        databaseCreator.CreateTables();
-                    }
                     try
                     {
+                        context.Database.EnsureCreated();
+                        context.Database.Migrate();
                         DataSeeder seeder = new DataSeeder();
                         seeder.SeedAllEntities(context);
                     }
