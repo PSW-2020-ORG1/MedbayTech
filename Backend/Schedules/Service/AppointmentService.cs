@@ -180,9 +180,9 @@ namespace Backend.Schedules.Service
             List<Appointment> available = new List<Appointment>(allAppointments);
             foreach(Appointment appointmentIt in allAppointments)
             {
-                Appointment appointment = occupied.FirstOrDefault(a => a.isOccupied(appointmentIt.Start, appointmentIt.End));
+                Appointment appointment = occupied.FirstOrDefault(a => a.isOccupied(appointmentIt.Start, appointmentIt.End) && !a.CanceledByPatient);
                 
-                if (appointment != null && !appointment.CanceledByPatient)
+                if (appointment != null)
                     available.Remove(appointmentIt);
             }
 
