@@ -82,6 +82,10 @@ namespace GraphicEditorWebService
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
                 if (env.IsDevelopment())
                 {
+                    if (stage.Equals("test"))
+                    {
+                        context.Database.EnsureDeleted();
+                    }
                     try
                     {
                         context.Database.EnsureCreated();
