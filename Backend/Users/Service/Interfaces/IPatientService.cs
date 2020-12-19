@@ -7,6 +7,7 @@ namespace Backend.Users.Service.Interfaces
 {
     public interface IPatientService
     {
+        IEnumerable<Patient> GetAll();
         Patient UpdateStatus(string patientId);
         List<Patient> GetPatientsThatShouldBeBlocked();
     }

@@ -12,8 +12,20 @@
             <Label Content="Additiondal information" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="25" Foreground="White" Width="327" Height="40"/>
         </StackPanel>
         <DockPanel DockPanel.Dock="Bottom">
-            <Button DockPanel.Dock="Left" x:Name="buttonSave" Content="Save" HorizontalAlignment="Left" Height="30" Margin="5,5,5,5" VerticalAlignment="Top" Width="130" Foreground="White" Background="#2B78E4" Click="Save_Click" FontSize="20"/>
-            <Button DockPanel.Dock="Right" x:Name="buttonCancel" Content="Cancel" Height="30" Margin="5,5,5,5" VerticalAlignment="Top" Width="130" Foreground="White" Background="#2B78E4" FontSize="20" Click="Cancel_Click" HorizontalAlignment="Right"/>
+            <Button DockPanel.Dock="Left" x:Name="buttonSave" Content="Save" HorizontalAlignment="Left" Height="30" Margin="5,5,5,5" VerticalAlignment="Top" Width="130" Foreground="White" Background="#2B78E4" Click="Save_Click" FontSize="20">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button DockPanel.Dock="Right" x:Name="buttonCancel" Content="Cancel" Height="30" Margin="5,5,5,5" VerticalAlignment="Top" Width="130" Foreground="White" Background="Tomato" FontSize="20" Click="Cancel_Click" HorizontalAlignment="Right">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </DockPanel>
         <Grid>
             <Label Content="Floor" HorizontalAlignment="Left" Margin="98,61,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>

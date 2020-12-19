@@ -1,11 +1,13 @@
 
 mat-card {
-    margin-left: 9vw;
+    margin-left: 20vw;
     width: 30vw;
 }
 
+
 mat-card-header {
-    background-color: pink;
+    background-color: #3F51B5;
+    color: white;
     justify-content: center;
 }
 
@@ -21,14 +23,7 @@ mat-card-actions{
     text-align: right;
 }
 
-.button1 {
-    background-color: pink;
 
-}
-.button2 {
-    background-color: pink;
-
-}
 .card {
     margin-bottom: 10px;
 

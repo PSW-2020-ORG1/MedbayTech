@@ -55,5 +55,18 @@ namespace Model.Rooms
             Id = id;
         }
 
+        public void UpdateRoom(Room room)
+        {
+            Id = room.Id;
+            RoomNumber = room.RoomNumber;
+            RoomType = room.RoomType;
+            DepartmentId = room.DepartmentId;
+            Department = room.Department;
+            HospitalEquipment = room.HospitalEquipment;
+            RoomLabel = room.RoomLabel;
+            RoomUse = room.RoomUse;
+            BedsCapacity = room.BedsCapacity;
+            BedsFree = room.BedsFree;
+        }
     }
 }

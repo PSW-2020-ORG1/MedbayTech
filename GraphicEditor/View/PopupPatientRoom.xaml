@@ -40,15 +40,15 @@
                    VerticalAlignment="Center" Height="65" Width="175">
             <Run BaselineAlignment="Bottom" Text="Patient room label:" Foreground="White" FontWeight="DemiBold"/>
             <InlineUIContainer BaselineAlignment="Bottom">
-                <TextBox Height="18" TextWrapping="Wrap" Text="S2-G2" Width="48" TextAlignment="Center" FontSize="11" FontWeight="DemiBold"/>
+                <TextBox Name="textBoxRoomLabel" Height="18" TextWrapping="Wrap" Text="{Binding Path=RoomLabel}" Width="48" TextAlignment="Center" FontSize="11" FontWeight="DemiBold"/>
             </InlineUIContainer>
-            <Run BaselineAlignment="Bottom" Text="&#x0a;Occupied beds:" Foreground="White" FontWeight="SemiBold"/>
+            <Run BaselineAlignment="Bottom" Text="&#x0a;Beds capacity:" Foreground="White" FontWeight="SemiBold"/>
             <InlineUIContainer BaselineAlignment="Center">
-                <TextBox Height="21" TextWrapping="Wrap" Text="3" Width="26" TextAlignment="Left" FontSize="13" FontWeight="Heavy" Foreground="White" Background="#3A6180" BorderBrush="#3A6180"/>
+                <TextBox Name="textBoxBedsCapacity" Height="21" TextWrapping="Wrap" Text="{Binding Path=BedsCapacity}" Width="26" TextAlignment="Left" FontSize="13" FontWeight="Heavy" Foreground="White" Background="#3A6180" BorderBrush="#3A6180"/>
             </InlineUIContainer>
             <Run BaselineAlignment="Bottom" Text="&#x0a;Available beds:" Foreground="White" FontWeight="Medium"/>
             <InlineUIContainer BaselineAlignment="Center">
-                <TextBox Height="21" TextWrapping="Wrap" Text="5" Width="28" TextAlignment="Left" FontSize="13" FontWeight="Heavy" Foreground="White" Background="#3A6180" BorderBrush="#3A6180"/>
+                <TextBox Name="textBoxBedsFree" Height="21" TextWrapping="Wrap" Text="{Binding Path=BedsFree}" Width="28" TextAlignment="Left" FontSize="13" FontWeight="Heavy" Foreground="White" Background="#3A6180" BorderBrush="#3A6180"/>
             </InlineUIContainer>
         </TextBlock>
     </Grid>
