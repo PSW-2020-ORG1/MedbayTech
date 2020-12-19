@@ -39,16 +39,8 @@ namespace PharmacyIntegration
             Directory.CreateDirectory("DrugSpecifications");
 
             services.AddCors();
-
-            services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
-            services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
-            services.AddTransient<IMedicationUsageRepository, MedicationUsageSqlRepository>();
-            services.AddTransient<IMedicationUsageReportRepository, MedicationUsageReportSqlRepository>();
-
-            services.AddScoped<IPharmacyService, PharmacyService>();
-            services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
-            services.AddScoped<IMedicationUsageService, MedicationUsageService>();
-            services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();
+            AddRepository(services);
+            AddServices(services);
 
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
@@ -59,15 +51,12 @@ namespace PharmacyIntegration
 
             services.AddDbContext<MedbayTechDbContext>();
         }
-
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
-
 
             using (var scope = app.ApplicationServices.CreateScope())
             using (var context = scope.ServiceProvider.GetService<MedbayTechDbContext>())
@@ -93,10 +82,9 @@ namespace PharmacyIntegration
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine(e.StackTrace);
+                    Console.WriteLine("Failed to seed data");
                 }
             }
-
 
             app.UseCors(x => x
                 .AllowAnyMethod()
@@ -137,6 +125,21 @@ namespace PharmacyIntegration
             string password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "root";
 
             return $"server={server};port={port};database={database};user={user};password={password}";
+        }
+        private static void AddServices(IServiceCollection services)
+        {
+            services.AddScoped<IPharmacyService, PharmacyService>();
+            services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
+            services.AddScoped<IMedicationUsageService, MedicationUsageService>();
+            services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();
+        }
+
+        private static void AddRepository(IServiceCollection services)
+        {
+            services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
+            services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
+            services.AddTransient<IMedicationUsageRepository, MedicationUsageSqlRepository>();
+            services.AddTransient<IMedicationUsageReportRepository, MedicationUsageReportSqlRepository>();
         }
 
 

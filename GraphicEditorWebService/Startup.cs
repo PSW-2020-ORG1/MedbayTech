@@ -2,19 +2,13 @@ using Backend.Medications.Service;
 using Backend.Rooms.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Model;
 using Service.RoomService;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Backend.Medications.Repository.FileRepository;
 using Backend.Medications.Repository.MySqlRepository;
 using Repository.RoomRepository;
@@ -40,24 +34,13 @@ namespace GraphicEditorWebService
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IRoomRepository, RoomSqlRepository>();
-            services.AddTransient<IHospitalEquipmentRepository, HospitalEquipmentSqlRepository>();
-            services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
-            services.AddTransient<IDoctorRepository, DoctorSqlRepository>();
-
+            AddRepository(services); 
+            AddServices(services);
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            
-            services.AddScoped<IRoomService, RoomService>();
-            services.AddScoped<IHospitalEquipmentService, HospitalEquipmentService>();
-            services.AddScoped<IMedicationService, MedicationService>();
-            services.AddScoped<IDoctorService, DoctorService>();
-            services.AddControllers();
             services.AddCors();
-
             services.AddDbContext<MedbayTechDbContext>();
         }
-
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -122,6 +105,24 @@ namespace GraphicEditorWebService
 
             return $"server={server};port={port};database={database};user={user};password={password}";
         }
+
+        private static void AddServices(IServiceCollection services)
+        {
+            services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IHospitalEquipmentService, HospitalEquipmentService>();
+            services.AddScoped<IMedicationService, MedicationService>();
+            services.AddScoped<IDoctorService, DoctorService>();
+            services.AddControllers();
+        }
+
+        private static void AddRepository(IServiceCollection services)
+        {
+            services.AddTransient<IRoomRepository, RoomSqlRepository>();
+            services.AddTransient<IHospitalEquipmentRepository, HospitalEquipmentSqlRepository>();
+            services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
+            services.AddTransient<IDoctorRepository, DoctorSqlRepository>();
+        }
+
 
     }
 }

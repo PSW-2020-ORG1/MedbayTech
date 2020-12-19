@@ -5,7 +5,6 @@
  ***********************************************************************/
 
 using Backend.Rooms.Service;
-using Model;
 using Model.Rooms;
 using Repository.RoomRepository;
 using System;
@@ -23,14 +22,8 @@ namespace Service.RoomService
             _hospitalEquipmentRepository = hospitalEquipmentRepository;
         }
 
-        
-
-
-
         public List<HospitalEquipment> GetHospitalEquipmentsByNameOrId ( string textBoxSearch )
         {
-
-
             if (Int32.TryParse(textBoxSearch, out int id))
                 return _hospitalEquipmentRepository.GetAll().Where(med => med.Id == id).ToList();
             return _hospitalEquipmentRepository.GetAll().Where(med => med.EquipmentType.Name.ToLower().Contains(textBoxSearch.ToLower())).ToList();

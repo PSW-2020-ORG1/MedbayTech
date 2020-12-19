@@ -31,7 +31,6 @@ using Repository.UserRepository;
 using WebApplication.MailService;
 using WebApplication.ObjectBuilder;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using Backend.Utils;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Infrastructure;

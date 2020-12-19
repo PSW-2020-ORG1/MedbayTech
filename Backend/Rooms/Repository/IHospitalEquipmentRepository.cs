@@ -13,7 +13,7 @@ namespace Repository.RoomRepository
    {
       IEnumerable<HospitalEquipment> GetEquipmentByRoomNumber(int roomNumber);
       
-      IEnumerable<HospitalEquipment> GetEquipmentByType(Model.Rooms.EquipmentType type);
+      IEnumerable<HospitalEquipment> GetEquipmentByType(EquipmentType type);
    
    }
 }

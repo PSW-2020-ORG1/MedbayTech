@@ -9,9 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Backend.Medications.Repository.FileRepository;
-using Model.Users;
-using Service.GeneralService;
-using Model;
 
 namespace Backend.Medications.Service
 {

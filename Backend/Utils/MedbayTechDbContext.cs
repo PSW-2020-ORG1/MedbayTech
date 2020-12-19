@@ -1,23 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Backend.Examinations.Model;
 using Backend.Records.Model;
-using Backend.Medications;
 using Model.Schedule;
 using Model.Users;
 using Backend.Utils;
 using Model.Rooms;
 using Backend.Medications.Model;
-using Backend.Users.Model.Enums;
-using Backend.Records.Model.Enums;
 using Newtonsoft.Json;
 using PharmacyIntegration.Model;
 using Backend.Reports.Model;
-using Backend.Examinations.Model.Enums;
 using Backend.Users.Model;
 namespace Model
 {

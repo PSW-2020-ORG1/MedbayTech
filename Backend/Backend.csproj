@@ -8,14 +8,17 @@
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <Compile Remove="Examinations\WebApiService\**" />
     <Compile Remove="Exceptions\Examinations\**" />
+    <Compile Remove="Schedules\Controller\**" />
     <Compile Remove="Users\dsadsa\**" />
     <Compile Remove="Users\WebApiService\**" />
     <EmbeddedResource Remove="Examinations\WebApiService\**" />
     <EmbeddedResource Remove="Exceptions\Examinations\**" />
+    <EmbeddedResource Remove="Schedules\Controller\**" />
     <EmbeddedResource Remove="Users\dsadsa\**" />
     <EmbeddedResource Remove="Users\WebApiService\**" />
     <None Remove="Examinations\WebApiService\**" />
     <None Remove="Exceptions\Examinations\**" />
+    <None Remove="Schedules\Controller\**" />
     <None Remove="Users\dsadsa\**" />
     <None Remove="Users\WebApiService\**" />
   </ItemGroup>
@@ -47,7 +50,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\Images\" />
-    <Folder Include="Schedules\Controller\" />
   </ItemGroup>
 
 </Project>
