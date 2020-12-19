@@ -42,10 +42,10 @@ namespace IntegrationTests.Schedule
         {
             return new ScheduleAppointmentDTO
             {
-                DoctorId = "2406978890047",
+                DoctorId = "2407978890045",
                 PatientId = "2406978890046",
-                StartTime = new DateTime(2020, 12, 14, 13, 30, 0),
-                EndTime =  new DateTime(2020, 12, 14, 14, 0, 0)
+                StartTime = new DateTime(2020, 12, 24, 13, 30, 0),
+                EndTime =  new DateTime(2020, 12, 24, 14, 0, 0)
             };
         }
     }

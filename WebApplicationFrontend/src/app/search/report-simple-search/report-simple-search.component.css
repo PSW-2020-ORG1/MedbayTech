@@ -12,7 +12,8 @@ table {
 th {
     font-weight: bold;
     font-size: small;
-    background-color: lightpink;
+    background-color: #3F51B5;
+    color: white;
 }
 
 :host ::ng-deep .mat-sort-header-container { 
@@ -21,5 +22,7 @@ th {
 }
 
 th.mat-header-cell, td.mat-cell { 
-    text-align: center; 
+    text-align: left; 
+    font-size: 15px;
+    margin-left: 10px;
 }

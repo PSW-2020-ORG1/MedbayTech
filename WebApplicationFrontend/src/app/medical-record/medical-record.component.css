@@ -4,7 +4,8 @@ mat-card {
 }
 
 mat-card-header {
-    background-color: pink;
+    background-color: #3F51B5;
+    color: white;
     justify-content: center;
 }
 
@@ -21,7 +22,8 @@ mat-card-footer {
 }
 
 th {
-    background-color: pink;
+    background-color: #3F51B5;
+    color: white;
 }
 
 .table {
