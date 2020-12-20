@@ -15,7 +15,8 @@
                             <v-card-title>-{{prescription.medicationName}} {{prescription.medicationDosage}}</v-card-title>
                             <v-card-title>-Hourly Intake: {{prescription.medicationHourlyIntake}}</v-card-title>
                             <p v-if="status.prescriptionIndex !== index || status.message === '' " style="color:white">.</p>
-                            <p v-else style="color:forestgreen">{{status.message}}</p>
+                            <p v-else-if="status.message === 'We have the desired medication!'" style="color:forestgreen">{{status.message}}</p>
+                            <p v-else style="color:red">{{status.message}}</p>
                         </v-card-text>
                         <v-card-actions>
                             <v-btn text
@@ -27,7 +28,7 @@
                             <v-btn text
                                     class="white accent--text"
                                    @click="sendPrescription(prescription)">
-                                Sent to pharmacy
+                                Send to pharmacy
                             </v-btn>
                         </v-card-actions>
                     </v-card>
@@ -56,6 +57,7 @@ export default {
             showModal: false,
             qrLink: {},  //require("../../../GeneratedPrescription/qrcode.png"),
             qrLinkPath: "",
+            
         }
     },
 

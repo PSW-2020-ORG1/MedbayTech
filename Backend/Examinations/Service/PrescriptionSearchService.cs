@@ -159,7 +159,6 @@ namespace Backend.Examinations.WebApiService
             char pathBase = Path.DirectorySeparatorChar;
             string fileName = prescription.FileName() + ".txt";
             string filePath = "." + pathBase + "GeneratedPrescription" + pathBase + fileName;
-            filePath.Replace("/", "_");
             string stringToWrite = prescription.ToString();
             Console.WriteLine(stringToWrite);
             using (StreamWriter streamWriter = new StreamWriter(filePath))
