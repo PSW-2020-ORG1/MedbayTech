@@ -1,6 +1,7 @@
 ﻿using Backend.Examinations.Model;
 using Backend.Examinations.Repository;
 using Backend.Examinations.Service.Interfaces;
+using Backend.Utils.DTO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -142,21 +143,26 @@ namespace Backend.Examinations.WebApiService
             return prescriptions;
         }
 
-        public List<Prescription> GetAll()
+        public List<PrescriptionForSendingDTO> GetAll()
         {
-            return repository.GetAll().ToList();
+            List<Prescription> prescriptions = repository.GetAll().ToList();
+            List<PrescriptionForSendingDTO> prescriptionsDTO = new List<PrescriptionForSendingDTO>();
+            foreach(Prescription prescription in prescriptions)
+            {
+                prescriptionsDTO.Add(new PrescriptionForSendingDTO(prescription));
+            }
+            return prescriptionsDTO;
         }
 
-        public string GeneratePrescription(Prescription prescription)
+        public string GeneratePrescription(PrescriptionForSendingDTO prescription)
         {
             char pathBase = Path.DirectorySeparatorChar;
-            string fileName = prescription.Id + ".txt";
+            string fileName = prescription.FileName() + ".txt";
             string filePath = "." + pathBase + "GeneratedPrescription" + pathBase + fileName;
-            string stringToWrite = prescription.GetStringForSharing();
+            string stringToWrite = prescription.ToString();
             Console.WriteLine(stringToWrite);
             using (StreamWriter streamWriter = new StreamWriter(filePath))
             {
-
                 string[] split = stringToWrite.Split("\n");
                 foreach (string line in split)
                 {

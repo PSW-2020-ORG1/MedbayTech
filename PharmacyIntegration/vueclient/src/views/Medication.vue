@@ -7,27 +7,28 @@
                         <v-card-subtitle class="primary secondary--text">{{prescription.date}}</v-card-subtitle>
                         <v-card-text>
                             <p class="display-1 text--primary">
-                                {{prescription.examinationSurgery.medicalRecord.patient.name}} {{prescription.examinationSurgery.medicalRecord.patient.surname}}
+                                {{prescription.patientName}} {{prescription.patientSurname}}
                             </p>
-                            <p>{{prescription.examinationSurgery.doctor.name}} {{prescription.examinationSurgery.doctor.surname}}</p>
+                            <p>{{prescription.doctorName}} {{prescription.doctorSurname}}</p>
                             <v-divider style="min-width:100%"></v-divider>
                             <v-card-title><strong>Medication:</strong> </v-card-title>
-                            <v-card-title>-{{prescription.medication.med}} {{prescription.medication.dosage}}</v-card-title>
-                            <v-card-title>-Hourly Intake: {{prescription.hourlyIntake}}</v-card-title>
+                            <v-card-title>-{{prescription.medicationName}} {{prescription.medicationDosage}}</v-card-title>
+                            <v-card-title>-Hourly Intake: {{prescription.medicationHourlyIntake}}</v-card-title>
                             <p v-if="status.prescriptionIndex !== index || status.message === '' " style="color:white">.</p>
-                            <p v-else style="color:forestgreen">{{status.message}}</p>
+                            <p v-else-if="status.message === 'We have the desired medication!'" style="color:forestgreen">{{status.message}}</p>
+                            <p v-else style="color:red">{{status.message}}</p>
                         </v-card-text>
                         <v-card-actions>
                             <v-btn text
                                     class="white accent--text"
-                                   @click="checkForMedication(prescription.medication.med, index)">
+                                   @click="checkForMedication(prescription.medicationName, index)">
                                 Ask pharmacy
                             </v-btn>
                             <v-spacer></v-spacer>
                             <v-btn text
                                     class="white accent--text"
                                    @click="sendPrescription(prescription)">
-                                Sent to pharmacy
+                                Send to pharmacy
                             </v-btn>
                         </v-card-actions>
                     </v-card>
@@ -56,6 +57,7 @@ export default {
             showModal: false,
             qrLink: {},  //require("../../../GeneratedPrescription/qrcode.png"),
             qrLinkPath: "",
+            
         }
     },
 
