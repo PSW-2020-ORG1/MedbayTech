@@ -7,7 +7,6 @@ namespace SeleniumEndToEnd.Pages
     public class CreateFeedback
     {
         private IWebDriver _webDriver { get; }
-        public const string URI = "http://localhost:4200/createFeedback";
 
         public CreateFeedback(IWebDriver webDriver)
         {
@@ -16,13 +15,12 @@ namespace SeleniumEndToEnd.Pages
 
         IWebElement txtFeedback => _webDriver.FindElement(By.Name("additionalNotes"));
 
-        IWebElement radioAllowed => _webDriver.FindElement(By.Id("allowedYes"));
+        IWebElement radioAllowed => _webDriver.FindElement(By.Id("allowedNo"));
 
         IWebElement radioAnonymous => _webDriver.FindElement(By.Id("anonymousNo"));
 
         private IWebElement submitButton => _webDriver.FindElement(By.XPath("//button[@value='submit']"));
 
-        public void Navigate() => _webDriver.Navigate().GoToUrl(URI);
 
         public void SelectAllowed() => radioAllowed.Click();
         
