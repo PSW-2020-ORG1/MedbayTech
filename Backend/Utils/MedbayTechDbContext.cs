@@ -78,6 +78,7 @@ namespace Model
             if (IsPostgres())
             {
                 optionsBuilder.UseNpgsql(CreateConnectionStringFromEnvironmentPostgres());
+                optionsBuilder.UseLazyLoadingProxies(true);
             }
             else
             {
