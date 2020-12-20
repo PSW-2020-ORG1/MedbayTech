@@ -79,6 +79,7 @@ namespace GraphicEditorWebService
                 {
                     Console.WriteLine("Failed to execute migration");
                 }
+
                 try
                 {
                     DataSeeder seeder = new DataSeeder();
