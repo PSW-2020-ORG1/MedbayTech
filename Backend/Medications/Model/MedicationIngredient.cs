@@ -6,6 +6,7 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Backend.General.Model;
 
 namespace Backend.Medications.Model
@@ -13,6 +14,7 @@ namespace Backend.Medications.Model
    public class MedicationIngredient : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public  string Name { get; set; }
 

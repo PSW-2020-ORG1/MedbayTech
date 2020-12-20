@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AllFeedback } from 'src/app/model/allFeedBack';
+import { AllFeedback } from 'src/app/model/allFeedback';
 import { FeedbackService } from 'src/app/service/feedback/feedback.service';
 import { UpdateFeedbackStatus } from 'src/app/model/updateFeedbackStatus'
 import { Button } from 'protractor';
@@ -28,8 +28,11 @@ export class AllFeedbackComponent implements OnInit {
   }
 
   updateStatus(feedbackId, feedbackStatus, element) { 
-      this.feedbackService.updateFeedbackStatus(new UpdateFeedbackStatus(feedbackId, feedbackStatus)).subscribe();
-      location.reload();
+      this.feedbackService.updateFeedbackStatus(new UpdateFeedbackStatus(feedbackId, feedbackStatus)).subscribe(data =>
+        {
+          this.loadAllFeedback()
+        });
+      
   }
 
 }

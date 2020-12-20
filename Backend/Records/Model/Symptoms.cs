@@ -14,8 +14,9 @@ using Backend.General.Model;
 namespace Backend.Records.Model
 {
    public class Symptoms : IIdentifiable<int>
-   {
+    {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
         [ForeignKey("Diagnosis")]

@@ -47,13 +47,13 @@ namespace Backend.Reports.Service
 
         public MedicationUsageReport Update(MedicationUsageReport report) => _medicationUsageReportRepository.Update(report);
 
-        public IEnumerable<MedicationUsageReport> GetForSpecificPeriod(Period period) =>
+        public List<MedicationUsageReport> GetForSpecificPeriod(Period period) =>
             GetAll().ToList().FindAll(m => DateTime.Compare(m.From.GetValueOrDefault(DateTime.Now), period.StartTime) >= 0
             && DateTime.Compare(m.Until.GetValueOrDefault(DateTime.Now), period.EndTime) <= 0);
 
         public MedicationUsageReport Get(string id) =>
             _medicationUsageReportRepository.GetObject(id);
-        public IEnumerable<MedicationUsageReport> GetAll() =>
+        public List<MedicationUsageReport> GetAll() =>
             _medicationUsageReportRepository.GetAll();
     }
 }

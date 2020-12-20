@@ -5,12 +5,13 @@
 
 using Backend.General.Model;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 namespace Model.Users
 {
    public class State : IIdentifiable<long>
    {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get;  set; }
         public string Name { get;  set; }
 

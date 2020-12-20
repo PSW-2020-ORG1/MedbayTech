@@ -1,8 +1,5 @@
 ﻿using Model.Users;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.SignalR;
 
 namespace Backend.Rooms.Service
 {
@@ -10,8 +7,8 @@ namespace Backend.Rooms.Service
     {
         Doctor GetDoctorByRoomExaminationRoom(int roomId);
         Doctor UpdateDoctorDataBase(Doctor doctor);
-        IEnumerable<Doctor> GetAll();
-        IEnumerable<Doctor> GetDoctorsBy(int specializationId);
+        List<Doctor> GetAll();
+        List<Doctor> GetDoctorsBy(int specializationId);
         Doctor GetDoctorBy(string id);
 
     }

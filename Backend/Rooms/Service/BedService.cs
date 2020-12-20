@@ -27,9 +27,9 @@ namespace Service.RoomService
 
         public Bed GetBed(int bedId) => bedRepository.GetObject(bedId);
 
-        public IEnumerable<Bed> GetAllBeds() => bedRepository.GetAll();
+        public List<Bed> GetAllBeds() => bedRepository.GetAll();
 
-        public IEnumerable<Bed> GetAllFreeBedsInPeriod(DateTime startDate, DateTime endDate)
+        public List<Bed> GetAllFreeBedsInPeriod(DateTime startDate, DateTime endDate)
         {
             var allBeds = bedRepository.GetAll().ToList();
             List<Bed> freeBeds = new List<Bed>();
@@ -53,7 +53,7 @@ namespace Service.RoomService
         }
 
 
-        public IEnumerable<Bed> GetBedsByRoomNumber(int roomNumber) => bedRepository.GetBedsByRoomNumber(roomNumber);
+        public List<Bed> GetBedsByRoomNumber(int roomNumber) => bedRepository.GetBedsByRoomNumber(roomNumber);
 
         public bool OccupyBed(Bed bed, Occupation occupation)
         {

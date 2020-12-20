@@ -30,7 +30,7 @@ namespace GraphicEditor.View.Building2
             page = mainPage;
             string path = Directory.GetCurrentDirectory();
             string new_path = path.Replace('\\', '/');
-            string arrowDown = new_path + "/View/arrowDown.png";
+            string arrowDown = new_path + "/Icons/arrowDown.png";
             imageArrowDown.Source = new BitmapImage(new Uri(@arrowDown, UriKind.Absolute));
         }
 
@@ -94,6 +94,12 @@ namespace GraphicEditor.View.Building2
                     rectangle.StrokeThickness = 5;
                     SearchResultsForEquipment.Id = "0";
                 }
+                if (rectangle.Uid.Equals(SearchAppointment.Id))
+                {
+                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#33ff49");
+                    rectangle.StrokeThickness = 5;
+                    SearchAppointment.Id = "0";
+                }
             }
         }
 
@@ -112,57 +118,105 @@ namespace GraphicEditor.View.Building2
 
         private void PatientRoom_MouseEnter(object sender, MouseEventArgs e)
         {
-            PopupPatientRoom.Placement = PlacementMode.MousePoint;
-            PopupPatientRoom.IsOpen = true;
+            System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
+            int roomId = Int32.Parse(r.Uid);
+            if (page.getRestriction() != 1)
+            {
+                PopupPatientRoom.Placement = PlacementMode.MousePoint;
+                PopupPatientRoom.DataContext = page.SearchDataBaseForRoom(roomId);
+                PopupPatientRoom.IsOpen = true;
+            }
+            else
+            {
+                PopupInfoForPatient.Placement = PlacementMode.MousePoint;
+                PopupInfoForPatient.DataContext = page.SearchDataBaseForRoom(roomId);
+                PopupInfoForPatient.IsOpen = true;
+            }
         }
 
         private void PatientRoom_MouseLeave(object sender, MouseEventArgs e)
         {
-            PopupPatientRoom.Visibility = Visibility.Collapsed;
-            PopupPatientRoom.IsOpen = false;
+            PopupPatientRoom.Visibility = PopupInfoForPatient.Visibility = Visibility.Collapsed;
+            PopupPatientRoom.IsOpen = PopupInfoForPatient.IsOpen = false;
         }
 
         private void ExaminationRoom_MouseEnter(object sender, MouseEventArgs e)
         {
-            PopupExaminationRoom.Placement = PlacementMode.MousePoint;
-            PopupExaminationRoom.IsOpen = true;
+            System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
+            int roomId = Int32.Parse(r.Uid);
+            if (page.getRestriction() != 1)
+            {
+                PopupExaminationRoom.Placement = PlacementMode.MousePoint;
+                PopupExaminationRoom.DataContext = page.searchDataBaseForDoctor(roomId);
+                PopupExaminationRoom.IsOpen = true;
+            }
+            else
+            {
+                PopupInfoForPatient.Placement = PlacementMode.MousePoint;
+                PopupInfoForPatient.DataContext = page.SearchDataBaseForRoom(roomId);
+                PopupInfoForPatient.IsOpen = true;
+            }
         }
 
         private void ExaminationRoom_MouseLeave(object sender, MouseEventArgs e)
         {
-            PopupExaminationRoom.Visibility = Visibility.Collapsed;
-            PopupExaminationRoom.IsOpen = false;
+            PopupExaminationRoom.Visibility = PopupInfoForPatient.Visibility = Visibility.Collapsed;
+            PopupExaminationRoom.IsOpen = PopupInfoForPatient.IsOpen = false;
         }
 
         private void OperatingRoom_MouseEnter(object sender, MouseEventArgs e)
         {
-            PopupOperatingRoom.Placement = PlacementMode.MousePoint;
-            PopupOperatingRoom.IsOpen = true;
+            System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
+            int roomId = Int32.Parse(r.Uid);
+            if (page.getRestriction() != 1)
+            {
+                PopupOperatingRoom.Placement = PlacementMode.MousePoint;
+                PopupOperatingRoom.DataContext = page.SearchDataBaseForRoom(roomId);
+                PopupOperatingRoom.IsOpen = true;
+            }
+            else
+            {
+                PopupInfoForPatient.Placement = PlacementMode.MousePoint;
+                PopupInfoForPatient.DataContext = page.SearchDataBaseForRoom(roomId);
+                PopupInfoForPatient.IsOpen = true;
+            }
         }
 
         private void OperatingRoom_MouseLeave(object sender, MouseEventArgs e)
         {
-            PopupOperatingRoom.Visibility = Visibility.Collapsed;
-            PopupOperatingRoom.IsOpen = false;
+            PopupOperatingRoom.Visibility = PopupInfoForPatient.Visibility = Visibility.Collapsed;
+            PopupOperatingRoom.IsOpen = PopupInfoForPatient.IsOpen = false;
         }
 
         private void AuxiliaryRoom_MouseEnter(object sender, MouseEventArgs e)
         {
-            PopupAuxiliaryRoom.Placement = PlacementMode.MousePoint;
-            PopupAuxiliaryRoom.IsOpen = true;
+            System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
+            int roomId = Int32.Parse(r.Uid);
+            if (page.getRestriction() != 1)
+            {
+                PopupAuxiliaryRoom.Placement = PlacementMode.MousePoint;
+                PopupAuxiliaryRoom.DataContext = page.SearchDataBaseForRoom(roomId);
+                PopupAuxiliaryRoom.IsOpen = true;
+            }
+            else
+            {
+                PopupInfoForPatient.Placement = PlacementMode.MousePoint;
+                PopupInfoForPatient.DataContext = page.SearchDataBaseForRoom(roomId);
+                PopupInfoForPatient.IsOpen = true;
+            }
         }
 
         private void AuxiliaryRoom_MouseLeave(object sender, MouseEventArgs e)
         {
-            PopupAuxiliaryRoom.Visibility = Visibility.Collapsed;
-            PopupAuxiliaryRoom.IsOpen = false;
+            PopupAuxiliaryRoom.Visibility = PopupInfoForPatient.Visibility = Visibility.Collapsed;
+            PopupAuxiliaryRoom.IsOpen = PopupInfoForPatient.IsOpen = false;
         }
 
         private void AdditionalInformationPatientRoom(object sender, MouseButtonEventArgs e)
         {
             System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
             int roomId = Int32.Parse(r.Uid);
-            if (page.getRestriction() == 0)
+            if (page.getRestriction() != 1)
             {
                 AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom(roomId);
                 additionalInformation.ShowDialog();
@@ -173,7 +227,7 @@ namespace GraphicEditor.View.Building2
         {
             System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
             int roomId = Int32.Parse(r.Uid);
-            if(page.getRestriction() == 0)
+            if(page.getRestriction() != 1)
             {
                 AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom(roomId);
                 additionalInformation.ShowDialog();
@@ -184,7 +238,7 @@ namespace GraphicEditor.View.Building2
         {
             System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
             int roomId = Int32.Parse(r.Uid);
-            if (page.getRestriction() == 0)
+            if (page.getRestriction() != 1)
             {
                 AdditionalInformationExaminationRoom additionalInformation = new AdditionalInformationExaminationRoom(roomId);
                 additionalInformation.ShowDialog();
@@ -195,7 +249,7 @@ namespace GraphicEditor.View.Building2
         {
             System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
             int roomId = Int32.Parse(r.Uid);
-            if (page.getRestriction() == 0)
+            if (page.getRestriction() != 1)
             {
                 AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom(roomId);
                 additionalInformation.ShowDialog();

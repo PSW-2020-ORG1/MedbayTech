@@ -22,14 +22,6 @@ namespace SeleniumEndToEnd.Pages
 
         private IWebElement submitButton => _webDriver.FindElement(By.XPath("//button[@value='submit']"));
 
-        public void PostFeedback(string feedbackText)
-        {
-            txtFeedback.SendKeys(feedbackText);
-            radioAllowed.Click();
-            radioAnonymous.Click();
-
-            submitButton.Submit();
-        }
         public void Navigate() => _webDriver.Navigate().GoToUrl(URI);
 
         public void SelectAllowed() => radioAllowed.Click();
@@ -60,8 +52,10 @@ namespace SeleniumEndToEnd.Pages
 
         public void WaitForFormSubmit()
         {
-            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-
+            var wait = new WebDriverWait(_webDriver, new TimeSpan(0, 0, 40));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
         }
+        public void ResolveAlertDialog()
+            => _webDriver.SwitchTo().Alert().Accept();
     }
 }

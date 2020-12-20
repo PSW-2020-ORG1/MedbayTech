@@ -2,10 +2,8 @@
 using Model.Users;
 using Repository;
 using Repository.UserRepository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Backend.Users.Repository.MySqlRepository
 {
@@ -13,35 +11,35 @@ namespace Backend.Users.Repository.MySqlRepository
     public class UserSqlRepository : MySqlrepository<RegisteredUser, string>,
         IUserRepository
     {
-        public IEnumerable<Doctor> GetAllDoctors()
+        public List<Doctor> GetAllDoctors()
         {
-            return (IEnumerable<Doctor>) context.Doctors.ToList();
+            return context.Doctors.ToList();
         }
 
-        public IEnumerable<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
+        public List<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
         {
             //return (IEnumerable<Doctor>) context.Doctors.ToList().Where(d => d.IsMySpecialization(specialization));
             return null;
         }
 
-        public IEnumerable<Employee> GetAllEmployees()
+        public List<Employee> GetAllEmployees()
         {
-            return (IEnumerable<Employee>)context.Employees.ToList();
+            return context.Employees.ToList();
         }
 
-        public IEnumerable<Manager> GetAllManagers()
+        public List<Manager> GetAllManagers()
         {
-            return (IEnumerable<Manager>)context.Managers.ToList();
+            return context.Managers.ToList();
         }
 
-        public IEnumerable<Patient> GetAllPatients()
+        public List<Patient> GetAllPatients()
         {
-            return (IEnumerable<Patient>)context.Patients.ToList();
+            return context.Patients.ToList();
         }
 
-        public IEnumerable<Secretary> GetAllSecretaries()
+        public List<Secretary> GetAllSecretaries()
         {
-            return (IEnumerable<Secretary>)context.Secretaries.ToList();
+            return context.Secretaries.ToList();
         }
 
         public RegisteredUser GetByUsername(string username)
@@ -49,9 +47,9 @@ namespace Backend.Users.Repository.MySqlRepository
             return context.RegisteredUsers.ToList().FirstOrDefault(ru => ru.Username.Equals(username));
         }
 
-        public IEnumerable<Doctor> GetDoctorsFromDepartment(Department department)
+        public List<Doctor> GetDoctorsFromDepartment(Department department)
         {
-            return context.Doctors.ToList().Where(d => d.DepartmentId.Equals(department.Id));
+            return context.Doctors.ToList().Where(d => d.DepartmentId.Equals(department.Id)).ToList();
         }
     }
 }

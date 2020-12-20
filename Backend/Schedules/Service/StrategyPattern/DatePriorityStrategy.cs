@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Backend.Rooms.Service;
 using Backend.Schedules.Service.Interfaces;
-using Backend.Utils;
 using Model.Users;
 
 namespace Service.ScheduleService

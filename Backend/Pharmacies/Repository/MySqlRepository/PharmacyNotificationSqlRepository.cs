@@ -12,9 +12,9 @@ namespace Backend.Pharmacies.Repository.MySqlRepository
     public class PharmacyNotificationSqlRepository : IPharmacyNotificationRepository
     {
 
-        private MySqlContext _context;
+        private MedbayTechDbContext _context;
 
-        public PharmacyNotificationSqlRepository(MySqlContext context)
+        public PharmacyNotificationSqlRepository(MedbayTechDbContext context)
         {
             _context = context;
         }
@@ -39,7 +39,7 @@ namespace Backend.Pharmacies.Repository.MySqlRepository
 
         public bool ExistsInSystem(int id) => GetObject(id) != null;
 
-        public IEnumerable<PharmacyNotification> GetAll() => _context.PharmacyNotifications.ToList();
+        public List<PharmacyNotification> GetAll() => _context.PharmacyNotifications.ToList();
 
         public PharmacyNotification GetObject(int id) =>
             _context.PharmacyNotifications.ToList().Find(pn => pn.Id.Equals(id));

@@ -3,7 +3,6 @@
 // Created: Thursday, April 16, 2020 5:31:19 PM
 // Purpose: Definition of Class Allergens
 
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Records.Model;
@@ -15,6 +14,7 @@ namespace Backend.Medications.Model
     public class Allergens : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Allergen { get; set; }
         [ForeignKey("MedicalRecord")]

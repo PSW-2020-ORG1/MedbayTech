@@ -11,6 +11,7 @@ namespace PharmacyIntegration.Model
     public class PharmacyNotification : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Content { get; set; }
         public bool Approved { get; set; }

@@ -228,7 +228,6 @@ export class PatientRegistrationComponent implements OnInit {
 
   selectedPatientCondition(event) {
     this.patientCondition = event.value;
-    console.log("Kurcina");
   }
 
   selectedBloodType(event) {

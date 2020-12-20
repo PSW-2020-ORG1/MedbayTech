@@ -12,8 +12,9 @@ using Backend.General.Model;
 namespace Backend.Records.Model
 {
    public class Vaccines : IIdentifiable<int>
-   {
+    {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public  int Id { get; set; }
         public string Name { get; set; }
         [ForeignKey("MedicalRecord")]

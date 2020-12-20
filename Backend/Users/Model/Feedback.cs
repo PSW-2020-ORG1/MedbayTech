@@ -13,6 +13,7 @@ namespace Model.Users
     public class Feedback : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; } 
         public DateTime Date { get;  set; }
 

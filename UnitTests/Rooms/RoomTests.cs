@@ -33,7 +33,7 @@ namespace MedbayTechUnitTests
         public IRoomRepository CreateRepositoryStub ( )
         {
             var stubRepository = new Mock<IRoomRepository>();
-            var rooms = GetRooms();
+            var rooms = GetRooms().ToList();
             stubRepository.Setup(m => m.GetAll()).Returns(rooms);
             return stubRepository.Object;
         }

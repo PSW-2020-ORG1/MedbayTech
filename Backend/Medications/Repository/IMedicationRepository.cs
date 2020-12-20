@@ -12,13 +12,12 @@ namespace Backend.Medications.Repository.FileRepository
 {
    public interface IMedicationRepository : IRepository<Medication, int>
    {
-        IEnumerable<Medication> GetAllOnValidation();
-      
-        IEnumerable<Medication> GetAllRejected();
-      
-        IEnumerable<Medication> GetAllApproved();
+        List<Medication> GetAllOnValidation();
 
-        bool ExistsInSystem(int id);
+        List<Medication> GetAllRejected();
+
+        List<Medication> GetAllApproved();
+
         int GetNextID();
     }
 }

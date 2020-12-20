@@ -17,6 +17,7 @@ namespace Backend.Examinations.Model
    public class ExaminationSurgery : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; } 
         public DateTime StartTime { get; set; }
         public TypeOfAppointment Type { get; set; }

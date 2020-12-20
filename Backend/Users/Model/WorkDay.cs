@@ -14,6 +14,7 @@ namespace Model.Users
     public class WorkDay : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public Days Day { get; protected set; }
         public DateTime Date { get; protected set; }

@@ -12,19 +12,19 @@
         "IIS Express": {
             "commandName": "IISExpress",
             "launchBrowser": true,
-            "launchUrl": "api/feedback",
+            "launchUrl": "index.html",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
         },
-        "WebApplication": {
-            "commandName": "Project",
-            "launchBrowser": true,
-            "launchUrl": "api/feedback",
-            "applicationUrl": "http://localhost:8080",
-            "environmentVariables": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            }
+      "WebApplication": {
+        "commandName": "Project",
+        "launchBrowser": true,
+        "launchUrl": "index.html",
+        "applicationUrl": "http://localhost:8080",
+        "environmentVariables": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
         }
+      }
     }
 }

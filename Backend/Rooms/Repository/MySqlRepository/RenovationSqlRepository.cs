@@ -11,9 +11,9 @@ namespace Backend.Rooms.Repository.MySqlRepository
     class RenovationSqlRepository : MySqlrepository<Renovation, int>,
         IRenovationRepository
     {
-        public IEnumerable<Renovation> GetAllFromDate(DateTime date)
+        public List<Renovation> GetAllFromDate(DateTime date)
         {
-            return GetAll().ToList().Where(r => r.Period.StartTime.CompareTo(date) <= 0);
+            return GetAll().ToList().Where(r => r.Period.StartTime.CompareTo(date) <= 0).ToList();
         }
     }
 }

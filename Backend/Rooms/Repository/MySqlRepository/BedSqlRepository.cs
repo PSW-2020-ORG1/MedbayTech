@@ -10,9 +10,9 @@ namespace Backend.Rooms.Repository.MySqlRepository
     class BedSqlRepository : MySqlrepository<Bed, int>,
         IBedRepository
     {
-        public IEnumerable<Bed> GetBedsByRoomNumber(int roomNumber)
+        public List<Bed> GetBedsByRoomNumber(int roomNumber)
         {
-            return GetAll().ToList().Where(b => b.Room.RoomNumber.Equals(roomNumber));
+            return GetAll().ToList().Where(b => b.Room.RoomNumber.Equals(roomNumber)).ToList();
         }
     }
 }

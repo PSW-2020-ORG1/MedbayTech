@@ -11,7 +11,7 @@ namespace Repository.RoomRepository
 {
    public interface IRenovationRepository : IRepository<Renovation,int>
    {
-      IEnumerable<Renovation> GetAllFromDate(DateTime date);
+        List<Renovation> GetAllFromDate(DateTime date);
    
    }
 }

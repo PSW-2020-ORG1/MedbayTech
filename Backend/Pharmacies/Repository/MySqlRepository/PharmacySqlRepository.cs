@@ -12,8 +12,8 @@ namespace Backend.Pharmacies.Repository.MySqlRepository
     public class PharmacySqlRepository : IPharmacyRepository //MySqlrepository<Pharmacy, string>,
     {
 
-        private MySqlContext _context;
-        public PharmacySqlRepository(MySqlContext context)
+        private MedbayTechDbContext _context;
+        public PharmacySqlRepository(MedbayTechDbContext context)
         {
             _context = context;
         }
@@ -38,7 +38,7 @@ namespace Backend.Pharmacies.Repository.MySqlRepository
 
         public bool ExistsInSystem(string id) => GetObject(id) != null;
 
-        public IEnumerable<Pharmacy> GetAll() => _context.Pharmacies.ToList();
+        public List<Pharmacy> GetAll() => _context.Pharmacies.ToList();
 
         public Pharmacy GetObject(string id) => _context.Pharmacies.ToList().Find(p => p.Id.Equals(id));
 

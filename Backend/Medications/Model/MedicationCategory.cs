@@ -3,7 +3,6 @@
 // Created: Thursday, April 16, 2020 5:28:21 PM
 // Purpose: Definition of Class MedicationCategory
 
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Model.Users;
@@ -14,6 +13,7 @@ namespace Backend.Medications.Model
     public class MedicationCategory : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string CategoryName { get; set; }
         public virtual Specialization Specialization { get; set; }

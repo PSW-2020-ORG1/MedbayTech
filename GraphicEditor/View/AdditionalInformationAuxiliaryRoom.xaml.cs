@@ -32,7 +32,7 @@ namespace GraphicEditor
             InitializeComponent();
             string path = Directory.GetCurrentDirectory();
             string new_path = path.Replace('\\', '/');
-            string logo = new_path + "/View/WhiteLogo.png";
+            string logo = new_path + "/Icons/WhiteLogo.png";
             imageLogo.Source = new BitmapImage(new Uri(@logo, UriKind.Absolute));
             searchDataBase(roomId);
             this.DataContext = room;
@@ -50,7 +50,7 @@ namespace GraphicEditor
         {
             room = new Room();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/1")
+            var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/ByRoomId")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -65,7 +65,7 @@ namespace GraphicEditor
         {
             medications = new List<Medication>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/medication/" + roomId + "/1")
+            var task = httpClient.GetAsync("http://localhost:53109/api/medication/" + roomId + "/ByRoomId")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;

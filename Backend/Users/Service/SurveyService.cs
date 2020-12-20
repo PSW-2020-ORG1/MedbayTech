@@ -21,17 +21,17 @@ namespace Backend.Users.WebApiService
             this.surveyRepository = surveyRepository;
         }
 
-        public IEnumerable<SurveyQuestion> GetAllQuestions()
+        public List<SurveyQuestion> GetAllQuestions()
         {
             return surveyQuestionRepository.GetAll();
         }
 
-        public IEnumerable<SurveyQuestion> GetAllActiveQuestions()
+        public List<SurveyQuestion> GetAllActiveQuestions()
         {
             return surveyQuestionRepository.GetAllActiveQuestions();
         }
 
-        public IEnumerable<Survey> GetAllSurveys()
+        public List<Survey> GetAllSurveys()
         {
             return surveyRepository.GetAll();
         }

@@ -11,9 +11,9 @@ namespace Backend.Users.Repository.MySqlRepository
     class WorkDaySqlRepository : MySqlrepository<WorkDay, int>,
         IWorkDayRepository
     {
-        public IEnumerable<WorkDay> GetWorkTimeForEmployee(Employee employee)
+        public List<WorkDay> GetWorkTimeForEmployee(Employee employee)
         {
-            return GetAll().ToList().Where(wd => wd.EmployeeId.Equals(employee));
+            return GetAll().ToList().Where(wd => wd.EmployeeId.Equals(employee)).ToList();
         }
     }
 }

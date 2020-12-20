@@ -4,7 +4,6 @@
 // Purpose: Definition of Interface ISpecializationRepository
 
 using Model.Users;
-using System;
 using System.Collections.Generic;
 
 namespace Repository.UserRepository
@@ -12,7 +11,7 @@ namespace Repository.UserRepository
    public interface ISpecializationRepository : ICreate<Specialization>, IDelete<Specialization>, IGetAll<Specialization>
    {
         Specialization GetGeneralSpecialization();
-        IEnumerable<Specialization> GetAll();
+        List<Specialization> GetAll();
         
     }
 }

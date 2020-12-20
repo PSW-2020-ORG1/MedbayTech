@@ -10,9 +10,9 @@ namespace Backend.Users.Repository.MySqlRepository
     class QuestionSqlRepository : MySqlrepository<Question, int>,
         IQuestionRepository
     {
-        public IEnumerable<Question> GetFAQ()
+        public List<Question> GetFAQ()
         {
-            return GetAll().ToList().Where(q => q.FrequentlyAsked == true);
+            return GetAll().ToList().Where(q => q.FrequentlyAsked == true).ToList();
         }
     }
 }

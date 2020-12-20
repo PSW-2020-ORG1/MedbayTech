@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "WebApplicationFrontend"
+  "defaultProject": "WebApplicationFrontend",
+  "cli": {
+    "analytics": "4ea7e60b-5f9e-47c6-ac9d-7b504f7fa50d"
+  }
 }

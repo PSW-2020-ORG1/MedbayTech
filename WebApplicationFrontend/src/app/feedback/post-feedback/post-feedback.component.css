@@ -1,3 +1,11 @@
 .padd{
     padding-left: 5px;
 }
+
+.example-form-field {
+    width: 200px;
+}
+
+.allowed-margin {
+    margin-top: 10px;
+}

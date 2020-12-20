@@ -112,7 +112,7 @@ namespace MedbayTechUnitTests.Examinations
                 Gender = Gender.MALE,
                 InsurancePolicyId = "policy1",
                 Name = "Jovan",
-                Surname = "Jovic",
+                Surname = "Stevic",
                 Username = "mika",
                 Password = "mika1978",
                 Phone = "065/123-4554",
@@ -155,18 +155,6 @@ namespace MedbayTechUnitTests.Examinations
             };
 
             return patient;
-        }
-
-        private static Medication CreateMedication()
-        {
-            var medication = new Medication
-            {
-                Id = 1,
-                Med = "Brufen"
-
-            };
-
-            return medication;
         }
 
         private static MedicalRecord CreateMedicalRecord()

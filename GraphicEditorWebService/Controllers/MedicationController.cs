@@ -1,5 +1,6 @@
 ﻿using Backend.Medications.Model;
 using Backend.Medications.Service;
+using Backend.Medications.Service.Enum;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,17 +21,18 @@ namespace GraphicEditorWebService.Controllers
             _medicationService = medicationService;
         }
 
-        [HttpGet("{textBoxSearch?}/{operation?}")]
-        public IActionResult Get(string textBoxSearch, int operation)
+        [HttpGet("{textBoxSearch?}/{medicationSearch?}")]
+        public IActionResult Get(string textBoxSearch, MedicationSearch medicationSearch)
         {
-            if(operation == 0)
+            if (medicationSearch == MedicationSearch.ByNameOrId)
             {
                 return Ok(_medicationService.GetAllMedicationsByNameOrId(textBoxSearch.ToLower().Trim()));
             }
-            else
+            else if (medicationSearch == MedicationSearch.ByRoomId)
             {
                 return Ok(_medicationService.GetAllMedicationByRoomId(textBoxSearch));
             }
+            else return Ok();
         }
 
         [HttpPost]

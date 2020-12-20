@@ -5,12 +5,8 @@
 
 using Model.Rooms;
 using Repository.RoomRepository;
-using Repository.ScheduleRepository;
-using Backend.Exceptions.Schedules;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Model;
 using Backend.Rooms.Service;
 
 namespace Service.RoomService
@@ -26,7 +22,7 @@ namespace Service.RoomService
             _roomRepository = roomRepository;
         }
 
-        public IEnumerable<Room> GetAllRooms ( ) => _roomRepository.GetAll();
+        public List<Room> GetAllRooms ( ) => _roomRepository.GetAll().ToList();
 
         public Room GetRoomByRoomNumber ( int roomNumber )
         {
@@ -62,17 +58,11 @@ namespace Service.RoomService
 
         public Room UpdateRoomDataBase(Room room)
         {
-            _roomRepository.Update(room);
+            Room room_update = _roomRepository.GetAll().ToList().Find(r => r.Id == room.Id);
+            room_update.UpdateRoom(room);
+            _roomRepository.Update(room_update);
             return room;
         }
-
-        /*
-        public List<Room> GetRoomsByRoomLabelorRoomUse ( string textBoxSearch ) =>
-            _roomRepository.GetAll().ToList().FindAll(r =>
-            r.RoomLabel.Contains(textBoxSearch, System.StringComparison.CurrentCultureIgnoreCase)
-            || r.RoomUse.Contains(textBoxSearch, System.StringComparison.CurrentCultureIgnoreCase));
-
-        */
 
         public Room UpdateRoom ( Room room ) => _roomRepository.Update(room);
 
@@ -104,7 +94,7 @@ namespace Service.RoomService
             return false;
         }
 
-        public IEnumerable<Room> GetAllRoomsFromOneType ( RoomType type )
+        public List<Room> GetAllRoomsFromOneType ( RoomType type )
         {
             var allRooms = _roomRepository.GetAll();
             List<Room> roomsOfOneType = new List<Room>();
@@ -115,10 +105,10 @@ namespace Service.RoomService
                     roomsOfOneType.Add(room);
                 }
             }
-            return roomsOfOneType;
+            return roomsOfOneType.ToList();
         }
 
-        public IEnumerable<Room> GetAllRoomsFromOneDepartment ( Department department )
+        public List<Room> GetAllRoomsFromOneDepartment ( Department department )
         {
             var allRooms = _roomRepository.GetAll();
             List<Room> roomsOfOneDepartment = new List<Room>();
@@ -129,7 +119,7 @@ namespace Service.RoomService
                     roomsOfOneDepartment.Add(room);
                 }
             }
-            return roomsOfOneDepartment;
+            return roomsOfOneDepartment.ToList();
         }
 
         public Room AddHospitalEquipmentToRoom ( Room room, HospitalEquipment hospitalEquipment )
@@ -149,7 +139,7 @@ namespace Service.RoomService
 
         public List<Room> GetAll ( )
         {
-            return ( List<Room> ) _roomRepository.GetAll();
+            return _roomRepository.GetAll().ToList();
         }
     }
 }

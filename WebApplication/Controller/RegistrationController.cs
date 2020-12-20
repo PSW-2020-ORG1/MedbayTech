@@ -153,11 +153,13 @@ namespace WebApplication.Controller
         private string GenerateUrl(string _userId, string _token)
         {
             string url = Url.Action(nameof(Activate), "Registration", new { userId = _userId, token = _token });
-            return "http://localhost:8080" + url;
+            return GetDomain() + url;
         }
         private string GetDomain()
         {
-            return "http://localhost:8080";
+            string domain = Environment.GetEnvironmentVariable("DOMAIN") ?? "localhost";
+            string port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+            return $"http://{domain}:{port}";
         }
 
         private void GenerateEmailInfo(Patient patient)

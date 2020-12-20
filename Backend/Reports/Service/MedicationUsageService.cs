@@ -22,6 +22,6 @@ namespace Backend.Reports.Service
 
         public MedicationUsage Get(int id) => _medicationUsageRepository.GetObject(id);
 
-        public IEnumerable<MedicationUsage> GetAll() => _medicationUsageRepository.GetAll();
+        public List<MedicationUsage> GetAll() => _medicationUsageRepository.GetAll();
     }
 }

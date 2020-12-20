@@ -4,7 +4,6 @@
 // Purpose: Definition of Interface IEmergencyRequestRepository
 
 using Backend.Examinations.Model;
-using System;
 using System.Collections.Generic;
 using Repository;
 
@@ -12,6 +11,6 @@ namespace Backend.Examinations.Repository
 {
    public interface IEmergencyRequestRepository : IRepository<EmergencyRequest,int>
    {
-        IEnumerable<EmergencyRequest> GetAllUnScheduled();
+        List<EmergencyRequest> GetAllUnScheduled();
    }
 }

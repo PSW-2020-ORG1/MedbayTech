@@ -18,6 +18,7 @@ namespace Model.Rooms
     public class Room : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public int RoomNumber { get;  set; }
@@ -55,5 +56,18 @@ namespace Model.Rooms
             Id = id;
         }
 
+        public void UpdateRoom(Room room)
+        {
+            Id = room.Id;
+            RoomNumber = room.RoomNumber;
+            RoomType = room.RoomType;
+            DepartmentId = room.DepartmentId;
+            Department = room.Department;
+            HospitalEquipment = room.HospitalEquipment;
+            RoomLabel = room.RoomLabel;
+            RoomUse = room.RoomUse;
+            BedsCapacity = room.BedsCapacity;
+            BedsFree = room.BedsFree;
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace Model.Rooms
     public class Department : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -43,6 +44,15 @@ namespace Model.Rooms
         public void SetId (int id)
         {
             Id = id;
+        }
+
+        public void UpdateDepartment(Department department)
+        {
+            Id = department.Id;
+            Name = department.Name;
+            Floor = department.Floor;
+            HospitalId = department.HospitalId;
+            Hospital = department.Hospital;
         }
     }
 }
