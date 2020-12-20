@@ -27,7 +27,7 @@ export class PrescriptionSimpleSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.prescriptionForm = new FormGroup({
-      'medicine' : new FormControl('', [Validators.pattern("^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
+      'medicine' : new FormControl('', [Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
       'hourlyIntake' : new FormControl(6, [Validators.pattern("^[0-9]{1,2}")]),
       'startDate' : new FormControl(new Date()),
       'endDate' : new FormControl(new Date())
