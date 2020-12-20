@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  baseUrl: "http://localhost:8080",
+  baseUrl: "https://medbaytech.herokuapp.com",
   fedback: 'api/feedback',
   allFeedback: 'allFeedback',
   updateFeedbackStatus: 'updateFeedbackStatus',

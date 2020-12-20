@@ -131,13 +131,11 @@ namespace WebApplication
             app.UseStaticFiles();
 
 
-            if (stage.Equals("production"))
-            {
                 app.UseStaticFiles(new StaticFileOptions
                 {
                     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "dist"))
                 });
-            }
+            
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
