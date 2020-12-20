@@ -51,7 +51,7 @@ namespace Backend.Examinations.WebApiService
         /// <returns>List of filtered reports</returns>
         public List<ExaminationSurgery> AdvancedSearchReports(ReportAdvancedDTO dto)
         {
-            return SearchByParameters(repository.GetReportFor("2406978890046").ToList(), dto, SearchFByFirstParameter(repository.GetReportFor("2406978890046").ToList(), dto));
+            return SearchByParameters(repository.GetReportFor("2406978890046"), dto, SearchFByFirstParameter(repository.GetReportFor("2406978890046"), dto));
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace Backend.Examinations.WebApiService
         {
             if (!docSurname.Equals(""))
             {
-                reports = reports.Where(report => report.Doctor.Name.ToLower().Contains(docSurname.ToLower())).ToList();
+                reports = reports.Where(report => report.Doctor.Surname.ToLower().Contains(docSurname.ToLower())).ToList();
             }
             return reports;
         }

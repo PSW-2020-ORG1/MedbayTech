@@ -114,7 +114,7 @@ namespace Backend.Utils
         {
             context.Add(new State { Name = "Serbia" });
             context.SaveChanges();
-            
+
         }
 
         private void SeedCities(MedbayTechDbContext context)
@@ -423,9 +423,8 @@ namespace Backend.Utils
                 OnCall = true,
                 PatientReview = 4.5,
                 DepartmentId = 1,
-                ExaminationRoomId = 1,
-                OperationRoomId = 2,
-                //SpecializationId = 1
+                ExaminationRoomId = 49,
+                OperationRoomId = 116,
                 SpecializationId = 1
             });
 
@@ -451,8 +450,60 @@ namespace Backend.Utils
                 OnCall = true,
                 PatientReview = 4.5,
                 DepartmentId = 1,
-                ExaminationRoomId = 1,
-                OperationRoomId = 2,
+                ExaminationRoomId = 8,
+                OperationRoomId = 64,
+                SpecializationId = 1
+            });
+            context.Add(new Doctor
+            {
+                Id = "2407978890043",
+                CurrResidenceId = 1,
+                DateOfBirth = new DateTime(1978, 6, 24),
+                DateOfCreation = new DateTime(),
+                EducationLevel = EducationLevel.bachelor,
+                Email = "ivan@gmail.com",
+                Gender = Gender.MALE,
+                InsurancePolicyId = "policy2",
+                Name = "Mirjana",
+                Surname = "Lakic",
+                Username = "mima",
+                Password = "mima123",
+                Phone = "065/123-4554",
+                PlaceOfBirthId = 11000,
+                Profession = "doctor",
+                ProfileImage = ".",
+                LicenseNumber = "001",
+                OnCall = true,
+                PatientReview = 4.5,
+                DepartmentId = 1,
+                ExaminationRoomId = 122,
+                OperationRoomId = 15,
+                SpecializationId = 2
+            });
+            context.Add(new Doctor
+            {
+                Id = "2407978890041",
+                CurrResidenceId = 1,
+                DateOfBirth = new DateTime(1978, 6, 24),
+                DateOfCreation = new DateTime(),
+                EducationLevel = EducationLevel.bachelor,
+                Email = "ivan@gmail.com",
+                Gender = Gender.MALE,
+                InsurancePolicyId = "policy2",
+                Name = "Petar",
+                Surname = "Petrovic",
+                Username = "mima",
+                Password = "mima123",
+                Phone = "065/123-4554",
+                PlaceOfBirthId = 11000,
+                Profession = "doctor",
+                ProfileImage = ".",
+                LicenseNumber = "001",
+                OnCall = true,
+                PatientReview = 4.5,
+                DepartmentId = 1,
+                ExaminationRoomId = 4,
+                OperationRoomId = 18,
                 SpecializationId = 1
             });
             context.SaveChanges();
@@ -469,6 +520,39 @@ namespace Backend.Utils
                 IllnessHistory = new List<Diagnosis>(),
                 FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
                 PatientId = "2406978890046",
+                Therapies = new List<Therapy>()
+            });
+            context.Add(new MedicalRecord
+            {
+                CurrHealthState = PatientCondition.HospitalTreatment,
+                BloodType = BloodType.ANeg,
+                Allergies = new List<Allergens>(),
+                Vaccines = new List<Vaccines>(),
+                IllnessHistory = new List<Diagnosis>(),
+                FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
+                PatientId = "2406978890048",
+                Therapies = new List<Therapy>()
+            });
+            context.Add(new MedicalRecord
+            {
+                CurrHealthState = PatientCondition.HospitalTreatment,
+                BloodType = BloodType.ANeg,
+                Allergies = new List<Allergens>(),
+                Vaccines = new List<Vaccines>(),
+                IllnessHistory = new List<Diagnosis>(),
+                FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
+                PatientId = "2406978890049",
+                Therapies = new List<Therapy>()
+            });
+            context.Add(new MedicalRecord
+            {
+                CurrHealthState = PatientCondition.HospitalTreatment,
+                BloodType = BloodType.ANeg,
+                Allergies = new List<Allergens>(),
+                Vaccines = new List<Vaccines>(),
+                IllnessHistory = new List<Diagnosis>(),
+                FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
+                PatientId = "2406978890050",
                 Therapies = new List<Therapy>()
             });
             context.SaveChanges();
@@ -660,7 +744,7 @@ namespace Backend.Utils
 
         private void SeedPatients(MedbayTechDbContext context)
         {
-            context.Add(new Patient 
+            context.Add(new Patient
             {
                 Id = "2406978890046",
                 CurrResidenceId = 1,
@@ -679,7 +763,7 @@ namespace Backend.Utils
                 Profession = "vodoinstalater",
                 ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
                 IsGuestAccount = false,
-                ChosenDoctorId = "2406978890047" 
+                ChosenDoctorId = "2406978890047"
             });
             context.Add(new Patient
             {
@@ -763,13 +847,13 @@ namespace Backend.Utils
 
         private void SeedDepartments(MedbayTechDbContext context)
         {
-            context.Add(new Department { Name = "General H1", Floor = 0, HospitalId = 1 });
+            context.Add(new Department { Name = "General", Floor = 0, HospitalId = 1 });
             context.Add(new Department { Name = "Cardiology", Floor = 0, HospitalId = 1 });
             context.Add(new Department { Name = "Oncology", Floor = 1, HospitalId = 1 });
             context.Add(new Department { Name = "Radiology", Floor = 1, HospitalId = 1 });
             context.Add(new Department { Name = "Neurology", Floor = 2, HospitalId = 1 });
             context.Add(new Department { Name = "Intensive Care", Floor = 2, HospitalId = 1 });
-            context.Add(new Department { Name = "General H2", Floor = 0, HospitalId = 2 });
+            context.Add(new Department { Name = "Emergency", Floor = 0, HospitalId = 2 });
             context.Add(new Department { Name = "Dialysis", Floor = 0, HospitalId = 2 });
             context.Add(new Department { Name = "Gastroenterology", Floor = 1, HospitalId = 2 });
             context.Add(new Department { Name = "Hematology", Floor = 1, HospitalId = 2 });
@@ -781,74 +865,74 @@ namespace Backend.Utils
 
         private void SeedRooms(MedbayTechDbContext context)
         {
-            context.Add(new Room { RoomNumber = 1, RoomLabel = "null", RoomUse = "null", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 2, RoomLabel = "null", RoomUse = "null", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 1, RoomLabel = "0F-GN1", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 2, RoomLabel = "0F-GN2", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 3, RoomLabel = "0F-GN3", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 4, RoomLabel = "0F-GN4", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 5, RoomLabel = "0F-GN5", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 6, RoomLabel = "0F-GN6", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 7, RoomLabel = "0F-GN7", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 8, RoomLabel = "0F-GN8", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 9, RoomLabel = "0F-GN9", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 10, RoomLabel = "0F-GN10", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 11, RoomLabel = "0F-GN11", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 12, RoomLabel = "0F-CA1", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 13, RoomLabel = "0F-CA2", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 14, RoomLabel = "0F-CA3", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 15, RoomLabel = "0F-CA4", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 16, RoomLabel = "0F-CA5", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 17, RoomLabel = "0F-CA6", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 18, RoomLabel = "0F-CA7", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 19, RoomLabel = "0F-CA8", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 20, RoomLabel = "0F-CA9", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 21, RoomLabel = "0F-CA10", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 1, RoomLabel = "1F-ON1", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 2, RoomLabel = "1F-ON2", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 3, RoomLabel = "1F-ON3", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 4, RoomLabel = "1F-ON4", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 5, RoomLabel = "1F-ON5", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 6, RoomLabel = "1F-ON6", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 7, RoomLabel = "1F-ON7", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 8, RoomLabel = "1F-ON8", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 9, RoomLabel = "1F-ON9", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 10, RoomLabel = "1F-ON10", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 11, RoomLabel = "1F-ON11", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 12, RoomLabel = "1F-ON12", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 13, RoomLabel = "1F-ON13", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 14, RoomLabel = "1F-RD1", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 15, RoomLabel = "1F-RD2", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 16, RoomLabel = "1F-RD3", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 17, RoomLabel = "1F-RD4", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 18, RoomLabel = "1F-RD5", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 19, RoomLabel = "1F-RD6", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 20, RoomLabel = "1F-RD7", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 21, RoomLabel = "1F-RD8", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 1, RoomLabel = "", RoomUse = "", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 2, RoomLabel = "", RoomUse = "", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 1, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 1, RoomLabel = "0F-GN1", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 13, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 2, RoomLabel = "0F-GN2", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 13, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 3, RoomLabel = "0F-GN3", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 13, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 4, RoomLabel = "0F-GN4", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 13, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 5, RoomLabel = "0F-GN5", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 13, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 6, RoomLabel = "0F-GN6", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 13, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 7, RoomLabel = "0F-GN7", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 13, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 8, RoomLabel = "0F-GN8", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 13, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 9, RoomLabel = "0F-GN9", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 13, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 10, RoomLabel = "0F-GN10", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 13, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 11, RoomLabel = "0F-GN11", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 13, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 12, RoomLabel = "0F-CA1", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 13, RoomLabel = "0F-CA2", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 14, RoomLabel = "0F-CA3", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 15, RoomLabel = "0F-CA4", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 16, RoomLabel = "0F-CA5", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 17, RoomLabel = "0F-CA6", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 18, RoomLabel = "0F-CA7", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 19, RoomLabel = "0F-CA8", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 20, RoomLabel = "0F-CA9", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 21, RoomLabel = "0F-CA10", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 1, RoomLabel = "1F-ON1", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 2, RoomLabel = "1F-ON2", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 3, RoomLabel = "1F-ON3", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 4, RoomLabel = "1F-ON4", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 5, RoomLabel = "1F-ON5", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 6, RoomLabel = "1F-ON6", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 7, RoomLabel = "1F-ON7", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 8, RoomLabel = "1F-ON8", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 9, RoomLabel = "1F-ON9", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 10, RoomLabel = "1F-ON10", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 11, RoomLabel = "1F-ON11", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 12, RoomLabel = "1F-ON12", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 13, RoomLabel = "1F-ON13", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 14, RoomLabel = "1F-RD1", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 15, RoomLabel = "1F-RD2", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 16, RoomLabel = "1F-RD3", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 17, RoomLabel = "1F-RD4", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 18, RoomLabel = "1F-RD5", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 19, RoomLabel = "1F-RD6", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 20, RoomLabel = "1F-RD7", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 21, RoomLabel = "1F-RD8", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
 
-            context.Add(new Room { RoomNumber = 1, RoomLabel = "2F-NE1", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 2, RoomLabel = "2F-NE2", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 3, RoomLabel = "2F-NE3", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 4, RoomLabel = "2F-NE4", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 5, RoomLabel = "2F-NE5", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 6, RoomLabel = "2F-NE6", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 7, RoomLabel = "2F-NE7", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 8, RoomLabel = "2F-NE8", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 9, RoomLabel = "2F-NE9", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 1, RoomLabel = "2F-NE1", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 2, RoomLabel = "2F-NE2", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 3, RoomLabel = "2F-NE3", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 4, RoomLabel = "2F-NE4", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 5, RoomLabel = "2F-NE5", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 6, RoomLabel = "2F-NE6", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 7, RoomLabel = "2F-NE7", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 8, RoomLabel = "2F-NE8", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 9, RoomLabel = "2F-NE9", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
 
-            context.Add(new Room { RoomNumber = 10, RoomLabel = "2F-NE10", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 11, RoomLabel = "2F-NE11", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 12, RoomLabel = "2F-NE12", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 13, RoomLabel = "2F-NE13", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 14, RoomLabel = "2F-NE14", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 15, RoomLabel = "2F-IC1", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 16, RoomLabel = "2F-IC2", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 17, RoomLabel = "2F-IC3", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 18, RoomLabel = "2F-IC4", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 19, RoomLabel = "2F-IC5", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 20, RoomLabel = "2F-IC6", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 21, RoomLabel = "2F-IC7", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 22, RoomLabel = "2F-IC7", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 10, RoomLabel = "2F-NE10", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 11, RoomLabel = "2F-NE11", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 12, RoomLabel = "2F-NE12", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 13, RoomLabel = "2F-NE13", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 14, RoomLabel = "2F-NE14", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 15, RoomLabel = "2F-IC1", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 16, RoomLabel = "2F-IC2", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 17, RoomLabel = "2F-IC3", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 18, RoomLabel = "2F-IC4", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 19, RoomLabel = "2F-IC5", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 20, RoomLabel = "2F-IC6", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 21, RoomLabel = "2F-IC7", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 22, RoomLabel = "2F-IC8", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
 
             context.Add(new Room { RoomNumber = 1, RoomLabel = "0F-EM1", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 7, HospitalEquipment = new List<HospitalEquipment>() });
             context.Add(new Room { RoomNumber = 2, RoomLabel = "0F-EM2", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 7, HospitalEquipment = new List<HospitalEquipment>() });
@@ -858,191 +942,191 @@ namespace Backend.Utils
             context.Add(new Room { RoomNumber = 6, RoomLabel = "0F-EM6", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 7, HospitalEquipment = new List<HospitalEquipment>() });
             context.Add(new Room { RoomNumber = 7, RoomLabel = "0F-EM7", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 7, HospitalEquipment = new List<HospitalEquipment>() });
             context.Add(new Room { RoomNumber = 8, RoomLabel = "0F-EM8", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 7, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 9, RoomLabel = "0F-DY1", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 10, RoomLabel = "0F-DY2", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 11, RoomLabel = "0F-DY3", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 12, RoomLabel = "0F-DY4", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 13, RoomLabel = "0F-DY5", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 14, RoomLabel = "0F-DY6", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 15, RoomLabel = "0F-DY7", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 16, RoomLabel = "0F-DY8", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 8, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 9, RoomLabel = "0F-DY1", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 10, RoomLabel = "0F-DY2", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 11, RoomLabel = "0F-DY3", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 12, RoomLabel = "0F-DY4", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 13, RoomLabel = "0F-DY5", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 14, RoomLabel = "0F-DY6", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 15, RoomLabel = "0F-DY7", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 16, RoomLabel = "0F-DY8", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 6, HospitalEquipment = new List<HospitalEquipment>() });
 
-            context.Add(new Room { RoomNumber = 1, RoomLabel = "1F-GE1", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 2, RoomLabel = "1F-GE2", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 3, RoomLabel = "1F-GE3", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 4, RoomLabel = "1F-GE4", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 5, RoomLabel = "1F-GE5", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 6, RoomLabel = "1F-GE6", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 7, RoomLabel = "1F-GE7", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 8, RoomLabel = "1F-GE8", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 9, RoomLabel = "1F-GE9", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 10, RoomLabel = "1F-GE10", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 11, RoomLabel = "1F-GE11", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 12, RoomLabel = "1F-GE12", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 13, RoomLabel = "1F-GE13", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 14, RoomLabel = "1F-GE14", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 9, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 15, RoomLabel = "1F-HM1", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 1, RoomLabel = "1F-GE1", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 2, RoomLabel = "1F-GE2", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 3, RoomLabel = "1F-GE3", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 4, RoomLabel = "1F-GE4", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 5, RoomLabel = "1F-GE5", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 6, RoomLabel = "1F-GE6", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 7, RoomLabel = "1F-GE7", RoomUse = "Storage room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.StorageRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 8, RoomLabel = "1F-GE8", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 9, RoomLabel = "1F-GE9", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 10, RoomLabel = "1F-GE10", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 11, RoomLabel = "1F-GE11", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 12, RoomLabel = "1F-GE12", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 13, RoomLabel = "1F-GE13", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 14, RoomLabel = "1F-GE14", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 5, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 15, RoomLabel = "1F-HM1", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
 
-            context.Add(new Room { RoomNumber = 16, RoomLabel = "1F-HM2", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 17, RoomLabel = "1F-HM3", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 18, RoomLabel = "1F-HM4", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 19, RoomLabel = "1F-HM5", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 20, RoomLabel = "1F-HM6", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 21, RoomLabel = "1F-HM7", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 22, RoomLabel = "1F-HM8", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 10, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 16, RoomLabel = "1F-HM2", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 17, RoomLabel = "1F-HM3", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 18, RoomLabel = "1F-HM4", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 19, RoomLabel = "1F-HM5", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 20, RoomLabel = "1F-HM6", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 21, RoomLabel = "1F-HM7", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 22, RoomLabel = "1F-HM8", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 4, HospitalEquipment = new List<HospitalEquipment>() });
 
-            context.Add(new Room { RoomNumber = 1, RoomLabel = "2F-RM1", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 2, RoomLabel = "2F-RM2", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 3, RoomLabel = "2F-RM3", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 4, RoomLabel = "2F-RM4", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 5, RoomLabel = "2F-RM5", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 6, RoomLabel = "2F-RM6", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 7, RoomLabel = "2F-RM7", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 8, RoomLabel = "2F-RM8", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 9, RoomLabel = "2F-RM9", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 10, RoomLabel = "2F-RM10", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 11, RoomLabel = "2F-RM11", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 12, RoomLabel = "2F-RM12", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 13, RoomLabel = "2F-RM13", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 14, RoomLabel = "2F-RM14", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 11, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 15, RoomLabel = "2F-ID1", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 16, RoomLabel = "2F-ID2", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 17, RoomLabel = "2F-ID3", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 18, RoomLabel = "2F-ID4", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 19, RoomLabel = "2F-ID5", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 20, RoomLabel = "2F-ID6", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 21, RoomLabel = "2F-ID7", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
-            context.Add(new Room { RoomNumber = 22, RoomLabel = "2F-ID8", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 12, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 1, RoomLabel = "2F-RM1", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 2, RoomLabel = "2F-RM2", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 3, RoomLabel = "2F-RM3", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 4, RoomLabel = "2F-RM4", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 5, RoomLabel = "2F-RM5", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 6, RoomLabel = "2F-RM6", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 7, RoomLabel = "2F-RM7", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 8, RoomLabel = "2F-RM8", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 9, RoomLabel = "2F-RM9", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 10, RoomLabel = "2F-RM10", RoomUse = "Examination room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.ExaminationRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 11, RoomLabel = "2F-RM11", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 12, RoomLabel = "2F-RM12", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 13, RoomLabel = "2F-RM13", RoomUse = "Auxiliary room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 14, RoomLabel = "2F-RM14", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 3, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 15, RoomLabel = "2F-ID1", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 16, RoomLabel = "2F-ID2", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 17, RoomLabel = "2F-ID3", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 18, RoomLabel = "2F-ID4", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 19, RoomLabel = "2F-ID5", RoomUse = "Patient room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.PatientRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 20, RoomLabel = "2F-ID6", RoomUse = "Operation room", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.OperationRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 21, RoomLabel = "2F-ID7", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
+            context.Add(new Room { RoomNumber = 22, RoomLabel = "2F-ID8", RoomUse = "Elevator", BedsCapacity = 10, BedsFree = 3, RoomType = RoomType.AuxiliaryRoom, DepartmentId = 2, HospitalEquipment = new List<HospitalEquipment>() });
 
             context.SaveChanges();
         }
 
         private void SeedHospitalEquipment(MedbayTechDbContext context)
         {
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 8, RoomId = 1, EquipmentTypeId = 9 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 8, RoomId = 1, EquipmentTypeId = 10 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 1, EquipmentTypeId = 17 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 1, EquipmentTypeId = 18 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 1, EquipmentTypeId = 19 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 9, RoomId = 1, EquipmentTypeId = 22 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 11, RoomId = 1, EquipmentTypeId = 23 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 1, EquipmentTypeId = 24 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 50, QuantityInStorage = 200, RoomId = 1, EquipmentTypeId = 25 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 70, QuantityInStorage = 250, RoomId = 2, EquipmentTypeId = 26 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 90, QuantityInStorage = 300, RoomId = 2, EquipmentTypeId = 27 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 100, QuantityInStorage = 500, RoomId = 2, EquipmentTypeId = 28 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 6, RoomId = 2, EquipmentTypeId = 29 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 12, RoomId = 3, EquipmentTypeId = 30 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 13, RoomId = 3, EquipmentTypeId = 31 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 14, RoomId = 3, EquipmentTypeId = 32 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 10, RoomId = 4, EquipmentTypeId = 34 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 20, RoomId = 4, EquipmentTypeId = 35 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 4, EquipmentTypeId = 36 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 5, EquipmentTypeId = 37 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 5, EquipmentTypeId = 6 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 16, RoomId = 5, EquipmentTypeId = 7 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 6, EquipmentTypeId = 8 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 6, EquipmentTypeId = 9 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 6, EquipmentTypeId = 10 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 7, EquipmentTypeId = 11 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 7, EquipmentTypeId = 12 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 15, RoomId = 7, EquipmentTypeId = 33 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 10, RoomId = 7, EquipmentTypeId = 34 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 20, RoomId = 8, EquipmentTypeId = 35 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 4, RoomId = 8, EquipmentTypeId = 5 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 8, EquipmentTypeId = 6 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 8, RoomId = 122, EquipmentTypeId = 9 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 8, RoomId = 122, EquipmentTypeId = 10 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 122, EquipmentTypeId = 17 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 122, EquipmentTypeId = 18 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 122, EquipmentTypeId = 19 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 9, RoomId = 122, EquipmentTypeId = 22 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 11, RoomId = 122, EquipmentTypeId = 23 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 122, EquipmentTypeId = 24 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 50, QuantityInStorage = 200, RoomId = 122, EquipmentTypeId = 25 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 70, QuantityInStorage = 250, RoomId = 122, EquipmentTypeId = 26 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 90, QuantityInStorage = 300, RoomId = 122, EquipmentTypeId = 27 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 100, QuantityInStorage = 500, RoomId = 122, EquipmentTypeId = 28 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 6, RoomId = 122, EquipmentTypeId = 29 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 12, RoomId = 122, EquipmentTypeId = 30 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 13, RoomId = 122, EquipmentTypeId = 31 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 14, RoomId = 122, EquipmentTypeId = 32 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 10, RoomId = 122, EquipmentTypeId = 34 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 20, RoomId = 122, EquipmentTypeId = 35 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 122, EquipmentTypeId = 36 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 122, EquipmentTypeId = 37 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 67, EquipmentTypeId = 6 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 16, RoomId = 67, EquipmentTypeId = 7 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 90, EquipmentTypeId = 8 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 90, EquipmentTypeId = 9 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 90, EquipmentTypeId = 10 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 90, EquipmentTypeId = 11 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 90, EquipmentTypeId = 12 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 15, RoomId = 90, EquipmentTypeId = 33 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 10, RoomId = 90, EquipmentTypeId = 34 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 20, RoomId = 90, EquipmentTypeId = 35 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 4, RoomId = 116, EquipmentTypeId = 5 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 116, EquipmentTypeId = 6 });
 
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 0, RoomId = 9, EquipmentTypeId = 3 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 1, RoomId = 9, EquipmentTypeId = 1 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 0, RoomId = 9, EquipmentTypeId = 2 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 1, RoomId = 9, EquipmentTypeId = 1 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 0, RoomId = 9, EquipmentTypeId = 3 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 0, RoomId = 10, EquipmentTypeId = 4 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 0, RoomId = 86, EquipmentTypeId = 3 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 1, RoomId = 89, EquipmentTypeId = 1 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 0, RoomId = 90, EquipmentTypeId = 2 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 1, RoomId = 91, EquipmentTypeId = 1 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 0, RoomId = 92, EquipmentTypeId = 3 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 0, RoomId = 116, EquipmentTypeId = 4 });
 
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 10, RoomId = 10, EquipmentTypeId = 34 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 20, RoomId = 10, EquipmentTypeId = 35 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 5, RoomId = 11, EquipmentTypeId = 36 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 8, RoomId = 11, EquipmentTypeId = 8 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 12, EquipmentTypeId = 11 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 31, EquipmentTypeId = 12 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 12, EquipmentTypeId = 13 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 14, EquipmentTypeId = 18 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 14, EquipmentTypeId = 19 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 30, RoomId = 14, EquipmentTypeId = 20 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 30, RoomId = 14, EquipmentTypeId = 21 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 9, RoomId = 3, EquipmentTypeId = 22 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 11, RoomId = 3, EquipmentTypeId = 23 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 3, EquipmentTypeId = 24 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 50, QuantityInStorage = 200, RoomId = 3, EquipmentTypeId = 25 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 70, QuantityInStorage = 250, RoomId = 2, EquipmentTypeId = 26 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 90, QuantityInStorage = 300, RoomId = 2, EquipmentTypeId = 27 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 100, QuantityInStorage = 500, RoomId = 2, EquipmentTypeId = 28 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 6, RoomId = 1, EquipmentTypeId = 29 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 12, RoomId = 1, EquipmentTypeId = 30 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 13, RoomId = 1, EquipmentTypeId = 31 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 14, RoomId = 1, EquipmentTypeId = 32 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 10, RoomId = 104, EquipmentTypeId = 34 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 20, RoomId = 104, EquipmentTypeId = 35 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 5, RoomId = 104, EquipmentTypeId = 36 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 8, RoomId = 97, EquipmentTypeId = 8 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 97, EquipmentTypeId = 11 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 97, EquipmentTypeId = 12 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 97, EquipmentTypeId = 13 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 97, EquipmentTypeId = 18 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 97, EquipmentTypeId = 19 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 30, RoomId = 97, EquipmentTypeId = 20 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 30, RoomId = 97, EquipmentTypeId = 21 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 9, RoomId = 97, EquipmentTypeId = 22 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 11, RoomId = 97, EquipmentTypeId = 23 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 97, EquipmentTypeId = 24 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 50, QuantityInStorage = 200, RoomId = 97, EquipmentTypeId = 25 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 70, QuantityInStorage = 250, RoomId = 97, EquipmentTypeId = 26 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 90, QuantityInStorage = 300, RoomId = 97, EquipmentTypeId = 27 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 100, QuantityInStorage = 500, RoomId = 97, EquipmentTypeId = 28 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 6, RoomId = 97, EquipmentTypeId = 29 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 12, RoomId = 97, EquipmentTypeId = 30 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 13, RoomId = 97, EquipmentTypeId = 31 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 14, RoomId = 97, EquipmentTypeId = 32 });
 
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 8, RoomId = 1, EquipmentTypeId = 9 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 8, RoomId = 1, EquipmentTypeId = 10 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 1, EquipmentTypeId = 17 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 1, EquipmentTypeId = 18 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 2, EquipmentTypeId = 19 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 9, RoomId = 2, EquipmentTypeId = 22 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 11, RoomId = 2, EquipmentTypeId = 23 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 3, EquipmentTypeId = 24 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 50, QuantityInStorage = 200, RoomId = 3, EquipmentTypeId = 25 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 70, QuantityInStorage = 250, RoomId = 3, EquipmentTypeId = 26 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 90, QuantityInStorage = 300, RoomId = 3, EquipmentTypeId = 27 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 100, QuantityInStorage = 500, RoomId = 3, EquipmentTypeId = 28 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 6, RoomId = 3, EquipmentTypeId = 29 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 12, RoomId = 3, EquipmentTypeId = 30 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 13, RoomId = 3, EquipmentTypeId = 31 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 14, RoomId = 3, EquipmentTypeId = 32 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 10, RoomId = 4, EquipmentTypeId = 34 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 20, RoomId = 4, EquipmentTypeId = 35 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 4, EquipmentTypeId = 36 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 4, EquipmentTypeId = 37 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 4, EquipmentTypeId = 8 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 5, EquipmentTypeId = 9 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 5, EquipmentTypeId = 10 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 5, EquipmentTypeId = 11 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 5, EquipmentTypeId = 12 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 15, RoomId = 5, EquipmentTypeId = 33 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 10, RoomId = 5, EquipmentTypeId = 34 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 20, RoomId = 5, EquipmentTypeId = 35 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 40, RoomId = 5, EquipmentTypeId = 39 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 5, EquipmentTypeId = 40 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 5, EquipmentTypeId = 40 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 8, RoomId = 23, EquipmentTypeId = 9 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 8, RoomId = 23, EquipmentTypeId = 10 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 23, EquipmentTypeId = 17 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 23, EquipmentTypeId = 18 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 23, EquipmentTypeId = 19 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 9, RoomId = 23, EquipmentTypeId = 22 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 11, RoomId = 23, EquipmentTypeId = 23 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 23, EquipmentTypeId = 24 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 50, QuantityInStorage = 200, RoomId = 23, EquipmentTypeId = 25 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 70, QuantityInStorage = 250, RoomId = 23, EquipmentTypeId = 26 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 90, QuantityInStorage = 300, RoomId = 23, EquipmentTypeId = 27 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 100, QuantityInStorage = 500, RoomId = 23, EquipmentTypeId = 28 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 6, RoomId = 23, EquipmentTypeId = 29 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 12, RoomId = 23, EquipmentTypeId = 30 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 13, RoomId = 23, EquipmentTypeId = 31 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 14, RoomId = 23, EquipmentTypeId = 32 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 10, RoomId = 23, EquipmentTypeId = 34 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 20, RoomId = 23, EquipmentTypeId = 35 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 23, EquipmentTypeId = 36 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 23, EquipmentTypeId = 37 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 19, EquipmentTypeId = 8 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 19, EquipmentTypeId = 9 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 19, EquipmentTypeId = 10 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 19, EquipmentTypeId = 11 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 19, EquipmentTypeId = 12 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 15, RoomId = 19, EquipmentTypeId = 33 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 10, RoomId = 19, EquipmentTypeId = 34 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 20, RoomId = 19, EquipmentTypeId = 35 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 40, RoomId = 19, EquipmentTypeId = 39 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 18, EquipmentTypeId = 40 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 15, EquipmentTypeId = 40 });
 
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 5, EquipmentTypeId = 14 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 6, RoomId = 5, EquipmentTypeId = 15 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 7, RoomId = 5, EquipmentTypeId = 16 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 7, RoomId = 6, EquipmentTypeId = 16 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 23, EquipmentTypeId = 14 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 6, RoomId = 20, EquipmentTypeId = 15 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 7, RoomId = 58, EquipmentTypeId = 16 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 7, RoomId = 57, EquipmentTypeId = 16 });
 
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 10, RoomId = 6, EquipmentTypeId = 34 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 20, RoomId = 6, EquipmentTypeId = 35 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 5, RoomId = 6, EquipmentTypeId = 36 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 10, RoomId = 6, EquipmentTypeId = 34 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 20, RoomId = 6, EquipmentTypeId = 35 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 5, RoomId = 6, EquipmentTypeId = 36 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 6, EquipmentTypeId = 17 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 6, EquipmentTypeId = 24 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 10, RoomId = 45, EquipmentTypeId = 34 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 20, RoomId = 45, EquipmentTypeId = 35 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 5, RoomId = 45, EquipmentTypeId = 36 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 10, RoomId = 44, EquipmentTypeId = 34 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 20, RoomId = 44, EquipmentTypeId = 35 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 5, RoomId = 44, EquipmentTypeId = 36 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 43, EquipmentTypeId = 17 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 20, QuantityInStorage = 100, RoomId = 43, EquipmentTypeId = 24 });
 
-            context.Add(new HospitalEquipment { QuantityInRoom = 50, QuantityInStorage = 200, RoomId = 6, EquipmentTypeId = 25 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 10, RoomId = 6, EquipmentTypeId = 34 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 20, RoomId = 6, EquipmentTypeId = 35 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 6, EquipmentTypeId = 36 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 6, EquipmentTypeId = 37 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 6, EquipmentTypeId = 8 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 6, EquipmentTypeId = 9 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 6, EquipmentTypeId = 10 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 7, EquipmentTypeId = 11 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 7, EquipmentTypeId = 12 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 7, EquipmentTypeId = 13 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 15, RoomId = 7, EquipmentTypeId = 33 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 10, RoomId = 7, EquipmentTypeId = 34 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 20, RoomId = 7, EquipmentTypeId = 35 });
-            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 40, RoomId = 7, EquipmentTypeId = 39 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 50, QuantityInStorage = 200, RoomId = 43, EquipmentTypeId = 25 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 10, RoomId = 43, EquipmentTypeId = 34 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 3, QuantityInStorage = 20, RoomId = 43, EquipmentTypeId = 35 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 43, EquipmentTypeId = 36 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 5, RoomId = 43, EquipmentTypeId = 37 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 36, EquipmentTypeId = 8 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 36, EquipmentTypeId = 9 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 8, RoomId = 36, EquipmentTypeId = 10 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 36, EquipmentTypeId = 11 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 36, EquipmentTypeId = 12 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 1, QuantityInStorage = 2, RoomId = 36, EquipmentTypeId = 13 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 15, RoomId = 36, EquipmentTypeId = 33 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 2, QuantityInStorage = 10, RoomId = 36, EquipmentTypeId = 34 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 20, RoomId = 36, EquipmentTypeId = 35 });
+            context.Add(new HospitalEquipment { QuantityInRoom = 4, QuantityInStorage = 40, RoomId = 36, EquipmentTypeId = 39 });
             context.SaveChanges();
         }
 
@@ -1115,7 +1199,7 @@ namespace Backend.Utils
 
             context.SaveChanges();
         }
-        private void SeedTreatments(MedbayTechDbContext context) 
+        private void SeedTreatments(MedbayTechDbContext context)
         {
             context.Add(new Treatment
             {
@@ -1158,7 +1242,7 @@ namespace Backend.Utils
             });
             context.SaveChanges();
         }
-       
+
         private void SeedDoctorsWorkDay(MedbayTechDbContext context)
         {
             context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 10), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" });
@@ -1172,6 +1256,18 @@ namespace Backend.Utils
             context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 22), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" });
             context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 23), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" });
             context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 24), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" });
+
+            context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2407978890043" });
+            context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2407978890043" });
+            context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2407978890043" });
+            context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2407978890043" });
+            context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 10), StartTime = 8, EndTime = 15, DoctorId = "2407978890043" });
+
+            context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
+            context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
+            context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
+            context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
+            context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 10), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
 
             context.SaveChanges();
         }

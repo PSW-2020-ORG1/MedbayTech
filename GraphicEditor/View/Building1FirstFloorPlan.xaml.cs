@@ -97,6 +97,12 @@ namespace GraphicEditor.View.Building1
                     rectangle.StrokeThickness = 5;
                     SearchResultsForEquipment.Id = "0";
                 }
+                if (rectangle.Uid.Equals(SearchAppointment.Id))
+                {
+                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#33ff49");
+                    rectangle.StrokeThickness = 5;
+                    SearchAppointment.Id = "0";
+                }
             }
         }
 

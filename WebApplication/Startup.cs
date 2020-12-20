@@ -79,7 +79,7 @@ namespace WebApplication
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(options => options.WithOrigins(GetDomain()).AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -94,8 +94,10 @@ namespace WebApplication
 
                 try
                 {
-                    if (stage.Equals("test") && IsPostgres())
+                    if (!stage.Equals("development") && IsPostgres())
+                    {
                         databaseCreator.CreateTables();
+                    }
                     else
                         context.Database.Migrate();
                 }
@@ -119,7 +121,7 @@ namespace WebApplication
             app.UseStaticFiles();
 
 
-            if (!stage.Equals("development"))
+            if (stage.Equals("production"))
             {
                 app.UseStaticFiles(new StaticFileOptions
                 {

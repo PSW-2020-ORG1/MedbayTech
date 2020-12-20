@@ -1,16 +1,11 @@
 version: "3.8"
 
 volumes:
-<<<<<<< HEAD
   mysql-data: {}
   web-sql:
   postgres-data: {}
+  test-data: {}
   
-=======
-  mysql-data:
-  #web-sql:
->>>>>>> develop
-
 networks:
   demo:
     name: demo
@@ -28,7 +23,6 @@ services:
       MYSQL_USER: "root"
       MYSQL_PASSWORD: "root"
       MYSQL_ROOT_PASSWORD: "root"
-<<<<<<< HEAD
     volumes:
       - mysql-data:/var/lib/mysql
   
@@ -44,42 +38,6 @@ services:
       POSTGRES_DB: mydb1
     volumes:
       - postgres-data:/var/lib/postgres
-
-  IntegrationTestsSql:
-    build: 
-      context: .
-      dockerfile: Dockerfile.IntegrationTests
-    image: test
-    depends_on:
-      - mysql
-    restart: on-failure
-    environment:
-      DATABASE_USERNAME: "root"
-      DATABASE_PASSWORD: "root"
-      DATABASE_HOST: "mysql"
-      DATABASE_SCHEMA: "newdb"
-      STAGE: "test"
-    expose: 
-      - "80"
-    networks: 
-      - demo
-
-  WebApplicationMySql:
-    image: web
-    restart: on-failure
-    networks:
-      - demo
-    depends_on:
-      - mysql
-    environment:
-      DATABASE_USERNAME: "root"
-      DATABASE_PASSWORD: "root"
-      DATABASE_HOST: "mysql"
-      DATABASE_SCHEMA: "newdb"
-      PORT: 8085
-      STAGE: "test"
-    ports:
-      - "8085:8085"
 
 #  PhIntegration:
 #    build: 
@@ -112,27 +70,72 @@ services:
     depends_on:
       - mysql
     environment:
-=======
-    volumes:
-      - mysql-data:/var/lib/mysql:rw
-
-
-  PhIntegrationSql:
-    image: ph
-    container_name: phintegration
-    restart: on-failure
-    environment:
-      PORT: 50202
->>>>>>> develop
       DATABASE_USERNAME: "root"
       DATABASE_PASSWORD: "root"
       DATABASE_HOST: "mysql"
       DATABASE_SCHEMA: "newdb"
-<<<<<<< HEAD
+      PORT: 8084
       STAGE: "test"
-      PORT: 8082
     ports:
-      - "8082:8082"
+      - "8084:8084"
+    volumes:
+      - mysql-data:/var/lib/mysql:rw
+
+  WebAppIntegrationTests:
+      build: 
+        context: .
+        dockerfile: Dockerfile.WebAppIntegrationTests
+      image: web-integration-tests
+      depends_on:
+        - mysql
+      environment:
+        DATABASE_USERNAME: "root"
+        DATABASE_PASSWORD: "root"
+        DATABASE_HOST: "mysql"
+        DATABASE_TYPE: "mysql"
+        DATABASE_SCHEMA: "newdb"
+        STAGE: "test"
+      expose: 
+        - "80"
+      networks: 
+        - demo
+      volumes:
+        - mysql-data:/var/lib/mysql:rw
+
+  PhIntegrationTests:
+      build: 
+        context: .
+        dockerfile: Dockerfile.PhIntegrationTests
+      image: ph-integration-tests
+      depends_on:
+        - mysql
+      environment:
+        DATABASE_USERNAME: "root"
+        DATABASE_PASSWORD: "root"
+        DATABASE_HOST: "mysql"
+        DATABASE_TYPE: "mysql"
+        DATABASE_SCHEMA: "newdb"
+        STAGE: "test"
+      expose: 
+        - "80"
+      networks: 
+        - demo
+      volumes:
+        - mysql-data:/var/lib/mysql:rw
+#  PhIntegrationSql:
+#    image: ph
+#    container_name: phintegration
+#    restart: on-failure
+#    environment:
+#      PORT: 50202
+#      DATABASE_USERNAME: "root"
+#      DATABASE_PASSWORD: "root"
+#      DATABASE_HOST: "mysql"
+#      DATABASE_SCHEMA: "newdb"
+#      STAGE: "test"
+#      PORT: 8082
+#    ports:
+#      - "8082:8082"
 
   UnitTests:
     build: 
@@ -141,11 +144,4 @@ services:
     image: unit-tests
     container_name: unit-tests-container
     restart: on-failure
-=======
-    ports:
-      - "8091:50202"
-    networks:
-      - demo
-    depends_on:
-      - mysql
->>>>>>> develop
+    

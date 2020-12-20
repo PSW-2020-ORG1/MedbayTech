@@ -19,6 +19,17 @@ using Backend.Users.WebApiService;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using Backend.Utils;
+using SimsProjekat.Service.RoomService;
+using Backend.Schedules.Service.Interfaces;
+using Backend.Schedules.Service;
+using Repository.ScheduleRepository;
+using Backend.Schedules.Repository.MySqlRepository;
+using Backend.Users.Service;
+using Backend.Users.Service.Interfaces;
+using Backend.Examinations.Service.Interfaces;
+using Backend.Examinations.Service;
+using Repository.MedicalRecordRepository;
+using Backend.Records.Repository.MySqlRepository;
 
 namespace GraphicEditorWebService
 {
@@ -103,6 +114,11 @@ namespace GraphicEditorWebService
             services.AddScoped<IHospitalEquipmentService, HospitalEquipmentService>();
             services.AddScoped<IMedicationService, MedicationService>();
             services.AddScoped<IDoctorService, DoctorService>();
+            services.AddScoped<IEquipmentTypeService, EquipmentTypeService>();
+            services.AddScoped<IAppointmentService, AppointmentService>();
+            services.AddScoped<IAppointmentFilterService, AppointmentFilterService>();
+            services.AddScoped<IPatientService, PatientService>();
+            services.AddScoped<IMedicalRecordService, MedicalRecordService>();
             services.AddControllers();
         }
 
@@ -112,8 +128,13 @@ namespace GraphicEditorWebService
             services.AddTransient<IHospitalEquipmentRepository, HospitalEquipmentSqlRepository>();
             services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
             services.AddTransient<IDoctorRepository, DoctorSqlRepository>();
+            services.AddTransient<IEquipmentTypeRepository, EquipmentTypeSqlRepository>();
+            services.AddTransient<IAppointmentRepository, AppointmentSqlRepository>();
+            services.AddTransient<IDoctorWorkDayRepository, DoctorWorkDaySqlRepository>();
+            services.AddTransient<ISurveyRepository, SurveySqlRepository>();
+            services.AddTransient<IPatientRepository, PatientSqlRepository>();
+            services.AddTransient<IMedicalRecordRepository, MedicalRecordSqlRepository>();
         }
-
 
     }
 }
