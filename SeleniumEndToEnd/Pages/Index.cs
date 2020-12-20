@@ -8,7 +8,7 @@ namespace SeleniumEndToEnd.Pages
     public class Index
     {
         private IWebDriver _webDriver { get; }
-        public const string URI = "http://localhost:8080/index.html";
+        public const string URI = "http://medbaytech.herokuapp.com/index.html";
 
         public Index(IWebDriver webDriver)
         {
@@ -16,7 +16,7 @@ namespace SeleniumEndToEnd.Pages
         }
 
         IWebElement createFeedback => _webDriver.FindElement(By.Name("createFeedback"));
-        IWebElement allFeedback => _webDriver.FindElement(By.Name("createFeedback"));
+        IWebElement allFeedback => _webDriver.FindElement(By.Name("allFedback"));
 
         public void Navigate() => _webDriver.Navigate().GoToUrl(URI);
 

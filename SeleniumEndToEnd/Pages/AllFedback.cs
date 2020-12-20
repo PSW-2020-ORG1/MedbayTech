@@ -10,7 +10,6 @@ namespace SeleniumEndToEnd.Pages
     {
         private IWebDriver driver;
 
-        public const string URI = "http://localhost:4200/allFeedback";
         private IWebElement CountFeedback => driver.FindElement(By.Name("all_feedback_len"));
         private IWebElement TitleFeedbacks => driver.FindElement(By.Name("feedbacks"));
         public AllFedback(IWebDriver webdriver)
@@ -45,7 +44,6 @@ namespace SeleniumEndToEnd.Pages
             return int.Parse(number);
         }
 
-        public void Navigate() => driver.Navigate().GoToUrl(URI);
 
         public bool TitleDisplayed()
         {
