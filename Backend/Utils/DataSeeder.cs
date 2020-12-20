@@ -79,7 +79,7 @@ namespace Backend.Utils
                 RegisteredUserId = "2406978890045",
                 Anonymous = false,
                 AllowedForPublishing = true
-            });
+            }) ;
             context.Add(new Feedback
             {
                 AdditionalNotes = "Bolnica je veoma losa, bas sam razocaran! Rupe u zidovima, voda curi na sve strane, treba vas zatvoriti!!!",
@@ -88,7 +88,7 @@ namespace Backend.Utils
                 RegisteredUserId = "2406978890045",
                 Anonymous = false,
                 AllowedForPublishing = true
-            });
+            }) ;
 
             context.Add(new Feedback
             {
@@ -522,6 +522,7 @@ namespace Backend.Utils
                 PatientId = "2406978890046",
                 Therapies = new List<Therapy>()
             });
+            context.SaveChanges();
             context.Add(new MedicalRecord
             {
                 CurrHealthState = PatientCondition.HospitalTreatment,

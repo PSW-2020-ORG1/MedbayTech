@@ -13,7 +13,6 @@ services:
     environment:
       DATABASE_USERNAME: "root"
       DATABASE_PASSWORD: "root"
-      DATABASE_HOST: "mysql"
       DATABASE_HOST: "postgres"
       DATABASE_TYPE: "postgres"
       DATABASE_SCHEMA: "mydb1"
