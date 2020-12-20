@@ -5,7 +5,6 @@
 
 using Backend.Medications.Model;
 using Repository.MedicalRecordRepository;
-using System;
 using System.Collections.Generic;
 
 namespace Service.MedicalRecordService
@@ -17,7 +16,7 @@ namespace Service.MedicalRecordService
             this.allergensRepository = allergensRepository;
         }
 
-        public IEnumerable<Allergens> GetAllAllergies() => 
+        public List<Allergens> GetAllAllergies() => 
             allergensRepository.GetAll();
 
         public Allergens CreateAllergen(Allergens allergens) => 

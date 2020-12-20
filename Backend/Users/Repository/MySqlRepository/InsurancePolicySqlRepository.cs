@@ -1,10 +1,7 @@
 ﻿using Model;
 using Model.Users;
 using Repository;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Backend.Users.Repository.MySqlRepository
 {
@@ -12,7 +9,7 @@ namespace Backend.Users.Repository.MySqlRepository
         IInsurancePolicyRepository
     {
 
-        public InsurancePolicySqlRepository(MySqlContext context) : base(context) { }
+        public InsurancePolicySqlRepository(MedbayTechDbContext context) : base(context) { }
         public bool ExistsById(string id)
         {
             if (GetAll().FirstOrDefault(i => i.Id.Equals(id)) != null) return true;

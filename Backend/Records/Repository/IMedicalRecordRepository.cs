@@ -12,9 +12,9 @@ namespace Repository.MedicalRecordRepository
 {
    public interface IMedicalRecordRepository : IRepository<MedicalRecord,int> 
    {
-        IEnumerable<MedicalRecord> GetRecordsFor(Model.Users.Doctor doctor);
-      
-        IEnumerable<MedicalRecord> FilterRecordsByState(PatientCondition state);
+        List<MedicalRecord> GetRecordsFor(Model.Users.Doctor doctor);
+
+        List<MedicalRecord> FilterRecordsByState(PatientCondition state);
 
         MedicalRecord GetRecordBy(Model.Users.Patient patient);
 

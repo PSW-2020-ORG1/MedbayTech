@@ -29,7 +29,7 @@ namespace RabbitMQService
         {
             using (var scope = scopeFactory.CreateScope())
             {
-                var MySQLContext = scope.ServiceProvider.GetRequiredService<MySqlContext>();
+                var MySQLContext = scope.ServiceProvider.GetRequiredService<MedbayTechDbContext>();
                 _notificationService = scope.ServiceProvider.GetRequiredService<IPharmacyNotificationService>();
 
                 var factory = new ConnectionFactory

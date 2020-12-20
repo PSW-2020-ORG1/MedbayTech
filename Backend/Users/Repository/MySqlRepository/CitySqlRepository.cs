@@ -4,22 +4,21 @@ using Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Backend.Users.Repository.MySqlRepository
 {
     public class CitySqlRepository : MySqlrepository<City, int>,
         ICityRepository
     {
-        public CitySqlRepository(MySqlContext context) : base(context) { }
+        public CitySqlRepository(MedbayTechDbContext context) : base(context) { }
         public bool CheckIfExists(City city)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<City> GetAllCitiesByState(State state)
+        public List<City> GetAllCitiesByState(State state)
         {
-            return GetAll().ToList().Where(c => c.StateId.Equals(state.Id));
+            return GetAll().ToList().Where(c => c.StateId.Equals(state.Id)).ToList();
         }
 
         public City GetCityByName(City city)

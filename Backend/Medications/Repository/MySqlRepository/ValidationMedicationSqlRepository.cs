@@ -10,7 +10,7 @@ namespace Backend.Medications.Repository.MySqlRepository
     class ValidationMedicationSqlRepository : MySqlrepository<ValidationMed, int>,
         IValidationMedicationRepository
     {
-        public IEnumerable<ValidationMed> GetAllUnreviewed()
+        public List<ValidationMed> GetAllUnreviewed()
         {
             throw new NotImplementedException();
         }

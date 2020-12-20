@@ -14,6 +14,7 @@ namespace Model.Users
     public class Specialization : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string SpecializationName { get; set; }
 

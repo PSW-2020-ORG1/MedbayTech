@@ -11,7 +11,7 @@ namespace Backend.Users.Repository.MySqlRepository
     public class SurveySqlRepository : MySqlrepository<Survey, int>,
         ISurveyRepository
     {
-        public SurveySqlRepository(MySqlContext context) : base(context) { }
+        public SurveySqlRepository(MedbayTechDbContext context) : base(context) { }
 
         public bool CheckIfExistsById(int id)
         {

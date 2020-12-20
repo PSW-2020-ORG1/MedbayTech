@@ -11,8 +11,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Model.Users
 {
    public class DoctorReview : IIdentifiable<int>
-   {
+    {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public DateTime DateOfReview { get; protected set; }
         public Grade Grade { get; set; }

@@ -3,7 +3,7 @@ import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AllFeedback } from 'src/app/model/allFeedBack';
+import { AllFeedback } from 'src/app/model/allFeedback';
 import { UpdateFeedbackStatus } from 'src/app/model/updateFeedbackStatus';
 import { PostFeedback } from 'src/app/model/postFeedback';
 

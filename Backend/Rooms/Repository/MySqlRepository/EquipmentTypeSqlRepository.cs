@@ -7,6 +7,6 @@ namespace Backend.Rooms.Repository.MySqlRepository
 {
     public class EquipmentTypeSqlRepository : MySqlrepository<EquipmentType, int>, IEquipmentTypeRepository
     {
-       public EquipmentTypeSqlRepository(MySqlContext context) : base(context) { }
+       public EquipmentTypeSqlRepository(MedbayTechDbContext context) : base(context) { }
     }
 }

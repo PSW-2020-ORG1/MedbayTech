@@ -14,18 +14,18 @@ namespace Model.Rooms
     public class HospitalEquipment : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int QuantityInRoom { get;  set; }
         public int QuantityInStorage { get; set; }
         [ForeignKey("Room")]
         public int RoomId { get;  set; }
         public virtual Room Room { get;  set; }
-        [ForeignKey("EquipmentType")]
-        public int EquipmentTypeId { get;  set; }
-        public virtual EquipmentType EquipmentType { get;  set; }
+        [ForeignKey("EquipmentType")] public int EquipmentTypeId { get; set; }
+        public virtual EquipmentType EquipmentType { get; set; }
 
 
-        public HospitalEquipment (int id, int quantityInRoom, int quantityinStorage, Room room, EquipmentType et)
+        public HospitalEquipment(int id, int quantityInRoom, int quantityinStorage, Room room, EquipmentType et)
         {
             QuantityInRoom = quantityInRoom;
             QuantityInStorage = quantityinStorage;
@@ -35,16 +35,16 @@ namespace Model.Rooms
             EquipmentTypeId = et.Id;
         }
 
-        public HospitalEquipment ()
+        public HospitalEquipment()
         {
         }
 
-        public int GetId ()
+        public int GetId()
         {
             return Id;
         }
 
-        public void SetId (int id)
+        public void SetId(int id)
         {
             this.Id = id;
         }

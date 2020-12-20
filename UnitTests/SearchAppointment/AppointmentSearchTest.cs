@@ -20,7 +20,6 @@ namespace MedbayTechUnitTests
 {
     public class AppointmentSearchTest
     {
-        //dodajem i oduzimam dva dana na start/end
         [Fact]
         public void GetAvailableAppointmentsForDoctorAndTimeFail()
         {
@@ -150,7 +149,7 @@ namespace MedbayTechUnitTests
         public IHospitalEquipmentRepository CreateStupRepositoryEquipment()
         {
             var stubRepository = new Mock<IHospitalEquipmentRepository>();
-            var equipment = GetListOfEquipment();
+            var equipment = GetListOfEquipment().ToList();
             stubRepository.Setup(m => m.GetAll()).Returns(equipment);
             return stubRepository.Object;
         }

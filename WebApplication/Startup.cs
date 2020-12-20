@@ -1,19 +1,13 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
 using Backend.Examinations.Repository;
 using Backend.Examinations.Repository.MySqlRepository;
 using Backend.Examinations.Service.Interfaces;
 using Backend.Examinations.WebApiService;
 using Backend.Records.Repository.MySqlRepository;
-using Backend.Records.Service.Interfaces;
 using Backend.Records.WebApiService;
 using Backend.Rooms.Service;
 using Backend.Schedules.Repository.MySqlRepository;
-using Backend.Schedules.Service;
 using Backend.Users.Repository;
 using Backend.Users.Repository.MySqlRepository;
 using Backend.Users.Service;
@@ -21,25 +15,24 @@ using Backend.Users.Service.Interfaces;
 using Backend.Users.TableBuilder.Interfaces;
 using Backend.Users.WebApiService;
 using Backend.Schedules.Service.Interfaces;
-using Backend.Schedules.Repository.MySqlRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Backend.Schedules.Service.Interfaces;
 using Model;
 using Newtonsoft.Json;
 using Repository.MedicalRecordRepository;
 using Repository.ScheduleRepository;
-using Service.ScheduleService;
 using Repository.UserRepository;
 using WebApplication.MailService;
 using WebApplication.ObjectBuilder;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Backend.Utils;
+using Microsoft.EntityFrameworkCore;
 using IMedicalRecordService = Backend.Records.Service.Interfaces.IMedicalRecordService;
 
 namespace WebApplication
@@ -53,7 +46,6 @@ namespace WebApplication
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<FormOptions>(options =>
@@ -67,30 +59,118 @@ namespace WebApplication
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
             services.AddTransient<IMailService, MailService.MailService>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .SetIsOriginAllowed(_ => true)
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
+
+            AddRepository(services);
+            AddServices(services);
+
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                options.JsonSerializerOptions.DictionaryKeyPolicy = null;
+
+            });
+
+            services.AddDbContext<MedbayTechDbContext>();
+        }
 
 
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.UseCors("AllowAll");
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
 
-            //add cors package
-            services.AddCors();
-            //services.RegisterMySQLDataServices(Configuration);
-            services.AddDbContext<MySqlContext>();
-            services.AddTransient<IDoctorRepository, DoctorSqlRepository>();
-            services.AddTransient<IFeedbackRepository, FeedbackSqlRepository>();
-            services.AddTransient<IMedicalRecordRepository, MedicalRecordSqlRepository>();
-            services.AddTransient<IPrescriptionRepository, PrescriptionSqlRepository>();
-            services.AddTransient<IAddressRepository, AddressSqlRepository>();
-            services.AddTransient<ICityRepository, CitySqlRepository>();
-            services.AddTransient<IStateRepository, StateSqlRepository>();
-            services.AddTransient<IInsurancePolicyRepository, InsurancePolicySqlRepository>();
-            services.AddTransient<IPatientRepository, PatientSqlRepository>();
-            services.AddTransient<IExaminationSurgeryRepository, ExaminationSurgerySqlRepository>();
-            services.AddTransient<ISurveyRepository, SurveySqlRepository>();
-            services.AddTransient<ISurveyQuestionRepository, SurveyQuestionSqlRepository>();
-            services.AddTransient<ISpecializationRepository, SpecializationSqlRepository>();
-            services.AddTransient<IDoctorWorkDayRepository, DoctorWorkDaySqlRepository>();
-            services.AddTransient<IAppointmentRepository, AppointmentSqlRepository>();
-            services.AddTransient<ISpecializationRepository, SpecializationSqlRepository>();
+            }
+            string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
 
+            using (var scope = app.ApplicationServices.CreateScope())
+            using (var context = scope.ServiceProvider.GetService<MedbayTechDbContext>())
+            {
+                RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
+
+                try
+                {
+                    if (!stage.Equals("development") && IsPostgres())
+                    {
+                        databaseCreator.CreateTables();
+                    }
+                    else
+                        context.Database.Migrate();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Failed to execute migration");
+                }
+                try
+                {
+                    DataSeeder seeder = new DataSeeder();
+                    seeder.SeedAllEntities(context);
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Failed to seed data");
+                }
+            }
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
+
+            if (stage.Equals("production"))
+            {
+                app.UseStaticFiles(new StaticFileOptions
+                {
+                    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "dist"))
+                });
+            }
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
+                RequestPath = "/Resources"
+            });
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+        }
+
+        private string GetDomain()
+        {
+            string origin = Environment.GetEnvironmentVariable("URL") ?? "localhost";
+            string port = Environment.GetEnvironmentVariable("PORT") ?? "4200";
+
+            return $"http://{origin}:{port}";
+        }
+
+        public bool IsPostgres()
+        {
+            string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";
+            return host.Equals("postgres");
+        }
+
+
+        private void AddServices(IServiceCollection services)
+        {
             services.AddScoped<IDoctorService, DoctorService>();
             services.AddScoped<IFeedbackService, FeedbackService>();
             services.AddScoped<IMedicalRecordService, MedicalRecordService>();
@@ -108,46 +188,27 @@ namespace WebApplication
             services.AddScoped<IDoctorWorkDayService, DoctorWorkDayService>();
             services.AddScoped<IAppointmentService, Backend.Schedules.Service.AppointmentService>();
             services.AddScoped<ISpecializationService, SpecializationService>();
-
-            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
-            services.AddControllers().AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.PropertyNamingPolicy = null;
-                options.JsonSerializerOptions.DictionaryKeyPolicy = null;
-
-            });
-
-
-
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        private void AddRepository(IServiceCollection services)
         {
-
-            app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
-                RequestPath = "/Resources"
-            });
+            services.AddTransient<IDoctorRepository, DoctorSqlRepository>();
+            services.AddTransient<IFeedbackRepository, FeedbackSqlRepository>();
+            services.AddTransient<IMedicalRecordRepository, MedicalRecordSqlRepository>();
+            services.AddTransient<IPrescriptionRepository, PrescriptionSqlRepository>();
+            services.AddTransient<IAddressRepository, AddressSqlRepository>();
+            services.AddTransient<ICityRepository, CitySqlRepository>();
+            services.AddTransient<IStateRepository, StateSqlRepository>();
+            services.AddTransient<IInsurancePolicyRepository, InsurancePolicySqlRepository>();
+            services.AddTransient<IPatientRepository, PatientSqlRepository>();
+            services.AddTransient<IExaminationSurgeryRepository, ExaminationSurgerySqlRepository>();
+            services.AddTransient<ISurveyRepository, SurveySqlRepository>();
+            services.AddTransient<ISurveyQuestionRepository, SurveyQuestionSqlRepository>();
+            services.AddTransient<ISpecializationRepository, SpecializationSqlRepository>();
+            services.AddTransient<IDoctorWorkDayRepository, DoctorWorkDaySqlRepository>();
+            services.AddTransient<IAppointmentRepository, AppointmentSqlRepository>();
+            services.AddTransient<ISpecializationRepository, SpecializationSqlRepository>();
         }
     }
+
 }

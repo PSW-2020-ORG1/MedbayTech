@@ -12,8 +12,8 @@ namespace Backend.Examinations.Repository
 {
    public interface ITreatmentRepository : IRepository<Treatment, int>
    {
-        IEnumerable<Prescription> GetAllPrescriptionsInPeriod(DateTime startDate, DateTime endDate);
-        IEnumerable<Prescription> GetAllPrescriptions();
-        IEnumerable<HospitalTreatment> GetAllHospitalTreatments();
+        List<Prescription> GetAllPrescriptionsInPeriod(DateTime startDate, DateTime endDate);
+        List<Prescription> GetAllPrescriptions();
+        List<HospitalTreatment> GetAllHospitalTreatments();
     }
 }

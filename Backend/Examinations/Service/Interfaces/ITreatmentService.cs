@@ -10,9 +10,9 @@ namespace Backend.Examinations.Service.Interfaces
         Treatment CreateTreatment(Treatment treatment);
         Treatment UpdateTreatment(Treatment treatment);
         bool DeleteTreatment(Treatment treatment);
-        IEnumerable<HospitalTreatment> GetUnapprovedHospitalTreatments();
-        IEnumerable<Prescription> GetAllPrescriptions() ;
-        IEnumerable<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate);
+        List<HospitalTreatment> GetUnapprovedHospitalTreatments();
+        List<Prescription> GetAllPrescriptions() ;
+        List<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate);
         HospitalTreatment ApproveHospitalTreatment(HospitalTreatment hospitalTreatment);
         HospitalTreatment RejectHospitalTreatment(HospitalTreatment hospitalTreatment);
     }

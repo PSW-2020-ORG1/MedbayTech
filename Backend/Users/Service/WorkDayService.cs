@@ -24,7 +24,7 @@ namespace Service.UserService
         }
 
         public WorkDay GetWorkDay(int id) => workDayRepository.GetObject(id);
-        public IEnumerable<WorkDay> GetAllByDate(DateTime date)
+        public List<WorkDay> GetAllByDate(DateTime date)
         {
 
             var allWorkDays = workDayRepository.GetAll();
@@ -44,7 +44,7 @@ namespace Service.UserService
 
         public WorkDay AddWorkDay(WorkDay workDay) => workDayRepository.Create(workDay);
       
-        public IEnumerable<WorkDay> GetAllByWeek(DateTime date)
+        public List<WorkDay> GetAllByWeek(DateTime date)
         {
             var allWorkDays = workDayRepository.GetAll();
             List<WorkDay> WorkDaysForWeek = new List<WorkDay>();
@@ -62,7 +62,7 @@ namespace Service.UserService
         {
             return date.CompareTo(DateTime.Today) == 0 || date.CompareTo(DateTime.Today.AddDays(7)) < 0 || date.CompareTo(DateTime.Today.AddDays(-7)) > 0;
         }
-        public IEnumerable<WorkDay> GetWorkingDoctorsForDay(DateTime date)
+        public List<WorkDay> GetWorkingDoctorsForDay(DateTime date)
         {
             var allWorkDays = workDayRepository.GetAll();
             List<WorkDay> WorkingDoctorsForDay = new List<WorkDay>();
@@ -76,7 +76,7 @@ namespace Service.UserService
             return WorkingDoctorsForDay;
         }
       
-        public IEnumerable<WorkDay> GetWorkingHoursForDoctor(Doctor doctor)
+        public List<WorkDay> GetWorkingHoursForDoctor(Doctor doctor)
         {
             var allWorkDays = workDayRepository.GetAll();
             List<WorkDay> WorkingDaysForDoctor = new List<WorkDay>();

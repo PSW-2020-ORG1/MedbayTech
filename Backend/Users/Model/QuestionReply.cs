@@ -10,8 +10,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Model.Users
 {
    public class QuestionReply
-   {
+    {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; protected set; }
         public DateTime Date { get; protected set; }
         public string Content { get; protected set; }

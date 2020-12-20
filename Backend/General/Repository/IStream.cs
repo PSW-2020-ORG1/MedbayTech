@@ -10,9 +10,9 @@ namespace Repository
 {
    public interface IStream<T>
    {
-      IEnumerable<T> GetAll();
+      List<T> GetAll();
       
-      void SaveAll(IEnumerable<T> entities);
+      void SaveAll(List<T> entities);
    
    }
 }

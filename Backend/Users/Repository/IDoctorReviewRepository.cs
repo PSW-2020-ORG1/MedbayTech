@@ -4,7 +4,6 @@
 // Purpose: Definition of Interface IDoctorReviewRepository
 
 using Model.Users;
-using System;
 using System.Collections.Generic;
 using Repository;
 
@@ -12,6 +11,6 @@ namespace Backend.Users.Repository.MySqlRepository
 {
     public interface IDoctorReviewRepository : ICreate<DoctorReview>, IGetAll<DoctorReview>
     {
-        IEnumerable<DoctorReview> GetReviewsForDoctor(Doctor doctor);
+        List<DoctorReview> GetReviewsForDoctor(Doctor doctor);
    }
 }

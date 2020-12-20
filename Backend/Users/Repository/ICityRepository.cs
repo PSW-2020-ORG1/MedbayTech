@@ -12,8 +12,8 @@ namespace Backend.Users.Repository.MySqlRepository
 {
    public interface ICityRepository : ICreate<City>, IGetAll<City>, IGet<City, int>
    {
-      IEnumerable<City> GetAllCitiesByState(State state);
-      bool CheckIfExists(City city);
+        List<City> GetAllCitiesByState(State state);
+        bool CheckIfExists(City city);
         City GetCityByName(City city);
     }
 }

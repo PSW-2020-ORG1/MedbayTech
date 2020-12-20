@@ -17,6 +17,7 @@ namespace Backend.Examinations.Model
    public class EmergencyRequest : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; protected set; }
         public TypeOfAppointment TypeOfAppointment { get; set; }
         public string SideNotes { get; set; }

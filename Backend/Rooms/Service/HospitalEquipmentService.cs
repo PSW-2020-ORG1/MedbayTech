@@ -5,7 +5,6 @@
  ***********************************************************************/
 
 using Backend.Rooms.Service;
-using Model;
 using Model.Rooms;
 using Repository.RoomRepository;
 using System;
@@ -41,7 +40,7 @@ namespace Service.RoomService
 
         public bool DeleteEquipment ( HospitalEquipment equipment ) => _hospitalEquipmentRepository.Delete(equipment);
 
-        public IEnumerable<HospitalEquipment> GetEquipmentByRoomNumber ( int id ) => _hospitalEquipmentRepository.GetEquipmentByRoomNumber(id);
+        public List<HospitalEquipment> GetEquipmentByRoomNumber ( int id ) => _hospitalEquipmentRepository.GetEquipmentByRoomNumber(id);
 
         public HospitalEquipment GetHospitalEquipment ( int id ) => _hospitalEquipmentRepository.GetObject(id);
 
@@ -52,7 +51,7 @@ namespace Service.RoomService
             return equipment;
         }
 
-        public IEnumerable<HospitalEquipment> GetAllEquipment ( ) => _hospitalEquipmentRepository.GetAll();
+        public List<HospitalEquipment> GetAllEquipment ( ) => _hospitalEquipmentRepository.GetAll();
 
     }
 }

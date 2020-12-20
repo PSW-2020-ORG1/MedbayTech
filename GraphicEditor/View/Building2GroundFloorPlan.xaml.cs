@@ -1,4 +1,5 @@
-﻿using GraphicEditor.View.Building2;
+﻿using GraphicEditor.View;
+using GraphicEditor.View.Building2;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -92,6 +93,12 @@ namespace GraphicEditor
                     rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#ffea05");
                     rectangle.StrokeThickness = 5;
                     SearchResultsForEquipment.Id = "0";
+                }
+                if (rectangle.Uid.Equals(SearchAppointment.Id))
+                {
+                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#33ff49");
+                    rectangle.StrokeThickness = 5;
+                    SearchAppointment.Id = "0";
                 }
             }
         }

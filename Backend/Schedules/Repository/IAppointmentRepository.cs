@@ -4,9 +4,7 @@
 // Purpose: Definition of Interface IAppointmentRepository
 
 using Model.Schedule;
-using Model.Users;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Repository.ScheduleRepository
@@ -16,7 +14,7 @@ namespace Repository.ScheduleRepository
         Dictionary<int, Appointment> GetAppointmentsBy(DateTime date);
         Dictionary<int, Appointment> GetScheduledFromToday();
         List<Appointment> GetCanceledAppointments();
-        IEnumerable<Appointment> GetAppointmentsByPatientId(string Id);
-        IEnumerable<Appointment> GetBy(string doctorId, DateTime date);
+        List<Appointment> GetAppointmentsByPatientId(string Id);
+        List<Appointment> GetBy(string doctorId, DateTime date);
     }
 }

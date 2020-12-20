@@ -3,12 +3,12 @@
 // Created: Saturday, April 11, 2020 11:23:56 PM
 // Purpose: Definition of Class Appointment
 
-using Model.Rooms;
-using Model.Users;
-using System;
 using Backend.General.Model;
 using Backend.Records.Model;
 using Backend.Utils;
+using Model.Rooms;
+using Model.Users;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,6 +17,7 @@ namespace Model.Schedule
     public class Appointment : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [NotMapped]
         public Period Period { get; protected set; }
@@ -68,11 +69,6 @@ namespace Model.Schedule
         {
             return DateTime.Compare(Start, start) == 0 && DateTime.Compare(End, end) == 0;
         }
-        /*public override int GetHashCode()
-        {
-            return (Period.StartTime.Year + 76) * (Period.StartTime.Day + 13) * (Period.StartTime.Hour + 17)  * (Period.StartTime.Minute + 21) * (Period.StartTime.Second  + 15) * (Period.StartTime.Month + 47)
-                + Doctor.WorkersID*25;
-        }*/
 
         public int GetId()
         {

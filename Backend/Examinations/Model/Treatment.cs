@@ -12,8 +12,9 @@ using Backend.General.Model;
 namespace Backend.Examinations.Model
 {
    public class Treatment : IIdentifiable<int>
-   {
+    {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public string AdditionalNotes { get; set; }

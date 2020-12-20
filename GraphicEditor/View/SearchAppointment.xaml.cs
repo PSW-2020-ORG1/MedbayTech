@@ -52,7 +52,7 @@ namespace GraphicEditor.View
             task.Wait();
             return doctors;
         }
-
+        
         private List<EquipmentType> searchDataBaseForHospitalEquipment()
         {
             hospitalEquipments = new List<EquipmentType>();

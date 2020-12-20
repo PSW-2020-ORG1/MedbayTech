@@ -15,7 +15,7 @@ namespace PharmacyIntegration.Controllers
     [ApiController]
     public class PharmacyNotificationController : Controller
     {
-        private MySqlContext _context;
+        private MedbayTechDbContext _context;
         private IPharmacyNotificationService _notificationService;
         private static string url = "amqps://vmaqngrm:BHAFy2pYqDLrQxDduUD-03HH-N0ACEVW@squid.rmq.cloudamqp.com/vmaqngrm";
         private static ConnectionFactory factory = new ConnectionFactory
@@ -23,7 +23,7 @@ namespace PharmacyIntegration.Controllers
             Uri = new Uri(url.Replace("amqp://", "amqps://")),
         };
 
-        public PharmacyNotificationController(MySqlContext context, IPharmacyNotificationService service)
+        public PharmacyNotificationController(MedbayTechDbContext context, IPharmacyNotificationService service)
         {
             this._context = context;
             this._notificationService = service;

@@ -50,12 +50,12 @@ namespace MedbayTechUnitTests
         public static IFeedbackRepository CreateStubFeedbackRepository()
         {
             var stubRepository = new Mock<IFeedbackRepository>();
-            var feedbacks = CreateListOfFeedbacks();
+            var feedbacks = CreateListOfFeedbacks().ToList();
             var feedback = CreateFeedback();
-
             stubRepository.Setup(p => p.GetAll()).Returns(feedbacks);
             stubRepository.Setup(p => p.Create(feedback)).Returns(feedback);
-            stubRepository.Setup(p => p.GetAllApprovedFeedback()).Returns(feedbacks.Where(p=>p.AllowedForPublishing && p.Approved));
+            
+            stubRepository.Setup(p => p.GetAllApprovedFeedback()).Returns(feedbacks.Where(p => p.AllowedForPublishing && p.Approved).ToList());
             return stubRepository.Object;
         }
 

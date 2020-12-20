@@ -38,7 +38,7 @@ namespace MedbayTechUnitTests
         public IMedicationRepository CreateRepositoryStub ( )
         {
             var stubRepository = new Mock<IMedicationRepository>();
-            var medications = GetMedications();
+            var medications = GetMedications().ToList();
             stubRepository.Setup(m => m.GetAll()).Returns(medications);
             return stubRepository.Object;
         }

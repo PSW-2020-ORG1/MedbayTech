@@ -2,29 +2,26 @@
 using Model.Rooms;
 using Model.Users;
 using Repository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
 namespace Backend.Users.Repository.MySqlRepository
 {
     public class DoctorSqlRepository : MySqlrepository<Doctor, string>, IDoctorRepository
     {
-        public DoctorSqlRepository(MySqlContext context) : base(context) {}
+        public DoctorSqlRepository(MedbayTechDbContext context) : base(context) {}
 
-        public IEnumerable<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
+        public List<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
         {
-           return GetAll().ToList().Where(d => d.SpecializationId == specialization.Id);
+           return GetAll().ToList().Where(d => d.SpecializationId == specialization.Id).ToList();
            
         }
         public Doctor GetByUsername(string username)
         {
             return GetAll().ToList().FirstOrDefault(d => d.Username.Equals(username));
         }
-        public IEnumerable<Doctor> GetDoctorsFromDepartment(Department department)
+        public List<Doctor> GetDoctorsFromDepartment(Department department)
         {
-            return GetAll().ToList().Where(d => d.DepartmentId.Equals(department.Id));
+            return GetAll().ToList().Where(d => d.DepartmentId.Equals(department.Id)).ToList();
         }
     }
 }

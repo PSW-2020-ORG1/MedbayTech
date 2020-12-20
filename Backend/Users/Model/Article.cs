@@ -11,8 +11,9 @@ using Backend.General.Model;
 namespace Model.Users
 {
    public class Article : IIdentifiable<int>
-   {
+    {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public DateTime Date { get; protected set; }
         public string Image { get; protected set; }

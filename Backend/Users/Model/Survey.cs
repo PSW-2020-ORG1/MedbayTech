@@ -14,8 +14,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Model.Users
 {
    public class Survey : IIdentifiable<int>
-   {
+    {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public DateTime Date { get; set; }
         [ForeignKey("Appointment")]

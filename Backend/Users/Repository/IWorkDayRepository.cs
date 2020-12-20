@@ -4,14 +4,13 @@
 // Purpose: Definition of Interface IWorkDayRepository
 
 using Model.Users;
-using System;
 using System.Collections.Generic;
 
 namespace Repository.UserRepository
 {
    public interface IWorkDayRepository : IRepository<WorkDay,int>
    {
-      IEnumerable<WorkDay> GetWorkTimeForEmployee(Model.Users.Employee employee);
+        List<WorkDay> GetWorkTimeForEmployee(Model.Users.Employee employee);
    
    }
 }

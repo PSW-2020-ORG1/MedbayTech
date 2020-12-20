@@ -18,7 +18,7 @@ namespace Service.GeneralService
             this.articleRepository = articleRepository;
         }
 
-        private IEnumerable<Article> SortByDate()
+        private List<Article> SortByDate()
         {
              throw new NotImplementedException();
         }
@@ -28,9 +28,9 @@ namespace Service.GeneralService
         public Article EditArticle(Article article) => articleRepository.Update(article);
 
         public Article AddArticle(Article article) => articleRepository.Create(article);
-        public IEnumerable<Article> GetAllArticles() => articleRepository.GetAll();
+        public List<Article> GetAllArticles() => articleRepository.GetAll();
         public Article GetArticle(int id) => articleRepository.GetObject(id);
-        public IEnumerable<Article> GetArticlesWroteByDoctor(Doctor doctor) => articleRepository.GetArticlesWroteByDoctor(doctor);
+        public List<Article> GetArticlesWroteByDoctor(Doctor doctor) => articleRepository.GetArticlesWroteByDoctor(doctor);
 
         public IArticleRepository articleRepository;
    

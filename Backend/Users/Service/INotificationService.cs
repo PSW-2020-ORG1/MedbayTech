@@ -21,7 +21,7 @@ namespace Backend.Medications.Service
         Notification NewEmergencyRequest(EmergencyRequest emergencyRequest);
         Notification NewHospitalTreatment(HospitalTreatment hospitalTreatment);
         Notification DeletedAppointment(Appointment appointment);
-        IEnumerable<Notification> GetNotificationsForUser(string username);
+        List<Notification> GetNotificationsForUser(string username);
 
     }
 }

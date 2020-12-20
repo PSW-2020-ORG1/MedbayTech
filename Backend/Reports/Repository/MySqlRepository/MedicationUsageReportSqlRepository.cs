@@ -14,9 +14,9 @@ namespace Backend.Reports.Repository.MySqlRepository
     public class MedicationUsageReportSqlRepository : IMedicationUsageReportRepository
     {
 
-        private MySqlContext _context;
+        private MedbayTechDbContext _context;
 
-        public MedicationUsageReportSqlRepository(MySqlContext context)
+        public MedicationUsageReportSqlRepository(MedbayTechDbContext context)
         {
             _context = context;
         }
@@ -41,7 +41,7 @@ namespace Backend.Reports.Repository.MySqlRepository
 
         public bool ExistsInSystem(string id) => GetObject(id) != null;
 
-        public IEnumerable<MedicationUsageReport> GetAll() => _context.MedicationUsageReports.ToList();
+        public List<MedicationUsageReport> GetAll() => _context.MedicationUsageReports.ToList();
 
         public MedicationUsageReport GetObject(string id) => 
             _context.MedicationUsageReports.ToList().Find(mur => mur.Id.Equals(id));

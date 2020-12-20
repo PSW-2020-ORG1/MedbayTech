@@ -7,7 +7,7 @@ namespace Backend.Rooms.Repository.MySqlRepository
 {
     public class RoomSqlRepository : MySqlrepository<Room, int>, IRoomRepository
     {
-        public RoomSqlRepository(MySqlContext context) : base(context) { }
+        public RoomSqlRepository(MedbayTechDbContext context) : base(context) { }
 
     }
 }

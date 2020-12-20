@@ -11,19 +11,20 @@ namespace Backend.Examinations.Repository.MySqlRepository
     public class PrescriptionSqlRepository : MySqlrepository<Prescription, int>,
         IPrescriptionRepository
     {
-        public PrescriptionSqlRepository(MySqlContext mySqlContext) : base(mySqlContext)
+        public PrescriptionSqlRepository(MedbayTechDbContext mySqlContext) : base(mySqlContext)
         {
         }
 
-        public IEnumerable<Prescription> GetPrescriptions()
+        public List<Prescription> GetPrescriptionsFor(string idPatient)
         {
-            return GetAll().Where(prescription => prescription.IsPrescription());
+            return GetAll().Where(prescription => prescription.IsPatient(idPatient)).ToList();
         }
 
-        public IEnumerable<Prescription> GetPrescriptionsFor(string idPatient)
+        public List<Prescription> GetPrescriptions()
         {
-            return GetAll().Where(prescription => prescription.IsPatient(idPatient));
+            return GetAll().Where(prescription => prescription.IsPrescription()).ToList();
         }
+
 
 
     }

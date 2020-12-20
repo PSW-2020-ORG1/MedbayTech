@@ -12,7 +12,7 @@ namespace Backend.Users.Repository.MySqlRepository
         IStateRepository
     {
 
-        public StateSqlRepository(MySqlContext context) : base(context) { }
+        public StateSqlRepository(MedbayTechDbContext context) : base(context) { }
         public bool CheckIfExists(State state)
         {
             return GetObject(state.Id) == null ? false : true;
@@ -22,5 +22,6 @@ namespace Backend.Users.Repository.MySqlRepository
         {
             return GetAll().ToList().FirstOrDefault(s => s.Id.Equals(id));
         }
+
     }
 }

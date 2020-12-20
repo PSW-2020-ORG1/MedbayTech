@@ -1,0 +1,19 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+WORKDIR /app
+
+COPY Backend/Backend.csproj Backend/
+COPY WebApplication/WebApplication.csproj WebApplication/
+COPY UnitTests/UnitTests.csproj UnitTests/
+COPY PharmacyIntegration/PharmacyIntegration.csproj PharmacyIntegration/
+
+
+RUN dotnet restore PharmacyIntegration/PharmacyIntegration.csproj
+RUN dotnet restore WebApplication/WebApplication.csproj
+RUN dotnet restore UnitTests/UnitTests.csproj
+
+COPY . .
+
+FROM build AS test
+LABEL test=true
+RUN dotnet test -c Release --results-directory /testresults --logger "trx;LogFileName=test_results.trx" UnitTests/UnitTests.csproj
+

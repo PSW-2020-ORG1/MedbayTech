@@ -2,7 +2,6 @@
 using Backend.Utils.DTO;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using WebApplication.DTO;
 
 namespace Backend.Examinations.Service.Interfaces

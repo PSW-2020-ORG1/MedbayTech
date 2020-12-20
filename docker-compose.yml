@@ -1,9 +1,11 @@
 version: "3.8"
 
 volumes:
-  mysql-data:
-  #web-sql:
-
+  mysql-data: {}
+  web-sql:
+  postgres-data: {}
+  test-data: {}
+  
 networks:
   demo:
     name: demo
@@ -22,22 +24,124 @@ services:
       MYSQL_PASSWORD: "root"
       MYSQL_ROOT_PASSWORD: "root"
     volumes:
-      - mysql-data:/var/lib/mysql:rw
-
-
-  PhIntegrationSql:
-    image: ph
-    container_name: phintegration
-    restart: on-failure
+      - mysql-data:/var/lib/mysql
+  
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    networks:
+      - demo
     environment:
-      PORT: 50202
-      DATABASE_USERNAME: "root"
-      DATABASE_PASSWORD: "root"
-      DATABASE_HOST: "mysql"
-      DATABASE_SCHEMA: "newdb"
-    ports:
-      - "8091:50202"
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: mydb1
+    volumes:
+      - postgres-data:/var/lib/postgres
+
+#  PhIntegration:
+#    build: 
+#      context: .
+#      dockerfile: Dockerfile.PhIntegration
+#    image: ph-integration
+#    restart: on-failure
+#    networks:
+#      - demo
+#    depends_on:
+#      - mysql
+#    environment:
+#      DATABASE_USERNAME: "root"
+#      DATABASE_PASSWORD: "root"
+#      DATABASE_HOST: "mysql"
+#      DATABASE_SCHEMA: "newdb"
+#      STAGE: "test"
+#      PORT: 8081
+#    ports:
+#      - "8081:8081"
+
+  GraphicEditorWebServer:
+    build: 
+      context: .
+      dockerfile: Dockerfile.GraphicEditor
+    image: graphic-editor
+    restart: on-failure
     networks:
       - demo
     depends_on:
       - mysql
+    environment:
+      DATABASE_USERNAME: "root"
+      DATABASE_PASSWORD: "root"
+      DATABASE_HOST: "mysql"
+      DATABASE_SCHEMA: "newdb"
+      PORT: 8084
+      STAGE: "test"
+    ports:
+      - "8084:8084"
+    volumes:
+      - mysql-data:/var/lib/mysql:rw
+
+  WebAppIntegrationTests:
+      build: 
+        context: .
+        dockerfile: Dockerfile.WebAppIntegrationTests
+      image: web-integration-tests
+      depends_on:
+        - mysql
+      environment:
+        DATABASE_USERNAME: "root"
+        DATABASE_PASSWORD: "root"
+        DATABASE_HOST: "mysql"
+        DATABASE_TYPE: "mysql"
+        DATABASE_SCHEMA: "newdb"
+        STAGE: "test"
+      expose: 
+        - "80"
+      networks: 
+        - demo
+      volumes:
+        - mysql-data:/var/lib/mysql:rw
+
+  PhIntegrationTests:
+      build: 
+        context: .
+        dockerfile: Dockerfile.PhIntegrationTests
+      image: ph-integration-tests
+      depends_on:
+        - mysql
+      environment:
+        DATABASE_USERNAME: "root"
+        DATABASE_PASSWORD: "root"
+        DATABASE_HOST: "mysql"
+        DATABASE_TYPE: "mysql"
+        DATABASE_SCHEMA: "newdb"
+        STAGE: "test"
+      expose: 
+        - "80"
+      networks: 
+        - demo
+      volumes:
+        - mysql-data:/var/lib/mysql:rw
+#  PhIntegrationSql:
+#    image: ph
+#    container_name: phintegration
+#    restart: on-failure
+#    environment:
+#      PORT: 50202
+#      DATABASE_USERNAME: "root"
+#      DATABASE_PASSWORD: "root"
+#      DATABASE_HOST: "mysql"
+#      DATABASE_SCHEMA: "newdb"
+#      STAGE: "test"
+#      PORT: 8082
+#    ports:
+#      - "8082:8082"
+
+  UnitTests:
+    build: 
+      context: .
+      dockerfile: Dockerfile.UnitTests
+    image: unit-tests
+    container_name: unit-tests-container
+    restart: on-failure
+    

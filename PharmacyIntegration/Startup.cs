@@ -1,3 +1,13 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.IO;
 using Backend.Examinations.Repository;
 using Backend.Examinations.Repository.MySqlRepository;
 using Backend.Examinations.Service;
@@ -14,23 +24,11 @@ using Backend.Pharmacies.Repository.MySqlRepository;
 using Backend.Reports.Repository;
 using Backend.Reports.Repository.MySqlRepository;
 using Backend.Reports.Service;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Model;
+using Backend.Utils;
 using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
 using Backend.Examinations.WebApiService;
-using System.IO;
-using System;
-using Npgsql;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-using Microsoft.AspNetCore.Mvc;
 
 namespace PharmacyIntegration
 {
@@ -43,83 +41,65 @@ namespace PharmacyIntegration
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // NOTE(Jovan): Init directory for usage reports
             Directory.CreateDirectory("GeneratedUsageReports");
             Directory.CreateDirectory("DrugSpecifications");
-            // Generated directory for prescription
             Directory.CreateDirectory("GeneratedPrescription");
 
-			services.AddCors();
-
-            services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
-            services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
-            services.AddTransient<IMedicationUsageRepository, MedicationUsageSqlRepository>();
-            services.AddTransient<IMedicationUsageReportRepository, MedicationUsageReportSqlRepository>();
-            services.AddTransient<ITreatmentRepository, TreatmentSqlRepository>();
-            services.AddTransient<INotificationService, NotificationService>();
-            services.AddTransient<IMedicalRecordRepository, MedicalRecordSqlRepository>();
-            services.AddTransient<IUserRepository, UserSqlRepository>();
-            services.AddTransient<INotificationRepository, NotificationSqlRepository>();
-            services.AddTransient<IPrescriptionRepository, PrescriptionSqlRepository>();
-
-            services.AddScoped<IPharmacyService, PharmacyService>();
-            services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
-            services.AddScoped<IMedicationUsageService, MedicationUsageService>();
-            services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();
-            services.AddScoped<ITreatmentService, TreatmentService>();
-            services.AddScoped<IPrescriptionSearchService, PrescriptionSearchService>();
+            services.AddCors();
+            AddRepository(services);
+            AddServices(services);
 
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
             services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
 
-            // NOTE(Jovan): Does not work
-            /*services.AddControllers().AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.PropertyNamingPolicy = null;
-                options.JsonSerializerOptions.DictionaryKeyPolicy = null;
-
-            });*/
-
-            if (!IsPostgresDatabase() && !IsTestEnvironment())
-            {
-                services.AddDbContextPool<MySqlContext>(
-                options => options.UseMySql(CreateConnectionStringFromEnvironment(),
-
-                    mySqlOptions =>
-                    {
-                        mySqlOptions.ServerVersion(new Version(5, 7, 17), ServerType.MySql)
-                        .EnableRetryOnFailure(
-                        maxRetryCount: 10,
-                        maxRetryDelay: TimeSpan.FromSeconds(30),
-                        errorNumbersToAdd: null);
-                    }
-                ));
-                services.AddDbContext<MySqlContext>(options =>
-                    options.UseMySql(CreateConnectionStringFromEnvironment()));
-            }
-            else
-            {
-                services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-                services.AddDbContext<MySqlContext>(options => options.UseNpgsql(CreateConnectionStringFromEnvironment()));
-            }
-            services.AddScoped<MySqlContext>();
-
-
-
+            services.AddDbContext<MedbayTechDbContext>();
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            using (var context = scope.ServiceProvider.GetService<MedbayTechDbContext>())
+            {
+                string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
+                RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
+
+                try
+                {
+                    if (stage.Equals("test"))
+                    {
+                        context.Database.Migrate();
+                    }
+                } catch(Exception)
+                {
+                    Console.WriteLine("Failed to execute migration");
+                }
+                try
+                {
+                    DataSeeder seeder = new DataSeeder();
+                    seeder.SeedAllEntities(context);
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Failed to seed data");
+                }
+            }
+
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true)); 
+
 
             app.UseRouting();
 
@@ -134,84 +114,41 @@ namespace PharmacyIntegration
                 endpoints.MapControllers();
             });
 
-            // add following statements
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "ClientApp";
+                spa.Options.SourcePath = "client-app";
                 if (env.IsDevelopment())
                 {
-                    // Launch development server for Vue.js
                     spa.UseVueDevelopmentServer();
                 }
             });
-
-            if (!IsLocalServer() || IsPostgresDatabase() || IsTestEnvironment())
-            {
-                using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-                {
-                    var context = serviceScope.ServiceProvider.GetRequiredService<MySqlContext>();
-
-                    RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
-                    if (!databaseCreator.HasTables())
-                        databaseCreator.CreateTables();
-                }
-            }
         }
 
-        public string CreateConnectionStringFromEnvironment()
+        private static void AddServices(IServiceCollection services)
         {
-            string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
-            string port = Environment.GetEnvironmentVariable("DATABASE_PORT") ?? "3306";
-            string database = Environment.GetEnvironmentVariable("DATABASE_SCHEMA") ?? "newdb";
-            string user = Environment.GetEnvironmentVariable("DATABASE_USERNAME") ?? "root";
-            string password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "root";
-
-
-            string url = Environment.GetEnvironmentVariable("DATABASE_URL") ?? "localhost";
-
-            if (url.Equals("localhost") && !IsTestEnvironment())
-                return $"server={server};port={port};database={database};user={user};password={password}";
-
-            else if (IsTestEnvironment())
-            {
-                return Environment.GetEnvironmentVariable("CONNECTION_STRING");
-            }
-
-            else
-            {
-                var databaseUri = new Uri(url);
-                var userInfo = databaseUri.UserInfo.Split(':');
-
-                var builder = new NpgsqlConnectionStringBuilder
-                {
-                    Host = databaseUri.Host,
-                    Port = databaseUri.Port,
-                    Username = userInfo[0],
-                    Password = userInfo[1],
-                    Database = databaseUri.LocalPath.TrimStart('/')
-                };
-                return builder.ToString();
-            }
-
+            services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
+            services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
+            services.AddTransient<IMedicationUsageRepository, MedicationUsageSqlRepository>();
+            services.AddTransient<IMedicationUsageReportRepository, MedicationUsageReportSqlRepository>();
+            services.AddTransient<ITreatmentRepository, TreatmentSqlRepository>();
+            services.AddTransient<INotificationService, NotificationService>();
+            services.AddTransient<IMedicalRecordRepository, MedicalRecordSqlRepository>();
+            services.AddTransient<IUserRepository, UserSqlRepository>();
+            services.AddTransient<INotificationRepository, NotificationSqlRepository>();
+            services.AddTransient<IPrescriptionRepository, PrescriptionSqlRepository>();
         }
-        public bool IsLocalServer()
+
+        private static void AddRepository(IServiceCollection services)
         {
-            string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
-            return server.Equals("localhost");
+            services.AddScoped<IPharmacyService, PharmacyService>();
+            services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
+            services.AddScoped<IMedicationUsageService, MedicationUsageService>();
+            services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();
+            services.AddScoped<ITreatmentService, TreatmentService>();
+            services.AddScoped<IPrescriptionSearchService, PrescriptionSearchService>();
         }
 
-        public bool IsPostgresDatabase()
-        {
-            string url = Environment.GetEnvironmentVariable("DATABASE_URL") ?? "localhost";
-            return !url.Equals("localhost");
-        }
 
-        public bool IsTestEnvironment()
-        {
-            string environment = Environment.GetEnvironmentVariable("TEST_ENVIRONMENT") ?? "FALSE";
-            return environment.Equals("TRUE");
-        }
     }
 }
-

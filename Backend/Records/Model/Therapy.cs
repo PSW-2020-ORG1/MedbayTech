@@ -10,8 +10,9 @@ using Backend.Medications.Model;
 namespace Backend.Records.Model
 {
    public class Therapy
-   {
+    {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int HourConsumption { get; set; }
         

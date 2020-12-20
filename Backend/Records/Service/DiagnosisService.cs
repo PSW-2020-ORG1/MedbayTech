@@ -37,10 +37,10 @@ namespace Service.MedicalRecordService
         public Diagnosis GetDiagnosis(int id) => 
             diagnosisRepository.GetObject(id);
 
-        public IEnumerable<Diagnosis> GetAllDiagnosis() => 
+        public List<Diagnosis> GetAllDiagnosis() => 
             diagnosisRepository.GetAll();
       
-        public IEnumerable<Diagnosis> GetAllDiagnosisBy(IEnumerable<Symptoms> symptoms)
+        public List<Diagnosis> GetAllDiagnosisBy(IEnumerable<Symptoms> symptoms)
         {
             List<Diagnosis> diagnosisBySymptoms = new List<Diagnosis>();
             List<Diagnosis> allDiagnosis = diagnosisRepository.GetAll().ToList();

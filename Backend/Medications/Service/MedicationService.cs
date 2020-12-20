@@ -9,9 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Backend.Medications.Repository.FileRepository;
-using Model.Users;
-using Service.GeneralService;
-using Model;
 
 namespace Backend.Medications.Service
 {
@@ -89,16 +86,16 @@ namespace Backend.Medications.Service
             _medicationRepository.GetObject(id);
 
        
-        public IEnumerable<Medication> GetAllOnValidation() => 
+        public List<Medication> GetAllOnValidation() => 
             _medicationRepository.GetAllOnValidation();
 
-        public IEnumerable<Medication> GetAll() => 
+        public List<Medication> GetAll() => 
             _medicationRepository.GetAll();
 
-        public IEnumerable<Medication> GetAllRejected() => 
+        public List<Medication> GetAllRejected() => 
             _medicationRepository.GetAllRejected();
 
-        public IEnumerable<Medication> GetAllApproved() =>
+        public List<Medication> GetAllApproved() =>
             _medicationRepository.GetAllApproved();
 
         public Medication AddAmount(Medication medication, int amount)

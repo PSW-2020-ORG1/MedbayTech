@@ -34,10 +34,10 @@ namespace Backend.Examinations.Service
         public ExaminationSurgery GetExaminationSurgery(int id) => 
             examinationSurgeryRepository.GetObject(id);
 
-        public IEnumerable<ExaminationSurgery> GetAllBy(Doctor doctor) => 
+        public List<ExaminationSurgery> GetAllBy(Doctor doctor) => 
             examinationSurgeryRepository.GetAllBy(doctor);
 
-        public IEnumerable<ExaminationSurgery> GetAllBy(MedicalRecord record) => 
+        public List<ExaminationSurgery> GetAllBy(MedicalRecord record) => 
             examinationSurgeryRepository.GetAllBy(record);  
         public ExaminationSurgery GetLastExamination(MedicalRecord medicalRecord)
         {

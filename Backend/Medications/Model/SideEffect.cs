@@ -12,8 +12,9 @@ using Backend.Records.Model.Enums;
 namespace Backend.Medications.Model
 {
    public class SideEffect
-   {
+    {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public SideEffectFrequency Frequency { get; set; }
         [ForeignKey("SideEffects")]

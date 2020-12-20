@@ -14,6 +14,7 @@ namespace Model.Rooms
     public class Bed : IIdentifiable<int>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public bool CurrentlyFree { get; protected set; }
 

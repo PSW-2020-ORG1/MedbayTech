@@ -11,7 +11,7 @@ namespace Repository
 {
    public interface IGetAll<T>
    {
-      IEnumerable<T> GetAll();
+        List<T> GetAll();
 
     }
 }

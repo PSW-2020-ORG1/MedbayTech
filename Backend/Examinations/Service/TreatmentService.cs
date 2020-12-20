@@ -47,13 +47,13 @@ namespace Backend.Examinations.Service
         public bool DeleteTreatment(Treatment treatment) =>
             treatmentRepository.Delete(treatment);
 
-        public IEnumerable<Prescription> GetAllPrescriptions() =>
+        public List<Prescription> GetAllPrescriptions() =>
             treatmentRepository.GetAllPrescriptions();
 
-        public IEnumerable<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate) =>
+        public List<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate) =>
             treatmentRepository.GetAllPrescriptionsInPeriod(startDate, endDate);
 
-        public IEnumerable<HospitalTreatment> GetUnapprovedHospitalTreatments()
+        public List<HospitalTreatment> GetUnapprovedHospitalTreatments()
         {
             List<HospitalTreatment> allHospitalTreatments = (new List<HospitalTreatment>(treatmentRepository.GetAllHospitalTreatments()));
             List<HospitalTreatment> unapprovedTreatments = new List<HospitalTreatment>();

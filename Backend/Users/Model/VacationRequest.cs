@@ -13,8 +13,9 @@ using Backend.General.Model;
 namespace Model.Users
 {
    public class VacationRequest : IIdentifiable<int>
-   {
+    {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [NotMapped]
         public Period Period { get; protected set; }

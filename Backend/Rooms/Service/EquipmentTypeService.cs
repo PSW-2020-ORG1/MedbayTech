@@ -10,21 +10,16 @@ namespace SimsProjekat.Service.RoomService
 {
     public class EquipmentTypeService : IEquipmentTypeService
     {
-        public EquipmentTypeRepository equipmentTypeRepository;
         public IEquipmentTypeRepository _equipmentTypeRepository;
 
         public EquipmentTypeService(IEquipmentTypeRepository equipmentTypeRepository)
         {
             _equipmentTypeRepository = equipmentTypeRepository;
         }
-        public EquipmentTypeService(EquipmentTypeRepository equipmentTypeRepository)
-        {
-            this.equipmentTypeRepository = equipmentTypeRepository;
-        }
 
-        public EquipmentType AddNewType(EquipmentType type) => equipmentTypeRepository.Create(type);
+        public EquipmentType AddNewType(EquipmentType type) => _equipmentTypeRepository.Create(type);
 
-        public IEnumerable<EquipmentType> GetAllTypes() => equipmentTypeRepository.GetAll();
+        public List<EquipmentType> GetAllTypes() => _equipmentTypeRepository.GetAll();
 
         public List<EquipmentType> GetAllEquipment()
         {

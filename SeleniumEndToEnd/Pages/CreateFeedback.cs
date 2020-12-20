@@ -54,8 +54,6 @@ namespace SeleniumEndToEnd.Pages
         {
             var wait = new WebDriverWait(_webDriver, new TimeSpan(0, 0, 40));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
-
-
         }
         public void ResolveAlertDialog()
             => _webDriver.SwitchTo().Alert().Accept();

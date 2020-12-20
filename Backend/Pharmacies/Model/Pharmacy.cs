@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace PharmacyIntegration.Model
@@ -9,6 +10,7 @@ namespace PharmacyIntegration.Model
     public class Pharmacy : IIdentifiable<string>
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
         public string APIKey { get; set; }
         public string APIEndpoint { get; set; }

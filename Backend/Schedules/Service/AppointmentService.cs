@@ -7,17 +7,10 @@ using Repository.ScheduleRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Backend.Exceptions.Schedules;
-using Backend.Schedules.Service.Interfaces;
 using Backend.Users.Repository.MySqlRepository;
-using System.Text;
 using Backend.Rooms.Service;
 using Backend.Schedules.Service.StrategyPattern;
 using Castle.Core.Internal;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-using Backend.Users.WebApiService;
-using Repository.RoomRepository;
-using Model.Rooms;
 using Service.ScheduleService;
 
 namespace Backend.Schedules.Service

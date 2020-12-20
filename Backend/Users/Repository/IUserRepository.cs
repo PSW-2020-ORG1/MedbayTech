@@ -5,24 +5,23 @@
 
 using Model.Rooms;
 using Model.Users;
-using System;
 using System.Collections.Generic;
 
 namespace Repository.UserRepository
 {
    public interface IUserRepository : IRepository<RegisteredUser,string>
    {
-      
-        IEnumerable<Doctor> GetAllDoctorsBySpecialization(Model.Users.Specialization specialization);
-      
-        IEnumerable<Employee> GetAllEmployees();
-      
-        IEnumerable<Secretary> GetAllSecretaries();
-        IEnumerable<Doctor> GetAllDoctors();
-        IEnumerable<Patient> GetAllPatients();
 
-        IEnumerable<Manager> GetAllManagers();
+        List<Doctor> GetAllDoctorsBySpecialization(Model.Users.Specialization specialization);
+
+        List<Employee> GetAllEmployees();
+
+        List<Secretary> GetAllSecretaries();
+        List<Doctor> GetAllDoctors();
+        List<Patient> GetAllPatients();
+
+        List<Manager> GetAllManagers();
         RegisteredUser GetByUsername(string username);
-        IEnumerable<Doctor> GetDoctorsFromDepartment(Department department);
+        List<Doctor> GetDoctorsFromDepartment(Department department);
     }
 }
