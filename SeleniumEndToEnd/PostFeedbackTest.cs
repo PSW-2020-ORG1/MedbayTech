@@ -6,6 +6,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.DevTools.V84.Target;
 using SeleniumEndToEnd.Pages;
 using Xunit;
+using Index = SeleniumEndToEnd.Pages.Index;
 
 namespace SeleniumEndToEnd
 {
@@ -14,6 +15,8 @@ namespace SeleniumEndToEnd
         private IWebDriver driver;
         private AllFedback allFeedbackPage;
         private CreateFeedback createFeedbackPage;
+        private Index indexPage;
+
         private int feedbackCount = 0;
 
         public PostFeedbackTest()
@@ -28,14 +31,24 @@ namespace SeleniumEndToEnd
             options.AddArguments("--disable-notifications");    // disable notifications
 
             driver = new ChromeDriver(options);
-            allFeedbackPage = new AllFedback(driver);
-            allFeedbackPage.Navigate();
+
+            indexPage = new Index(driver);
+            indexPage.Navigate();
+            
+            Assert.True(indexPage.AllFeedbackIsDisplayed());
+            Assert.True(indexPage.CreateFeedbackIsDisplayed());
+
+
+            allFeedbackPage = new AllFedback(driver); 
+            indexPage.goToAllFeedback();
+
             allFeedbackPage.EnsurePageIsDisplayed();
 
             feedbackCount = allFeedbackPage.GetFeedbackCount();       // get number of table rows - after create successful sheck if number increased
             Console.Write(feedbackCount);
+
             createFeedbackPage = new CreateFeedback(driver);
-            createFeedbackPage.Navigate();
+            indexPage.goToCreateFeedback();
 
 
             Assert.True(createFeedbackPage.FeedbackTextboxDisplayed());          // check if form input elements are displayed
@@ -58,8 +71,10 @@ namespace SeleniumEndToEnd
             createFeedbackPage.SubmitFeedback();
             createFeedbackPage.WaitForFormSubmit();
             createFeedbackPage.ResolveAlertDialog();
+
             AllFedback newAllFedbackPage = new AllFedback(driver);
-            newAllFedbackPage.Navigate();
+            indexPage.goToAllFeedback();
+
             newAllFedbackPage.EnsurePageIsDisplayed();                                    // wait for table to populate
             Assert.True(newAllFedbackPage.TitleDisplayed());
 
