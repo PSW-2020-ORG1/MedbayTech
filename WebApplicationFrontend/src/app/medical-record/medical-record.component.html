@@ -56,8 +56,8 @@
                         <th> &nbsp; </th>
                         <th> &nbsp; </th>
                         <th> Diagnoses </th>
-                        <tr>
-                            <td> {{ medicalRecord.familyIllnessHistoryRelatives }} </td>
+                        <tr *ngFor="let relative of medicalRecord.familyIllnessHistoryRelatives">
+                            <td> {{ relative }} </td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td> {{ medicalRecord.familyIllnessHistoryDiagnosis }} </td>

@@ -81,28 +81,6 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql:rw
 
-  WebIntegrationTests:
-      build: 
-        context: .
-        dockerfile: Dockerfile.WebAppIntegrationTests
-      image: web-tests
-      depends_on:
-        - mysql
-      environment:
-        DATABASE_USERNAME: "root"
-        DATABASE_PASSWORD: "root"
-        DATABASE_HOST: "mysql"
-        DATABASE_TYPE: "mysql"
-        DATABASE_SCHEMA: "newdb"
-        STAGE: "test"
-      expose: 
-        - "80"
-      networks: 
-        - demo
-      volumes:
-        - mysql-data:/var/lib/mysql:rw
-
-
   PhIntegrationTests:
       build: 
         context: .
