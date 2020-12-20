@@ -17,9 +17,6 @@ namespace Backend.Medications.Model
 {
    public class Medication : IIdentifiable<int>
    {
-        // TODO(Jovan): [JsonIgnore]s are only temporary until
-        // m:n relations are fixed
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -30,13 +27,13 @@ namespace Backend.Medications.Model
         public string Dosage { get; set; }
         [ForeignKey ("Room")]
         public int RoomId { get; set; }
-        [JsonIgnore]
+       // [JsonIgnore]
         public virtual Room Room { get; set; }
         public virtual List<DosageOfIngredient> MedicationContent { get; set; }
 
         [ForeignKey("MedicationCategory")]
         public int MedicationCategoryId { get; set; }
-        [JsonIgnore]
+        // [JsonIgnore]
         public virtual MedicationCategory MedicationCategory { get; set; }
         public virtual List<Allergens> Allergens { get; set; }
         public virtual List<Medication> AlternativeMedication { get; set; }

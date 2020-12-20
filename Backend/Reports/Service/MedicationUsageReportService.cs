@@ -1,6 +1,7 @@
 ﻿using Backend.Reports.Model;
 using Backend.Reports.Repository;
 using Backend.Utils;
+using Model.Rooms;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -23,13 +24,17 @@ namespace Backend.Reports.Service
 
         public MedicationUsageReport GenerateMedicationUsageReport(Period period) 
         {
-            // TODO(Jovan): Remove dummy data and implement report system
             char sep = Path.DirectorySeparatorChar;
             MedicationUsageReport report = new MedicationUsageReport(period.StartTime, period.EndTime);
             string filepath = "." + sep + "GeneratedUsageReports" + sep + report.Id + ".json";
             List<MedicationUsage> usages = (List<MedicationUsage>)_medicationUsageRepository.GetAll().ToList()
                 .Where(ur => ur.InPeriod((DateTime)report.From, (DateTime)report.Until)).ToList();
             report.MedicationUsages.AddRange(usages);
+
+            var jsonResolver = new MedicationUsageReportContractResolver();
+            jsonResolver.IgnoreProperty(typeof(Room), "Room");
+            var serializerSettings = new JsonSerializerSettings();
+            serializerSettings.ContractResolver = jsonResolver;
             string json = JsonConvert.SerializeObject(report);
             Console.WriteLine(json);
             JsonSerializer jsonSerializer = new JsonSerializer();

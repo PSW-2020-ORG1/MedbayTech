@@ -25,7 +25,8 @@ namespace PharmacyIntegration.Controllers
         [HttpPost]
         public IActionResult Post(MedicationUsageReportNotification notification)
         {
-            notification.Endpoint = "http://l4v.ddns.net:50202/api/httpfilesharing";
+            // TODO(Jovan): AMQP is temporarily down, until then, this will return OK always
+            /*notification.Endpoint = "http://l4v.ddns.net:50202/api/httpfilesharing";
             notification.Message = "New usage report from MedbayTech";
 
             using (var conn = factory.CreateConnection())
@@ -42,8 +43,8 @@ namespace PharmacyIntegration.Controllers
                 {
                     return BadRequest();
                 }
-                return Ok(body);
-            }
+                return Ok(body);*/
+            return Ok();
         }
 
     }
