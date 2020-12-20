@@ -29,10 +29,10 @@ export class ReportSimpleSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.reportForm = new FormGroup({
-      'doctor' : new FormControl('', [Validators.pattern("^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
+      'doctor' : new FormControl('', [Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
       'startDate' : new FormControl(new Date()),
       'endDate' : new FormControl(new Date()),
-      'type' : new FormControl('', [Validators.pattern("^[A-ZŠĐŽČĆ][a-zšđćčžA-ZŠĐŽČĆ ]*$")])
+      'type' : new FormControl('', [Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")])
     }) 
   }
 

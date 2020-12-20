@@ -33,7 +33,7 @@ namespace Backend.Reports.Model
         private String PeriodToString(DateTime from, DateTime until)
         {
             String format = "ddMMyy";
-            return from.ToString(format) + until.ToString(format);
+            return from.ToString(format) + until.ToString(format) + "_" + DateTime.Now.ToString("ddMMyy_HHmmss");
         }
 
         public string GetId()

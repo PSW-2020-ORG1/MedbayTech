@@ -64,7 +64,7 @@ namespace PharmacyIntegration.Service
         public PharmacyNotification Get(int id) => _pharmacyNotificationRepository.GetObject(id);
         public List<PharmacyNotification> GetAll() => _pharmacyNotificationRepository.GetAll();
 
-        private bool CheckPermisionToSendNotification(string pharmacyId)
+        public bool CheckPermisionToSendNotification(string pharmacyId)
         {
             Pharmacy p = _pharmacyRepository.GetObject(pharmacyId);
             if (p == null ) return false;

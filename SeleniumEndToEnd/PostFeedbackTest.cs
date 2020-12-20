@@ -58,7 +58,6 @@ namespace SeleniumEndToEnd
             createFeedbackPage.SubmitFeedback();
             createFeedbackPage.WaitForFormSubmit();
             createFeedbackPage.ResolveAlertDialog();
-            
             AllFedback newAllFedbackPage = new AllFedback(driver);
             newAllFedbackPage.Navigate();
             newAllFedbackPage.EnsurePageIsDisplayed();                                    // wait for table to populate

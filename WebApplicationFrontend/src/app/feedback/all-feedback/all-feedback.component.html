@@ -1,6 +1,6 @@
 <div class="container">
-
-    <h2 name="all_feedback_len">Currently there are: {{allFeedback.length}} feedbacks.</h2>
+<h1 name="feedbacks" class="header">All feedback</h1>
+    <h2 name="all_feedback_len" class="container center-card">Currently there are: {{allFeedback.length}} feedback</h2>
     <div>
                 <div [dataSource]="allFeedback" class="row" *ngFor="let feedback of allFeedback" class="container center-card">  
                     
