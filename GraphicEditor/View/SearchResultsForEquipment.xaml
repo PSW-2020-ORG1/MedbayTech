@@ -9,7 +9,13 @@
       Title="SearchResultsForEquipment">
 
     <Grid>
-        <Button  Name="btnShowOnMap" Margin="246,588,246,24"  Content="Shown on map" FontWeight="Bold" FontSize="18" Click="buttonShownOnMap"/>
+        <Button  Name="btnShowOnMap" Margin="246,588,246,24" Background="SteelBlue" Foreground="White" Content="Shown on map" FontWeight="Bold" FontSize="22" Click="buttonShownOnMap">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
         <DataGrid Name="dataGridEquipment" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" Width="710" Height="550"  IsReadOnly="True" Margin="0,25,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="149" Binding="{Binding EquipmentType.Name}"/>

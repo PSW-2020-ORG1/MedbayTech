@@ -40,15 +40,22 @@
                    VerticalAlignment="Center" Height="65" Width="175">
             <Run BaselineAlignment="Bottom" Text="Exam room label:" Foreground="White" FontWeight="DemiBold"/>
             <InlineUIContainer BaselineAlignment="Bottom">
-                <TextBox Height="18" TextWrapping="Wrap" Text="GL-O2" Width="61" TextAlignment="Center" FontSize="11" FontWeight="DemiBold"/>
+                <TextBox Height="18" TextWrapping="Wrap" Text="{Binding Path=ExaminationRoom.RoomLabel}" Width="61" TextAlignment="Center" FontSize="11" FontWeight="DemiBold"/>
             </InlineUIContainer>
             <Run BaselineAlignment="Bottom" Text="&#x0a;Doctor:" Foreground="White" FontWeight="SemiBold"/>
             <InlineUIContainer BaselineAlignment="Center">
-                <TextBox Height="21" TextWrapping="Wrap" Text="Imenko Prezimenić" Width="125" TextAlignment="Center" FontSize="13" FontWeight="SemiBold" BorderBrush="#3A6180"/>
+                <TextBlock>
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} {1}">
+                            <Binding Path="Name" />
+                            <Binding Path="Surname" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
             </InlineUIContainer>
             <Run BaselineAlignment="Bottom" Text="&#x0a;Specialization:" Foreground="White" FontWeight="Medium"/>
             <InlineUIContainer BaselineAlignment="Center">
-                <TextBox Height="21" TextWrapping="Wrap" Text="Ginekolog" Width="83" TextAlignment="Left" FontSize="11" FontWeight="Medium" BorderBrush="#3A6180"/>
+                <TextBox Height="21" TextWrapping="Wrap" Text="{Binding Path=Specialization.SpecializationName}" Width="83" TextAlignment="Left" FontSize="11" FontWeight="Medium" BorderBrush="#3A6180"/>
             </InlineUIContainer>
         </TextBlock>
     </Grid>

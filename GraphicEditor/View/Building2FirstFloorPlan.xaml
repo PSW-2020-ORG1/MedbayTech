@@ -88,6 +88,15 @@
                 <local1:PopupAuxiliaryRoom x:Name="AuxiliaryRoom" Foreground="#E0FFFF"/>
             </Grid>
         </Popup>
+        <Popup x:Name="PopupInfoForPatient"
+                   AllowsTransparency="True"
+                   HorizontalOffset="10"
+                   VerticalOffset="10">
+
+            <Grid>
+                <local1:PopupInfoForPatient x:Name="InfoForPatient" Foreground="#E0FFFF"/>
+            </Grid>
+        </Popup>
         
     </Grid>
 </Page>

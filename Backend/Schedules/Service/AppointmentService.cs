@@ -15,6 +15,9 @@ using Backend.Rooms.Service;
 using Backend.Schedules.Service.StrategyPattern;
 using Castle.Core.Internal;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using Backend.Users.WebApiService;
+using Repository.RoomRepository;
+using Model.Rooms;
 using Service.ScheduleService;
 
 namespace Backend.Schedules.Service
@@ -22,13 +25,21 @@ namespace Backend.Schedules.Service
    public class AppointmentService : IAppointmentService
    {
         private const int appointmentDuration = 30;
+        private const int datePriorityRange = 2;
         private const int daysBeforeCantBeCanceled = 2;
+
         IDoctorWorkDayRepository _doctorWorkDayRepository;
         IAppointmentRepository _appointmentRepository;
         ISurveyRepository _surveyRepository;
         IDoctorService _doctorService;
 
         private IPriorityStrategy _priorityStrategy;
+
+        public AppointmentService(IDoctorWorkDayRepository doctorWorkDayRepository, IAppointmentRepository appointmentRepository)
+        {
+            _appointmentRepository = appointmentRepository;
+            _doctorWorkDayRepository = doctorWorkDayRepository;
+        }
 
         public AppointmentService(IDoctorWorkDayRepository doctorWorkDayRepository, IAppointmentRepository appointmentRepository, IDoctorService doctorService, ISurveyRepository surveyRepository){
             _appointmentRepository = appointmentRepository;
@@ -98,7 +109,6 @@ namespace Backend.Schedules.Service
 
         }
    
-
         public Appointment ScheduleAppointment(Appointment appointment)
         {
             List<Appointment> available = GetAvailableBy(appointment.DoctorId, appointment.Start);
@@ -109,6 +119,29 @@ namespace Backend.Schedules.Service
 
             return null;
         }
+
+        public List<Appointment> GetAvailableByPriorityDoctor(PriorityParameters parameters)
+        {
+            parameters.ChosenStartDate = parameters.ChosenStartDate.AddDays(-datePriorityRange);
+            parameters.ChosenEndDate = parameters.ChosenEndDate.AddDays(datePriorityRange);
+            List<Appointment> appointments = GetAvailableByDoctorAndDateRange(parameters);
+            return appointments;
+        }
+        public List<Appointment> GetAvailableByDoctorAndTimeInterval(PriorityParameters parameters)
+        {
+            List<Appointment> appointmentsForDays = GetAvailableByDoctorAndDateRange(parameters);
+            List<Appointment> appointments = new List<Appointment>();
+            foreach(Appointment appointment in appointmentsForDays)
+            {
+                if (appointment.Start >= parameters.ChosenStartDate && appointment.End <= parameters.ChosenEndDate) appointments.Add(appointment);
+            }
+            return appointments;
+        }
+        public List<Appointment> GetApppointmentsScheduledForSpecificRoom(int roomId)
+        {
+            return _appointmentRepository.GetAll().ToList().Where(a => a.RoomId == roomId).ToList();
+        }
+
         public List<Appointment> GetAvailableByDoctorAndDateRange(PriorityParameters parameters)
         {
             DateTime start = parameters.ChosenStartDate;
@@ -147,9 +180,9 @@ namespace Backend.Schedules.Service
             List<Appointment> available = new List<Appointment>(allAppointments);
             foreach(Appointment appointmentIt in allAppointments)
             {
-                Appointment appointment = occupied.FirstOrDefault(a => a.isOccupied(appointmentIt.Start, appointmentIt.End));
+                Appointment appointment = occupied.FirstOrDefault(a => a.isOccupied(appointmentIt.Start, appointmentIt.End) && !a.CanceledByPatient);
                 
-                if (appointment != null && !appointment.CanceledByPatient)
+                if (appointment != null)
                     available.Remove(appointmentIt);
             }
 
@@ -186,6 +219,7 @@ namespace Backend.Schedules.Service
                 Appointment appointment = new Appointment
                 {
                     DoctorId = doctorId,
+                    Doctor = doctorWorkDays.Doctor,
                     Start = appointmentStart.AddMinutes(appointmentDuration * i),
                     End = appointmentStart.AddMinutes(appointmentDuration * (i + 1))
                 };

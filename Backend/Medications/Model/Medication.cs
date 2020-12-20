@@ -72,5 +72,22 @@ namespace Backend.Medications.Model
         {
             return Status == MedStatus.Validation;
         }
+        public void UpdateMedication(Medication medication)
+        {
+            Id = medication.Id;
+            Med = medication.Med;
+            Status = medication.Status;
+            Company = medication.Company;
+            Quantity = medication.Quantity;
+            Dosage = medication.Dosage;
+            RoomId = medication.RoomId;
+            Room = medication.Room;
+            MedicationContent = medication.MedicationContent;
+            MedicationCategoryId = medication.MedicationCategoryId;
+            MedicationCategory = medication.MedicationCategory;
+            Allergens = medication.Allergens;
+            AlternativeMedication = medication.AlternativeMedication;
+            SideEffects = medication.SideEffects;
+        }
     }
 }

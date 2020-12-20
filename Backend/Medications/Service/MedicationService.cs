@@ -73,8 +73,13 @@ namespace Backend.Medications.Service
 
             return medication;
         }
-        public Medication UpdateMedication(Medication medication) => 
-            _medicationRepository.Update(medication);
+        public Medication UpdateMedication(Medication medication)
+        {
+            Medication medication_update = _medicationRepository.GetAll().ToList().Find(m => m.Id == medication.Id);
+            medication_update.UpdateMedication(medication);
+            return _medicationRepository.Update(medication_update);
+        }
+            
 
         public bool DeleteMedication(Medication medication) => 
             _medicationRepository.Delete(medication);

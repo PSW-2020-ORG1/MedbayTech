@@ -1,5 +1,8 @@
 ﻿using Backend.Users.Repository;
 using Backend.Users.Service.Interfaces;
+using Model.Users;
+using System;
+using System.Collections.Generic;
 using Model.Schedule;
 using Model.Users;
 using Repository.ScheduleRepository;
@@ -12,24 +15,34 @@ namespace Backend.Users.Service
 {
     public class PatientService : IPatientService
     {
+        private IPatientRepository _patientRepository;
+
         private const int daysInMonth = 30;
         private const int numberOfCancelableAppointments = 4;
-        private IPatientRepository patientRepository;
         private IAppointmentRepository appointmentRepository;
+
+        public PatientService(IPatientRepository patientRepository)
+        {
+            _patientRepository = patientRepository;
+        }
 
         public PatientService(IPatientRepository patientRepository, IAppointmentRepository appointmentRepository)
         {
-            this.patientRepository = patientRepository;
+            this._patientRepository = patientRepository;
             this.appointmentRepository = appointmentRepository;
+        }
+        public IEnumerable<Patient> GetAll()
+        {
+            return _patientRepository.GetAll();
         }
         public Patient UpdateStatus(string patientId)
         {
-            Patient patient = patientRepository.GetById(patientId);
+            Patient patient = _patientRepository.GetById(patientId);
 
             if (patient != null)
             {
                 patient.Blocked = true;
-                patientRepository.Update(patient);
+                _patientRepository.Update(patient);
                 return patient;
             }
 
@@ -38,7 +51,7 @@ namespace Backend.Users.Service
 
         public List<Patient> GetPatientsThatShouldBeBlocked()
         {
-            List<Patient> patients = patientRepository.GetAll().Where(patient => !patient.Blocked).ToList();
+            List<Patient> patients = _patientRepository.GetAll().Where(patient => !patient.Blocked).ToList();
             List<Patient> blockablePatients = new List<Patient>();
             List<Appointment> canceledAppointments = new List<Appointment>();
 

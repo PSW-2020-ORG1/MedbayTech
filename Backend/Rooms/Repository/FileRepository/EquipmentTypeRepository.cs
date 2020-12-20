@@ -45,5 +45,25 @@ namespace Repository.RoomRepository
             var allEquipmentTypes = stream.GetAll().ToList();
             return allEquipmentTypes.Any(item => item.Name== name);
         }
+
+        public bool ExistsInSystem(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public EquipmentType Update(EquipmentType entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Delete(EquipmentType entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public EquipmentType GetObject(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
