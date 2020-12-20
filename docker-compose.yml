@@ -29,7 +29,6 @@ services:
     container_name: phintegration
     restart: on-failure
     environment:
-      PORT: 50202
       DATABASE_USERNAME: "root"
       DATABASE_PASSWORD: "root"
       DATABASE_HOST: "mysql"

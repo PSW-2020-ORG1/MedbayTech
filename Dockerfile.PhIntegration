@@ -9,13 +9,11 @@ RUN apk add --update nodejs nodejs-npm
 RUN mkdir /src
 WORKDIR /src
 
-RUN mkdir Backend
-RUN mkdir PharmacyIntegration
-COPY Backend/Backend.csproj /src/Backend/Backend.csproj
-COPY PharmacyIntegration/PharmacyIntegration.csproj /src/PharmacyIntegration/PharmacyIntegration.csproj
+COPY Backend/Backend.csproj Backend/Backend.csproj
+COPY PharmacyIntegration/PharmacyIntegration.csproj PharmacyIntegration/PharmacyIntegration.csproj
 
-RUN dotnet restore /src/Backend/Backend.csproj
-RUN dotnet restore /src/PharmacyIntegration/PharmacyIntegration.csproj
+RUN dotnet restore Backend/Backend.csproj
+RUN dotnet restore PharmacyIntegration/PharmacyIntegration.csproj
 
 RUN mkdir -p /src/PharmacyIntegration/vueclient
 
@@ -43,6 +41,7 @@ RUN dotnet publish /src/PharmacyIntegration/PharmacyIntegration.csproj -c Releas
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine
 WORKDIR /app
 COPY --from=build /src .
+COPY --from=build /src/PharmacyIntegration/vueclient /app/PharmacyIntegration/bin/Release/netcoreapp3.1/vueclient
 RUN apk add --update nodejs nodejs-npm
 
 WORKDIR /app/PharmacyIntegration/bin/Release/netcoreapp3.1/vueclient
@@ -50,7 +49,6 @@ RUN npm install -g @vue/cli
 RUN npm install --save axios vue-axios
 RUN npm install
 # NOTE(Jovan): Might die
-COPY /app/PharmacyIntegration/vueclient /app/PharmacyIntegration/bin/Release/netcoreapp3.1/vueclient
 
 WORKDIR /app/PharmacyIntegration/bin/Release/netcoreapp3.1/
 EXPOSE 50202
