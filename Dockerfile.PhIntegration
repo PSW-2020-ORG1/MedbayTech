@@ -1,46 +1,57 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS build
 
-WORKDIR /app
+RUN apk add --update nodejs nodejs-npm
 
-COPY Backend/Backend.csproj Backend/
-COPY PharmacyIntegration/PharmacyIntegration.csproj PharmacyIntegration/
+# /src
+#   Backend/
+#   PharmacyIntegration/
+# /app
+RUN mkdir /src
+WORKDIR /src
 
-RUN dotnet restore PharmacyIntegration/PharmacyIntegration.csproj
+RUN mkdir Backend
+RUN mkdir PharmacyIntegration
+COPY Backend/Backend.csproj /src/Backend/Backend.csproj
+COPY PharmacyIntegration/PharmacyIntegration.csproj /src/PharmacyIntegration/PharmacyIntegration.csproj
 
-COPY . .
+RUN dotnet restore /src/Backend/Backend.csproj
+RUN dotnet restore /src/PharmacyIntegration/PharmacyIntegration.csproj
 
+RUN mkdir -p /src/PharmacyIntegration/vueclient
 
-FROM build AS publish
-WORKDIR /app
-RUN dotnet publish PharmacyIntegration/PharmacyIntegration.csproj -c Release -o out
+COPY PharmacyIntegration/vueclient/package.json /src/PharmacyIntegration/vueclient/package.json
 
-
-FROM node:alpine as buildvue
-
-WORKDIR /app/vueclient
-
-COPY PharmacyIntegration/vueclient/package.json .
+WORKDIR /src/PharmacyIntegration/vueclient
 RUN npm install -g @vue/cli
 RUN npm install --save axios vue-axios
-
 RUN npm install
 
+WORKDIR /src
 
+COPY . ./
 
+RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
+RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-2.32-r0.apk
+RUN apk add glibc-2.32-r0.apk
 
-COPY PharmacyIntegration .
+WORKDIR /src/PharmacyIntegration/vueclient
 RUN npm run build
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS runtime
+WORKDIR /src
+RUN dotnet publish /src/PharmacyIntegration/PharmacyIntegration.csproj -c Release
 
-RUN useradd -ms /bin/bash defaultuser
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine
 WORKDIR /app
+COPY --from=build /src .
+RUN apk add --update nodejs nodejs-npm
 
-COPY --from=buildvue /app/dist /app/wwwroot
+WORKDIR /app/PharmacyIntegration/bin/Release/netcoreapp3.1/vueclient
+RUN npm install -g @vue/cli
+RUN npm install --save axios vue-axios
+RUN npm install
+# NOTE(Jovan): Might die
+COPY /app/PharmacyIntegration/vueclient /app/PharmacyIntegration/bin/Release/netcoreapp3.1/vueclient
 
-COPY --from=publish /app/out .
-
-ENV ASPNETCORE_ENVIRONMENT Production
-ENV ASPNETCORE_URLS http://*:50202
-EXPOSE 5000
-CMD [ "dotnet" "PharmacyIntegration.dll"] 
+WORKDIR /app/PharmacyIntegration/bin/Release/netcoreapp3.1/
+EXPOSE 50202
+ENTRYPOINT [ "dotnet", "PharmacyIntegration.dll" ]
