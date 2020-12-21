@@ -45,6 +45,8 @@ namespace PharmacyIntegration.Controllers
             FileMetadata fileInfo = new FileMetadata();
             fileInfo.Filename = fileName;
             fileInfo.URL = "http://schnabel.herokuapp.com/pswupload";
+
+            Console.WriteLine("Trying to send response...");
             byte[] responseArray = webClient.UploadFile(fileInfo.URL, fileInfo.Filename);
             string ur = webClient.Encoding.GetString(responseArray).ToString();
             return Ok(webClient.Encoding.GetString(responseArray));
@@ -68,12 +70,13 @@ namespace PharmacyIntegration.Controllers
 
             PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
             byte[] qrCodeAsPngByteArr = qrCode.GetGraphic(5);
-
+            Console.WriteLine("Generating QR code");
             using (var ms = new MemoryStream(qrCodeAsPngByteArr))
             {
                 var qrCodeImage = new Bitmap(ms);
-                qrCodeImage.Save("GeneratedPrescription" + Path.DirectorySeparatorChar + prescription.FileName() + "qrcode.png", ImageFormat.Png);  
+                qrCodeImage.Save("GeneratedPrescription" + Path.DirectorySeparatorChar + prescription.FileName() + "qrcode.png", ImageFormat.Png);
             }
+            Console.WriteLine("Generated QR code");
         }
 
     }
