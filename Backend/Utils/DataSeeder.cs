@@ -87,7 +87,7 @@ namespace Backend.Utils
                 RegisteredUserId = "2406978890045",
                 Anonymous = false,
                 AllowedForPublishing = true
-            }) ;
+            });
 
             context.Add(new Feedback
             {
@@ -261,7 +261,7 @@ namespace Backend.Utils
                 Finished = true,
                 RoomId = 1,
                 MedicalRecordId = 1,
-                DoctorId = "2406978890047",
+                DoctorId = "2407978890045",
                 WeeklyAppointmentReportId = 1,
                 PatientId = "2406978890046"
             });
@@ -276,7 +276,7 @@ namespace Backend.Utils
                 Finished = true,
                 RoomId = 1,
                 MedicalRecordId = 1,
-                DoctorId = "2406978890047",
+                DoctorId = "2407978890045",
                 WeeklyAppointmentReportId = 1,
                 PatientId = "2406978890046"
             });        
@@ -1165,7 +1165,7 @@ namespace Backend.Utils
                 Type = TypeOfAppointment.Surgery,
                 Treatments = new List<Treatment>(),
                 Diagnoses = new List<Diagnosis>(),
-                DoctorId = "2406978890043",
+                DoctorId = "2407978890045",
                 MedicalRecordId = 1
             });
             context.Add(new ExaminationSurgery
@@ -1174,7 +1174,7 @@ namespace Backend.Utils
                 Type = TypeOfAppointment.Examination,
                 Treatments = new List<Treatment>(),
                 Diagnoses = new List<Diagnosis>(),
-                DoctorId = "2406978890041",
+                DoctorId = "2407978890045",
                 MedicalRecordId = 1
             });
             context.Add(new ExaminationSurgery

@@ -17,7 +17,7 @@ namespace WebApplication.Adapters
             {
                 String name = p.Medication.Med;
                 int hourlyIntake = p.HourlyIntake;
-                DateTime date = p.StartDate;
+                DateTime date = p.Date;
 
                 prescriptionDTOs.Add(new PrescriptionDTO(name, hourlyIntake, date));
             }
