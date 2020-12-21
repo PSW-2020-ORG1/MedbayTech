@@ -85,7 +85,7 @@ services:
       build: 
         context: .
         dockerfile: Dockerfile.PhIntegrationTests
-      image: ph-tests
+      image: ph-tests # stefan7/medbaytechphtest:latest
       depends_on:
         - mysql
       environment:
@@ -100,7 +100,29 @@ services:
       networks: 
         - demo
       volumes:
-        - test-ph-data:/var/lib/
+      - mysql-data:/var/lib/mysql
+
+  WebIntegrationTests:
+      build: 
+        context: .
+        dockerfile: Dockerfile.WebIntegrationTests
+      image: web-tests # stefan7/medbaytechwebtest:latest
+      depends_on:
+        - mysql
+      environment:
+        DATABASE_USERNAME: "root"
+        DATABASE_PASSWORD: "root"
+        DATABASE_HOST: "mysql"
+        DATABASE_TYPE: "mysql"
+        DATABASE_SCHEMA: "newdb"
+        STAGE: "test"
+      expose: 
+        - "81"
+      networks: 
+        - demo
+      volumes:
+      - mysql-data:/var/lib/mysql    
+        
 #  PhIntegrationSql:
 #    image: ph
 #    container_name: phintegration

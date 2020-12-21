@@ -126,6 +126,11 @@ namespace PharmacyIntegration
                     spa.UseVueCli(npmScript: "serve", port: 8082);
                 }
             });
+
+            if (!env.IsDevelopment())
+            {
+                app.UseHttpsRedirection();
+            }
         }
 
         private static void AddServices(IServiceCollection services)

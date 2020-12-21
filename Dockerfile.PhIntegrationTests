@@ -5,7 +5,6 @@ COPY Backend/Backend.csproj Backend/
 COPY PharmacyIntegration/PharmacyIntegration.csproj PharmacyIntegration/
 COPY PhIntegrationTests/PhIntegrationTests.csproj PhIntegrationTests/
 
-
 RUN dotnet restore PhIntegrationTests/PhIntegrationTests.csproj
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y nodejs npm
@@ -28,4 +27,3 @@ LABEL test=true
 
 WORKDIR /app/PhIntegrationTests
 CMD ["dotnet", "test"]
-
