@@ -64,7 +64,6 @@ namespace Backend.Utils
             SeedDoctorsWorkDay(context);
             SeedPrescriptions(context);
             SeedTreatments(context);
-            SeedPrescriptions(context);
 
             context.SaveChanges();
         }
@@ -75,7 +74,7 @@ namespace Backend.Utils
             {
                 AdditionalNotes = "Sve je super!",
                 Approved = true,
-                Date = new DateTime(),
+                Date = new DateTime(2020, 3, 12),
                 RegisteredUserId = "2406978890045",
                 Anonymous = false,
                 AllowedForPublishing = true
@@ -84,17 +83,17 @@ namespace Backend.Utils
             {
                 AdditionalNotes = "Bolnica je veoma losa, bas sam razocaran! Rupe u zidovima, voda curi na sve strane, treba vas zatvoriti!!!",
                 Approved = false,
-                Date = new DateTime(),
+                Date = new DateTime(2019, 12, 18),
                 RegisteredUserId = "2406978890045",
                 Anonymous = false,
                 AllowedForPublishing = true
-            }) ;
+            });
 
             context.Add(new Feedback
             {
                 AdditionalNotes = "Predivno, ali i ruzno! Sramite se! Cestitke... <3",
                 Approved = false,
-                Date = new DateTime(),
+                Date = new DateTime(2020, 10, 11),
                 RegisteredUserId = "2406978890045",
                 Anonymous = false,
                 AllowedForPublishing = false
@@ -103,7 +102,7 @@ namespace Backend.Utils
             {
                 AdditionalNotes = "Odlicno!",
                 Approved = false,
-                Date = new DateTime(),
+                Date = new DateTime(2019, 4, 23),
                 RegisteredUserId = "2406978890045",
                 Anonymous = false,
                 AllowedForPublishing = false
@@ -262,7 +261,7 @@ namespace Backend.Utils
                 Finished = true,
                 RoomId = 1,
                 MedicalRecordId = 1,
-                DoctorId = "2406978890047",
+                DoctorId = "2407978890045",
                 WeeklyAppointmentReportId = 1,
                 PatientId = "2406978890046"
             });
@@ -277,40 +276,10 @@ namespace Backend.Utils
                 Finished = true,
                 RoomId = 1,
                 MedicalRecordId = 1,
-                DoctorId = "2406978890047",
+                DoctorId = "2407978890045",
                 WeeklyAppointmentReportId = 1,
                 PatientId = "2406978890046"
-            });
-            context.Add(new Appointment
-            {
-                Start = new DateTime(2020, 12, 15, 14, 00, 0),
-                End = new DateTime(2020, 12, 15, 14, 30, 0),
-                TypeOfAppointment = TypeOfAppointment.Examination,
-                ShortDescription = "standard appointment",
-                Urgent = true,
-                Deleted = false,
-                Finished = false,
-                RoomId = 1,
-                MedicalRecordId = 1,
-                DoctorId = "2406978890047",
-                WeeklyAppointmentReportId = 1,
-                PatientId = "2406978890046"
-            });
-            context.Add(new Appointment
-            {
-                Start = new DateTime(2020, 12, 8, 14, 00, 0),
-                End = new DateTime(2020, 12, 8, 14, 30, 0),
-                TypeOfAppointment = TypeOfAppointment.Examination,
-                ShortDescription = "standard appointment",
-                Urgent = true,
-                Deleted = false,
-                Finished = false,
-                RoomId = 1,
-                MedicalRecordId = 1,
-                DoctorId = "2406978890047",
-                WeeklyAppointmentReportId = 1,
-                PatientId = "2406978890046"
-            });
+            });        
             context.Add(new Appointment
             {
                 Start = new DateTime(2020, 12, 5, 14, 00, 0),
@@ -492,7 +461,7 @@ namespace Backend.Utils
                 InsurancePolicyId = "policy2",
                 Name = "Petar",
                 Surname = "Petrovic",
-                Username = "mima",
+                Username = "peca",
                 Password = "mima123",
                 Phone = "065/123-4554",
                 PlaceOfBirthId = 11000,
@@ -1183,7 +1152,7 @@ namespace Backend.Utils
         {
             context.Add(new ExaminationSurgery
             {
-                StartTime = new DateTime(2020, 11, 27),
+                StartTime = new DateTime(2020, 12, 5),
                 Type = TypeOfAppointment.Examination,
                 Treatments = new List<Treatment>(),
                 Diagnoses = new List<Diagnosis>(),
@@ -1192,7 +1161,43 @@ namespace Backend.Utils
             });
             context.Add(new ExaminationSurgery
             {
-                StartTime = new DateTime(2020, 11, 28),
+                StartTime = new DateTime(2020, 12, 3),
+                Type = TypeOfAppointment.Surgery,
+                Treatments = new List<Treatment>(),
+                Diagnoses = new List<Diagnosis>(),
+                DoctorId = "2407978890045",
+                MedicalRecordId = 1
+            });
+            context.Add(new ExaminationSurgery
+            {
+                StartTime = new DateTime(2020, 12, 7),
+                Type = TypeOfAppointment.Examination,
+                Treatments = new List<Treatment>(),
+                Diagnoses = new List<Diagnosis>(),
+                DoctorId = "2407978890045",
+                MedicalRecordId = 1
+            });
+            context.Add(new ExaminationSurgery
+            {
+                StartTime = new DateTime(2020, 12, 9),
+                Type = TypeOfAppointment.Surgery,
+                Treatments = new List<Treatment>(),
+                Diagnoses = new List<Diagnosis>(),
+                DoctorId = "2406978890047",
+                MedicalRecordId = 1
+            });
+            context.Add(new ExaminationSurgery
+            {
+                StartTime = new DateTime(2020, 12, 13),
+                Type = TypeOfAppointment.Examination,
+                Treatments = new List<Treatment>(),
+                Diagnoses = new List<Diagnosis>(),
+                DoctorId = "2406978890047",
+                MedicalRecordId = 1
+            });
+            context.Add(new ExaminationSurgery
+            {
+                StartTime = new DateTime(2020, 12, 16),
                 Type = TypeOfAppointment.Surgery,
                 Treatments = new List<Treatment>(),
                 Diagnoses = new List<Diagnosis>(),
@@ -1226,21 +1231,61 @@ namespace Backend.Utils
             context.Add(new Prescription
             {
                 ExaminationSurgeryId = 1,
-                Date = new DateTime(2020, 11, 27),
+                Date = new DateTime(2020, 12, 8),
                 Reserved = true,
                 StartDate = new DateTime(2020, 11, 27),
                 EndDate = new DateTime(2020, 11, 30),
+                HourlyIntake = 8,
+                MedicationId = 25,
+            });
+            context.Add(new Prescription
+            {
+                ExaminationSurgeryId = 1,
+                Date = new DateTime(2020, 12, 5),
+                Reserved = true,
+                StartDate = new DateTime(2020, 11, 28),
+                EndDate = new DateTime(2020, 12, 1),
                 HourlyIntake = 6,
                 MedicationId = 1,
             });
             context.Add(new Prescription
             {
                 ExaminationSurgeryId = 1,
-                Date = new DateTime(2020, 11, 28),
+                Date = new DateTime(2020, 12, 12),
+                Reserved = true,
+                StartDate = new DateTime(2020, 11, 27),
+                EndDate = new DateTime(2020, 11, 30),
+                HourlyIntake = 12,
+                MedicationId = 10,
+            });
+            context.Add(new Prescription
+            {
+                ExaminationSurgeryId = 1,
+                Date = new DateTime(2020, 12, 10),
                 Reserved = true,
                 StartDate = new DateTime(2020, 11, 28),
                 EndDate = new DateTime(2020, 12, 1),
                 HourlyIntake = 6,
+                MedicationId = 2,
+            });
+            context.Add(new Prescription
+            {
+                ExaminationSurgeryId = 1,
+                Date = new DateTime(2020, 12, 15),
+                Reserved = true,
+                StartDate = new DateTime(2020, 11, 27),
+                EndDate = new DateTime(2020, 11, 30),
+                HourlyIntake = 12,
+                MedicationId = 20,
+            });
+            context.Add(new Prescription
+            {
+                ExaminationSurgeryId = 1,
+                Date = new DateTime(2020, 12, 7),
+                Reserved = true,
+                StartDate = new DateTime(2020, 11, 28),
+                EndDate = new DateTime(2020, 12, 1),
+                HourlyIntake = 4,
                 MedicationId = 1,
             });
             context.SaveChanges();

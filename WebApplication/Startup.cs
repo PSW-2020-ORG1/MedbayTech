@@ -115,16 +115,18 @@ namespace WebApplication
                 {
                     Console.WriteLine("Failed to execute migration");
                 }
+
                 try
                 {
                     DataSeeder seeder = new DataSeeder();
                     seeder.SeedAllEntities(context);
-
                 }
-                catch (Exception)
+                catch(Exception)
                 {
                     Console.WriteLine("Failed to seed data");
                 }
+                
+                
             }
 
             app.UseDefaultFiles();
