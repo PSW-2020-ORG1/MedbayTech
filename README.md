@@ -3,7 +3,7 @@ Software Design class project
 
 ##  Start our projects:
 ####  Graphic Editor:
-<li>Copy folders Icons and MapData to bin/Debug/netcore3.1</li>
+<li>Copy folders Icons and MapData to bin/Debug/netcoreapp3.1</li>
 <li>Add new migration and update database if needed</li>
 <li>Start new instance of GraphicEditorWebService from Visual Studio</li>
 <li>Then start new instance of GraphicEditor</li>

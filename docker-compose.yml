@@ -53,10 +53,10 @@ services:
       DATABASE_PASSWORD: "root"
       DATABASE_HOST: "mysql"
       DATABASE_SCHEMA: "newdb"
-      PORT: 8085
+      PORT: 50202
       STAGE: "test"
     ports:
-      - "8085:8085"
+      - "8081:50202"
     volumes:
       - mysql-data:/var/lib/mysql:rw
   GraphicEditorWebServer:
