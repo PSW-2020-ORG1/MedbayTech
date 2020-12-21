@@ -5,6 +5,7 @@ volumes:
   web-sql:
   postgres-data: {}
   test-data: {}
+  test-ph-data: {}
   
 networks:
   demo:
@@ -39,26 +40,25 @@ services:
     volumes:
       - postgres-data:/var/lib/postgres
 
-#  PhIntegration:
-#    build: 
-#      context: .
-#      dockerfile: Dockerfile.PhIntegration
-#    image: ph-integration
-#    restart: on-failure
-#    networks:
-#      - demo
-#    depends_on:
-#      - mysql
-#    environment:
-#      DATABASE_USERNAME: "root"
-#      DATABASE_PASSWORD: "root"
-#      DATABASE_HOST: "mysql"
-#      DATABASE_SCHEMA: "newdb"
-#      STAGE: "test"
-#      PORT: 8081
-#    ports:
-#      - "8081:8081"
-
+  PhIntegrationSql:
+    image: ph-adapters
+    container_name: phintegration
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - mysql
+    environment:
+      DATABASE_USERNAME: "root"
+      DATABASE_PASSWORD: "root"
+      DATABASE_HOST: "mysql"
+      DATABASE_SCHEMA: "newdb"
+      PORT: 8085
+      STAGE: "test"
+    ports:
+      - "8085:8085"
+    volumes:
+      - mysql-data:/var/lib/mysql:rw
   GraphicEditorWebServer:
     build: 
       context: .
@@ -81,32 +81,11 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql:rw
 
-  WebAppIntegrationTests:
-      build: 
-        context: .
-        dockerfile: Dockerfile.WebAppIntegrationTests
-      image: web-integration-tests
-      depends_on:
-        - mysql
-      environment:
-        DATABASE_USERNAME: "root"
-        DATABASE_PASSWORD: "root"
-        DATABASE_HOST: "mysql"
-        DATABASE_TYPE: "mysql"
-        DATABASE_SCHEMA: "newdb"
-        STAGE: "test"
-      expose: 
-        - "80"
-      networks: 
-        - demo
-      volumes:
-        - mysql-data:/var/lib/mysql:rw
-
   PhIntegrationTests:
       build: 
         context: .
         dockerfile: Dockerfile.PhIntegrationTests
-      image: ph-integration-tests
+      image: ph-tests # stefan7/medbaytechphtest:latest
       depends_on:
         - mysql
       environment:
@@ -121,7 +100,29 @@ services:
       networks: 
         - demo
       volumes:
-        - mysql-data:/var/lib/mysql:rw
+      - mysql-data:/var/lib/mysql
+
+  WebIntegrationTests:
+      build: 
+        context: .
+        dockerfile: Dockerfile.WebIntegrationTests
+      image: web-tests # stefan7/medbaytechwebtest:latest
+      depends_on:
+        - mysql
+      environment:
+        DATABASE_USERNAME: "root"
+        DATABASE_PASSWORD: "root"
+        DATABASE_HOST: "mysql"
+        DATABASE_TYPE: "mysql"
+        DATABASE_SCHEMA: "newdb"
+        STAGE: "test"
+      expose: 
+        - "81"
+      networks: 
+        - demo
+      volumes:
+      - mysql-data:/var/lib/mysql    
+        
 #  PhIntegrationSql:
 #    image: ph
 #    container_name: phintegration

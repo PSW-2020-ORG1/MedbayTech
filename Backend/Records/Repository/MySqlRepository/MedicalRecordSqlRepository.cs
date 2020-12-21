@@ -23,7 +23,7 @@ namespace Backend.Records.Repository.MySqlRepository
         public MedicalRecord GetMedicalRecordByPatientId(string id)
         {
             List<MedicalRecord> medicalRecords = GetAll().ToList();
-            MedicalRecord medicalRecord = medicalRecords.FirstOrDefault(entity => entity.PatientId.Equals(id));
+            MedicalRecord medicalRecord = medicalRecords.FirstOrDefault(entity => entity.Patient.Id.Equals(id));
 
             if (medicalRecord != null)
             {

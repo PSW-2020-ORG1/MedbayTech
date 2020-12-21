@@ -22,6 +22,7 @@ namespace IntegrationTests.PhIntegration
         [Fact]
         public async void Send_prescription_integration()
         {
+            Console.WriteLine("Started prescription testing");
             HttpClient client = _factory.CreateClient();
             var prescription = CreatePrescription();
             StringContent content = new StringContent(JsonConvert.SerializeObject(prescription), System.Text.Encoding.UTF8, "application/json");

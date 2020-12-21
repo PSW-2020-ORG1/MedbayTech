@@ -31,6 +31,7 @@ namespace MedbayTechUnitTests
         [Fact]
         public async void Post_survey_integration()
         {
+            Console.WriteLine("Hello");
             HttpClient client = _factory.CreateClient();
             var survey = CreateSurvey();
             StringContent content = new StringContent(JsonConvert.SerializeObject(survey), System.Text.Encoding.UTF8, "application/json");

@@ -17,8 +17,6 @@ using Backend.Records.Repository.MySqlRepository;
 using Repository.MedicalRecordRepository;
 using Repository.UserRepository;
 using Backend.Users.Repository.MySqlRepository;
-using Backend.Medications.Repository.FileRepository;
-using Backend.Medications.Repository.MySqlRepository;
 using Backend.Medications.Service;
 using Backend.Pharmacies.Repository.MySqlRepository;
 using Backend.Reports.Repository;
@@ -29,6 +27,8 @@ using Backend.Utils;
 using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
 using Backend.Examinations.WebApiService;
+using VueCliMiddleware;
+
 
 namespace PharmacyIntegration
 {
@@ -54,9 +54,7 @@ namespace PharmacyIntegration
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
-
-            services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
+            services.AddSpaStaticFiles(options => options.RootPath = "vueclient" + Path.DirectorySeparatorChar + "dist");
 
             services.AddDbContext<MedbayTechDbContext>();
         }
@@ -117,12 +115,22 @@ namespace PharmacyIntegration
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "client-app";
+                spa.Options.SourcePath = "vueclient";
+
                 if (env.IsDevelopment())
                 {
                     spa.UseVueDevelopmentServer();
                 }
+                else
+                {
+                    spa.UseVueCli(npmScript: "serve", port: 8082);
+                }
             });
+
+            if (!env.IsDevelopment())
+            {
+                app.UseHttpsRedirection();
+            }
         }
 
         private static void AddServices(IServiceCollection services)
