@@ -311,7 +311,7 @@ namespace Backend.Utils
                 DoctorId = "2406978890047",
                 WeeklyAppointmentReportId = 1,
                 CanceledByPatient = true,
-                CancelationDate = new DateTime(2020, 6, 6),
+                CancelationDate = new DateTime(2020, 11, 25),
                 PatientId = "2406978890046"
             });
             context.Add(new Appointment
@@ -328,7 +328,7 @@ namespace Backend.Utils
                 DoctorId = "2406978890047",
                 WeeklyAppointmentReportId = 1,
                 CanceledByPatient = true,
-                CancelationDate = new DateTime(2020, 6, 6),
+                CancelationDate = new DateTime(2020, 12, 14),
                 PatientId = "2406978890046"
             });
             context.Add(new Appointment
@@ -345,7 +345,7 @@ namespace Backend.Utils
                 DoctorId = "2406978890047",
                 WeeklyAppointmentReportId = 1,
                 CanceledByPatient = true,
-                CancelationDate = new DateTime(2020, 7, 1),
+                CancelationDate = new DateTime(2020, 12, 15),
                 PatientId = "2406978890046"
             });
             context.Add(new Appointment
@@ -362,7 +362,7 @@ namespace Backend.Utils
                 DoctorId = "2406978890047",
                 WeeklyAppointmentReportId = 1,
                 CanceledByPatient = true,
-                CancelationDate = new DateTime(2020, 7, 1),
+                CancelationDate = new DateTime(2020, 12, 21),
                 PatientId = "2406978890046"
             });
             context.SaveChanges();

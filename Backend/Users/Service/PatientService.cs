@@ -19,7 +19,7 @@ namespace Backend.Users.Service
 
         private const int daysInMonth = 30;
         private const int numberOfCancelableAppointments = 4;
-        private IAppointmentRepository appointmentRepository;
+        private IAppointmentRepository _appointmentRepository;
 
         public PatientService(IPatientRepository patientRepository)
         {
@@ -29,7 +29,7 @@ namespace Backend.Users.Service
         public PatientService(IPatientRepository patientRepository, IAppointmentRepository appointmentRepository)
         {
             this._patientRepository = patientRepository;
-            this.appointmentRepository = appointmentRepository;
+            this._appointmentRepository = appointmentRepository;
         }
         public IEnumerable<Patient> GetAll()
         {
@@ -55,14 +55,14 @@ namespace Backend.Users.Service
             List<Patient> blockablePatients = new List<Patient>();
             List<Appointment> canceledAppointments = new List<Appointment>();
 
-            patients.ForEach(p => canceledAppointments = appointmentRepository.GetCanceledAppointments());
-            patients.ForEach(p => 
+            foreach(Patient p in patients)
+            {
+                canceledAppointments = _appointmentRepository.GetCanceledAppointmentsByPatient(p.Id);
+                if (CheckIfPatientBlockable(canceledAppointments))
                 {
-                    if (CheckIfPatientBlockable(canceledAppointments))
-                    {
-                        blockablePatients.Add(p);
-                    }
-                });
+                    blockablePatients.Add(p);
+                }
+            }
 
             return blockablePatients;
         }
@@ -82,8 +82,7 @@ namespace Backend.Users.Service
         {
             int index = canceledAppointments.Count - numberOfCancelableAppointments;
             Appointment fourthAppointment = canceledAppointments.ElementAt(index);
-            Appointment lastAppointment = canceledAppointments.Last();
-            double dayDifference = (lastAppointment.CancelationDate - fourthAppointment.CancelationDate).TotalDays;
+            double dayDifference = (DateTime.Now - fourthAppointment.CancelationDate).TotalDays;
 
             if (dayDifference <= daysInMonth)
                 return true;
