@@ -105,7 +105,6 @@ namespace Backend.Schedules.Service
         public Appointment ScheduleAppointment(Appointment appointment)
         {
             List<Appointment> available = GetAvailableBy(appointment.DoctorId, appointment.Start);
-            appointment.PatientId = "2406978890046";
             bool isAvailable = available.Any(a => a.isOccupied(appointment.Start, appointment.End));
             if (isAvailable)
                 return _appointmentRepository.Create(appointment);

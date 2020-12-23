@@ -10,5 +10,6 @@ namespace Backend.Users.Service.Interfaces
         IEnumerable<Patient> GetAll();
         Patient UpdateStatus(string patientId);
         List<Patient> GetPatientsThatShouldBeBlocked();
+        List<Patient> GetMaliciousPatients();
     }
 }
