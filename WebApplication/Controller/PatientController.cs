@@ -32,7 +32,7 @@ namespace WebApplication.Controller
         [HttpGet("maliciousPatients")]       
         public IActionResult GetMaliciousPatients()
         {
-            List<Patient> patients = _patientService.GetMaliciousPatients();
+            List<Patient> patients = _patientService.GetPatientsThatShouldBeBlocked();
             List<MaliciousPatientDTO> maliciousPatients= PatientAdapter.ListPatientToListMaliciousPatient(patients);
 
             return Ok(maliciousPatients);

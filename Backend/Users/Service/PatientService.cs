@@ -49,12 +49,6 @@ namespace Backend.Users.Service
             return null;
         }
 
-        public List<Patient> GetMaliciousPatients()
-        {
-            List<Patient> patients = GetPatientsThatShouldBeBlocked();
-            return patients.Where(p => p.ShouldBeBlocked).ToList();
-        }
-
         public List<Patient> GetPatientsThatShouldBeBlocked()
         {
             List<Patient> patients = _patientRepository.GetAll().Where(patient => !patient.Blocked).ToList();
@@ -66,9 +60,7 @@ namespace Backend.Users.Service
                 canceledAppointments = _appointmentRepository.GetCanceledAppointmentsByPatient(p.Id);
                 if (CheckIfPatientBlockable(canceledAppointments))
                 {
-                    p.ShouldBeBlocked = true;
                     blockablePatients.Add(p);
-                    _patientRepository.Update(p);
                 }
             }
 
