@@ -52,8 +52,9 @@ namespace UnitTests.Users
         {
             var stubRepository = new Mock<IAppointmentRepository>();
             List<Appointment> appointments = CreateAppointments();
+            Patient patient = CreatePatient();
 
-            stubRepository.Setup(p => p.GetCanceledAppointments()).Returns(appointments);
+            stubRepository.Setup(p => p.GetCanceledAppointmentsByPatient(patient.Id)).Returns(appointments);
 
             return stubRepository.Object;
         }
@@ -62,8 +63,9 @@ namespace UnitTests.Users
         {
             var stubRepository = new Mock<IAppointmentRepository>();
             List<Appointment> badAppointments = CreateAppointmentsForBlockablePatients();
+            Patient patient = CreatePatient();
 
-            stubRepository.Setup(p => p.GetCanceledAppointments()).Returns(badAppointments);
+            stubRepository.Setup(p => p.GetCanceledAppointmentsByPatient(patient.Id)).Returns(badAppointments);
 
             return stubRepository.Object;
         }
@@ -177,7 +179,7 @@ namespace UnitTests.Users
                 DoctorId = "2406978890047",
                 WeeklyAppointmentReportId = 1,
                 CanceledByPatient = true,
-                CancelationDate = new DateTime(2020, 6, 5),
+                CancelationDate = new DateTime(2020, 12, 19),
                 Patient = CreatePatient(),
                 PatientId = "2406978890046"
             };
@@ -197,7 +199,7 @@ namespace UnitTests.Users
                 DoctorId = "2406978890047",
                 WeeklyAppointmentReportId = 1,
                 CanceledByPatient = true,
-                CancelationDate = new DateTime(2020, 6, 6),
+                CancelationDate = new DateTime(2020, 12, 20),
                 Patient = CreatePatient(),
                 PatientId = "2406978890046"
             };
@@ -217,7 +219,7 @@ namespace UnitTests.Users
                 DoctorId = "2406978890047",
                 WeeklyAppointmentReportId = 1,
                 CanceledByPatient = true,
-                CancelationDate = new DateTime(2020, 6, 6),
+                CancelationDate = new DateTime(2020, 12, 21),
                 Patient = CreatePatient(),
                 PatientId = "2406978890046"
             };
@@ -237,7 +239,7 @@ namespace UnitTests.Users
                 DoctorId = "2406978890047",
                 WeeklyAppointmentReportId = 1,
                 CanceledByPatient = true,
-                CancelationDate = new DateTime(2020, 7, 1),
+                CancelationDate = new DateTime(2020, 12, 22),
                 Patient = CreatePatient(),
                 PatientId = "2406978890046"
             };

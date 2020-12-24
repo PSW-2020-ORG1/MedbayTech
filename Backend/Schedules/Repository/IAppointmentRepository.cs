@@ -13,7 +13,7 @@ namespace Repository.ScheduleRepository
    {
         Dictionary<int, Appointment> GetAppointmentsBy(DateTime date);
         Dictionary<int, Appointment> GetScheduledFromToday();
-        List<Appointment> GetCanceledAppointments();
+        List<Appointment> GetCanceledAppointmentsByPatient(string patientId);
         List<Appointment> GetAppointmentsByPatientId(string Id);
         List<Appointment> GetBy(string doctorId, DateTime date);
     }

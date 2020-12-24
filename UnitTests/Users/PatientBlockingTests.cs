@@ -55,8 +55,9 @@ namespace UnitTests.Users
         {
             var stubRepository = new Mock<IAppointmentRepository>();
             List<Appointment> badAppointments = CreateAppointmentsForBlockablePatients();
+            Patient patient = CreatePatient();
 
-            stubRepository.Setup(p => p.GetCanceledAppointments()).Returns(badAppointments);
+            stubRepository.Setup(p => p.GetCanceledAppointmentsByPatient(patient.Id)).Returns(badAppointments);
 
             return stubRepository.Object;
         }
