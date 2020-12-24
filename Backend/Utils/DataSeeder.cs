@@ -1304,6 +1304,8 @@ namespace Backend.Utils
             context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 22), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" });
             context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 23), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" });
             context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 24), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" });
+            context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 28), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" });
+            context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 29), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" });
 
             context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2407978890043" });
             context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2407978890043" });
