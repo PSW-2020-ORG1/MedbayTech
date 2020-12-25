@@ -1,8 +1,12 @@
 .survey{
     border: 5px outset grey;
     text-align: center;
+    width: 75%;
 }
-
+mat-card{
+    
+    justify-content: center;
+}
 .example-radio-group{
     text-align: center;
    
