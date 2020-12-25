@@ -54,7 +54,7 @@ export default {
            this.axios.get("http://localhost:50202/api/Medication")
                .then(response => {
                    var medication = response.data;
-                   medication.forEach(element => this.allMedication.push(element.med));
+                   medication.forEach(element => this.allMedication.push(element.med + " " + element.dosage));
                    console.log(response.data);
                 })
                 .catch(response => {

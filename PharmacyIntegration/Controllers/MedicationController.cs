@@ -14,27 +14,17 @@ namespace PharmacyIntegration.Controllers
     [ApiController]
     public class MedicationController : Controller
     {
-        private List<Medication> _inMemoryRepo;
+        private IMedicationService _medicationService;
 
-        public MedicationController()
+        public MedicationController(IMedicationService medicationService)
         {
-            _inMemoryRepo = new List<Medication>();
-
-
-            Specialization specialization = new Specialization(1, "DrugSpec");
-            MedicationCategory category = new MedicationCategory("Drug", specialization);
-            Medication aspirin = new Medication("Aspirin 325mg", "Bayer", category);
-            aspirin.Id = 1;
-            Medication cyclopentanoperhydrophenanthrene = new Medication("Cyclopentanoperhydrophenanthrene 5mg", "StrongDrugs Inc.", category);
-            cyclopentanoperhydrophenanthrene.Id = 2;
-            _inMemoryRepo.Add(aspirin);
-            _inMemoryRepo.Add(cyclopentanoperhydrophenanthrene);
+            _medicationService = medicationService;
         }
 
         [HttpGet("{id?}")]
         public IActionResult Get(int id)
         {
-            Medication medication = _inMemoryRepo.Find(m => m.Id.Equals(id));
+            Medication medication = _medicationService.GetMedication(id);
             if (medication == null)
             {
                 return BadRequest();
@@ -43,7 +33,7 @@ namespace PharmacyIntegration.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get() => Ok(_inMemoryRepo);
+        public IActionResult Get() => Ok(_medicationService.GetAll());
 
 
         [HttpGet("check/{search?}")]
