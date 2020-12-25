@@ -16,6 +16,7 @@ import { BlockMaliciousUsersComponent } from './block-malicious-users/block-mali
 import { ObserveAppointmentComponent } from './appointment/observe-appointment/observe-appointment.component';
 import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
+import { PatientLoginComponent } from './login/patient-login/patient-login/patient-login.component';
 
 
 
@@ -76,6 +77,10 @@ const routes: Routes = [
   {
     path : 'appointmentRecommendation',
     component : RecommendationComponent
+  },
+  {
+    path : 'patientLogin',
+    component : PatientLoginComponent
   }
   
 ];
