@@ -30,6 +30,8 @@ using Backend.Examinations.WebApiService;
 using VueCliMiddleware;
 using Backend.Pharmacies.Service;
 using Backend.Pharmacies.Service.Interfaces;
+using Backend.Medications.Repository.MySqlRepository;
+using Backend.Medications.Repository.FileRepository;
 
 namespace PharmacyIntegration
 {
@@ -49,8 +51,8 @@ namespace PharmacyIntegration
             Directory.CreateDirectory("GeneratedPrescription");
 
             services.AddCors();
-            AddRepository(services);
             AddServices(services);
+            AddRepository(services);
 
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
@@ -147,6 +149,7 @@ namespace PharmacyIntegration
             services.AddTransient<INotificationRepository, NotificationSqlRepository>();
             services.AddTransient<IPrescriptionRepository, PrescriptionSqlRepository>();
             services.AddTransient<IUrgentMedicationProcurementRepository, UrgentMedicationProcurementSqlRepository>();
+            services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
         }
 
         private static void AddRepository(IServiceCollection services)
@@ -158,6 +161,8 @@ namespace PharmacyIntegration
             services.AddScoped<ITreatmentService, TreatmentService>();
             services.AddScoped<IPrescriptionSearchService, PrescriptionSearchService>();
             services.AddScoped<IUrgentMedicationProcurementService, UrgentMedicationProcurementService>();
+            services.AddScoped<IMedicationService, MedicationService>();
+            services.AddScoped<INotificationService, NotificationService>();
 
         }
 
