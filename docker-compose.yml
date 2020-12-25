@@ -56,7 +56,7 @@ services:
       PORT: 50202
       STAGE: "test"
     ports:
-      - "8081:50202"
+      - "50202:50202"
     volumes:
       - mysql-data:/var/lib/mysql:rw
   GraphicEditorWebServer:
