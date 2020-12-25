@@ -42,6 +42,7 @@ namespace Backend.Utils
 
 
             SeedPharmacies(context);
+            SeedPharmacyNotification(context);
             SeedMedicationCategory(context);
             SeedMedicalRecords(context);
 
