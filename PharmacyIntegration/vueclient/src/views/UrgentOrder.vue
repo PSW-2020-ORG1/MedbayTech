@@ -63,19 +63,34 @@ export default {
 
     methods: {
         getAllRequests: function () {
-            this.allRequests.push({ medicationName: "Brufen", medicationDosage: "100mg", medicationQuantity: 5 });
-            this.allRequests.push({ medicationName: "Andol", medicationDosage: "200mg", medicationQuantity: 2 });
-            this.allRequests.push({ medicationName: "Kafetin", medicationDosage: "300mg", medicationQuantity: 3 });
-            this.allRequests.push({ medicationName: "Penicilin", medicationDosage: "400mg", medicationQuantity: 1 });
+            this.axios.get("http://localhost:50202/api/Procurement/")
+                .then(response => {
+                    this.allRequests = response.data;
+                    for (var i = 0; i < this.allRequests.lenght; i++) {
+                        this.choosenPharmacy.push("");
+
+                    }
+                    console.log(response);
+                })
+                .catch(response => {
+                    console.log(response);
+                })
         },
         getAllPharmacies: function () {
-            this.allPharmacies.push("Jankovic");
-            this.allPharmacies.push("Benu");
-            this.allPharmacies.push("Zegin");
-            this.allPharmacies.push("Schnabel");
-            this.valid[0] = false;
-            this.valid[1] = false;
-            this.valid[2] = false;
+            this.axios.get("http://localhost:50202/api/pharmacy")
+                .then(response => {
+                    var pharmaciesTemp = response.data;
+                    pharmaciesTemp.forEach(element => this.allPharmacies.push(element.id));
+                    this.allPharmacies.push("Schnabel");
+                    for (var i = 0; i < this.allPharmacies.lenght; i++) {
+                        this.valid.push("");
+
+                    }
+                    console.log(response);
+                })
+                .catch(response => {
+                    console.log(response);
+                })
         },
         checkForMedication: function (medication, index) {
             this.axios.get("http://schnabel.herokuapp.com/pswapi/drugs/name/" + medication)
@@ -90,13 +105,13 @@ export default {
                 })
         },
         sendRequest: function (request) {
-            this.axios.post("http://localhost:50202/api/Prescription/", request)
+           /* this.axios.post("http://localhost:50202/api/Prescription/", request)
                 .then(response => {
                     console.log(response.data);
                 })
                 .catch(response => {
                     console.log(response);
-                });
+                });*/
         },
 
     },
