@@ -1,10 +1,8 @@
 services:
   
   WebApplicationPostgres:
-    build: 
-      context: .
-      dockerfile: Dockerfile.Web
-    image: web
+    image: stefan7/medbaytechweb:latest
+    container_name: web
     restart: on-failure
     networks:
       - demo
