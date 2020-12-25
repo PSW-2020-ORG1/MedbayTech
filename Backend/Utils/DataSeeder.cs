@@ -1,6 +1,7 @@
 ﻿using Backend.Examinations.Model;
 using Backend.Examinations.Model.Enums;
 using Backend.Medications.Model;
+using Backend.Pharmacies.Model;
 using Backend.Records.Model;
 using Backend.Records.Model.Enums;
 using Backend.Reports.Model;
@@ -64,7 +65,8 @@ namespace Backend.Utils
             SeedDoctorsWorkDay(context);
             SeedPrescriptions(context);
             SeedTreatments(context);
-
+            SeedUrgentMedicationProcurement(context);
+            //SeedPharmacyNotification(context);
             context.SaveChanges();
         }
 
@@ -1318,6 +1320,18 @@ namespace Backend.Utils
             context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
             context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
             context.Add(new DoctorWorkDay { Date = new DateTime(2020, 12, 10), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
+
+            context.SaveChanges();
+        }
+
+        private void SeedUrgentMedicationProcurement(MedbayTechDbContext context)
+        {
+            context.Add(new UrgentMedicationProcurement
+            {
+                MedicationName = "Brufen",
+                MedicationDosage = "600mg",
+                MedicationQuantity = 5
+            });
 
             context.SaveChanges();
         }

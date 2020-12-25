@@ -49,23 +49,29 @@ export default {
         getAllMedications: function () {
             var medication = []
 
-            medication.push({ name: "Brufen", dosage: "100mg"});
-            medication.push({ name: "Aspirin", dosage: "200mg"});
-            medication.push({ name: "Heparin", dosage: "500mg" });
-
             medication.forEach(element => this.allMedication.push(element.name + " " + element.dosage));
 
-           /* this.axios.get("http://localhost:50202/api/pharmacyNotification")
-                .then(response => {
-                    console.log(response.data);
-                    this.messages = response.data;
+           this.axios.get("http://localhost:50202/api/Medication")
+               .then(response => {
+                   var medication = response.data;
+                   medication.forEach(element => this.allMedication.push(element.med));
+                   console.log(response.data);
                 })
                 .catch(response => {
                     console.log(response.data);
-                })*/
+                })
         },
         createRequest: function () {
-
+            let name = this.requestedMedication.split(" ")[0];
+            let dosage = this.requestedMedication.split(" ")[1];
+            let urgnetProcurement = { medicationName: name, medicationDosage: dosage, medicationQuantity: this.medicationQuantity };
+            this.axios.post("http://localhost:50202/api/Procurement/", urgnetProcurement)
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(response => {
+                    console.log(response);
+                });
         }
 
     },

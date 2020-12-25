@@ -28,7 +28,8 @@ using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
 using Backend.Examinations.WebApiService;
 using VueCliMiddleware;
-
+using Backend.Pharmacies.Service;
+using Backend.Pharmacies.Service.Interfaces;
 
 namespace PharmacyIntegration
 {
@@ -145,6 +146,7 @@ namespace PharmacyIntegration
             services.AddTransient<IUserRepository, UserSqlRepository>();
             services.AddTransient<INotificationRepository, NotificationSqlRepository>();
             services.AddTransient<IPrescriptionRepository, PrescriptionSqlRepository>();
+            services.AddTransient<IUrgentMedicationProcurementRepository, UrgentMedicationProcurementSqlRepository>();
         }
 
         private static void AddRepository(IServiceCollection services)
@@ -155,6 +157,8 @@ namespace PharmacyIntegration
             services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();
             services.AddScoped<ITreatmentService, TreatmentService>();
             services.AddScoped<IPrescriptionSearchService, PrescriptionSearchService>();
+            services.AddScoped<IUrgentMedicationProcurementService, UrgentMedicationProcurementService>();
+
         }
 
 

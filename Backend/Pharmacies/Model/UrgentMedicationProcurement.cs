@@ -23,6 +23,10 @@ namespace Backend.Pharmacies.Model
             MedicationQuantity = medicationQuantity;
         }
 
+        public UrgentMedicationProcurement()
+        {
+        }
+
         public int GetId()
         {
             return Id;

@@ -6,7 +6,7 @@
             <li><router-link to="/dean/medication_usage_report">Medication usage report</router-link></li>
             <li><router-link to="/dean/medication">Medication</router-link></li>
             <li><router-link to="/dean/urgentRequest">Urgent request</router-link></li>
-            <li><router-link to="/dean/urgentOrder">Urgent order</router-link></li>
+            <li><router-link to="/dean/urgentOrder">Urgent procurement</router-link></li>
         </sidebar>
         <div id="main-content">
             <router-view />
