@@ -8,7 +8,7 @@
             </v-card-title>
             <v-card-text id="urg-request-card">
                 <v-form id="urg-request-create" v-model="valid">
-                    <v-combobox v-model="requestedMedication"
+                    <v-combobox v-model="requiredMedication"
                                 :items="allMedication"
                                 label="Requared Medication"
                                 :rules="reqMedicationRule"
@@ -39,7 +39,7 @@ export default {
             reqMedicationRule: [
                 v => !!v || "Medication is required",
             ],
-            requestedMedication: "",
+            requiredMedication: "",
             medicationQuantity: "",
 
         }
@@ -62,8 +62,8 @@ export default {
                 })
         },
         createRequest: function () {
-            let name = this.requestedMedication.split(" ")[0];
-            let dosage = this.requestedMedication.split(" ")[1];
+            let name = this.requiredMedication.split(" ")[0];
+            let dosage = this.requiredMedication.split(" ")[1];
             let urgnetProcurement = { medicationName: name, medicationDosage: dosage, medicationQuantity: this.medicationQuantity };
             this.axios.post("http://localhost:50202/api/Procurement/", urgnetProcurement)
                 .then(response => {
