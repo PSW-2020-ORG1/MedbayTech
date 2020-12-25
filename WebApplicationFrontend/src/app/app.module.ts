@@ -42,6 +42,7 @@ import { ObserveAppointmentComponent } from './appointment/observe-appointment/o
 import { AppointmentService } from './service/appointment/appointment.service';
 import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { RecommendationComponent } from './appointment/recommendation/recommenda
     BlockMaliciousUsersComponent,
     ObserveAppointmentComponent,
     SchedulingComponent,
-    RecommendationComponent
+    RecommendationComponent,
+    NavigationBarComponent
   ],
   imports: [
     BrowserModule,
