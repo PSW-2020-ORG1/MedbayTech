@@ -54,7 +54,7 @@ namespace PharmacyIntegration
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            services.AddSpaStaticFiles(options => options.RootPath = "vueclient" + Path.DirectorySeparatorChar + "dist");
+            services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
 
             services.AddDbContext<MedbayTechDbContext>();
         }
@@ -107,10 +107,6 @@ namespace PharmacyIntegration
             {
                 endpoints.MapControllers();
             });
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
 
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
@@ -119,11 +115,7 @@ namespace PharmacyIntegration
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseVueDevelopmentServer();
-                }
-                else
-                {
-                    spa.UseVueCli(npmScript: "serve", port: 8082);
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:8082");
                 }
             });
 
