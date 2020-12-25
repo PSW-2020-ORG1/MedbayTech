@@ -1,7 +1,5 @@
-
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS build
 
-# NOTE(Jovan): Probably not needed
 RUN apk add --update nodejs nodejs-npm
 
 RUN mkdir /src
@@ -36,4 +34,3 @@ RUN npm run build
 WORKDIR /app/PharmacyIntegration/bin/Release/netcoreapp3.1/publish
 EXPOSE 50202
 ENTRYPOINT [ "dotnet", "PharmacyIntegration.dll" ]
-
