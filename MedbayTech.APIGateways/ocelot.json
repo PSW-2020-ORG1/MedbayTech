@@ -1,49 +1,6 @@
 {
   "Routes": [
-    {
-      "DownstreamPathTemplate": "/api/user",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 8081
-        }
-      ],
-      "UpstreamPathTemplate": "/user",
-      "UpstreamHttpMethod": [
-        "GET",
-        "POST"
-      ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/users",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 8080
-        }
-      ],
-      "UpstreamPathTemplate": "/feedback/users",
-      "UpstreamHttpMethod": [
-        "GET"
-      ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/feedback/createFeedback",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 8080 
-        }
-      ],
-      "UpstreamPathTemplate": "/feedback/createFeedback",
-      "UpstreamHttpMethod": [
-        "POST",
-        "OPTIONS"
-      ]
-    },
+
     {
       "DownstreamPathTemplate": "/api/feedback",
       "DownstreamScheme": "http",
@@ -53,11 +10,55 @@
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/feedback",
+      "UpstreamPathTemplate": "/approvedFeedback",
       "UpstreamHttpMethod": [
-        "GET",
-        "POST"
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/feedback/allFeedback",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/allFeedback",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/feedback/updateFeedbackStatus",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/updateFeedbackStatus",
+      "UpstreamHttpMethod": [
+        "POST",
+        "OPTIONS"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/feedback/createFeedback",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/createFeedback",
+      "UpstreamHttpMethod": [
+        "POST",
+        "OPTIONS"
       ]
     }
+    
   ]
 }

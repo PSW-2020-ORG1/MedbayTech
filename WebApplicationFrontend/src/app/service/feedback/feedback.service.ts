@@ -20,23 +20,21 @@ export class FeedbackService {
 
   getApprovedFeedback() : Observable<ApprovedFeedback[]> {
     
-    return this.http.get<ApprovedFeedback[]>(`${environment.baseUrl}/${environment.fedback}`)
+    return this.http.get<ApprovedFeedback[]>(`${environment.baseUrl}/${environment.feedback}`)
 
   }
 
   getAllFeedback(): Observable<AllFeedback[]>{
 
-    return this.http.get<AllFeedback[]>(`${environment.baseUrl}/${environment.fedback}/${environment.allFeedback}`)
+    return this.http.get<AllFeedback[]>(`${environment.baseUrl}/${environment.allFeedback}`)
 
   }
 
   updateFeedbackStatus(data: UpdateFeedbackStatus) : Observable<UpdateFeedbackStatus>{
-    return this.http.post<UpdateFeedbackStatus>(`${environment.baseUrl}/${environment.fedback}/${environment.updateFeedbackStatus}`, data)
+    return this.http.post<UpdateFeedbackStatus>(`${environment.baseUrl}/${environment.updateFeedbackStatus}`, data)
   }
   createFeedback(feedback:PostFeedback){
-    return this.http.post(`${environment.baseUrl}/${environment.fedback}/${environment.createFeedback}`, feedback, {responseType:'text'})
+    return this.http.post(`${environment.baseUrl}/${environment.createFeedback}`, feedback, {responseType:'text'})
   }
 
- 
-  
 }

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080',
-  fedback: 'api/feedback',
+  baseUrl: 'http://localhost:53843',
+  feedback: 'approvedFeedback',
   allFeedback: 'allFeedback',
   updateFeedbackStatus: 'updateFeedbackStatus',
   createFeedback : 'createFeedback',

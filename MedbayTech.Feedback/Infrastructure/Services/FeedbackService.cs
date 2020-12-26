@@ -33,7 +33,10 @@ namespace MedbayTech.Feedback.Infrastructure.Services
 
         public List<Domain.Entities.Feedback> GetAllApprovedFeedback()
         {
-            return feedbackRepository.GetAllApprovedFeedback();
+            List<Domain.Entities.Feedback> approvedFeedback = feedbackRepository.GetAllApprovedFeedback();
+            List<User> users = _userGateway.GetUsers();
+            approvedFeedback.ForEach(f => f.RegisteredUser = users.FirstOrDefault(u => f.UserId != null && u.Id.Equals(f.UserId)));
+            return approvedFeedback;
         }
 
         public bool UpdateStatus(int feedbackId, bool status)
@@ -66,8 +69,6 @@ namespace MedbayTech.Feedback.Infrastructure.Services
                 return feedbacks.FirstOrDefault(s => s.Id == feedback.Id);
             }
             return null;
-
-
 
         }
 
