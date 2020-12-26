@@ -3,34 +3,27 @@
 // Created: Monday, April 06, 2020 11:20:52 PM
 // Purpose: Definition of Class State
 
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using MedbayTech.Repository.Domain.Entities;
+using System.Collections.Generic;
+using MedbayTech.Common.Domain.Common;
+
 
 namespace Model.Users
 {
-   public class State : IIdentifiable<long>
+   public class State : ValueObject
    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get;  set; }
+        
         public string Name { get;  set; }
 
         public State () { }
-        public State(long id, string name)
+        public State(string name)
         {
             Name = name;
-            Id = id;
+            
         }
 
-        public long GetId()
+        protected override IEnumerable<object> GetEqualityComponents()
         {
-            return Id;
-        }
-
-        public void SetId(long id)
-        {
-            Id = id;
+            yield return Name;
         }
     }
 }

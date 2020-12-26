@@ -12,10 +12,6 @@ namespace MedbayTech.Users.Infrastructure.Database
     public class UserDbContext : MyDbContext<RegisteredUser, string>
     {
         public DbSet<RegisteredUser> RegisteredUsers { get; set; }
-        public DbSet<City> Cities { get; set; }
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<State> States { get; set; }
-        public DbSet<InsurancePolicy> InsurancePolicies { get; set; }
         public UserDbContext(DbContextOptions<MyDbContext<RegisteredUser, string>> options) : base(options) { }
         public UserDbContext() { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

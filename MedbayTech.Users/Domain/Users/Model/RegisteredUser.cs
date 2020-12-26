@@ -28,14 +28,14 @@ namespace Model.Users
         public string Profession { get; set; }
         public string ProfileImage { get; set; }
         public Gender Gender { get; set; }
-        [ForeignKey("PlaceOfBirth")]
-        public int PlaceOfBirthId { get; set; }
+        [NotMapped]
+
         public virtual City PlaceOfBirth { get; set; }
-        [ForeignKey("CurrResidence")]
-        public int CurrResidenceId { get; set; }
+        [NotMapped]
+
         public virtual Address CurrResidence { get;  set; }
-        [ForeignKey("InsurancePolicy")]
-        public string InsurancePolicyId { get; set; }
+        [NotMapped]
+
         public virtual InsurancePolicy InsurancePolicy { get; set; }
 
 
@@ -58,11 +58,8 @@ namespace Model.Users
             EducationLevel = educationLevel;
             Profession = profession;
             PlaceOfBirth = city;
-            PlaceOfBirthId = city.Id;
             CurrResidence = currResidence;
-            CurrResidenceId = currResidence.Id;
             InsurancePolicy = insurancePolicy;
-            InsurancePolicyId = insurancePolicy.Id;
             Phone = phone;
             DateOfCreation = DateTime.Now;
             ProfileImage = profileImage;
@@ -73,9 +70,5 @@ namespace Model.Users
             return Id;
         }
 
-        public void SetId(string id)
-        {
-            Id = id;
-        }
     }
 }

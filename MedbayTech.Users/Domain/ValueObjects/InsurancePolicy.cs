@@ -5,42 +5,34 @@
  ***********************************************************************/
 
 using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-
-using MedbayTech.Repository.Domain.Entities;
+using MedbayTech.Common.Domain.Common;
+using MedbayTech.Common.Domain.ValueObjects;
 
 namespace Model.Users
 {
-   public class InsurancePolicy : IIdentifiable<string>
+    public class InsurancePolicy : ValueObject
     {
-        [Key]
-        public string Id { get; set; }
+        public string PolicyNumber { get; set; }
         public string Company { get; set; }
+        [NotMapped]
 
-     
-
-        public DateTime StartTime { get; set; }
-
-        public DateTime EndTime { get; set; }
+        public virtual Period Period {get; set;}
 
         public InsurancePolicy() { }
-        public InsurancePolicy(string id, string company, DateTime startDate, DateTime endDate)
+        public InsurancePolicy(string policyNumber, string company, Period period)
         {
-            Id = id;
+            PolicyNumber = policyNumber;
             Company = company;
-            StartTime = startDate;
-            EndTime = endDate;
+            Period = period;
         }
 
-        public string GetId()
+        protected override IEnumerable<object> GetEqualityComponents()
         {
-            return Id;
-        }
-
-        public void SetId(string id)
-        {
-            Id = id;
+            yield return PolicyNumber;
+            yield return Company;
+            yield return Period;
         }
     }
 }

@@ -16,7 +16,6 @@ namespace MedbayTech.Users.Infrastructure.Persistance.Configurations
             builder.Property(ru => ru.Id).HasColumnName("Id");
             builder.Property(ru => ru.Name).HasColumnName("Name");
             builder.Property(ru => ru.Surname).HasColumnName("Surname");
-            builder.Property(ru => ru.CurrResidenceId).HasColumnName("CurrResidenceId");
             builder.Property(ru => ru.DateOfBirth).HasColumnName("DateOfBirth");
             builder.Property(ru => ru.DateOfCreation).HasColumnName("DateOfCreation");
             builder.Property(ru => ru.Email).HasColumnName("Email");
@@ -24,12 +23,14 @@ namespace MedbayTech.Users.Infrastructure.Persistance.Configurations
             builder.Property(ru => ru.Password).HasColumnName("Password");
             builder.Property(ru => ru.EducationLevel).HasColumnName("EducationLevel");
             builder.Property(ru => ru.Gender).HasColumnName("Gender");
-            builder.Property(ru => ru.InsurancePolicyId).HasColumnName("InsurancePolicyId");
             builder.Property(ru => ru.Phone).HasColumnName("Phone");
-            builder.Property(ru => ru.PlaceOfBirthId).HasColumnName("PlaceOfBirthId");
             builder.Property(ru => ru.Profession).HasColumnName("Profession");
             builder.Property(ru => ru.ProfileImage).HasColumnName("ProfileImage");
-            
+
+            builder.OwnsOne(ru => ru.CurrResidence).OwnsOne(ru => ru.City).OwnsOne(ru => ru.State);
+
+            builder.OwnsOne(ru => ru.PlaceOfBirth).OwnsOne(ru => ru.State);
+            builder.OwnsOne(ru => ru.InsurancePolicy).OwnsOne(ru => ru.Period);
 
         }
     }
