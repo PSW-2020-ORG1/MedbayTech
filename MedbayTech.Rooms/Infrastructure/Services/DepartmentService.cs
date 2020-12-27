@@ -3,8 +3,9 @@
 // Created: Tuesday, May 19, 2020 11:03:49 PM
 // Purpose: Definition of Class DepartmentService
 
-using Model.Rooms;
-using Repository.RoomRepository;
+
+using MedbayTech.Rooms.Application.Common.Interfaces.Persistance;
+using MedbayTech.Rooms.Domain;
 using System.Collections.Generic;
 
 namespace MedbayTech.Rooms.Infrastructure.Services
@@ -21,12 +22,12 @@ namespace MedbayTech.Rooms.Infrastructure.Services
      
         public Department ChangeFloorForDepartment(Department department, int floor)
         {
-            Department departmentToUpdate = departmentRepository.GetObject(department.Id);
+            Department departmentToUpdate = departmentRepository.GetBy(department.Id);
             departmentToUpdate.Floor = floor;
             return departmentRepository.Update(departmentToUpdate);
         }
 
-        public Department GetDepartment(int id) => departmentRepository.GetObject(id);
+        public Department GetDepartment(int id) => departmentRepository.GetBy(id);
         public Department GetDepartmentByName(string name) => departmentRepository.GetByName(name);
         public bool DeleteDepartment(Department department) => departmentRepository.Delete(department);
      

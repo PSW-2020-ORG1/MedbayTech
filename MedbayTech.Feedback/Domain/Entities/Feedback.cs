@@ -1,5 +1,5 @@
 ﻿using MedbayTech.Feedback.Domain.Enums;
-using MedbayTech.Repository.Domain.Entities;
+using MedbayTech.Common.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

@@ -6,7 +6,7 @@
 using Domain.Entities;
 using Domain.Enums;
 using Domain.ValueObject;
-using MedbayTech.Repository.Domain.Entities;
+using MedbayTech.Common.Domain.Entities;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

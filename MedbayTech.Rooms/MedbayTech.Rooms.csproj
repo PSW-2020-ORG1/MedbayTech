@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\DTO\" />
+    <Folder Include="Application\Mappers\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Infrastructure\Database\" />
+    <Folder Include="Infrastructure\Gateway\" />
+    <Folder Include="Infrastructure\Service\" />
+    <Folder Include="Infrastructure\Persistance\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MedbayTech.Common\MedbayTech.Common.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,9 +1,8 @@
-﻿using MedbayTech.Repository.Domain.Entities;
+﻿
+using MedbayTech.Common.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace MedbayTech.Repository.Repository
+namespace MedbayTech.Common.Repository
 {
     public interface IRepository<T, ID> : ICreate<T>, IUpdate<T>, IDelete<T>, IGetBy<T, ID>, IGetAll<T>, IExists<T, ID>
         where T : IIdentifiable<ID>

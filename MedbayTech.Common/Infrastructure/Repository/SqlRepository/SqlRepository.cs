@@ -1,11 +1,12 @@
-﻿using MedbayTech.Repository.Domain.Entities;
+﻿using MedbayTech.Common.Domain.Entities;
+using MedbayTech.Common.Repository;
 using MedbayTech.Repository.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MedbayTech.Repository.Repository.SqlRepository
+namespace MedbayTech.Repository
 {
     public class SqlRepository<T, ID> : IRepository<T, ID>
         where T : class, IIdentifiable<ID>

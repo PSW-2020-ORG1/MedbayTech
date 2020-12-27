@@ -34,6 +34,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.PatientDocuments
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Appointment", "MedbayTech.Appointment\MedbayTech.Appointment.csproj", "{B284BCC0-BEB4-4E8F-ADAB-FE210B7D14C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedbayTech.Rooms", "MedbayTech.Rooms\MedbayTech.Rooms.csproj", "{B91F4EBC-0A3A-4EB3-B628-06D4C82CAA18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{B284BCC0-BEB4-4E8F-ADAB-FE210B7D14C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B284BCC0-BEB4-4E8F-ADAB-FE210B7D14C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B284BCC0-BEB4-4E8F-ADAB-FE210B7D14C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B91F4EBC-0A3A-4EB3-B628-06D4C82CAA18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B91F4EBC-0A3A-4EB3-B628-06D4C82CAA18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B91F4EBC-0A3A-4EB3-B628-06D4C82CAA18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B91F4EBC-0A3A-4EB3-B628-06D4C82CAA18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

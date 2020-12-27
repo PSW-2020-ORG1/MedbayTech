@@ -4,7 +4,7 @@
 // Purpose: Definition of Interface IAppointmentRepository
 
 using MedbayTech.Appointment.Domain.Entities;
-using MedbayTech.Repository.Repository;
+using MedbayTech.Common.Repository;
 using System;
 using System.Collections.Generic;
 

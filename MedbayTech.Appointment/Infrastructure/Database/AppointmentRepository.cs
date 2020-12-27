@@ -1,11 +1,10 @@
 ﻿using Application.Common.Interfaces.Persistance;
-using Domain.Entities;
+
 using MedbayTech.Appointment.Domain.Entities;
-using MedbayTech.Repository.Repository.SqlRepository;
+using MedbayTech.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Infrastructure.Database
 {
