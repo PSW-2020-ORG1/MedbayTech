@@ -41,8 +41,8 @@ services:
       - postgres-data:/var/lib/postgres
 
   PhIntegrationSql:
-    image: ph
-    container_name: stefan7/medbaytechph
+    image: stefan7/medbaytechph
+    container_name: ph_integration
     restart: on-failure
     networks:
       - demo
