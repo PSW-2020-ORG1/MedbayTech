@@ -89,7 +89,7 @@ services:
       restart: on-failure
 
       depends_on:
-        - mysql
+        - postgres
       environment:
         DATABASE_USERNAME: "root"
         DATABASE_PASSWORD: "root"
