@@ -71,16 +71,13 @@ namespace PharmacyIntegration
                 string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
 
-                try
-                {
+
                     if (stage.Equals("test"))
                     {
+                        Console.WriteLine("USAO SAM U FAKIN TESTS");
                         context.Database.Migrate();
                     }
-                } catch(Exception)
-                {
-                    Console.WriteLine("Failed to execute migration");
-                }
+
                 try
                 {
                     DataSeeder seeder = new DataSeeder();
