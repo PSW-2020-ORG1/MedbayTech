@@ -1,0 +1,18 @@
+﻿using Backend.Examinations.Model;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace MedbayTech.PatientDocuments.Infrastructure.Database.Configurations
+{
+    public class TreatmentConfiguration : IEntityTypeConfiguration<Treatment>
+    {
+        public void Configure(EntityTypeBuilder<Treatment> builder)
+        {
+            builder.ToTable("Treatment");
+        }
+    }
+}
