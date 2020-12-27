@@ -41,7 +41,10 @@ services:
       - postgres-data:/var/lib/postgres
 
   PhIntegrationSql:
-    image: stefan7/medbaytechph
+    build: 
+       context: .
+       dockerfile: Dockerfile.PhIntegration
+    image: phintegrationsql
     container_name: ph_integration
     restart: on-failure
     networks:
