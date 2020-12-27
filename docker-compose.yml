@@ -73,10 +73,10 @@ services:
       DATABASE_PASSWORD: "root"
       DATABASE_HOST: "mysql"
       DATABASE_SCHEMA: "newdb"
-      PORT: 8084
+      PORT: 8091
       STAGE: "test"
     ports:
-      - "8084:8084"
+      - "8091:8091"
     volumes:
       - mysql-data:/var/lib/mysql:rw
 
