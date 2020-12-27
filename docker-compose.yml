@@ -145,7 +145,7 @@ services:
   #   image: stefan7/medbaytechunit
   #   container_name: unit_tests
   #   restart: on-failure
-  WebApplication:
+  WebApplicationSql:
     image: stefan7/medbaytechweb:latest
     container_name: web
     restart: on-failure
@@ -159,8 +159,8 @@ services:
       DATABASE_HOST: "mysql"
       DATABASE_SCHEMA: "newdb"
       STAGE: "test"
-      PORT: "8080"
+      PORT: 8080
     ports:
       - "8080:8080"
     volumes:
-      - mysql-data:/var/lib/mysql:rw 
+      - mysql-data:/var/lib/mysql:rw
