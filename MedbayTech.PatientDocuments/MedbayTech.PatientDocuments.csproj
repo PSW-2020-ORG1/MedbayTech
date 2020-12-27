@@ -39,13 +39,4 @@
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Application\Common\" />
-	  <Folder Include="Domain\MedicalRecords\" />
-	  <Folder Include="Domain\Examinations\" />
-	  <Folder Include="Domain\Prescriptions\" />
-	  <Folder Include="Domain\ValueObjects\" />
-	  <Folder Include="Infrastructure\Database\Configurations\" />
-	</ItemGroup>
-
 </Project>
