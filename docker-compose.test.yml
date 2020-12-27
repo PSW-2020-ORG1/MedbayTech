@@ -1,0 +1,87 @@
+version: "3.8"
+
+volumes:
+  mysql-data: {}
+  web-sql:
+  postgres-data: {}
+  test-data: {}
+  test-ph-data: {}
+  
+networks:
+  demo:
+    name: demo
+    driver: bridge
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    networks:
+      - demo
+    environment:
+      MYSQL_DATABASE: "newdb"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "root"
+      MYSQL_ROOT_PASSWORD: "root"
+    command: --innodb_use_native_aio=0
+    volumes:
+      - mysql-data:/var/lib/mysql
+  
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    networks:
+      - demo
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: mydb1
+    volumes:
+      - postgres-data:/var/lib/postgres
+
+
+  PhIntegrationTests:
+      image: stefan7/medbaytechphtest:latest
+      container_name: ph_integration_tests
+      depends_on:
+        - mysql
+      environment:
+        DATABASE_USERNAME: "root"
+        DATABASE_PASSWORD: "root"
+        DATABASE_HOST: "mysql"
+        DATABASE_TYPE: "mysql"
+        DATABASE_SCHEMA: "newdb"
+        STAGE: "test"
+      expose: 
+        - "80"
+      networks: 
+        - demo
+      volumes:
+      - mysql-data:/var/lib/mysql
+
+  WebIntegrationTests:
+      image: stefan7/medbaytechwebtest:latest
+      container_name: web_tests
+      depends_on:
+        - mysql
+      environment:
+        DATABASE_USERNAME: "root"
+        DATABASE_PASSWORD: "root"
+        DATABASE_HOST: "mysql"
+        DATABASE_TYPE: "mysql"
+        DATABASE_SCHEMA: "newdb"
+        STAGE: "test"
+      expose: 
+        - "81"
+      networks: 
+        - demo
+      volumes:
+      - mysql-data:/var/lib/mysql    
+        
+  UnitTests:
+    image: stefan7/medbaytechunit
+    container_name: unit_tests
+    restart: on-failure
+    
