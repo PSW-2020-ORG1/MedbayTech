@@ -1,37 +1,34 @@
-﻿using System;
+﻿using Domain.Entities;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using MedbayTech.Feedback.Application.Common.Interfaces.Gateways;
-using MedbayTech.Feedback.Domain.Entities;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
 
-
-namespace MedbayTech.Feedback.Infrastructure.Gateways
+namespace MedbayTech.Appointment.Infrastructure.Gateway
 {
-    public class UserGateway : IUserGateway
+    public class DoctorGateway
     {
+        private List<Doctor> _doctors { get; set; }
 
-        private List<User> _users { get; set; }
-
-        public List<User> GetUsers()
+        public List<Doctor> GetDoctors()
         {
             using HttpClient client = new HttpClient();
-            var task = client.GetAsync(GetUsersDomain() + "/api/user")
+            var task = client.GetAsync(GetDoctorsDomain() + "/api/doctor")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var message = taskWithResponse.Result;
                     var json = message.Content.ReadAsStringAsync();
                     json.Wait();
-                    _users = JsonConvert.DeserializeObject<List<User>>(json.Result);
+                    _doctors = JsonConvert.DeserializeObject<List<Doctor>>(json.Result);
                 });
             task.Wait();
 
-            return _users;
-
+            return _doctors;
         }
 
-        public string GetUsersDomain()
+        public string GetDoctorsDomain()
         {
             string origin = Environment.GetEnvironmentVariable("URL") ?? "localhost";
             string port = Environment.GetEnvironmentVariable("PORT") ?? "8081";

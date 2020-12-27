@@ -14,7 +14,6 @@ namespace Model.Users
         [ForeignKey("ChosenDoctor")]
         public string ChosenDoctorId { get;  set; }
         public virtual Doctor ChosenDoctor { get; set; }
-
         public bool Confirmed { get; set; }
         public bool Blocked { get; set; }
         public bool ShouldBeBlocked { get; set; }
