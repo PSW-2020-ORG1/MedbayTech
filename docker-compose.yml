@@ -92,6 +92,7 @@ services:
         DATABASE_TYPE: "mysql"
         DATABASE_SCHEMA: "newdb"
         STAGE: "test"
+        command: --innodb_use_native_aio=0
       expose: 
         - "80"
       networks: 
