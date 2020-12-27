@@ -22,13 +22,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplicationIntegrationTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhIntegrationTests", "PhIntegrationTests\PhIntegrationTests.csproj", "{93BD7D58-C6F3-46FC-8C52-FB5FB8CDECE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedbayTech.Feedback", "MedbayTech.Feedback\MedbayTech.Feedback.csproj", "{57E1F525-C731-41CB-8291-F4D231BF461A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Feedback", "MedbayTech.Feedback\MedbayTech.Feedback.csproj", "{57E1F525-C731-41CB-8291-F4D231BF461A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedbayTech.Common", "MedbayTech.Common\MedbayTech.Common.csproj", "{4ADA58F2-58DB-430C-A4C0-73276DC79712}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Common", "MedbayTech.Common\MedbayTech.Common.csproj", "{4ADA58F2-58DB-430C-A4C0-73276DC79712}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedbayTech.Users", "MedbayTech.Users\MedbayTech.Users.csproj", "{6CFAAF11-7CCB-49F4-9340-EA61C9E6F855}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Users", "MedbayTech.Users\MedbayTech.Users.csproj", "{6CFAAF11-7CCB-49F4-9340-EA61C9E6F855}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedbayTech.APIGateways", "MedbayTech.APIGateways\MedbayTech.APIGateways.csproj", "{A3B82540-F006-4821-8043-6D48549827FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.APIGateways", "MedbayTech.APIGateways\MedbayTech.APIGateways.csproj", "{A3B82540-F006-4821-8043-6D48549827FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Appointment", "..\MedbayTechTest\DDD\MedbayTech\MedbayTech.Appointment\MedbayTech.Appointment.csproj", "{256B8907-99CA-423B-8A03-506B493AC7C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,6 +94,10 @@ Global
 		{A3B82540-F006-4821-8043-6D48549827FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3B82540-F006-4821-8043-6D48549827FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3B82540-F006-4821-8043-6D48549827FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{256B8907-99CA-423B-8A03-506B493AC7C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{256B8907-99CA-423B-8A03-506B493AC7C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{256B8907-99CA-423B-8A03-506B493AC7C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{256B8907-99CA-423B-8A03-506B493AC7C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

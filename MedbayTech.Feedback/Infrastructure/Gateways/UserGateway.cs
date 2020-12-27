@@ -12,7 +12,7 @@ namespace MedbayTech.Feedback.Infrastructure.Gateways
     public class UserGateway : IUserGateway
     {
 
-        private List<User> users { get; set; }
+        private List<User> _users { get; set; }
 
         public List<User> GetUsers()
         {
@@ -23,11 +23,11 @@ namespace MedbayTech.Feedback.Infrastructure.Gateways
                     var message = taskWithResponse.Result;
                     var json = message.Content.ReadAsStringAsync();
                     json.Wait();
-                    users = JsonConvert.DeserializeObject<List<User>>(json.Result);
+                    _users = JsonConvert.DeserializeObject<List<User>>(json.Result);
                 });
             task.Wait();
 
-            return users;
+            return _users;
 
         }
 
