@@ -21,8 +21,8 @@ namespace Model.Users
         public int DepartmentId { get;  set; }
         public int ExaminationRoomId { get;  set; }
         public int OperationRoomId { get;  set; }
-
-        //public virtual Specialization Specialization { get; set; }
+        [NotMapped]
+        public virtual Specialization Specialization { get; set; }
 
 
         public Doctor() {}

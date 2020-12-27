@@ -12,10 +12,12 @@ namespace Backend.Users.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        
+        public int Id { get; set; }
         public DateTime Date { get; set; }
         public int StartTime { get; set; }
         public int EndTime { get; set; }
-
+        [ForeignKey("Employee")]
+        public string EmployeeId { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

@@ -32,6 +32,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.APIGateways", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Appointment", "..\MedbayTechTest\DDD\MedbayTech\MedbayTech.Appointment\MedbayTech.Appointment.csproj", "{256B8907-99CA-423B-8A03-506B493AC7C0}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.PatientDocuments", "MedbayTech.PatientDocuments\MedbayTech.PatientDocuments.csproj", "{D1BE018C-F44E-4D76-89F5-5BB08F73B8E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,10 @@ Global
 		{256B8907-99CA-423B-8A03-506B493AC7C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{256B8907-99CA-423B-8A03-506B493AC7C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{256B8907-99CA-423B-8A03-506B493AC7C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1BE018C-F44E-4D76-89F5-5BB08F73B8E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1BE018C-F44E-4D76-89F5-5BB08F73B8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1BE018C-F44E-4D76-89F5-5BB08F73B8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1BE018C-F44E-4D76-89F5-5BB08F73B8E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
