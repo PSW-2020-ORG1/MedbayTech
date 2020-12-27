@@ -40,28 +40,28 @@ services:
     volumes:
       - postgres-data:/var/lib/postgres
 
-  PhIntegrationSql:
-    build: 
-       context: .
-       dockerfile: Dockerfile.PhIntegration
-    image: phintegrationsql
-    container_name: ph_integration
-    restart: on-failure
-    networks:
-      - demo
-    depends_on:
-      - mysql
-    environment:
-      DATABASE_USERNAME: "root"
-      DATABASE_PASSWORD: "root"
-      DATABASE_HOST: "mysql"
-      DATABASE_SCHEMA: "newdb"
-      PORT: 50202
-      STAGE: "test"
-    ports:
-      - "50202:50202"
-    volumes:
-      - mysql-data:/var/lib/mysql:rw
+  # PhIntegrationSql:
+  #   build: 
+  #      context: .
+  #      dockerfile: Dockerfile.PhIntegration
+  #   image: phintegrationsql
+  #   container_name: ph_integration
+  #   restart: on-failure
+  #   networks:
+  #     - demo
+  #   depends_on:
+  #     - mysql
+  #   environment:
+  #     DATABASE_USERNAME: "root"
+  #     DATABASE_PASSWORD: "root"
+  #     DATABASE_HOST: "mysql"
+  #     DATABASE_SCHEMA: "newdb"
+  #     PORT: 50202
+  #     STAGE: "test"
+  #   ports:
+  #     - "50202:50202"
+  #   volumes:
+  #     - mysql-data:/var/lib/mysql:rw
 
   # GraphicEditorWebServer:
   #   image: stefan7/medbaytechge:latest
@@ -145,4 +145,22 @@ services:
   #   image: stefan7/medbaytechunit
   #   container_name: unit_tests
   #   restart: on-failure
-    
+  WebApplication:
+    image: stefan7/medbaytechweb:latest
+    container_name: web
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - mysql
+    environment:
+      DATABASE_USERNAME: "root"
+      DATABASE_PASSWORD: "root"
+      DATABASE_HOST: "mysql"
+      DATABASE_SCHEMA: "newdb"
+      STAGE: "test"
+      PORT: "8080"
+    ports:
+      - "8080:8080"
+    volumes:
+      - mysql-data:/var/lib/mysql    
