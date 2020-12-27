@@ -83,6 +83,8 @@ services:
   PhIntegrationTests:
       image: stefan7/medbaytechphtest:latest
       container_name: ph_integration_tests
+      restart: on-failure
+
       depends_on:
         - mysql
       environment:
@@ -103,6 +105,8 @@ services:
   WebIntegrationTests:
       image: stefan7/medbaytechwebtest:latest
       container_name: web_tests
+      restart: on-failure
+
       depends_on:
         - mysql
       environment:
