@@ -105,27 +105,26 @@ services:
   #     volumes:
   #     - mysql-data:/var/lib/mysql
 
-  # WebIntegrationTests:
-  #     image: stefan7/medbaytechwebtest:latest
-  #     container_name: web_tests
-  #     restart: on-failure
+  WebIntegrationTests:
+      image: stefan7/medbaytechwebtest:latest
+      container_name: web_tests
+      restart: on-failure
+      depends_on:
+        - postgres
+      environment:
+        DATABASE_USERNAME: "root"
+        DATABASE_PASSWORD: "root"
+        DATABASE_HOST: "postgres"
+        DATABASE_TYPE: "postgres"
+        DATABASE_SCHEMA: "mydb1"
+        STAGE: "test"
+      expose: 
+        - "81"
+      networks: 
+        - demo
+      volumes:
+      - postgres-data:/var/lib/postgres:rw  
 
-  #     depends_on:
-  #       - mysql
-  #     environment:
-  #       DATABASE_USERNAME: "root"
-  #       DATABASE_PASSWORD: "root"
-  #       DATABASE_HOST: "mysql"
-  #       DATABASE_TYPE: "mysql"
-  #       DATABASE_SCHEMA: "newdb"
-  #       STAGE: "test"
-  #     expose: 
-  #       - "81"
-  #     networks: 
-  #       - demo
-  #     volumes:
-  #     - mysql-data:/var/lib/mysql    
-        
 #  PhIntegrationSql:
 #    image: ph
 #    container_name: phintegration
@@ -145,7 +144,7 @@ services:
   #   image: stefan7/medbaytechunit
   #   container_name: unit_tests
   #   restart: on-failure
-  
+
   WebApplicationPostgres:
     image: stefan7/medbaytechweb:latest
     container_name: web
