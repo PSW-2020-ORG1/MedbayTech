@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Database
 {
-    public class AppointmentDbContext : MyDbContext<MedbayTech.Appointment.Domain.Entities.Appointment, int>
+    public class AppointmentDbContext : MyDbContext
     {
         public DbSet<MedbayTech.Appointment.Domain.Entities.Appointment> Appointments { get; set; }
-        public AppointmentDbContext(DbContextOptions<MyDbContext<MedbayTech.Appointment.Domain.Entities.Appointment, int>> options) : base(options) { }
+        public AppointmentDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
         public AppointmentDbContext() { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

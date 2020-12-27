@@ -12,13 +12,13 @@ namespace MedbayTech.Repository.Repository.SqlRepository
         where ID : IComparable
     {
 
-        protected MyDbContext<T, ID> context;
+        protected MyDbContext context;
 
         internal DbSet<T> dbSet;
 
         public SqlRepository() { }
 
-        public SqlRepository(MyDbContext<T, ID> context)
+        public SqlRepository(MyDbContext context)
         {
             this.context = context;
             this.dbSet = context.Set<T>();

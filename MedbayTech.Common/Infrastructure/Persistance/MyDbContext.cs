@@ -4,11 +4,10 @@ using System;
 
 namespace MedbayTech.Repository.Infrastructure.Persistance
 {
-    public class MyDbContext<T, ID> : DbContext
-        where T : class, IIdentifiable<ID>
-        where ID : IComparable
+    public class MyDbContext : DbContext
+        
     {
-        public MyDbContext(DbContextOptions<MyDbContext<T, ID>> options) : base(options) { }
+        public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
 
         public MyDbContext() {}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
