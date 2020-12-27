@@ -42,7 +42,7 @@ services:
 
   PhIntegrationSql:
     image: ph
-    container_name: ph_integration
+    container_name: stefan7/medbaytechph
     restart: on-failure
     networks:
       - demo
