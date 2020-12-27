@@ -31,6 +31,13 @@ RUN npm install -g @vue/cli
 RUN npm install --save axios vue-axios
 RUN npm run build
 
+WORKDIR /app/Backend
+
+ENV PATH $PATH:/root/.dotnet/tools
+RUN dotnet tool install -g dotnet-ef --version 3.1.9
+RUN dotnet ef migrations add Init
+
+
 WORKDIR /app/PharmacyIntegration/bin/Release/netcoreapp3.1/publish
 EXPOSE 50202
 ENTRYPOINT [ "dotnet", "PharmacyIntegration.dll" ]
