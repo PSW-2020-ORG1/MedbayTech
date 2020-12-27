@@ -30,9 +30,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Users", "MedbayT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.APIGateways", "MedbayTech.APIGateways\MedbayTech.APIGateways.csproj", "{A3B82540-F006-4821-8043-6D48549827FE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Appointment", "..\MedbayTechTest\DDD\MedbayTech\MedbayTech.Appointment\MedbayTech.Appointment.csproj", "{256B8907-99CA-423B-8A03-506B493AC7C0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.PatientDocuments", "MedbayTech.PatientDocuments\MedbayTech.PatientDocuments.csproj", "{D1BE018C-F44E-4D76-89F5-5BB08F73B8E7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Appointment", "MedbayTech.Appointment\MedbayTech.Appointment.csproj", "{B284BCC0-BEB4-4E8F-ADAB-FE210B7D14C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,14 +96,14 @@ Global
 		{A3B82540-F006-4821-8043-6D48549827FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3B82540-F006-4821-8043-6D48549827FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3B82540-F006-4821-8043-6D48549827FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{256B8907-99CA-423B-8A03-506B493AC7C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{256B8907-99CA-423B-8A03-506B493AC7C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{256B8907-99CA-423B-8A03-506B493AC7C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{256B8907-99CA-423B-8A03-506B493AC7C0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D1BE018C-F44E-4D76-89F5-5BB08F73B8E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D1BE018C-F44E-4D76-89F5-5BB08F73B8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1BE018C-F44E-4D76-89F5-5BB08F73B8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1BE018C-F44E-4D76-89F5-5BB08F73B8E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B284BCC0-BEB4-4E8F-ADAB-FE210B7D14C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B284BCC0-BEB4-4E8F-ADAB-FE210B7D14C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B284BCC0-BEB4-4E8F-ADAB-FE210B7D14C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B284BCC0-BEB4-4E8F-ADAB-FE210B7D14C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
