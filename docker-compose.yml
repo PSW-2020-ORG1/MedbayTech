@@ -60,25 +60,25 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql:rw
 
-  GraphicEditorWebServer:
-    image: stefan7/medbaytechge:latest
-    container_name: graphic_editor
-    restart: on-failure
-    networks:
-      - demo
-    depends_on:
-      - mysql
-    environment:
-      DATABASE_USERNAME: "root"
-      DATABASE_PASSWORD: "root"
-      DATABASE_HOST: "mysql"
-      DATABASE_SCHEMA: "newdb"
-      PORT: 8091
-      STAGE: "test"
-    ports:
-      - "8091:8091"
-    volumes:
-      - mysql-data:/var/lib/mysql:rw
+  # GraphicEditorWebServer:
+  #   image: stefan7/medbaytechge:latest
+  #   container_name: graphic_editor
+  #   restart: on-failure
+  #   networks:
+  #     - demo
+  #   depends_on:
+  #     - mysql
+  #   environment:
+  #     DATABASE_USERNAME: "root"
+  #     DATABASE_PASSWORD: "root"
+  #     DATABASE_HOST: "mysql"
+  #     DATABASE_SCHEMA: "newdb"
+  #     PORT: 8091
+  #     STAGE: "test"
+  #   ports:
+  #     - "8091:8091"
+  #   volumes:
+  #     - mysql-data:/var/lib/mysql:rw
 
   PhIntegrationTests:
       image: stefan7/medbaytechphtest:latest
@@ -134,8 +134,8 @@ services:
 #    ports:
 #      - "8082:8082"
 
-  UnitTests:
-    image: stefan7/medbaytechunit
-    container_name: unit_tests
-    restart: on-failure
+  # UnitTests:
+  #   image: stefan7/medbaytechunit
+  #   container_name: unit_tests
+  #   restart: on-failure
     
