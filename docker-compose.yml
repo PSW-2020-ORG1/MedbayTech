@@ -145,22 +145,24 @@ services:
   #   image: stefan7/medbaytechunit
   #   container_name: unit_tests
   #   restart: on-failure
-  WebApplicationSql:
+  
+  WebApplicationPostgres:
     image: stefan7/medbaytechweb:latest
     container_name: web
     restart: on-failure
     networks:
       - demo
     depends_on:
-      - mysql
+      - postgres
     environment:
       DATABASE_USERNAME: "root"
       DATABASE_PASSWORD: "root"
-      DATABASE_HOST: "mysql"
-      DATABASE_SCHEMA: "newdb"
-      STAGE: "test"
-      PORT: 8080
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "production"
+      PORT: "8080"
     ports:
       - "8080:8080"
     volumes:
-      - mysql-data:/var/lib/mysql:rw
+      - postgres-data:/var/lib/postgres:rw
