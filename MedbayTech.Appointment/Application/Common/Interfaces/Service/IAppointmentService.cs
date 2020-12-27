@@ -20,7 +20,7 @@ namespace Application.Common.Interfaces.Service
         List<Appointment> GetAvailableByPriorityDoctor(PriorityParameters parameters);
         List<Appointment> GetApppointmentsScheduledForSpecificRoom(int roomId);
         List<Appointment> GetAvailableByDoctorAndDateRange(PriorityParameters parameters);
-
         List<Appointment> GetAvailableByStrategy(PriorityParameters parameters);
+        List<Appointment> GetAll();
     }
 }

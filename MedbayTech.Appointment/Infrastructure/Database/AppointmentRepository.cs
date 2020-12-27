@@ -9,10 +9,10 @@ using System.Text;
 
 namespace Infrastructure.Database
 {
-    public class AppointmentSqlRepository : SqlRepository<MedbayTech.Appointment.Domain.Entities.Appointment, int>,
+    public class AppointmentRepository : SqlRepository<MedbayTech.Appointment.Domain.Entities.Appointment, int>,
         IAppointmentRepository
     {
-        public AppointmentSqlRepository(AppointmentDbContext context) : base(context) { }
+        public AppointmentRepository(AppointmentDbContext context) : base(context) { }
         public Dictionary<int, Appointment> GetAppointmentsBy(DateTime date)
             => GetAll().ToList().Where(a => a.Period.StartTime.CompareTo(date) <= 0).ToDictionary(a => a.Id);
 

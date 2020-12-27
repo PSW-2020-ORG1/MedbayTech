@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Infrastructure.Database;
+using MedbayTech.Appointment.Infrastructure.Persistance;
 
 namespace MedbayTech.Appointment
 {
@@ -23,6 +25,8 @@ namespace MedbayTech.Appointment
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddDbContext<AppointmentDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +51,22 @@ namespace MedbayTech.Appointment
             {
                 endpoints.MapRazorPages();
             });
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            using (var context = scope.ServiceProvider.GetService<AppointmentDbContext>())
+            {
+                try
+                {
+                    AppointmentDataSeeder seeder = new AppointmentDataSeeder();
+                    if (!seeder.IsAlreadyFull(context))
+                        seeder.SeedAllEntities(context);
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Failed to seed data");
+                }
+            }
         }
     }
 }

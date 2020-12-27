@@ -24,6 +24,11 @@ namespace Controllers
             
         }
 
+        [HttpGet("allAppointments")]
+        public IActionResult GetAll()
+        {
+            return Ok(_appointmentService.GetAll());
+        }
         [HttpGet("allSurveyableAppointments")] 
         public IActionResult GetSurveyableAppointments()
         {

@@ -18,7 +18,8 @@ namespace MedbayTech.Appointment.Domain.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public Period Period { get; set; }
+        [NotMapped]
+        public virtual Period Period { get; set; }
         public DateTime CancelationDate { get; set; }
         public TypeOfAppointment TypeOfAppointment { get; set; }
         public string ShortDescription { get; set; }
@@ -26,13 +27,16 @@ namespace MedbayTech.Appointment.Domain.Entities
         public bool Deleted { get; set; }
         public bool Finished { get; set; }
         public bool CanceledByPatient { get; set; }
-        public int RoomId { get;  set; }
+        public int RoomId { get;  set; } 
+        public string DoctorId { get; set; }
 
-        [ForeignKey("Doctor")]
-        public string DoctorId { get;  set; }
+        [NotMapped]
         public virtual Doctor Doctor { get; set; }
-        [ForeignKey("Patient")]
+
         public string PatientId { get; set; }
+
+        [NotMapped]
+        
         public virtual Patient Patient { get; set; }
 
         public Appointment() { }

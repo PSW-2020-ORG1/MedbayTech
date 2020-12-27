@@ -11,7 +11,7 @@ namespace MedbayTech.Users.Infrastructure.Persistance
 {
     public class PatientRepository : SqlRepository<Patient, string>, IPatientRepository
     {
-        public PatientRepository(PatientDbContext context) : base(context) {}
+        //public PatientRepository(UserDbContext context) : base(context) {}
         public Patient GetById(string id)
         {
             if (ExistsById(id))

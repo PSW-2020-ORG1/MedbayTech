@@ -20,9 +20,20 @@ namespace MedbayTech.Users.Infrastructure.Service
            return _userRepository.GetAll().ToList();
         }
 
+        public List<Doctor> GetAllDoctors()
+        {
+            return _userRepository.GetAllDoctors();
+        }
+
         public RegisteredUser GetBy(string id)
         {
             return _userRepository.GetBy(id);
         }
+
+        public Doctor GetDoctorBy(string id)
+        {
+            return _userRepository.GetDoctorBy(id);
+        }
+
     }
 }

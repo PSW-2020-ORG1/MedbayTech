@@ -205,5 +205,10 @@ namespace Infrastructure.Services
 
             throw new NotImplementedException();
         }
+
+        public List<Appointment> GetAll()
+        {
+            return _appointmentRepository.GetAll();
+        }
     }
 }

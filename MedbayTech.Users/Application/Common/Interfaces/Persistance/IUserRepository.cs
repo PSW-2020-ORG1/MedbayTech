@@ -9,6 +9,8 @@ namespace MedbayTech.Users.Infrastructure.Persistance
 {
     public interface IUserRepository : IRepository<RegisteredUser, string>
     {
+        List<Doctor> GetAllDoctors();
 
+        Doctor GetDoctorBy(string id);
     }
 }

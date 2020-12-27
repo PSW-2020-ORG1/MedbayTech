@@ -19,6 +19,11 @@ namespace MedbayTech.Users.Controllers
             _userService = userService;
         }
 
+        [HttpGet("getDoctor")]
+        public IActionResult GetDoctorById()
+        {
+            return Ok(_userService.GetAllDoctors());
+        }
         [HttpGet]
         public IActionResult GetAll()
         {

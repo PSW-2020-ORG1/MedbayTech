@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Application.Common.Interfaces.Persistance
 {
-   public interface IAppointmentRepository : ICreate<Appointment>, IGetBy<Appointment, int>, IDelete<Appointment>, IGetAll<Appointment>, IUpdate<Appointment>
+   public interface IAppointmentRepository : IRepository<Appointment, int>
    {
         Dictionary<int, Appointment> GetAppointmentsBy(DateTime date);
         Dictionary<int, Appointment> GetScheduledFromToday();

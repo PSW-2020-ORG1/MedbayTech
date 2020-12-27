@@ -16,7 +16,7 @@ namespace MedbayTech.Appointment.Infrastructure.Persistance
         {
             context.Add(new Domain.Entities.Appointment
             {
-              //Period = new Period(new DateTime(2020, 12, 5, 14, 00, 0), new DateTime(2020, 12, 5, 14, 30, 0)),
+                Period = new Period(new DateTime(2020, 12, 5, 14, 00, 0), new DateTime(2020, 12, 5, 14, 30, 0)),
                 TypeOfAppointment = TypeOfAppointment.Examination,
                 ShortDescription = "standard appointment",
                 Urgent = true,
@@ -28,7 +28,7 @@ namespace MedbayTech.Appointment.Infrastructure.Persistance
             });
             context.Add(new Domain.Entities.Appointment
             {
-              //Period = new Period(new DateTime(2020, 12, 4, 14, 00, 0), new DateTime(2020, 12, 4, 14, 30, 0)),
+                Period = new Period(new DateTime(2020, 12, 4, 14, 00, 0), new DateTime(2020, 12, 4, 14, 30, 0)),
                 TypeOfAppointment = TypeOfAppointment.Examination,
                 ShortDescription = "standard appointment",
                 Urgent = true,
@@ -40,7 +40,7 @@ namespace MedbayTech.Appointment.Infrastructure.Persistance
             });
             context.Add(new Domain.Entities.Appointment
             {
-              //Period = new Period(new DateTime(2020, 12, 3, 14, 00, 0), new DateTime(2020, 12, 3, 14, 30, 0)),
+                Period = new Period(new DateTime(2020, 12, 3, 14, 00, 0), new DateTime(2020, 12, 3, 14, 30, 0)),
                 TypeOfAppointment = TypeOfAppointment.Examination,
                 ShortDescription = "standard appointment",
                 Urgent = true,
@@ -52,7 +52,7 @@ namespace MedbayTech.Appointment.Infrastructure.Persistance
             });
             context.Add(new Domain.Entities.Appointment
             {
-              //  Period = new Period(new DateTime(2020, 12, 1, 14, 00, 0), new DateTime(2020, 12, 1, 14, 30, 0)),
+                Period = new Period(new DateTime(2020, 12, 1, 14, 00, 0), new DateTime(2020, 12, 1, 14, 30, 0)),
                 TypeOfAppointment = TypeOfAppointment.Examination,
                 ShortDescription = "standard appointment",
                 Urgent = true,
@@ -64,7 +64,7 @@ namespace MedbayTech.Appointment.Infrastructure.Persistance
             });
             context.Add(new Domain.Entities.Appointment
             {
-              //  Period = new Period(new DateTime(2020, 12, 5, 14, 00, 0), new DateTime(2020, 12, 5, 14, 30, 0)),
+                Period = new Period(new DateTime(2020, 12, 5, 14, 00, 0), new DateTime(2020, 12, 5, 14, 30, 0)),
                 TypeOfAppointment = TypeOfAppointment.Examination,
                 ShortDescription = "standard appointment",
                 Urgent = true,
@@ -78,7 +78,7 @@ namespace MedbayTech.Appointment.Infrastructure.Persistance
             });
             context.Add(new Domain.Entities.Appointment
             {
-              //  Period = new Period(new DateTime(2020, 12, 5, 14, 00, 0), new DateTime(2020, 12, 5, 14, 30, 0)),
+                Period = new Period(new DateTime(2020, 12, 5, 14, 00, 0), new DateTime(2020, 12, 5, 14, 30, 0)),
                 TypeOfAppointment = TypeOfAppointment.Examination,
                 ShortDescription = "standard appointment",
                 Urgent = true,
@@ -92,7 +92,7 @@ namespace MedbayTech.Appointment.Infrastructure.Persistance
             });
             context.Add(new Domain.Entities.Appointment
             {
-              //  Period = new Period(new DateTime(2020, 12, 5, 14, 00, 0), new DateTime(2020, 12, 5, 14, 30, 0)),
+                Period = new Period(new DateTime(2020, 12, 5, 14, 00, 0), new DateTime(2020, 12, 5, 14, 30, 0)),
                 TypeOfAppointment = TypeOfAppointment.Examination,
                 ShortDescription = "standard appointment",
                 Urgent = true,
@@ -106,7 +106,7 @@ namespace MedbayTech.Appointment.Infrastructure.Persistance
             });
             context.Add(new Domain.Entities.Appointment
             {
-               // Period = new Period(new DateTime(2020, 12, 5, 14, 00, 0), new DateTime(2020, 12, 5, 14, 30, 0)),
+                Period = new Period(new DateTime(2020, 12, 5, 14, 00, 0), new DateTime(2020, 12, 5, 14, 30, 0)),
                 TypeOfAppointment = TypeOfAppointment.Examination,
                 ShortDescription = "standard appointment",
                 Urgent = true,
@@ -120,7 +120,7 @@ namespace MedbayTech.Appointment.Infrastructure.Persistance
             });
             context.Add(new Domain.Entities.Appointment
             {
-               // Period = new Period(new DateTime(2020, 12, 14, 13, 30, 0), new DateTime(2020, 12, 14, 14, 0, 0)),
+                Period = new Period(new DateTime(2020, 12, 14, 13, 30, 0), new DateTime(2020, 12, 14, 14, 0, 0)),
                 TypeOfAppointment = TypeOfAppointment.Examination,
                 ShortDescription = "standard appointment",
                 Urgent = true,

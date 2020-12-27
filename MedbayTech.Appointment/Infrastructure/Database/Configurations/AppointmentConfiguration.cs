@@ -24,6 +24,8 @@ namespace MedbayTech.Appointment.Infrastructure.Database.Configurations
             builder.Property(a => a.RoomId).HasColumnName("RoomId");
             builder.Property(a => a.DoctorId).HasColumnName("DoctorId");
             builder.Property(a => a.PatientId).HasColumnName("PatientId");
+
+            builder.OwnsOne(a => a.Period);
         }
     }
 }

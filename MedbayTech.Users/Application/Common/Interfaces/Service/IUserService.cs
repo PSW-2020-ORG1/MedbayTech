@@ -10,5 +10,9 @@ namespace MedbayTech.Users.Infrastructure.Service
     {
         List<RegisteredUser> GetAll();
         RegisteredUser GetBy(string id);
+
+        Doctor GetDoctorBy(string id);
+
+        List<Doctor> GetAllDoctors();
     }
 }
