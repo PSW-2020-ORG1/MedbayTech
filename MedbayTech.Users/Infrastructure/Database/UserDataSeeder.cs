@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MedbayTech.Users.Domain.Entites.Enums;
 
 namespace MedbayTech.Users.Infrastructure.Database
 {
@@ -43,7 +44,8 @@ namespace MedbayTech.Users.Infrastructure.Database
                 Phone = "065/123-4554",
                 PlaceOfBirth = new City("Novi Sad", new State("Srbija")),
                 Profession = "vodoinstalater",
-                ProfileImage = "."
+                ProfileImage = ".",
+                UserType = UserType.ADMIN
 
             });
             context.SaveChanges();
@@ -75,7 +77,8 @@ namespace MedbayTech.Users.Infrastructure.Database
                     DepartmentId = 1,
                     ExaminationRoomId = 49,
                     OperationRoomId = 116,
-                    Specialization = new Specialization("Hirurgija")
+                    Specialization = new Specialization("Hirurgija"),
+                    UserType = UserType.DOCTOR
                 });
 
                 context.Add(new Doctor
@@ -102,7 +105,8 @@ namespace MedbayTech.Users.Infrastructure.Database
                     DepartmentId = 1,
                     ExaminationRoomId = 8,
                     OperationRoomId = 64,
-                    Specialization = new Specialization("Hirurgija")
+                    Specialization = new Specialization("Hirurgija"),
+                    UserType = UserType.DOCTOR
                 });
                 context.Add(new Doctor
                 {
@@ -128,7 +132,8 @@ namespace MedbayTech.Users.Infrastructure.Database
                     DepartmentId = 1,
                     ExaminationRoomId = 122,
                     OperationRoomId = 15,
-                    Specialization = new Specialization("Hirurgija")
+                    Specialization = new Specialization("Hirurgija"),
+                    UserType = UserType.DOCTOR
                 });
                 context.Add(new Doctor
                 {
@@ -154,7 +159,27 @@ namespace MedbayTech.Users.Infrastructure.Database
                     DepartmentId = 1,
                     ExaminationRoomId = 4,
                     OperationRoomId = 18,
-                    Specialization = new Specialization("Hirurgija")
+                    Specialization = new Specialization("Hirurgija"),
+                    UserType = UserType.DOCTOR
+                });
+                context.Add(new Patient
+                {
+                    Id = "2406978890046",
+                    DateOfBirth = new DateTime(1978, 6, 24),
+                    DateOfCreation = new DateTime(),
+                    EducationLevel = EducationLevel.bachelor,
+                    Email = "pera@gmail.com",
+                    Gender = Gender.MALE,
+                    Name = "Petar",
+                    Surname = "Petrovic",
+                    Username = "pera",
+                    Password = "pera1978",
+                    Phone = "065/123-4554",
+                    Profession = "vodoinstalater",
+                    ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
+                    IsGuestAccount = false,
+                    ChosenDoctorId = "2406978890047",
+                    UserType = UserType.PATIENT
                 });
                context.SaveChanges();
         }

@@ -7,7 +7,7 @@ using Backend.Examinations.Model;
 using System.Collections.Generic;
 using Repository;
 using Backend.Records.Model;
-using MedbayTech.Repository.Repository;
+using MedbayTech.Common.Repository;
 
 namespace Backend.Examinations.Repository
 {

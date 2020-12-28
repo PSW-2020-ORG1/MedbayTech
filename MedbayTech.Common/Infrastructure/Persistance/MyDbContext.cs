@@ -1,4 +1,4 @@
-﻿using MedbayTech.Repository.Domain.Entities;
+﻿
 using Microsoft.EntityFrameworkCore;
 using System;
 

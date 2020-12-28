@@ -14,7 +14,6 @@ namespace MedbayTech.Users.Infrastructure.Database.Configurations
         public void Configure(EntityTypeBuilder<Doctor> builder)
         {
             builder.OwnsOne(doc => doc.Specialization);
-           
         }
     }
 }

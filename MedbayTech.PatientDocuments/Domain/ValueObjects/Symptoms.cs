@@ -4,7 +4,7 @@
 // Purpose: Definition of Class Symptoms
 
 using MedbayTech.Common.Domain.Common;
-using MedbayTech.Repository.Domain.Entities;
+
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

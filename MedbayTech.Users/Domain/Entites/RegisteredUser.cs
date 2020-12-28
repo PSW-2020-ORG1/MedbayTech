@@ -7,7 +7,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MedbayTech.Repository.Domain.Entities;
+using MedbayTech.Common.Domain.Entities;
+using MedbayTech.Users.Domain.Entites.Enums;
 using Model.Users;
 
 namespace Model.Users
@@ -28,6 +29,7 @@ namespace Model.Users
         public string Profession { get; set; }
         public string ProfileImage { get; set; }
         public Gender Gender { get; set; }
+        public UserType UserType { get; set; }
         [NotMapped]
 
         public virtual City PlaceOfBirth { get; set; }

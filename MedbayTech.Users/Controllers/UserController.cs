@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MedbayTech.Users.Application.Common.Interfaces.Service;
 using MedbayTech.Users.Infrastructure.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,16 +14,18 @@ namespace MedbayTech.Users.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IPatientService _patientService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IPatientService patientService)
         {
             _userService = userService;
+            _patientService = patientService;
         }
 
-        [HttpGet("getDoctor")]
-        public IActionResult GetDoctorById()
+        [HttpGet("getPatient")]
+        public IActionResult GetPatiens()
         {
-            return Ok(_userService.GetAllDoctors());
+            return Ok(_patientService.GetAll());
         }
         [HttpGet]
         public IActionResult GetAll()

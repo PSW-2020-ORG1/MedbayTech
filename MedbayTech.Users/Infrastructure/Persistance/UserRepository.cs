@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MedbayTech.Repository;
 using MedbayTech.Repository.Infrastructure.Persistance;
-using MedbayTech.Repository.Repository.SqlRepository;
 using MedbayTech.Users.Infrastructure.Database;
 using Model.Users;
 

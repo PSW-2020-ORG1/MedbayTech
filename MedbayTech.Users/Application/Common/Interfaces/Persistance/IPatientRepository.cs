@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MedbayTech.Repository.Repository;
+using MedbayTech.Common.Repository;
+using MedbayTech.Common.Repository;
 using Model.Users;
+
 
 namespace MedbayTech.Users.Application.Common.Interfaces.Persistance
 {

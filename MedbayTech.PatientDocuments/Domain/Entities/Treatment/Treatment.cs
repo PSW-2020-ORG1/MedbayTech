@@ -7,7 +7,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Examinations.Model.Enums;
-using MedbayTech.Repository.Domain.Entities;
+using MedbayTech.Common.Domain.Entities;
 
 namespace Backend.Examinations.Model
 {

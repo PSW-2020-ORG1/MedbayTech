@@ -4,8 +4,8 @@
 // Purpose: Definition of Interface IDiagnosisRepository
 
 using Backend.Records.Model;
-using MedbayTech.Repository.Repository;
 using System;
+using MedbayTech.Common.Repository;
 
 namespace Repository.MedicalRecordRepository
 {

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MedbayTech.Repository.Repository.SqlRepository;
+using MedbayTech.Repository;
 using MedbayTech.Users.Application.Common.Interfaces.Persistance;
+using MedbayTech.Users.Domain.Entites.Enums;
 using MedbayTech.Users.Infrastructure.Database;
 using Model.Users;
 
@@ -11,19 +12,19 @@ namespace MedbayTech.Users.Infrastructure.Persistance
 {
     public class PatientRepository : SqlRepository<Patient, string>, IPatientRepository
     {
-        //public PatientRepository(UserDbContext context) : base(context) {}
+        public  PatientRepository(UserDbContext context) : base(context) {}
         public Patient GetById(string id)
         {
             if (ExistsById(id))
             {
-                return GetAll().FirstOrDefault(p => p.Id.Equals(id));
+                return (Patient) GetAll().FirstOrDefault(p => p.Id.Equals(id));
             }
             return null;
         }
 
         public Patient GetByUsername(string username)
         {
-            return GetAll().ToList().FirstOrDefault(p => p.Username.Equals(username));
+            return (Patient) GetAll().ToList().FirstOrDefault(p => p.Username.Equals(username));
         }
 
         bool ExistsById(string id)
@@ -36,6 +37,16 @@ namespace MedbayTech.Users.Infrastructure.Persistance
         {
             if (GetAll().FirstOrDefault(p => p.Id.Equals(id)) != null) return true;
             return false;
+        }
+
+        public List<Patient> GetAllPatients()
+        {
+            return GetAll();
+        }
+
+        public Patient Update(Patient patient)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -5,9 +5,9 @@
 
 using Domain.Enums;
 using Domain.ValueObject;
-using MedbayTech.Repository.Domain.Entities;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using MedbayTech.Common.Domain.Entities;
 
 namespace Domain.Entities
 {

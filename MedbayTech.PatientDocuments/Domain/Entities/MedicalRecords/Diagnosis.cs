@@ -3,12 +3,12 @@
 // Created: Thursday, April 16, 2020 5:52:17 PM
 // Purpose: Definition of Class Diagnosis
 
-using MedbayTech.Repository.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using MedbayTech.Common.Domain.Entities;
 
 namespace Backend.Records.Model
 {

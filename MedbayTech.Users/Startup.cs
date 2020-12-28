@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MedbayTech.Users.Application.Common.Interfaces.Persistance;
+using MedbayTech.Users.Application.Common.Interfaces.Service;
 using MedbayTech.Users.Infrastructure.Database;
 using MedbayTech.Users.Infrastructure.Persistance;
 using MedbayTech.Users.Infrastructure.Service;
@@ -36,6 +38,9 @@ namespace MedbayTech.Users
 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+
+            services.AddTransient<IPatientRepository, PatientRepository>();
+            services.AddScoped<IPatientService, PatientService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

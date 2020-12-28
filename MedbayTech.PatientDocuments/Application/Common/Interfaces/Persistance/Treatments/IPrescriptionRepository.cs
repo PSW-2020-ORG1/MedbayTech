@@ -1,7 +1,7 @@
 ﻿using Backend.Examinations.Model;
-using MedbayTech.Repository.Repository;
 using Repository;
 using System.Collections.Generic;
+using MedbayTech.Common.Repository;
 
 namespace Backend.Examinations.Repository
 {

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Records.Model;
-using MedbayTech.Repository.Domain.Entities;
+using MedbayTech.Common.Domain.Entities;
 
 namespace Backend.Examinations.Model
 {

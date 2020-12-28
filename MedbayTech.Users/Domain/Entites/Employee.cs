@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Users.Model;
+using MedbayTech.Users.Domain.Entites.Enums;
 using Model.Users;
 
 namespace Model.Users
@@ -17,6 +18,7 @@ namespace Model.Users
         public bool VacationLeave { get; protected set; }
         public bool CurrentlyWorking { get; protected set; }
         public string Biography { get; protected set; }
+
         public Employee() { }
 
         public Employee(string name, string surname, DateTime dateOfBirth,

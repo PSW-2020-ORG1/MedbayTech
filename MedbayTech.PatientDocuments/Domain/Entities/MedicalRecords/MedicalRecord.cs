@@ -10,8 +10,8 @@ using System.Linq;
 using Backend.Records.Model.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MedbayTech.Repository.Domain.Entities;
 using Backend.Medications.Model;
+using MedbayTech.Common.Domain.Entities;
 
 namespace Backend.Records.Model
 {

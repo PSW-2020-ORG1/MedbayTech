@@ -5,9 +5,9 @@
 
 using Backend.Records.Model;
 using Backend.Records.Model.Enums;
-using MedbayTech.Repository.Repository;
 using System;
 using System.Collections.Generic;
+using MedbayTech.Common.Repository;
 
 namespace Repository.MedicalRecordRepository
 {

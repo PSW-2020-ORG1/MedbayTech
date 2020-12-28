@@ -5,6 +5,7 @@
 
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using MedbayTech.Common.Domain.Entities;
 
 namespace Model.Users
 {
