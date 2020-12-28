@@ -23,10 +23,7 @@ services:
       - postgres-data:/var/lib/postgres
 
   PhIntegrationTests:
-      build: 
-        context: .
-        dockerfile: Dockerfile.PhIntegrationTests
-      image: ph_integration_tests      
+      image: stefan7/test2  
       container_name: ph_integration_tests
       restart: on-failure
       depends_on:
