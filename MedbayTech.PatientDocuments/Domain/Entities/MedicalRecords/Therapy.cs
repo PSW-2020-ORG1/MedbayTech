@@ -12,8 +12,11 @@ using MedbayTech.Common.Domain.Common;
 
 namespace Backend.Records.Model
 {
-   public class Therapy : ValueObject
+   public class Therapy
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         public int HourConsumption { get; set; }
         public string MedicationName { get; set; }
 
@@ -24,10 +27,5 @@ namespace Backend.Records.Model
             MedicationName = medicationName;
         }
 
-        protected override IEnumerable<object> GetEqualityComponents()
-        {
-            yield return HourConsumption;
-            yield return MedicationName;
-        }
     }
 }

@@ -11,8 +11,11 @@ using MedbayTech.Common.Domain.Common;
 
 namespace Backend.Medications.Model
 {
-    public class Allergens : ValueObject
+    public class Allergens
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         public string Allergen { get; set; }
 
         public Allergens() { }
@@ -21,9 +24,5 @@ namespace Backend.Medications.Model
             Allergen = allergen;
         }
 
-        protected override IEnumerable<object> GetEqualityComponents()
-        {
-            yield return Allergen;
-        }
     }
 }

@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Records.Model;
 using MedbayTech.Common.Domain.Entities;
+using Model.Schedule;
 
 namespace Backend.Examinations.Model
 {
@@ -18,7 +19,7 @@ namespace Backend.Examinations.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; } 
         public DateTime StartTime { get; set; }
-        public int AppointmentId { get; set; }
+        public TypeOfAppointment Type { get; set; }
         [NotMapped]
         public virtual List<Treatment> Treatments { get; set; }
         [NotMapped]
@@ -36,10 +37,10 @@ namespace Backend.Examinations.Model
             Id = id; 
         }
 
-        public ExaminationSurgery(DateTime startTime, int appointmentId, string doctorId, int recordId)
+        public ExaminationSurgery(DateTime startTime, TypeOfAppointment type, string doctorId, int recordId)
         {
             StartTime = startTime;
-            AppointmentId = appointmentId;
+            Type = type;
             DoctorId = doctorId;
             MedicalRecordId = recordId;
             Treatments = new List<Treatment>();

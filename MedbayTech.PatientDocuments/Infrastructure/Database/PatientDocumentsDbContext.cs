@@ -1,4 +1,5 @@
 ﻿using Backend.Examinations.Model;
+using Backend.Medications.Model;
 using Backend.Records.Model;
 using MedbayTech.Repository.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,11 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
         public DbSet<FamilyIllnessHistory> FamilyIllnessHistory { get; set; }
         public DbSet<ExaminationSurgery> ExaminationSurgeries { get; set; }
         public DbSet<Treatment> Treatments { get; set; }
+        public DbSet<Allergens> Allergens { get; set; }
+        public DbSet<Therapy> Therapies { get; set; }
+        public DbSet<Symptoms> Symptoms { get; set; }
+        public DbSet<Vaccines> Vaccines { get; set; }
+        public DbSet<Prescription> Prescriptions { get; set; }
         public PatientDocumentsDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
         public PatientDocumentsDbContext() { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

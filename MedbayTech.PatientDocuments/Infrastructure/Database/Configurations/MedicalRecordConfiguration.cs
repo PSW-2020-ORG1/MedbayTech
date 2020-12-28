@@ -13,11 +13,11 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database.Configurations
         public void Configure(EntityTypeBuilder<MedicalRecord> builder)
         {
             builder.ToTable("MedicalRecords");
-            builder.OwnsMany(m => m.Allergies);
-            builder.HasMany(m => m.FamilyIllnessHistory);
-            builder.OwnsMany(m => m.Vaccines);
-            builder.OwnsMany(m => m.Therapies);
-            builder.HasMany(m => m.IllnessHistory);
+            builder.HasMany(m => m.Allergies).WithOne();
+            builder.HasMany(m => m.FamilyIllnessHistory).WithOne();
+            builder.HasMany(m => m.Vaccines).WithOne();
+            builder.HasMany(m => m.Therapies).WithOne();
+            builder.HasMany(m => m.IllnessHistory).WithOne();
         }
     }
 }

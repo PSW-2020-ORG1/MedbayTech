@@ -51,6 +51,7 @@ namespace MedbayTech.Users.Infrastructure.Database
             context.SaveChanges();
         }
 
+
         private void SeedDoctors(UserDbContext context)
         {
                 context.Add(new Doctor

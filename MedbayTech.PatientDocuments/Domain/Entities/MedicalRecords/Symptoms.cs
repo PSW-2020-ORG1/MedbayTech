@@ -12,9 +12,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Records.Model
 {
-   public class Symptoms : ValueObject
+   public class Symptoms
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public Symptoms() {
@@ -25,9 +28,5 @@ namespace Backend.Records.Model
             this.Name = name;
         }
 
-        protected override IEnumerable<object> GetEqualityComponents()
-        {
-            yield return Name;
-        }
     }
 }

@@ -13,7 +13,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database.Configurations
         public void Configure(EntityTypeBuilder<Diagnosis> builder)
         {
             builder.ToTable("Diagnosis");
-            builder.OwnsMany(d => d.Symptoms);
+            builder.HasMany(d => d.Symptoms).WithOne();
         }
     }
 }

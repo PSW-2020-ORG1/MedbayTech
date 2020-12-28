@@ -5,13 +5,17 @@
 // Purpose: Definition of Class Vaccines
 
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MedbayTech.Common.Domain.Common;
 
 namespace Backend.Records.Model
 {
-   public class Vaccines : ValueObject
+   public class Vaccines
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public Vaccines() {}
@@ -20,10 +24,6 @@ namespace Backend.Records.Model
         {
             Name = name;
         }
-
-        protected override IEnumerable<object> GetEqualityComponents()
-        {
-            yield return Name;
-        }
+        
     }
 }

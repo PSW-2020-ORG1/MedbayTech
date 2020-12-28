@@ -35,6 +35,14 @@ namespace MedbayTech.PatientDocuments
                 app.UseDeveloperExceptionPage();
             }
 
+            try
+            {
+                
+            } catch(Exception)
+            {
+                Console.WriteLine("Failed to seed data");
+            }
+
             app.UseRouting();
 
             app.UseAuthorization();
