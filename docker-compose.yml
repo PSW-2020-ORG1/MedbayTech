@@ -13,19 +13,19 @@ networks:
     driver: bridge
 
 services:
-  # mysql:
-  #   image: mysql:latest
-  #   container_name: mysql
-  #   restart: always
-  #   networks:
-  #     - demo
-  #   environment:
-  #     MYSQL_DATABASE: "newdb"
-  #     MYSQL_USER: "root"
-  #     MYSQL_PASSWORD: "root"
-  #     MYSQL_ROOT_PASSWORD: "root"
-  #   volumes:
-  #     - mysql-data:/var/lib/mysql
+   mysql:
+     image: mysql:latest
+     container_name: mysql
+     restart: always
+     networks:
+       - demo
+     environment:
+       MYSQL_DATABASE: "newdb"
+       MYSQL_USER: "root"
+       MYSQL_PASSWORD: "root"
+       MYSQL_ROOT_PASSWORD: "root"
+     volumes:
+       - mysql-data:/var/lib/mysql
   
   postgres:
     image: postgres:latest
