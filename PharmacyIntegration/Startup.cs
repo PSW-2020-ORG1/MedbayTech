@@ -75,6 +75,10 @@ namespace PharmacyIntegration
                 {
                     if (stage.Equals("test"))
                     {
+                        databaseCreator.CreateTables();
+                    }
+                    else
+                    {
                         context.Database.Migrate();
                     }
                 } catch(Exception)
