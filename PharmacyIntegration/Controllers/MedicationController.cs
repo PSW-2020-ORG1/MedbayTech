@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Backend.Medications.Model;
 using Backend.Medications.Service;
+using Backend.Utils.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Model.Users;
 using PharmacyIntegration.gRPC;
@@ -43,6 +44,16 @@ namespace PharmacyIntegration.Controllers
 
             string response = grpc.CheckForMedication(search).Result;
             return Ok(response);
+        }
+
+        [HttpPost]
+        public IActionResult AddNewMedicion(NewMedicationDTO newMedication) 
+        {
+            Medication medication = new Medication(newMedication.MedicationName, newMedication.MedicationDosage);
+            Medication isSuccess =  _medicationService.Add(medication);
+            if (isSuccess == null)
+                return BadRequest();
+            return Ok();
         }
     }
 }

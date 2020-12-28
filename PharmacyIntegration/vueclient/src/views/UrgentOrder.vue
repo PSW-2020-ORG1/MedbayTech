@@ -25,11 +25,13 @@
                     <v-btn text
                            id="urgent-order-btn"
                            class="white accent--text"
-                           @click="sendRequest(request)"
+                           @click="sendRequest(index)"
                            :disabled="!valid[index]">
                         Send request
                     </v-btn>
                 </v-card-actions>
+                <p v-if="status.index !== index || status.message === '' " style="color:white">.</p>
+                <p v-else id="message-paragraph" style="color:forestgreen">{{status.message}}</p>
             </v-card>
         </div>
     </div>
@@ -47,9 +49,7 @@ export default {
             choosenPharmacy: [],
             valid: [],
             avaliablePharmacies: [],
-
-
-
+            status: {index: "", message: ""},
         }
     },
 
@@ -58,7 +58,6 @@ export default {
             this.axios.get("http://localhost:50202/api/Procurement/")
                 .then(response => {
                     this.allRequests = response.data;
-                    console.log(this.allRequests.lenght);
                     for (var i = 0; i < this.allRequests.length; i++) {
                         this.choosenPharmacy.push("");
                         this.checkForMedication(this.allRequests[i].medicationName);
@@ -88,21 +87,25 @@ export default {
                     if (response.data === 'We have the desired medication!') {
                         pharmacies.push("Schnabel");
                     }
+                    console.log(medication);
+                    console.log(response.data);
                     this.avaliablePharmacies.push(pharmacies);
                 })
                 .catch(response => {
                     console.log(response.data);
                 })
         },
-        sendRequest: function (request) {
-            console.log(request);
-           /* this.axios.post("http://localhost:50202/api/Prescription/", request)
+        sendRequest: function (index) {
+            this.axios.post("http://schnabel.herokuapp.com/pswapi/drugs/urgent", this.allRequests[index])
                 .then(response => {
+                    this.status.message = response.data;
+                    this.status.index = index;
+
                     console.log(response.data);
                 })
                 .catch(response => {
                     console.log(response);
-                });*/
+                });
         },
     },
         mounted() {
@@ -125,5 +128,8 @@ export default {
 
     #urgent-order-btn {
         min-width: 100%;
+    }
+    #message-paragraph{
+        text-align: center;
     }
 </style>
