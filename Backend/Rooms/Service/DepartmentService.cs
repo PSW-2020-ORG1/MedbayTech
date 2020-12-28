@@ -7,7 +7,7 @@ using Model.Rooms;
 using Repository.RoomRepository;
 using System.Collections.Generic;
 
-namespace MedbayTech.Rooms.Infrastructure.Services
+namespace Service.RoomService
 {
    public class DepartmentService
    {
