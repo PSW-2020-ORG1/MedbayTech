@@ -22,5 +22,6 @@ namespace Application.Common.Interfaces.Service
         List<Appointment> GetAvailableByDoctorAndDateRange(PriorityParameters parameters);
         List<Appointment> GetAvailableByStrategy(PriorityParameters parameters);
         List<Appointment> GetAll();
+        List<Appointment> GetAppointmentsBy(string userId);
     }
 }

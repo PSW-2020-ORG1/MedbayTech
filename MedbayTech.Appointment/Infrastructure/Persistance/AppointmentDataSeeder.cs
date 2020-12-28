@@ -128,7 +128,52 @@ namespace MedbayTech.Appointment.Infrastructure.Persistance
                 DoctorId = "2406978890047",
                 CanceledByPatient = true,
                 CancelationDate = new DateTime(2020, 12, 21),
-                PatientId = "2406978890046"
+                PatientId = "2406978890046",
+                
+            });
+            context.Add(new Domain.Entities.Appointment
+            {
+                Period = new Period(new DateTime(2020, 12, 14, 13, 30, 0), new DateTime(2020, 12, 14, 14, 0, 0)),
+                TypeOfAppointment = TypeOfAppointment.Examination,
+                ShortDescription = "standard appointment",
+                Urgent = true,
+                Deleted = false,
+                Finished = true,
+                RoomId = 1,
+                DoctorId = "2406978890047",
+                CanceledByPatient = true,
+                CancelationDate = new DateTime(2020, 12, 24),
+                PatientId = "2406978890046",
+
+            });
+            context.Add(new Domain.Entities.Appointment
+            {
+                Period = new Period(new DateTime(2020, 12, 14, 13, 30, 0), new DateTime(2020, 12, 14, 14, 0, 0)),
+                TypeOfAppointment = TypeOfAppointment.Examination,
+                ShortDescription = "standard appointment",
+                Urgent = true,
+                Deleted = false,
+                Finished = true,
+                RoomId = 1,
+                DoctorId = "2406978890047",
+                CanceledByPatient = true,
+                CancelationDate = new DateTime(2020, 12, 25),
+                PatientId = "2406978890046",
+            });
+            context.Add(new Domain.Entities.Appointment
+            {
+                Period = new Period(new DateTime(2020, 12, 14, 13, 30, 0), new DateTime(2020, 12, 14, 14, 0, 0)),
+                TypeOfAppointment = TypeOfAppointment.Examination,
+                ShortDescription = "standard appointment",
+                Urgent = true,
+                Deleted = false,
+                Finished = true,
+                RoomId = 1,
+                DoctorId = "2406978890047",
+                CanceledByPatient = true,
+                CancelationDate = new DateTime(2020, 12, 26),
+                PatientId = "2406978890046",
+
             });
             context.SaveChanges();
         }

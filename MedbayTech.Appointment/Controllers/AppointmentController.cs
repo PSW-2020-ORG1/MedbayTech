@@ -21,6 +21,12 @@ namespace Controllers
             
         }
 
+        [HttpGet("cancelableAppointments/{userId}")]
+        public IActionResult GetAppointmentsBy(string userId)
+        {
+            return Ok(_appointmentService.GetCancelableAppointments(userId));
+        }
+
         [HttpGet("allAppointments")]
         public IActionResult GetAll()
         {

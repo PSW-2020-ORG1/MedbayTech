@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MedbayTech.Users.Application.Common.Interfaces.Gateways;
 using MedbayTech.Users.Application.Common.Interfaces.Persistance;
 using MedbayTech.Users.Application.Common.Interfaces.Service;
 using MedbayTech.Users.Infrastructure.Database;
+using MedbayTech.Users.Infrastructure.Gateways;
 using MedbayTech.Users.Infrastructure.Persistance;
 using MedbayTech.Users.Infrastructure.Service;
 using Microsoft.AspNetCore.Builder;
@@ -41,6 +43,8 @@ namespace MedbayTech.Users
 
             services.AddTransient<IPatientRepository, PatientRepository>();
             services.AddScoped<IPatientService, PatientService>();
+
+            services.AddScoped<IAppointmentGateway, AppointmentGateway>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

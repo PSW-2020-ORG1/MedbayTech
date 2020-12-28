@@ -7,7 +7,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Common.Interfaces.Persistance;
+using Application.Common.Interfaces.Service;
 using Infrastructure.Database;
+using Infrastructure.Services;
 using MedbayTech.Appointment.Infrastructure.Persistance;
 
 namespace MedbayTech.Appointment
@@ -24,9 +27,13 @@ namespace MedbayTech.Appointment
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddDbContext<AppointmentDbContext>();
+
+            services.AddTransient<IAppointmentRepository, AppointmentRepository>();
+            services.AddScoped<IAppointmentService, AppointmentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +56,7 @@ namespace MedbayTech.Appointment
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
 
             using (var scope = app.ApplicationServices.CreateScope())

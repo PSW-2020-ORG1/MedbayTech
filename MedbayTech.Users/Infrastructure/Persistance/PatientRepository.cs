@@ -44,9 +44,6 @@ namespace MedbayTech.Users.Infrastructure.Persistance
             return GetAll();
         }
 
-        public Patient Update(Patient patient)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

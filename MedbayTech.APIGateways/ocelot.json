@@ -58,7 +58,35 @@
         "POST",
         "OPTIONS"
       ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/patient/maliciousPatients",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/maliciousPatients",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/patient/updatePatientStatus",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/updatePatientStatus",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
     }
-    
+
   ]
 }

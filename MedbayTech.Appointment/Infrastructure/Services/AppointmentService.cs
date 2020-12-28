@@ -209,5 +209,10 @@ namespace Infrastructure.Services
         {
             return _appointmentRepository.GetAll();
         }
+
+        public List<Appointment> GetAppointmentsBy(string userId)
+        {
+            return GetAll().Where(a => a.PatientId != null && a.Patient.Equals(userId)).ToList();
+        }
     }
 }
