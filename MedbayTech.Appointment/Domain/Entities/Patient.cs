@@ -6,10 +6,12 @@
 using Domain.Enums;
 using Domain.ValueObject;
 using System;
+
+using MedbayTech.Common.Domain.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 using MedbayTech.Common.Domain.Entities;
 
-namespace Domain.Entities
+namespace MedbayTech.Appointment.Domain.Entities
 {
    public class Patient : IIdentifiable<string>
    {

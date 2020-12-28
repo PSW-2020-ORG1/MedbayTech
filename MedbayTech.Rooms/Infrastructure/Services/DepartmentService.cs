@@ -5,12 +5,13 @@
 
 
 using MedbayTech.Rooms.Application.Common.Interfaces.Persistance;
+using MedbayTech.Rooms.Application.Common.Interfaces.Service;
 using MedbayTech.Rooms.Domain;
 using System.Collections.Generic;
 
 namespace MedbayTech.Rooms.Infrastructure.Services
 {
-   public class DepartmentService
+   public class DepartmentService :IDepartmentService
    {
         public IDepartmentRepository departmentRepository;
         

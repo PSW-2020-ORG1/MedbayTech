@@ -6,8 +6,7 @@ using Application.Common.Interfaces.Persistance;
 using Application.Common.Interfaces.Service;
 using Application.DTO;
 using Castle.Core.Internal;
-using Domain.Entities;
-using Domain.ValueObject;
+using Domain.Enums;
 using MedbayTech.Appointment.Domain.Entities;
 
 namespace Infrastructure.Services

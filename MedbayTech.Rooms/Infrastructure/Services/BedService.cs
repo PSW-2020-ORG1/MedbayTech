@@ -3,7 +3,9 @@
 // Created: Tuesday, May 19, 2020 11:01:37 PM
 // Purpose: Definition of Class BedService
 
+using MedbayTech.Rooms.Application;
 using MedbayTech.Rooms.Application.Common.Interfaces.Persistance;
+using MedbayTech.Rooms.Application.Common.Interfaces.Service;
 using MedbayTech.Rooms.Domain;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ using System.Linq;
 
 namespace MedbayTech.Rooms.Infrastructure.Services
 {
-   public class BedService
+   public class BedService:IBedService
    {
         public BedService(IBedRepository bedRepository)
         {
@@ -57,7 +59,7 @@ namespace MedbayTech.Rooms.Infrastructure.Services
         {
             if (CheckIfOccupationDatesAreValid(occupation))
             {
-                Bed bedForOccupation = bedRepository.GetObject(bed.Id);
+                Bed bedForOccupation = bedRepository.GetBy(bed.Id);
                 if (!CheckIfOccupationsOverlap(bedForOccupation, occupation))
                 {
                     bedForOccupation.AddOccupation(occupation);
@@ -126,6 +128,20 @@ namespace MedbayTech.Rooms.Infrastructure.Services
             }
         }
 
+        bool IBedService.CheckIfOccupationDatesAreValid(Occupation occupation)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IBedService.CheckIfOccupationsOverlap(Bed bed, Occupation occupation)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IBedService.CheckIfDatesOverlap(DateTime startDate, DateTime endDate, Occupation occupation)
+        {
+            throw new NotImplementedException();
+        }
 
         private const string INVALID_DATE = "Occupation date is invalid!";
         private const string ALREADY_OCCUPIED = "Bed is already occupied from {0} to {1}";

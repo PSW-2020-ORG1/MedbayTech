@@ -10,7 +10,7 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using MedbayTech.Common.Domain.Entities;
 
-namespace Domain.Entities
+namespace MedbayTech.Appointment.Domain.Entities
 {
    public class Doctor : IIdentifiable<string>
    {

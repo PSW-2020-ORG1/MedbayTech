@@ -34,7 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.PatientDocuments
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Appointment", "MedbayTech.Appointment\MedbayTech.Appointment.csproj", "{B284BCC0-BEB4-4E8F-ADAB-FE210B7D14C3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Rooms", "MedbayTech.Rooms\MedbayTech.Rooms.csproj", "{3091CF2E-9653-48B6-B684-2D49FAD37F98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Rooms", "MedbayTech.Rooms\MedbayTech.Rooms.csproj", "{B91F4EBC-0A3A-4EB3-B628-06D4C82CAA18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

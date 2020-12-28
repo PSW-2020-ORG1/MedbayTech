@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Infrastructure.Database
 {
-    public class AppointmentRepository : SqlRepository<MedbayTech.Appointment.Domain.Entities.Appointment, int>,
+    public class AppointmentRepository : SqlRepository<Appointment, int>,
         IAppointmentRepository
     {
         public AppointmentRepository(AppointmentDbContext context) : base(context) { }

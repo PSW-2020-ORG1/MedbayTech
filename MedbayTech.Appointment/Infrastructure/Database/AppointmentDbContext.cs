@@ -1,10 +1,6 @@
 ﻿using MedbayTech.Repository.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Database
 {

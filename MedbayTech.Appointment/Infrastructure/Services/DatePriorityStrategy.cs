@@ -6,7 +6,7 @@
 using Application.Common.Interfaces;
 using Application.Common.Interfaces.Service;
 using Application.DTO;
-using Domain.Entities;
+using Domain.Enums;
 using MedbayTech.Appointment.Domain.Entities;
 using System;
 using System.Collections.Generic;

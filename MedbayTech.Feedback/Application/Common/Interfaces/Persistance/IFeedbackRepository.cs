@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using MedbayTech.Common.Repository;
 
+using MedbayTech.Common.Repository;
+using System.Collections.Generic;
 
 namespace MedbayTech.Feedback.Infrastructure.Database
 {

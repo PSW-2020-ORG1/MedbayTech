@@ -4,10 +4,9 @@
 // Purpose: Definition of Interface IPriorityStrategy
 
 using Application.DTO;
-using Domain.Entities;
 using MedbayTech.Appointment.Domain.Entities;
-using System;
 using System.Collections.Generic;
+
 namespace Application.Common.Interfaces
 {
    public interface IPriorityStrategy

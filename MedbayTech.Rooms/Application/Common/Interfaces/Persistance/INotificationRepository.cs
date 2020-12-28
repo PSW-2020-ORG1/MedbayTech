@@ -3,11 +3,12 @@
 // Created: Sunday, May 24, 2020 12:23:36 AM
 // Purpose: Definition of Interface INotificationRepository
 
-using Model.Users;
-using System;
-using Repository;
 
-namespace Backend.Users.Repository.MySqlRepository
+
+using MedbayTech.Common.Repository;
+using MedbayTech.Rooms.Domain;
+
+namespace MedbayTech.Rooms.Application.Common.Interfaces.Persistance
 {
    public interface INotificationRepository : IRepository<Notification,int>
    {
