@@ -3,7 +3,7 @@
 // Created: Saturday, April 11, 2020 11:23:56 PM
 // Purpose: Definition of Class Appointment
 
-using Domain.Entities;
+
 using Domain.Enums;
 using Domain.ValueObject;
 using MedbayTech.Common.Domain.Entities;

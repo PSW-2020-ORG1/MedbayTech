@@ -1,5 +1,4 @@
-﻿using MedbayTech.Repository.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace MedbayTech.Repository.Infrastructure.Persistance

@@ -1,10 +1,9 @@
-﻿using Domain.Entities;
+﻿
+using MedbayTech.Appointment.Domain.Entities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace MedbayTech.Appointment.Infrastructure.Gateway
 {

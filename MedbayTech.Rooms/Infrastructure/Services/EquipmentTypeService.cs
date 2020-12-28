@@ -1,6 +1,6 @@
 ﻿
 using MedbayTech.Rooms.Application.Common.Interfaces.Persistance;
-using MedbayTech.Rooms.Application.Common.Service;
+using MedbayTech.Rooms.Application.Common.Interfaces.Service;
 using MedbayTech.Rooms.Domain;
 using System.Collections.Generic;
 using System.Linq;

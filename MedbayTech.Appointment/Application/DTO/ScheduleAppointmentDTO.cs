@@ -1,4 +1,4 @@
-﻿using MedbayTech.Appointment.Domain.Exceptions;
+﻿using MedbayTech.Appointment.Application.Exceptions;
 using System;
 
 namespace Application.DTO

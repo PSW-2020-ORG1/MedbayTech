@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Application.DTO
+namespace Domain.Enums
 {
    public enum PriorityType
    {

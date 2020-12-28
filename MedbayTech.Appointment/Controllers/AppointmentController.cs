@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Application.Common.Interfaces.Service;
 using Application.DTO;
 using Application.Mappers;
-using Domain.Entities;
 using MedbayTech.Appointment.Domain.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controllers

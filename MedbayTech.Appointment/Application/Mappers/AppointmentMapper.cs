@@ -1,5 +1,5 @@
 ﻿using Application.DTO;
-using Domain.Entities;
+using Domain.Enums;
 using Domain.ValueObject;
 using MedbayTech.Appointment.Domain.Entities;
 using System;

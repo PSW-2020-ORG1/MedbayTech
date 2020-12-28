@@ -5,12 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Application\DTO\" />
-    <Folder Include="Application\Mappers\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Infrastructure\Database\" />
     <Folder Include="Infrastructure\Gateway\" />
-    <Folder Include="Infrastructure\Service\" />
     <Folder Include="Infrastructure\Persistance\" />
   </ItemGroup>
 
