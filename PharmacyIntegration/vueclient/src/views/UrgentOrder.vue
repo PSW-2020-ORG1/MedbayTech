@@ -13,25 +13,17 @@
                     </p>
                     <v-form v-model="valid[index]">
                         <v-combobox v-model="choosenPharmacy[index]"
-                                    :items="allPharmacies"
+                                    :items="avaliablePharmacies[index]"
                                     label="Choose pharmacy"
                                     :rules="pharmacyRule"
                                     clearable>
                         </v-combobox>
                     </v-form>
-                        <p v-if="status.requestIndex !== index || status.message === '' " style="color:white">.</p>
-                        <p v-else-if="status.message === 'We have the desired medication!'" style="color:forestgreen">{{status.message}}</p>
-                        <p v-else style="color:red">{{status.message}}</p>
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn text
-                           class="white accent--text"
-                           @click="checkForMedication(request.medicationName, index)"
-                           :disabled="!valid[index]">
-                        Ask pharmacy
-                    </v-btn>
                     <v-spacer></v-spacer>
                     <v-btn text
+                           id="urgent-order-btn"
                            class="white accent--text"
                            @click="sendRequest(request)"
                            :disabled="!valid[index]">
@@ -49,12 +41,12 @@ export default {
         return {
             allRequests: [],
             allPharmacies: [],
-            status: { requestIndex: "", message: "" },
             pharmacyRule: [
                 v => !!v || "Phamracy is required",
             ],
             choosenPharmacy: [],
             valid: [],
+            avaliablePharmacies: [],
 
 
 
@@ -66,11 +58,11 @@ export default {
             this.axios.get("http://localhost:50202/api/Procurement/")
                 .then(response => {
                     this.allRequests = response.data;
-                    for (var i = 0; i < this.allRequests.lenght; i++) {
+                    console.log(this.allRequests.lenght);
+                    for (var i = 0; i < this.allRequests.length; i++) {
                         this.choosenPharmacy.push("");
-
+                        this.checkForMedication(this.allRequests[i].medicationName);
                     }
-                    console.log(response);
                 })
                 .catch(response => {
                     console.log(response);
@@ -79,32 +71,31 @@ export default {
         getAllPharmacies: function () {
             this.axios.get("http://localhost:50202/api/pharmacy")
                 .then(response => {
-                    var pharmaciesTemp = response.data;
-                    pharmaciesTemp.forEach(element => this.allPharmacies.push(element.id));
-                    this.allPharmacies.push("Schnabel");
-                    for (var i = 0; i < this.allPharmacies.lenght; i++) {
+                    this.allPharmacies = response.data;
+                    this.allPharmacies.push({ id: "Schnabel", apiKey: "1234254", apiEndpoint: "http://schnabel.herokuapp.com/pswapi/drugs/name/", RecieveNotificationFrom: true });
+                    for (var i = 0; i < this.allPharmacies.length; i++) {
                         this.valid.push("");
-
                     }
-                    console.log(response);
                 })
                 .catch(response => {
                     console.log(response);
                 })
         },
-        checkForMedication: function (medication, index) {
+        checkForMedication: function (medication) {
             this.axios.get("http://schnabel.herokuapp.com/pswapi/drugs/name/" + medication)
                 .then(response => {
-                    this.status.requestIndex = index;
-                    this.status.message = response.data;
-
-                    console.log(this.status.message);
+                    var pharmacies = [];
+                    if (response.data === 'We have the desired medication!') {
+                        pharmacies.push("Schnabel");
+                    }
+                    this.avaliablePharmacies.push(pharmacies);
                 })
                 .catch(response => {
                     console.log(response.data);
                 })
         },
         sendRequest: function (request) {
+            console.log(request);
            /* this.axios.post("http://localhost:50202/api/Prescription/", request)
                 .then(response => {
                     console.log(response.data);
@@ -113,7 +104,6 @@ export default {
                     console.log(response);
                 });*/
         },
-
     },
         mounted() {
             this.getAllRequests();
@@ -131,5 +121,9 @@ export default {
 
     #urgent-order-card {
         margin-bottom: 10%;
+    }
+
+    #urgent-order-btn {
+        min-width: 100%;
     }
 </style>
