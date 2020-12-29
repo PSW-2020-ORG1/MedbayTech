@@ -1,4 +1,5 @@
-﻿using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
+﻿using MedbayTech.PatientDocuments.Application.DTO.Report;
+using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,14 +8,14 @@ namespace Backend.Examinations.Service.Interfaces
 {
     public interface IReportSearchService
     {
-        List<ExaminationSurgery> GetSearchedReports(string name, DateTime startDate, DateTime endDate, string type);
-       // List<ExaminationSurgery> AdvancedSearchReports(ReportAdvancedDTO dto);
-     //  List<ExaminationSurgery> SearchByParameters(List<ExaminationSurgery> reports, ReportAdvancedDTO dto, List<ExaminationSurgery> firstReports);
-        List<ExaminationSurgery> SearchByLogicOperators(string logicOperator, List<ExaminationSurgery> otherReports, List<ExaminationSurgery> finalReports);
-        List<ExaminationSurgery> SearchByOtherParameters(string otherParameterType, string otherParameterValue, List<ExaminationSurgery> reports);
-       // List<ExaminationSurgery> SearchFByFirstParameter(List<ExaminationSurgery> reports, ReportAdvancedDTO dto);
-        List<ExaminationSurgery> AdvancedSearchDoctorName(string docName, List<ExaminationSurgery> reports);
-        List<ExaminationSurgery> AdvancedSearchDoctorSurname(string docSurname, List<ExaminationSurgery> reports);
-        List<ExaminationSurgery> AdvancedSearchDate(string date, List<ExaminationSurgery> reports);
+        List<Report> GetSearchedReports(string name, DateTime startDate, DateTime endDate, string type);
+        List<Report> AdvancedSearchReports(ReportAdvancedDTO dto);
+        List<Report> SearchByParameters(List<Report> reports, ReportAdvancedDTO dto, List<Report> firstReports);
+        List<Report> SearchByLogicOperators(string logicOperator, List<Report> otherReports, List<Report> finalReports);
+        List<Report> SearchByOtherParameters(string otherParameterType, string otherParameterValue, List<Report> reports);
+        List<Report> SearchFByFirstParameter(List<Report> reports, ReportAdvancedDTO dto);
+        List<Report> AdvancedSearchDoctorName(string docName, List<Report> reports);
+        List<Report> AdvancedSearchDoctorSurname(string docSurname, List<Report> reports);
+        List<Report> AdvancedSearchDate(string date, List<Report> reports);
     }
 }

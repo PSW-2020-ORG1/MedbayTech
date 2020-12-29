@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Examinations.Model.Enums;
 using MedbayTech.Common.Domain.Entities;
+using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
 
 namespace MedbayTech.PatientDocuments.Domain.Entities.Treatment
 {
@@ -19,7 +20,8 @@ namespace MedbayTech.PatientDocuments.Domain.Entities.Treatment
         public DateTime Date { get; set; }
         public string AdditionalNotes { get; set; }
         public TreatmentType Type { get; set; }
-        public int ExaminationSurgeryId { get; set; }
+        public int ReportId { get; set; }
+        public virtual Report Report {get; set;}
         public Treatment() { }
 
         public Treatment(int id)

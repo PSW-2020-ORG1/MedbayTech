@@ -20,7 +20,7 @@ namespace MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords
         public string Name { get; set; }
         public virtual List<Symptoms> Symptoms { get; set; }
         public int FamilyIllnessHistoryId { get; set; }
-        public int ExaminationSurgeryId { get; set; }
+        public int ReportId { get; set; }
         public Diagnosis()
         {
 

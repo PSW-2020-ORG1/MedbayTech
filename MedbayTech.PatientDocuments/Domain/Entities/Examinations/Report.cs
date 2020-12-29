@@ -7,14 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Backend.Examinations.Model;
 using MedbayTech.Common.Domain.Entities;
 using MedbayTech.PatientDocuments.Domain.Entities.Examinations.Enums;
 using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
+using MedbayTech.PatientDocuments.Domain.Entities.Users;
 
 namespace MedbayTech.PatientDocuments.Domain.Entities.Examinations
 {
-    public class ExaminationSurgery : IIdentifiable<int>
+    public class Report : IIdentifiable<int>
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,20 +24,23 @@ namespace MedbayTech.PatientDocuments.Domain.Entities.Examinations
         public virtual List<Treatment.Treatment> Treatments { get; set; }
         public virtual List<Diagnosis> Diagnoses { get; set; }
         public string DoctorId { get; set; }
+        [NotMapped]
+        public Doctor Doctor { get; set; }
         public int MedicalRecordId { get; set; }
+        public virtual MedicalRecord MedicalRecord { get; set; }
         public int DiagnosisId { get; set; }
 
-        public ExaminationSurgery()
+        public Report()
         {
             Treatments = new List<Treatment.Treatment>();
             Diagnoses = new List<Diagnosis>();
         }
-        public ExaminationSurgery(int id)
+        public Report(int id)
         {
             Id = id;
         }
 
-        public ExaminationSurgery(DateTime startTime, TypeOfAppointment type, string doctorId, int recordId)
+        public Report(DateTime startTime, TypeOfAppointment type, string doctorId, int recordId)
         {
             StartTime = startTime;
             Type = type;

@@ -16,7 +16,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
         public DbSet<MedicalRecord> MedicalRecords { get; set; }
         public DbSet<Diagnosis> Diagnosis { get; set; }
         public DbSet<FamilyIllnessHistory> FamilyIllnessHistory { get; set; }
-        public DbSet<ExaminationSurgery> ExaminationSurgeries { get; set; }
+        public DbSet<Report> Reports { get; set; }
         public DbSet<Treatment> Treatments { get; set; }
         public DbSet<Allergens> Allergens { get; set; }
         public DbSet<Therapy> Therapies { get; set; }

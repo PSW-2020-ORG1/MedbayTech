@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MedbayTech.PatientDocuments.Infrastructure.Service
 {
-    public class ExaminationService
+    public class ReportSearchService
     {
     }
 }

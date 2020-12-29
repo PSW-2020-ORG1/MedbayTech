@@ -4,7 +4,6 @@
 // Purpose: Definition of Class Prescription
 
 using System;
-using System.Collections.Generic;
 using Backend.Examinations.Model.Enums;
 
 namespace MedbayTech.PatientDocuments.Domain.Entities.Treatment
@@ -17,6 +16,7 @@ namespace MedbayTech.PatientDocuments.Domain.Entities.Treatment
         public DateTime EndDate { get; set; }
         public int HourlyIntake { get; set; }
         public int MedicationId { get; set; }
+        public string Medication { get; set; }
 
         public Prescription() : base(TreatmentType.Prescription)
         {

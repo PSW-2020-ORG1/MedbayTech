@@ -11,7 +11,6 @@ namespace Repository.MedicalRecordRepository
 {
     public interface IMedicalRecordRepository : IRepository<MedicalRecord, int> 
    {
-        List<MedicalRecord> GetRecordsFor(string doctorId);
         MedicalRecord GetRecordBy(string patientId);
 
     }

@@ -24,9 +24,5 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Persistance
             throw new EntityNotFound();
         }
 
-        public List<MedicalRecord> GetRecordsFor(string doctorId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

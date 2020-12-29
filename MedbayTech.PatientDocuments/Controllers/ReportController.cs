@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Backend.Examinations.Service.Interfaces;
+using MedbayTech.PatientDocuments.Application.DTO.Report;
+using MedbayTech.PatientDocuments.Application.Mapper.Report;
 using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,20 +18,21 @@ namespace WebApplication.Controller
         {
             _reportSearchService = reportSearchService;
         }
-        /*
+        
         [HttpPost("advancedSearch")]
         public IActionResult AdvancedSearchPrescriptions(ReportAdvancedDTO dto)
         {
+            
             try
             {
-                ValidateReportSearchInput.Validate(dto);
+                dto.ValidateUserInput();
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
 
-            List<ExaminationSurgery> reports = _reportSearchService.AdvancedSearchReports(dto);
+            List<Report> reports = _reportSearchService.AdvancedSearchReports(dto);
 
             return Ok(reports);
         }
@@ -40,7 +43,7 @@ namespace WebApplication.Controller
         {
             try 
             {
-                ValidateReportSearch.Validate(dto);
+               // ValidateReportSearch.Validate(dto);
             }
             catch(Exception e)
             {
@@ -48,9 +51,9 @@ namespace WebApplication.Controller
             }
             
 
-            List<ExaminationSurgery> reports = _reportSearchService.GetSearchedReports(dto.Doctor, dto.startDate, dto.endDate, dto.type);
-            List<ReportDTO> reportDTOs = ReportAdapter.ListExaminationSurgeryToReport(reports);
+            List<Report> reports = _reportSearchService.GetSearchedReports(dto.Doctor, dto.startDate, dto.endDate, dto.type);
+            List<ReportDTO> reportDTOs = ReportMapper.ListExaminationSurgeryToReport(reports);
             return Ok(reportDTOs);
-        }*/
+        }
     }
 }
