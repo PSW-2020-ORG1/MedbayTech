@@ -86,6 +86,20 @@
       "UpstreamHttpMethod": [
         "POST"
       ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/medicalRecord",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50577
+        }
+      ],
+      "UpstreamPathTemplate": "/medicalRecord",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     }
 
   ]

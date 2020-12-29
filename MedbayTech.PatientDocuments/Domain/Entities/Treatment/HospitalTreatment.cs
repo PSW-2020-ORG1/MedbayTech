@@ -7,8 +7,9 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Examinations.Model.Enums;
 using MedbayTech.Common.Domain.ValueObjects;
+using MedbayTech.PatientDocuments.Domain.Entities.Examinations.Enums;
 
-namespace Backend.Examinations.Model
+namespace MedbayTech.PatientDocuments.Domain.Entities.Treatment
 {
     public class HospitalTreatment : Treatment
     {
@@ -20,7 +21,7 @@ namespace Backend.Examinations.Model
         public HospitalTreatment(string additionalNotes, DateTime start, DateTime end, int departmentId)
             : base(start, additionalNotes, TreatmentType.HospitalTreatment)
         {
-            this.Period = new Period(start, end);
+            Period = new Period(start, end);
             Status = Status.Created;
             DepartmentId = departmentId;
         }

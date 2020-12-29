@@ -5,13 +5,13 @@
 
 using System;
 
-namespace Backend.Records.Model.Enums
+namespace MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords.Enums
 {
-   public enum Relative
-   {
-      Mother,
-      Father,
-      Sibling,
-      Grandparents
-   }
+    public enum Relative
+    {
+        Mother,
+        Father,
+        Sibling,
+        Grandparents
+    }
 }

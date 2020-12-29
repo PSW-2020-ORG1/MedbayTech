@@ -7,11 +7,11 @@ using System;
 using System.Collections.Generic;
 using Backend.Examinations.Model.Enums;
 
-namespace Backend.Examinations.Model
+namespace MedbayTech.PatientDocuments.Domain.Entities.Treatment
 {
-   public class Prescription : Treatment
+    public class Prescription : Treatment
     {
-        private const int RESERVATION_DAYS = 10; 
+        private const int RESERVATION_DAYS = 10;
         public bool Reserved { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

@@ -3,24 +3,20 @@
 // Created: Monday, May 18, 2020 10:53:47 PM
 // Purpose: Definition of Class Therapy
 
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Backend.Medications.Model;
-using MedbayTech.Common.Domain.Common;
 
-namespace Backend.Records.Model
+namespace MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords
 {
-   public class Therapy
+    public class Therapy
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int HourConsumption { get; set; }
         public string MedicationName { get; set; }
-
-        public Therapy() {}
+        public int MedicalRecordId { get; set; }
+        public Therapy() { }
         public Therapy(int hourConsumption, string medicationName)
         {
             HourConsumption = hourConsumption;

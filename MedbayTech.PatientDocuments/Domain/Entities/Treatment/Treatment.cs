@@ -9,9 +9,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Examinations.Model.Enums;
 using MedbayTech.Common.Domain.Entities;
 
-namespace Backend.Examinations.Model
+namespace MedbayTech.PatientDocuments.Domain.Entities.Treatment
 {
-   public class Treatment : IIdentifiable<int>
+    public class Treatment : IIdentifiable<int>
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -32,14 +32,14 @@ namespace Backend.Examinations.Model
             Type = type;
         }
 
-        public Treatment(DateTime date, String additionalNotes, TreatmentType type)
+        public Treatment(DateTime date, string additionalNotes, TreatmentType type)
         {
             Date = date.Date;
             AdditionalNotes = additionalNotes;
             Type = type;
         }
 
-        
+
         public int GetId()
         {
             return Id;

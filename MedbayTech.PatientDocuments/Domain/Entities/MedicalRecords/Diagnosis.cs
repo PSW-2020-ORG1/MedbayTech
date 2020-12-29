@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using MedbayTech.Common.Domain.Entities;
 
-namespace Backend.Records.Model
+namespace MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords
 {
     public class Diagnosis : IIdentifiable<int>
     {
@@ -18,27 +18,27 @@ namespace Backend.Records.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
-        [NotMapped]
         public virtual List<Symptoms> Symptoms { get; set; }
-
-        public Diagnosis() 
+        public int FamilyIllnessHistoryId { get; set; }
+        public int ExaminationSurgeryId { get; set; }
+        public Diagnosis()
         {
-            
+
         }
 
-        public Diagnosis(int code) 
+        public Diagnosis(int code)
         {
             Id = code;
         }
 
-        public Diagnosis(string name, int code) 
+        public Diagnosis(string name, int code)
         {
             Name = name;
             Id = code;
             Symptoms = new List<Symptoms>();
         }
 
-      
+
         public int GetId()
         {
             return Id;

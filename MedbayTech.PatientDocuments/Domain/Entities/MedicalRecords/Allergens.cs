@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using MedbayTech.Common.Domain.Common;
 
 
-namespace Backend.Medications.Model
+namespace MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords
 {
     public class Allergens
     {
@@ -17,7 +17,8 @@ namespace Backend.Medications.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Allergen { get; set; }
-
+        public int MedicalRecordId { get; set; }
+        public int MedicationId { get; set; }
         public Allergens() { }
         public Allergens(string allergen)
         {

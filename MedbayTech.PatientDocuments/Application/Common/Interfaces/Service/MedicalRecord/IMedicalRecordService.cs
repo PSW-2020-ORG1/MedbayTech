@@ -1,13 +1,11 @@
-﻿using Backend.Records.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
+
 
 namespace Backend.Records.Service.Interfaces
 {
     public interface IMedicalRecordService
     {
-        MedicalRecord GetMedicalRecordByPatientId(string id);
+        MedicalRecord GetMedicalRecordByPatient(string patientId);
         MedicalRecord CreateMedicalRecord(MedicalRecord medicalRecord);
     }
 }

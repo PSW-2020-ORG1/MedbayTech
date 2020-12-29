@@ -6,13 +6,13 @@
 
 using System;
 
-namespace Backend.Records.Model
+namespace MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords.Enums
 {
-   public enum PatientCondition
-   {
-      Stable,
-      Urgent,
-      HospitalTreatment,
-      HomeTreatment
-   }
+    public enum PatientCondition
+    {
+        Stable,
+        Urgent,
+        HospitalTreatment,
+        HomeTreatment
+    }
 }

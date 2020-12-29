@@ -1,4 +1,4 @@
-﻿using Backend.Examinations.Model;
+﻿using MedbayTech.PatientDocuments.Domain.Entities.Treatment;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

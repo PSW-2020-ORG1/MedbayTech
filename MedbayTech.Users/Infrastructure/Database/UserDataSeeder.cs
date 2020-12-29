@@ -20,8 +20,34 @@ namespace MedbayTech.Users.Infrastructure.Database
             SeedUsers(context);
             SeedDoctors(context);
             SeedDoctorsWorkDay(context);
-            
+            SeedPatients(context);
 
+            context.SaveChanges();
+        }
+
+        private void SeedPatients(UserDbContext context)
+        {
+            context.Add(new Patient
+            {
+                Id = "2406978890046",
+                DateOfBirth = new DateTime(1978, 6, 24),
+                DateOfCreation = new DateTime(),
+                CurrResidence = new Address("Jablanicka", 2, 2, 1, new City("Novi Sad", new State("Srbija"))),
+                EducationLevel = EducationLevel.bachelor,
+                InsurancePolicy = new InsurancePolicy("12345678", "Markovic", new Period(new DateTime(2020, 6, 29), new DateTime(2021, 2, 2))),
+                Email = "pera@gmail.com",
+                Gender = Gender.MALE,
+                Name = "Petar",
+                Surname = "Petrovic",
+                Username = "pera",
+                Password = "pera1978",
+                Phone = "065/123-4554",
+                Profession = "vodoinstalater",
+                ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
+                IsGuestAccount = false,
+                ChosenDoctorId = "2406978890047",
+                UserType = UserType.PATIENT
+            });
             context.SaveChanges();
         }
 
@@ -162,25 +188,6 @@ namespace MedbayTech.Users.Infrastructure.Database
                     OperationRoomId = 18,
                     Specialization = new Specialization("Hirurgija"),
                     UserType = UserType.DOCTOR
-                });
-                context.Add(new Patient
-                {
-                    Id = "2406978890046",
-                    DateOfBirth = new DateTime(1978, 6, 24),
-                    DateOfCreation = new DateTime(),
-                    EducationLevel = EducationLevel.bachelor,
-                    Email = "pera@gmail.com",
-                    Gender = Gender.MALE,
-                    Name = "Petar",
-                    Surname = "Petrovic",
-                    Username = "pera",
-                    Password = "pera1978",
-                    Phone = "065/123-4554",
-                    Profession = "vodoinstalater",
-                    ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
-                    IsGuestAccount = false,
-                    ChosenDoctorId = "2406978890047",
-                    UserType = UserType.PATIENT
                 });
                context.SaveChanges();
         }

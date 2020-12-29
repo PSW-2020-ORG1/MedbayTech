@@ -1,4 +1,4 @@
-﻿using Backend.Examinations.Model;
+﻿using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
 using System;
 using System.Collections.Generic;
 using System.Text;

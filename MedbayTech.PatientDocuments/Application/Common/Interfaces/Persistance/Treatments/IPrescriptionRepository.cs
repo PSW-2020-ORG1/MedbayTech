@@ -1,7 +1,7 @@
-﻿using Backend.Examinations.Model;
-using Repository;
+﻿using Repository;
 using System.Collections.Generic;
 using MedbayTech.Common.Repository;
+using MedbayTech.PatientDocuments.Domain.Entities.Treatment;
 
 namespace Backend.Examinations.Repository
 {

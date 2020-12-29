@@ -6,33 +6,28 @@
 
 using System.Collections.Generic;
 using System.Linq;
-
-using Backend.Records.Model.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Backend.Medications.Model;
 using MedbayTech.Common.Domain.Entities;
+using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords.Enums;
 
-namespace Backend.Records.Model
+namespace MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords
 {
-   public class MedicalRecord : IIdentifiable<int>
+    public class MedicalRecord : IIdentifiable<int>
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public PatientCondition CurrHealthState { get; set; }
         public BloodType BloodType { get; set; }
-        [NotMapped]
-        public virtual List<Allergens> Allergies { get; set; }
-        [NotMapped]
+        public virtual List<Allergens> Allergens { get; set; }
         public virtual List<Vaccines> Vaccines { get; set; }
-        [NotMapped]
         public virtual List<Diagnosis> IllnessHistory { get; set; }
-        [NotMapped]
         public virtual List<Therapy> Therapies { get; set; }
-        [NotMapped]
         public virtual List<FamilyIllnessHistory> FamilyIllnessHistory { get; set; }
         public string PatientId { get; set; }
+        [NotMapped]
+        public virtual Patient.Patient Patient { get; set; }
 
         public MedicalRecord() { }
 
@@ -41,21 +36,37 @@ namespace Backend.Records.Model
             Id = id;
         }
 
-        public MedicalRecord(BloodType bloodType, string patientId, PatientCondition patientCondition)
+        public MedicalRecord(int id, PatientCondition currHealthState, BloodType bloodType, 
+            List<Allergens> allergies, List<Vaccines> vaccines, List<Diagnosis> illnessHistory, 
+            List<Therapy> therapies, List<FamilyIllnessHistory> familyIllnessHistory, string patientId) : this(id)
         {
+            CurrHealthState = currHealthState;
             BloodType = bloodType;
+            Allergens = allergies;
+            Vaccines = vaccines;
+            IllnessHistory = illnessHistory;
+            Therapies = therapies;
+            FamilyIllnessHistory = familyIllnessHistory;
             PatientId = patientId;
-            CurrHealthState = patientCondition;
-            Allergies = new List<Allergens>();
-            IllnessHistory = new List<Diagnosis>();
-            FamilyIllnessHistory = new List<FamilyIllnessHistory>();
-            Therapies = new List<Therapy>();
-            Vaccines = new List<Vaccines>();
         }
 
-        public int GetId()
+        public MedicalRecord(MedicalRecord medicalRecord)
         {
-            return Id;
+            CurrHealthState = medicalRecord.CurrHealthState;
+            BloodType = medicalRecord.BloodType;
+            Allergens = medicalRecord.Allergens;
+            Vaccines = medicalRecord.Vaccines;
+            IllnessHistory = medicalRecord.IllnessHistory;
+            Therapies = medicalRecord.Therapies;
+            FamilyIllnessHistory = medicalRecord.FamilyIllnessHistory;
+            PatientId = medicalRecord.PatientId;
+        }
+
+        public MedicalRecord SetPatient(Patient.Patient patient)
+        {
+            var record = new MedicalRecord(this);
+            record.Patient = patient;
+            return record; 
         }
 
         public bool IsFamilyIllnessHistoryAdded(FamilyIllnessHistory diagnosis)
@@ -63,5 +74,10 @@ namespace Backend.Records.Model
             return FamilyIllnessHistory.Any(illness => illness.Id == diagnosis.Id);
         }
 
-   }
+        public int GetId()
+        {
+            return Id;
+        }
+
+    }
 }

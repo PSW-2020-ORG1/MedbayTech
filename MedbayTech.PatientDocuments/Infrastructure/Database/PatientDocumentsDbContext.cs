@@ -1,6 +1,6 @@
-﻿using Backend.Examinations.Model;
-using Backend.Medications.Model;
-using Backend.Records.Model;
+﻿using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
+using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
+using MedbayTech.PatientDocuments.Domain.Entities.Treatment;
 using MedbayTech.Repository.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using System;

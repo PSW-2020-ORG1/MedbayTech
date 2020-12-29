@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Backend.Examinations.Model.Enums
+namespace MedbayTech.PatientDocuments.Domain.Entities.Examinations.Enums
 {
-   
+
     public enum Status
     {
-        Created, 
+        Created,
         Approved,
         Rejected
     }
-    
+
 }

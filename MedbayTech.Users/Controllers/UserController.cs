@@ -36,7 +36,6 @@ namespace MedbayTech.Users.Controllers
         [HttpGet("getById/{id}")]
         public IActionResult GetBy(string id)
         {
-            id = "2406978890045";
             return Ok(_userService.GetBy(id));
         }
     }

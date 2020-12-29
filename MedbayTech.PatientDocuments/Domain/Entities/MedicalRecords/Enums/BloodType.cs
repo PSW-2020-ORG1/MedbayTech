@@ -5,18 +5,18 @@
 
 using System;
 
-namespace Backend.Records.Model.Enums
+namespace MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords.Enums
 {
-   public enum BloodType
-   {
-      ONeg,
-      OPlus,
-      ANeg,
-      APlus,
-      BNeg,
-      BPlus,
-      AbNeg,
-      AbPlus
-   
-   }
+    public enum BloodType
+    {
+        ONeg,
+        OPlus,
+        ANeg,
+        APlus,
+        BNeg,
+        BPlus,
+        AbNeg,
+        AbPlus
+
+    }
 }

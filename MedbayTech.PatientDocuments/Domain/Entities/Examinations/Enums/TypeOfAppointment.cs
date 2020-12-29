@@ -4,15 +4,12 @@
  * Purpose: Definition of the Class HealthCorporation.5Doctor.TypeOfAppointment
  ***********************************************************************/
 
-using Model.Users;
-using System;
-
-namespace Model.Schedule
+namespace MedbayTech.PatientDocuments.Domain.Entities.Examinations.Enums
 {
-   public enum TypeOfAppointment
-   {
-       Examination,
-       Surgery
-   
-   }
+    public enum TypeOfAppointment
+    {
+        Examination,
+        Surgery
+
+    }
 }

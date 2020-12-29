@@ -1,13 +1,8 @@
-﻿using Backend.Examinations.Model;
-using Backend.Examinations.Model.Enums;
-using Backend.Medications.Model;
-using Backend.Records.Model;
-using Backend.Records.Model.Enums;
-using Model.Schedule;
+﻿using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
+using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MedbayTech.PatientDocuments.Infrastructure.Database
 {
@@ -17,12 +12,12 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
 
         public void SeedAllEntities(PatientDocumentsDbContext context)
         {
-            SeedAllergens(context);
-            SeedVaccines(context);
+            //SeedAllergens(context);
+            /*SeedVaccines(context);
             SeedSymptoms(context);
             SeedDiagnosis(context);
-            SeedFamilyIllnessHistory(context);
-            SeedTherapies(context);
+            SeedFamilyIllnessHistory(context);*/
+            //SeedTherapies(context);
             SeedMedicalRecords(context);
             SeedExaminationSurgery(context);
             SeedPrescriptions(context);
@@ -31,18 +26,25 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
 
         private void SeedMedicalRecords(PatientDocumentsDbContext context)
         {
+            var allergens = new List<Allergens>();
+            allergens.Add(new Allergens("Prasina"));
+            var therapies = new List<Therapy>();
+            therapies.Add(new Therapy(12, "Brufen"));
+            therapies.Add(new Therapy(8, "Bromazepam"));
+
             context.Add(new MedicalRecord
             {
                 CurrHealthState = PatientCondition.HospitalTreatment,
                 BloodType = BloodType.ANeg,
-                Allergies = new List<Allergens>(),
+                Allergens = allergens,
                 Vaccines = new List<Vaccines>(),
                 IllnessHistory = new List<Diagnosis>(),
                 FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
                 PatientId = "2406978890046",
-                Therapies = new List<Therapy>()
+                Therapies = therapies
             });
             context.SaveChanges();
+            /*
             context.Add(new MedicalRecord
             {
                 CurrHealthState = PatientCondition.HospitalTreatment,
@@ -76,7 +78,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                 PatientId = "2406978890050",
                 Therapies = new List<Therapy>()
             });
-            context.SaveChanges();
+            context.SaveChanges();*/
         }
 
         private void SeedTherapies(PatientDocumentsDbContext context)
@@ -121,7 +123,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
         }
     
         private void SeedPrescriptions(PatientDocumentsDbContext context)
-        {
+        {/*
             context.Add(new Prescription
             {
                 ExaminationSurgeryId = 1,
@@ -182,11 +184,11 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                 HourlyIntake = 4,
                 MedicationId = 1,
             });
-            context.SaveChanges();
+            context.SaveChanges();*/
         }
         private void SeedExaminationSurgery(PatientDocumentsDbContext context)
             {
-                context.Add(new ExaminationSurgery
+               /* context.Add(new ExaminationSurgery
                 {
                     StartTime = new DateTime(2020, 12, 5),
                     Type = TypeOfAppointment.Examination,
@@ -241,11 +243,11 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                     MedicalRecordId = 1
                 });
 
-                context.SaveChanges();
+                context.SaveChanges();*/
             }
             private void SeedTreatments(PatientDocumentsDbContext context)
             {
-                context.Add(new Treatment
+              /*  context.Add(new Treatment
                 {
                     Date = new DateTime(2020, 11, 27),
                     AdditionalNotes = ".",
@@ -260,12 +262,12 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                     ExaminationSurgeryId = 1
                 });
 
-                context.SaveChanges();
+                context.SaveChanges();*/
             }
 
             public bool IsAlreadyFull(PatientDocumentsDbContext context)
             {
-                return context.Allergens.Count() > 0;
+                return context.MedicalRecords.Count() > 0;
             }
 
     }

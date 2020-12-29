@@ -1,4 +1,4 @@
-﻿using Backend.Examinations.Model;
+﻿using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -13,8 +13,8 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database.Configurations
         public void Configure(EntityTypeBuilder<ExaminationSurgery> builder)
         {
             builder.ToTable("ExaminationSurgery");
-            builder.HasMany(e => e.Treatments);
-            builder.HasMany(e => e.Diagnoses);
+            builder.HasMany(e => e.Treatments).WithOne().HasForeignKey(t => t.ExaminationSurgeryId);
+            builder.HasMany(e => e.Diagnoses).WithOne().HasForeignKey(d => d.ExaminationSurgeryId);
         }
     }
 }
