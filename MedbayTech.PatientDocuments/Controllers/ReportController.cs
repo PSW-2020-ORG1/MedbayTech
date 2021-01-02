@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Backend.Examinations.Service.Interfaces;
 using MedbayTech.PatientDocuments.Application.DTO.Report;
 using MedbayTech.PatientDocuments.Application.Mapper.Report;
+using MedbayTech.PatientDocuments.Application.Validators.Report;
 using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +26,7 @@ namespace WebApplication.Controller
             
             try
             {
-                dto.ValidateUserInput();
+                ReportSearchValidator.Validate(dto);
             }
             catch (Exception e)
             {
@@ -43,7 +44,7 @@ namespace WebApplication.Controller
         {
             try 
             {
-               // ValidateReportSearch.Validate(dto);
+                ReportValidator.Validate(dto);
             }
             catch(Exception e)
             {

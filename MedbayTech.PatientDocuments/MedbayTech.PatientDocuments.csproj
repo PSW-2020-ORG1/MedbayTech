@@ -39,4 +39,9 @@
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Application\Validators\MedicalRecord\" />
+	  <Folder Include="Application\Validators\Prescription\" />
+	</ItemGroup>
+
 </Project>

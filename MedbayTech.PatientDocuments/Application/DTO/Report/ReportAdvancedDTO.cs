@@ -22,26 +22,5 @@ namespace MedbayTech.PatientDocuments.Application.DTO.Report
             LogicOperators = logicOperators;
         }
 
-
-        public void ValidateUserInput()
-        {
-            CheckInput(FirstParameterType, FirstParameterValue);
-            for (int i = 0; i < OtherParameterValues.Length; i++)
-                CheckInput(OtherParameterTypes[i], OtherParameterValues[i]);
-        }
-
-        private void CheckInput(string firstType, string firstValue)
-        {
-            if (firstValue.Equals("") || firstValue == null && !firstType.Equals(""))
-            {
-                if (firstType.Equals("docName"))
-                    throw new ValidationException("Doctors name can't be empty");
-                else if (firstType.Equals("docSurname"))
-                    throw new ValidationException("Doctors surname can't be empty");
-                else
-                    throw new ValidationException("Date can't be empty");
-            }
-        }
-
     }
 }
