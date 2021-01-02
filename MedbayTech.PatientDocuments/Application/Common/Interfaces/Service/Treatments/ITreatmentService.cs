@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace Backend.Examinations.Service.Interfaces
+namespace MedbayTech.PatientDocuments.Application.Common.Interfaces.Service.Treatments
 {
     public interface ITreatmentService
     {
@@ -11,7 +11,7 @@ namespace Backend.Examinations.Service.Interfaces
         Treatment UpdateTreatment(Treatment treatment);
         bool DeleteTreatment(Treatment treatment);
         List<HospitalTreatment> GetUnapprovedHospitalTreatments();
-        List<Prescription> GetAllPrescriptions() ;
+        List<Prescription> GetAllPrescriptions();
         List<Prescription> GetAllPrescriptionsInPeriodOfTime(DateTime startDate, DateTime endDate);
         HospitalTreatment ApproveHospitalTreatment(HospitalTreatment hospitalTreatment);
         HospitalTreatment RejectHospitalTreatment(HospitalTreatment hospitalTreatment);

@@ -41,7 +41,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Application\Validators\MedicalRecord\" />
-	  <Folder Include="Application\Validators\Prescription\" />
 	</ItemGroup>
 
 </Project>

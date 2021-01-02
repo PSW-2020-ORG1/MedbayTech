@@ -1,20 +1,19 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Backend.Records.Service.Interfaces;
+using Backend.Examinations.Service.Interfaces;
 using MedbayTech.PatientDocuments.Application.Common.Interfaces.Gateways;
+using MedbayTech.PatientDocuments.Application.Common.Interfaces.Persistance.Examinations;
+using MedbayTech.PatientDocuments.Application.Common.Interfaces.Persistance.Treatments;
+using MedbayTech.PatientDocuments.Application.Common.Interfaces.Service;
+using MedbayTech.PatientDocuments.Application.Common.Interfaces.Service.Treatments;
 using MedbayTech.PatientDocuments.Infrastructure.Database;
 using MedbayTech.PatientDocuments.Infrastructure.Gateways;
 using MedbayTech.PatientDocuments.Infrastructure.Persistance;
 using MedbayTech.PatientDocuments.Infrastructure.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Repository.MedicalRecordRepository;
 
 namespace MedbayTech.PatientDocuments
@@ -36,7 +35,13 @@ namespace MedbayTech.PatientDocuments
             services.AddControllers();
 
             services.AddTransient<IMedicalRecordRepository, MedicalRecordRepository>();
+            services.AddTransient<IReportRepository, ReportRepository>();
+            services.AddTransient<IPrescriptionRepository, PrescriptionRepository>();
+
+
             services.AddScoped<IMedicalRecordService, MedicalRecordService>();
+            services.AddScoped<IReportSearchService, ReportSearchService>();
+            services.AddScoped<IPrescriptionSearchService, PrescriptionSearchService>();
 
 
             services.AddScoped<IUserGateway, UserGateway>();
@@ -58,11 +63,10 @@ namespace MedbayTech.PatientDocuments
                     PatientDocumentsDataSeeder seeder = new PatientDocumentsDataSeeder();
                     if (!seeder.IsAlreadyFull(context))
                         seeder.SeedAllEntities(context);
-
                 }
                 catch (Exception)
                 {
-
+                    Console.WriteLine("Failed to seed data in Patient Documents");
                 }
 
                 app.UseRouting();

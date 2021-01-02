@@ -1,5 +1,5 @@
-﻿using Backend.Records.Service.Interfaces;
-using MedbayTech.PatientDocuments.Application.Common.Interfaces.Gateways;
+﻿using MedbayTech.PatientDocuments.Application.Common.Interfaces.Gateways;
+using MedbayTech.PatientDocuments.Application.Common.Interfaces.Service;
 using MedbayTech.PatientDocuments.Application.Exception;
 using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
 using Repository.MedicalRecordRepository;

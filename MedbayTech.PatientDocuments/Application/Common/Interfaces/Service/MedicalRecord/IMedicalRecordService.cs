@@ -1,7 +1,7 @@
 ﻿using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
 
 
-namespace Backend.Records.Service.Interfaces
+namespace MedbayTech.PatientDocuments.Application.Common.Interfaces.Service
 {
     public interface IMedicalRecordService
     {
