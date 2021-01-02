@@ -43,5 +43,20 @@ namespace MedbayTech.PatientDocuments.Domain.Entities.Treatment
                    Date.CompareTo(endDate) < 0;
         }
 
+        public string GetStringForSharing()
+        {
+            string result = "\t\tPRESCRIPTION\t\t" + "\n\nPatient Ifnormation\t\n" +
+                "\tName: " + Report.MedicalRecord.Patient.Name +
+                "\n\tSurname: " + Report.MedicalRecord.Patient.Surname +
+                "\n\tIndetification Number: " + Report.MedicalRecord.Patient.Id +
+                "\n\nMedication Information" +
+                "\n\tMedication name: " + Medication +
+                "\n\tHourly Intake: " + HourlyIntake +
+                "\n\n\t\t\t Doctor: " +
+                "\n\t\t " + "Dr. " + Report.Doctor.Surname + ", " + Report.Doctor.Name +
+                "\n\t\t Date: " + Date;
+            return result;
+        }
+
     }
 }

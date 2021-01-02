@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Backend.Examinations.Service.Interfaces;
+using MedbayTech.PatientDocuments.Application.Common.Interfaces.Service.Treatments;
 using MedbayTech.PatientDocuments.Domain.Entities.Treatment;
 using Microsoft.AspNetCore.Mvc;
 
