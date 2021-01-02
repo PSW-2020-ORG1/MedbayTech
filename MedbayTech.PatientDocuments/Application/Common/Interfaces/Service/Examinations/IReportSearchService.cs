@@ -2,7 +2,6 @@
 using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Backend.Examinations.Service.Interfaces
 {
@@ -17,5 +16,7 @@ namespace Backend.Examinations.Service.Interfaces
         List<Report> AdvancedSearchDoctorName(string docName, List<Report> reports);
         List<Report> AdvancedSearchDoctorSurname(string docSurname, List<Report> reports);
         List<Report> AdvancedSearchDate(string date, List<Report> reports);
+        List<Report> GetAll();
+        List<Report> GetReportsFor(string id);
     }
 }

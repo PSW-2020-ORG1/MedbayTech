@@ -1,5 +1,9 @@
-﻿using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
+﻿using Backend.Examinations.Model.Enums;
+using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
+using MedbayTech.PatientDocuments.Domain.Entities.Examinations.Enums;
+using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
 using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords.Enums;
+using MedbayTech.PatientDocuments.Domain.Entities.Treatment;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +23,8 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
             SeedFamilyIllnessHistory(context);*/
             //SeedTherapies(context);
             SeedMedicalRecords(context);
-            SeedExaminationSurgery(context);
+            SeedReports(context);
+            SeedTreatments(context);
             SeedPrescriptions(context);
             context.SaveChanges();
         }
@@ -123,10 +128,10 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
         }
     
         private void SeedPrescriptions(PatientDocumentsDbContext context)
-        {/*
+        {
             context.Add(new Prescription
             {
-                ExaminationSurgeryId = 1,
+                ReportId = 1,
                 Date = new DateTime(2020, 12, 8),
                 Reserved = true,
                 StartDate = new DateTime(2020, 11, 27),
@@ -136,7 +141,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
             });
             context.Add(new Prescription
             {
-                ExaminationSurgeryId = 1,
+                ReportId = 1,
                 Date = new DateTime(2020, 12, 5),
                 Reserved = true,
                 StartDate = new DateTime(2020, 11, 28),
@@ -146,7 +151,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
             });
             context.Add(new Prescription
             {
-                ExaminationSurgeryId = 1,
+                ReportId = 1,
                 Date = new DateTime(2020, 12, 12),
                 Reserved = true,
                 StartDate = new DateTime(2020, 11, 27),
@@ -156,7 +161,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
             });
             context.Add(new Prescription
             {
-                ExaminationSurgeryId = 1,
+                ReportId = 1,
                 Date = new DateTime(2020, 12, 10),
                 Reserved = true,
                 StartDate = new DateTime(2020, 11, 28),
@@ -166,7 +171,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
             });
             context.Add(new Prescription
             {
-                ExaminationSurgeryId = 1,
+                ReportId = 1,
                 Date = new DateTime(2020, 12, 15),
                 Reserved = true,
                 StartDate = new DateTime(2020, 11, 27),
@@ -176,7 +181,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
             });
             context.Add(new Prescription
             {
-                ExaminationSurgeryId = 1,
+                ReportId = 1,
                 Date = new DateTime(2020, 12, 7),
                 Reserved = true,
                 StartDate = new DateTime(2020, 11, 28),
@@ -184,11 +189,11 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                 HourlyIntake = 4,
                 MedicationId = 1,
             });
-            context.SaveChanges();*/
+            context.SaveChanges();
         }
-        private void SeedExaminationSurgery(PatientDocumentsDbContext context)
+        private void SeedReports(PatientDocumentsDbContext context)
             {
-               /* context.Add(new ExaminationSurgery
+                context.Add(new Report
                 {
                     StartTime = new DateTime(2020, 12, 5),
                     Type = TypeOfAppointment.Examination,
@@ -197,7 +202,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                     DoctorId = "2406978890047",
                     MedicalRecordId = 1
                 });
-                context.Add(new ExaminationSurgery
+                context.Add(new Report
                 {
                     StartTime = new DateTime(2020, 12, 3),
                     Type = TypeOfAppointment.Surgery,
@@ -206,7 +211,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                     DoctorId = "2407978890045",
                     MedicalRecordId = 1
                 });
-                context.Add(new ExaminationSurgery
+                context.Add(new Report
                 {
                     StartTime = new DateTime(2020, 12, 7),
                     Type = TypeOfAppointment.Examination,
@@ -215,7 +220,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                     DoctorId = "2407978890045",
                     MedicalRecordId = 1
                 });
-                context.Add(new ExaminationSurgery
+                context.Add(new Report
                 {
                     StartTime = new DateTime(2020, 12, 9),
                     Type = TypeOfAppointment.Surgery,
@@ -224,7 +229,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                     DoctorId = "2406978890047",
                     MedicalRecordId = 1
                 });
-                context.Add(new ExaminationSurgery
+                context.Add(new Report
                 {
                     StartTime = new DateTime(2020, 12, 13),
                     Type = TypeOfAppointment.Examination,
@@ -233,7 +238,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                     DoctorId = "2406978890047",
                     MedicalRecordId = 1
                 });
-                context.Add(new ExaminationSurgery
+                context.Add(new Report
                 {
                     StartTime = new DateTime(2020, 12, 16),
                     Type = TypeOfAppointment.Surgery,
@@ -243,26 +248,26 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                     MedicalRecordId = 1
                 });
 
-                context.SaveChanges();*/
+                context.SaveChanges();
             }
             private void SeedTreatments(PatientDocumentsDbContext context)
             {
-              /*  context.Add(new Treatment
+                context.Add(new Treatment
                 {
                     Date = new DateTime(2020, 11, 27),
                     AdditionalNotes = ".",
                     Type = TreatmentType.Prescription,
-                    ExaminationSurgeryId = 1
+                    ReportId = 1
                 });
                 context.Add(new Treatment
                 {
                     Date = new DateTime(2020, 11, 29),
                     AdditionalNotes = ".",
                     Type = TreatmentType.Prescription,
-                    ExaminationSurgeryId = 1
+                    ReportId = 1
                 });
 
-                context.SaveChanges();*/
+                context.SaveChanges();
             }
 
             public bool IsAlreadyFull(PatientDocumentsDbContext context)

@@ -13,9 +13,6 @@ namespace MedbayTech.PatientDocuments.Application.Common.Interfaces.Persistance.
 {
     public interface IReportRepository : IRepository<Report, int>
     {
-        List<Report> GetAllBy(string doctorId);
-        List<Report> GetAllBy(MedicalRecord record);
-        Report UpdateTreatment(Report examinationSurgery, Treatment treatment);
         List<Report> GetReportFor(string idPatient);
     }
 }

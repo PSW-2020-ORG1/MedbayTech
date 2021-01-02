@@ -2,31 +2,20 @@
 using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
 using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
 using MedbayTech.PatientDocuments.Domain.Entities.Treatment;
+using MedbayTech.PatientDocuments.Infrastructure.Database;
 using MedbayTech.Repository;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MedbayTech.PatientDocuments.Infrastructure.Persistance
 {
     public class ReportRepository : SqlRepository<Report, int>, IReportRepository
     {
-        public List<Report> GetAllBy(string doctorId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public List<Report> GetAllBy(MedicalRecord record)
-        {
-            throw new System.NotImplementedException();
-        }
-
+        public ReportRepository(PatientDocumentsDbContext context) : base(context) { }
         public List<Report> GetReportFor(string idPatient)
         {
-            throw new System.NotImplementedException();
+            return GetAll().Where(report => report.IsPatient(idPatient)).ToList();
         }
 
-        public Report UpdateTreatment(Report examinationSurgery, Treatment treatment)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

@@ -13,6 +13,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database.Configurations
         public void Configure(EntityTypeBuilder<Treatment> builder)
         {
             builder.ToTable("Treatment");
+            builder.HasOne(t => t.Report).WithMany().HasForeignKey(t => t.ReportId);
         }
     }
 }

@@ -28,7 +28,6 @@ namespace MedbayTech.PatientDocuments.Domain.Entities.Examinations
         public Doctor Doctor { get; set; }
         public int MedicalRecordId { get; set; }
         public virtual MedicalRecord MedicalRecord { get; set; }
-        public int DiagnosisId { get; set; }
 
         public Report()
         {
@@ -50,26 +49,16 @@ namespace MedbayTech.PatientDocuments.Domain.Entities.Examinations
             Diagnoses = new List<Diagnosis>();
         }
 
-
         public int GetId()
         {
             return Id;
         }
 
-        public bool IsAlreadyStarted()
+        public bool IsPatient(string id)
         {
-            return StartTime.Date.CompareTo(DateTime.Today.Date) == 0;
+            return MedicalRecord.PatientId.Equals(id);
         }
 
-        public bool IsBeforeToday()
-        {
-            return StartTime.Date.CompareTo(DateTime.Today.Date) < 0;
-        }
-
-        public bool IsExaminationBefore(DateTime date)
-        {
-            return StartTime.Date.CompareTo(date.Date) > 0;
-        }
 
     }
 }

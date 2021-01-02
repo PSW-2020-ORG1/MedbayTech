@@ -1,4 +1,5 @@
 ﻿using Backend.Examinations.Service.Interfaces;
+using MedbayTech.PatientDocuments.Application.Common.Interfaces.Gateways;
 using MedbayTech.PatientDocuments.Application.Common.Interfaces.Persistance.Examinations;
 using MedbayTech.PatientDocuments.Application.DTO.Report;
 using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
@@ -11,15 +12,16 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
     public class ReportSearchService : IReportSearchService
     {
         private readonly IReportRepository _repository;
-
-        public ReportSearchService(IReportRepository repository)
+        private readonly IUserGateway _userGateway;
+        public ReportSearchService(IReportRepository repository, IUserGateway userGateway)
         {
             _repository = repository;
+            _userGateway = userGateway;
         }
 
         public List<Report> GetSearchedReports(string name, DateTime startDate, DateTime endDate, string type)
         {
-            List<Report> reports = _repository.GetAll().ToList();
+            List<Report> reports = GetAll();
             List<Report> iterationList = new List<Report>(reports);
 
             foreach (Report report in iterationList)
@@ -51,7 +53,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
         /// <returns>List of filtered reports</returns>
         public List<Report> AdvancedSearchReports(ReportAdvancedDTO dto)
         {
-            return SearchByParameters(_repository.GetReportFor("2406978890046"), dto, SearchFByFirstParameter(_repository.GetReportFor("2406978890046"), dto));
+            return SearchByParameters(GetReportsFor("2406978890046"), dto, SearchFByFirstParameter(GetReportsFor("2406978890046"), dto));
         }
 
         /// <summary>
@@ -151,6 +153,22 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
             {
                 reports = reports.Where(report => report.StartTime == DateTime.Parse(date)).ToList();
             }
+            return reports;
+        }
+
+        public List<Report> GetReportsFor(string id)
+        {
+            var reports = _repository.GetReportFor(id);
+            foreach (Report report in reports)
+                report.Doctor = _userGateway.GetDoctorBy(report.DoctorId);
+            return reports;
+        } 
+
+        public List<Report> GetAll()
+        {
+            var reports = _repository.GetAll().ToList();
+            foreach (Report report in reports)
+                report.Doctor = _userGateway.GetDoctorBy(report.DoctorId);
             return reports;
         }
     }
