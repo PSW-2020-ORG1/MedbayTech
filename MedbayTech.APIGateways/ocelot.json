@@ -110,7 +110,7 @@
           "Port": 8082
         }
       ],
-      "UpstreamPathTemplate": "appointment/cancelableAppointments/{everything}",
+      "UpstreamPathTemplate": "/appointment/cancelableAppointments/{everything}",
       "UpstreamHttpMethod": [
         "GET"
       ]
@@ -124,7 +124,7 @@
           "Port": 8082
         }
       ],
-      "UpstreamPathTemplate": "appointment/allAppointments",
+      "UpstreamPathTemplate": "/appointment/allAppointments",
       "UpstreamHttpMethod": [
         "GET"
       ]
@@ -153,7 +153,7 @@
           "Port": 8082
         }
       ],
-      "UpstreamPathTemplate": "appointment/allOtherAppointments",
+      "UpstreamPathTemplate": "/appointment/allOtherAppointments",
       "UpstreamHttpMethod": [
         "GET"
       ]
@@ -167,7 +167,7 @@
           "Port": 8082
         }
       ],
-      "UpstreamPathTemplate": "appointment/allCancelableAppointments",
+      "UpstreamPathTemplate": "/appointment/allCancelableAppointments",
       "UpstreamHttpMethod": [
         "GET"
       ]
@@ -181,7 +181,7 @@
           "Port": 8082
         }
       ],
-      "UpstreamPathTemplate": "appointment/cancelAppointment",
+      "UpstreamPathTemplate": "/appointment/cancelAppointment",
       "UpstreamHttpMethod": [
         "POST"
       ]
@@ -195,7 +195,7 @@
           "Port": 8082
         }
       ],
-      "UpstreamPathTemplate": "appointment/available",
+      "UpstreamPathTemplate": "/appointment/available",
       "UpstreamHttpMethod": [
         "POST"
       ]
@@ -209,7 +209,7 @@
           "Port": 8082
         }
       ],
-      "UpstreamPathTemplate": "appointment/availableStrategy",
+      "UpstreamPathTemplate": "/appointment/availableStrategy",
       "UpstreamHttpMethod": [
         "POST"
       ]
@@ -223,7 +223,7 @@
           "Port": 8082
         }
       ],
-      "UpstreamPathTemplate": "appointment/schedule",
+      "UpstreamPathTemplate": "/appointment/schedule",
       "UpstreamHttpMethod": [
         "POST"
       ]

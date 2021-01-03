@@ -60,7 +60,7 @@ export class RecommendationComponent implements OnInit {
   }
 
   getDoctorsBySpecialization(specializationId : string) {
-    this.doctorService.getDoctorsBySpecialization(specializationId).subscribe(data => {
+    this.doctorService.getDoctorsBySpecialization('hirugija').subscribe(data => {
       this.searchDoctors = data;
     });
   }
