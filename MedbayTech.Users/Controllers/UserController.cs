@@ -14,18 +14,10 @@ namespace MedbayTech.Users.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IPatientService _patientService;
 
-        public UserController(IUserService userService, IPatientService patientService)
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _patientService = patientService;
-        }
-
-        [HttpGet("getPatient")]
-        public IActionResult GetPatiens()
-        {
-            return Ok(_patientService.GetAll());
         }
 
         [HttpGet]
@@ -40,10 +32,5 @@ namespace MedbayTech.Users.Controllers
             return Ok(_userService.GetBy(id));
         }
 
-        [HttpGet("getDoctors")]
-        public IActionResult GetDoctors()
-        {
-            return Ok(_userService.GetAllDoctors());
-        }
     }
 }

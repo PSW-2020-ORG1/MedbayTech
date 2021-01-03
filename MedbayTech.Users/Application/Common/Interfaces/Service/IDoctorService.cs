@@ -8,6 +8,10 @@ namespace MedbayTech.Users.Application.Common.Interfaces.Service
 {
     public interface IDoctorService
     {
-        Doctor GetDoctorByRoomExaminationRoom(int roomId);
+        Doctor GetDoctorByExaminationRoom(int roomId);
+        Doctor Update(Doctor doctor);
+        List<Doctor> GetAll();
+        List<Doctor> GetDoctorsBy(string specializationName);
+        Doctor GetDoctorBy(string id);
     }
 }
