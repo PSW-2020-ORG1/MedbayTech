@@ -18,10 +18,15 @@ namespace MedbayTech.Rooms.Controllers
         {
             _roomService = roomService;
         }
-        /*
+        
         [HttpGet("{textBoxSearch?}/{roomSearch?}")]
         public IActionResult Get(string textBoxSearch, RoomSearch roomSearch)
         {
+            if(textBoxSearch == null)
+            {
+                return Ok();
+            }
+
             if (roomSearch == RoomSearch.ByRoomLabelorRoomUse)
             {
                 return Ok(_roomService.GetRoomsByRoomLabelorRoomUse(textBoxSearch.ToLower().Trim()));
@@ -35,7 +40,7 @@ namespace MedbayTech.Rooms.Controllers
                 else return Ok();
             }
             else return Ok();
-        }*/
+        }
 
         [HttpPost]
         public IActionResult Post(Room room)

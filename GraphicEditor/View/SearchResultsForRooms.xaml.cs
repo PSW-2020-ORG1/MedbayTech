@@ -54,7 +54,8 @@ namespace GraphicEditor
                 return;
             }
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/room/" + textBoxSearch + "/ByRoomLabelorRoomUse")
+            /*var task = httpClient.GetAsync("http://localhost:53109/api/room/" + textBoxSearch + "/ByRoomLabelorRoomUse")*/
+            var task = httpClient.GetAsync("http://localhost:60304/api/room/" + textBoxSearch + "/ByRoomLabelorRoomUse")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
