@@ -13,10 +13,10 @@ export class PatientService {
   constructor(private http: HttpClient) { }
 
   updatePatientStatus(data: UpdatePatientBlockedStatus){
-    return this.http.post(`${environment.baseUrl}/${environment.updatePatientStatus}`, data, {responseType:'text'});
+    return this.http.post(`${environment.baseUrl}/${environment.patient}/${environment.updatePatientStatus}`, data, {responseType:'text'});
   }
 
   getAllMaliciousPatients(): Observable<MaliciousPatient[]>{
-    return this.http.get<MaliciousPatient[]>(`${environment.baseUrl}/${environment.maliciousPatients}`);
+    return this.http.get<MaliciousPatient[]>(`${environment.baseUrl}/${environment.patient}/${environment.maliciousPatients}`);
   }
 }

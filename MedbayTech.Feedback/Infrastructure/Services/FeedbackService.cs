@@ -1,30 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using MedbayTech.Feedback.Application.Common.Interfaces.Gateways;
 using MedbayTech.Feedback.Domain.Entities;
 using MedbayTech.Feedback.Infrastructure.Database;
-using MedbayTech.Feedback.Infrastructure.Gateways;
 
 
 namespace MedbayTech.Feedback.Infrastructure.Services
 {
     public class FeedbackService : IFeedbackService
     {
-        private IFeedbackRepository feedbackRepository;
+        private readonly IFeedbackRepository _feedbackRepository;
 
         private IUserGateway _userGateway;
 
         public FeedbackService(IFeedbackRepository feedbackRepository, IUserGateway userGateway)
         {
-            this.feedbackRepository = feedbackRepository;
+            _feedbackRepository = feedbackRepository;
             _userGateway = userGateway;
         }
 
         public List<Domain.Entities.Feedback> GetAll()
         {
-            List<Domain.Entities.Feedback> allFeedback = feedbackRepository.GetAll().ToList();
+            List<Domain.Entities.Feedback> allFeedback = _feedbackRepository.GetAll().ToList();
             List<User> users = _userGateway.GetUsers();
             allFeedback.ForEach(f => f.RegisteredUser = users.FirstOrDefault(u => f.UserId != null && u.Id.Equals(f.UserId)));
 
@@ -33,7 +31,7 @@ namespace MedbayTech.Feedback.Infrastructure.Services
 
         public List<Domain.Entities.Feedback> GetAllApprovedFeedback()
         {
-            List<Domain.Entities.Feedback> approvedFeedback = feedbackRepository.GetAllApprovedFeedback();
+            List<Domain.Entities.Feedback> approvedFeedback = _feedbackRepository.GetAllApprovedFeedback();
             List<User> users = _userGateway.GetUsers();
             approvedFeedback.ForEach(f => f.RegisteredUser = users.FirstOrDefault(u => f.UserId != null && u.Id.Equals(f.UserId)));
             return approvedFeedback;
@@ -41,7 +39,7 @@ namespace MedbayTech.Feedback.Infrastructure.Services
 
         public bool UpdateStatus(int feedbackId, bool status)
         {
-            return feedbackRepository.UpdateStatus(feedbackId, status);
+            return _feedbackRepository.UpdateStatus(feedbackId, status);
         }
         public Domain.Entities.Feedback CreateFeedback(string userId, string additionalNotes, Boolean anonymous, Boolean allowed)
         {
@@ -56,13 +54,13 @@ namespace MedbayTech.Feedback.Infrastructure.Services
                 feedback.UserId = userId;
             }
 
-            return feedbackRepository.Create(feedback);
+            return _feedbackRepository.Create(feedback);
 
         }
 
         public Domain.Entities.Feedback CheckIfExists(Domain.Entities.Feedback feedback)
         {
-            List<Domain.Entities.Feedback> feedbacks = feedbackRepository.GetAll().ToList();
+            List<Domain.Entities.Feedback> feedbacks = _feedbackRepository.GetAll().ToList();
             bool exists = feedbacks.Any(s => s.Id == feedback.Id);
             if (exists)
             {

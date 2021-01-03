@@ -4,9 +4,9 @@ export class AppointmentRecommendation {
     public endInterval : Date;
     public doctorId : string;
     public priority : number;
-    public specializationId : string;
+    public specializationId : number;
 
-    constructor(startInterval : Date, endInterval : Date, doctorId : string, priority : number, specializationId : string) {
+    constructor(startInterval : Date, endInterval : Date, doctorId : string, priority : number, specializationId : number) {
         this.startInterval = startInterval;
         this.endInterval = endInterval;
         this.doctorId = doctorId;
