@@ -4,7 +4,6 @@
  * Purpose: Definition of the Class HealthCorporation.Schedule.RoomType
  ***********************************************************************/
 
-using System;
 
 namespace MedbayTech.Rooms.Domain
 {

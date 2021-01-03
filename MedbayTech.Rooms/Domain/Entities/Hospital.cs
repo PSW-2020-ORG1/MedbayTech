@@ -17,8 +17,9 @@ namespace MedbayTech.Rooms.Domain
         public int Id { get; set; }
         public string Description { get; set; }
         public string Name { get; set; }
-        [ForeignKey("Address")]
-        public int AddressId { get; set; }
+       // [ForeignKey("Address")]
+       // public int AddressId { get; set; }
+        
         public virtual Address Address { get; set; }
 
         public Hospital() { }
@@ -29,7 +30,7 @@ namespace MedbayTech.Rooms.Domain
             Description = description;
             Name = name;
             Address = address;
-            AddressId = address.Id;
+           // AddressId = address.Id;
         }
 
 

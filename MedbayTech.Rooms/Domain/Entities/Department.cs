@@ -21,7 +21,7 @@ namespace MedbayTech.Rooms.Domain
         public int HospitalId { get; set; }
         public virtual Hospital Hospital { get; set; }
 
-        public Department (int id, string name, int floor, Hospital hospital)
+        public Department(int id, string name, int floor, Hospital hospital)
         {
             Id = id;
             Name = name;
@@ -30,16 +30,16 @@ namespace MedbayTech.Rooms.Domain
             HospitalId = hospital.Id;
         }
 
-        public Department ()
+        public Department()
         {
         }
 
-        public int GetId ()
+        public int GetId()
         {
             return Id;
         }
 
-        public void SetId (int id)
+        public void SetId(int id)
         {
             Id = id;
         }

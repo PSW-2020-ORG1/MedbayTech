@@ -15,12 +15,12 @@ namespace MedbayTech.Rooms.Domain
         [Key]
         public int Id { get; set; }
 
-        public EquipmentType ( string name )
+        public EquipmentType(string name)
         {
             this.Name = name;
         }
 
-        public EquipmentType ( )
+        public EquipmentType()
         {
         }
 

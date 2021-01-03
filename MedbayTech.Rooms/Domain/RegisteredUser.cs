@@ -58,9 +58,9 @@ namespace MedbayTech.Rooms.Domain
             EducationLevel = educationLevel;
             Profession = profession;
             PlaceOfBirth = city;
-            PlaceOfBirthId = city.Id;
+           // PlaceOfBirthId = city.Id;
             CurrResidence = currResidence;
-            CurrResidenceId = currResidence.Id;
+            //CurrResidenceId = currResidence.Id;
             InsurancePolicy = insurancePolicy;
             InsurancePolicyId = insurancePolicy.Id;
             Phone = phone;

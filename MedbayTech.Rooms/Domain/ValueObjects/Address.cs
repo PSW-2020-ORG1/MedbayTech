@@ -3,49 +3,43 @@
 // Created: Monday, April 06, 2020 11:29:00 PM
 // Purpose: Definition of Class Address
 
-
-using MedbayTech.Common.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using MedbayTech.Common.Domain.Common;
 
 namespace MedbayTech.Rooms.Domain
 {
-   public class Address : IIdentifiable<int>
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; } 
+   public class Address : ValueObject
+   {
+        
         public string Street { get;  set; }
         public int Number { get;  set; }
         public int Apartment { get;  set; }
 
         public int Floor { get;  set; }
-        [ForeignKey("City")]
-        public int CityId { get;  set; }
+
+        [NotMapped]
         public virtual City City { get; set; }
 
 
         public Address() { }
 
-        public Address(int id, string street, int number, int apartment, int floor, City city)
+        public Address(string street, int number, int apartment, int floor, City city)
         {
-            Id = id;
             Street = street;
             Number = number;
             Apartment = apartment;
             Floor = floor;
             City = city;
-            CityId = city.Id;
         }
 
-        public int GetId()
+        protected override IEnumerable<object> GetEqualityComponents()
         {
-            return Id;
-        }
-
-        public void SetId(int id)
-        {
-            Id = id;
+            yield return Number;
+            yield return Apartment;
+            yield return Floor;
+            yield return City;
+            yield return Street;
         }
     }
 }

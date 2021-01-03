@@ -3,7 +3,6 @@
 // Created: Friday, April 17, 2020 1:03:29 AM
 // Purpose: Definition of Class NotificationCategory
 
-using System;
 
 namespace MedbayTech.Rooms.Domain.Enums
 {

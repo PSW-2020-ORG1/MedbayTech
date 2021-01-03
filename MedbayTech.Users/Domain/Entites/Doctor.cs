@@ -27,6 +27,17 @@ namespace Model.Users
 
         public Doctor() {}
 
-        
-   }
+        public void UpdateDoctor(Doctor doctor)
+        {
+            LicenseNumber = doctor.LicenseNumber;
+            OnCall = doctor.OnCall;
+            PatientReview = doctor.PatientReview;
+            DepartmentId = doctor.DepartmentId;         
+            ExaminationRoomId = doctor.ExaminationRoomId;
+            OperationRoomId = doctor.OperationRoomId;           
+            Specialization = null;
+        }
+
+
+    }
 }
