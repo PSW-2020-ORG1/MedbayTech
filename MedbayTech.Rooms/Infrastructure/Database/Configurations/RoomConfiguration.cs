@@ -14,6 +14,7 @@ namespace MedbayTech.Rooms.Infrastructure.Database.Configurations
         {
             builder.ToTable("Rooms");
             builder.HasMany(h => h.HospitalEquipment);
+            builder.HasOne(d => d.Department).WithMany().HasForeignKey(d => d.DepartmentId);
         }
     }
 }

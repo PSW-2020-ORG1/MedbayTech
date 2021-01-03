@@ -6,6 +6,7 @@
 
 using MedbayTech.Common.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedbayTech.Rooms.Domain
 {
@@ -13,6 +14,7 @@ namespace MedbayTech.Rooms.Domain
     {
         public string Name { get; set; }
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public EquipmentType(string name)

@@ -19,6 +19,7 @@ namespace MedbayTech.Rooms.Domain
         public int Floor { get; set; }
         [ForeignKey("Hospital")]
         public int HospitalId { get; set; }
+        [NotMapped]
         public virtual Hospital Hospital { get; set; }
 
         public Department(int id, string name, int floor, Hospital hospital)
