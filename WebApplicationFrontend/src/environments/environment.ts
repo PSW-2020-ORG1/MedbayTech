@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080',
-  fedback: 'api/feedback',
+  baseUrl: 'http://localhost:53843',
+  fedback: 'approvedFeedback',
   allFeedback: 'allFeedback',
   updateFeedbackStatus: 'updateFeedbackStatus',
   createFeedback : 'createFeedback',
@@ -20,7 +20,7 @@ export const environment = {
   patientRegistration : 'patientRegistration',
   doctor : 'api/doctor',
   searchDoctor : 'searchDoctor',
-  medicalRecord : 'api/medicalRecord',
+  medicalRecord : 'medicalRecord',
   prescriptionSimpleSearch : 'api/prescription',
   reportSimpleSearch : 'api/report',
   patient: 'api/patient',
