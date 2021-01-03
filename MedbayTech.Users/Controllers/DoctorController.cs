@@ -1,5 +1,10 @@
 ﻿using MedbayTech.Users.Application.Common.Interfaces.Service;
+using MedbayTech.Users.Application.DTO;
+using MedbayTech.Users.Application.Mapper;
 using Microsoft.AspNetCore.Mvc;
+using Model.Users;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MedbayTech.Users.Controllers
 {
@@ -29,7 +34,9 @@ namespace MedbayTech.Users.Controllers
         [HttpGet("specialization/{name}")]
         public IActionResult GetBySpecialization(string name)
         {
-            return Ok(_doctorService.GetDoctorsBy(name));
+            List<Doctor> doctors = _doctorService.GetDoctorsBy(name).ToList();
+            List<DoctorSearchDTO> doctorSearchList = DoctorMapper.ListDoctorToListDoctorSearchDTO(doctors);
+            return Ok(doctorSearchList);
         }
 
 
