@@ -15,12 +15,8 @@ namespace MedbayTech.Users.Infrastructure.Persistance
 
         public List<Doctor> GetAllDoctorsBySpecialization(Specialization specialization)
         {
-            return GetAll().ToList().Where(d => d.Specialization.SpecializationName == specialization.SpecializationName).ToList();
+            return GetAll().ToList().Where(d => d.Specialization.SpecializationName.ToLower().Equals(specialization.SpecializationName.ToLower())).ToList();
         }
 
-        public Doctor GetByUsername(string username)
-        {
-            return GetAll().ToList().FirstOrDefault(d => d.Username.Equals(username));
-        }
     }
 }

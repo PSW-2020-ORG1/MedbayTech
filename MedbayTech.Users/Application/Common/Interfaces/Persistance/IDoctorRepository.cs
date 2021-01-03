@@ -8,6 +8,6 @@ namespace MedbayTech.Users.Application.Common.Interfaces.Persistance
     {
         //public List<Doctor> GetDoctorsFromDepartment(Department department);
         public List<Doctor> GetAllDoctorsBySpecialization(Specialization specialization);
-        public Doctor GetByUsername(string username);
+       
     }
 }

@@ -8,10 +8,12 @@ namespace MedbayTech.Rooms.Application.Common.Interfaces.Gateways
 {
     public interface IUserGateway
     {
-        Patient GetPatients();
-        Doctor GetDoctors();
+        List<Patient> GetPatients();
+        List<Doctor> GetDoctors();
+        Doctor GetDoctorByRoomExaminationRoom(int roomId);
 
-        
+
+
 
 
     }
