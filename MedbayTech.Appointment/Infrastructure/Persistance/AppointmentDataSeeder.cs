@@ -1,6 +1,6 @@
 ﻿using Domain.Enums;
-using Domain.ValueObject;
 using Infrastructure.Database;
+using MedbayTech.Common.Domain.ValueObjects;
 using System;
 using System.Linq;
 

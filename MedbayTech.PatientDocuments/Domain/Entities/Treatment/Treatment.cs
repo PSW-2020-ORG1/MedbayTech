@@ -22,6 +22,7 @@ namespace MedbayTech.PatientDocuments.Domain.Entities.Treatment
         public TreatmentType Type { get; set; }
         public int ReportId { get; set; }
         public virtual Report Report { get; set; }
+
         public Treatment() { }
 
         public Treatment(int id)
@@ -60,5 +61,9 @@ namespace MedbayTech.PatientDocuments.Domain.Entities.Treatment
             return Type == TreatmentType.LabTest;
         }
 
+        public bool IsPatient(string id)
+        {
+            return Report.MedicalRecord.PatientId.Equals(id);
+        }
     }
 }

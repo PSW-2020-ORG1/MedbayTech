@@ -160,7 +160,10 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
         {
             var reports = _repository.GetReportFor(id);
             foreach (Report report in reports)
+            {
+                report.MedicalRecord.Patient = _userGateway.GetPatientBy(report.MedicalRecord.PatientId);
                 report.Doctor = _userGateway.GetDoctorBy(report.DoctorId);
+            }
             return reports;
         } 
 
@@ -168,7 +171,10 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
         {
             var reports = _repository.GetAll().ToList();
             foreach (Report report in reports)
+            {
+                report.MedicalRecord.Patient = _userGateway.GetPatientBy(report.MedicalRecord.PatientId);
                 report.Doctor = _userGateway.GetDoctorBy(report.DoctorId);
+            }
             return reports;
         }
     }

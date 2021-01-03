@@ -1,7 +1,7 @@
 ﻿using Application.DTO;
 using Domain.Enums;
-using Domain.ValueObject;
 using MedbayTech.Appointment.Domain.Entities;
+using MedbayTech.Common.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 
@@ -81,7 +81,7 @@ namespace Application.Mappers
                 ChosenStartDate = dto.StartInterval,
                 ChosenEndDate = dto.EndInterval,
                 Priority = IntToPriorityType(dto.Priority),
-                SpecializationId = dto.SpecializationId
+                SpecializationName = dto.SpecializationId
             };
         }
 

@@ -7,7 +7,7 @@ using MedbayTech.PatientDocuments.Application.Validators.Report;
 using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplication.Controller
+namespace MedbayTech.PatientDocuments.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,11 +19,11 @@ namespace WebApplication.Controller
         {
             _reportSearchService = reportSearchService;
         }
-        
+
         [HttpPost("advancedSearch")]
         public IActionResult AdvancedSearchPrescriptions(ReportAdvancedDTO dto)
         {
-            
+
             try
             {
                 ReportSearchValidator.Validate(dto);
@@ -37,20 +37,20 @@ namespace WebApplication.Controller
 
             return Ok(reports);
         }
-        
+
 
         [HttpPost]
         public IActionResult GetSearchedReports(ReportSearchDTO dto)
         {
-            try 
+            try
             {
                 ReportValidator.Validate(dto);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
-            
+
 
             List<Report> reports = _reportSearchService.GetSearchedReports(dto.Doctor, dto.startDate, dto.endDate, dto.type);
             List<ReportDTO> reportDTOs = ReportMapper.ListExaminationSurgeryToReport(reports);

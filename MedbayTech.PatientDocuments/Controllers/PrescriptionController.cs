@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Backend.Examinations.Service.Interfaces;
+using MedbayTech.PatientDocuments.Application.Common.Interfaces.Service.Treatments;
 using MedbayTech.PatientDocuments.Domain.Entities.Treatment;
 using Microsoft.AspNetCore.Mvc;
+using MedbayTech.PatientDocuments.Application.DTO.Prescription;
+using MedbayTech.PatientDocuments.Application.Mapper;
+using MedbayTech.PatientDocuments.Application.Validators.Prescription;
 
 namespace WebApplication.Controller
 {
@@ -16,13 +19,13 @@ namespace WebApplication.Controller
         {
             _prescriptionSearchService = prescriptionSearchService;
         }
-        /*
+
         [HttpPost]
         public IActionResult GetSearchedPrescription(PrescriptionSearchDTO dto)
         {
             try
             {
-                ValidatePrescriptionsSearch.Validate(dto);
+                PrescriptionSearchValidator.Validate(dto);
             }
             catch (Exception e)
             {
@@ -30,7 +33,7 @@ namespace WebApplication.Controller
             }
 
             List<Prescription> prescriptions = _prescriptionSearchService.GetSearchedPrescription(dto.Medicine, dto.HourlyIntake, dto.StartDate, dto.EndDate);
-            List<PrescriptionDTO> prescriptionDTOs = PrescriptionsAdapter.ListPrescriptionToPrescriptionDTO(prescriptions);
+            List<PrescriptionDTO> prescriptionDTOs = PrescriptionMapper.ListPrescriptionToPrescriptionDTO(prescriptions);
 
             return Ok(prescriptionDTOs);
         }
@@ -40,7 +43,7 @@ namespace WebApplication.Controller
         {
             try
             {
-                ValidatePrescriptionSearchInput.Validate(dto);
+                PrescriptionSearchInputValidator.Validate(dto);
             }
             catch (Exception e){
                 return BadRequest(e.Message);
@@ -49,6 +52,6 @@ namespace WebApplication.Controller
             List<Prescription> prescriptions = _prescriptionSearchService.AdvancedSearchPrescriptions(dto);
 
             return Ok(prescriptions);
-        }*/
+        }
     }
 }

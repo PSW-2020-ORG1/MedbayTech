@@ -29,28 +29,28 @@ namespace MedbayTech.PatientDocuments.Application.Mapper
             string patientCondition = medicalRecord.CurrHealthState.ToString();
             string image = medicalRecord.Patient.ProfileImage;
 
-            List<String> allergies = new List<String>();
+            List<string> allergies = new List<string>();
             foreach (Allergens allergen in medicalRecord.Allergens)
             {
                 string allergenName = allergen.Allergen;
                 allergies.Add(allergenName);
             }
 
-            List<String> vaccines = new List<string>();
+            List<string> vaccines = new List<string>();
             foreach (Vaccines vaccine in medicalRecord.Vaccines)
             {
                 string vaccineName = vaccine.Name;
                 vaccines.Add(vaccineName);
             }
 
-            List<String> illnessHistoryNames = new List<String>();
+            List<string> illnessHistoryNames = new List<string>();
             foreach (Diagnosis illnessHistory in medicalRecord.IllnessHistory)
             {
                 string illnessHistoryName = illnessHistory.Name;
                 illnessHistoryNames.Add(illnessHistoryName);
             }
 
-            List<String> illnessHistorySymptoms = new List<String>();
+            List<string> illnessHistorySymptoms = new List<string>();
             foreach (Diagnosis illnessHistory in medicalRecord.IllnessHistory)
             {
                 foreach (Symptoms symptom in illnessHistory.Symptoms)
@@ -60,14 +60,14 @@ namespace MedbayTech.PatientDocuments.Application.Mapper
                 }
             }
 
-            List<String> familyIllnessHistoriesRelatives = new List<String>();
+            List<string> familyIllnessHistoriesRelatives = new List<string>();
             foreach (FamilyIllnessHistory familyIllnessHistory in medicalRecord.FamilyIllnessHistory)
             {
                 string relative = familyIllnessHistory.RelativeMember.ToString();
                 familyIllnessHistoriesRelatives.Add(relative);
             }
 
-            List<String> familyIllnessHistoriesDiagnoses = new List<String>();
+            List<string> familyIllnessHistoriesDiagnoses = new List<string>();
             foreach (FamilyIllnessHistory familyIllnessHistory1 in medicalRecord.FamilyIllnessHistory)
             {
                 foreach (Diagnosis diagnosis in familyIllnessHistory1.Diagnosis)
@@ -84,7 +84,7 @@ namespace MedbayTech.PatientDocuments.Application.Mapper
                 therapiesHourConsumption.Add(hourConsumption);
             }
 
-            List<String> therapiesMedication = new List<String>();
+            List<string> therapiesMedication = new List<string>();
             foreach (Therapy therapy1 in medicalRecord.Therapies)
             {
                 string medication = therapy1.MedicationName;

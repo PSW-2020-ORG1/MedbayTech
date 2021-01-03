@@ -1,4 +1,4 @@
-﻿using Backend.Records.Service.Interfaces;
+﻿using MedbayTech.PatientDocuments.Application.Common.Interfaces.Service;
 using MedbayTech.PatientDocuments.Application.DTO;
 using MedbayTech.PatientDocuments.Application.Exception;
 using MedbayTech.PatientDocuments.Application.Mapper;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 
 
-namespace WebApplication.Controller
+namespace MedbayTech.PatientDocuments.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -20,7 +20,7 @@ namespace WebApplication.Controller
             _medicalRecordService = medicalRecordService;
         }
 
-        [HttpGet] 
+        [HttpGet]
         public IActionResult GetMedicalRecordByPatient()
         {
             try
@@ -28,14 +28,16 @@ namespace WebApplication.Controller
                 MedicalRecord medicalRecord = _medicalRecordService.GetMedicalRecordByPatient("2406978890046");
                 MedicalRecordDTO medicalRecordDTO = MedicalRecordMapper.MedicalRecordToMedicalRecordDTO(medicalRecord);
                 return Ok(medicalRecordDTO);
-            } catch (EntityNotFound)
+            }
+            catch (EntityNotFound)
             {
                 return BadRequest("Medical record not found.");
-            } catch(Exception)
+            }
+            catch (Exception)
             {
                 return BadRequest("Inner system error.");
             }
-        
+
         }
     }
 }

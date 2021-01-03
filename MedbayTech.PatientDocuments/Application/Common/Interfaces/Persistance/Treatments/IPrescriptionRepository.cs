@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MedbayTech.Common.Repository;
 using MedbayTech.PatientDocuments.Domain.Entities.Treatment;
 
-namespace Backend.Examinations.Repository
+namespace MedbayTech.PatientDocuments.Application.Common.Interfaces.Persistance.Treatments
 {
     public interface IPrescriptionRepository : IRepository<Prescription, int>
     {

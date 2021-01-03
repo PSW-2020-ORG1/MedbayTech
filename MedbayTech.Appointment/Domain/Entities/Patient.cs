@@ -3,13 +3,9 @@
 // Created: Thursday, April 16, 2020 8:25:23 PM
 // Purpose: Definition of Class Patient
 
-using Domain.Enums;
-using Domain.ValueObject;
-using System;
-
 using MedbayTech.Common.Domain.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
-using MedbayTech.Common.Domain.Entities;
+
 
 namespace MedbayTech.Appointment.Domain.Entities
 {
