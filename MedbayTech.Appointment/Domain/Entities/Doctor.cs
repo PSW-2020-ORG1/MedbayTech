@@ -4,10 +4,6 @@
  * Purpose: Definition of the Class HealthCorporation.Doctor.Doctor
  ***********************************************************************/
 
-using Domain.Enums;
-using Domain.ValueObject;
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using MedbayTech.Common.Domain.Entities;
 
 namespace MedbayTech.Appointment.Domain.Entities
@@ -18,7 +14,6 @@ namespace MedbayTech.Appointment.Domain.Entities
         public string Name { get; set; }
         public string Surname { get; set; }
         public string LicenseNumber { get;  set; }
-        public bool OnCall { get;  set; }
         public Doctor() {}
 
         public Doctor(string id, string name, string surname)
@@ -26,7 +21,6 @@ namespace MedbayTech.Appointment.Domain.Entities
             Id = id;
             Name = name;
             Surname = surname;
-            OnCall = false;
         }
 
         public string GetId()

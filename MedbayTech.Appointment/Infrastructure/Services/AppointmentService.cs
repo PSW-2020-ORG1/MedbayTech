@@ -7,7 +7,9 @@ using Application.Common.Interfaces.Service;
 using Application.DTO;
 using Castle.Core.Internal;
 using Domain.Enums;
+using MedbayTech.Appointment.Application.Gateways;
 using MedbayTech.Appointment.Domain.Entities;
+using MedbayTech.Common.Domain.ValueObjects;
 
 namespace Infrastructure.Services
 {
@@ -17,18 +19,20 @@ namespace Infrastructure.Services
         private const int datePriorityRange = 2;
         private const int daysBeforeCantBeCanceled = 2;
 
-        IAppointmentRepository _appointmentRepository;
+        private readonly IAppointmentRepository _appointmentRepository;
+        private readonly IUserGateway _userGateway;
 
         private IPriorityStrategy _priorityStrategy;
 
-        public AppointmentService(IAppointmentRepository appointmentRepository)
+        public AppointmentService(IAppointmentRepository appointmentRepository, IUserGateway userGateway)
         {
             _appointmentRepository = appointmentRepository;
+            _userGateway = userGateway;
         }
 
         public List<Appointment> GetAllOtherAppointments(string id)
         {
-            List<Appointment> allAppointments = _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
+            List<Appointment> allAppointments = GetAllForPatient(id).ToList();
             List<Appointment> surveyableAppointments = GetSurveyableAppointments(id);
             List<Appointment> cancelableAppointments = GetCancelableAppointments(id);
             List<Appointment> allOtherAppointments = new List<Appointment>();
@@ -41,12 +45,12 @@ namespace Infrastructure.Services
 
         public List<Appointment> GetAppointmentsByPatientId(string id)
         {
-            return _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
+            return GetAllForPatient(id).ToList();
         }
 
         public List<Appointment> GetCancelableAppointments(string id)
         {
-            List<Appointment> appointments = _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
+            List<Appointment> appointments = GetAllForPatient(id).ToList();
             List<Appointment> cancelableAppointments = new List<Appointment>();
             cancelableAppointments = appointments.Where(p => !(p.CanceledByPatient) && !(p.Finished) && ((p.Period.StartTime - DateTime.Now).TotalDays > daysBeforeCantBeCanceled)).ToList();
 
@@ -55,7 +59,7 @@ namespace Infrastructure.Services
 
         public List<Appointment> GetSurveyableAppointments(string id)
         {
-            /* List<Survey> surveys = _surveyRepository.GetAll().ToList();
+             /*List<Survey> surveys = _surveyRepository.GetAll().ToList();
              List<Appointment> appointments = _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
              List<Appointment> surveyableAppointments = new List<Appointment>();
              surveyableAppointments = appointments.Where(p => !surveys.Any(l => p.Id == l.AppointmentId) && p.Finished == true).ToList();
@@ -87,7 +91,6 @@ namespace Infrastructure.Services
             bool isAvailable = available.Any(a => a.IsOccupied(appointment.Period.StartTime, appointment.Period.EndTime));
             if (isAvailable)
                 return _appointmentRepository.Create(appointment);
-
             return null;
         }
 
@@ -140,10 +143,10 @@ namespace Infrastructure.Services
         }
         private void SwitchStrategy(PriorityType priorityType)
         {
-            /* if(priorityType == PriorityType.doctor)
+             if(priorityType == PriorityType.doctor)
                  _priorityStrategy = new DoctorPriorityStrategy(this);
              else 
-                 _priorityStrategy = new DatePriorityStrategy(this, _doctorService); */
+                 _priorityStrategy = new DatePriorityStrategy(this, _userGateway); 
 
             throw new NotImplementedException();
         }
@@ -164,24 +167,28 @@ namespace Infrastructure.Services
         }
         public List<Appointment> GetByDoctorAndDate(string doctorId, DateTime date)
         {
-            return _appointmentRepository.GetBy(doctorId, date).ToList();
+            var appointments = _appointmentRepository.GetBy(doctorId, date).ToList();
+            foreach (Appointment appointment in appointments)
+            {
+                appointment.Doctor = _userGateway.GetDoctorBy(appointment.DoctorId);
+                appointment.Patient = _userGateway.GetPatientBy(appointment.PatientId);
+            }
+            return appointments;
         }
 
         public List<Appointment> AddDoctors(List<Appointment> appointments)
         {
-            /* foreach (Appointment appointmentIt in appointments)
+             foreach (Appointment appointmentIt in appointments)
              {
-                 appointmentIt.Doctor = _doctorService.GetDoctorBy(appointmentIt.DoctorId);
+                 appointmentIt.Doctor = _userGateway.GetDoctorBy(appointmentIt.DoctorId);
              }
 
-             return appointments; */
-
-            throw new NotImplementedException();
+             return appointments; 
         }
         public List<Appointment> InitializeAppointments(string doctorId, DateTime date)
         {
-            /*  List<Appointment> appointments = new List<Appointment>();
-              DoctorWorkDay doctorWorkDays = _doctorWorkDayRepository.GetByDoctorIdAndDate(doctorId, date.Date);
+              List<Appointment> appointments = new List<Appointment>();
+              WorkDay doctorWorkDays = _userGateway.GetWorkDayBy(doctorId, date.Date);
 
               if (doctorWorkDays == null)
                   return appointments;
@@ -200,19 +207,35 @@ namespace Infrastructure.Services
                   };
                   appointments.Add(appointment);
               }
-              return appointments; */
-
-            throw new NotImplementedException();
+              return appointments; 
         }
 
         public List<Appointment> GetAll()
         {
-            return _appointmentRepository.GetAll();
+            var appointments = _appointmentRepository.GetAll();
+            foreach (Appointment appointment in appointments)
+            {
+                appointment.Doctor = _userGateway.GetDoctorBy(appointment.DoctorId);
+                appointment.Patient = _userGateway.GetPatientBy(appointment.PatientId);
+            }
+            return appointments;
         }
 
         public List<Appointment> GetAppointmentsBy(string userId)
         {
             return GetAll().Where(a => a.PatientId != null && a.Patient.Equals(userId)).ToList();
         }
+
+        public List<Appointment> GetAllForPatient(string id)
+        {
+            var appointments = _appointmentRepository.GetAppointmentsByPatientId(id);
+            foreach (Appointment appointment in appointments)
+            {
+                appointment.Doctor = _userGateway.GetDoctorBy(appointment.DoctorId);
+                appointment.Patient = _userGateway.GetPatientBy(appointment.PatientId);
+            }
+            return appointments;
+        }
+
     }
 }

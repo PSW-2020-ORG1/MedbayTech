@@ -27,6 +27,7 @@ namespace MedbayTech.Users.Controllers
         {
             return Ok(_patientService.GetAll());
         }
+
         [HttpGet]
         public IActionResult GetAll()
         {

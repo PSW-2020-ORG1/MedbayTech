@@ -14,7 +14,7 @@ namespace Application.DTO
         public DateTime ChosenStartDate { get; set; }
         public DateTime ChosenEndDate { get; set; }
         public PriorityType Priority { get; set; }
-        public int SpecializationId { get; set; }
+        public string SpecializationName { get; set; }
 
         public PriorityParameters() { }
         public PriorityParameters(string doctorId, DateTime chosenStartDate, DateTime chosenEndDate, PriorityType type)

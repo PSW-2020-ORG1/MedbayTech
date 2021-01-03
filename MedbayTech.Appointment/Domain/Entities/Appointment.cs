@@ -5,8 +5,8 @@
 
 
 using Domain.Enums;
-using Domain.ValueObject;
 using MedbayTech.Common.Domain.Entities;
+using MedbayTech.Common.Domain.ValueObjects;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -29,14 +29,10 @@ namespace MedbayTech.Appointment.Domain.Entities
         public bool CanceledByPatient { get; set; }
         public int RoomId { get;  set; } 
         public string DoctorId { get; set; }
-
         [NotMapped]
         public virtual Doctor Doctor { get; set; }
-
         public string PatientId { get; set; }
-
         [NotMapped]
-        
         public virtual Patient Patient { get; set; }
 
         public Appointment() { }

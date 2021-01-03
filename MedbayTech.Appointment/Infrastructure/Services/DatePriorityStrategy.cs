@@ -6,7 +6,7 @@
 using Application.Common.Interfaces;
 using Application.Common.Interfaces.Service;
 using Application.DTO;
-using Domain.Enums;
+using MedbayTech.Appointment.Application.Gateways;
 using MedbayTech.Appointment.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,18 +16,20 @@ namespace Infrastructure.Services
 {
     public class DatePriorityStrategy : IPriorityStrategy
     {
-        private IAppointmentService _appointmentService;
+        private readonly IAppointmentService _appointmentService;
+        private readonly IUserGateway _userGateway;
 
         private const int NUMBER_OF_RECOMMENDED_APPOINTMENTS = 5;
-        public DatePriorityStrategy(IAppointmentService appointmentService)
+        public DatePriorityStrategy(IAppointmentService appointmentService, IUserGateway userGateway)
         {
             _appointmentService = appointmentService;
+            _userGateway = userGateway;
         }
 
         public List<Appointment> Recommend(PriorityParameters parameters)
         {
             List<Appointment> recommendedAppointments = new List<Appointment>();
-            List<Doctor> doctors = GetDoctorsBy(parameters.SpecializationId);
+            List<Doctor> doctors = GetDoctorsBy(parameters.SpecializationName);
 
             recommendedAppointments = RecommendationResult(doctors, parameters);
 
@@ -59,10 +61,9 @@ namespace Infrastructure.Services
 
             return availableAppointments;
         }
-        public List<Doctor> GetDoctorsBy(int specializationId)
+        public List<Doctor> GetDoctorsBy(string specializationName)
         {
-            //  return _doctorService.GetDoctorsBy(specializationId).ToList();
-            throw new NotImplementedException();
+            return _userGateway.GetDoctorsBy(specializationName).ToList();
         }
     }
 }
