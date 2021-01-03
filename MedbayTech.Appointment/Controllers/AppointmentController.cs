@@ -91,25 +91,27 @@ namespace Controllers
         [HttpPost("schedule")]
         public IActionResult Schedule(ScheduleAppointmentDTO dto)
         {
-            /*
-            dto.PatientId =  "2406978890046";
-
-            MedicalRecord medicalRecord = _mediaRecordService.GetMedicalRecordByPatientId(dto.PatientId);
             
-            if (medicalRecord == null)
-                return BadRequest("Can not schedule appointment");
+            dto.PatientId =  "2406978890046";
+            /*
+            try
+            {
+                _appointmentService.CanPatientSchedule(dto.PatientId);
+            } catch(Exception)
+            {
+                return BadRequest("Can not schedule appointmnet");
+            }
+            */
 
             Appointment appointment = AppointmentMapper.ScheduleAppointmentDTOToAppointment(dto);
-            appointment.MedicalRecordId = medicalRecord.Id;
+            appointment.PatientId = dto.PatientId;
             Appointment scheduledAppointment = _appointmentService.ScheduleAppointment(appointment);
             
             if (scheduledAppointment == null)
                 return BadRequest("Can not schedule appointment");
             
             return Ok("Scheduled!");
-            */
-
-            throw new NotImplementedException();
+            
         }
     }
 }

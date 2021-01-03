@@ -8,7 +8,7 @@ namespace Application.DTO
         public DateTime EndInterval { get; set; }
         public string DoctorId { get; set; }
         public int Priority { get; set; }
-        public int SpecializationId { get; set; }
+        public string SpecializationName { get; set; }
 
         public SearchAppointmentsDTO() { }
 

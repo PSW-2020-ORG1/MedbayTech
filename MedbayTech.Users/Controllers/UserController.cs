@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MedbayTech.Users.Application.Common.Interfaces.Service;
+﻿
 using MedbayTech.Users.Infrastructure.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MedbayTech.Users.Controllers

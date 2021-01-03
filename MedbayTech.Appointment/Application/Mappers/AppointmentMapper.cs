@@ -81,7 +81,7 @@ namespace Application.Mappers
                 ChosenStartDate = dto.StartInterval,
                 ChosenEndDate = dto.EndInterval,
                 Priority = IntToPriorityType(dto.Priority),
-                SpecializationName = dto.SpecializationId
+                SpecializationName = dto.SpecializationName
             };
         }
 
