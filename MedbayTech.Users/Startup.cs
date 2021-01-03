@@ -39,10 +39,16 @@ namespace MedbayTech.Users
             services.AddDbContext<UserDbContext>();
 
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddScoped<IUserService, UserService>();
-
+            services.AddTransient<IDoctorRepository, DoctorRepository>();
             services.AddTransient<IPatientRepository, PatientRepository>();
+            services.AddTransient<IWorkDayRepository, WorkDayRepository>();
+
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IDoctorService, DoctorService>();
             services.AddScoped<IPatientService, PatientService>();
+            services.AddScoped<IWorkDayService, WorkDayService>();
+
 
             services.AddScoped<IAppointmentGateway, AppointmentGateway>();
         }

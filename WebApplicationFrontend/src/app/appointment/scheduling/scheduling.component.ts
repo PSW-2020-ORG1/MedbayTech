@@ -31,7 +31,7 @@ export class SchedulingComponent implements OnInit {
   appointmentScheduling : AppointmentScheduling;
 
   searchDoctors : SearchDoctor[] = new Array();
-  specializations : Specialization[] = new Array();
+  specializations : string[] = ['Interna medicina', 'Hirurgija']
 
   displayedColumns : string[] = ['position', 'Date', 'Time', '#'];
 
@@ -49,7 +49,7 @@ export class SchedulingComponent implements OnInit {
     this.doctorFormGroup = new FormGroup({
       'chosenDoctor': new FormControl(null, Validators.required)
     })
-    this.getSpecializations();
+    // this.getSpecializations();
   }
 
   getSearchDoctors() {
@@ -57,7 +57,7 @@ export class SchedulingComponent implements OnInit {
       this.searchDoctors = data});
   }
 
-  getDoctorsBySpecialization(specializationId : number) {
+  getDoctorsBySpecialization(specializationId : string) {
     this.doctorService.getDoctorsBySpecialization(specializationId).subscribe(data => {
       this.searchDoctors = data;
     });
@@ -67,13 +67,13 @@ export class SchedulingComponent implements OnInit {
     this.doctor = event.value;
     console.log(this.doctor);
   }
-
+/*
   getSpecializations() {
     this.specializationService.getAll().subscribe(data => {
       this.specializations = data;
     });
   }
-
+*/
   selectSpecialization(event) {
     this.specializationId = new SpecializationId(event.value);
     console.log(this.specializationId.specializationId);

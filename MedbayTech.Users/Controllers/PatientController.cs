@@ -17,6 +17,7 @@ namespace MedbayTech.Users.Controllers
     {
 
         private readonly IPatientService _patientService;
+
         public PatientController(IPatientService patientService)
         {
             _patientService = patientService;
@@ -28,6 +29,7 @@ namespace MedbayTech.Users.Controllers
         {
             return Ok(_patientService.GetAll());
         }
+
 
         [HttpGet("maliciousPatients")]
         public IActionResult GetMaliciousPatients()

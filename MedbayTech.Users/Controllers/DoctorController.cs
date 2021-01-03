@@ -1,11 +1,5 @@
 ﻿using MedbayTech.Users.Application.Common.Interfaces.Service;
-using MedbayTech.Users.Infrastructure.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MedbayTech.Users.Controllers
 {
@@ -20,23 +14,22 @@ namespace MedbayTech.Users.Controllers
             _doctorService = doctorService;
         }
 
-
         [HttpGet]
         public IActionResult GetDoctors()
         {
             return Ok(_doctorService.GetAll());
         }
 
-        [HttpGet("getById/{id}")]
-        public IActionResult GetBy(string id)
+        [HttpGet("getByRoom/{id}")]
+        public IActionResult GetBy(int id)
         {
-            return Ok(_doctorService.GetDoctorBy(id));
+            return Ok(_doctorService.GetDoctorByExaminationRoom(id));
         }
 
-        [HttpGet("getByRoom/{id}")]
-        public IActionResult GetBy(int roomId)
+        [HttpGet("specialization/{name}")]
+        public IActionResult GetBySpecialization(string name)
         {
-            return Ok(_doctorService.GetDoctorByExaminationRoom(roomId));
+            return Ok(_doctorService.GetDoctorsBy(name));
         }
 
 

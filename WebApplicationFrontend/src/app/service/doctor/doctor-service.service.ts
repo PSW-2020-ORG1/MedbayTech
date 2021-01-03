@@ -18,7 +18,7 @@ export class DoctorServiceService {
     return this.http.get<SearchDoctor[]>(`${environment.baseUrl}/${environment.doctor}/${environment.searchDoctor}`);
   }
 
-  getDoctorsBySpecialization(specializationId : number) : Observable<SearchDoctor[]> {
+  getDoctorsBySpecialization(specializationId : string) : Observable<SearchDoctor[]> {
     return this.http.get<SearchDoctor[]>(`${environment.baseUrl}/${environment.doctor}/${environment.doctorsBySpecialization}/${specializationId}`);
   }
 }

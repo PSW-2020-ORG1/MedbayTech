@@ -1,10 +1,12 @@
 ﻿
 using MedbayTech.Appointment.Application.Gateways;
 using MedbayTech.Appointment.Domain.Entities;
+using MedbayTech.Common.Application.DTO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 
 namespace MedbayTech.Appointment.Infrastructure.Gateway
 {
@@ -14,7 +16,7 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
         {
             Doctor doctor = null;
             using HttpClient client = new HttpClient();
-            var task = client.GetAsync(GetUsersDomain() + "/api/user")
+            var task = client.GetAsync(GetUsersDomain() + "/api/user/" + id)
                 .ContinueWith((taskWithResponse) =>
                 {
                     var message = taskWithResponse.Result;
@@ -31,7 +33,7 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
         {
             List<Doctor> doctors = null;
             using HttpClient client = new HttpClient();
-            var task = client.GetAsync(GetUsersDomain() + "/api/user")
+            var task = client.GetAsync(GetUsersDomain() + "/api/doctor/getBySpecialization/" + specializationName)
                 .ContinueWith((taskWithResponse) =>
                 {
                     var message = taskWithResponse.Result;
@@ -48,7 +50,7 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
         {
             Patient patient = null;
             using HttpClient client = new HttpClient();
-            var task = client.GetAsync(GetUsersDomain() + "/api/user")
+            var task = client.GetAsync(GetUsersDomain() + "/api/user/" + id)
                 .ContinueWith((taskWithResponse) =>
                 {
                     var message = taskWithResponse.Result;
@@ -64,8 +66,13 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
         public WorkDay GetWorkDayBy(string id, DateTime date)
         {
             WorkDay workDay = null;
+            WorkDayDTO dto = new WorkDayDTO(id, date);
             using HttpClient client = new HttpClient();
-            var task = client.GetAsync(GetUsersDomain() + "/api/user")
+            string serializedDto = JsonConvert.SerializeObject(dto);
+
+            var content = new StringContent(serializedDto, Encoding.UTF8, "application/json");
+           
+            var task = client.PostAsync(GetUsersDomain() + "/api/workDay/", content)
                 .ContinueWith((taskWithResponse) =>
                 {
                     var message = taskWithResponse.Result;

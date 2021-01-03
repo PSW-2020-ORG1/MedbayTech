@@ -1,4 +1,5 @@
 ﻿
+using MedbayTech.Common.Domain.Entities;
 using Model.Users;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace Backend.Users.Model
 {
-    public class WorkDay
+    public class WorkDay : IIdentifiable<int>
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -19,5 +20,10 @@ namespace Backend.Users.Model
         [ForeignKey("Employee")]
         public string EmployeeId { get; set; }
         public virtual Employee Employee { get; set; }
+
+        public int GetId()
+        {
+            return Id;
+        }
     }
 }

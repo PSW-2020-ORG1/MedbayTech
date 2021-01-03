@@ -28,7 +28,7 @@ export class RecommendationComponent implements OnInit {
   priority : number;
 
   searchDoctors : SearchDoctor[] = new Array();
-  specializations : Specialization[] = new Array();
+  specializations : string[] = new Array();
 
   availableAppointments : AvailableAppointments[] = new Array();
 
@@ -49,8 +49,9 @@ export class RecommendationComponent implements OnInit {
       'choosenDoctor' : new FormControl(null, [Validators.required]),
       'specialization' : new FormControl(null, [Validators.required])
     });
+    this.specializations = ['Interna medicina', 'Hirurgija'];
    // this.getSearchDoctors();
-   this.getSpecializations();
+   //this.getSpecializations();
   }
 
   getSearchDoctors() {
@@ -58,8 +59,8 @@ export class RecommendationComponent implements OnInit {
       this.searchDoctors = data});
   }
 
-  getDoctorsBySpecialization(specializationId : number) {
-    this.doctorService.getDoctorsBySpecialization(specializationId).subscribe(data => {
+  getDoctorsBySpecialization(specializationId : string) {
+    this.doctorService.getDoctorsBySpecialization('hirugija').subscribe(data => {
       this.searchDoctors = data;
     });
   }
@@ -71,7 +72,7 @@ export class RecommendationComponent implements OnInit {
 
   getSpecializations() {
     this.specializationService.getAll().subscribe(data => {
-      this.specializations = data;
+      this.specializations = ['Interna medicina', 'Hirurgija'];
     });
   }
 
