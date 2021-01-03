@@ -16,10 +16,17 @@ namespace MedbayTech.Users.Controllers
     public class PatientController : ControllerBase
     {
 
-        private IPatientService _patientService;
+        private readonly IPatientService _patientService;
         public PatientController(IPatientService patientService)
         {
             _patientService = patientService;
+        }
+
+
+        [HttpGet]
+        public IActionResult GetPatiens()
+        {
+            return Ok(_patientService.GetAll());
         }
 
         [HttpGet("maliciousPatients")]

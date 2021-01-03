@@ -26,12 +26,19 @@ namespace MedbayTech.Rooms
         {
             services.AddDbContext<RoomDbContext>();
             services.AddControllers();
-            services.AddScoped<IBedService, BedService>();
+
+            //services.AddScoped<IBedService, BedService>();
+            services.AddTransient<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IDepartmentService,DepartmentService>();
+
+            services.AddTransient<IEquipmentTypeRepository, EquipmentTypeRepository>();
             services.AddScoped<IEquipmentTypeService, EquipmentTypeService>();
+
+            services.AddTransient<IHospitalEquipmentRepository, HospitalEquipmentRepository>();
             services.AddScoped<IHospitalEquipmentService, HospitalEquipmentService>();
-            services.AddScoped<INotificationService, NotificationService>();
-            services.AddScoped<IRenovationService, RenovationService>();
+
+            //services.AddScoped<INotificationService, NotificationService>();
+            //services.AddScoped<IRenovationService, RenovationService>();
 
             services.AddTransient<IRoomRepository, RoomRepository>();
             services.AddScoped<IRoomService, RoomService>();
@@ -58,8 +65,12 @@ namespace MedbayTech.Rooms
                 }
                 catch (Exception)
                 {
-
+                    Console.WriteLine("RoomDataSeeder has failed!");
                 }
+
+
+
+
 
                 app.UseRouting();
 

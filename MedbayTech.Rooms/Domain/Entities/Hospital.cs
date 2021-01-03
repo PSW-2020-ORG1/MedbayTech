@@ -19,7 +19,7 @@ namespace MedbayTech.Rooms.Domain
         public string Name { get; set; }
        // [ForeignKey("Address")]
        // public int AddressId { get; set; }
-        
+       [NotMapped]
         public virtual Address Address { get; set; }
 
         public Hospital() { }
