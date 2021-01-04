@@ -37,8 +37,9 @@ namespace GraphicEditor
         {
             room = new Room();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/ByRoomId")
-                .ContinueWith((taskWithResponse) =>
+            // var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/ByRoomId")
+            var task = httpClient.GetAsync("http://localhost:60304/api/room/" + roomId + "/ByRoomId")
+                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
                     var jsonString = response.Content.ReadAsStringAsync();
@@ -54,7 +55,8 @@ namespace GraphicEditor
             string jsonRoom = JsonConvert.SerializeObject(room);
             HttpClient httpClient = new HttpClient();
             var content = new StringContent(jsonRoom, Encoding.UTF8, "application/json");
-            var result = httpClient.PostAsync("http://localhost:53109/api/room/", content);
+            //var result = httpClient.PostAsync("http://localhost:53109/api/room/", content);
+            var result = httpClient.PostAsync("http://localhost:60304/api/room/", content);
             result.Wait();
             MessageBox.Show("Saved to database!");
         }

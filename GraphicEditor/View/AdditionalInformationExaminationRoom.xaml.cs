@@ -49,7 +49,8 @@ namespace GraphicEditor
         {
             room = new Room();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/ByRoomId")
+            //var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/ByRoomId")
+            var task = httpClient.GetAsync("http://localhost:60304/api/room/" + roomId + "/ByRoomId")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -64,7 +65,8 @@ namespace GraphicEditor
         {
             doctor = new Doctor();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/doctor/" + roomId + "/ByExaminationRoom")
+            //var task = httpClient.GetAsync("http://localhost:53109/api/doctor/" + roomId + "/ByExaminationRoom")
+            var task = httpClient.GetAsync("http://localhost:8081/api/doctor/" + roomId + "/ByExaminationRoom")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -80,7 +82,8 @@ namespace GraphicEditor
         {
             appointments = new List<Appointment>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/appointment/" + roomId + "/ByRoom")
+            //var task = httpClient.GetAsync("http://localhost:53109/api/appointment/" + roomId + "/ByRoom")
+            var task = httpClient.GetAsync("http://localhost:8082/api/appointment/" + roomId + "/ByRoom")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -96,11 +99,13 @@ namespace GraphicEditor
             string jsonRoom = JsonConvert.SerializeObject(room);
             HttpClient httpClient = new HttpClient();
             var content = new StringContent(jsonRoom, Encoding.UTF8, "application/json");
-            var result = httpClient.PostAsync("http://localhost:53109/api/room/", content);
+            // var result = httpClient.PostAsync("http://localhost:53109/api/room/", content);
+            var result = httpClient.PostAsync("http://localhost:60304/api/room/", content);
             result.Wait();
             string jsonDoctor = JsonConvert.SerializeObject(doctor);
             content = new StringContent(jsonDoctor, Encoding.UTF8, "application/json");
-            result = httpClient.PostAsync("http://localhost:53109/api/doctor/", content);
+            //result = httpClient.PostAsync("http://localhost:53109/api/doctor/", content);
+            result = httpClient.PostAsync("http://localhost:8081/api/doctor/", content);
             result.Wait();
             MessageBox.Show("Saved to database!");
         }
