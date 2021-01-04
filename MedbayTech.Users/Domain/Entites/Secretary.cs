@@ -4,9 +4,11 @@
 // Purpose: Definition of Class Secretary
 
 using System;
-using Model.Users;
+using MedbayTech.Users.Domain.Entites.Enums;
+using MedbayTech.Users.Domain.ValueObjects;
 
-namespace Model.Users
+
+namespace MedbayTech.Users.Domain.Entites
 {
    public class Secretary : Employee
    {

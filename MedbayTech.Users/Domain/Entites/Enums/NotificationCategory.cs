@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Model.Users
+namespace MedbayTech.Users.Domain.Entites.Enums
 {
    public enum NotificationCategory
    {

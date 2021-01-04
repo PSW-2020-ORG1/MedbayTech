@@ -37,8 +37,7 @@ namespace MedbayTech.Users.Application.DTO
         public string CityOfBirth { get; set; }
         public int PostalCodeBirth { get; set; }
         public string StateOfBirth { get; set; }
-        public int CurrentResidenceId { get; set; }
-        public int PlaceOfBirthId { get; set; }
+       
         public PatientRegistrationDTO() { }
 
         public PatientRegistrationDTO(string id, string name, string surname, DateTime dateOfBirth, string phone, string email, string username, string password, string confirmPassword, string educationLevel, string profession, string profileImage, string gender, int postalCode, string city, string state, string street, int number, int apartment, int floor, string policyNumber, string company, DateTime policyStart, DateTime policyEnd, string patientCondition, string bloodType, string doctor, string cityOfBirth, int postalCodeBirth, string stateOfBirth, int currentResidenceId, int placeOfBirthId)
@@ -73,8 +72,7 @@ namespace MedbayTech.Users.Application.DTO
             CityOfBirth = cityOfBirth;
             PostalCodeBirth = postalCodeBirth;
             StateOfBirth = stateOfBirth;
-            CurrentResidenceId = currentResidenceId;
-            PlaceOfBirthId = placeOfBirthId;
+            
         }
     }
 }

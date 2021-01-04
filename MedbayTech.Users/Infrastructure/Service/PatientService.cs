@@ -6,7 +6,6 @@ using MedbayTech.Users.Application.Common.Interfaces.Gateways;
 using MedbayTech.Users.Application.Common.Interfaces.Persistance;
 using MedbayTech.Users.Application.Common.Interfaces.Service;
 using MedbayTech.Users.Domain.Entites;
-using Model.Users;
 
 namespace MedbayTech.Users.Infrastructure.Service
 {

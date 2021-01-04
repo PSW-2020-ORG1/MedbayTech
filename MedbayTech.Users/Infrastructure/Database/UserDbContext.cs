@@ -4,8 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using MedbayTech.Repository.Infrastructure.Persistance;
+using MedbayTech.Users.Domain.Entites;
 using Microsoft.EntityFrameworkCore;
-using Model.Users;
 
 namespace MedbayTech.Users.Infrastructure.Database
 {

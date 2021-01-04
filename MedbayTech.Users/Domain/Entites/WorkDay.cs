@@ -1,13 +1,11 @@
-﻿
-using MedbayTech.Common.Domain.Entities;
-using Model.Users;
+﻿using MedbayTech.Common.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace Backend.Users.Model
+namespace MedbayTech.Users.Domain.Entites
 {
     public class WorkDay : IIdentifiable<int>
     {

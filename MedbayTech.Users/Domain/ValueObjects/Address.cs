@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using MedbayTech.Common.Domain.Common;
 
-namespace Model.Users
+namespace MedbayTech.Users.Domain.ValueObjects
 {
    public class Address : ValueObject
     {

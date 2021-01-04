@@ -1,8 +1,8 @@
-﻿using Model.Users;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MedbayTech.Users.Domain.Entites;
 using MedbayTech.Users.Infrastructure.Persistance;
 
 namespace MedbayTech.Users.Infrastructure.Service

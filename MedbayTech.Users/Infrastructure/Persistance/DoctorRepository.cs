@@ -1,9 +1,10 @@
 ﻿using MedbayTech.Repository;
 using MedbayTech.Users.Application.Common.Interfaces.Persistance;
 using MedbayTech.Users.Infrastructure.Database;
-using Model.Users;
 using System.Collections.Generic;
 using System.Linq;
+using MedbayTech.Users.Domain.Entites;
+using MedbayTech.Users.Domain.ValueObjects;
 
 namespace MedbayTech.Users.Infrastructure.Persistance
 {

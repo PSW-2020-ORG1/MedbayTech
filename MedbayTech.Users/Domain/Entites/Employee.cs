@@ -7,11 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Backend.Users.Model;
 using MedbayTech.Users.Domain.Entites.Enums;
-using Model.Users;
+using MedbayTech.Users.Domain.ValueObjects;
 
-namespace Model.Users
+
+namespace MedbayTech.Users.Domain.Entites
 {
    public class Employee : RegisteredUser
    {    

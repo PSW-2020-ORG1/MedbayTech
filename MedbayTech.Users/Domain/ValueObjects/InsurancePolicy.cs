@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using MedbayTech.Common.Domain.Common;
 using MedbayTech.Common.Domain.ValueObjects;
 
-namespace Model.Users
+namespace MedbayTech.Users.Domain.ValueObjects
 {
     public class InsurancePolicy : ValueObject
     {

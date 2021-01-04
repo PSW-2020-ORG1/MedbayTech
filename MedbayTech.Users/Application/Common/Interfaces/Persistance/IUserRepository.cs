@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MedbayTech.Common.Repository;
-using Model.Users;
+using MedbayTech.Users.Domain.Entites;
 
 namespace MedbayTech.Users.Infrastructure.Persistance
 {
