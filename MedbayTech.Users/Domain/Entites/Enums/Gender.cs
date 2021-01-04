@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model.Users
+namespace MedbayTech.Users.Domain.Entites.Enums
 {
     public enum Gender
     {

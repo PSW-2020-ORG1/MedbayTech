@@ -9,9 +9,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using Model.Users;
+using MedbayTech.Users.Domain.ValueObjects;
 
-namespace Model.Users
+
+namespace MedbayTech.Users.Domain.Entites
 {
    public class Doctor : Employee
    {

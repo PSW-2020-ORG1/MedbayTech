@@ -20,7 +20,7 @@ export class FeedbackService {
 
   getApprovedFeedback() : Observable<ApprovedFeedback[]> {
     
-    return this.http.get<ApprovedFeedback[]>(`${environment.baseUrl}/${environment.feedback}`)
+    return this.http.get<ApprovedFeedback[]>(`${environment.baseUrl}/${environment.fedback}`)
 
   }
 
@@ -37,4 +37,6 @@ export class FeedbackService {
     return this.http.post(`${environment.baseUrl}/${environment.createFeedback}`, feedback, {responseType:'text'})
   }
 
+ 
+  
 }

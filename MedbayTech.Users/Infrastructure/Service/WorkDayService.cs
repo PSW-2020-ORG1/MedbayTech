@@ -1,9 +1,8 @@
-﻿using Backend.Users.Model;
-using MedbayTech.Users.Application.Common.Interfaces.Persistance;
+﻿using MedbayTech.Users.Application.Common.Interfaces.Persistance;
 using MedbayTech.Users.Application.Common.Interfaces.Service;
-using Model.Users;
 using System;
 using System.Collections.Generic;
+using MedbayTech.Users.Domain.Entites;
 
 namespace MedbayTech.Users.Infrastructure.Service
 {

@@ -1,7 +1,7 @@
 export class SpecializationId {
-    public specializationId : string;
+    public specializationId : number;
 
-    constructor(specializationId : string) {
+    constructor(specializationId : number) {
         this.specializationId = specializationId;
     }
 }

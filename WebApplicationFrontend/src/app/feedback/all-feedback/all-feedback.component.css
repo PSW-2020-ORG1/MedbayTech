@@ -33,7 +33,6 @@ mat-card {
 mat-card-content {
     padding-top: 10px;
     margin-left: 5px;
-    word-wrap: break-word;
 }
 mat-card-actions{
     text-align: right;

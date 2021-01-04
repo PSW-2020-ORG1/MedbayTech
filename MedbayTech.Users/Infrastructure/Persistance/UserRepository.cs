@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using MedbayTech.Repository;
 using MedbayTech.Repository.Infrastructure.Persistance;
+using MedbayTech.Users.Domain.Entites;
 using MedbayTech.Users.Infrastructure.Database;
-using Model.Users;
+
 
 namespace MedbayTech.Users.Infrastructure.Persistance
 {

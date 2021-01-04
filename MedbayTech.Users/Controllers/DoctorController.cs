@@ -2,6 +2,12 @@
 using MedbayTech.Users.Infrastructure.Service.Enum;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using MedbayTech.Users.Application.DTO;
+using MedbayTech.Users.Application.Mapper;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+using MedbayTech.Users.Domain.Entites;
 
 namespace MedbayTech.Users.Controllers
 {
@@ -31,7 +37,9 @@ namespace MedbayTech.Users.Controllers
         [HttpGet("specialization/{name}")]
         public IActionResult GetBySpecialization(string name)
         {
-            return Ok(_doctorService.GetDoctorsBy(name));
+            List<Doctor> doctors = _doctorService.GetDoctorsBy(name).ToList();
+            List<DoctorSearchDTO> doctorSearchList = DoctorMapper.ListDoctorToListDoctorSearchDTO(doctors);
+            return Ok(doctorSearchList);
         }
 
         [HttpGet("{textBoxSearch?}/{doctorSearch?}")]

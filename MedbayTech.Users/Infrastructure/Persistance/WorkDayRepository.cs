@@ -1,10 +1,10 @@
-﻿using Backend.Users.Model;
-using MedbayTech.Repository;
+﻿using MedbayTech.Repository;
 using MedbayTech.Users.Application.Common.Interfaces.Persistance;
 using MedbayTech.Users.Infrastructure.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MedbayTech.Users.Domain.Entites;
 
 namespace MedbayTech.Users.Infrastructure.Persistance
 {

@@ -6,7 +6,7 @@
 using MedbayTech.Common.Domain.Common;
 using System.Collections.Generic;
 
-namespace Model.Users
+namespace MedbayTech.Users.Domain.ValueObjects
 {
     public class Specialization : ValueObject
     {

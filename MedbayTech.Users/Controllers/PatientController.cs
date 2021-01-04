@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using MedbayTech.Users.Application.Common.Interfaces.Service;
 using MedbayTech.Users.Application.DTO;
-using MedbayTech.Users.Application.Mapper;
+using MedbayTech.Users.Application.Mappers;
+using MedbayTech.Users.Domain.Entites;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Model.Users;
+
 
 namespace MedbayTech.Users.Controllers
 {

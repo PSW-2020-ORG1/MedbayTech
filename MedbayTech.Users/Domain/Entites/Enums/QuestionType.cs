@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Backend.Users.Model.Enums
+namespace MedbayTech.Users.Domain.Entites.Enums
 {
     public enum QuestionType
     {

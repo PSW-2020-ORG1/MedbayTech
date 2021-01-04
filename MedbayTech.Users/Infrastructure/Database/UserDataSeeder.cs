@@ -1,11 +1,11 @@
-﻿using Backend.Users.Model;
-using MedbayTech.Common.Domain.ValueObjects;
-using Model.Users;
+﻿using MedbayTech.Common.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MedbayTech.Users.Domain.Entites;
 using MedbayTech.Users.Domain.Entites.Enums;
+using MedbayTech.Users.Domain.ValueObjects;
 
 namespace MedbayTech.Users.Infrastructure.Database
 {

@@ -9,9 +9,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MedbayTech.Common.Domain.Entities;
 using MedbayTech.Users.Domain.Entites.Enums;
-using Model.Users;
+using MedbayTech.Users.Domain.ValueObjects;
 
-namespace Model.Users
+namespace MedbayTech.Users.Domain.Entites
 {
    public class RegisteredUser : IIdentifiable<string>
     {

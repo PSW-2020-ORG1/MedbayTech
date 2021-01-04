@@ -6,8 +6,11 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using MedbayTech.Common.Domain.Entities;
+using MedbayTech.Users.Domain.Entites;
+using MedbayTech.Users.Domain.Entites.Enums;
+using MedbayTech.Users.Domain.ValueObjects;
 
-namespace Model.Users
+namespace MedbayTech.Users.Domain.Entites
 {
    public class Patient : RegisteredUser
    {
