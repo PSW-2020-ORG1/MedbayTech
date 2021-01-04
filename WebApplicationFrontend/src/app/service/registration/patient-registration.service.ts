@@ -13,7 +13,7 @@ export class PatientRegistrationService {
   constructor(private http : HttpClient) { }
 
   registerPatient(patient : PatientRegistration) {
-    return this.http.post(`${environment.baseUrl}/${environment.registration}/${environment.patientRegistration}`, patient, {responseType : 'text'})
+    return this.http.post(`${environment.baseUrl}/${environment.patientRegistration}`, patient, {responseType : 'text'})
   }
 
   uploadImage(formData : FormData) {

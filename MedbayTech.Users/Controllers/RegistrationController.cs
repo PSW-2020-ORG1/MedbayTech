@@ -54,9 +54,52 @@ namespace MedbayTech.Users.Controllers
             if (registeredPatient == null)
                 return BadRequest("Patient already exists");
 
-            //GenerateEmailInfo(patient);
+            GenerateEmailInfo(patient);
 
             return Ok("Please check your mail to confirm registration");
+        }
+
+        private void GenerateEmailInfo(Patient patient)
+        {
+            var link = GenerateUrl(patient.Id, patient.Token);
+            string email = patient.Email;
+            MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = email, Url = link };
+            SendMail(mailRequest);
+        }
+
+        private string GenerateUrl(string _userId, string _token)
+        {
+            string url = Url.Action(nameof(Activate), "Registration", new { userId = _userId, token = _token });
+            return GetDomain() + url;
+        }
+
+        [Route("activate")]
+        public IActionResult Activate(string userId, string token)
+        {
+            Patient patient = _registrationService.ActivateAccount(userId, token);
+            if (patient == null) return BadRequest();
+
+            return Ok("Login Page");
+        }
+
+        private string GetDomain()
+        {
+            string domain = Environment.GetEnvironmentVariable("DOMAIN") ?? "localhost";
+            string port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+            return $"http://{domain}:{port}";
+        }
+
+        public async void SendMail(MailRequestDTO request)
+        {
+            try
+            {
+                await _mailService.SendMailAsync(request);
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
     }

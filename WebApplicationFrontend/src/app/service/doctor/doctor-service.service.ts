@@ -15,7 +15,7 @@ export class DoctorServiceService {
   constructor(private http : HttpClient) { }
 
   getAllDoctors() : Observable<SearchDoctor[]> {
-    return this.http.get<SearchDoctor[]>(`${environment.baseUrl}/${environment.doctor}/${environment.searchDoctor}`);
+    return this.http.get<SearchDoctor[]>(`${environment.baseUrl}/${environment.searchDoctor}`);
   }
 
   getDoctorsBySpecialization(specializationId : number) : Observable<SearchDoctor[]> {

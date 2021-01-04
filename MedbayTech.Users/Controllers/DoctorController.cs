@@ -2,9 +2,9 @@
 using MedbayTech.Users.Application.DTO;
 using MedbayTech.Users.Application.Mapper;
 using Microsoft.AspNetCore.Mvc;
-using Model.Users;
 using System.Collections.Generic;
 using System.Linq;
+using MedbayTech.Users.Domain.Entites;
 
 namespace MedbayTech.Users.Controllers
 {
@@ -39,7 +39,14 @@ namespace MedbayTech.Users.Controllers
             return Ok(doctorSearchList);
         }
 
+        [HttpGet("searchDoctor")]
+        public IActionResult GetAll()
+        {
+            List<Doctor> doctors = _doctorService.GetAll().ToList();
+            List<DoctorSearchDTO> doctorSearchList = DoctorMapper.ListDoctorToListDoctorSearchDTO(doctors);
+            return Ok(doctorSearchList);
 
+        }
 
     }
 }
