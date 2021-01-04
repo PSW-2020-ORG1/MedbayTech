@@ -1,11 +1,8 @@
 ﻿using MedbayTech.Feedback.Domain.Enums;
 using MedbayTech.Common.Domain.Entities;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MedbayTech.Feedback.Domain.Entities
 {
@@ -19,7 +16,6 @@ namespace MedbayTech.Feedback.Domain.Entities
         public bool Approved { get; set; }
         public bool Anonymous { get; set; }
         public bool AllowedForPublishing { get; set; }
-
         public string UserId { get; set; }
         [NotMapped]
         public virtual User RegisteredUser { get; set; }

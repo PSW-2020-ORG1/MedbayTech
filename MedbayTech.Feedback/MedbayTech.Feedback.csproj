@@ -5,11 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\" />
-    <Folder Include="Infrastructure\Database\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MedbayTech.Common\MedbayTech.Common.csproj" />
   </ItemGroup>
 

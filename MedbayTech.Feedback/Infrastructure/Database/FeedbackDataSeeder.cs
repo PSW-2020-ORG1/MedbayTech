@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedbayTech.Feedback.Domain.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,6 +20,12 @@ namespace MedbayTech.Feedback.Infrastructure.Persistance
                 UserId = "2406978890045",
                 Anonymous = false,
                 AllowedForPublishing = true
+            });
+            context.SaveChanges();
+            context.Add(new FeedbackEvent
+            {
+                FeedbackId = 1,
+                Type = FeedbackEventType.CREATED
             });
             context.Add(new Domain.Entities.Feedback
             {
