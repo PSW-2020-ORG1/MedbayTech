@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MedbayTech.Users.Application.DTO;
 using MedbayTech.Users.Domain.Entites;
+using MedbayTech.Users.Domain.ValueObjects;
 
 namespace MedbayTech.Users.Application.Mappers
 {
@@ -25,7 +26,16 @@ namespace MedbayTech.Users.Application.Mappers
                 Profession = patientRegistrationDTO.Profession,
                 ChosenDoctorId = patientRegistrationDTO.Doctor,
                 Gender = RegisteredUserEnumMapper.StringToGender(patientRegistrationDTO.Gender),
-                EducationLevel = RegisteredUserEnumMapper.StringToEducationalLevel(patientRegistrationDTO.EducationLevel)
+                EducationLevel = RegisteredUserEnumMapper.StringToEducationalLevel(patientRegistrationDTO.EducationLevel),
+                PlaceOfBirth = new City { Name = patientRegistrationDTO.CityOfBirth, State = new State {Name = patientRegistrationDTO.StateOfBirth}},
+                CurrResidence = new Address
+                {
+                    Apartment = patientRegistrationDTO.Apartment,
+                    City = new City {Name = patientRegistrationDTO.City, State = new State {Name = patientRegistrationDTO.State}},
+                    Floor = patientRegistrationDTO.Floor,
+                    Number = patientRegistrationDTO.Number,
+                    Street = patientRegistrationDTO.Street
+                }
             };
             return patient;
         }

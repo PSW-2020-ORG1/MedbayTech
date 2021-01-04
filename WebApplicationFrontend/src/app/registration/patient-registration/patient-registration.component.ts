@@ -162,6 +162,7 @@ export class PatientRegistrationComponent implements OnInit {
     this.state = this.createForm.value.state;
     this.policyNumber = this.createForm.value.insurancePolicyNumber;
     this.company = this.createForm.value.insurancePolicyCompany;
+    this.city = this.createForm.value.city;
     
     this.policyStart = new Date(this.createForm.value.insurancePolicyStartDate.getTime() - this.createForm.value.insurancePolicyStartDate.getTimezoneOffset() * 60000);
     this.policyEnd = new Date(this.createForm.value.insurancePolicyEndDate.getTime() - this.createForm.value.insurancePolicyEndDate.getTimezoneOffset() * 60000);
@@ -172,7 +173,8 @@ export class PatientRegistrationComponent implements OnInit {
 
     this.patient = new PatientRegistration
     (
-      this.id, this.name,
+      this.id,
+      this.name,
       this.surname,
       this.dateOfBirth,
       this.phone,
@@ -200,7 +202,9 @@ export class PatientRegistrationComponent implements OnInit {
       this.cityOfBirth,
       this.postalCodeBirth,
       this.stateOfBirth
+      
     );
+    console.log(this.patient.City);
     return this.patient;
   }
 
