@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MedbayTech.Users.Application.DTO;
+using MedbayTech.Users.Domain.Entites;
 
-namespace MedbayTech.Users.Application.Mapper
+namespace MedbayTech.Users.Application.Mappers
 {
     public class PatientRegistrationMapper
     {
-        /*public static Patient PatientRegistrationDTOtoPatient(PatientRegistrationDTO patientRegistrationDTO)
+        public static Patient PatientRegistrationDTOtoPatient(PatientRegistrationDTO patientRegistrationDTO)
         {
 
             Patient patient = new Patient
@@ -23,14 +24,11 @@ namespace MedbayTech.Users.Application.Mapper
                 Password = patientRegistrationDTO.Password,
                 Profession = patientRegistrationDTO.Profession,
                 ChosenDoctorId = patientRegistrationDTO.Doctor,
-                CurrResidenceId = patientRegistrationDTO.CurrentResidenceId,
-                PlaceOfBirthId = patientRegistrationDTO.PlaceOfBirthId,
-                InsurancePolicyId = patientRegistrationDTO.PolicyNumber,
                 Gender = RegisteredUserEnumMapper.StringToGender(patientRegistrationDTO.Gender),
                 EducationLevel = RegisteredUserEnumMapper.StringToEducationalLevel(patientRegistrationDTO.EducationLevel)
             };
             return patient;
         }
-    }*/
+    }
 }
-}
+

@@ -63,7 +63,15 @@ namespace MedbayTech.Users.Controllers
             }
         }
 
+        [HttpGet("searchDoctor")]
+        public IActionResult GetAll()
+        {
+            List<Doctor> doctors = _doctorService.GetAll().ToList();
+            List<DoctorSearchDTO> doctorSearchList = DoctorMapper.ListDoctorToListDoctorSearchDTO(doctors);
+            return Ok(doctorSearchList);
 
+
+        }
 
     }
 }

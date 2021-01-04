@@ -1,9 +1,7 @@
 ﻿using MedbayTech.Users.Application.DTO;
 using MedbayTech.Users.Domain.Entites;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace MedbayTech.Users.Application.Mapper
 {

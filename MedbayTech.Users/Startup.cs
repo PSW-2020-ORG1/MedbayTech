@@ -36,6 +36,10 @@ namespace MedbayTech.Users
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+
+            
+
             services.AddDbContext<UserDbContext>();
 
             services.AddTransient<IUserRepository, UserRepository>();
@@ -48,7 +52,8 @@ namespace MedbayTech.Users
             services.AddScoped<IDoctorService, DoctorService>();
             services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<IWorkDayService, WorkDayService>();
-
+            services.AddScoped<IRegistrationService, RegistrationService>();
+            services.AddTransient<IMailService, MailService>();
 
             services.AddScoped<IAppointmentGateway, AppointmentGateway>();
         }
