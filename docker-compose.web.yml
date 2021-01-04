@@ -1,0 +1,43 @@
+version: "3.8"
+
+volumes:
+  postgres-data: {}
+
+networks:
+  demo:
+    name: demo
+    driver: bridge
+
+services: 
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    networks:
+      - demo
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: mydb1
+    volumes:
+      - postgres-data:/var/lib/postgres
+
+  WebIntegrationTests:
+      image: stefan7/test1
+      container_name: web_tests
+      restart: on-failure
+      depends_on:
+        - postgres
+      environment:
+        DATABASE_USERNAME: "root"
+        DATABASE_PASSWORD: "root"
+        DATABASE_HOST: "postgres"
+        DATABASE_TYPE: "postgres"
+        DATABASE_SCHEMA: "mydb1"
+        STAGE: "test"
+      expose: 
+        - "81"
+      networks: 
+        - demo
+      volumes:
+      - postgres-data:/var/lib/postgres:rw
