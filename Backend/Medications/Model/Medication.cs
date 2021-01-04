@@ -57,6 +57,8 @@ namespace Backend.Medications.Model
             Med = name;
             Dosage = dosage;
             Company = "Galenika";
+            RoomId = 87;
+            Quantity = 0;
             MedicationContent = new List<DosageOfIngredient>();
             MedicationCategoryId = 1;
             Allergens = new List<Allergens>();

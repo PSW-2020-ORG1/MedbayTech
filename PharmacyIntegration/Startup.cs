@@ -136,7 +136,7 @@ namespace PharmacyIntegration
             }
         }
 
-        private static void AddServices(IServiceCollection services)
+        private static void AddRepository(IServiceCollection services)
         {
             services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
             services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
@@ -152,7 +152,7 @@ namespace PharmacyIntegration
             services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
         }
 
-        private static void AddRepository(IServiceCollection services)
+        private static void AddServices(IServiceCollection services)
         {
             services.AddScoped<IPharmacyService, PharmacyService>();
             services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
