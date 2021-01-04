@@ -18,7 +18,7 @@ export const environment = {
   allReports: 'allReports',
   registration : 'api/registration',
   patientRegistration : 'patientRegistration',
-  doctor : 'api/doctor',
+  doctor : 'doctor',
   searchDoctor : 'searchDoctor',
   medicalRecord : 'medicalRecord',
   prescriptionSimpleSearch : 'api/prescription',
