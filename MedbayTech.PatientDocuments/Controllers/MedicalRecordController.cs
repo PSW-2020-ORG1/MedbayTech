@@ -39,5 +39,11 @@ namespace MedbayTech.PatientDocuments.Controllers
             }
 
         }
+
+        [HttpGet("{textBoxSearch?}")]
+        public IActionResult GetMedicalRecordByPatientId(string textBoxSearch)
+        {
+            return Ok(_medicalRecordService.GetMedicalRecordByPatient(textBoxSearch));
+        }
     }
 }

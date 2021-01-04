@@ -42,7 +42,8 @@ namespace GraphicEditor.View
         {
             patients = new List<Patient>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/patient/" + "empty")
+            // var task = httpClient.GetAsync("http://localhost:53109/api/patient/" + "empty")
+            var task = httpClient.GetAsync("http://localhost:8081/api/patient")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -59,7 +60,8 @@ namespace GraphicEditor.View
         {
             MedicalRecord medicalRecord = new MedicalRecord();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/medicalrecord/" + patientId)
+            //var task = httpClient.GetAsync("http://localhost:53109/api/medicalrecord/" + patientId)
+            var task = httpClient.GetAsync("http://localhost:50577/api/medicalrecord/" + patientId)
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -77,7 +79,8 @@ namespace GraphicEditor.View
             string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentFilterDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointment/", content);
+            //HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointment/", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8082/api/appointment/", content);
             response.EnsureSuccessStatusCode();
         }
 

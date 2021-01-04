@@ -41,7 +41,8 @@ namespace GraphicEditor.View
         {
             doctors = new List<Doctor>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/doctor/" + "empty" + "/All")
+           // var task = httpClient.GetAsync("http://localhost:53109/api/doctor/" + "empty" + "/All")
+            var task = httpClient.GetAsync("http://localhost:8081/api/doctor/" + "empty" + "/All")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -57,8 +58,9 @@ namespace GraphicEditor.View
         {
             hospitalEquipments = new List<EquipmentType>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/equipmenttype/" + "empty")
-                .ContinueWith((taskWithResponse) =>
+            //var task = httpClient.GetAsync("http://localhost:53109/api/equipmenttype/" + "empty")
+            var task = httpClient.GetAsync("http://localhost:60304/api/equipmenttype/" + "empty")
+               .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
                     var jsonString = response.Content.ReadAsStringAsync();
@@ -144,7 +146,8 @@ namespace GraphicEditor.View
             string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentFilterDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointment/", content);
+            // HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointment/", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8082/api/appointment/", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             appointments = new List<Appointment>(JsonConvert.DeserializeObject<List<Appointment>>(responseBody));
