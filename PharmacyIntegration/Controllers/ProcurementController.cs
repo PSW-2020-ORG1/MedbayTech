@@ -36,12 +36,5 @@ namespace PharmacyIntegration.Controllers
                 return BadRequest();
         }
 
-        [HttpPost("sendUrgent")]
-        public IActionResult SendProcurement(UrgentMedicationProcurement procurement)
-        {
-            return BadRequest();
-        }
-
-
     }
 }
