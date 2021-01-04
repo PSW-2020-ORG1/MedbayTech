@@ -63,6 +63,7 @@ export class PatientRegistration {
                     this.CityOfBirth = cityOfBirth;
                     this.PostalCodeBirth = postalCodeBirth;
                     this.CityOfBirth = cityOfBirth;
+                    this.StateOfBirth = stateOfBirth;
                 }
 
 

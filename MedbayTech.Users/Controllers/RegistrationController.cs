@@ -31,7 +31,6 @@ namespace MedbayTech.Users.Controllers
             _mailService = mailService;
         }
 
-
         [HttpPost("patientRegistration")]
         public IActionResult Register(PatientRegistrationDTO dto)
         {
@@ -88,7 +87,7 @@ namespace MedbayTech.Users.Controllers
         private string GetDomain()
         {
             string domain = Environment.GetEnvironmentVariable("DOMAIN") ?? "localhost";
-            string port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+            string port = Environment.GetEnvironmentVariable("PORT") ?? "8081";
             return $"http://{domain}:{port}";
         }
 
