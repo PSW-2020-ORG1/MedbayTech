@@ -1,5 +1,7 @@
 ﻿using MedbayTech.Users.Application.Common.Interfaces.Service;
+using MedbayTech.Users.Infrastructure.Service.Enum;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace MedbayTech.Users.Controllers
 {
@@ -30,6 +32,27 @@ namespace MedbayTech.Users.Controllers
         public IActionResult GetBySpecialization(string name)
         {
             return Ok(_doctorService.GetDoctorsBy(name));
+        }
+
+        [HttpGet("{textBoxSearch?}/{doctorSearch?}")]
+        public IActionResult Get(string textBoxSearch, DoctorSearch doctorSearch)
+        {
+            if (doctorSearch == DoctorSearch.All)
+            {
+                return Ok(_doctorService.GetAll());
+            }
+            else if (doctorSearch == DoctorSearch.ByExaminationRoom)
+            {
+                if (Int32.TryParse(textBoxSearch, out int id))
+                {
+                    return Ok(_doctorService.GetDoctorByExaminationRoom(id));
+                }
+                else return Ok();
+            }
+            else
+            {
+                return Ok();
+            }
         }
 
 

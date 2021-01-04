@@ -365,7 +365,8 @@ namespace GraphicEditor
         {
             Room room = new Room();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/ByRoomId")
+            // var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/ByRoomId")
+            var task = httpClient.GetAsync("http://localhost:60304/api/room/" + roomId + "/ByRoomId")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -380,7 +381,8 @@ namespace GraphicEditor
         {
             Doctor doctor = new Doctor();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/doctor/" + roomId + "/ByExaminationRoom")
+            //var task = httpClient.GetAsync("http://localhost:53109/api/doctor/" + roomId + "/ByExaminationRoom")
+            var task = httpClient.GetAsync("http://localhost:8081/api/doctor/" + roomId + "/ByExaminationRoom")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;

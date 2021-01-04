@@ -5,6 +5,7 @@ using Application.Common.Interfaces.Service;
 using Application.DTO;
 using Application.Mappers;
 using MedbayTech.Appointment.Domain.Entities;
+using MedbayTech.Appointment.Infrastructure.Services.AppointmentSearchOrSchedule;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controllers
@@ -112,6 +113,16 @@ namespace Controllers
             
             return Ok("Scheduled!");
             
+        }
+
+        [HttpGet("{roomId?}/{appointmentSearchOrSchedule?}")]
+        public IActionResult GetByRoom(string roomId, AppointmentSearchOrSchedule appointmentSearchOrSchedule)
+        {
+            if (appointmentSearchOrSchedule == AppointmentSearchOrSchedule.ByRoom)
+            {
+                return Ok(_appointmentService.GetApppointmentsScheduledForSpecificRoom(Int32.Parse(roomId)));
+            }
+            else return Ok();
         }
     }
 }
