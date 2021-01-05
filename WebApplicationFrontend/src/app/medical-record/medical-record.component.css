@@ -45,3 +45,7 @@ th {
     left: 32vw;
     border: 3px solid black;
 }
+
+button {
+    margin-left: 10px;
+}
