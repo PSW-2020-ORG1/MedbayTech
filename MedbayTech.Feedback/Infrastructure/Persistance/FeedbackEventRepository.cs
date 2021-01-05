@@ -1,8 +1,9 @@
-﻿using MedbayTech.Feedback.Domain.Events;
+﻿
+using MedbayTech.Feedback.Domain.Events;
 
 namespace MedbayTech.Feedback.Infrastructure.Persistance
 {
-    public class FeedbackEventRepository
+    public class FeedbackEventRepository 
     {
         private readonly FeedbackDbContext _context;
         public FeedbackEventRepository(FeedbackDbContext context) 
