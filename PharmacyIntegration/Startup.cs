@@ -28,7 +28,10 @@ using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
 using Backend.Examinations.WebApiService;
 using VueCliMiddleware;
-
+using Backend.Pharmacies.Service;
+using Backend.Pharmacies.Service.Interfaces;
+using Backend.Medications.Repository.MySqlRepository;
+using Backend.Medications.Repository.FileRepository;
 
 namespace PharmacyIntegration
 {
@@ -48,8 +51,8 @@ namespace PharmacyIntegration
             Directory.CreateDirectory("GeneratedPrescription");
 
             services.AddCors();
-            AddRepository(services);
             AddServices(services);
+            AddRepository(services);
 
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
@@ -129,7 +132,7 @@ namespace PharmacyIntegration
             }
         }
 
-        private static void AddServices(IServiceCollection services)
+        private static void AddRepository(IServiceCollection services)
         {
             services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
             services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
@@ -141,9 +144,11 @@ namespace PharmacyIntegration
             services.AddTransient<IUserRepository, UserSqlRepository>();
             services.AddTransient<INotificationRepository, NotificationSqlRepository>();
             services.AddTransient<IPrescriptionRepository, PrescriptionSqlRepository>();
+            services.AddTransient<IUrgentMedicationProcurementRepository, UrgentMedicationProcurementSqlRepository>();
+            services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
         }
 
-        private static void AddRepository(IServiceCollection services)
+        private static void AddServices(IServiceCollection services)
         {
             services.AddScoped<IPharmacyService, PharmacyService>();
             services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
@@ -151,6 +156,10 @@ namespace PharmacyIntegration
             services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();
             services.AddScoped<ITreatmentService, TreatmentService>();
             services.AddScoped<IPrescriptionSearchService, PrescriptionSearchService>();
+            services.AddScoped<IUrgentMedicationProcurementService, UrgentMedicationProcurementService>();
+            services.AddScoped<IMedicationService, MedicationService>();
+            services.AddScoped<INotificationService, NotificationService>();
+
         }
 
 
