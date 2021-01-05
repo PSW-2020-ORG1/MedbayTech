@@ -7,6 +7,7 @@ using Application.Common.Interfaces.Service;
 using Application.DTO;
 using Castle.Core.Internal;
 using Domain.Enums;
+using MedbayTech.Appointment.Application.Common.Interfaces.Persistance;
 using MedbayTech.Appointment.Application.Gateways;
 using MedbayTech.Appointment.Domain.Entities;
 using MedbayTech.Common.Domain.ValueObjects;
@@ -21,13 +22,14 @@ namespace Infrastructure.Services
 
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly IUserGateway _userGateway;
-
+        private readonly ISurveyRepository _surveyRepository;
         private IPriorityStrategy _priorityStrategy;
 
-        public AppointmentService(IAppointmentRepository appointmentRepository, IUserGateway userGateway)
+        public AppointmentService(IAppointmentRepository appointmentRepository, IUserGateway userGateway, ISurveyRepository surveyRepository)
         {
             _appointmentRepository = appointmentRepository;
             _userGateway = userGateway;
+            _surveyRepository = surveyRepository;
         }
 
         public List<Appointment> GetAllOtherAppointments(string id)
@@ -59,14 +61,14 @@ namespace Infrastructure.Services
 
         public List<Appointment> GetSurveyableAppointments(string id)
         {
-             /*List<Survey> surveys = _surveyRepository.GetAll().ToList();
+             List<Survey> surveys = _surveyRepository.GetAll().ToList();
              List<Appointment> appointments = _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
              List<Appointment> surveyableAppointments = new List<Appointment>();
              surveyableAppointments = appointments.Where(p => !surveys.Any(l => p.Id == l.AppointmentId) && p.Finished == true).ToList();
 
-             return surveyableAppointments; */
+             return surveyableAppointments; 
 
-            throw new NotImplementedException();
+            
         } 
 
         public bool UpdateCanceled(int appointmentId)

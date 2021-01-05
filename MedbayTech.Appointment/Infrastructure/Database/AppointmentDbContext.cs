@@ -8,6 +8,7 @@ namespace Infrastructure.Database
     public class AppointmentDbContext : MyDbContext
     {
         public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Survey> Surveys { get; set; }
         public AppointmentDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
         public AppointmentDbContext() { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -270,6 +270,20 @@
       "UpstreamHttpMethod": [
         "GET"
       ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/appointment/allSurveyableAppointments",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8082
+        }
+      ],
+      "UpstreamPathTemplate": "/allSurveyableAppointments",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     }
 
     

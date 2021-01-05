@@ -11,6 +11,7 @@ using Application.Common.Interfaces.Persistance;
 using Application.Common.Interfaces.Service;
 using Infrastructure.Database;
 using Infrastructure.Services;
+using MedbayTech.Appointment.Application.Common.Interfaces.Persistance;
 using MedbayTech.Appointment.Infrastructure.Persistance;
 using MedbayTech.Appointment.Infrastructure.Gateway;
 using MedbayTech.Appointment.Application.Gateways;
@@ -35,6 +36,9 @@ namespace MedbayTech.Appointment
             services.AddDbContext<AppointmentDbContext>();
 
             services.AddTransient<IAppointmentRepository, AppointmentRepository>();
+            services.AddTransient<ISurveyRepository, SurveyRepository>();
+            
+            
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<IUserGateway, UserGateway>();
         }
