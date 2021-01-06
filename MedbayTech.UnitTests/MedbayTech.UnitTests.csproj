@@ -30,7 +30,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Backend\Backend.csproj" />
     <ProjectReference Include="..\MedbayTech.PharmacyIntegration\MedbayTech.PharmacyIntegration.csproj" />
-    <ProjectReference Include="..\PharmacyIntegration\MedbayTech.PharmacyIntegration.csproj" />
     <ProjectReference Include="..\WebApplication\WebApplication.csproj" />
   </ItemGroup>
 </Project>
