@@ -4,6 +4,7 @@ using System.Linq;
 using Application.Common.Interfaces.Service;
 using Application.DTO;
 using Application.Mappers;
+using MedbayTech.Appointment.Application.DTO;
 using MedbayTech.Appointment.Domain.Entities;
 using MedbayTech.Appointment.Infrastructure.Services.AppointmentSearchOrSchedule;
 using Microsoft.AspNetCore.Mvc;
@@ -121,6 +122,24 @@ namespace Controllers
             if (appointmentSearchOrSchedule == AppointmentSearchOrSchedule.ByRoom)
             {
                 return Ok(_appointmentService.GetApppointmentsScheduledForSpecificRoom(Int32.Parse(roomId)));
+            }
+            else return Ok();
+        }
+
+        [HttpPost("apointmentsBySearchOrSchedule")]
+        public IActionResult GetBySearchOrSchedule(AppointmentFilterDTO appointmentFilterDTO)
+        {
+            if (appointmentFilterDTO.appointmentSearchOrSchedule == AppointmentSearchOrSchedule.ByDoctorAndTimeInterval)
+            {
+                return Ok(_appointmentService.GetAvailableByDoctorAndTimeInterval(new PriorityParameters { DoctorId = appointmentFilterDTO.DoctorId, ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval }));
+            }
+            else if (appointmentFilterDTO.appointmentSearchOrSchedule == AppointmentSearchOrSchedule.ByDoctorPriority)
+            {
+                return Ok(_appointmentService.GetAvailableByPriorityDoctor(new PriorityParameters { DoctorId = appointmentFilterDTO.DoctorId, ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval }));
+            }
+            else if (appointmentFilterDTO.appointmentSearchOrSchedule == AppointmentSearchOrSchedule.ScheduleAppointment)
+            {
+                return Ok(_appointmentService.ScheduleAppointment(appointmentFilterDTO.appointment));
             }
             else return Ok();
         }
