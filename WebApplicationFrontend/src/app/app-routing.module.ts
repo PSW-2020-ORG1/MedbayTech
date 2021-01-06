@@ -17,6 +17,7 @@ import { ObserveAppointmentComponent } from './appointment/observe-appointment/o
 import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
 import { PatientLoginComponent } from './login/patient-login/patient-login/patient-login.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 
@@ -81,6 +82,10 @@ const routes: Routes = [
   {
     path : 'patientLogin',
     component : PatientLoginComponent
+  },
+  {
+    path : 'home',
+    component : HomePageComponent
   }
   
 ];
