@@ -9,15 +9,14 @@ using System.Text;
 
 namespace Backend.Pharmacies.Repository.MySqlRepository
 {
-    public class PharmacySqlRepository : IPharmacyRepository //MySqlrepository<Pharmacy, string>,
+    public class PharmacySqlRepository : MySqlrepository<Pharmacy, string>, IPharmacyRepository
     {
 
-        private MedbayTechDbContext _context;
-        public PharmacySqlRepository(MedbayTechDbContext context)
+        // private MedbayTechDbContext _context;
+        public PharmacySqlRepository(MedbayTechDbContext context): base(context)
         {
-            _context = context;
         }
-
+        /*
         public Pharmacy Create(Pharmacy entity)
         {
             if (ExistsInSystem(entity.Id))
@@ -47,6 +46,6 @@ namespace Backend.Pharmacies.Repository.MySqlRepository
             _context.Pharmacies.Update(entity);
             _context.SaveChanges();
             return entity;
-        }
+        }*/
     }
 }
