@@ -3,19 +3,15 @@
 // Created: Thursday, April 16, 2020 8:25:23 PM
 // Purpose: Definition of Class Patient
 
-using MedbayTech.Common.Domain.Entities;
-using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace MedbayTech.Appointment.Domain.Entities
 {
-   public class Patient : IIdentifiable<string>
+   public class Patient 
    {
         public string Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        [ForeignKey("ChosenDoctor")]
-        public string ChosenDoctorId { get;  set; }
         public virtual Doctor ChosenDoctor { get; set; }
         public bool Blocked { get; set; }
         public bool ShouldBeBlocked { get; set; }
@@ -32,6 +28,5 @@ namespace MedbayTech.Appointment.Domain.Entities
 
         public Patient() { }
 
-        public string GetId() => Id;
     }
 }

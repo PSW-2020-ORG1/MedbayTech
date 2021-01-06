@@ -4,13 +4,6 @@
  * Purpose: Definition of the Class HealthCorporation.Doctor.Doctor
  ***********************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using MedbayTech.Users.Domain.ValueObjects;
-
 
 namespace MedbayTech.Users.Domain.Entites
 {

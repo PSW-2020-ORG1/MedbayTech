@@ -14,12 +14,12 @@ namespace MedbayTech.Users.Infrastructure.Persistance
 
         public List<WorkDay> GetByDoctorId(string id)
         {
-            return GetAll().Where(workDay => workDay.EmployeeId.Equals(id)).ToList();
+            return GetAll().Where(workDay => workDay.DoctorId.Equals(id)).ToList();
         }
 
         public WorkDay GetByDoctorIdAndDate(string id, DateTime date)
         {
-            return GetAll().Where(workDay => workDay.EmployeeId.Equals(id) && DateTime.Compare(workDay.Date, date) == 0).FirstOrDefault();
+            return GetAll().Where(workDay => workDay.DoctorId.Equals(id) && DateTime.Compare(workDay.Date, date) == 0).FirstOrDefault();
         }
     }
 }

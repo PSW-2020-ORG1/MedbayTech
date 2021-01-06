@@ -9,7 +9,7 @@ namespace MedbayTech.Users.Infrastructure.Database.Configurations
 
         public void Configure(EntityTypeBuilder<Doctor> builder)
         {
-            builder.HasOne(doc => doc.Specialization).WithOne().HasForeignKey("Specialization", "SpecializationId");
+            builder.HasOne(doc => doc.Specialization);
         }
     }
 }

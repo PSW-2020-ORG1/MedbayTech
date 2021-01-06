@@ -15,9 +15,9 @@ namespace MedbayTech.Users.Domain.Entites
         public DateTime Date { get; set; }
         public int StartTime { get; set; }
         public int EndTime { get; set; }
-        [ForeignKey("Employee")]
-        public string EmployeeId { get; set; }
-        public virtual Employee Employee { get; set; }
+        [ForeignKey("Doctor")]
+        public string DoctorId { get; set; }
+        public virtual Doctor Doctor { get; set; }
 
         public int GetId()
         {

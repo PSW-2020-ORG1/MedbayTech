@@ -53,14 +53,14 @@
         </DockPanel>
         
         <DockPanel DockPanel.Dock="Bottom">
-            <Button DockPanel.Dock="Left" Content="Show on map" Width="208" Height="25" Margin="5,5,0,5" FontWeight="Bold" Background="SteelBlue" Foreground="White" HorizontalAlignment="Left" Click="buttonShowOnMap" FontSize="15">
+            <Button DockPanel.Dock="Left" Content="Show on map" Width="208" Height="25" Margin="5,5,0,5" FontWeight="Bold" Background="SteelBlue" Foreground="White" HorizontalAlignment="Left" Click="ButtonShowOnMap" FontSize="15">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button DockPanel.Dock="Right" Content="Schedule examination" Width="208" Height="25" Margin="5,5,5,5" FontSize="15" FontWeight="Bold" HorizontalAlignment="Right" Background="SteelBlue" Foreground="White" Click="buttonScheduleExamination">
+            <Button DockPanel.Dock="Right" Content="Schedule examination" Width="208" Height="25" Margin="5,5,5,5" FontSize="15" FontWeight="Bold" HorizontalAlignment="Right" Background="SteelBlue" Foreground="White" Click="ButtonScheduleExamination">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -70,7 +70,7 @@
         </DockPanel>
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">
-                <Button DockPanel.Dock="Right" Name="buttonSearch" Margin="0,5,5,5" Content="Search" Height="22" Width="80" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White" Background="#006481" Click="buttonSearchForAvailableAppointments" FontWeight="Bold">
+                <Button DockPanel.Dock="Right" Name="buttonSearch" Margin="0,5,5,5" Content="Search" Height="22" Width="80" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White" Background="#006481" Click="ButtonSearchForAvailableAppointments" FontWeight="Bold">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -92,8 +92,8 @@
                     <DataGridTextColumn Header="Appointment type" Width="149" Binding="{Binding TypeOfAppointment}"/>
                     <DataGridTextColumn Header="Doctor" Width="149" Binding="{Binding Doctor.Name}"/>
                     <DataGridTextColumn Header="Room" Width="149" Binding="{Binding Room.RoomLabel}"/>
-                    <DataGridTextColumn Header="Beginning date" Width="149" Binding="{Binding Start}"/>
-                    <DataGridTextColumn Header="End date" Width="149" Binding="{Binding End}"/>
+                    <DataGridTextColumn Header="Beginning date" Width="149" Binding="{Binding Period.StartTime}"/>
+                    <DataGridTextColumn Header="End date" Width="149" Binding="{Binding Period.EndTime}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>

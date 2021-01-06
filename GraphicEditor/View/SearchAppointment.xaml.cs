@@ -33,7 +33,7 @@ namespace GraphicEditor.View
             this.page = page;
             searchDataBaseForDoctor();
             comboBoxDoctor.ItemsSource = doctors;
-            searchDataBaseForHospitalEquipment();
+            SearchDatabaseForEquipmentType();
             comboBoxEquipment.ItemsSource = hospitalEquipments;
         }
 
@@ -54,7 +54,7 @@ namespace GraphicEditor.View
             return doctors;
         }
         
-        private List<EquipmentType> searchDataBaseForHospitalEquipment()
+        private List<EquipmentType> SearchDatabaseForEquipmentType()
         {
             hospitalEquipments = new List<EquipmentType>();
             HttpClient httpClient = new HttpClient();
@@ -71,7 +71,7 @@ namespace GraphicEditor.View
             return hospitalEquipments;
         }
 
-        private void searchDataBaseForAppointment(Doctor doctor, EquipmentType hospitalEquipment, DateTime startTime, DateTime endTime)
+        private void SearchDatabaseForAppointment(Doctor doctor, EquipmentType hospitalEquipment, DateTime startTime, DateTime endTime)
         {
             AppointmentFilterDTO appointmentFilterDTO;
             if ((bool)radioButtonDoctor.IsChecked)
@@ -126,7 +126,7 @@ namespace GraphicEditor.View
             HttpResponseMessage response = await client.PostAsync("http://localhost:8082/api/appointmentFilter", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
-            appointments = new List<Appointment>(JsonConvert.DeserializeObject<List<Appointment>>(responseBody));
+            appointments = JsonConvert.DeserializeObject<List<Appointment>>(responseBody);
             if ((bool)radioButtonInterval.IsChecked) appointments = FilterSpecialization(appointments);
             dataGridAppointment.ItemsSource = appointments;
         }
@@ -137,7 +137,7 @@ namespace GraphicEditor.View
             Doctor doctor = (Doctor)comboBoxDoctor.SelectedItem;
             foreach (Appointment appointment in appointments)
             {
-                if (appointment.Doctor.Specialization.Id == doctor.SpecializationId) appointmentsFilter.Add(appointment);
+                if (appointment.Doctor.SpecializationId == doctor.SpecializationId) appointmentsFilter.Add(appointment);
             }
             return appointmentsFilter;
         }
@@ -147,16 +147,16 @@ namespace GraphicEditor.View
             string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentFilterDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
-            // HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointment/", content);
-            HttpResponseMessage response = await client.PostAsync("http://localhost:8082/api/appointment/", content);
+            // HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointment", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8082/api/appointment/apointmentsBySearchOrSchedule", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
-            appointments = new List<Appointment>(JsonConvert.DeserializeObject<List<Appointment>>(responseBody));
+            appointments = JsonConvert.DeserializeObject<List<Appointment>>(responseBody);
             HttpRequestToAppointmentFilterController(new AppointmentFilterDTO { appointmentFilterCriteria = AppointmentFilterCriteria.AddRoomToAppointment, appointments = appointments });
             dataGridAppointment.ItemsSource = appointments;
         }
 
-        private Tuple<DateTime, DateTime> parseDateAndTime()
+        private Tuple<DateTime, DateTime> ParseDateAndTime()
         {
             DateTime startDateTime;
             if (!DateTime.TryParseExact(textBoxFrom.Text, "dd.MM.yyyy - HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startDateTime))
@@ -173,24 +173,24 @@ namespace GraphicEditor.View
             return Tuple.Create(startDateTime, endDateTime);
         }
 
-        private void buttonSearchForAvailableAppointments(object sender, RoutedEventArgs e)
+        private void ButtonSearchForAvailableAppointments(object sender, RoutedEventArgs e)
         {
             if (comboBoxDoctor.SelectedItem == null || textBoxFrom.Text.Equals("") || textBoxTo.Text.Equals(""))
             {
                 MessageBox.Show("You didn't select doctor or didn't select time interval!");
                 return;
             }
-            Tuple<DateTime, DateTime> time = parseDateAndTime();
+            Tuple<DateTime, DateTime> time = ParseDateAndTime();
             if (time == null) return;
             DateTime beginningTime = time.Item1;
             DateTime endTime = time.Item2;
             Doctor doctor = (Doctor)comboBoxDoctor.SelectedItem;
             EquipmentType hospitalEquipment = (EquipmentType)comboBoxEquipment.SelectedItem;
             dataGridAppointment.ItemsSource = null;
-            searchDataBaseForAppointment(doctor, hospitalEquipment, beginningTime, endTime);
+            SearchDatabaseForAppointment(doctor, hospitalEquipment, beginningTime, endTime);
         }
 
-        private void buttonScheduleExamination(object sender, RoutedEventArgs e)
+        private void ButtonScheduleExamination(object sender, RoutedEventArgs e)
         {
             Appointment appointment = (Appointment)dataGridAppointment.SelectedItem;
             if (appointment == null)
@@ -203,7 +203,7 @@ namespace GraphicEditor.View
         }
 
         public static string Id;
-        private void buttonShowOnMap(object sender, RoutedEventArgs e)
+        private void ButtonShowOnMap(object sender, RoutedEventArgs e)
         {
             Appointment appointment = (Appointment)dataGridAppointment.SelectedItem;
             if (appointment == null)

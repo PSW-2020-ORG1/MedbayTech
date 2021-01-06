@@ -60,7 +60,7 @@ namespace Controllers
         }
 
         [HttpPost("cancelAppointment")]
-        public IActionResult cancelAppointment(CancelAppointmentDTO cancelAppointmentDTO)
+        public IActionResult CancelAppointment(CancelAppointmentDTO cancelAppointmentDTO)
         {
             bool canceledAppointment = _appointmentService.UpdateCanceled(cancelAppointmentDTO.AppointmentId);
             return Ok(canceledAppointment);
@@ -127,17 +127,17 @@ namespace Controllers
         [HttpPost("apointmentsBySearchOrSchedule")]
         public IActionResult GetBySearchOrSchedule(AppointmentFilterDTO appointmentFilterDTO)
         {
-            if (appointmentFilterDTO.appointmentSearchOrSchedule == AppointmentSearchOrSchedule.ByDoctorAndTimeInterval)
+            if (appointmentFilterDTO.AppointmentSearchOrSchedule == AppointmentSearchOrSchedule.ByDoctorAndTimeInterval)
             {
                 return Ok(_appointmentService.GetAvailableByDoctorAndTimeInterval(new PriorityParameters { DoctorId = appointmentFilterDTO.DoctorId, ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval }));
             }
-            else if (appointmentFilterDTO.appointmentSearchOrSchedule == AppointmentSearchOrSchedule.ByDoctorPriority)
+            else if (appointmentFilterDTO.AppointmentSearchOrSchedule == AppointmentSearchOrSchedule.ByDoctorPriority)
             {
                 return Ok(_appointmentService.GetAvailableByPriorityDoctor(new PriorityParameters { DoctorId = appointmentFilterDTO.DoctorId, ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval }));
             }
-            else if (appointmentFilterDTO.appointmentSearchOrSchedule == AppointmentSearchOrSchedule.ScheduleAppointment)
+            else if (appointmentFilterDTO.AppointmentSearchOrSchedule == AppointmentSearchOrSchedule.ScheduleAppointment)
             {
-                return Ok(_appointmentService.ScheduleAppointment(appointmentFilterDTO.appointment));
+                return Ok(_appointmentService.ScheduleAppointment(appointmentFilterDTO.Appointment));
             }
             else return Ok();
         }
