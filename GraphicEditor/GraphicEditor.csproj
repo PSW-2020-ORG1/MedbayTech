@@ -45,6 +45,6 @@
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Backend\Backend.csproj" />
+    <ProjectReference Include="..\MedbayTech.Common\MedbayTech.Common.csproj" />
   </ItemGroup>
 </Project>

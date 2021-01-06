@@ -1,4 +1,4 @@
-﻿using Model.Rooms;
+﻿using GraphicEditor.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

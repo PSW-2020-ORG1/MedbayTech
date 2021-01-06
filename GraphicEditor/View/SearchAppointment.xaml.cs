@@ -1,10 +1,8 @@
-﻿using Backend.Schedules.Service.Enum;
-using Backend.Utils.DTO;
+﻿
 using GraphicEditor.View.Building1;
 using GraphicEditor.View.Building2;
-using Model.Rooms;
-using Model.Schedule;
-using Model.Users;
+using GraphicEditor.ViewModel;
+using GraphicEditor.ViewModel.DTO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,6 +12,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using GraphicEditor.ViewModel.Enums;
 
 namespace GraphicEditor.View
 {
@@ -137,7 +136,7 @@ namespace GraphicEditor.View
             Doctor doctor = (Doctor)comboBoxDoctor.SelectedItem;
             foreach (Appointment appointment in appointments)
             {
-                if (appointment.Doctor.SpecializationId == doctor.SpecializationId) appointmentsFilter.Add(appointment);
+                if (appointment.Doctor.Specialization.Id == doctor.Specialization.Id) appointmentsFilter.Add(appointment);
             }
             return appointmentsFilter;
         }

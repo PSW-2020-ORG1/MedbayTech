@@ -1,4 +1,4 @@
-using Model.Rooms;
+
 using Newtonsoft.Json;
 ﻿using GraphicEditor.View.Building1;
 using GraphicEditor.View.Building2;
@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using GraphicEditor.ViewModel;
 
 namespace GraphicEditor
 {

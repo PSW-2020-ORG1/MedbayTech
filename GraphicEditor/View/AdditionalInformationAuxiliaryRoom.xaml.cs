@@ -1,6 +1,7 @@
-﻿using Backend.Medications.Model;
+﻿
 using GraphicEditor.View;
-using Model.Rooms;
+using GraphicEditor.ViewModel;
+using MedbayTech.Rooms.Domain;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

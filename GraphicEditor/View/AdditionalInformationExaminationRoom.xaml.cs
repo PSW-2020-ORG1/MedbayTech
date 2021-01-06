@@ -1,6 +1,4 @@
-﻿using Model.Rooms;
-using Model.Schedule;
-using Model.Users;
+﻿using GraphicEditor.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -112,7 +110,6 @@ namespace GraphicEditor
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             if (doctor == null) return;
-            doctor.PlaceOfBirth.State = null;
             SaveDoctorAndRoom(room, doctor);
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)

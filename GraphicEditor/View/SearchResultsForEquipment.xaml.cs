@@ -1,21 +1,13 @@
 ﻿using GraphicEditor.View.Building1;
 using GraphicEditor.View.Building2;
-using Model.Rooms;
+using GraphicEditor.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GraphicEditor
 {
