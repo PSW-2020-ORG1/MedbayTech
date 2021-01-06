@@ -66,7 +66,6 @@ namespace Model
         public DbSet<City> Cities { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<RegisteredUser> RegisteredUsers { get; set; }
-        public DbSet<SystemAdministrator> SystemAdministrators { get; set; }
         public DbSet<InsurancePolicy> InsurancePolicies { get; set; }
         public DbSet<DoctorWorkDay> DoctorWorkDays { get; set; }
 

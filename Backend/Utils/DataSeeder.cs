@@ -35,7 +35,7 @@ namespace Backend.Utils
             SeedSpecializations(context);
 
             SeedRegisteredUsers(context);
-            SeedSystemAdministrators(context);
+            
             SeedDoctors(context);
             SeedPatients(context);
             
@@ -190,31 +190,6 @@ namespace Backend.Utils
                 Surname = "Markovic",
                 Username = "markic",
                 Password = "marko1978",
-                Phone = "065/123-4554",
-                PlaceOfBirthId = 11000,
-                Profession = "vodoinstalater",
-                ProfileImage = "."
-
-            });
-            context.SaveChanges();
-        }
-
-        private void SeedSystemAdministrators(MedbayTechDbContext context)
-        {
-            context.Add(new SystemAdministrator
-            {
-                Id = "2406978890044",
-                CurrResidenceId = 1,
-                DateOfBirth = new DateTime(1978, 6, 24),
-                DateOfCreation = new DateTime(),
-                EducationLevel = EducationLevel.bachelor,
-                Email = "ognjen@gmail.com",
-                Gender = Gender.MALE,
-                InsurancePolicyId = "policy1",
-                Name = "Ognjen",
-                Surname = "Ognjenovic",
-                Username = "ognjen",
-                Password = "ognjen123",
                 Phone = "065/123-4554",
                 PlaceOfBirthId = 11000,
                 Profession = "vodoinstalater",

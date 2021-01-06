@@ -42,20 +42,6 @@ namespace Model.Users
 
         public RegisteredUser() { }
 
-        public RegisteredUser(string id, string username, string password,string name, string surname, DateTime dateOfBirth, string email, string phone, City city)
-        {
-            Id = id;
-            Name = name;
-            Surname = surname;
-            DateOfBirth = dateOfBirth;
-            Email = email;
-            Username = username;
-            Password = password;
-            PlaceOfBirth = city;
-            PlaceOfBirthId = city.Id;
-            Phone = phone;
-           
-        }
         public RegisteredUser(string name, string surname, DateTime dateOfBirth,
             string identificationNumber, string email, string username, string phone,
             string password, EducationLevel educationLevel, Gender gender,
