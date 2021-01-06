@@ -47,5 +47,11 @@ namespace MedbayTech.Users.Controllers
             Patient updatedStatus = _patientService.UpdateStatus(dto.Id);
             return Ok("Patient blocked successfully");
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetPatientBy(string id)
+        {
+            return Ok(_patientService.GetPatientBy(id));
+        }
     }
 }

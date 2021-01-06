@@ -39,8 +39,10 @@ namespace Application.Mappers
                 string doctorId = appointmentIt.DoctorId;
                 string name = appointmentIt.Doctor.Name;
                 string surname = appointmentIt.Doctor.Surname;
+                string roomNumber = appointmentIt.Room.RoomLabel;
+                string roomType = appointmentIt.Room.RoomType.ToString();
 
-                appointmentList.Add(new GetAppointmentDTO(id, start, end, typeOfAppointment, finished, canceledByPatient, doctorId, name, surname));
+                appointmentList.Add(new GetAppointmentDTO(id, start, end, typeOfAppointment, finished, canceledByPatient, doctorId, name, surname, roomNumber, roomType));
             }
             return appointmentList;
         }

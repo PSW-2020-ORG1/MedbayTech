@@ -12,32 +12,5 @@ namespace MedbayTech.Appointment.Infrastructure.Persistance
     public class SurveyRepository : SqlRepository<Survey, int>, ISurveyRepository
     {
         public SurveyRepository(AppointmentDbContext context) : base(context) { }
-
-        public bool CheckIfExistsById(int id)
-        {
-            foreach (Survey s in GetAll())
-            {
-                if (s.AppointmentId == id)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        public int GetLastId()
-        {
-            int id;
-            if (GetAll() == null)
-            {
-                id = 1;
-            }
-            else
-            {
-                Survey survey = GetAll().Last();
-                id = survey.Id;
-            }
-            return id;
-        }
     }
 }

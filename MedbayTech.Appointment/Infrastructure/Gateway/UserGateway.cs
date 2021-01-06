@@ -16,7 +16,7 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
         {
             Doctor doctor = null;
             using HttpClient client = new HttpClient();
-            var task = client.GetAsync(GetUsersDomain() + "/api/user/" + id)
+            var task = client.GetAsync(GetUsersDomain() + "/api/doctor/" + id)
                 .ContinueWith((taskWithResponse) =>
                 {
                     var message = taskWithResponse.Result;
@@ -50,7 +50,7 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
         {
             Patient patient = null;
             using HttpClient client = new HttpClient();
-            var task = client.GetAsync(GetUsersDomain() + "/api/user/" + id)
+            var task = client.GetAsync(GetUsersDomain() + "/api/patient/" + id)
                 .ContinueWith((taskWithResponse) =>
                 {
                     var message = taskWithResponse.Result;

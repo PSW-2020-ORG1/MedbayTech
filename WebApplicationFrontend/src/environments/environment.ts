@@ -32,7 +32,7 @@ export const environment = {
   cancelAppointment : 'cancelAppointment',
   allSpecializations : 'api/specialization',
   doctorsBySpecialization : "specialization",
-  appointments : 'api/appointment',
+  appointments : 'appointment',
   availableStrategy : 'availableStrategy',
   availableStandard : 'available',
   scheduleAppointment : 'schedule'

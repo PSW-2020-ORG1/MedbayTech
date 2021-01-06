@@ -28,6 +28,9 @@ namespace MedbayTech.Appointment.Domain.Entities
         public bool Finished { get; set; }
         public bool CanceledByPatient { get; set; }
         public int RoomId { get;  set; } 
+
+        [NotMapped]
+        public Room Room { get; set; }
         public string DoctorId { get; set; }
         [NotMapped]
         public virtual Doctor Doctor { get; set; }

@@ -13,37 +13,11 @@ namespace MedbayTech.Users.Infrastructure.Persistance
     public class PatientRepository : SqlRepository<Patient, string>, IPatientRepository
     {
         public  PatientRepository(UserDbContext context) : base(context) {}
-        public Patient GetById(string id)
-        {
-            if (ExistsById(id))
-            {
-                return (Patient) GetAll().FirstOrDefault(p => p.Id.Equals(id));
-            }
-            return null;
-        }
-
+       
         public Patient GetByUsername(string username)
         {
             return (Patient) GetAll().ToList().FirstOrDefault(p => p.Username.Equals(username));
         }
-
-        bool ExistsById(string id)
-        {
-            if (GetAll().FirstOrDefault(p => p.Id.Equals(id)) != null) return true;
-            return false;
-        }
-
-        bool IPatientRepository.ExistsById(string id)
-        {
-            if (GetAll().FirstOrDefault(p => p.Id.Equals(id)) != null) return true;
-            return false;
-        }
-
-        public List<Patient> GetAllPatients()
-        {
-            return GetAll();
-        }
-
        
     }
 }

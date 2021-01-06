@@ -35,7 +35,7 @@ namespace MedbayTech.Users.Infrastructure.Service
         }
         public bool ExistsById(string id)
         {
-            return _patientRepository.ExistsById(id);
+            return _patientRepository.ExistsBy(id);
         }
 
         public Patient ExistsByUsername(string username)
@@ -98,7 +98,7 @@ namespace MedbayTech.Users.Infrastructure.Service
 
         public Patient GetUserById(string id)
         {
-            return _patientRepository.GetById(id);
+            return _patientRepository.GetBy(id);
         }
     }
 }

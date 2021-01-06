@@ -5,13 +5,13 @@ export class GetAppointment{
     public typeOfAppointment : string;
     public finished : boolean;
     public canceledByPatient : boolean;
-    public roomNumber : number;
+    public roomNumber : string;
     public roomType : string;
     public doctorId : string;
     public name: string;
     public surname : string;
 
-    constructor(id : number, start : Date, end : Date, typeOfAppointment : string, finished : boolean, canceledByPatient : boolean, roomNumber : number,
+    constructor(id : number, start : Date, end : Date, typeOfAppointment : string, finished : boolean, canceledByPatient : boolean, roomNumber : string,
                 roomType: string, doctorId : string, name : string, surname : string)
     {
         this.id = id;
