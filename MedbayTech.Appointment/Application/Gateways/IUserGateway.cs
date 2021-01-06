@@ -10,6 +10,8 @@ namespace MedbayTech.Appointment.Application.Gateways
         Doctor GetDoctorBy(string id);
         List<Doctor> GetDoctorsBy(string specializationName);
         Patient GetPatientBy(string id);
+        List<Doctor> GetAllDoctors();
         string GetUsersDomain();
+        
     }
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.DTO;
+using MedbayTech.Appointment.Application.Common.Interfaces.Service;
 using MedbayTech.Appointment.Application.DTO;
 using MedbayTech.Appointment.Application.Enums;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +23,7 @@ namespace MedbayTech.Appointment.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(AppointmentFilterDTO appointmentFilterDTO)
+        public IActionResult GetAppointmentsByFilterCriteria(AppointmentFilterDTO appointmentFilterDTO)
         {
             if (appointmentFilterDTO.appointmentFilterCriteria == AppointmentFilterCriteria.ByTimeIntervalPriority)
             {

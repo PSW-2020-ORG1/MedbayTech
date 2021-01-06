@@ -122,7 +122,8 @@ namespace GraphicEditor.View
             string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentFilterDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointmentfilter/", content);
+            //HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointmentfilter/", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8082/api/appointmentFilter", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             appointments = new List<Appointment>(JsonConvert.DeserializeObject<List<Appointment>>(responseBody));

@@ -21,5 +21,11 @@ namespace GraphicEditorWebService.Controllers
         {
             return Ok(_hospitalEquipmentService.GetHospitalEquipmentsByNameOrId(textBoxSearch.ToLower().Trim()));
         }
+
+        [HttpGet("getAllHospitalEquipments")]
+        public IActionResult GetHospitalEquipments()
+        {
+            return Ok(_hospitalEquipmentService.GetAllEquipment());
+        }
     }
 }

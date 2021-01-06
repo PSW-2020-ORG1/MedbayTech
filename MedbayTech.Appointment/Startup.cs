@@ -13,6 +13,7 @@ using MedbayTech.Appointment.Infrastructure.Persistance;
 using MedbayTech.Appointment.Infrastructure.Gateway;
 using MedbayTech.Appointment.Application.Gateways;
 using MedbayTech.Appointment.Infrastructure.Services;
+using MedbayTech.Appointment.Application.Common.Interfaces.Service;
 
 namespace MedbayTech.Appointment
 {
@@ -36,12 +37,14 @@ namespace MedbayTech.Appointment
             services.AddTransient<IAppointmentRepository, AppointmentRepository>();
             services.AddTransient<ISurveyRepository, SurveyRepository>();
             services.AddTransient<ISurveyQuestionRepository, SurveyQuestionRepository>();
+            
 
 
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<ISurveyService, SurveyService>();
             services.AddScoped<IRoomGateway, RoomGateway>(); 
             services.AddScoped<IUserGateway, UserGateway>();
+            services.AddScoped<IAppointmentFilterService, AppointmentFilterService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -11,6 +11,11 @@ namespace MedbayTech.Users.Infrastructure.Service
 
         private readonly IWorkDayRepository _workDayRepository;
 
+        public WorkDayService(IWorkDayRepository workDayRepository)
+        {
+            _workDayRepository = workDayRepository;
+        }
+
         public List<WorkDay> GetAll()
         {
             return _workDayRepository.GetAll();

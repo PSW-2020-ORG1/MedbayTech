@@ -14,6 +14,8 @@ namespace MedbayTech.Appointment.Domain.Entities
         public string Name { get; set; }
         public string Surname { get; set; }
         public string LicenseNumber { get;  set; }
+        public int ExaminationRoomId { get; set; }
+
         public Doctor() {}
 
         public Doctor(string id, string name, string surname)

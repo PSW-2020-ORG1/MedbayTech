@@ -22,7 +22,7 @@ namespace MedbayTech.Users.Controllers
             _doctorService = doctorService;
         }
 
-        [HttpGet]
+        [HttpGet("getAllDoctors")]
         public IActionResult GetDoctors()
         {
             return Ok(_doctorService.GetAll());

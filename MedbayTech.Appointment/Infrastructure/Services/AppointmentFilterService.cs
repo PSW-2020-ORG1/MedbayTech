@@ -1,6 +1,8 @@
 ﻿using Application.Common.Interfaces.Service;
 using Application.DTO;
 using MedbayTech.Appointment.Application.Common.Interfaces.Service;
+using MedbayTech.Appointment.Application.Gateways;
+using MedbayTech.Appointment.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +12,16 @@ namespace MedbayTech.Appointment.Infrastructure.Services
 {
     public class AppointmentFilterService : IAppointmentFilterService
     {
-        private IAppointmentService _appointmentService;
-        private IDoctorRepository _doctorRepository;
-        private IHospitalEquipmentRepository _hospitalEquipmentRepository;
+        private readonly IAppointmentService _appointmentService;
+        private readonly IUserGateway _userGateway;
+        private readonly IRoomGateway _roomGateway;
+        
 
-        public AppointmentFilterService(IAppointmentService appointmentService, IDoctorRepository doctorRepository, IHospitalEquipmentRepository hospitalEquipmentRepository)
+        public AppointmentFilterService(IAppointmentService appointmentService, IUserGateway userGateway, IRoomGateway roomGateway)
         {
             _appointmentService = appointmentService;
-            _doctorRepository = doctorRepository;
-            _hospitalEquipmentRepository = hospitalEquipmentRepository;
+            _userGateway = userGateway;
+            _roomGateway = roomGateway;
         }
 
         public List<MedbayTech.Appointment.Domain.Entities.Appointment> GetAvailableByDoctorTimeIntervalAndEquipment(PriorityParameters parameters, int hospitalEquipmentId, string priority)
@@ -44,10 +47,9 @@ namespace MedbayTech.Appointment.Infrastructure.Services
         {
             foreach (MedbayTech.Appointment.Domain.Entities.Appointment appointment in appointments)
             {
-                List<Doctor> doctors = _doctorRepository.GetAll().ToList();
-                Doctor doctor = _doctorRepository.GetObject(appointment.DoctorId);
+                Doctor doctor = _userGateway.GetDoctorBy(appointment.DoctorId);             
                 appointment.RoomId = doctor.ExaminationRoomId;
-                appointment.Room = doctor.ExaminationRoom;
+                appointment.Room = _roomGateway.GetRoomBy(appointment.RoomId);
             }
             return appointments;
         }
@@ -55,7 +57,7 @@ namespace MedbayTech.Appointment.Infrastructure.Services
         private List<MedbayTech.Appointment.Domain.Entities.Appointment> FilterAllApointments(List<MedbayTech.Appointment.Domain.Entities.Appointment> allAppointments, int hospitalEquipmentId)
         {
             List<MedbayTech.Appointment.Domain.Entities.Appointment> appointments = new List<MedbayTech.Appointment.Domain.Entities.Appointment>();
-            List<HospitalEquipment> hospitalEquipments = _hospitalEquipmentRepository.GetAll().ToList().Where(h => h.EquipmentTypeId == hospitalEquipmentId).ToList();
+            List<HospitalEquipment> hospitalEquipments = _roomGateway.getAllHospitalEquipments().ToList().Where(h => h.EquipmentTypeId == hospitalEquipmentId).ToList();
             foreach (MedbayTech.Appointment.Domain.Entities.Appointment appointment in allAppointments)
             {
                 foreach (HospitalEquipment hospitalEquipment in hospitalEquipments)
@@ -69,7 +71,7 @@ namespace MedbayTech.Appointment.Infrastructure.Services
         public List<MedbayTech.Appointment.Domain.Entities.Appointment> GetAvailableByPriorityTimeInterval(PriorityParameters parameters)
         {
             List<MedbayTech.Appointment.Domain.Entities.Appointment> appointmentsForAllDoctors = new List<MedbayTech.Appointment.Domain.Entities.Appointment>();
-            List<Doctor> doctors = _doctorRepository.GetAll().ToList();
+            List<Doctor> doctors = _userGateway.GetAllDoctors();
             foreach (Doctor doctor in doctors)
             {
                 parameters.DoctorId = doctor.Id;
@@ -84,7 +86,5 @@ namespace MedbayTech.Appointment.Infrastructure.Services
             AddRoomToAppointment(appointments);
             return appointments;
         }
-    }
-    {
     }
 }

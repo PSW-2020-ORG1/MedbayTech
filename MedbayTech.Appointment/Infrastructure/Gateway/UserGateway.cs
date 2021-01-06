@@ -85,6 +85,23 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
             return workDay;
         }
 
+        public List<Doctor> GetAllDoctors()
+        {
+            List<Doctor> doctors = null;
+            using HttpClient client = new HttpClient();
+            var task = client.GetAsync(GetUsersDomain() + "/api/doctor/getAllDoctors")
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var message = taskWithResponse.Result;
+                    var json = message.Content.ReadAsStringAsync();
+                    json.Wait();
+                    doctors = JsonConvert.DeserializeObject<List<Doctor>>(json.Result);
+                });
+            task.Wait();
+
+            return doctors;
+        }
+
         public string GetUsersDomain()
         {
             string origin = Environment.GetEnvironmentVariable("URL") ?? "localhost";
@@ -93,5 +110,6 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
             return $"http://{origin}:{port}";
         }
 
+       
     }
 }

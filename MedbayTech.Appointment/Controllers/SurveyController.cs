@@ -38,6 +38,5 @@ namespace MedbayTech.Appointment.Controllers
             }
             return Ok("Survey posted successfully");
         }
-    {
     }
 }
