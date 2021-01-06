@@ -18,7 +18,13 @@ namespace MedbayTech.Rooms.Controllers
         {
             _roomService = roomService;
         }
-        
+        [HttpGet("{id}")]
+
+        public IActionResult GetRoom(int id)
+        {
+            return Ok(_roomService.GetRoomById(id));
+        }
+
         [HttpGet("{textBoxSearch?}/{roomSearch?}")]
         public IActionResult Get(string textBoxSearch, RoomSearch roomSearch)
         {

@@ -73,5 +73,11 @@ namespace MedbayTech.Users.Controllers
 
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetDoctorById(string id)
+        {
+            return Ok(_doctorService.GetDoctorBy(id));
+        }
+
     }
 }

@@ -27,6 +27,10 @@ namespace MedbayTech.Users.Infrastructure.Service
             return  _patientRepository.GetAll();
         }
 
+        public Patient GetPatientBy(string id)
+        {
+            return _patientRepository.GetBy(id);
+        }
         public List<Patient> GetPatientsThatShouldBeBlocked()
         {
             List<Patient> patients = _patientRepository.GetAll().Where(patient => !patient.Blocked).ToList();
@@ -80,7 +84,7 @@ namespace MedbayTech.Users.Infrastructure.Service
         }
         public Patient UpdateStatus(string patientId)
         {
-            Patient patient = _patientRepository.GetById(patientId);
+            Patient patient = _patientRepository.GetBy(patientId);
 
             if (patient != null)
             {

@@ -22,13 +22,15 @@ namespace Infrastructure.Services
 
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly IUserGateway _userGateway;
+        private readonly IRoomGateway _roomGateway;
         private readonly ISurveyRepository _surveyRepository;
         private IPriorityStrategy _priorityStrategy;
 
-        public AppointmentService(IAppointmentRepository appointmentRepository, IUserGateway userGateway, ISurveyRepository surveyRepository)
+        public AppointmentService(IAppointmentRepository appointmentRepository, IUserGateway userGateway, IRoomGateway roomGateway, ISurveyRepository surveyRepository)
         {
             _appointmentRepository = appointmentRepository;
             _userGateway = userGateway;
+            _roomGateway = roomGateway;
             _surveyRepository = surveyRepository;
         }
 
@@ -61,19 +63,19 @@ namespace Infrastructure.Services
 
         public List<Appointment> GetSurveyableAppointments(string id)
         {
-             List<Survey> surveys = _surveyRepository.GetAll().ToList();
-             List<Appointment> appointments = _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
-             List<Appointment> surveyableAppointments = new List<Appointment>();
-             surveyableAppointments = appointments.Where(p => !surveys.Any(l => p.Id == l.AppointmentId) && p.Finished == true).ToList();
+            List<Survey> surveys = _surveyRepository.GetAll().ToList();
+            List<Appointment> appointments = GetAllForPatient(id);
+            List<Appointment> surveyableAppointments = new List<Appointment>();
+            surveyableAppointments = appointments.Where(p => !surveys.Any(l => p.Id == l.AppointmentId) && p.Finished == true).ToList();
 
-             return surveyableAppointments; 
+            return surveyableAppointments; 
 
             
         } 
 
         public bool UpdateCanceled(int appointmentId)
         {
-            Appointment appointment = _appointmentRepository.GetBy(appointmentId);
+            Appointment appointment = GetAppointment(appointmentId);
             if (appointment == null) {
                 return false;
             }
@@ -212,31 +214,38 @@ namespace Infrastructure.Services
               return appointments; 
         }
 
+        public List<Appointment> GetAppointmentByPatient(string patientId)
+        {
+            return GetAll().Where(a => a.PatientId != null && a.Patient.Equals(patientId)).ToList();
+        }
+
         public List<Appointment> GetAll()
         {
             var appointments = _appointmentRepository.GetAll();
             foreach (Appointment appointment in appointments)
-            {
-                appointment.Doctor = _userGateway.GetDoctorBy(appointment.DoctorId);
-                appointment.Patient = _userGateway.GetPatientBy(appointment.PatientId);
-            }
+                BindProperties(appointment);
             return appointments;
         }
 
-        public List<Appointment> GetAppointmentsBy(string userId)
+        public Appointment GetAppointment(int appointmentId)
         {
-            return GetAll().Where(a => a.PatientId != null && a.Patient.Equals(userId)).ToList();
+            var appointment = _appointmentRepository.GetBy(appointmentId);
+            BindProperties(appointment);
+            return appointment;
         }
-
         public List<Appointment> GetAllForPatient(string id)
         {
             var appointments = _appointmentRepository.GetAppointmentsByPatientId(id);
             foreach (Appointment appointment in appointments)
-            {
-                appointment.Doctor = _userGateway.GetDoctorBy(appointment.DoctorId);
-                appointment.Patient = _userGateway.GetPatientBy(appointment.PatientId);
-            }
+                BindProperties(appointment);
             return appointments;
+        }
+
+        private void BindProperties(Appointment appointment)
+        {
+            appointment.Doctor = _userGateway.GetDoctorBy(appointment.DoctorId);
+            appointment.Patient = _userGateway.GetPatientBy(appointment.PatientId);
+            appointment.Room = _roomGateway.GetRoomBy(appointment.RoomId);
         }
 
     }

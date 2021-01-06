@@ -4,9 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Application.Common.Interfaces.Persistance;
 using Application.Common.Interfaces.Service;
 using Infrastructure.Database;
@@ -15,6 +12,7 @@ using MedbayTech.Appointment.Application.Common.Interfaces.Persistance;
 using MedbayTech.Appointment.Infrastructure.Persistance;
 using MedbayTech.Appointment.Infrastructure.Gateway;
 using MedbayTech.Appointment.Application.Gateways;
+using MedbayTech.Appointment.Infrastructure.Services;
 
 namespace MedbayTech.Appointment
 {
@@ -37,9 +35,12 @@ namespace MedbayTech.Appointment
 
             services.AddTransient<IAppointmentRepository, AppointmentRepository>();
             services.AddTransient<ISurveyRepository, SurveyRepository>();
-            
-            
+            services.AddTransient<ISurveyQuestionRepository, SurveyQuestionRepository>();
+
+
             services.AddScoped<IAppointmentService, AppointmentService>();
+            services.AddScoped<ISurveyService, SurveyService>();
+            services.AddScoped<IRoomGateway, RoomGateway>(); 
             services.AddScoped<IUserGateway, UserGateway>();
         }
 

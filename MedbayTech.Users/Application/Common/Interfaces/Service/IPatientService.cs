@@ -13,6 +13,7 @@ namespace MedbayTech.Users.Application.Common.Interfaces.Service
         Patient UpdateStatus(string patientId);
 
         List<Patient> GetPatientsThatShouldBeBlocked();
+        Patient GetPatientBy(string id);
        // bool CheckIfPatientBlockable(List<Appointment> canceledAppointments);
     }
 }
