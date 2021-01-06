@@ -30,5 +30,9 @@ namespace MedbayTech.Users.Infrastructure.Persistance
             }
             return doctors;
         }
+        public RegisteredUser GetBy(string username, string password)
+        {
+            return GetAll().FirstOrDefault(ru => ru.Username.Equals(username) && ru.Password.Equals(password));
+        }
     }
 }
