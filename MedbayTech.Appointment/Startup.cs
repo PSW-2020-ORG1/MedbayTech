@@ -14,6 +14,9 @@ using MedbayTech.Appointment.Infrastructure.Gateway;
 using MedbayTech.Appointment.Application.Gateways;
 using MedbayTech.Appointment.Infrastructure.Services;
 using MedbayTech.Appointment.Application.Common.Interfaces.Service;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace MedbayTech.Appointment
 {
@@ -70,9 +73,27 @@ namespace MedbayTech.Appointment
                 endpoints.MapControllers();
             });
 
+            string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
+            string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";
+
             using (var scope = app.ApplicationServices.CreateScope())
             using (var context = scope.ServiceProvider.GetService<AppointmentDbContext>())
             {
+                RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
+
+                try
+                {
+                    if (!stage.Equals("development") && host.Equals("postgres"))
+                    {
+                        databaseCreator.CreateTables();
+                    }
+                    else
+                        context.Database.Migrate();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Failed to execute migration");
+                }
                 try
                 {
                     AppointmentDataSeeder seeder = new AppointmentDataSeeder();

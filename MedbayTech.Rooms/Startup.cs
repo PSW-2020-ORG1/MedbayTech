@@ -8,6 +8,9 @@ using MedbayTech.Rooms.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -52,10 +55,27 @@ namespace MedbayTech.Rooms
             {
                 app.UseDeveloperExceptionPage();
             }
+            string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
+            string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";
 
             using (var scope = app.ApplicationServices.CreateScope())
             using (var context = scope.ServiceProvider.GetService<RoomDbContext>())
             {
+                RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
+
+                try
+                {
+                    if (!stage.Equals("development") && host.Equals("postgres"))
+                    {
+                        databaseCreator.CreateTables();
+                    }
+                    else
+                        context.Database.Migrate();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Failed to execute migration");
+                }
                 try
                 {
                     RoomDataSeeder seeder = new RoomDataSeeder();
