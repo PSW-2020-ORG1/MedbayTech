@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MedbayTech.Users.Domain.Entites;
 
 namespace MedbayTech.Users.Infrastructure.Database.Configurations
@@ -13,7 +9,7 @@ namespace MedbayTech.Users.Infrastructure.Database.Configurations
 
         public void Configure(EntityTypeBuilder<Doctor> builder)
         {
-            builder.OwnsOne(doc => doc.Specialization);
+            builder.HasOne(doc => doc.Specialization).WithOne().HasForeignKey("Specialization", "SpecializationId");
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using Application.Common.Interfaces.Service;
 using Application.DTO;
 using Application.Mappers;
+using MedbayTech.Appointment.Application.Validators;
 using MedbayTech.Appointment.Domain.Entities;
 using MedbayTech.Appointment.Infrastructure.Services.AppointmentSearchOrSchedule;
 using Microsoft.AspNetCore.Mvc;
@@ -92,17 +93,15 @@ namespace Controllers
         [HttpPost("schedule")]
         public IActionResult Schedule(ScheduleAppointmentDTO dto)
         {
-            
-            dto.PatientId =  "2406978890046";
-            /*
             try
             {
-                _appointmentService.CanPatientSchedule(dto.PatientId);
+                ValidateScheduleAppointment.Validate(dto);
             } catch(Exception)
             {
-                return BadRequest("Can not schedule appointmnet");
+                return BadRequest("Can not schedule appointmnet in the past");
             }
-            */
+
+            dto.PatientId = "2406978890046";
 
             Appointment appointment = AppointmentMapper.ScheduleAppointmentDTOToAppointment(dto);
             appointment.PatientId = dto.PatientId;
@@ -112,7 +111,6 @@ namespace Controllers
                 return BadRequest("Can not schedule appointment");
             
             return Ok("Scheduled!");
-            
         }
 
         [HttpGet("{roomId?}/{appointmentSearchOrSchedule?}")]

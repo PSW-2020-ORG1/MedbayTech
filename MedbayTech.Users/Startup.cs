@@ -46,6 +46,8 @@ namespace MedbayTech.Users
             services.AddTransient<IDoctorRepository, DoctorRepository>();
             services.AddTransient<IPatientRepository, PatientRepository>();
             services.AddTransient<IWorkDayRepository, WorkDayRepository>();
+            services.AddTransient<ISpecializationRepository, SpecializationRepository>();
+            services.AddTransient<IWorkDayRepository, WorkDayRepository>();
 
 
             services.AddScoped<IUserService, UserService>();
@@ -53,6 +55,8 @@ namespace MedbayTech.Users
             services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<IWorkDayService, WorkDayService>();
             services.AddScoped<IRegistrationService, RegistrationService>();
+            services.AddScoped<ISpecializationService, SpecializationService>();
+            services.AddScoped<IWorkDayService, WorkDayService>();
             services.AddTransient<IMailService, MailService>();
 
             services.AddScoped<IAppointmentGateway, AppointmentGateway>();

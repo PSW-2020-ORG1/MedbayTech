@@ -26,12 +26,11 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
 
             foreach (Report report in iterationList)
             {
-                if (!report.Doctor.Name.ToLower().Equals(name.ToLower()) && !name.Equals(""))
+                if (!(report.Doctor.Name.Trim().ToLower().Equals(name.Trim().ToLower())) && !name.Trim().Equals(""))
                 {
                     reports.Remove(report);
                 }
-
-                if (!report.Type.ToString().ToLower().Equals(type.ToLower()) && !type.Equals(""))
+                if (!report.Type.ToString().ToLower().Trim().Equals(type.ToLower().Trim()) && !type.Trim().Equals(""))
                 {
                     reports.Remove(report);
                 }

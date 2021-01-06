@@ -138,6 +138,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                 EndDate = new DateTime(2020, 11, 30),
                 HourlyIntake = 8,
                 MedicationId = 25,
+                Medication = "Brufen"
             });
             context.Add(new Prescription
             {
@@ -148,6 +149,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                 EndDate = new DateTime(2020, 12, 1),
                 HourlyIntake = 6,
                 MedicationId = 1,
+                Medication = "Brufen"
             });
             context.Add(new Prescription
             {
@@ -158,6 +160,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                 EndDate = new DateTime(2020, 11, 30),
                 HourlyIntake = 12,
                 MedicationId = 10,
+                Medication = "Bromazepam"
             });
             context.Add(new Prescription
             {
@@ -168,6 +171,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                 EndDate = new DateTime(2020, 12, 1),
                 HourlyIntake = 6,
                 MedicationId = 2,
+                Medication = "Xanax"
             });
             context.Add(new Prescription
             {
@@ -178,6 +182,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                 EndDate = new DateTime(2020, 11, 30),
                 HourlyIntake = 12,
                 MedicationId = 20,
+                Medication = "Bensedin"
             });
             context.Add(new Prescription
             {
@@ -188,6 +193,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                 EndDate = new DateTime(2020, 12, 1),
                 HourlyIntake = 4,
                 MedicationId = 1,
+                Medication = "Brufen"
             });
             context.SaveChanges();
         }

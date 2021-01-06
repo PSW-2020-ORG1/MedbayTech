@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using MedbayTech.Users.Application.DTO;
 using MedbayTech.Users.Application.Mapper;
-using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using MedbayTech.Users.Domain.Entites;
@@ -34,10 +33,10 @@ namespace MedbayTech.Users.Controllers
             return Ok(_doctorService.GetDoctorByExaminationRoom(id));
         }
 
-        [HttpGet("specialization/{name}")]
-        public IActionResult GetBySpecialization(string name)
+        [HttpGet("specialization/{id}")]
+        public IActionResult GetBySpecialization(int id)
         {
-            List<Doctor> doctors = _doctorService.GetDoctorsBy(name).ToList();
+            List<Doctor> doctors = _doctorService.GetDoctorBySpecialization(id).ToList();
             List<DoctorSearchDTO> doctorSearchList = DoctorMapper.ListDoctorToListDoctorSearchDTO(doctors);
             return Ok(doctorSearchList);
         }

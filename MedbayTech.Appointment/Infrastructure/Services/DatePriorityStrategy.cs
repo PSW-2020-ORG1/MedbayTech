@@ -29,7 +29,7 @@ namespace Infrastructure.Services
         public List<Appointment> Recommend(PriorityParameters parameters)
         {
             List<Appointment> recommendedAppointments = new List<Appointment>();
-            List<Doctor> doctors = GetDoctorsBy(parameters.SpecializationName);
+            List<Doctor> doctors = GetDoctorsBy(parameters.SpecializationId);
 
             recommendedAppointments = RecommendationResult(doctors, parameters);
 
@@ -61,9 +61,9 @@ namespace Infrastructure.Services
 
             return availableAppointments;
         }
-        public List<Doctor> GetDoctorsBy(string specializationName)
+        public List<Doctor> GetDoctorsBy(int specializationId)
         {
-            return _userGateway.GetDoctorsBy(specializationName).ToList();
+            return _userGateway.GetDoctorsBy(specializationId).ToList();
         }
     }
 }

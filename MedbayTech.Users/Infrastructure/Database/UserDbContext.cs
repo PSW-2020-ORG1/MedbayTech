@@ -13,6 +13,7 @@ namespace MedbayTech.Users.Infrastructure.Database
     { 
         public DbSet<RegisteredUser> RegisteredUsers { get; set; }
         public DbSet<Patient> Patients { get; set; }
+        public DbSet<Specialization> Specializations { get; set; }
         public UserDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
         public UserDbContext() { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

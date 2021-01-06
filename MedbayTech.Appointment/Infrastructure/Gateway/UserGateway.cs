@@ -29,11 +29,11 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
             return doctor;
         }
 
-        public List<Doctor> GetDoctorsBy(string specializationName)
+        public List<Doctor> GetDoctorsBy(int specializationId)
         {
             List<Doctor> doctors = null;
             using HttpClient client = new HttpClient();
-            var task = client.GetAsync(GetUsersDomain() + "/api/doctor/getBySpecialization/" + specializationName)
+            var task = client.GetAsync(GetUsersDomain() + "/api/doctor/specialization/" + specializationId)
                 .ContinueWith((taskWithResponse) =>
                 {
                     var message = taskWithResponse.Result;

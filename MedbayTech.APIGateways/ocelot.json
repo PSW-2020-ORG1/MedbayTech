@@ -284,8 +284,110 @@
       "UpstreamHttpMethod": [
         "GET"
       ]
-    }
+    },
 
-    
+    {
+      "DownstreamPathTemplate": "/api/survey/allQuestions",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8082
+        }
+      ],
+      "UpstreamPathTemplate": "/survey/allQuestions",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/survey/createSurvey",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8082
+        }
+      ],
+      "UpstreamPathTemplate": "/survey/createSurvey",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/specialization",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/specialization",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/report/advancedSearch",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50577
+        }
+      ],
+      "UpstreamPathTemplate": "/report/advancedSearch",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/report",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50577
+        }
+      ],
+      "UpstreamPathTemplate": "/report",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/prescription",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50577
+        }
+      ],
+      "UpstreamPathTemplate": "/prescription",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/prescription/advancedSearch",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50577
+        }
+      ],
+      "UpstreamPathTemplate": "/prescription/advancedSearch",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    }
   ]
 }

@@ -8,7 +8,7 @@ namespace MedbayTech.Appointment.Application.Gateways
     {
         WorkDay GetWorkDayBy(string id, DateTime date);
         Doctor GetDoctorBy(string id);
-        List<Doctor> GetDoctorsBy(string specializationName);
+        List<Doctor> GetDoctorsBy(int specializationId);
         Patient GetPatientBy(string id);
         string GetUsersDomain();
     }

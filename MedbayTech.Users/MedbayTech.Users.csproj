@@ -5,6 +5,60 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\1212312321321\Screenshot (1).png" />
+    <None Remove="Resources\Images\1231231231231\rectovi.png" />
+    <None Remove="Resources\Images\1234567890124\watermelon.png" />
+    <None Remove="Resources\Images\1234567891989\among-us-5659730_1280.png" />
+    <None Remove="Resources\Images\1234567894445\Screenshot (1).png" />
+    <None Remove="Resources\Images\2030330232020\watermelon.png" />
+    <None Remove="Resources\Images\2030330232029\watermelon.png" />
+    <None Remove="Resources\Images\2030330232231\watermelon.png" />
+    <None Remove="Resources\Images\2303998890054\download.jpg" />
+    <None Remove="Resources\Images\3213232132132\among-us-5659730_1280.png" />
+    <None Remove="Resources\Images\5445654654654\taurus.jpg" />
+    <None Remove="Resources\Images\Default\default.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Images\1212312321321\Screenshot (1).png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\1231231231231\rectovi.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\1234567890124\watermelon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\1234567891989\among-us-5659730_1280.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\1234567894445\Screenshot (1).png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\2030330232020\watermelon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\2030330232029\watermelon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\2030330232231\watermelon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\2303998890054\download.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\3213232132132\among-us-5659730_1280.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\5445654654654\taurus.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Default\default.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MailKit" Version="2.10.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
