@@ -15,5 +15,6 @@ namespace MedbayTech.Users.Infrastructure.Service
         Doctor GetDoctorBy(string id);
 
         List<Doctor> GetAllDoctors();
+
     }
 }
