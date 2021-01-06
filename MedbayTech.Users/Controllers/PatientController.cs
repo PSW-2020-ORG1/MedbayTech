@@ -3,11 +3,13 @@ using MedbayTech.Users.Application.Common.Interfaces.Service;
 using MedbayTech.Users.Application.DTO;
 using MedbayTech.Users.Application.Mappers;
 using MedbayTech.Users.Domain.Entites;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace MedbayTech.Users.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PatientController : ControllerBase
@@ -27,7 +29,7 @@ namespace MedbayTech.Users.Controllers
             return Ok(_patientService.GetAll());
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpGet("maliciousPatients")]
         public IActionResult GetMaliciousPatients()
         {
@@ -37,6 +39,7 @@ namespace MedbayTech.Users.Controllers
             return Ok(maliciousPatients);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("updatePatientStatus")]
         public IActionResult UpdatePatientStatus(UpdatePatientBlockedStatusDTO dto)
         {

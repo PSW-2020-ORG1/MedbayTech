@@ -54,7 +54,7 @@ namespace MedbayTech.Users.Infrastructure.Database
                 ProfileImage = "http://localhost:8081/Resources/Images/1234567891989/among-us-5659730_1280.png",
                 IsGuestAccount = false,
                 ChosenDoctorId = "2406978890047",
-                UserType = UserType.PATIENT
+                Role = Role.Patient
             });
             context.SaveChanges();
         }
@@ -79,7 +79,7 @@ namespace MedbayTech.Users.Infrastructure.Database
                 PlaceOfBirth = new City("Novi Sad", new State("Srbija")),
                 Profession = "vodoinstalater",
                 ProfileImage = ".",
-                UserType = UserType.ADMIN
+                Role = Role.Admin
 
             });
             context.SaveChanges();
@@ -113,7 +113,7 @@ namespace MedbayTech.Users.Infrastructure.Database
                     ExaminationRoomId = 49,
                     OperationRoomId = 116,
                     SpecializationId = 1,
-                    UserType = UserType.DOCTOR
+                    Role = Role.Doctor
                 });
 
                 context.Add(new Doctor
@@ -141,7 +141,7 @@ namespace MedbayTech.Users.Infrastructure.Database
                     ExaminationRoomId = 8,
                     OperationRoomId = 64,
                     SpecializationId = 1,
-                    UserType = UserType.DOCTOR
+                    Role = Role.Doctor
                 });
                 context.Add(new Doctor
                 {
@@ -168,7 +168,7 @@ namespace MedbayTech.Users.Infrastructure.Database
                     ExaminationRoomId = 122,
                     OperationRoomId = 15,
                     SpecializationId = 1,
-                    UserType = UserType.DOCTOR
+                    Role = Role.Doctor
                 });
                 context.Add(new Doctor
                 {
@@ -195,7 +195,7 @@ namespace MedbayTech.Users.Infrastructure.Database
                     ExaminationRoomId = 4,
                     OperationRoomId = 18,
                     SpecializationId = 2,
-                    UserType = UserType.DOCTOR
+                    Role = Role.Doctor
                 });
                context.SaveChanges();
         }
