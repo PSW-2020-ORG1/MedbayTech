@@ -42,6 +42,7 @@ import { ObserveAppointmentComponent } from './appointment/observe-appointment/o
 import { AppointmentService } from './service/appointment/appointment.service';
 import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
+import { PatientLoginComponent } from './login/patient-login/patient-login/patient-login.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
@@ -65,6 +66,7 @@ import { WavesModule, ButtonsModule, IconsModule } from 'angular-bootstrap-md'
     ObserveAppointmentComponent,
     SchedulingComponent,
     RecommendationComponent,
+    PatientLoginComponent,
     NavigationBarComponent,
     HomePageComponent
   ],

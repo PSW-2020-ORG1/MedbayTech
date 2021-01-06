@@ -36,8 +36,10 @@ namespace Backend.Utils
             SeedSpecializations(context);
 
             SeedRegisteredUsers(context);
+            
             SeedDoctors(context);
             SeedPatients(context);
+            
 
             SeedFeedbacks(context);
 
@@ -199,6 +201,7 @@ namespace Backend.Utils
             });
             context.SaveChanges();
         }
+
         private void SeedSurveyQuestion(MedbayTechDbContext context)
         {
 
