@@ -16,6 +16,7 @@ namespace MedbayTech.Users.Infrastructure.Service
             _workDayRepository = workDayRepository;
         }
 
+
         public List<WorkDay> GetAll()
         {
             return _workDayRepository.GetAll();

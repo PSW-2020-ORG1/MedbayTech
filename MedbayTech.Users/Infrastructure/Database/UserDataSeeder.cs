@@ -17,11 +17,19 @@ namespace MedbayTech.Users.Infrastructure.Database
 
         public void SeedAllEntities(UserDbContext context)
         {
+            SeedSpecializations(context);
             SeedUsers(context);
             SeedDoctors(context);
             SeedDoctorsWorkDay(context);
             SeedPatients(context);
 
+            context.SaveChanges();
+        }
+
+        private void SeedSpecializations(UserDbContext context)
+        {
+            context.Add(new Specialization { SpecializationName = "Interna medicina" });
+            context.Add(new Specialization { SpecializationName = "Hirurgija" });
             context.SaveChanges();
         }
 
@@ -43,7 +51,7 @@ namespace MedbayTech.Users.Infrastructure.Database
                 Password = "pera1978",
                 Phone = "065/123-4554",
                 Profession = "vodoinstalater",
-                ProfileImage = "http://localhost:8080/Resources/Images/1234567891989/among-us-5659730_1280.png",
+                ProfileImage = "http://localhost:8081/Resources/Images/1234567891989/among-us-5659730_1280.png",
                 IsGuestAccount = false,
                 ChosenDoctorId = "2406978890047",
                 UserType = UserType.PATIENT
@@ -104,7 +112,7 @@ namespace MedbayTech.Users.Infrastructure.Database
                     DepartmentId = 1,
                     ExaminationRoomId = 49,
                     OperationRoomId = 116,
-                    Specialization = new Specialization("Hirurgija"),
+                    SpecializationId = 1,
                     UserType = UserType.DOCTOR
                 });
 
@@ -132,7 +140,7 @@ namespace MedbayTech.Users.Infrastructure.Database
                     DepartmentId = 1,
                     ExaminationRoomId = 8,
                     OperationRoomId = 64,
-                    Specialization = new Specialization("Hirurgija"),
+                    SpecializationId = 1,
                     UserType = UserType.DOCTOR
                 });
                 context.Add(new Doctor
@@ -159,7 +167,7 @@ namespace MedbayTech.Users.Infrastructure.Database
                     DepartmentId = 1,
                     ExaminationRoomId = 122,
                     OperationRoomId = 15,
-                    Specialization = new Specialization("Hirurgija"),
+                    SpecializationId = 1,
                     UserType = UserType.DOCTOR
                 });
                 context.Add(new Doctor
@@ -186,7 +194,7 @@ namespace MedbayTech.Users.Infrastructure.Database
                     DepartmentId = 1,
                     ExaminationRoomId = 4,
                     OperationRoomId = 18,
-                    Specialization = new Specialization("Hirurgija"),
+                    SpecializationId = 2,
                     UserType = UserType.DOCTOR
                 });
                context.SaveChanges();
@@ -198,7 +206,7 @@ namespace MedbayTech.Users.Infrastructure.Database
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 11), StartTime = 8, EndTime = 15, EmployeeId = "2406978890047" });
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 12), StartTime = 8, EndTime = 15, EmployeeId = "2406978890047" });
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 13), StartTime = 8, EndTime = 15, EmployeeId = "2406978890047" });
-            context.Add(new WorkDay { Date = new DateTime(2020, 12, 14), StartTime = 8, EndTime = 15, EmployeeId = "2406978890047" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 12, 28), StartTime = 8, EndTime = 15, EmployeeId = "2406978890047" });
 
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 20), StartTime = 8, EndTime = 15, EmployeeId = "2407978890045" });
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 21), StartTime = 8, EndTime = 15, EmployeeId = "2407978890045" });
@@ -214,11 +222,11 @@ namespace MedbayTech.Users.Infrastructure.Database
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, EmployeeId = "2407978890043" });
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 10), StartTime = 8, EndTime = 15, EmployeeId = "2407978890043" });
 
-            context.Add(new WorkDay { Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, EmployeeId = "2407978890041" });
-            context.Add(new WorkDay { Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, EmployeeId = "2407978890041" });
-            context.Add(new WorkDay { Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, EmployeeId = "2407978890041" });
-            context.Add(new WorkDay { Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, EmployeeId = "2407978890041" });
-            context.Add(new WorkDay { Date = new DateTime(2020, 12, 10), StartTime = 8, EndTime = 15,EmployeeId = "2407978890041" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 12), StartTime = 8, EndTime = 15, EmployeeId = "2407978890041" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 13), StartTime = 8, EndTime = 15, EmployeeId = "2407978890041" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 14), StartTime = 8, EndTime = 15, EmployeeId = "2407978890041" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 15), StartTime = 8, EndTime = 15, EmployeeId = "2407978890041" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 16), StartTime = 8, EndTime = 15,EmployeeId = "2407978890041" });
 
             context.SaveChanges();
         }
@@ -226,7 +234,7 @@ namespace MedbayTech.Users.Infrastructure.Database
 
         public bool IsAlreadyFull(UserDbContext context)
         {
-            return context.RegisteredUsers.Count() > 0;
+            return context.Specializations.Count() > 0;
         }
     }
 }

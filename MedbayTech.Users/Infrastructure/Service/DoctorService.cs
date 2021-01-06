@@ -29,9 +29,9 @@ namespace MedbayTech.Users.Infrastructure.Service
             return _doctorRepository.GetAll().ToList().Find(p => p.ExaminationRoomId == roomId);
         }
 
-        public List<Doctor> GetDoctorsBy(string specializationName)
+        public List<Doctor> GetDoctorBySpecialization(int specializationId)
         { 
-            return GetAll().Where(d => d.Specialization.SpecializationName.ToLower().Equals(specializationName)).ToList();
+            return GetAll().Where(d => d.SpecializationId == specializationId).ToList();
         }
 
         public Doctor Update(Doctor doctor)

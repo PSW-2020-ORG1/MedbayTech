@@ -22,7 +22,7 @@ namespace MedbayTech.Users.Domain.Entites
         public int DepartmentId { get;  set; }
         public int ExaminationRoomId { get;  set; }
         public int OperationRoomId { get;  set; }
-        [NotMapped]
+        public int SpecializationId { get; set; }
         public virtual Specialization Specialization { get; set; }
 
 

@@ -151,8 +151,6 @@ namespace Infrastructure.Services
                  _priorityStrategy = new DoctorPriorityStrategy(this);
              else 
                  _priorityStrategy = new DatePriorityStrategy(this, _userGateway); 
-
-            throw new NotImplementedException();
         }
         public List<Appointment> GetAvailableBy(string doctorId, DateTime date)
         {

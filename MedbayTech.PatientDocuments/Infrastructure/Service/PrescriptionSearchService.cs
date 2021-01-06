@@ -28,7 +28,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
 
             foreach (Prescription prescription in iterationList)
             {
-                if (!prescription.Medication.ToLower().Equals(medicationName.ToLower()) && !medicationName.Equals(""))
+                if (prescription.Medication != null && !prescription.Medication.Trim().ToLower().Equals(medicationName.Trim().ToLower()) && !medicationName.Trim().Equals(""))
                 {
                     prescriptions.Remove(prescription);
                 }
