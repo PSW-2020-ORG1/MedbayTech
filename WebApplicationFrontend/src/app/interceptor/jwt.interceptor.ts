@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
 export class JwtInterceptor implements HttpInterceptor {
     constructor(private authenticationService: AuthenticationService) { }
 
-
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         
         const user = this.authenticationService.getUserValue();

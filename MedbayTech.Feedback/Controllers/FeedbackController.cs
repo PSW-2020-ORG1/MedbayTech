@@ -56,6 +56,7 @@ namespace MedbayTech.Feedback.Controllers
         [HttpPost("updateFeedbackStatus")]
         public IActionResult UpdateFeedbackStatus(UpdateFeedbackStatusDTO updateFeedbackStatusDTO)
         {
+            
             //bool updatedStatus = feedbackService.UpdateStatus(updateFeedbackStatusDTO.Id, updateFeedbackStatusDTO.Approved);
             bool updatedStatus = _feedbackService.UpdateStatus(updateFeedbackStatusDTO.Id, updateFeedbackStatusDTO.Approved);
             return Ok(updatedStatus);
@@ -74,7 +75,6 @@ namespace MedbayTech.Feedback.Controllers
             {
                 return BadRequest("Failed to post feedback");
             }
-
 
             Domain.Entities.Feedback feedbackSuccessfullyCreated = _feedbackService.CreateFeedback(postFeedbackDTO.UserId, postFeedbackDTO.AdditionalNotes, postFeedbackDTO.Anonymous, postFeedbackDTO.AllowedForPublishing);
 
