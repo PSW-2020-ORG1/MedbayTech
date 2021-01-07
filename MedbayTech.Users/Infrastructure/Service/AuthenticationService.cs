@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MedbayTech.Users.Application.Common.Interfaces.Service;
 using MedbayTech.Users.Application.DTO;
+using MedbayTech.Users.Application.Mapper;
 using MedbayTech.Users.Domain.Entites;
 using MedbayTech.Users.Infrastructure.Persistance;
 using Microsoft.AspNetCore.Authentication.OAuth.Claims;
@@ -21,7 +22,7 @@ namespace MedbayTech.Users.Infrastructure.Service
         {
             _userRepository = userRepository;
         }
-        public string Authenticate(string username, string password)
+        public AuthenticatedUserDTO Authenticate(string username, string password)
         {
             RegisteredUser user = _userRepository.GetBy(username, password);
 
@@ -42,7 +43,8 @@ namespace MedbayTech.Users.Infrastructure.Service
                 signingCredentials: credentials,
                 claims: claims);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            string tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+            return RegisteredUserMapper.RegisteredUserToAuthenticatedUserDTO(user, tokenString);
 
         }
     }

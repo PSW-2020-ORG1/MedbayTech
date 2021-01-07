@@ -66,7 +66,7 @@ namespace MedbayTech.Feedback.Controllers
         /// </summary>
         /// <param name="postFeedbackDTO"></param>
         /// <returns>returns string message which tells whether posting feedback was successful or not</returns>
-
+        [Authorize(Roles = "Patient")]
         [HttpPost("createFeedback")]
         public IActionResult Post(PostFeedbackDTO postFeedbackDTO)
         {
