@@ -22,7 +22,7 @@ namespace MedbayTech.Users.Infrastructure.Service
             _patientRepository = patientRepository;
             _appointmentGateway = appointmentGateway;
         }
-        public IEnumerable<Patient> GetAll()
+        public List<Patient> GetAll()
         {
             return  _patientRepository.GetAll();
         }

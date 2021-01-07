@@ -2,6 +2,7 @@
 using GraphicEditor.ViewModel.DTO;
 using GraphicEditor.ViewModel.Enums;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -32,7 +33,7 @@ namespace GraphicEditor.View
             patients = new List<Patient>();
             HttpClient httpClient = new HttpClient();
             // var task = httpClient.GetAsync("http://localhost:53109/api/patient/" + "empty")
-            var task = httpClient.GetAsync("http://localhost:8081/api/patient")
+            var task = httpClient.GetAsync("http://localhost:8081/api/user/getAllPatients")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -69,7 +70,7 @@ namespace GraphicEditor.View
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
             //HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointment/", content);
-            HttpResponseMessage response = await client.PostAsync("http://localhost:8082/api/appointment/", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8082/api/appointment/apointmentsBySearchOrSchedule", content);
             response.EnsureSuccessStatusCode();
         }
 
@@ -86,10 +87,14 @@ namespace GraphicEditor.View
                 MessageBox.Show("You didn't select patient!");
                 return;
             }
-            MedicalRecord medicalRecord = searchDataBaseForMedicalRecord(patient.Id);
-            appointment.MedicalRecord.Id = medicalRecord.Id;
+           // MedicalRecord medicalRecord = searchDataBaseForMedicalRecord(patient.Id);
+            //appointment.MedicalRecord.Id = medicalRecord.Id;
             appointment.Doctor = null;
+            Console.WriteLine("pat" + patient.ChosenDoctor.Id);
+            appointment.Doctor = patient.ChosenDoctor;
+            appointment.Doctor.Id = patient.ChosenDoctor.Id;
             appointment.Room = null;
+            appointment.Room = appointment.Room;
             SaveToDataBase();
             MessageBox.Show("Appointment is scheduled!");
             searchAppointment.dataGridAppointment.ItemsSource = null;
