@@ -57,6 +57,10 @@
     </mat-horizontal-stepper>
 </div>
 
+<div class="recommendation">
+    <button mat-raised-button routerLink="/appointmentRecommendation">Get a recommended appointment instead</button>
+</div>
+
 <div class="container" id="tableContainer">
     <table mat-table [dataSource]="availableAppointments" class="mat-elevation-z8">
         <ng-container matColumnDef="position">

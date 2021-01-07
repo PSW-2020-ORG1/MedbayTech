@@ -49,6 +49,8 @@ import { NavigationBarAdminComponent } from './navigation-bar/navigation-bar-adm
 import { NavigationBarPatientComponent } from './navigation-bar/navigation-bar-patient/navigation-bar-patient.component';
 import { NavigationBarUserComponent } from './navigation-bar/navigation-bar-user/navigation-bar-user.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,7 +111,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     MatInputModule,
     MatSelectModule,
     MatStepperModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    IvyCarouselModule
   ],
   providers: [
     FeedbackService,
