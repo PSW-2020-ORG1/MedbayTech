@@ -15,13 +15,13 @@ export class AppComponent {
   constructor(private authService : AuthenticationService) {}
 
   public isAdmin() {
-    return this.user && this.user.role === Role.Admin;
+    return this.authService.getUserValue() && this.authService.getUserValue().role === Role.Admin;
   }
   public isPatient() {
-    return this.user && this.user.role === Role.Patient;
+    return this.authService.getUserValue() && this.authService.getUserValue().role === Role.Patient;
   }
   public isNotLogged() {
-    return !this.user;
+    return !this.authService.getUserValue();
   }
   logout(){
     this.authService.logout();  

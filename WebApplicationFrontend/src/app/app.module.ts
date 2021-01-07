@@ -45,6 +45,10 @@ import { AppointmentService } from './service/appointment/appointment.service';
 import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
 import { LoginComponent } from './login/login/login.component';
+import { NavigationBarAdminComponent } from './navigation-bar/navigation-bar-admin/navigation-bar-admin.component';
+import { NavigationBarPatientComponent } from './navigation-bar/navigation-bar-patient/navigation-bar-patient.component';
+import { NavigationBarUserComponent } from './navigation-bar/navigation-bar-user/navigation-bar-user.component';
+import { HomePageComponent } from './home-page/home-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +67,11 @@ import { LoginComponent } from './login/login/login.component';
     ObserveAppointmentComponent,
     SchedulingComponent,
     RecommendationComponent,
-    LoginComponent
+    LoginComponent,
+    NavigationBarAdminComponent,
+    NavigationBarPatientComponent,
+    NavigationBarUserComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
