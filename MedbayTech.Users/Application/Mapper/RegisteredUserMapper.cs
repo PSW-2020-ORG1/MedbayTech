@@ -9,13 +9,14 @@ namespace MedbayTech.Users.Application.Mapper
 {
     public class RegisteredUserMapper
     {
-        public static AuthenticatedUserDTO RegisteredUserToAuthenticatedUserDTO(RegisteredUser user)
+        public static AuthenticatedUserDTO RegisteredUserToAuthenticatedUserDTO(RegisteredUser user, string token)
         {
             return new AuthenticatedUserDTO
             {
                 Username = user.Username,
                 Role = user.Role,
-                Id = user.Id
+                Id = user.Id,
+                Token = token
             };
         }
     }

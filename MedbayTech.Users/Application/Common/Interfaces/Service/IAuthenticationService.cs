@@ -8,6 +8,6 @@ namespace MedbayTech.Users.Application.Common.Interfaces.Service
 {
     public interface IAuthenticationService
     {
-        string Authenticate(string username, string password);
+        AuthenticatedUserDTO Authenticate(string username, string password);
     }
 }

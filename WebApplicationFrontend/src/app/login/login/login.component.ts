@@ -1,7 +1,9 @@
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Authentication } from 'src/app/model/authentication';
+import { Role } from 'src/app/model/role';
 import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 
 
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
   password: string;
   credentials: Authentication;
   
-  constructor(private authService: AuthenticationService, private router: Router) { }
+  constructor(private authService: AuthenticationService, private router: Router, private toastr : ToastrService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -34,12 +36,15 @@ export class LoginComponent implements OnInit {
     this.credentials = new Authentication(this.username, this.password);
     this.authService.login(this.credentials).subscribe(
       result => {
-        if(result){
-          this.router.navigate(['/'])
+        if(result.role == Role.Admin){
+          this.router.navigate(['/allFeedback'])
         }
-        else{
-          this.invalidLogin = true;
+        else if(result.role == Role.Patient) {
+          this.router.navigate(['/']);
         }
+      },
+      error => {
+        this.toastr.error("Invalid username or password");
       }
     );
   }
