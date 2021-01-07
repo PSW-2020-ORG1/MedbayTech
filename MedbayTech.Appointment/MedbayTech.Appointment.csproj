@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MedbayTech.Common\MedbayTech.Common.csproj" />
+    <ProjectReference Include="..\MedbayTech.Rooms\MedbayTech.Rooms.csproj" />
   </ItemGroup>
 
 	<ItemGroup>
