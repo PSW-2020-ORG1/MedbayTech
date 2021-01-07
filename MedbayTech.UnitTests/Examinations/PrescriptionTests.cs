@@ -17,6 +17,8 @@ using WebApplication.DTO;
 using Backend.Records.Model;
 using Backend.Records.Model.Enums;
 using Model.Schedule;
+using MedbayTech.Pharmacies.Domain.Entities.Medications;
+using MedbayTech.Pharmacies.Infrastructure.Service.Reports;
 
 namespace MedbayTechUnitTests.Examinations
 {

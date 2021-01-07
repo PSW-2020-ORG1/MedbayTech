@@ -1,12 +1,7 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using MedbayTech.Pharmacies.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Model;
-using PharmacyIntegration.Model;
-using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
 
 namespace PharmacyIntegration.Controllers

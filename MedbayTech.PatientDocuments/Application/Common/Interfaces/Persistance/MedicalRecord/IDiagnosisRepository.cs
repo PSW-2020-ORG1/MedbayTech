@@ -4,6 +4,7 @@
 // Purpose: Definition of Interface IDiagnosisRepository
 
 using System;
+using MedbayTech.Common.Domain.Entities.Generalities;
 using MedbayTech.Common.Repository;
 using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
 

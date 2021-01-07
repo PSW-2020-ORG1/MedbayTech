@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Backend.Pharmacies.Model;
+using MedbayTech.Pharmacies.Application.DTO;
 using Microsoft.AspNetCore.Mvc;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;

@@ -3,13 +3,11 @@
 // Created: Thursday, April 16, 2020 5:31:19 PM
 // Purpose: Definition of Class Allergens
 
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MedbayTech.Common.Domain.Common;
 
 
-namespace MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords
+namespace MedbayTech.Common.Domain.Entities.Generalities
 {
     public class Allergens
     {

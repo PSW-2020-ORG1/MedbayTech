@@ -9,6 +9,7 @@ using Backend.Utils.DTO;
 using Newtonsoft.Json;
 using Shouldly;
 using System.Net;
+using MedbayTech.Pharmacies.Application.DTO;
 
 namespace IntegrationTests.PhIntegration
 {

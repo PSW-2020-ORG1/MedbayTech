@@ -16,7 +16,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Gateways
         {
             Patient patient = new Patient();
             using HttpClient client = new HttpClient();
-            var task = client.GetAsync(GetUsersDomain() + "/api/user/getById/" + id)
+            var task = client.GetAsync(GetUsersDomain() + "/api/user/" + id)
                 .ContinueWith((taskWithResponse) =>
                 {
                     var message = taskWithResponse.Result;
@@ -26,6 +26,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Gateways
                 });
             task.Wait();
 
+            
             return patient;
         }
 
@@ -33,7 +34,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Gateways
         {
             Doctor doctor = new Doctor();
             using HttpClient client = new HttpClient();
-            var task = client.GetAsync(GetUsersDomain() + "/api/user/getById/" + id)
+            var task = client.GetAsync(GetUsersDomain() + "/api/user/" + id)
                 .ContinueWith((taskWithResponse) =>
                 {
                     var message = taskWithResponse.Result;

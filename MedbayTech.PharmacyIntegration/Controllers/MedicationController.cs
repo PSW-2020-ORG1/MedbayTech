@@ -1,11 +1,7 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Backend.Medications.Model;
-using Backend.Medications.Service;
+using MedbayTech.Pharmacies.Domain.Entities.Medications;
 using Microsoft.AspNetCore.Mvc;
-using Model.Users;
 using PharmacyIntegration.gRPC;
 
 namespace PharmacyIntegration.Controllers
@@ -20,9 +16,7 @@ namespace PharmacyIntegration.Controllers
         {
             _inMemoryRepo = new List<Medication>();
 
-
-            Specialization specialization = new Specialization(1, "DrugSpec");
-            MedicationCategory category = new MedicationCategory("Drug", specialization);
+            MedicationCategory category = new MedicationCategory("Drug");
             Medication aspirin = new Medication("Aspirin 325mg", "Bayer", category);
             aspirin.Id = 1;
             Medication cyclopentanoperhydrophenanthrene = new Medication("Cyclopentanoperhydrophenanthrene 5mg", "StrongDrugs Inc.", category);

@@ -12,10 +12,11 @@ namespace MedbayTech.Users.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IPatientService _patientService; 
+        private readonly IPatientService _patientService;
 
         public UserController(IUserService userService, IPatientService patientService)
         {
+            
             _userService = userService;
             _patientService = patientService;
         }
@@ -27,7 +28,7 @@ namespace MedbayTech.Users.Controllers
             return Ok(_userService.GetAll());
         }
 
-        [HttpGet("getById/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetBy(string id)
         {
             return Ok(_userService.GetBy(id));

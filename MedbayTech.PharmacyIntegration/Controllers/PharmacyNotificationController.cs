@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyIntegration.Service;
 using RabbitMQ.Client;
-using Model;
-using PharmacyIntegration.Model;
+using MedbayTech.Pharmacies.Domain.Entities;
+using MedbayTech.Pharmacies.Infrastructure.Database;
 
 namespace PharmacyIntegration.Controllers
 {
@@ -15,18 +15,16 @@ namespace PharmacyIntegration.Controllers
     [ApiController]
     public class PharmacyNotificationController : Controller
     {
-        private MedbayTechDbContext _context;
-        private IPharmacyNotificationService _notificationService;
+        private readonly IPharmacyNotificationService _notificationService;
         private static string url = "amqps://vmaqngrm:BHAFy2pYqDLrQxDduUD-03HH-N0ACEVW@squid.rmq.cloudamqp.com/vmaqngrm";
         private static ConnectionFactory factory = new ConnectionFactory
         {
             Uri = new Uri(url.Replace("amqp://", "amqps://")),
         };
 
-        public PharmacyNotificationController(MedbayTechDbContext context, IPharmacyNotificationService service)
+        public PharmacyNotificationController( IPharmacyNotificationService service)
         {
-            this._context = context;
-            this._notificationService = service;
+            _notificationService = service;
         }
 
         [HttpGet("{id?}")]
@@ -56,7 +54,7 @@ namespace PharmacyIntegration.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(PharmacyIntegration.Model.PharmacyNotification pharmacyNotification)
+        public IActionResult Post(PharmacyNotification pharmacyNotification)
         {
             bool isSuccessfullyAdded = _notificationService.Update(pharmacyNotification) != null;
 

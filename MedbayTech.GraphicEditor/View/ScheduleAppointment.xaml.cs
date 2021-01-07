@@ -70,7 +70,7 @@ namespace GraphicEditor.View
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
             //HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointment/", content);
-            HttpResponseMessage response = await client.PostAsync("http://localhost:8082/api/appointment/apointmentsBySearchOrSchedule", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8083/api/appointment/apointmentsBySearchOrSchedule", content);
             response.EnsureSuccessStatusCode();
         }
 

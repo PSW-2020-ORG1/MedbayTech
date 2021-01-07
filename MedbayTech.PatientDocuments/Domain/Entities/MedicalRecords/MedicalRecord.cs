@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MedbayTech.Common.Domain.Entities;
 using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords.Enums;
+using MedbayTech.Common.Domain.Entities.Generalities;
 
 namespace MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords
 {

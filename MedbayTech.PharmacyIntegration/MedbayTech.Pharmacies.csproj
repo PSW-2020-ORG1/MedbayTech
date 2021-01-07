@@ -43,13 +43,13 @@
   <ItemGroup>
     <None Remove="vueclient%2a%2a" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Backend\Backend.csproj" />
-  </ItemGroup>
   
   <ItemGroup>
     <Protobuf Include="gRPC\Protos\model.proto" GrpcServices="Client" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\MedbayTech.Common\MedbayTech.Common.csproj" />
   </ItemGroup>
 
 </Project>
