@@ -33,7 +33,8 @@ namespace MedbayTech.Users.Infrastructure.Service
 
             var claims = new[] {
                 new Claim(ClaimTypes.Name, user.Id),
-                new Claim(ClaimTypes.Role, user.Role)
+                new Claim(ClaimTypes.Role, user.Role),
+                new Claim("Role", user.Role)
             };
 
             var token = new JwtSecurityToken(
