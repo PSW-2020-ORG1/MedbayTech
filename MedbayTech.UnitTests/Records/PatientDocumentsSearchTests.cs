@@ -14,6 +14,7 @@ using Backend.Records.Model;
 using Backend.Records.Model.Enums;
 using Backend.Examinations.WebApiService;
 using System.Linq;
+using MedbayTech.Pharmacies.Infrastructure.Service.Reports;
 
 namespace MedbayTechUnitTests
 {

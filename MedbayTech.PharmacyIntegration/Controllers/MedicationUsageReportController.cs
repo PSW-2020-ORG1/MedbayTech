@@ -1,6 +1,7 @@
-using Backend.Reports.Model;
-using Backend.Reports.Service;
-using Backend.Utils;
+
+using MedbayTech.Common.Domain.ValueObjects;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Reports;
+using MedbayTech.Pharmacies.Domain.Entities.Reports;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PharmacyIntegration.Controllers

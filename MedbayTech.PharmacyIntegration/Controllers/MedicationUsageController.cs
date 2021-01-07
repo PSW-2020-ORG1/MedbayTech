@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Backend.Reports.Model;
-using Backend.Reports.Service;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Reports;
+using MedbayTech.Pharmacies.Domain.Entities.Reports;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PharmacyIntegration.Controllers
