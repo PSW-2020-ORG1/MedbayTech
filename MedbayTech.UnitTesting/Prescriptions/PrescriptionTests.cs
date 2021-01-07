@@ -4,19 +4,20 @@ using System.Collections.Generic;
 using Xunit;
 using Moq;
 using Backend.Examinations.Model.Enums;
-using MedbayTech.Pharmacies.Domain.Entities.Medications;
 using MedbayTech.PatientDocuments.Application.DTO.Prescription;
 using MedbayTech.PatientDocuments.Domain.Entities.Treatment;
 using MedbayTech.PatientDocuments.Application.Common.Interfaces.Persistance.Treatments;
 using MedbayTech.PatientDocuments.Infrastructure.Service;
 using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
 using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords.Enums;
-using MedbayTech.Common.Domain.Entities.Generalities;
 using MedbayTech.PatientDocuments.Domain.Entities.Patient;
 using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
 using MedbayTech.PatientDocuments.Domain.Entities.Examinations.Enums;
+using MedbayTech.PatientDocuments.Application.Common.Interfaces.Gateways;
+using MedbayTech.PatientDocuments.Domain.Entities.Users;
+using System.Linq;
 
-namespace MedbayTechUnitTests.Examinations
+namespace MedbayTech.UnitTesting.Prescriptions
 {
     public class PrescriptionTests
     {
@@ -25,7 +26,7 @@ namespace MedbayTechUnitTests.Examinations
         {
             var stubRepository = CreateStubRepository();
             PrescriptionAdvancedDTO dto = CreateFalseDTO();
-            PrescriptionSearchService service = new PrescriptionSearchService(stubRepository);
+            PrescriptionSearchService service = new PrescriptionSearchService(stubRepository, CreateUserGateway());
 
             List<Prescription> prescriptions = service.AdvancedSearchPrescriptions(dto);
 
@@ -37,13 +38,22 @@ namespace MedbayTechUnitTests.Examinations
         {
             var stubRepository = CreateStubRepository();
             PrescriptionAdvancedDTO dto = CreateDTO();
-            PrescriptionSearchService service = new PrescriptionSearchService(stubRepository);
+            PrescriptionSearchService service = new PrescriptionSearchService(stubRepository, CreateUserGateway());
 
             List<Prescription> prescriptions = service.AdvancedSearchPrescriptions(dto);
 
-            prescriptions.ShouldNotBeEmpty(); 
+            prescriptions.ShouldNotBeEmpty();
         }
 
+        public static IUserGateway CreateUserGateway()
+        {
+            var userGateway = new Mock<IUserGateway>();
+            userGateway.Setup(u => u.GetDoctorBy("1234567")).Returns(new Doctor());
+            List<Patient> patients = CreatePatientList();
+            userGateway.Setup(u => u.GetPatientBy(It.IsAny<string>())).Returns((string id) => patients.FirstOrDefault(x => x.Id.Equals(id)));
+            return userGateway.Object;
+
+        }
         public static IPrescriptionRepository CreateStubRepository()
         {
             var stubRepository = new Mock<IPrescriptionRepository>();
@@ -100,6 +110,12 @@ namespace MedbayTechUnitTests.Examinations
             return dto;
         }
 
+        private static List<Patient> CreatePatientList()
+        {
+            List<Patient> patients = new List<Patient>();
+            patients.Add(CreatePatient());
+            return patients;
+        }
         private static Patient CreatePatient()
         {
             var patient = new Patient
@@ -116,17 +132,6 @@ namespace MedbayTechUnitTests.Examinations
             return patient;
         }
 
-        private static Medication CreateMedication()
-        {
-            var medication = new Medication
-            {
-                Id = 1,
-                Med = "Brufen"
-
-            };
-
-            return medication;
-        }
 
         private static MedicalRecord CreateMedicalRecord()
         {
@@ -190,7 +195,8 @@ namespace MedbayTechUnitTests.Examinations
                 Date = new DateTime(),
                 ReportId = 3,
                 Type = TreatmentType.Prescription,
-                Medication = CreateMedication()
+                Medication = "Brufen",
+                Report = CreateExaminationSurgery()
             };
 
             List<Prescription> prescriptions = new List<Prescription>();
