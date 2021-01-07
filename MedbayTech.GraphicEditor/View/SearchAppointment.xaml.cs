@@ -136,6 +136,7 @@ namespace GraphicEditor.View
             Doctor doctor = (Doctor)comboBoxDoctor.SelectedItem;
             foreach (Appointment appointment in appointments)
             {
+                
                 if (appointment.Doctor.Specialization.Id == doctor.Specialization.Id) appointmentsFilter.Add(appointment);
             }
             return appointmentsFilter;
