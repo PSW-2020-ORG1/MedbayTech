@@ -33,14 +33,15 @@ namespace MedbayTech.Pharmacies.Infrastructure.Service.Medications
 
         public Medication UpdateMedicationDataBase(Medication medication)
         {
-            _medicationRepository.Update(medication);
+            var medicationToUpdate = _medicationRepository.GetBy(medication.Id);
+            _medicationRepository.Update(medicationToUpdate.UpdateMedicationQuantity(medication));
             return medication;
         }
 
         public List<Medication> GetAllMedicationByRoomId(string query)
         {
             if (int.TryParse(query, out int id))
-                return _medicationRepository.GetAll().ToList().Where(med => med.Room.Id == id).ToList();
+                return _medicationRepository.GetAll().ToList().Where(med => med.RoomId == id).ToList();
             return new List<Medication>();
         }
 
@@ -65,9 +66,8 @@ namespace MedbayTech.Pharmacies.Infrastructure.Service.Medications
         }
         public Medication UpdateMedication(Medication medication)
         {
-            Medication medication_update = _medicationRepository.GetAll().ToList().Find(m => m.Id == medication.Id);
-            medication_update.UpdateMedication(medication);
-            return _medicationRepository.Update(medication_update);
+            var medicationToUpdate = _medicationRepository.GetBy(medication.Id);
+            return _medicationRepository.Update(medicationToUpdate.UpdateMedicationQuantity(medication));
         }
 
 

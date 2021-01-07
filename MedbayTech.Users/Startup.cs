@@ -130,18 +130,18 @@ namespace MedbayTech.Users
                 catch (Exception)
                 {
                     Console.WriteLine("Failed to execute migration");
-
-                    try
-                    {
-                        UserDataSeeder seeder = new UserDataSeeder();
-                        if (!seeder.IsAlreadyFull(context))
-                            seeder.SeedAllEntities(context);
-                    }
-                    catch (Exception)
-                    {
-                        Console.WriteLine("Failed to seed data");
-                    }
                 }
+                try
+                {
+                    UserDataSeeder seeder = new UserDataSeeder();
+                    if (!seeder.IsAlreadyFull(context))
+                        seeder.SeedAllEntities(context);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Failed to seed data");
+                }
+                
             }
         }
     }

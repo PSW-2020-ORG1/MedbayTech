@@ -5,6 +5,7 @@ using GraphicEditor.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,7 +54,7 @@ namespace GraphicEditor
                 return;
             }
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/medication/" + textBoxSearch + "/ByNameOrId")
+            var task = httpClient.GetAsync("http://localhost:50202/api/medication/" + textBoxSearch + "/ByNameOrId")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -62,6 +63,18 @@ namespace GraphicEditor
                     medications = JsonConvert.DeserializeObject<List<Medication>>(jsonString.Result);
                 });
             task.Wait();
+            List<Room> rooms = new List<Room>();
+            var task2 = httpClient.GetAsync("http://localhost:60304/api/room/")
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    rooms = JsonConvert.DeserializeObject<List<Room>>(jsonString.Result);
+                });
+            task2.Wait();
+
+            medications.ForEach(m => m.Room = rooms.FirstOrDefault(r => m.RoomId != 0 && r.Id == m.RoomId));
             dataGridMedicate.ItemsSource = medications;
             if(medications.Count == 0) MessageBox.Show("No results found!");
         }

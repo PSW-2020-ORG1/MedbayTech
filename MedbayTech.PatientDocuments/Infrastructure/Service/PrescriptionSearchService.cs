@@ -155,23 +155,6 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
             return prescriptionsDTO;
         }
 
-        public string GeneratePrescription(PrescriptionForSendingDTO prescription)
-        {
-            char pathBase = Path.DirectorySeparatorChar;
-            string fileName = prescription.FileName() + ".txt";
-            string filePath = "." + pathBase + "GeneratedPrescription" + pathBase + fileName;
-            string stringToWrite = prescription.ToString();
-            Console.WriteLine(stringToWrite);
-            using (StreamWriter streamWriter = new StreamWriter(filePath))
-            {
-                string[] split = stringToWrite.Split("\n");
-                foreach (string line in split)
-                {
-                    streamWriter.WriteLine(line);
-                }
-            }
-            return filePath;
-        }
         public List<Prescription> GetAllFor(string patientId)
         {
             var prescriptions = _repository.GetPrescriptionsFor(patientId).ToList();

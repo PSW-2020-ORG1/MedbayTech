@@ -89,12 +89,9 @@ namespace GraphicEditor.View
             }
            // MedicalRecord medicalRecord = searchDataBaseForMedicalRecord(patient.Id);
             //appointment.MedicalRecord.Id = medicalRecord.Id;
-            appointment.Doctor = null;
             Console.WriteLine("pat" + patient.ChosenDoctor.Id);
-            appointment.Doctor = patient.ChosenDoctor;
-            appointment.Doctor.Id = patient.ChosenDoctor.Id;
-            appointment.Room = null;
-            appointment.Room = appointment.Room;
+            //appointment.Doctor = patient.ChosenDoctor;
+            appointment.DoctorId = appointment.Doctor.Id;
             SaveToDataBase();
             MessageBox.Show("Appointment is scheduled!");
             searchAppointment.dataGridAppointment.ItemsSource = null;

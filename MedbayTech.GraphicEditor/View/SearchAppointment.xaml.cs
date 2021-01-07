@@ -193,6 +193,7 @@ namespace GraphicEditor.View
         private void ButtonScheduleExamination(object sender, RoutedEventArgs e)
         {
             Appointment appointment = (Appointment)dataGridAppointment.SelectedItem;
+            
             if (appointment == null)
             {
                 MessageBox.Show("You didn't select appointment!");

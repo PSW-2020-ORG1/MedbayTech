@@ -3,13 +3,11 @@
  * Author:  Vlajkov
  * Purpose: Definition of the Class HealthCorporation.MutualClasses.Medication
  ***********************************************************************/
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MedbayTech.Common.Domain.Entities;
-using MedbayTech.Common.Domain.Entities.Generalities;
 using MedbayTech.Pharmacies.Domain.Entities.Rooms;
 using MedbayTech.Pharmacies.Domain.Enums;
 
@@ -29,7 +27,6 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Medications
         [NotMapped]
         public Room Room { get; set; }
         public virtual List<DosageOfIngredient> MedicationContent { get; set; }
-        [ForeignKey("MedicationCategory")]
         public int MedicationCategoryId { get; set; }
         public virtual MedicationCategory MedicationCategory { get; set; }
         public Medication() { }
@@ -42,6 +39,30 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Medications
             MedicationCategory = category;
             MedicationCategoryId = category.Id;
             Status = MedStatus.Validation;
+        }
+
+        public Medication(Medication medication)
+        {
+            Id = medication.Id;
+            Med = medication.Med;
+            Status = medication.Status;
+            Company = medication.Company;
+            Quantity = medication.Quantity;
+            Dosage = medication.Dosage;
+            Room = medication.Room;
+            RoomId = medication.RoomId;
+            MedicationContent = medication.MedicationContent;
+            MedicationCategoryId = medication.MedicationCategoryId;
+            MedicationCategory = medication.MedicationCategory;
+
+        }
+
+        public Medication UpdateMedicationQuantity(Medication medication)
+        {
+            Medication updated = new Medication(this);
+            updated.Quantity = medication.Quantity;
+            updated.Med = medication.Med;
+            return updated;
         }
 
         public Medication(int id)

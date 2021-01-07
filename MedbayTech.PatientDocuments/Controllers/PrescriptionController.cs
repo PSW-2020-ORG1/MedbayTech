@@ -60,14 +60,5 @@ namespace WebApplication.Controller
             return Ok(_prescriptionSearchService.GetAllForSending());
         }
 
-
-        [HttpPost("generate")]
-        public IActionResult GenerateReport(PrescriptionForSendingDTO prescription)
-        {
-            return Ok(_prescriptionSearchService.GeneratePrescription(prescription));
-        }
-
-
-
     }
 }

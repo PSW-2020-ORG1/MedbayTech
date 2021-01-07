@@ -3,6 +3,7 @@ using MedbayTech.Pharmacies.Application.Common.Interfaces.Gateways;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Reports;
 using MedbayTech.Pharmacies.Application.DTO;
 using System.Collections.Generic;
+using System.IO;
 
 namespace MedbayTech.Pharmacies.Infrastructure.Service.Reports
 {
@@ -16,7 +17,23 @@ namespace MedbayTech.Pharmacies.Infrastructure.Service.Reports
         }
         public List<PrescriptionForSendingDTO> GetAll() =>
             _prescriptionGateway.GetAll();
-        public string GeneratePrescription(PrescriptionForSendingDTO prescription) =>
-            _prescriptionGateway.GeneratePrescription(prescription);
+        public string GeneratePrescription(PrescriptionForSendingDTO prescription) 
+        {
+
+            char pathBase = Path.DirectorySeparatorChar;
+            string fileName = prescription.FileName() + ".txt";
+            string filePath = "." + pathBase + "GeneratedPrescription" + pathBase + fileName;
+            string stringToWrite = prescription.ToString();
+       
+            using (StreamWriter streamWriter = new StreamWriter(filePath))
+            {
+                string[] split = stringToWrite.Split("\n");
+                foreach (string line in split)
+                {
+                    streamWriter.WriteLine(line);
+                }
+            }
+            return filePath;
+        }
     }
 }
