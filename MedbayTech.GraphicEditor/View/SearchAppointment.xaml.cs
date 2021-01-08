@@ -122,7 +122,7 @@ namespace GraphicEditor.View
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
             //HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointmentfilter/", content);
-            HttpResponseMessage response = await client.PostAsync("http://localhost:8082/api/appointmentFilter", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8083/api/appointmentFilter", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             appointments = JsonConvert.DeserializeObject<List<Appointment>>(responseBody);
@@ -136,6 +136,7 @@ namespace GraphicEditor.View
             Doctor doctor = (Doctor)comboBoxDoctor.SelectedItem;
             foreach (Appointment appointment in appointments)
             {
+                
                 if (appointment.Doctor.Specialization.Id == doctor.Specialization.Id) appointmentsFilter.Add(appointment);
             }
             return appointmentsFilter;
@@ -147,7 +148,7 @@ namespace GraphicEditor.View
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
             // HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointment", content);
-            HttpResponseMessage response = await client.PostAsync("http://localhost:8082/api/appointment/apointmentsBySearchOrSchedule", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8083/api/appointment/apointmentsBySearchOrSchedule", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             appointments = JsonConvert.DeserializeObject<List<Appointment>>(responseBody);
@@ -192,6 +193,7 @@ namespace GraphicEditor.View
         private void ButtonScheduleExamination(object sender, RoutedEventArgs e)
         {
             Appointment appointment = (Appointment)dataGridAppointment.SelectedItem;
+            
             if (appointment == null)
             {
                 MessageBox.Show("You didn't select appointment!");

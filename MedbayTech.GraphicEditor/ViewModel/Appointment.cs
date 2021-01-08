@@ -13,6 +13,7 @@ namespace GraphicEditor.ViewModel
         public bool Urgent { get; set; }
         public Room Room { get; set; }
         public MedicalRecord MedicalRecord { get; set; }
+        public string DoctorId { get; set; }
         public Doctor Doctor { get; set; }
 
         public Appointment()

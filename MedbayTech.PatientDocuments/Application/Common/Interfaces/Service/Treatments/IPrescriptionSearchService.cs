@@ -16,7 +16,6 @@ namespace MedbayTech.PatientDocuments.Application.Common.Interfaces.Service.Trea
         List<Prescription> AdvancedSearch(string medication, List<Prescription> prescriptions);
         List<Prescription> AdvancedSearch(int hourlyIntake, List<Prescription> prescriptions);
         List<PrescriptionForSendingDTO> GetAllForSending();
-        string GeneratePrescription(PrescriptionForSendingDTO prescription);
         List<Prescription> GetAll();
         List<Prescription> GetAllFor(string id);
     }

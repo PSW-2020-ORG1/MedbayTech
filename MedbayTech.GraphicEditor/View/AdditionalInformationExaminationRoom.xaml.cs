@@ -81,7 +81,7 @@ namespace GraphicEditor
             appointments = new List<Appointment>();
             HttpClient httpClient = new HttpClient();
             //var task = httpClient.GetAsync("http://localhost:53109/api/appointment/" + roomId + "/ByRoom")
-            var task = httpClient.GetAsync("http://localhost:8082/api/appointment/" + roomId + "/ByRoom")
+            var task = httpClient.GetAsync("http://localhost:8083/api/appointment/" + roomId + "/ByRoom")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;

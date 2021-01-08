@@ -47,7 +47,11 @@ namespace MedbayTech.Rooms.Controllers
             }
             else return Ok();
         }
-
+        [HttpGet]
+        public IActionResult GetAll (int id)
+        {
+            return Ok(_roomService.GetAll());
+        }
         [HttpPost]
         public IActionResult Post(Room room)
         {

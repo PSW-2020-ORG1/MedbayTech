@@ -1,0 +1,23 @@
+<div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="signIn()" >
+        <div id="loginForm">
+        <div class="inputField">
+            <mat-form-field appearance="fill" id="username-ff">
+                <mat-label>Username*</mat-label>
+                <input matInput id="username" placeholder="Username" formControlName="username">
+                <mat-error *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched && loginForm.get('username').errors['required']">Please enter username</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="inputField">
+            <mat-form-field appearance="fill" id="password-ff">
+                <mat-label>Password*</mat-label>
+                <input matInput type="password" id="password" placeholder="Password" formControlName="password">
+                <mat-error *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched && loginForm.get('password').errors['required']">Please enter password</mat-error>
+            </mat-form-field>
+        </div>
+        
+        <button mat-flat-button  style="float: right;" color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+    </div>
+    </form>
+</div>

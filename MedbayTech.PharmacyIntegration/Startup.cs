@@ -8,27 +8,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
-using Backend.Examinations.Repository;
-using Backend.Examinations.Repository.MySqlRepository;
-using Backend.Examinations.Service;
-using Backend.Examinations.Service.Interfaces;
-using Service.GeneralService;
-using Backend.Records.Repository.MySqlRepository;
-using Repository.MedicalRecordRepository;
-using Repository.UserRepository;
-using Backend.Users.Repository.MySqlRepository;
-using Backend.Medications.Service;
-using Backend.Pharmacies.Repository.MySqlRepository;
-using Backend.Reports.Repository;
-using Backend.Reports.Repository.MySqlRepository;
-using Backend.Reports.Service;
-using Model;
-using Backend.Utils;
-using PharmacyIntegration.Repository;
 using PharmacyIntegration.Service;
-using Backend.Examinations.WebApiService;
-using VueCliMiddleware;
-
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance;
+using MedbayTech.Pharmacies.Infrastructure.Persistance;
+using MedbayTech.Pharmacies.Infrastructure.Database;
+using MedbayTech.Pharmacies.Infrastructure.Persistance.Reports;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Reports;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Medications;
+using MedbayTech.Pharmacies.Infrastructure.Persistance.Medications;
+using MedbayTech.Pharmacies.Infrastructure.Service.Reports;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Reports;
+using MedbayTech.Pharmacies.Infrastructure.Service.Medications;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Medications;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Gateways;
+using MedbayTech.Pharmacies.Infrastructure.Gateways;
 
 namespace PharmacyIntegration
 {
@@ -56,7 +49,7 @@ namespace PharmacyIntegration
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
 
-            services.AddDbContext<MedbayTechDbContext>();
+            services.AddDbContext<PharmacyDbContext>();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -66,7 +59,7 @@ namespace PharmacyIntegration
             }
 
             using (var scope = app.ApplicationServices.CreateScope())
-            using (var context = scope.ServiceProvider.GetService<MedbayTechDbContext>())
+            using (var context = scope.ServiceProvider.GetService<PharmacyDbContext>())
             {
                 string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
@@ -83,8 +76,9 @@ namespace PharmacyIntegration
                 }
                 try
                 {
-                    DataSeeder seeder = new DataSeeder();
-                    seeder.SeedAllEntities(context);
+                    PharmacyDataSeeder seeder = new PharmacyDataSeeder();
+                    if (!seeder.IsAlreadyFull(context))
+                        seeder.SeedAllEntities(context);
 
                 }
                 catch (Exception)
@@ -125,28 +119,27 @@ namespace PharmacyIntegration
             }
         }
 
-        private static void AddServices(IServiceCollection services)
+        private static void AddRepository(IServiceCollection services)
         {
-            services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
-            services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
+            services.AddTransient<IPharmacyRepository, PharmacyRepository>();
+            services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationRepository>();
             services.AddTransient<IMedicationUsageRepository, MedicationUsageSqlRepository>();
             services.AddTransient<IMedicationUsageReportRepository, MedicationUsageReportSqlRepository>();
-            services.AddTransient<ITreatmentRepository, TreatmentSqlRepository>();
-            services.AddTransient<INotificationService, NotificationService>();
-            services.AddTransient<IMedicalRecordRepository, MedicalRecordSqlRepository>();
-            services.AddTransient<IUserRepository, UserSqlRepository>();
-            services.AddTransient<INotificationRepository, NotificationSqlRepository>();
-            services.AddTransient<IPrescriptionRepository, PrescriptionSqlRepository>();
+            services.AddTransient<IMedicationRepository, MedicationSqlRepository>(); 
+            
+            services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
         }
 
-        private static void AddRepository(IServiceCollection services)
+        private static void AddServices(IServiceCollection services)
         {
             services.AddScoped<IPharmacyService, PharmacyService>();
             services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
             services.AddScoped<IMedicationUsageService, MedicationUsageService>();
-            services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();
-            services.AddScoped<ITreatmentService, TreatmentService>();
+            services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();;
+            services.AddScoped<IMedicationService, MedicationService>();
             services.AddScoped<IPrescriptionSearchService, PrescriptionSearchService>();
+            services.AddScoped<IPrescriptionGateway, PrescriptionGateway>();
+
         }
 
 

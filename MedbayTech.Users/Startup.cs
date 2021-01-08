@@ -44,7 +44,7 @@ namespace MedbayTech.Users
 
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
-            
+
 
             services.AddDbContext<UserDbContext>();
 
@@ -102,7 +102,7 @@ namespace MedbayTech.Users
 
             app.UseRouting();
 
-            
+
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -111,7 +111,7 @@ namespace MedbayTech.Users
                 endpoints.MapControllers();
             });
 
-            string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development"; 
+            string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
             string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";
             using (var scope = app.ApplicationServices.CreateScope())
             using (var context = scope.ServiceProvider.GetService<UserDbContext>())
@@ -136,12 +136,12 @@ namespace MedbayTech.Users
                     UserDataSeeder seeder = new UserDataSeeder();
                     if (!seeder.IsAlreadyFull(context))
                         seeder.SeedAllEntities(context);
-
                 }
                 catch (Exception)
                 {
                     Console.WriteLine("Failed to seed data");
                 }
+                
             }
         }
     }

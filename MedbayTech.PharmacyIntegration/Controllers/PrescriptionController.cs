@@ -2,19 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Backend.Examinations.Service;
-using Backend.Examinations.Service.Interfaces;
-using Backend.Examinations.Model;
 using System.IO;
 using System.Net;
 using Backend.Reports.DTO;
 using QRCoder;
-using System.Security.Policy;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Text;
-using Backend.Utils.DTO;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Reports;
+using MedbayTech.Pharmacies.Application.DTO;
 
 namespace PharmacyIntegration.Controllers
 {
@@ -23,7 +18,7 @@ namespace PharmacyIntegration.Controllers
     [ApiController]
     public class PrescriptionController : Controller
     {
-        IPrescriptionSearchService prescriptionSearchService;
+        private readonly IPrescriptionSearchService prescriptionSearchService;
 
         public PrescriptionController(IPrescriptionSearchService prescriptionSearchService)
         {

@@ -1,3 +1,5 @@
+import { ErrorInterceptor } from './interceptor/error.interceptor';
+import { JwtInterceptor } from './interceptor/jwt.interceptor';
 import { PatientRegistrationComponent } from './registration/patient-registration/patient-registration.component';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -42,7 +44,7 @@ import { ObserveAppointmentComponent } from './appointment/observe-appointment/o
 import { AppointmentService } from './service/appointment/appointment.service';
 import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
-
+import { LoginComponent } from './login/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +62,8 @@ import { RecommendationComponent } from './appointment/recommendation/recommenda
     BlockMaliciousUsersComponent,
     ObserveAppointmentComponent,
     SchedulingComponent,
-    RecommendationComponent
+    RecommendationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -106,7 +109,9 @@ import { RecommendationComponent } from './appointment/recommendation/recommenda
     MatNativeDateModule,
     SurveyService,
     MedicalRecordService,
-    AppointmentService
+    AppointmentService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

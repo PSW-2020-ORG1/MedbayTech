@@ -1,11 +1,9 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Backend.Medications.Model;
-using Backend.Medications.Service;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Medications;
+using MedbayTech.Pharmacies.Domain.Entities.Medications;
+using MedbayTech.Pharmacies.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
-using Model.Users;
 using PharmacyIntegration.gRPC;
 
 namespace PharmacyIntegration.Controllers
@@ -15,14 +13,13 @@ namespace PharmacyIntegration.Controllers
     public class MedicationController : Controller
     {
         private List<Medication> _inMemoryRepo;
-
-        public MedicationController()
+        private readonly IMedicationService _medicationService;
+        public MedicationController(IMedicationService medicationService)
         {
+            _medicationService = medicationService;
             _inMemoryRepo = new List<Medication>();
 
-
-            Specialization specialization = new Specialization(1, "DrugSpec");
-            MedicationCategory category = new MedicationCategory("Drug", specialization);
+            MedicationCategory category = new MedicationCategory("Drug");
             Medication aspirin = new Medication("Aspirin 325mg", "Bayer", category);
             aspirin.Id = 1;
             Medication cyclopentanoperhydrophenanthrene = new Medication("Cyclopentanoperhydrophenanthrene 5mg", "StrongDrugs Inc.", category);
@@ -53,6 +50,32 @@ namespace PharmacyIntegration.Controllers
 
             string response = grpc.CheckForMedication(search).Result;
             return Ok(response);
+        }
+
+        [HttpGet("all")]
+        public IActionResult GetAll()
+        {
+            return Ok(_medicationService.GetAll());
+        }
+
+        [HttpGet("{textBoxSearch?}/{medicationSearch?}")]
+        public IActionResult Get(string textBoxSearch, MedicationSearch medicationSearch)
+        {
+            if (medicationSearch == MedicationSearch.ByNameOrId)
+            {
+                return Ok(_medicationService.GetAllMedicationsByNameOrId(textBoxSearch.ToLower().Trim()));
+            }
+            else if (medicationSearch == MedicationSearch.ByRoomId)
+            {
+                return Ok(_medicationService.GetAllMedicationByRoomId(textBoxSearch));
+            }
+            else return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult Post(Medication medication)
+        {
+            return Ok(_medicationService.UpdateMedication(medication));
         }
     }
 }

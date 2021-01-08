@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MedbayTech.Common.Domain.Entities;
 using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords.Enums;
+using MedbayTech.Common.Domain.Entities.Generalities;
 
 namespace MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords
 {
@@ -36,17 +37,15 @@ namespace MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords
             Id = id;
         }
 
-        public MedicalRecord(int id, PatientCondition currHealthState, BloodType bloodType, 
-            List<Allergens> allergies, List<Vaccines> vaccines, List<Diagnosis> illnessHistory, 
-            List<Therapy> therapies, List<FamilyIllnessHistory> familyIllnessHistory, string patientId) : this(id)
+        public MedicalRecord(PatientCondition currHealthState, BloodType bloodType, string patientId)
         {
             CurrHealthState = currHealthState;
             BloodType = bloodType;
-            Allergens = allergies;
-            Vaccines = vaccines;
-            IllnessHistory = illnessHistory;
-            Therapies = therapies;
-            FamilyIllnessHistory = familyIllnessHistory;
+            Allergens = new List<Allergens>();
+            Vaccines = new List<Vaccines>();
+            IllnessHistory = new List<Diagnosis>();
+            Therapies = new List<Therapy>();
+            FamilyIllnessHistory = new List<FamilyIllnessHistory>();
             PatientId = patientId;
         }
 

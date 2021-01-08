@@ -16,6 +16,8 @@ namespace MedbayTech.Appointment.Application.DTO
         public Domain.Entities.Appointment Appointment { get; set; }
         public List<Domain.Entities.Appointment> Appointments { get; set; }
 
-        public AppointmentFilterDTO() { }
+        public AppointmentFilterDTO() {
+           
+        }
     }
 }

@@ -53,5 +53,12 @@ namespace WebApplication.Controller
 
             return Ok(prescriptions);
         }
+
+        [HttpGet("all")]
+        public IActionResult GetAllForPharmacies()
+        {
+            return Ok(_prescriptionSearchService.GetAllForSending());
+        }
+
     }
 }

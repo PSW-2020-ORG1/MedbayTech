@@ -57,7 +57,7 @@ namespace MedbayTech.Appointment.Infrastructure.Services
         private List<MedbayTech.Appointment.Domain.Entities.Appointment> FilterAllApointments(List<MedbayTech.Appointment.Domain.Entities.Appointment> allAppointments, int hospitalEquipmentId)
         {
             List<MedbayTech.Appointment.Domain.Entities.Appointment> appointments = new List<MedbayTech.Appointment.Domain.Entities.Appointment>();
-            List<HospitalEquipment> hospitalEquipments = _roomGateway.getAllHospitalEquipments().ToList().Where(h => h.EquipmentTypeId == hospitalEquipmentId).ToList();
+            List<HospitalEquipment> hospitalEquipments = _roomGateway.GetAllHospitalEquipments().ToList().Where(h => h.EquipmentTypeId == hospitalEquipmentId).ToList();
             foreach (MedbayTech.Appointment.Domain.Entities.Appointment appointment in allAppointments)
             {
                 foreach (HospitalEquipment hospitalEquipment in hospitalEquipments)

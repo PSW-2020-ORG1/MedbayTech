@@ -9,6 +9,10 @@ using Repository.RoomRepository;
 using Backend.Medications.Service;
 using Backend.Medications.Model;
 using Backend.Medications.Repository.FileRepository;
+using MedbayTech.Pharmacies.Domain.Enums;
+using MedbayTech.Pharmacies.Domain.Entities.Medications;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Medications;
+using MedbayTech.Pharmacies.Infrastructure.Service.Medications;
 
 namespace MedbayTechUnitTests
 {

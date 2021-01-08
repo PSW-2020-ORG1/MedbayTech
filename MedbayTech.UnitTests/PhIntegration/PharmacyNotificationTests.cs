@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using Backend.Reports.Service;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service;
+using MedbayTech.Pharmacies.Domain.Entities;
 using Moq;
 using PharmacyIntegration.Model;
 using PharmacyIntegration.Repository;

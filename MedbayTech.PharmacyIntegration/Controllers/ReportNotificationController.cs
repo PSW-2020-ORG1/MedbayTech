@@ -1,4 +1,4 @@
-﻿using Backend.Reports.Model;
+﻿using MedbayTech.Pharmacies.Domain.Entities.Reports;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RabbitMQ.Client;

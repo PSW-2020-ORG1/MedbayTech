@@ -1,4 +1,5 @@
 ﻿using MedbayTech.Appointment.Domain.Enums;
+using MedbayTech.Rooms.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,15 @@ namespace MedbayTech.Appointment.Domain.Entities
     {
         public int Id { get; set; }
         public string RoomLabel { get; set; }
-        public RoomType RoomType { get; set; }
+        public Enums.RoomType RoomType { get; set; }
+
+        public Department Department { get; set; }
 
         public Room()
         {
         }
 
-        public Room(int id, string roomLabel, RoomType roomType)
+        public Room(int id, string roomLabel, Enums.RoomType roomType)
         {
             Id = id;
             RoomLabel = roomLabel;

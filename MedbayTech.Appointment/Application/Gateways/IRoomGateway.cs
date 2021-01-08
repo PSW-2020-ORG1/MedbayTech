@@ -9,8 +9,7 @@ namespace MedbayTech.Appointment.Application.Gateways
     public interface IRoomGateway
     {
         Room GetRoomBy(int roomId);
-
-        List<HospitalEquipment> getAllHospitalEquipments();
+        List<HospitalEquipment> GetAllHospitalEquipments();
         string GetRoomsDomain();
     }
 }

@@ -28,8 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Backend\Backend.csproj" />
-    <ProjectReference Include="..\MedbayTech.PharmacyIntegration\MedbayTech.PharmacyIntegration.csproj" />
-    <ProjectReference Include="..\WebApplication\WebApplication.csproj" />
+    <ProjectReference Include="..\MedbayTech.Appointment\MedbayTech.Appointment.csproj" />
+    <ProjectReference Include="..\MedbayTech.Feedback\MedbayTech.Feedback.csproj" />
+    <ProjectReference Include="..\MedbayTech.PatientDocuments\MedbayTech.PatientDocuments.csproj" />
+    <ProjectReference Include="..\MedbayTech.PharmacyIntegration\MedbayTech.Pharmacies.csproj" />
+    <ProjectReference Include="..\MedbayTech.Rooms\MedbayTech.Rooms.csproj" />
+    <ProjectReference Include="..\MedbayTech.Users\MedbayTech.Users.csproj" />
   </ItemGroup>
 </Project>

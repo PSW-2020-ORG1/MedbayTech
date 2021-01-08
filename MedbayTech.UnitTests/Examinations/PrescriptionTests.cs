@@ -1,22 +1,20 @@
-﻿using Backend.Examinations.Model;
-using Shouldly;
+﻿using Shouldly;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xunit;
-
-using Backend.Users.Repository;
-using Model.Users;
-using Backend.Examinations.Repository;
 using Moq;
 using Backend.Examinations.Model.Enums;
-using Backend.Medications.Model;
-using Backend.Examinations.WebApiService;
-using WebApplication.DTO;
-using Backend.Records.Model;
-using Backend.Records.Model.Enums;
-using Model.Schedule;
+using MedbayTech.Pharmacies.Domain.Entities.Medications;
+using MedbayTech.PatientDocuments.Application.DTO.Prescription;
+using MedbayTech.PatientDocuments.Domain.Entities.Treatment;
+using MedbayTech.PatientDocuments.Application.Common.Interfaces.Persistance.Treatments;
+using MedbayTech.PatientDocuments.Infrastructure.Service;
+using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
+using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords.Enums;
+using MedbayTech.Common.Domain.Entities.Generalities;
+using MedbayTech.PatientDocuments.Domain.Entities.Patient;
+using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
+using MedbayTech.PatientDocuments.Domain.Entities.Examinations.Enums;
 
 namespace MedbayTechUnitTests.Examinations
 {
@@ -107,23 +105,12 @@ namespace MedbayTechUnitTests.Examinations
             var patient = new Patient
             {
                 Id = "2406978890046",
-                CurrResidenceId = 1,
                 DateOfBirth = new DateTime(1978, 6, 24),
-                DateOfCreation = new DateTime(),
-                EducationLevel = EducationLevel.bachelor,
                 Email = "pera@gmail.com",
-                Gender = Gender.MALE,
-                InsurancePolicyId = "policy1",
                 Name = "Petar",
                 Surname = "Petrovic",
-                Username = "pera",
-                Password = "pera1978",
                 Phone = "065/123-4554",
-                PlaceOfBirthId = 11000,
-                Profession = "vodoinstalater",
                 ProfileImage = ".",
-                IsGuestAccount = false,
-                ChosenDoctorId = "2406978890047"
             };
 
             return patient;
@@ -148,7 +135,6 @@ namespace MedbayTechUnitTests.Examinations
                 Id = 1,
                 CurrHealthState = PatientCondition.HospitalTreatment,
                 BloodType = BloodType.ANeg,
-                Allergies = new List<Allergens>(),
                 Vaccines = new List<Vaccines>(),
                 IllnessHistory = new List<Diagnosis>(),
                 FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
@@ -160,9 +146,9 @@ namespace MedbayTechUnitTests.Examinations
             return medicalRecord;
         }
 
-        private static ExaminationSurgery CreateExaminationSurgery()
+        private static Report CreateExaminationSurgery()
         {
-            var examinationSurgery = new ExaminationSurgery
+            var examinationSurgery = new Report
             {
                 Id = 3,
                 DoctorId = "2406978890047",
@@ -187,10 +173,10 @@ namespace MedbayTechUnitTests.Examinations
                 MedicationId = 1,
                 AdditionalNotes = "svasta nesto",
                 Date = new DateTime(),
-                ExaminationSurgeryId = 3,
+                ReportId = 3,
                 Type = TreatmentType.Prescription,
-                Medication = CreateMedication(),
-                ExaminationSurgery = CreateExaminationSurgery()
+                Medication = "Brufen",
+                Report = CreateExaminationSurgery()
 
             };
 
@@ -202,7 +188,7 @@ namespace MedbayTechUnitTests.Examinations
                 MedicationId = 1,
                 AdditionalNotes = "svasta nesto",
                 Date = new DateTime(),
-                ExaminationSurgeryId = 3,
+                ReportId = 3,
                 Type = TreatmentType.Prescription,
                 Medication = CreateMedication()
             };

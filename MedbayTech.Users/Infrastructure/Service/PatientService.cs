@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using MedbayTech.Users.Application.Common.Interfaces.Gateways;
 using MedbayTech.Users.Application.Common.Interfaces.Persistance;
 using MedbayTech.Users.Application.Common.Interfaces.Service;
@@ -22,7 +21,7 @@ namespace MedbayTech.Users.Infrastructure.Service
             _patientRepository = patientRepository;
             _appointmentGateway = appointmentGateway;
         }
-        public IEnumerable<Patient> GetAll()
+        public List<Patient> GetAll()
         {
             return  _patientRepository.GetAll();
         }

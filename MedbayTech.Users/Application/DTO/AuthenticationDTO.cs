@@ -9,5 +9,11 @@ namespace MedbayTech.Users.Application.DTO
     {
         public string Username { get; set; }
         public string Password { get; set; }
+
+        public AuthenticationDTO(string username, string password)
+        {
+            Username = username;
+            Password = password;
+        }
     }
 }
