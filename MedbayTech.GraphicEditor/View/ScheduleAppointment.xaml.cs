@@ -92,6 +92,7 @@ namespace GraphicEditor.View
             Console.WriteLine("pat" + patient.ChosenDoctor.Id);
             //appointment.Doctor = patient.ChosenDoctor;
             appointment.DoctorId = appointment.Doctor.Id;
+            appointment.PatientId = patient.Id;
             SaveToDataBase();
             MessageBox.Show("Appointment is scheduled!");
             searchAppointment.dataGridAppointment.ItemsSource = null;

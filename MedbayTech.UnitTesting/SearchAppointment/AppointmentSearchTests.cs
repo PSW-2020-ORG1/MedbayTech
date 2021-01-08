@@ -24,81 +24,78 @@ namespace MedbayTech.UnitTesting.SearchAppointment
         [Fact]
         public void GetAvailableAppointmentsForDoctorAndTimeFail()
         {
-            /*var doctorWorkDayRepository = CreateStubRepositoryDoctorWork();
-            var appointmentsRepository = CreateStubRepositoryAppointment();
-            AppointmentService service = new AppointmentService(doctorWorkDayRepository, appointmentsRepository);
+            AppointmentService appService = new AppointmentService(CreateStubRepositoryAppointment(), CreateStubRepositoryDoctor(), CreateRoomGateway(), null);
+            AppointmentFilterService filterService = new AppointmentFilterService(appService, CreateStubRepositoryDoctor(), CreateRoomGateway());
             String id = "2406978890047";
             DateTime start_date = new DateTime(1999, 12, 5, 8, 0, 0);
             DateTime end_date = new DateTime(1999, 12, 5, 8, 30, 0);
-            var gotAppointment = service.GetAvailableByDoctorAndTimeInterval(new PriorityParameters { DoctorId = id, ChosenStartDate = start_date, ChosenEndDate = end_date });
+            var gotAppointment = appService.GetAvailableByDoctorAndTimeInterval(new PriorityParameters { DoctorId = id, ChosenStartDate = start_date, ChosenEndDate = end_date });
 
-            gotAppointment.IsNullOrEmpty();*/
+            gotAppointment.IsNullOrEmpty();
         }
         [Fact]
         public void GetAvailableAppointmentsForDoctorAndTimeSuccess()
         {
-            /*var doctorWorkDayRepository = CreateStubRepositoryDoctorWork();
-            var appointmentsRepository = CreateStubRepositoryAppointment();
-            AppointmentService service = new AppointmentService(doctorWorkDayRepository, appointmentsRepository);
+            AppointmentService appService = new AppointmentService(CreateStubRepositoryAppointment(), CreateStubRepositoryDoctor(), CreateRoomGateway(), null);
             String id = "2406978890047";
             DateTime start_date = new DateTime(2020, 12, 6, 8, 0, 0);
             DateTime end_date = new DateTime(2020, 12, 6, 8, 30, 0);
-            var gotAppointment = service.GetAvailableByDoctorAndTimeInterval(new PriorityParameters { DoctorId = id, ChosenStartDate = start_date, ChosenEndDate = end_date });
+            var gotAppointment = appService.GetAvailableByDoctorAndTimeInterval(new PriorityParameters { DoctorId = id, ChosenStartDate = start_date, ChosenEndDate = end_date });
 
-            gotAppointment.ShouldNotBeEmpty();*/
+            gotAppointment.ShouldNotBeEmpty();
         }
         [Fact]
         public void GetAvailableAppointmentByPriorityTimeIntervalFail()
         {
-           /* AppointmentService appointmentsService = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
-            AppointmentFilterService service = new AppointmentFilterService(appointmentsService, CreateStubRepositoryDoctor(), CreateStupRepositoryEquipment());
+            AppointmentService appService = new AppointmentService(CreateStubRepositoryAppointment(), CreateStubRepositoryDoctor(), CreateRoomGateway(), null);
+            AppointmentFilterService filterService = new AppointmentFilterService(appService, CreateStubRepositoryDoctor(), CreateRoomGateway());
             DateTime start_date = new DateTime(2022, 12, 5, 8, 0, 0);
             DateTime end_date = new DateTime(2022, 12, 5, 8, 30, 0);
-            var gotAppointments = service.GetAvailableByPriorityTimeInterval(new PriorityParameters { ChosenStartDate = start_date, ChosenEndDate = end_date });
+            var gotAppointments = filterService.GetAvailableByPriorityTimeInterval(new PriorityParameters { ChosenStartDate = start_date, ChosenEndDate = end_date });
 
-            gotAppointments.IsNullOrEmpty();*/
+            gotAppointments.IsNullOrEmpty();
         }
         [Fact]
         public void GetAvailableAppointmentByPriorityTimeIntervalSuccess()
         {
-           /* AppointmentService appointmentsService = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
-            AppointmentFilterService service = new AppointmentFilterService(appointmentsService, CreateStubRepositoryDoctor(), CreateStupRepositoryEquipment());
+            AppointmentService appService = new AppointmentService(CreateStubRepositoryAppointment(), CreateStubRepositoryDoctor(), CreateRoomGateway(), null);
+            AppointmentFilterService filterService = new AppointmentFilterService(appService, CreateStubRepositoryDoctor(), CreateRoomGateway());
             DateTime start_date = new DateTime(2020, 12, 6, 8, 0, 0);
             DateTime end_date = new DateTime(2020, 12, 6, 15, 0, 0);
-            var gotAppointments = service.GetAvailableByPriorityTimeInterval(new PriorityParameters { ChosenStartDate = start_date, ChosenEndDate = end_date });
+            var gotAppointments = filterService.GetAvailableByPriorityTimeInterval(new PriorityParameters { ChosenStartDate = start_date, ChosenEndDate = end_date });
 
-            gotAppointments.ShouldNotBeEmpty();*/
+            gotAppointments.ShouldNotBeEmpty();
         }
         [Fact]
         public void GetAvailableAppointmentByPriorityDoctorFail()
-        {/*
-            AppointmentService service = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
+        {
+            AppointmentService service = new AppointmentService(CreateStubRepositoryAppointment(), CreateStubRepositoryDoctor(), CreateRoomGateway(), null);
             String id = "2406978890047";
             DateTime start_date = new DateTime(2020, 12, 3, 8, 0, 0);
             DateTime end_date = new DateTime(2020, 12, 5, 8, 30, 0);
             var gotAppointments = service.GetAvailableByPriorityDoctor(new PriorityParameters { DoctorId = id, ChosenStartDate = start_date, ChosenEndDate = end_date });
-            gotAppointments.IsNullOrEmpty();*/
+            gotAppointments.IsNullOrEmpty();
         }
         [Fact]
         public void GetAvailableAppointmentByPriorityDoctorSuccess()
         {
-            // AppointmentService service = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
-            // String id = "2406978890047";
+            AppointmentService service = new AppointmentService(CreateStubRepositoryAppointment(), CreateStubRepositoryDoctor(), CreateRoomGateway(), null);
+            String id = "2406978890047";
             DateTime start_date = new DateTime(2020, 12, 6, 8, 0, 0);
             DateTime end_date = new DateTime(2020, 12, 6, 15, 0, 0);
-           // var gotAppointments = service.GetAvailableByPriorityDoctor(new PriorityParameters { DoctorId = id, ChosenStartDate = start_date, ChosenEndDate = end_date });
-            // gotAppointments.ShouldNotBeEmpty();
+            var gotAppointments = service.GetAvailableByPriorityDoctor(new PriorityParameters { DoctorId = id, ChosenStartDate = start_date, ChosenEndDate = end_date });
+            gotAppointments.ShouldNotBeEmpty();
         }
         [Fact]
         public void GetAvailableAppointmentByPriorityEquipmentSuccess()
         {
-            // AppointmentService appService = new AppointmentService(CreateStubRepositoryDoctorWork(), CreateStubRepositoryAppointment());
-            // AppointmentFilterService filterService = new AppointmentFilterService(appService, CreateStubRepositoryDoctor(), CreateStupRepositoryEquipment());
+            AppointmentService appService = new AppointmentService(CreateStubRepositoryAppointment(), CreateStubRepositoryDoctor(), CreateRoomGateway(), null);
+            AppointmentFilterService filterService = new AppointmentFilterService(appService, CreateStubRepositoryDoctor(), CreateRoomGateway());
             String id = "2406978890047";
             DateTime start_date = new DateTime(2020, 12, 6, 8, 0, 0);
             DateTime end_date = new DateTime(2020, 12, 6, 15, 0, 0);
-            // var gotAppointments = filterService.GetAvailableByDoctorTimeIntervalAndEquipment(new PriorityParameters { DoctorId = id, ChosenStartDate = start_date, ChosenEndDate = end_date }, 9, "doctor");
-             //gotAppointments.ShouldNotBeEmpty();
+            var gotAppointments = filterService.GetAvailableByDoctorTimeIntervalAndEquipment(new PriorityParameters { DoctorId = id, ChosenStartDate = start_date, ChosenEndDate = end_date }, 9, "doctor");
+            gotAppointments.ShouldNotBeEmpty();
         }
         [Fact]
         public void GetAvailableAppointmentByPriorityEquipmentFail()
