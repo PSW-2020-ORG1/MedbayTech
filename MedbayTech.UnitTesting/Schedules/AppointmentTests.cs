@@ -38,12 +38,225 @@ namespace MedbayTech.UnitTesting.Schedules
             recommendedAppointments.ShouldNotBeEmpty();
         }
 
+        [Fact]
+        public void Recommend_by_date_priority_fail()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            var priorityParameters = CreatePriorityParametersForDatePriorityFail();
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+
+            List<Appointment.Domain.Entities.Appointment> recommendedAppointments = appointmentService.GetAvailableByStrategy(priorityParameters);
+
+            recommendedAppointments.ShouldBeEmpty();
+        }
+
+        [Fact]
+        public void Recommend_by_doctor_priority_success()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            var priorityParameters = CreatePriorityParametersForDoctorPrioritySuccess();
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+
+
+            List<Appointment.Domain.Entities.Appointment> recommendedAppointments = appointmentService.GetAvailableByStrategy(priorityParameters);
+
+            recommendedAppointments.ShouldNotBeEmpty();
+        }
+
+        [Fact]
+        public void Recommend_by_doctor_priority_fail()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            var priorityParameters = CreatePriorityParametersForDoctorPriorityFail();
+
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+            List<Appointment.Domain.Entities.Appointment> recommendedAppointments = appointmentService.GetAvailableByStrategy(priorityParameters);
+
+            recommendedAppointments.ShouldBeEmpty();
+        }
+
+        [Fact]
+        public void Get_available()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+            var workDay = appointmentService.GetAvailableBy("2407978890045", new DateTime(2020, 12, 20));
+            workDay.Count.ShouldBe(14);
+        }
+        [Fact]
+        public void Schedule_appointment_success()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            var appointment = CreateAppointmentSuccess();
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+            var createdAppointment = appointmentService.ScheduleAppointment(appointment);
+            createdAppointment.ShouldNotBe(null);
+
+        }
+        [Fact]
+        public void Schedule_appointment_fail()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            var appointment = CreateAppointmentFail();
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+            var createdAppointment = appointmentService.ScheduleAppointment(appointment);
+
+            createdAppointment.ShouldBe(null);
+
+        }
+        [Fact]
+        public void Find_patients_Appointments()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+            List<Appointment.Domain.Entities.Appointment> appointments = appointmentService.GetAppointmentsByPatientId("2406978890046");
+
+            appointments.Count.ShouldBe(6);
+        }
+        [Fact]
+        public void Doesnt_find_patinents_Appointments()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+            List<Appointment.Domain.Entities.Appointment> appointments = appointmentService.GetAppointmentsByPatientId("2406978890045");
+
+            appointments.Count.ShouldBe(0);
+        }
+        [Fact]
+        public void Find_surveyable_Appointments()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+            List<Appointment.Domain.Entities.Appointment> appointments = appointmentService.GetSurveyableAppointments("2406978890046");
+
+            appointments.Count.ShouldBe(2);
+        }
+        [Fact]
+        public void Doesnt_find_surveyable_Appointments()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+            List<Appointment.Domain.Entities.Appointment> appointments = appointmentService.GetSurveyableAppointments("2541998800045");
+
+            appointments.Count.ShouldBe(0);
+        }
+        [Fact]
+        public void Find_all_other_Appointments()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+            List<Appointment.Domain.Entities.Appointment> appointments = appointmentService.GetAllOtherAppointments("2406978890046");
+
+            appointments.Count.ShouldBe(3);
+        }
+        [Fact]
+        public void Doesnt_find_all_other_Appointments()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+            List<Appointment.Domain.Entities.Appointment> appointments = appointmentService.GetAllOtherAppointments("2541998800045");
+
+            appointments.Count.ShouldBe(0);
+        }
+        [Fact]
+        public void Find_cancelable_Appointments()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+            List<Appointment.Domain.Entities.Appointment> appointments = appointmentService.GetCancelableAppointments("2406978890046");
+
+            appointments.Count.ShouldBe(1);
+
+        }
+
+        [Fact]
+        public void Doesnt_find_cancelable_Appointments()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+            List<Appointment.Domain.Entities.Appointment> appointments = appointmentService.GetCancelableAppointments("2541998800045");
+
+            appointments.Count.ShouldBe(0);
+
+        }
+        [Fact]
+        public void Cancel_appointment()
+        {
+            var surveyRepository = CreateSurveyStubRepository();
+            var userGateway = CreateUserGateway();
+            var roomGateway = CreateRoomGateway();
+            var appointmentRepository = CreateAppointmentStubRepository();
+            AppointmentService appointmentService = new AppointmentService(appointmentRepository, userGateway, roomGateway, surveyRepository);
+
+            List<Appointment.Domain.Entities.Appointment> appointments = appointmentService.GetCancelableAppointments("2406978890046");
+            bool b = appointmentService.UpdateCanceled(6);
+
+            b.ShouldBeTrue();
+
+        }
         public static IUserGateway CreateUserGateway()
         {
             var userGateway = new Mock<IUserGateway>();
             var doctors = CreateDoctors();
             var patients = CreatePatients();
             var workDays = CreateWorkDays();
+            var specializations = CreateSpecializations();
 
             userGateway.Setup(u => u.GetDoctorBy(It.IsAny<String>()))
                 .Returns((string id) => doctors.FirstOrDefault(x => x.Id.Equals(id)));
@@ -55,7 +268,21 @@ namespace MedbayTech.UnitTesting.Schedules
                 (string id, DateTime date) =>
                     workDays.FirstOrDefault(x => x.DoctorId.Equals(id) && DateTime.Compare(x.Date, date) == 0));
 
+            userGateway.Setup(u => u.GetDoctorsBy(It.IsAny<int>()))
+                .Returns((int id) => doctors.Where(x => x.SpecializationId == id).ToList());
+
             return userGateway.Object;
+        }
+
+        private static List<Specialization> CreateSpecializations()
+        {
+            List<Specialization> specializations = new List<Specialization>();
+            Specialization spec1 = new Specialization {Id = 1, SpecializationName = "Interna medicina" };
+            Specialization spec2 = new Specialization {Id = 2, SpecializationName = "Hirurgija" };
+
+            specializations.Add(spec1);
+            specializations.Add(spec2);
+            return specializations;
         }
 
         public static IRoomGateway CreateRoomGateway()
@@ -77,7 +304,7 @@ namespace MedbayTech.UnitTesting.Schedules
             stubRepository.Setup(x => x.Create(It.IsAny<Appointment.Domain.Entities.Appointment>())).Returns(appointment);
             stubRepository.Setup(x => x.GetBy(It.IsAny<string>(), It.IsAny<DateTime>())).Returns(
                 (string id, DateTime date) =>
-                    appointments.Where(a => a.DoctorId.Equals(id) && a.Period.StartTime.Date.CompareTo(date.Date) == 0).ToList());
+                    appointments.Where(a => a.DoctorId.Equals(id) && DateTime.Compare(a.Period.StartTime, date) == 0).ToList());
 
             stubRepository.Setup(x => x.GetAppointmentsByPatientId(It.IsAny<string>())).Returns(
                 (string id) =>
@@ -123,7 +350,7 @@ namespace MedbayTech.UnitTesting.Schedules
                 CanceledByPatient = true,
                 RoomId = 1,
                 PatientId = "2406978890046",
-                Patient = CreatePatient()
+                Patient = CreatePatient(),
             };
         }
         public static List<Appointment.Domain.Entities.Appointment> CreateAppointments()
@@ -134,6 +361,7 @@ namespace MedbayTech.UnitTesting.Schedules
                 Id = 1,
                 TypeOfAppointment = TypeOfAppointment.Examination,
                 ShortDescription = "standard appointment",
+                Period = new Period(new DateTime(2020, 12, 5, 8, 0, 0), new DateTime(2020, 12, 5, 8, 30, 0)),
                 Urgent = true,
                 Deleted = false,
                 Finished = true,
@@ -148,6 +376,7 @@ namespace MedbayTech.UnitTesting.Schedules
                 Id = 2,
                 TypeOfAppointment = TypeOfAppointment.Examination,
                 ShortDescription = "standard appointment",
+                Period = new Period(new DateTime(2020, 12, 5, 8, 0, 0), new DateTime(2020, 12, 5, 8, 30, 0)),
                 Urgent = true,
                 Deleted = false,
                 Finished = true,
@@ -162,6 +391,7 @@ namespace MedbayTech.UnitTesting.Schedules
                 Id = 3,
                 TypeOfAppointment = TypeOfAppointment.Examination,
                 ShortDescription = "standard appointment",
+                Period = new Period(new DateTime(2020, 12, 5, 8, 0, 0), new DateTime(2020, 12, 5, 8, 30, 0)),
                 Urgent = true,
                 Deleted = false,
                 Finished = true,
@@ -369,5 +599,53 @@ namespace MedbayTech.UnitTesting.Schedules
                 Priority = PriorityType.date
             };
         }
+        public PriorityParameters CreatePriorityParametersForDatePriorityFail()
+        {
+            return new PriorityParameters
+            {
+                DoctorId = "2406978890047",
+                ChosenStartDate = new DateTime(2021, 1, 1),
+                ChosenEndDate = new DateTime(2021, 1, 5),
+                SpecializationId = 1,
+                Priority = PriorityType.date
+            };
+        }
+        public PriorityParameters CreatePriorityParametersForDoctorPrioritySuccess()
+        {
+            return new PriorityParameters
+            {
+                DoctorId = "2406978890047",
+                ChosenStartDate = new DateTime(2020, 12, 10),
+                ChosenEndDate = new DateTime(2020, 12, 16),
+                SpecializationId = 1,
+                Priority = PriorityType.doctor
+            };
+
+        }
+        public PriorityParameters CreatePriorityParametersForDoctorPriorityFail()
+        {
+            return new PriorityParameters
+            {
+                DoctorId = "2406978890047",
+                ChosenStartDate = new DateTime(2021, 12, 10),
+                ChosenEndDate = new DateTime(2021, 12, 16),
+                SpecializationId = 1,
+                Priority = PriorityType.doctor
+            };
+
+        }
+        public static Appointment.Domain.Entities.Appointment CreateAppointmentFail()
+        {
+            return new Appointment.Domain.Entities.Appointment
+            {
+                Id = 9,
+                Period = new Period(new DateTime(2020, 12, 10, 8, 0, 0, 0), new DateTime(2020, 12, 9, 8, 30, 0)),
+                DoctorId = "2406978890047",
+                PatientId = "2406978890046",
+                Patient = CreatePatient(),
+                RoomId = 1
+            };
+        }
+
     }
 }
