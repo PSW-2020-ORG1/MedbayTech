@@ -1,3 +1,8 @@
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
 button {
     margin-left: 80vw;
     margin-top: 15px;
