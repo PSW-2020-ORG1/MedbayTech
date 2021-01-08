@@ -13,6 +13,8 @@ namespace GraphicEditor.ViewModel
         public virtual Doctor ChosenDoctor { get; set; }
         public MedicalRecord MedicalRecord { get; set; }
 
+
+
         public Patient(string id, string name, string surname, DateTime dateOfBirth)
         {
             Id = id;

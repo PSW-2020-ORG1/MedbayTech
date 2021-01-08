@@ -14,6 +14,11 @@ namespace GraphicEditor.ViewModel
         public Room ExaminationRoom { get; set; }
         public Room OperationRoom { get; set; }
 
+        public string FullName
+        {
+            get { return Name + " " + Surname; }
+        }
+
         public Doctor()
         {
         }

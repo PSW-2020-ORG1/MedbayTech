@@ -31,7 +31,7 @@
                 <DataGridTextColumn Header="Name" Width="149" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Surname" Width="149" Binding="{Binding Surname}"/>
                 <DataGridTextColumn Header="Date of birth" Width="149" Binding="{Binding DateOfBirth}"/>
-                <DataGridTextColumn Header="Doctor" Width="149" Binding="{Binding ChosenDoctor.Name}"/>
+                <DataGridTextColumn Header="Doctor" Width="149" Binding="{Binding ChosenDoctor.FullName}"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>
