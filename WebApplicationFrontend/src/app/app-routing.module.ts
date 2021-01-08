@@ -19,6 +19,7 @@ import { ObserveAppointmentComponent } from './appointment/observe-appointment/o
 import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
 import { LoginComponent } from './login/login/login.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 
@@ -107,6 +108,10 @@ const routes: Routes = [
   {
     path : 'login',
     component : LoginComponent
+  },
+  {
+    path : 'home',
+    component : HomePageComponent
   }
   
 ];
