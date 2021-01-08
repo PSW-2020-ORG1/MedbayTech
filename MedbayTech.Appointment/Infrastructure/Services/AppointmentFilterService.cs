@@ -47,7 +47,7 @@ namespace MedbayTech.Appointment.Infrastructure.Services
         {
             foreach (MedbayTech.Appointment.Domain.Entities.Appointment appointment in appointments)
             {
-                Doctor doctor = _userGateway.GetDoctorBy(appointment.Doctor.Id);             
+                Doctor doctor = _userGateway.GetDoctorBy(appointment.DoctorId);             
                 appointment.RoomId = doctor.ExaminationRoomId;
                 appointment.Room = _roomGateway.GetRoomBy(appointment.RoomId);
             }
