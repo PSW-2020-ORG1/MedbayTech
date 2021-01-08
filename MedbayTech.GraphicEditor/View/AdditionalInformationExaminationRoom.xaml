@@ -1,9 +1,9 @@
-﻿<Window x:Class="GraphicEditor.AdditionalInformationExaminationRoom"
+﻿<Window x:Class="MedbayTech.GraphicEditor.AdditionalInformationExaminationRoom"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GraphicEditor"
+        xmlns:local="clr-namespace:MedbayTech.GraphicEditor"
         mc:Ignorable="d"
         Title="AdditionalInformationExaminationRoom" Height="450" Width="500" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" BorderBrush="Black" WindowStyle="None">
     <DockPanel>

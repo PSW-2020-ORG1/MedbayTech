@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GraphicEditor.View.Building1
+namespace MedbayTech.GraphicEditor.View.Building1
 {
     /// <summary>
     /// Interaction logic for Building1SecondFloorPlan.xaml

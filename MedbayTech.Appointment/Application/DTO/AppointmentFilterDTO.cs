@@ -1,14 +1,13 @@
-﻿using System;
+﻿using MedbayTech.Appointment.Application.Enums;
+using System;
 using System.Collections.Generic;
-using MedbayTech.Appointment.Application.Enums;
-using MedbayTech.Appointment.Infrastructure.Services.AppointmentSearchOrSchedule;
 
 namespace MedbayTech.Appointment.Application.DTO
 {
     public class AppointmentFilterDTO
     {
         public AppointmentFilterCriteria AppointmentFilterCriteria { get; set; }
-        public Enums.AppointmentSearchOrSchedule AppointmentSearchOrSchedule { get; set; }
+        public AppointmentSearchOrSchedule AppointmentSearchOrSchedule { get; set; }
         public DateTime StartInterval { get; set; }
         public DateTime EndInterval { get; set; }
         public string DoctorId { get; set; }

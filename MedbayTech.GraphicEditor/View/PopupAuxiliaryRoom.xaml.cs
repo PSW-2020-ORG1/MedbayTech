@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 
-namespace GraphicEditor
-{
+namespace MedbayTech.GraphicEditor
+{ 
     /// <summary>
     /// Interaction logic for PopupAuxiliaryRoom.xaml
     /// </summary>

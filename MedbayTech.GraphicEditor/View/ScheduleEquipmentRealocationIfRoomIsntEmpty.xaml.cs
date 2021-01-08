@@ -1,7 +1,7 @@
-﻿using Backend.Schedules.Service.Enum;
-using Backend.Utils.DTO;
-using Model.Rooms;
-using Model.Schedule;
+﻿using GraphicEditor.ViewModel;
+using MedbayTech.GraphicEditor.ViewModel;
+using MedbayTech.GraphicEditor.ViewModel.DTO;
+using MedbayTech.GraphicEditor.ViewModel.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace GraphicEditor.View
+namespace MedbayTech.GraphicEditor.View
 {
     /// <summary>
     /// Interaction logic for ScheduleEquipmentRealocationIfRoomIsntEmpty.xaml

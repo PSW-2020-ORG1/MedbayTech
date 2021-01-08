@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace GraphicEditor
+namespace MedbayTech.GraphicEditor
 {
     /// <summary>
     /// Interaction logic for AdditionalInformationPatientRoom.xaml

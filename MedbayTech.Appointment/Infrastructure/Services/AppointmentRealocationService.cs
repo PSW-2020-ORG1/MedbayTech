@@ -58,7 +58,7 @@ namespace MedbayTech.Appointment.Infrastructure.Services
 
         private bool AppointmentIsScheduledAlready(int roomId, DateTime date)
         {
-            MedbayTech.Appointment.Domain.Entities.Appointment checkIfAppointment = _appointmentRepository.GetAll().ToList().Find(a => a.RoomId == roomId && a.Start == date);
+            MedbayTech.Appointment.Domain.Entities.Appointment checkIfAppointment = _appointmentRepository.GetAll().ToList().Find(a => a.RoomId == roomId && a.Period.StartTime == date);
             if (checkIfAppointment == null) return false;
             else return true;
         }
@@ -121,19 +121,5 @@ namespace MedbayTech.Appointment.Infrastructure.Services
             return false;
         }
 
-        List<AppointmentRealocation> IAppointmentRealocationService.GetAllAvailableAppointmentByRoomAndDateTime(int roomId, DateTime chosenStart, DateTime chosenEnd)
-        {
-            throw new NotImplementedException();
-        }
-
-        public AppointmentRealocation ScheduleAppointmentRealocation(AppointmentRealocation appointmentRealocation)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<AppointmentRealocation> IAppointmentRealocationService.GetAlternativeAvailableAppointments(int fromRoomId, int toRoomId, DateTime dateTime, int hospitalEquipmentId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

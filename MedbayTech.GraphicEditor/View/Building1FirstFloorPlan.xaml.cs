@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
@@ -10,7 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace GraphicEditor.View.Building1
+namespace MedbayTech.GraphicEditor.View.Building1
 {
     /// <summary>
     /// Interaction logic for Building1FirstFloorPlan.xaml
@@ -112,7 +110,7 @@ namespace GraphicEditor.View.Building1
         }
         private void mouseClickArrowDown(object sender, MouseButtonEventArgs e)
         {
-            page.MainFrame.Content = new Building1FloorPlan(page);
+            page.MainFrame.Content = new Building1GroundFloorPlan(page);
             if (page.tabControl.SelectedIndex == 0)
             {
                 page.comboBoxH1.SelectedIndex = 0;

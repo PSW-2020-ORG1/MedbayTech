@@ -1,9 +1,7 @@
-﻿using Backend.Records.Model;
-using Backend.Schedules.Service.Enum;
-using Backend.Utils.DTO;
-using Model.Rooms;
-using Model.Schedule;
-using Model.Users;
+﻿using GraphicEditor.ViewModel;
+using GraphicEditor.ViewModel.DTO;
+using GraphicEditor.ViewModel.Enums;
+using MedbayTech.Common.Domain.ValueObjects;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,7 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace GraphicEditor.View
+namespace MedbayTech.GraphicEditor.View
 {
     /// <summary>
     /// Interaction logic for ScheduleEmergencyAppointment.xaml
@@ -73,7 +71,7 @@ namespace GraphicEditor.View
                 return;
             }
             MedicalRecord medicalRecord = SearchDataBaseForMedicalRecord(patient.Id);
-            appointment.MedicalRecordId = medicalRecord.Id;
+            appointment.MedicalRecord.Id = medicalRecord.Id;
             appointment.PatientId = patient.Id;
             appointment.Doctor = null;
             appointment.Room = null;
@@ -102,8 +100,8 @@ namespace GraphicEditor.View
             time = time * 60;
             Appointment newAppointment = new Appointment()
             {
-                Start = appointment.End.AddMinutes(time - 30),
-                End = appointment.End.AddMinutes(time),
+                //Start = appointment.Start.AddMinutes(time - 30),
+                //End = appointment.End.AddMinutes(time),
                 CancelationDate = appointment.CancelationDate,
                 TypeOfAppointment = appointment.TypeOfAppointment,
                 ShortDescription = appointment.ShortDescription,
@@ -111,11 +109,13 @@ namespace GraphicEditor.View
                 Deleted = appointment.Deleted,
                 Finished = appointment.Finished,
                 RoomId = appointment.RoomId,
-                MedicalRecordId = appointment.MedicalRecordId,
+                MedicalRecord = appointment.MedicalRecord,
                 DoctorId = appointment.DoctorId,
                 PatientId = appointment.PatientId
             };
-            MessageBox.Show("Start: " + newAppointment.Start.ToString() + " End: " + newAppointment.End.ToString());
+            newAppointment.Period.StartTime = appointment.Period.StartTime.AddMinutes(time - 30);
+            newAppointment.Period.EndTime = appointment.Period.EndTime.AddMinutes(time);
+            MessageBox.Show("Start: " + newAppointment.Period.StartTime.ToString() + " End: " + newAppointment.Period.EndTime.ToString());
             return newAppointment;
         }
 
@@ -244,10 +244,10 @@ namespace GraphicEditor.View
 
         private void ButtonAddNewPatient(object sender, RoutedEventArgs e)
         {
-            AddPatient addPatient = new AddPatient();
-            addPatient.ShowDialog();
-            SearchDataBaseForPatients();
-            comboBoxPatient.ItemsSource = patients;
+           // AddPatient addPatient = new AddPatient();
+            //addPatient.ShowDialog();
+            //SearchDataBaseForPatients();
+            //comboBoxPatient.ItemsSource = patients;
         }
     }
 }

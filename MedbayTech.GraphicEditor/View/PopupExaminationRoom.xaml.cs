@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace GraphicEditor
+namespace MedbayTech.GraphicEditor
 {
     /// <summary>
     /// Interaction logic for PopupExaminationRoom.xaml

@@ -1,9 +1,10 @@
-﻿using Backend.Schedules.Service.Enum;
-using Backend.Utils.DTO;
-using GraphicEditor.View.Building1;
-using GraphicEditor.View.Building2;
-using Model.Rooms;
-using Model.Schedule;
+﻿
+using GraphicEditor.ViewModel;
+using MedbayTech.GraphicEditor.View.Building1;
+using MedbayTech.GraphicEditor.View.Building2;
+using MedbayTech.GraphicEditor.ViewModel;
+using MedbayTech.GraphicEditor.ViewModel.DTO;
+using MedbayTech.GraphicEditor.ViewModel.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
-namespace GraphicEditor.View
+namespace MedbayTech.GraphicEditor.View
 {
     /// <summary>
     /// Interaction logic for ScheduleEquipmentRealocation.xaml
@@ -250,7 +251,7 @@ namespace GraphicEditor.View
             Id = appointmentRoom.Id.ToString();
             page.comboBoxH1.SelectedIndex = appointmentRoom.Department.Floor;
             page.comboBoxHospital1.SelectedIndex = appointmentRoom.Department.Floor;
-            page.SetActiveUserControl(page.legend);
+            page.SetActiveUserControl(page.legenda);
             TransitionAnimation();
         }
         private void SelectComboBoxesForSecondHospital(Room appointmentRoom)
@@ -258,7 +259,7 @@ namespace GraphicEditor.View
             Id = appointmentRoom.Id.ToString();
             page.comboBoxH2.SelectedIndex = appointmentRoom.Department.Floor;
             page.comboBoxHospital2.SelectedIndex = appointmentRoom.Department.Floor;
-            page.SetActiveUserControl(page.legend);
+            page.SetActiveUserControl(page.legenda);
             TransitionAnimation();
         }
 

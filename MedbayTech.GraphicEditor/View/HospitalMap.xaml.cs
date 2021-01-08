@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GraphicEditor
+namespace MedbayTech.GraphicEditor
 {
     /// <summary>
     /// Interaction logic for HospitalMap.xaml
@@ -42,7 +42,7 @@ namespace GraphicEditor
 
         private void ShowBuilding1FloorPlan(object sender, MouseButtonEventArgs e)
         {
-            page.MainFrame.Content = new Building1FloorPlan(page);
+            page.MainFrame.Content = new Building1GroundFloorPlan(page);
             page.comboBoxH1.SelectedIndex = 0;
             page.SetActiveUserControl(page.legenda);
             TransitionAnimation();
@@ -51,7 +51,7 @@ namespace GraphicEditor
 
         private void ShowBuilding2FloorPlan(object sender, MouseButtonEventArgs e)
         {
-            page.MainFrame.Content = new Building2FloorPlan(page);
+            page.MainFrame.Content = new Building2GroundFloorPlan(page);
             page.comboBoxH2.SelectedIndex = 0;
             page.SetActiveUserControl(page.legenda);
             TransitionAnimation();
