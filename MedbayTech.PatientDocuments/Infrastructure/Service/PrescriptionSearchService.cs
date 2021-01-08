@@ -5,7 +5,6 @@ using MedbayTech.PatientDocuments.Application.DTO.Prescription;
 using MedbayTech.PatientDocuments.Domain.Entities.Treatment;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace MedbayTech.PatientDocuments.Infrastructure.Service

@@ -8,7 +8,7 @@ namespace MedbayTech.Appointment.Domain.Entities
 {
     public class WorkDay
     {
-        public string EmployeeId { get; set; }
+        public string DoctorId { get; set; }
         public DateTime Date { get; set; }
         public int StartTime { get; set; }
         public int EndTime { get; set; }
@@ -20,7 +20,7 @@ namespace MedbayTech.Appointment.Domain.Entities
 
         public WorkDay(string employeeId, DateTime date, int startTime, int endTime, Doctor doctor)
         {
-            EmployeeId = employeeId;
+            DoctorId = employeeId;
             Date = date;
             StartTime = startTime;
             EndTime = endTime;

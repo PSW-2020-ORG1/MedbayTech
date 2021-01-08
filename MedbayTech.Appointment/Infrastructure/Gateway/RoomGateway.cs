@@ -9,7 +9,7 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
 {
     public class RoomGateway : IRoomGateway
     {
-        public List<HospitalEquipment> getAllHospitalEquipments()
+        public List<HospitalEquipment> GetAllHospitalEquipments()
         {
             List<HospitalEquipment> hospitalEquipments = new List<HospitalEquipment>();
             using HttpClient client = new HttpClient();

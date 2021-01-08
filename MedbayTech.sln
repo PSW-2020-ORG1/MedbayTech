@@ -34,6 +34,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Rooms", "MedbayT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedbayTech.Medications", "MedbayTech.Medication\MedbayTech.Medications.csproj", "{3A6769A0-36A6-4390-B267-76C79E87D4A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedbayTech.UnitTesting", "MedbayTech.UnitTesting\MedbayTech.UnitTesting.csproj", "{90E94EAB-17C1-4689-8B7C-B1A34A2927BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{3A6769A0-36A6-4390-B267-76C79E87D4A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A6769A0-36A6-4390-B267-76C79E87D4A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A6769A0-36A6-4390-B267-76C79E87D4A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90E94EAB-17C1-4689-8B7C-B1A34A2927BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90E94EAB-17C1-4689-8B7C-B1A34A2927BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90E94EAB-17C1-4689-8B7C-B1A34A2927BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90E94EAB-17C1-4689-8B7C-B1A34A2927BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
