@@ -17,6 +17,10 @@
             </mat-form-field>
         </div>
         
+        <div style="float: left;">
+            <label>Not registered yet?</label> 
+            <a mat-button routerLink="/patientRegistration">Register now</a>
+        </div>
         <button mat-flat-button  style="float: right;" color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
     </div>
     </form>
