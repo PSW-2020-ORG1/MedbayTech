@@ -22,6 +22,7 @@ namespace MedbayTech.Users.Infrastructure.Service
         {
             if (!PatientExists(patient.Id, patient.Username))
             {
+                patient.Role = "Patient";
                 return _patientRepository.Create(patient);
             }
 

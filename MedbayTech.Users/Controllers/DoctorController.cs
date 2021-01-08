@@ -64,7 +64,7 @@ namespace MedbayTech.Users.Controllers
             }
         }
 
-        [Authorize(Roles = "Patient")]
+        
         [HttpGet("searchDoctor")]
         public IActionResult GetAll()
         {
