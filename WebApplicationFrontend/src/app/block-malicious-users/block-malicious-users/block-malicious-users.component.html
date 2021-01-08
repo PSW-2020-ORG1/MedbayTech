@@ -13,7 +13,7 @@
             <td> {{patient.username}} </td>
             <td> {{patient.name}} </td>
             <td> {{patient.surname}} </td>
-            <td> <button [disabled]="patient.clicked" (click)="patient.isSelected = true;patient.clicked = true;updateStatus(patient.id)" mat-raised-button color="warn">Block</button> </td>
+            <td class="block-button-td"> <button [disabled]="patient.clicked" class="block-button" (click)="patient.isSelected = true;patient.clicked = true;updateStatus(patient.id)" mat-raised-button color="warn">Block</button> </td>
         </tr>
        
     </table>
