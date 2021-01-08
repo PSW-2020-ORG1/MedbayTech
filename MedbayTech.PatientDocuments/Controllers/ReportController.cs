@@ -5,6 +5,7 @@ using MedbayTech.PatientDocuments.Application.DTO.Report;
 using MedbayTech.PatientDocuments.Application.Mapper.Report;
 using MedbayTech.PatientDocuments.Application.Validators.Report;
 using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MedbayTech.PatientDocuments.Controllers
@@ -20,6 +21,7 @@ namespace MedbayTech.PatientDocuments.Controllers
             _reportSearchService = reportSearchService;
         }
 
+        [Authorize(Roles = "Patient")]
         [HttpPost("advancedSearch")]
         public IActionResult AdvancedSearchPrescriptions(ReportAdvancedDTO dto)
         {
@@ -38,7 +40,7 @@ namespace MedbayTech.PatientDocuments.Controllers
             return Ok(reports);
         }
 
-
+        [Authorize(Roles = "Patient")]
         [HttpPost]
         public IActionResult GetSearchedReports(ReportSearchDTO dto)
         {

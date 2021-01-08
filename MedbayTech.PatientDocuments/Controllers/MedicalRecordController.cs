@@ -3,6 +3,7 @@ using MedbayTech.PatientDocuments.Application.DTO;
 using MedbayTech.PatientDocuments.Application.Exception;
 using MedbayTech.PatientDocuments.Application.Mapper;
 using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -20,12 +21,14 @@ namespace MedbayTech.PatientDocuments.Controllers
             _medicalRecordService = medicalRecordService;
         }
 
+        [Authorize(Roles = "Patient")]
         [HttpGet]
         public IActionResult GetMedicalRecordByPatient()
         {
             try
             {
-                MedicalRecord medicalRecord = _medicalRecordService.GetMedicalRecordByPatient("2406978890046");
+                string id = User.Identity.Name;
+                MedicalRecord medicalRecord = _medicalRecordService.GetMedicalRecordByPatient(id);
                 MedicalRecordDTO medicalRecordDTO = MedicalRecordMapper.MedicalRecordToMedicalRecordDTO(medicalRecord);
                 return Ok(medicalRecordDTO);
             }

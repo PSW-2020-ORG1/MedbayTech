@@ -43,6 +43,7 @@ namespace MedbayTech.Users.Controllers
         [HttpPost("updatePatientStatus")]
         public IActionResult UpdatePatientStatus(UpdatePatientBlockedStatusDTO dto)
         {
+            
             Patient updatedStatus = _patientService.UpdateStatus(dto.Id);
             return Ok("Patient blocked successfully");
         }

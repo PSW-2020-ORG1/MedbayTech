@@ -46,9 +46,9 @@ namespace MedbayTech.Users.Infrastructure.Service
                 }
             }
 
-            return blockablePatients;
-            return new List<Patient>();
+            return blockablePatients;    
         }
+
         private bool CheckIfPatientBlockable(List<Appointment> canceledAppointments)
         {
             if (canceledAppointments.Count < numberOfCancelableAppointments)

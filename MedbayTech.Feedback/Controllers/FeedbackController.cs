@@ -76,6 +76,7 @@ namespace MedbayTech.Feedback.Controllers
                 return BadRequest("Failed to post feedback");
             }
 
+            postFeedbackDTO.UserId = User.Identity.Name;
             Domain.Entities.Feedback feedbackSuccessfullyCreated = _feedbackService.CreateFeedback(postFeedbackDTO.UserId, postFeedbackDTO.AdditionalNotes, postFeedbackDTO.Anonymous, postFeedbackDTO.AllowedForPublishing);
 
 

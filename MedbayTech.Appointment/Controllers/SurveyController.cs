@@ -2,6 +2,7 @@
 using MedbayTech.Appointment.Application.DTO;
 using MedbayTech.Appointment.Application.Mappers;
 using MedbayTech.Appointment.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace MedbayTech.Appointment.Controllers
         {
             _surveyService = surveyService;
         }
+
+        [Authorize(Roles = "Patient")]
         [HttpGet("allQuestions")]
         public IActionResult GetAllQuestions()
         {
@@ -26,6 +29,7 @@ namespace MedbayTech.Appointment.Controllers
             return Ok(allQuestionsDTOs);
         }
 
+        [Authorize(Roles = "Patient")]
         [HttpPost("createSurvey")]
         public IActionResult Post(PostSurveyDTO postSurveyDTO)
         {

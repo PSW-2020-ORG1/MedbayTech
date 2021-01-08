@@ -7,6 +7,7 @@ using MedbayTech.Users.Application.Mapper;
 using System.Collections.Generic;
 using System.Linq;
 using MedbayTech.Users.Domain.Entites;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MedbayTech.Users.Controllers
 {
@@ -33,6 +34,7 @@ namespace MedbayTech.Users.Controllers
             return Ok(_doctorService.GetDoctorByExaminationRoom(id));
         }
 
+        [Authorize(Roles = "Patient")]
         [HttpGet("specialization/{id}")]
         public IActionResult GetBySpecialization(int id)
         {
@@ -62,6 +64,7 @@ namespace MedbayTech.Users.Controllers
             }
         }
 
+        [Authorize(Roles = "Patient")]
         [HttpGet("searchDoctor")]
         public IActionResult GetAll()
         {

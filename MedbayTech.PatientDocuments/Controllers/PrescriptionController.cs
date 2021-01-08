@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using MedbayTech.PatientDocuments.Application.DTO.Prescription;
 using MedbayTech.PatientDocuments.Application.Mapper;
 using MedbayTech.PatientDocuments.Application.Validators.Prescription;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication.Controller
 {
@@ -20,6 +21,7 @@ namespace WebApplication.Controller
             _prescriptionSearchService = prescriptionSearchService;
         }
 
+        [Authorize(Roles = "Patient")]
         [HttpPost]
         public IActionResult GetSearchedPrescription(PrescriptionSearchDTO dto)
         {
@@ -38,6 +40,7 @@ namespace WebApplication.Controller
             return Ok(prescriptionDTOs);
         }
 
+        [Authorize(Roles = "Patient")]
         [HttpPost("advancedSearch")]
         public IActionResult AdvancedSearchPrescriptions(PrescriptionAdvancedDTO dto)
         {

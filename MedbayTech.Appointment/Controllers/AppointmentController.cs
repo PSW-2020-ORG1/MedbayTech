@@ -8,6 +8,7 @@ using MedbayTech.Appointment.Application.DTO;
 using MedbayTech.Appointment.Application.Validators;
 using MedbayTech.Appointment.Domain.Entities;
 using MedbayTech.Appointment.Infrastructure.Services.AppointmentSearchOrSchedule;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controllers
@@ -24,41 +25,52 @@ namespace Controllers
             
         }
 
+        [Authorize(Roles = "Patient")]
         [HttpGet("cancelableAppointments/{userId}")]
         public IActionResult GetAppointmentsBy(string userId)
         {
+            userId = User.Identity.Name;
             return Ok(_appointmentService.GetCancelableAppointments(userId));
         }
 
+        
         [HttpGet("allAppointments")]
         public IActionResult GetAll()
         {
             return Ok(_appointmentService.GetAll());
         }
+
+        [Authorize(Roles = "Patient")]
         [HttpGet("allSurveyableAppointments")] 
         public IActionResult GetSurveyableAppointments()
         {
-            List<Appointment> appointments = _appointmentService.GetSurveyableAppointments("2406978890046");
+            string id = User.Identity.Name;
+            List<Appointment> appointments = _appointmentService.GetSurveyableAppointments(id);
             List<GetAppointmentDTO> appointmentsDTO = AppointmentMapper.ListAppointmentToListGetAppointmentDTO(appointments);
             return Ok(appointmentsDTO);
         }
 
+        [Authorize(Roles = "Patient")]
         [HttpGet("allOtherAppointments")] 
         public IActionResult GetAllOtherAppointments()
         {
-            List<Appointment> appointments = _appointmentService.GetAllOtherAppointments("2406978890046");
+            string id = User.Identity.Name;
+            List<Appointment> appointments = _appointmentService.GetAllOtherAppointments(id);
             List<GetAppointmentDTO> appointmentsDTO = AppointmentMapper.ListAppointmentToListGetAppointmentDTO(appointments);
             return Ok(appointmentsDTO);
         }
 
+        [Authorize(Roles = "Patient")]
         [HttpGet("allCancelableAppointments")] 
         public IActionResult GetCancelableAppointments()
         {
-            List<Appointment> appointments = _appointmentService.GetCancelableAppointments("2406978890046");
+            string id = User.Identity.Name;
+            List<Appointment> appointments = _appointmentService.GetCancelableAppointments(id);
             List<GetAppointmentDTO> appointmentsDTO = AppointmentMapper.ListAppointmentToListGetAppointmentDTO(appointments);
             return Ok(appointmentsDTO);
         }
 
+        [Authorize(Roles = "Patient")]
         [HttpPost("cancelAppointment")]
         public IActionResult CancelAppointment(CancelAppointmentDTO cancelAppointmentDTO)
         {
@@ -73,6 +85,7 @@ namespace Controllers
             return Ok(dto);
         }
 
+        [Authorize(Roles = "Patient")]
         [HttpPost("available")]
         public IActionResult GetAvailable(SearchAppointmentsStandardDTO appointmentsDTO)
         {
@@ -81,6 +94,7 @@ namespace Controllers
             return Ok(dto);
         }
 
+        [Authorize(Roles = "Patient")]
         [HttpPost("availableStrategy")]
         public IActionResult GetAvailable2(SearchAppointmentsDTO appoitmentsDTO)
         {
@@ -91,6 +105,7 @@ namespace Controllers
             return Ok(dto);
         }
 
+        [Authorize(Roles = "Patient")]
         [HttpPost("schedule")]
         public IActionResult Schedule(ScheduleAppointmentDTO dto)
         {
@@ -102,7 +117,7 @@ namespace Controllers
                 return BadRequest("Can not schedule appointmnet in the past");
             }
 
-            dto.PatientId = "2406978890046";
+            dto.PatientId = User.Identity.Name;
 
             Appointment appointment = AppointmentMapper.ScheduleAppointmentDTOToAppointment(dto);
             appointment.PatientId = dto.PatientId;
