@@ -1,29 +1,17 @@
-﻿using Backend.Users.Repository;
-using Backend.Users.WebApiService;
-using Model.Users;
+﻿using MedbayTech.Users.Application.Common.Interfaces.Persistance;
+using MedbayTech.Users.Infrastructure.Service;
 using Moq;
 using Shouldly;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using MedbayTech.Users.Domain.Entites;
 using Xunit;
+using MedbayTech.Users.Domain.Entites.Enums;
 
-namespace MedbayTechUnitTests.Users
+namespace MedbayTech.UnitTesting.Users
 {
-    public class RegistrationTestIntegration
+    public class RegistrationTests
     {
-
-        /*[Fact]
-        public void Register_patient_integration()
-        {
-            WebRegistrationController controller = new WebRegistrationController();
-            var patient = CreatePatient();
-
-            Patient registeredPatient = controller.Register(patient);
-
-            registeredPatient.ShouldNotBeNull();
-        }*/
         [Fact]
         public void Exists_by_id()
         {
@@ -33,14 +21,14 @@ namespace MedbayTechUnitTests.Users
             bool existsById = service.ExistsById("2406978890044");
 
             existsById.ShouldBe(true);
-        }    
+        }
         public static IPatientRepository CreateStubRepository()
         {
             var stubRepository = new Mock<IPatientRepository>();
             var patients = CreateListOfPatients();
             var patient = CreatePatient();
             stubRepository.Setup(p => p.GetAll()).Returns(patients);
-            stubRepository.Setup(m => m.ExistsById(It.IsAny<string>()))
+            stubRepository.Setup(m => m.ExistsBy(It.IsAny<string>()))
                 .Returns((string id) => patients.Exists(p => p.Id.Equals(id)));
             stubRepository.Setup(p => p.Create(It.IsAny<Patient>())).Returns(It.IsAny<Patient>());
 
@@ -51,19 +39,16 @@ namespace MedbayTechUnitTests.Users
             Patient patient = new Patient
             {
                 Id = "2406978891024",
-                CurrResidenceId = 1,
                 DateOfBirth = new DateTime(1978, 6, 24),
                 DateOfCreation = new DateTime(),
                 EducationLevel = EducationLevel.bachelor,
                 Email = "marko@gmail.com",
                 Gender = Gender.MALE,
-                InsurancePolicyId = "policy1",
                 Name = "Marko",
                 Surname = "Markovic",
                 Username = "markic",
                 Password = "marko1978",
                 Phone = "065/123-4554",
-                PlaceOfBirthId = 11000,
                 Profession = "vodoinstalater",
                 ProfileImage = ".",
                 ChosenDoctor = null,
@@ -79,19 +64,16 @@ namespace MedbayTechUnitTests.Users
             Patient patient2 = new Patient
             {
                 Id = "2406978890044",
-                CurrResidenceId = 1,
                 DateOfBirth = new DateTime(1978, 6, 24),
                 DateOfCreation = new DateTime(),
                 EducationLevel = EducationLevel.bachelor,
                 Email = "marko@gmail.com",
                 Gender = Gender.MALE,
-                InsurancePolicyId = "policy1",
                 Name = "Marko",
                 Surname = "Markovic",
                 Username = "markic",
                 Password = "marko1978",
                 Phone = "065/123-4554",
-                PlaceOfBirthId = 11000,
                 Profession = "vodoinstalater",
                 ProfileImage = ".",
                 ChosenDoctor = null,
@@ -100,22 +82,19 @@ namespace MedbayTechUnitTests.Users
 
             patients.Add(patient2);
 
-            Patient patient1 =  new Patient
+            Patient patient1 = new Patient
             {
                 Id = "2406978890048",
-                CurrResidenceId = 1,
                 DateOfBirth = new DateTime(1978, 6, 24),
                 DateOfCreation = new DateTime(),
                 EducationLevel = EducationLevel.bachelor,
                 Email = "marko@gmail.com",
                 Gender = Gender.MALE,
-                InsurancePolicyId = "policy1",
                 Name = "Marko",
                 Surname = "Markovic",
                 Username = "markic",
                 Password = "marko1978",
                 Phone = "065/123-4554",
-                PlaceOfBirthId = 11000,
                 Profession = "vodoinstalater",
                 ProfileImage = ".",
                 ChosenDoctor = null,

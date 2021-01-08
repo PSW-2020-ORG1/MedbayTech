@@ -27,7 +27,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
             var record = _medicalRecordRepository.GetRecordBy(patientId);
             if (record != null)
                 return record.SetPatient(_userGateway.GetPatientBy(patientId));
-            throw new EntityNotFound();
+            return null;
         }
     }
 }

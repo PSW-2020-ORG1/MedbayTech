@@ -1,17 +1,15 @@
-﻿using Backend.Utils.DTO;
+﻿
+using Application.DTO;
+using MedbayTech.Appointment;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Model.Users;
 using Newtonsoft.Json;
 using Shouldly;
-using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using WebApplication;
 using Xunit;
 
-namespace IntegrationTests.Schedules
+namespace MedbayTech.WebIntegrationTests.Schedules
 {
     public class CancelAppointmentTestIntegration : IClassFixture<WebApplicationFactory<Startup>>
     {
@@ -26,7 +24,7 @@ namespace IntegrationTests.Schedules
         {
             HttpClient client = _factory.CreateClient();
             var id = AppointmentId();
-            StringContent content = new StringContent(JsonConvert.SerializeObject(id), System.Text.Encoding.UTF8, "application/json");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync("/api/appointment/cancelAppointment", content);
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
         }

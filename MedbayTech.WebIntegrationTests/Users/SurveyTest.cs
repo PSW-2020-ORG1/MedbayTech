@@ -1,22 +1,15 @@
-using Backend.Users.Model.Enums;
-using Backend.Users.Repository;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Model.Users;
-using Moq;
+
 using System.Collections.Generic;
-using Backend.Users.WebApiService;
 using Shouldly;
 using System;
-using System.Text;
 using Xunit;
-using Backend.Users.Model;
-using Model.Schedule;
-using WebApplication.DTO;
 using Microsoft.AspNetCore.Mvc.Testing;
-using WebApplication;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net;
+using MedbayTech.Users;
+using MedbayTech.Appointment.Application.DTO;
+using MedbayTech.Appointment.Domain.Enums;
 
 namespace MedbayTechUnitTests
 {

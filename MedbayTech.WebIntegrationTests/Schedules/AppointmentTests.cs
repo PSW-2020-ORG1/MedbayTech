@@ -2,37 +2,33 @@
 using System.Text;
 using Xunit;
 using Shouldly;
-using Model.Users;
-using Backend.Records.Model.Enums;
-using Backend.Records.WebApiService;
-using System.Linq;
 using System.Net.Http;
 using Microsoft.AspNetCore.Mvc.Testing;
-using WebApplication;
 using System.Net;
-using Backend.Utils.DTO;
-using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Application.DTO;
+using MedbayTech.WebIntegrationTests.WebApplicationFactory;
 
-namespace IntegrationTests.Schedule
+namespace MedbayTech.WebIntegrationTests.Schedules
 {
-    public class AppointmentTests : IClassFixture<WebApplicationFactory<Startup>>
+    public class AppointmentTests : IClassFixture<AppointmentService>
     {
-        private readonly WebApplicationFactory<Startup> _factory;
+        private readonly AppointmentService _factoryAppointment;
 
-        public AppointmentTests(WebApplicationFactory<Startup> factory)
+        public AppointmentTests(AppointmentService factory)
         {
-            _factory = factory;
+            _factoryAppointment = factory;
         }
 
         [Fact]
         public async System.Threading.Tasks.Task ScheduleAppointmentAsync()
         {
-            HttpClient client = _factory.CreateClient();
+            HttpClient clientAppointment = _factoryAppointment.CreateClient();
+            
             var appointment = CreateAppointment();
-            StringContent content = new StringContent(JsonConvert.SerializeObject(appointment), System.Text.Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = await client.PostAsync("api/appointment/schedule", content);
+            StringContent content = new StringContent(JsonConvert.SerializeObject(appointment), Encoding.UTF8, "application/json");
+            
+            HttpResponseMessage response = await clientAppointment.PostAsync("api/appointment/schedule", content);
 
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
 
@@ -42,10 +38,10 @@ namespace IntegrationTests.Schedule
         {
             return new ScheduleAppointmentDTO
             {
-                DoctorId = "2407978890045",
+                DoctorId = "2407978890041",
                 PatientId = "2406978890046",
-                StartTime = new DateTime(2020, 12, 28, 13, 30, 0),
-                EndTime =  new DateTime(2020, 12, 28, 14, 0, 0)
+                StartTime = new DateTime(2021, 01, 16, 08, 0, 0),
+                EndTime = new DateTime(2021, 01, 16, 08, 30, 0)
             };
         }
     }

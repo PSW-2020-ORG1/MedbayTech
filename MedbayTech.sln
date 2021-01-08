@@ -34,6 +34,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Rooms", "MedbayT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.UnitTesting", "MedbayTech.UnitTesting\MedbayTech.UnitTesting.csproj", "{90E94EAB-17C1-4689-8B7C-B1A34A2927BE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Medications", "MedbayTech.Medication\MedbayTech.Medications.csproj", "{9E015849-AC8C-4F2F-B050-2F8A48E6075E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{90E94EAB-17C1-4689-8B7C-B1A34A2927BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90E94EAB-17C1-4689-8B7C-B1A34A2927BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90E94EAB-17C1-4689-8B7C-B1A34A2927BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E015849-AC8C-4F2F-B050-2F8A48E6075E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E015849-AC8C-4F2F-B050-2F8A48E6075E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E015849-AC8C-4F2F-B050-2F8A48E6075E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E015849-AC8C-4F2F-B050-2F8A48E6075E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

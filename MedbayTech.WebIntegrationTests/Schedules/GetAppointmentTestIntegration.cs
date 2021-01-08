@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
+﻿using MedbayTech.Appointment;
+using MedbayTech.Appointment.Domain.Entities;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Model.Users;
 using Shouldly;
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using WebApplication;
 using Xunit;
 
-namespace IntegrationTests.Schedules
+namespace MedbayTech.WebIntegrationTests.Schedules
 {
     public class GetAppointmentTestIntegration : IClassFixture<WebApplicationFactory<Startup>>
     {
@@ -57,12 +56,16 @@ namespace IntegrationTests.Schedules
 
         private static Patient CreatePatient()
         {
-            City city = new City(1, "Novi Sad", new State(1, "Srbija"));
-            Address address = new Address(1, "Radnicka", 2, 4, 1, city);
-            InsurancePolicy insurancePolicy = new InsurancePolicy { Id = "001", Company = "Dunav Osiguranje", StartTime = new DateTime(2015, 1, 1), EndTime = new DateTime(2025, 1, 1) };
-
-            Patient patient = new Patient("Marko", "Markovic", new DateTime(1975, 6, 9), "2406978890046", "marko@gmail.com", "marko12", "password",
-                EducationLevel.bachelor, Gender.MALE, "0123456", "vodoinstalater", city, address, insurancePolicy, false, ".");
+            Patient patient = new Patient
+            {
+                Id = "2406978890046",
+                Name = "Marko",
+                Surname = "Markovic",
+                DateOfBirth = new DateTime(1975, 6, 9),
+                ChosenDoctor = new Doctor(),
+                Blocked = false,
+                ShouldBeBlocked = false
+            };
 
             return patient;
         }
