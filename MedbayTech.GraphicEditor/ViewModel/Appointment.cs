@@ -16,6 +16,7 @@ namespace GraphicEditor.ViewModel
         public string DoctorId { get; set; }
         public Doctor Doctor { get; set; }
 
+        public string PatientId { get; set; }
         public Appointment()
         {
         }

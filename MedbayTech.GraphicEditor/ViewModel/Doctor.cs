@@ -10,6 +10,7 @@ namespace GraphicEditor.ViewModel
         public string Name { get; set; }
         public string Surname { get; set; }
         public Specialization Specialization { get; set; }
+        public int ExaminationRoomId { get; set; }
         public Room ExaminationRoom { get; set; }
         public Room OperationRoom { get; set; }
 
