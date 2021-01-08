@@ -1,0 +1,31 @@
+FROM node:12.2.0 as builder
+
+WORKDIR /app
+COPY WebApplicationFrontend/ .
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY WebApplicationFrontend/package.json .
+RUN npm install
+RUN npm install -g @angular/cli@7.3.9
+
+RUN ng build --prod 
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+WORKDIR /app
+
+COPY MedbayTech.APIGateways/MedbayTech.APIGateways.csproj MedbayTech.APIGateways/
+RUN dotnet restore MedbayTech.APIGateways/MedbayTech.APIGateways.csproj
+
+COPY . .
+
+FROM build AS publish
+WORKDIR /app
+COPY --from=builder app/dist/WebApplicationFrontend/ MedbayTech.APIGateways/wwwroot/dist/
+RUN dotnet publish MedbayTech.APIGateways/MedbayTech.APIGateways.csproj -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS runtime
+RUN useradd -ms /bin/bash defaultuser
+WORKDIR /app
+
+COPY --from=publish /app/out .
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet MedbayTech.APIGateways.dll
