@@ -67,7 +67,7 @@ namespace GraphicEditor
         {
             medications = new List<Medication>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:50202/api/medication/" + roomId + "/ByRoomId")
+            var task = httpClient.GetAsync("http://localhost:56764/api/medication/" + roomId + "/ByRoomId")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -93,7 +93,7 @@ namespace GraphicEditor
                     string jsonMedication = JsonConvert.SerializeObject(m);
                     HttpClient httpClientMedication = new HttpClient();
                     content = new StringContent(jsonMedication, Encoding.UTF8, "application/json");
-                    result = httpClientMedication.PostAsync("http://localhost:50202/api/medication/", content);
+                    result = httpClientMedication.PostAsync("http://localhost:56764/api/medication/", content);
                     result.Wait();
                 }
             }
