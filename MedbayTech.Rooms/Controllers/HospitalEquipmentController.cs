@@ -1,8 +1,8 @@
-﻿
-using MedbayTech.Rooms.Application.Common.Service;
+﻿using MedbayTech.Rooms.Application.Common.Service;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GraphicEditorWebService.Controllers
+
+namespace MedbayTech.Rooms.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -27,5 +27,6 @@ namespace GraphicEditorWebService.Controllers
         {
             return Ok(_hospitalEquipmentService.GetAllEquipment());
         }
+
     }
 }

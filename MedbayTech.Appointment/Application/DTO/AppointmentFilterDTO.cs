@@ -8,7 +8,7 @@ namespace MedbayTech.Appointment.Application.DTO
     public class AppointmentFilterDTO
     {
         public AppointmentFilterCriteria AppointmentFilterCriteria { get; set; }
-        public AppointmentSearchOrSchedule AppointmentSearchOrSchedule { get; set; }
+        public Enums.AppointmentSearchOrSchedule AppointmentSearchOrSchedule { get; set; }
         public DateTime StartInterval { get; set; }
         public DateTime EndInterval { get; set; }
         public string DoctorId { get; set; }

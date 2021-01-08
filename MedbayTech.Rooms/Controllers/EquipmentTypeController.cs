@@ -1,7 +1,7 @@
 ﻿using MedbayTech.Rooms.Application.Common.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GraphicEditorWebService.Controllers
+namespace MedbayTech.Rooms.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
