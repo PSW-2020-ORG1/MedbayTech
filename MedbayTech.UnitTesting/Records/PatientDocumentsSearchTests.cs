@@ -199,7 +199,8 @@ namespace MedbayTech.UnitTesting.Records
             var doctor = CreateDoctor();
             var mr = CreateMedicalRecord();
 
-            Report rep1 = new Report {
+            Report rep1 = new Report
+            {
                 StartTime = new DateTime(2020, 11, 27),
                 Type = TypeOfAppointment.Examination,
                 DoctorId = doctor.Id,
