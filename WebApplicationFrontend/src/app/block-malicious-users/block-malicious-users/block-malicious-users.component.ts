@@ -29,7 +29,15 @@ export class BlockMaliciousUsersComponent implements OnInit {
   }
 
   updateStatus(patientId) { 
-    this.service.updatePatientStatus(new UpdatePatientBlockedStatus(patientId)).subscribe();
+    this.service.updatePatientStatus(new UpdatePatientBlockedStatus(patientId)).subscribe(
+      res => {
+        alert(res);
+      },
+      error => {
+        alert(error);
+      }
+
+    );
     //location.reload();
   }
 
