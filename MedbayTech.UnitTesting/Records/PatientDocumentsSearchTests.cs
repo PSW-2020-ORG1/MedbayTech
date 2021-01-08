@@ -26,7 +26,7 @@ namespace MedbayTech.UnitTesting.Records
         [Fact]
         public void Find_searched_prescription()
         {
-            PrescriptionSearchService service = new PrescriptionSearchService(CreatePrescriptionStubRepository());
+            PrescriptionSearchService service = new PrescriptionSearchService(CreatePrescriptionStubRepository(), CreateUserGateway());
             List<Prescription> prescriptions = service.GetSearchedPrescription("Metafex", 6, new DateTime(2020, 11, 24), new DateTime(2020, 12, 1)).ToList();
 
             prescriptions.FirstOrDefault().ShouldNotBeNull();
@@ -35,7 +35,7 @@ namespace MedbayTech.UnitTesting.Records
         [Fact]
         public void Dont_find_searched_prescription()
         {
-            PrescriptionSearchService service = new PrescriptionSearchService(CreatePrescriptionStubRepository());
+            PrescriptionSearchService service = new PrescriptionSearchService(CreatePrescriptionStubRepository(), CreateUserGateway());
             List<Prescription> prescriptions = service.GetSearchedPrescription("Brufen", 6, new DateTime(2020, 11, 24), new DateTime(2020, 11, 25)).ToList();
 
             prescriptions.FirstOrDefault().ShouldBeNull();
@@ -45,7 +45,7 @@ namespace MedbayTech.UnitTesting.Records
         [Fact]
         public void Find_searched_report()
         {
-            ReportSearchService service = new ReportSearchService(CreateReportStubRepository());
+            ReportSearchService service = new ReportSearchService(CreateReportStubRepository(), CreateUserGateway());
             List<Report> reports = service.GetSearchedReports("Petar", new DateTime(2020, 11, 26), new DateTime(2020, 11, 30), "Examination").ToList();
 
             reports.FirstOrDefault().ShouldNotBeNull();
@@ -55,7 +55,7 @@ namespace MedbayTech.UnitTesting.Records
         [Fact]
         public void Dont_find_searched_report()
         {
-            ReportSearchService service = new ReportSearchService(CreateReportStubRepository());
+            ReportSearchService service = new ReportSearchService(CreateReportStubRepository(), CreateUserGateway());
             List<Report> reports = service.GetSearchedReports("Petar", new DateTime(2020, 11, 24), new DateTime(2020, 11, 25), "Examination").ToList();
 
             reports.FirstOrDefault().ShouldBeNull();
@@ -71,6 +71,7 @@ namespace MedbayTech.UnitTesting.Records
             return userGateway.Object;
         }
 
+
         private static IPrescriptionRepository CreatePrescriptionStubRepository()
         {
             var stubRepository = new Mock<IPrescriptionRepository>();
@@ -83,17 +84,55 @@ namespace MedbayTech.UnitTesting.Records
 
         private static List<Prescription> CreatePrescriptions()
         {
-            Prescription p1 = new Prescription(new DateTime(2020, 11, 30), true, "Brufen", 6, "");
+            var prescription = new Prescription
+            {
+                Id = 1,
+                Reserved = true,
+                HourlyIntake = 3,
+                MedicationId = 1,
+                AdditionalNotes = "svasta nesto",
+                Date = new DateTime(2020, 11, 30),
+                ReportId = 3,
+                Medication = "Brufen",
+                Report = CreateReport()
 
-            Prescription p2 = new Prescription(new DateTime(2020, 11, 30), true, "Metafex", 6, "");
+            };
+
+            var prescription2 = new Prescription
+            {
+                Id = 2,
+                Reserved = false,
+                Date = new DateTime(2020, 11, 30),
+                HourlyIntake = 6,
+                MedicationId = 1,
+                AdditionalNotes = "svasta nesto",
+                ReportId = 3,
+                Medication = "Metafex",
+                Report = CreateReport()
+            };
 
             List<Prescription> prescriptions = new List<Prescription>();
-            prescriptions.Add(p1);
-            prescriptions.Add(p2);
-
+            prescriptions.Add(prescription);
+            prescriptions.Add(prescription2);
             return prescriptions;
         }
+        private static Report CreateReport()
+        {
 
+            var examinationSurgery = new Report
+            {
+                Id = 3,
+                DoctorId = "2406978890047",
+                StartTime = new DateTime(2015, 4, 23),
+                MedicalRecordId = 1,
+                Type = TypeOfAppointment.Examination,
+                Diagnoses = new List<Diagnosis>(),
+                Treatments = new List<Treatment>(),
+                MedicalRecord = CreateMedicalRecord()
+            };
+
+            return examinationSurgery;
+        }
         private static IReportRepository CreateReportStubRepository()
         {
             var stubRepository = new Mock<IReportRepository>();
@@ -103,21 +142,85 @@ namespace MedbayTech.UnitTesting.Records
 
             return stubRepository.Object;
         }
-        Patient(string id, string name, string surname, InsurancePolicy insurancePolicy,
-           string gender, string email, DateTime dateOfBirth, string phoneNumber,
-           string bloodType, Address currResidence, string profileImage, string phone)
+
+        private static List<Doctor> CreateDoctorsList()
+        {
+            List<Doctor> doctors = new List<Doctor>();
+            doctors.Add(CreateDoctor());
+            return doctors;
+        }
+
+        private static List<Patient> CreatePatientList()
+        {
+            List<Patient> patients = new List<Patient>();
+            patients.Add(CreatePatient());
+            return patients;
+        }
+
+        private static Patient CreatePatient()
+        {
+            var patient = new Patient
+            {
+                Id = "2406978890046",
+                DateOfBirth = new DateTime(1978, 6, 24),
+                Email = "pera@gmail.com",
+                Name = "Petar",
+                Surname = "Petrovic",
+                Phone = "065/123-4554",
+                ProfileImage = ".",
+            };
+
+            return patient;
+        }
+
+        private static Doctor CreateDoctor()
+        {
+            var doctor = new Doctor
+            {
+                Id = "2406978890047",
+                Name = "Petar",
+                Surname = "Stevic"
+            };
+
+            return doctor;
+        }
+        private static MedicalRecord CreateMedicalRecord()
+        {
+            var medicalRecord = new MedicalRecord
+            {
+                Id = 1,
+                Vaccines = new List<Vaccines>(),
+                IllnessHistory = new List<Diagnosis>(),
+                FamilyIllnessHistory = new List<FamilyIllnessHistory>(),
+                PatientId = "2406978890046",
+                Therapies = new List<Therapy>(),
+                Patient = CreatePatient()
+            };
+            return medicalRecord;
+        }
         private static List<Report> CreateReports()
         {
-            City city = new City("Novi Sad", new State("Srbija"));
-            Address address = new Address("Radnicka", 2, 4, 1, city);
-            InsurancePolicy insurancePolicy = new InsurancePolicy("001", "Dunav Osiguranje", new Period(new DateTime(2015, 1, 1), new DateTime(2025, 1, 1)));
+            var doctor = CreateDoctor();
+            var mr = CreateMedicalRecord();
 
-            Doctor doctor = new Doctor("12345678", "Petar", "Petrovic");
-            Patient patient = new Patient("2406978890046", "Marko", "Markovic", insurancePolicy, "Male", "marko@gmail.com", new DateTime(1975, 6, 9), "0123456", "ANeg", address, ".", "");
-            MedicalRecord mr = new MedicalRecord(BloodType.AbPlus, patient, PatientCondition.HospitalTreatment);
+            Report rep1 = new Report {
+                StartTime = new DateTime(2020, 11, 27),
+                Type = TypeOfAppointment.Examination,
+                DoctorId = doctor.Id,
+                Doctor = doctor,
+                MedicalRecord = mr,
+                MedicalRecordId = mr.Id
+            };
 
-            Report rep1 = new Report(new DateTime(2020, 11, 27), TypeOfAppointment.Examination, doctor.Id, mr.Id);
-            Report rep2 = new Report(new DateTime(2020, 11, 29), TypeOfAppointment.Surgery, doctor.Id, mr.Id);
+            Report rep2 = new Report
+            {
+                StartTime = new DateTime(2020, 11, 29),
+                Type = TypeOfAppointment.Surgery,
+                DoctorId = doctor.Id,
+                Doctor = doctor,
+                MedicalRecord = mr,
+                MedicalRecordId = mr.Id
+            };
 
             List<Report> reports = new List<Report>();
             reports.Add(rep1);
