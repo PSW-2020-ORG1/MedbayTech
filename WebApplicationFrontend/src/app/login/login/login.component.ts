@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/allFeedback'])
         }
         else if(result.role == Role.Patient) {
-          this.router.navigate(['/']);
+          this.router.navigate(['/home']);
         }
       },
       error => {
