@@ -43,17 +43,17 @@ namespace MedbayTech.APIGateways
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+//            app.UseDefaultFiles();
+//            app.UseStaticFiles();
 
 
-            if (stage.Equals("production"))
-            {
-                app.UseStaticFiles(new StaticFileOptions
-                {
-                    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "dist"))
-                });
-            }
+            // if (stage.Equals("production"))
+            // {
+            //     app.UseStaticFiles(new StaticFileOptions
+            //     {
+            //         FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "dist"))
+            //     });
+            // }
 
             app.UseRouting();
 

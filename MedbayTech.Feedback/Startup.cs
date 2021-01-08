@@ -75,7 +75,7 @@ namespace MedbayTech.Feedback
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+//            app.UseHttpsRedirection();
 
             app.UseRouting();
 
