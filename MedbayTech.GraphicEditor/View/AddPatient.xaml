@@ -37,12 +37,14 @@
             <Label Content="Date of birth" HorizontalAlignment="Left" Margin="59,88,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
             <Label Content="Email" HorizontalAlignment="Left" Margin="86,119,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
             <Label Content="Phone" HorizontalAlignment="Left" Margin="82,151,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
+            <Label Content="JMBG" HorizontalAlignment="Left" Margin="84,183,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
             <TextBox Name="textBoxName" HorizontalAlignment="Left" Height="24" Margin="200,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Grid.ColumnSpan="2"  />
             <TextBox Name="textBoxSurname" HorizontalAlignment="Left" Height="24" Margin="200,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Grid.ColumnSpan="2" />
             <TextBox Name="textBoxDateOfBirth" HorizontalAlignment="Left" Height="22" Margin="200,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Grid.ColumnSpan="2" />
             <TextBox Name="textBoxNameEmail" HorizontalAlignment="Left" Height="22" Margin="200,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Grid.ColumnSpan="2" />
             <TextBox Name ="textBoxPhone"  HorizontalAlignment="Left" Height="24" Margin="200,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Grid.ColumnSpan="2"/>
-
+            <TextBox Name ="textBoxJmbg"  HorizontalAlignment="Left" Height="24" Margin="200,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Grid.ColumnSpan="2"/>
+            
         </Grid>
     </DockPanel>
 </Window>

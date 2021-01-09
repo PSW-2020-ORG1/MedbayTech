@@ -31,6 +31,21 @@ namespace MedbayTech.Users.Controllers
             _mailService = mailService;
         }
 
+        [HttpPost("guestPatientRegistration")]
+        public IActionResult RegisterGuest(PatientRegistrationDTO dto)
+        {
+            if (_registrationService.PatientExists(dto.Id, dto.Username))
+                return BadRequest("Patient already exists");
+
+            Patient patient = PatientRegistrationMapper.PatientRegistrationDTOtoPatient(dto);
+            patient.IsGuestAccount = true;
+            patient.Token = RegistrationTokenService.GenerateGuidToken();
+            Patient registeredPatient = _registrationService.Register(patient);
+            if (registeredPatient == null)
+                return BadRequest("Patient already exists");
+            return Ok();
+        }
+
         [HttpPost("patientRegistration")]
         public IActionResult Register(PatientRegistrationDTO dto)
         {
