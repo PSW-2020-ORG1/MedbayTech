@@ -70,10 +70,10 @@ namespace MedbayTech.GraphicEditor.View
                 MessageBox.Show("You didn't select patient!");
                 return;
             }
-            MedicalRecord medicalRecord = SearchDataBaseForMedicalRecord(patient.Id);
-            appointment.MedicalRecord.Id = medicalRecord.Id;
+            //MedicalRecord medicalRecord = SearchDataBaseForMedicalRecord(patient.Id);
+            //appointment.MedicalRecord.Id = medicalRecord.Id;
             appointment.PatientId = patient.Id;
-            appointment.Doctor = null;
+            appointment.Doctor = (Doctor)comboBoxDoctor.SelectedItem;
             appointment.Room = null;
             if(listViewPostPoneTime.ItemsSource == null)
             {

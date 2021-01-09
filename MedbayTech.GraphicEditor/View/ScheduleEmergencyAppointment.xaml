@@ -105,10 +105,10 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Appointment type" Width="115" DisplayMemberBinding="{Binding TypeOfAppointment}"/>
-                        <GridViewColumn Header="Doctor" Width="115" DisplayMemberBinding="{Binding Doctor.Name}"/>
+                        <GridViewColumn Header="Doctor" Width="115" DisplayMemberBinding="{Binding Doctor.FullName}"/>
                         <GridViewColumn Header="Room" Width="115" DisplayMemberBinding="{Binding Room.RoomLabel}"/>
-                        <GridViewColumn Header="Beginning date" Width="115" DisplayMemberBinding="{Binding Start}"/>
-                        <GridViewColumn Header="End date" Width="115" DisplayMemberBinding="{Binding End}"/>
+                        <GridViewColumn Header="Beginning date" Width="115" DisplayMemberBinding="{Binding Period.StartTime}"/>
+                        <GridViewColumn Header="End date" Width="115" DisplayMemberBinding="{Binding Period.EndTime}"/>
                     </GridView>                                                                      
                 </ListView.View>
                 <ListView.ItemContainerStyle>
