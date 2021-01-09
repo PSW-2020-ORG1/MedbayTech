@@ -56,6 +56,12 @@ namespace MedbayTech.E2ETests.Pages
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlToBe(AllFedback.URI));
         }
 
+        public void WaitForPatientHomePage()
+        {
+            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlToBe(Home.URI));
+        }
+
         public void Navigate() => driver.Navigate().GoToUrl(URI);
     }
 }

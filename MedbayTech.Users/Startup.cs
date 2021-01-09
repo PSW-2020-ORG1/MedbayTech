@@ -118,19 +118,15 @@ namespace MedbayTech.Users
             {
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
 
-                try
-                {
+                
                     if (!stage.Equals("development") && host.Equals("postgres"))
                     {
                         databaseCreator.CreateTables();
                     }
                     else
                         context.Database.Migrate();
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Failed to execute migration");
-                }
+
+                Console.WriteLine("Failed to execute migration");
                 try
                 {
                     UserDataSeeder seeder = new UserDataSeeder();
