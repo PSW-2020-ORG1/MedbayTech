@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -118,6 +119,7 @@ namespace MedbayTech.Users
             {
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
 
+
                 try
                 {
                     if (!stage.Equals("development") && host.Equals("postgres"))
@@ -141,6 +143,8 @@ namespace MedbayTech.Users
                 {
                     Console.WriteLine("Failed to seed data");
                 }
+
+            
 
             }
         }

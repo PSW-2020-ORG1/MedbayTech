@@ -1,6 +1,6 @@
 <div class="mat-card-cvr">
 <div class = "container">
-    <div [dataSource]="allCancelableAppointments" class="row1" *ngFor="let appointment of allCancelableAppointments">
+    <div [dataSource]="allCancelableAppointments" class="row1" id ="cancel-appointment" *ngFor="let appointment of allCancelableAppointments">
         <mat-card class="card">
             <mat-card-header>
                 <mat-card-title>{{appointment.typeOfAppointment}}</mat-card-title>
@@ -13,12 +13,12 @@
                 <p class="content-paragraph">Room : <strong>{{appointment.roomType}}-{{appointment.roomNumber}}</strong></p>
             </mat-card-content>
             <mat-card-actions>
-                    <button mat-raised-button color="accent" class="button1" (click)="cancelAppointment(appointment.id, $event.target)">Cancel</button>
+                    <button mat-raised-button color="accent" class="button1" (click)="cancelAppointment(appointment.id)"  id="cancel-appointment-button" >Cancel</button>
             </mat-card-actions>
         </mat-card>
     </div>
 
-    <div [dataSource]="surveyableAppointments" class="row2" *ngFor="let appointment of surveyableAppointments">
+    <div [dataSource]="surveyableAppointments" class="row2" id ="survey-appointment" *ngFor="let appointment of surveyableAppointments">
         <mat-card class="card">
             <mat-card-header>
                 <mat-card-title>{{appointment.typeOfAppointment}}</mat-card-title>
@@ -36,7 +36,7 @@
         </mat-card>
     </div>
 
-    <div [dataSource]="allOtherAppointments" class="row3" *ngFor="let appointment of allOtherAppointments">
+    <div [dataSource]="allOtherAppointments" class="row3" id ="other-appointment" *ngFor="let appointment of allOtherAppointments">
         <mat-card class="card">
             <mat-card-header>
                 <mat-card-title>{{appointment.typeOfAppointment}}</mat-card-title>
