@@ -12,6 +12,7 @@ namespace MedbayTech.E2ETests.Pages
         public const string URI = "http://localhost:4200/#/home";
 
         private IWebElement MedicalRecord => driver.FindElement(By.Name("medical-record"));
+        private IWebElement CreateFeedback => driver.FindElement(By.Name("create-feedback"));
 
         public Home(IWebDriver webdriver) 
         {
@@ -46,6 +47,16 @@ namespace MedbayTech.E2ETests.Pages
         public void ClickMedicalRecordLink()
         {
             MedicalRecord.Click();
+        }
+
+        public bool CreateFeedbackLinkElementDisplayed()
+        {
+            return CreateFeedback.Displayed;
+        }
+
+        public void ClickCreateFeedbackLink()
+        {
+            CreateFeedback.Click();
         }
 
         public void Navigate() => driver.Navigate().GoToUrl(URI);
