@@ -4,6 +4,7 @@
 // Purpose: Definition of Class Department
 
 using MedbayTech.Common.Domain.Entities;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,9 +18,7 @@ namespace MedbayTech.Rooms.Domain
 
         public string Name { get; set; }
         public int Floor { get; set; }
-        [ForeignKey("Hospital")]
         public int HospitalId { get; set; }
-        [NotMapped]
         public virtual Hospital Hospital { get; set; }
 
         public Department(int id, string name, int floor, Hospital hospital)

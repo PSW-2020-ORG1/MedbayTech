@@ -14,13 +14,14 @@ namespace MedbayTech.Rooms.Infrastructure.Services
 {
     public class RoomService : IRoomService
     {
-        public IRoomRepository _roomRepository;
-
+        private readonly IRoomRepository _roomRepository;
+        private readonly IHospitalEquipmentRepository _hospitalEquipmentRepository;
         private const string APPOINTMENTS_SCHEDULED = "Room has appointments scheduled in future.";
 
-        public RoomService ( IRoomRepository roomRepository )
+        public RoomService ( IRoomRepository roomRepository, IHospitalEquipmentRepository hospitalEquipmentRepository )
         {
             _roomRepository = roomRepository;
+            _hospitalEquipmentRepository = hospitalEquipmentRepository;
         }
 
         public List<Room> GetAllRooms ( ) => _roomRepository.GetAll().ToList();
@@ -148,7 +149,8 @@ namespace MedbayTech.Rooms.Infrastructure.Services
             List<Room> rooms = new List<Room>();
             foreach (Room room in GetAll())
             {
-                if (room.HospitalEquipment.Where(r => r.EquipmentTypeId == equipmentId).ToList().Count > 0)
+                var equipments = _hospitalEquipmentRepository.GetEquipmentByRoomNumber(room.Id);
+                if (equipments.Any(e => e.EquipmentTypeId == equipmentId))
                 {
                     rooms.Add(room);
                 }

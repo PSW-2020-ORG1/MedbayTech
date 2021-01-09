@@ -15,7 +15,7 @@ namespace MedbayTech.UnitTesting.Rooms
         [MemberData(nameof(RoomQueries))]
         public void Room_search(string query, bool isEmpty)
         {
-            RoomService roomService = new RoomService(CreateRepositoryStub());
+            RoomService roomService = new RoomService(CreateRepositoryStub(), null);
             List<Room> rooms = roomService.GetRoomsByRoomLabelorRoomUse(query);
 
             bool empty = !rooms.Any();

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace MedbayTech.Rooms.Infrastructure.Database.Configurations
 {
-    public class RoomConfiguration : IEntityTypeConfiguration<Room>
+    public class EquipmentTypeConfiguration : IEntityTypeConfiguration<EquipmentType>
     {
-        public void Configure(EntityTypeBuilder<Room> builder)
+        public void Configure(EntityTypeBuilder<EquipmentType> builder)
         {
-            builder.ToTable("Rooms");
-            builder.HasOne(r => r.Department).WithMany().HasForeignKey(r => r.DepartmentId);
+            builder.ToTable("EquipmentTypes");
         }
+            
     }
 }

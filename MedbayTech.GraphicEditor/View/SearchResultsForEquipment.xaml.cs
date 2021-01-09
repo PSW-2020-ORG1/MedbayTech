@@ -45,6 +45,7 @@ namespace MedbayTech.GraphicEditor
                     var response = taskWithResponse.Result;
                     var jsonString = response.Content.ReadAsStringAsync();
                     jsonString.Wait();
+                    Console.WriteLine(jsonString.Result);
                     hospitalEquipment = JsonConvert.DeserializeObject<List<HospitalEquipment>>(jsonString.Result);
                 });
             task.Wait();

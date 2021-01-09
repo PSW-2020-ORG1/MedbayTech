@@ -43,7 +43,8 @@ namespace MedbayTech.Appointment
             services.AddTransient<IAppointmentRepository, AppointmentRepository>();
             services.AddTransient<ISurveyRepository, SurveyRepository>();
             services.AddTransient<ISurveyQuestionRepository, SurveyQuestionRepository>();
-            
+            services.AddTransient<IAppointmentRealocationRepository, AppointmentRealocationRepository>();
+
 
 
             services.AddScoped<IAppointmentService, AppointmentService>();
@@ -51,6 +52,7 @@ namespace MedbayTech.Appointment
             services.AddScoped<IRoomGateway, RoomGateway>(); 
             services.AddScoped<IUserGateway, UserGateway>();
             services.AddScoped<IAppointmentFilterService, AppointmentFilterService>();
+            services.AddScoped<IAppointmentRealocationService, AppointmentRealocationService>();
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("QKcOa8xPopVOliV6tpvuWmoKn4MOydSeIzUt4W4r1UlU2De7dTUYMlrgv3rU"));
             services.AddAuthentication(x =>
