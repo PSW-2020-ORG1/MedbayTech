@@ -5,6 +5,7 @@ using MedbayTech.E2ETests.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.DevTools.V84.Target;
+using OpenQA.Selenium.Support.UI;
 using SeleniumEndToEnd.Pages;
 using Xunit;
 
@@ -51,7 +52,7 @@ namespace MedbayTech.E2ETests
 
             blockMaliciousPatientsPage = new BlockMaliciousPatients(driver);
             blockMaliciousPatientsPage.EnsurePageIsDisplayed();
-            numberOfMaliciousPatients = blockMaliciousPatientsPage.PatientsForBlockingCount();
+           
             Assert.Equal(driver.Url, BlockMaliciousPatients.URI);
             Assert.True(blockMaliciousPatientsPage.BlockMaliciousPatientButtonDisplayed());
         }
@@ -65,12 +66,14 @@ namespace MedbayTech.E2ETests
         [Fact]
         public void TestSuccessfulBlockingMaliciousPatient()
         {
+            numberOfMaliciousPatients = blockMaliciousPatientsPage.PatientsForBlockingCount();
             blockMaliciousPatientsPage.ClickBlockMaliciousPatientButton();
-            blockMaliciousPatientsPage.WaitForAlertDialog();
-            blockMaliciousPatientsPage.ResolveAlertDialog();
+            // blockMaliciousPatientsPage.WaitForAlertDialog();
+            // blockMaliciousPatientsPage.ResolveAlertDialog();
+            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 20));
+            wait.Until(condition => numberOfMaliciousPatients > blockMaliciousPatientsPage.PatientsForBlockingCount());
 
-           
-            Assert.Equal(numberOfMaliciousPatients, blockMaliciousPatientsPage.PatientsForBlockingCount());
+            Assert.Equal(numberOfMaliciousPatients-1, blockMaliciousPatientsPage.PatientsForBlockingCount());
         }
 
         
