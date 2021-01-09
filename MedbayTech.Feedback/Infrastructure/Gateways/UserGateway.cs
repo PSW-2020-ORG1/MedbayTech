@@ -5,7 +5,7 @@ using System.Net.Http;
 using MedbayTech.Feedback.Application.Common.Interfaces.Gateways;
 using MedbayTech.Feedback.Domain.Entities;
 using Newtonsoft.Json;
-
+using RestSharp;
 
 namespace MedbayTech.Feedback.Infrastructure.Gateways
 {
@@ -26,16 +26,15 @@ namespace MedbayTech.Feedback.Infrastructure.Gateways
                     _users = JsonConvert.DeserializeObject<List<User>>(json.Result);
                 });
             task.Wait();
-
             return _users;
 
         }
 
         public string GetUsersDomain()
         {
-            string origin = Environment.GetEnvironmentVariable("URL") ?? "localhost";
-            string port = Environment.GetEnvironmentVariable("PORT") ?? "8081";
-
+            string origin = Environment.GetEnvironmentVariable("URL_USERS") ?? "localhost";
+            string port = Environment.GetEnvironmentVariable("PORT_USERS") ?? "8081";
+            Console.WriteLine($"http://{origin}:{port}");
             return $"http://{origin}:{port}";
         }
     }

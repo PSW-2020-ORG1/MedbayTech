@@ -24,6 +24,7 @@ namespace MedbayTech.Feedback.Infrastructure.Services
         {
             List<Domain.Entities.Feedback> allFeedback = _feedbackRepository.GetAll().ToList();
             List<User> users = _userGateway.GetUsers();
+            
             allFeedback.ForEach(f => f.RegisteredUser = users.FirstOrDefault(u => f.UserId != null && u.Id.Equals(f.UserId)));
 
             return allFeedback;
@@ -33,6 +34,7 @@ namespace MedbayTech.Feedback.Infrastructure.Services
         {
             List<Domain.Entities.Feedback> approvedFeedback = _feedbackRepository.GetAllApprovedFeedback();
             List<User> users = _userGateway.GetUsers();
+            
             approvedFeedback.ForEach(f => f.RegisteredUser = users.FirstOrDefault(u => f.UserId != null && u.Id.Equals(f.UserId)));
             return approvedFeedback;
         }

@@ -45,6 +45,18 @@ namespace MedbayTech.Users
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                            .SetIsOriginAllowed(_ => true)
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
 
             services.AddDbContext<UserDbContext>();
 
@@ -141,7 +153,8 @@ namespace MedbayTech.Users
                 {
                     Console.WriteLine("Failed to seed data");
                 }
-                
+                app.UseCors("AllowAll");
+
             }
         }
     }

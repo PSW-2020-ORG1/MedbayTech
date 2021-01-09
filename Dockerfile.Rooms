@@ -25,5 +25,5 @@ RUN useradd -ms /bin/bash defaultuser
 WORKDIR /app
 
 COPY --from=publish /app/out .
-
+EXPOSE 5004
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet MedbayTech.Rooms.dll

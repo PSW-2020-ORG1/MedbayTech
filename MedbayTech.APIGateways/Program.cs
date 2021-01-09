@@ -16,14 +16,16 @@ namespace MedbayTech.APIGateways
             CreateHostBuilder(args).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            string stage = Environment.GetEnvironmentVariable("STAGE_API") ?? "dev";
+            return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                }).ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    config.AddJsonFile("ocelot.json");
+                    webBuilder.ConfigureAppConfiguration(config =>
+                     config.AddJsonFile($"ocelot.{stage}.json"));
                 });
+        }
     }
 }

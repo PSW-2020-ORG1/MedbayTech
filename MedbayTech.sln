@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "Backend\Backend.csproj", "{93C92C42-324A-47C2-A593-778053E59F17}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Pharmacies", "MedbayTech.PharmacyIntegration\MedbayTech.Pharmacies.csproj", "{26BDF43A-2396-41AF-A220-DC7AB197F158}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Pharmacies", "MedbayTech.Pharmacies\MedbayTech.Pharmacies.csproj", "{26BDF43A-2396-41AF-A220-DC7AB197F158}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphicEditorWebService", "GraphicEditorWebService\GraphicEditorWebService.csproj", "{0A906169-3229-46B7-A714-FA087A3594AF}"
 EndProject
@@ -34,7 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Rooms", "MedbayT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.UnitTesting", "MedbayTech.UnitTesting\MedbayTech.UnitTesting.csproj", "{90E94EAB-17C1-4689-8B7C-B1A34A2927BE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Medications", "MedbayTech.Medication\MedbayTech.Medications.csproj", "{9E015849-AC8C-4F2F-B050-2F8A48E6075E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Medication", "MedbayTech.Medication\MedbayTech.Medication.csproj", "{9E015849-AC8C-4F2F-B050-2F8A48E6075E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

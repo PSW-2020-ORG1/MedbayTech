@@ -18,7 +18,7 @@
     "MedbayTech.Appointment": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:8083",
+      "applicationUrl": "http://localhost:5008",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
