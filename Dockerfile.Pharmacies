@@ -29,7 +29,6 @@
 
 # CMD ASPNETCORE_URLS=http://*:$PORT dotnet MedbayTech.Pharmacies.dll
 
-
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS build
 
 RUN apk add --update nodejs nodejs-npm
@@ -60,20 +59,18 @@ RUN dotnet tool install -g dotnet-ef --version 3.1.9
 RUN dotnet ef migrations add Init
 
 WORKDIR /app
-RUN dotnet publish MedbayTech.Pharmacies/MedbayTech.Pharmacies.csproj -c Release -o out
+RUN dotnet publish MedbayTech.Pharmacies/MedbayTech.Pharmacies.csproj -c Release
 
 COPY . ./
 
-
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine as buildfront
 WORKDIR /app
 COPY --from=buildbuster /app .
-COPY --from=buildbuster /app/MedbayTech.Pharmacies/WebUI/vueclient /app/MedbayTech.Pharmacies/bin/Release/netcoreapp3.1/publish/WebUI/vueclient
-
+COPY --from=buildbuster /app/MedbayTech.Pharmacies/WebUI/vueclient /app/MedbayTech.Pharmacies/bin/Release/netcoreapp3.1/publish/vueclient
 
 RUN apk add --update nodejs nodejs-npm
 
-WORKDIR /app/MedbayTech.Pharmacies/bin/Release/netcoreapp3.1/publish/WebUI/vueclient
+WORKDIR /app/MedbayTech.Pharmacies/bin/Release/netcoreapp3.1/publish/vueclient
 RUN npm install
 RUN npm install -g @vue/cli
 RUN npm install --save axios vue-axios
@@ -81,4 +78,5 @@ RUN npm run build
 
 WORKDIR /app/MedbayTech.Pharmacies/bin/Release/netcoreapp3.1/publish
 EXPOSE 5005
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet MedbayTech.Pharmacies.dll
+EXPOSE 50202
+ENTRYPOINT [ "dotnet", "MedbayTech.Pharmacies.dll" ]

@@ -88,11 +88,11 @@ services:
       DATABASE_TYPE: "postgres"
       DATABASE_SCHEMA: "mydb1"
       STAGE: "test"
-      PORT: "5005"
+      PORT: "50202"
       PORT_MEDICATION: "5007"
       URL_MEDICATION: "users"
     ports:
-      - "50202:5005"
+      - "50202:50202"
     volumes:
       - postgres-data:/var/lib/postgres:rw
 
