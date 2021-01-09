@@ -42,7 +42,7 @@ services:
       DATABASE_HOST: "postgres"
       DATABASE_TYPE: "postgres"
       DATABASE_SCHEMA: "mydb1"
-      STAGE: "production"
+      STAGE: "prod"
       STAGE_API: "test"
       PORT: "53843"
     ports:
