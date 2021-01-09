@@ -23,6 +23,7 @@
     "@angular/router": "~10.2.0",
     "angular-responsive-carousel": "^2.0.2",
     "bootstrap": "^4.5.3",
+    "ng-image-slider": "^2.6.4",
     "ngx-toastr": "^13.1.0",
     "rxjs": "~6.6.0",
     "toastr": "^2.1.4",
