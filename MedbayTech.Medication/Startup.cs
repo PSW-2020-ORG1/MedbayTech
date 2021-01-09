@@ -54,14 +54,18 @@ namespace MedbayTech.Medication
             using (var context = scope.ServiceProvider.GetService<MedicationDbContext>())
             {
                 string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
+                string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";
+
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
 
                 try
                 {
-                    if (stage.Equals("test"))
+                    if (!stage.Equals("development") && host.Equals("postgres"))
                     {
-                        context.Database.Migrate();
+                        databaseCreator.CreateTables();
                     }
+                    else
+                        context.Database.Migrate();
                 }
                 catch (Exception)
                 {

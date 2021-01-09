@@ -48,13 +48,29 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-2.32-r0.apk
 RUN apk add glibc-2.32-r0.apk
 
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS buildbuster
+WORKDIR /app
+COPY --from=build /src .
+
+WORKDIR /app/MedbayTech.Pharmacies
+
+ENV PATH $PATH:/root/.dotnet/tools
+RUN dotnet tool install -g dotnet-ef --version 3.1.9
+RUN dotnet ef migrations add Init
+
+WORKDIR /app
 RUN dotnet publish MedbayTech.Pharmacies/MedbayTech.Pharmacies.csproj -c Release -o out
+
+COPY . ./
 
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine
 WORKDIR /app
-COPY --from=build /src .
-COPY --from=build /src/MedbayTech.Pharmacies/WebUI/vueclient /app/MedbayTech.Pharmacies/bin/Release/netcoreapp3.1/publish/WebUI/vueclient
+COPY --from=buildbuster /app .
+COPY --from=buildbuster /app/MedbayTech.Pharmacies/WebUI/vueclient /app/MedbayTech.Pharmacies/bin/Release/netcoreapp3.1/publish/WebUI/vueclient
+
+
 RUN apk add --update nodejs nodejs-npm
 
 WORKDIR /app/MedbayTech.Pharmacies/bin/Release/netcoreapp3.1/publish/WebUI/vueclient
