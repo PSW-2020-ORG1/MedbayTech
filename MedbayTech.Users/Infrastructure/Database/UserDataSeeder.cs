@@ -227,6 +227,8 @@ namespace MedbayTech.Users.Infrastructure.Database
             context.Add(new WorkDay { Date = new DateTime(2021, 01, 14), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
             context.Add(new WorkDay { Date = new DateTime(2021, 01, 15), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
             context.Add(new WorkDay { Date = new DateTime(2021, 01, 16), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 9), StartTime = 3, EndTime = 23, DoctorId = "2407978890041" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 10), StartTime = 3, EndTime = 23, DoctorId = "2407978890041" });
 
             context.SaveChanges();
         }

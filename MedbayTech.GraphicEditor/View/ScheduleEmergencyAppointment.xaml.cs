@@ -123,7 +123,7 @@ namespace MedbayTech.GraphicEditor.View
         {
             doctors = new List<Doctor>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:8081/api/doctor/" + "/getAllDoctors")
+            var task = httpClient.GetAsync("http://localhost:8081/api/doctor" + "/getAllDoctors")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -139,7 +139,7 @@ namespace MedbayTech.GraphicEditor.View
         {
             patients = new List<Patient>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:8081/api/user/" + "/getAllPatients")
+            var task = httpClient.GetAsync("http://localhost:8081/api/user" + "/getAllPatients")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;

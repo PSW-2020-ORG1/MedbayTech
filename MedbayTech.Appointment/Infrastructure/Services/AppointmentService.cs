@@ -109,9 +109,9 @@ namespace Infrastructure.Services
         {
             List<Appointment> appointmentsForDays = GetAvailableByDoctorAndDateRange(parameters);
             List<Appointment> appointments = new List<Appointment>();
-            foreach(Appointment appointment in appointmentsForDays)
+            foreach(Appointment appointment in appointmentsForDays) //22 3:00 
             {
-                if (appointment.Period.StartTime >= parameters.ChosenStartDate && appointment.Period.EndTime <= parameters.ChosenEndDate) appointments.Add(appointment);
+                if (appointment.Period.StartTime >= parameters.ChosenStartDate && appointment.Period.EndTime <= parameters.ChosenEndDate) appointments.Add(appointment);//22:00 22:30
             }
             return appointments;
         }
