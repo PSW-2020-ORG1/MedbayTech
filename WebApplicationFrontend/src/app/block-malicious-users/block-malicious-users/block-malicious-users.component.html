@@ -10,11 +10,13 @@
         <th> Surname </th>
         <th> # </th>
         <tr *ngFor="let patient of maliciousPatients;let i=index" [class.data-selected]="patient.isSelected">
-            <td> {{patient.id}} </td>
-            <td> {{patient.username}} </td>
-            <td> {{patient.name}} </td>
-            <td> {{patient.surname}} </td>
-            <td class="block-button-td"> <button [disabled]="patient.clicked" class="block-button" (click)="patient.isSelected = true;patient.clicked = true;updateStatus(patient.id)" mat-raised-button color="warn">Block</button> </td>
+            
+            <td *ngIf="!patient.clicked"> {{patient.id}} </td>
+            <td *ngIf="!patient.clicked"> {{patient.username}} </td>
+            <td *ngIf="!patient.clicked"> {{patient.name}} </td>
+            <td *ngIf="!patient.clicked"> {{patient.surname}} </td>
+            <td *ngIf="!patient.clicked" class="block-button-td"> <button class="block-button" (click)="patient.clicked = true;updateStatus(patient.id)" mat-raised-button color="warn">Block</button> </td>
+            
         </tr>
        
     </table>

@@ -57,7 +57,7 @@ namespace MedbayTech.E2ETests.Pages
 
         public void WaitForAlertDialog()
         {
-            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
+            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 20));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
         }
 
