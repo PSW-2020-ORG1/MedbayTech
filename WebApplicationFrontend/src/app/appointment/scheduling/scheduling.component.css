@@ -8,3 +8,9 @@ table {
     align-items: center;
     padding-top: 5vw;
 }
+
+.recommendation {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
