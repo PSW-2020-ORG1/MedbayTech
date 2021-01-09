@@ -18,7 +18,7 @@ namespace MedbayTech.WebIntegrationTests.WebApplicationFactory.Gateways
         public UserAppointmentGateway()
         {
             _factoryUsers = new TestServer(WebHost.CreateDefaultBuilder()
-                   .UseStartup<Users.Startup>());
+                   .UseStartup<MedbayTech.Users.Startup>());
 
         }
         public List<Doctor> GetAllDoctors()

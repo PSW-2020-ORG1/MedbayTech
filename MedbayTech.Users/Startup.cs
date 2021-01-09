@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -118,15 +119,20 @@ namespace MedbayTech.Users
             {
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
 
-                
+
+                try
+                {
                     if (!stage.Equals("development") && host.Equals("postgres"))
                     {
                         databaseCreator.CreateTables();
                     }
                     else
                         context.Database.Migrate();
-
-                Console.WriteLine("Failed to execute migration");
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Failed to execute migration");
+                }
                 try
                 {
                     UserDataSeeder seeder = new UserDataSeeder();
@@ -137,6 +143,8 @@ namespace MedbayTech.Users
                 {
                     Console.WriteLine("Failed to seed data");
                 }
+
+            
 
             }
         }
