@@ -97,7 +97,7 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   medications:
-    image: pharmacies
+    image: medications
     container_name: medications_container
     restart: on-failure
     networks:
