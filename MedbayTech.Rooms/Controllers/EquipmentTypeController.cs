@@ -16,7 +16,7 @@ namespace MedbayTech.Rooms.Controllers
         }
 
         [HttpGet("{textBoxSearch?}")]
-        public IActionResult Get(string textBoxSearch)
+        public IActionResult GetAllEquipment(string textBoxSearch)
         {
             return Ok(_equipmentTypeService.GetAllEquipment());
         }

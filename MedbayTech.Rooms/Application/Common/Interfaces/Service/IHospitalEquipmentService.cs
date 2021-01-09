@@ -14,5 +14,6 @@ namespace MedbayTech.Rooms.Application.Common.Service
         HospitalEquipment GetHospitalEquipment(int id);
         HospitalEquipment UpdateAmountOfEquipment(HospitalEquipment equipment, int amount);
         List<HospitalEquipment> GetAllEquipment();
+        HospitalEquipment GetHospitalEquipmentByEquipmentTypeAndRoom(int roomId, int equipmentTypeId);
     }
 }

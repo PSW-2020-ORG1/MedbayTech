@@ -142,5 +142,18 @@ namespace MedbayTech.Rooms.Infrastructure.Services
         {
             return _roomRepository.GetAll().ToList();
         }
+
+        public List<Room> GetAllRoomsByEquipment(int equipmentId)
+        {
+            List<Room> rooms = new List<Room>();
+            foreach (Room room in GetAll())
+            {
+                if (room.HospitalEquipment.Where(r => r.EquipmentTypeId == equipmentId).ToList().Count > 0)
+                {
+                    rooms.Add(room);
+                }
+            }
+            return rooms;
+        }
     }
 }

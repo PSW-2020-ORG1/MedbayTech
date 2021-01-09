@@ -21,5 +21,6 @@ namespace MedbayTech.Rooms.Application.Common.Service
         Room AddHospitalEquipmentToRoom(Room room, HospitalEquipment hospitalEquipment);
         Room UpdateDepartment(Department department, Room room);
         List<Room> GetAll();
+        List<Room> GetAllRoomsByEquipment(int equipmentId);
     }
 }

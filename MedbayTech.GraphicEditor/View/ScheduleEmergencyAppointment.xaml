@@ -10,7 +10,7 @@
 
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Button DockPanel.Dock="Right" Margin="0,30,5,5" Content="Add new patient" Width="208" Height="25" FontSize="15" FontWeight="Bold" HorizontalAlignment="Right" Background="SteelBlue" Foreground="White" Click="ButtonAddNewPatient" IsEnabled="False">
+            <Button DockPanel.Dock="Right" Margin="0,30,5,5" Content="Add new patient" Width="208" Height="25" FontSize="15" FontWeight="Bold" HorizontalAlignment="Right" Background="SteelBlue" Foreground="White" Click="ButtonAddNewPatient" >
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>

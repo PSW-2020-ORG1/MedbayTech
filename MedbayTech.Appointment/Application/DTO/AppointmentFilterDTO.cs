@@ -11,6 +11,7 @@ namespace MedbayTech.Appointment.Application.DTO
         public DateTime StartInterval { get; set; }
         public DateTime EndInterval { get; set; }
         public string DoctorId { get; set; }
+        public int SpecializationId { get; set; }
         public int HospitalEquipmentId { get; set; }
         public Domain.Entities.Appointment Appointment { get; set; }
         public List<Domain.Entities.Appointment> Appointments { get; set; }

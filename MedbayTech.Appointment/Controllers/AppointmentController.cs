@@ -154,6 +154,10 @@ namespace Controllers
             {
                 return Ok(_appointmentService.ScheduleAppointment(appointmentFilterDTO.Appointment));
             }
+            else if (appointmentFilterDTO.AppointmentSearchOrSchedule == AppointmentSearchOrSchedule.UpdateAppointment)
+            {
+                return Ok(_appointmentService.UpdateSuggestedAppointment(appointmentFilterDTO.Appointment));
+            }
             else return Ok();
         }
     }

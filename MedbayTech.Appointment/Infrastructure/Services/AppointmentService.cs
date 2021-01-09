@@ -246,5 +246,16 @@ namespace Infrastructure.Services
             appointment.Room = _roomGateway.GetRoomBy(appointment.RoomId);
         }
 
+        public Appointment UpdateSuggestedAppointment(Appointment appointment)
+        {
+            Appointment update_appointment = _appointmentRepository.GetAll().ToList().Find(a => a.Id == appointment.Id);
+            update_appointment.Period.StartTime = appointment.Period.StartTime;
+            update_appointment.Period.EndTime = appointment.Period.EndTime;
+            update_appointment.TypeOfAppointment = appointment.TypeOfAppointment;
+            update_appointment.Urgent = true;
+            update_appointment.DoctorId = appointment.DoctorId;
+            return _appointmentRepository.Update(update_appointment);
+        }
+
     }
 }

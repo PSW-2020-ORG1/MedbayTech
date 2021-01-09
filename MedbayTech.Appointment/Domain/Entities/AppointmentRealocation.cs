@@ -13,12 +13,12 @@ namespace MedbayTech.Appointment.Domain.Entities
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public bool Deleted { get; set; }
-        public bool Finished { get; set; }
-        [ForeignKey("Room")]
+        public bool Finished { get; set; }       
         public int RoomId { get; set; }
+        [NotMapped]
         public virtual Room Room { get; set; }
-        [ForeignKey("HospitalEquipment")]
         public int HospitalEquipmentId { get; set; }
+        [NotMapped]
         public virtual HospitalEquipment HospitalEquipment { get; set; }
         public AppointmentRealocation() { }
 

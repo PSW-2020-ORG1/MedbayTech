@@ -23,5 +23,6 @@ namespace Application.Common.Interfaces.Service
         List<Appointment> GetAvailableByStrategy(PriorityParameters parameters);
         List<Appointment> GetAll();
         List<Appointment> GetAppointmentByPatient(string userId);
+        Appointment UpdateSuggestedAppointment(Appointment appointment);
     }
 }

@@ -11,6 +11,8 @@ namespace MedbayTech.Appointment.Application.Enums
         BySpecialistNoPriority,
         BySpecialistDoctorPriority,
         BySpecialistTimePriority,
-        AddRoomToAppointment
+        AddRoomToAppointment,
+        EmergencyAppointment,
+        ReschedulingAppointment
     }
 }
