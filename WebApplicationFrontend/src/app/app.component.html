@@ -1,18 +1,12 @@
 <div>
-    <button mat-raised-button routerLink="/feedback">Approved Feedback</button>
-    <button name="allFedback" mat-raised-button routerLink="/allFeedback">All feedback</button>
-    <button name="createFeedback" mat-raised-button routerLink="/createFeedback">Create feedback</button>
-    <button mat-raised-button routerLink="/survey">Survey</button>
-    <button mat-raised-button routerLink="/patientRegistration">Patient registration</button>
-    <button mat-raised-button routerLink="/medicalRecord">Medical record</button>
-    <button mat-raised-button routerLink="/prescriptionSimpleSearch">Prescription simple search</button>
-    <button mat-raised-button routerLink="/reportSimpleSearch">Report simple search</button>
-    <button name="block-malicious-users" mat-raised-button routerLink="/blockMaliciousUsers">Block </button> 
-    <button mat-raised-button routerLink="/observeAppointment">Observe </button>
-    <button mat-raised-button routerLink="/scheduleAppointment">Schedule appointment</button>
-    <button mat-raised-button routerLink="/appointmentRecommendation">Appointment recommendaion</button>  
-    <button name="user-login" mat-raised-button routerLink="/login">Login</button> 
-    <button mat-raised-button (click)="logout()">Logout</button>
-    
+    <header>
+        <ng-container *ngIf="isAdmin(); else second"><app-navigation-bar-admin></app-navigation-bar-admin></ng-container>
+        <ng-template #second>
+            <ng-container *ngIf="isPatient();else third"><app-navigation-bar-patient></app-navigation-bar-patient></ng-container>
+        </ng-template>
+        <ng-template #third><app-navigation-bar-user></app-navigation-bar-user></ng-template>
+    </header>
 </div>
+<br><br><br><br><br>
     <router-outlet></router-outlet>
+<br><br>

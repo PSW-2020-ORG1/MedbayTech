@@ -29,6 +29,15 @@ namespace MedbayTech.Users.Infrastructure.Service
             if (user == null)
                 return null;
 
+            if (user.Role.Equals("Patient"))
+            {
+                Patient p = (Patient)user;
+                if (p.Blocked)
+                {
+                    return null;
+                }
+            }
+
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("QKcOa8xPopVOliV6tpvuWmoKn4MOydSeIzUt4W4r1UlU2De7dTUYMlrgv3rU"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
