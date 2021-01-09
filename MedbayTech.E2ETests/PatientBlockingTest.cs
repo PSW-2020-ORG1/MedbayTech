@@ -68,14 +68,8 @@ namespace MedbayTech.E2ETests
         {
             numberOfMaliciousPatients = blockMaliciousPatientsPage.PatientsForBlockingCount();
             blockMaliciousPatientsPage.ClickBlockMaliciousPatientButton();
-            // blockMaliciousPatientsPage.WaitForAlertDialog();
-            // blockMaliciousPatientsPage.ResolveAlertDialog();
-            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 20));
-            wait.Until(condition => numberOfMaliciousPatients > blockMaliciousPatientsPage.PatientsForBlockingCount());
 
             Assert.Equal(numberOfMaliciousPatients-1, blockMaliciousPatientsPage.PatientsForBlockingCount());
-        }
-
-        
+        }        
     }
 }
