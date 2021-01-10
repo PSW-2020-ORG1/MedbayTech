@@ -74,7 +74,7 @@ import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
     NavigationBarAdminComponent,
     NavigationBarPatientComponent,
     NavigationBarUserComponent,
-    HomePageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

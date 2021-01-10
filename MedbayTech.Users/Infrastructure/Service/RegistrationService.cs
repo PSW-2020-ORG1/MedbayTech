@@ -28,7 +28,6 @@ namespace MedbayTech.Users.Infrastructure.Service
                 return _patientRepository.Create(patient);
             }
 
-
             return null;
         }
 
