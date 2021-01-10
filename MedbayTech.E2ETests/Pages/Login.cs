@@ -10,7 +10,12 @@ namespace MedbayTech.E2ETests.Pages
     public class Login
     {
         private readonly IWebDriver driver;
-        public const string URI = "http://localhost:4200/#/login";
+        //public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
+        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "53843";
+
+        public static string URI = $"http://localhost:{PORT}/#/login";
+
+        //public const string URI = "http://localhost:4200/#/login";
         private IWebElement Username => driver.FindElement(By.Name("username-ff"));
         private IWebElement Password => driver.FindElement(By.Name("password-ff"));
         private IWebElement LoginButton => driver.FindElement(By.Name("button-ff"));
@@ -59,7 +64,7 @@ namespace MedbayTech.E2ETests.Pages
         public void WaitForPatientHomePage()
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlToBe(Home.URI));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlToBe(Home.URI_HASH));
         }
 
         public void Navigate() => driver.Navigate().GoToUrl(URI);

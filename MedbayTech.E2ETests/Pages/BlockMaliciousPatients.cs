@@ -10,7 +10,11 @@ namespace MedbayTech.E2ETests.Pages
     public class BlockMaliciousPatients
     {
         private readonly IWebDriver driver;
-        public const string URI = "http://localhost:4200/#/blockMaliciousUsers";
+        //public const string URI = "http://localhost:4200/#/blockMaliciousUsers";
+        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "53843";
+
+        public static string URI = $"http://localhost:{PORT}/#/blockMaliciousUsers";
+
         private IWebElement BlockMaliciousPatientButton => driver.FindElement(By.ClassName("block-button"));
         private ReadOnlyCollection<IWebElement> PatientsForBlocking => driver.FindElements(By.ClassName("block-button-td"));
 

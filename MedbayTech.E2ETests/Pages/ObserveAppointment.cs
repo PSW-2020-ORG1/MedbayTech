@@ -12,7 +12,11 @@ namespace MedbayTech.E2ETests.Pages
     public class ObserveAppointment
     {
         private readonly IWebDriver driver;
-        public const string URI = "http://localhost:4200/#/observeAppointment";
+        //public const string URI = "http://localhost:4200/#/observeAppointment";
+        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "53843";
+
+        public static string URI = $"http://localhost:{PORT}/#/observeAppointment";
+
         private IWebElement CancelAppointmentButton => driver.FindElement(By.XPath("//div[@id='cancel-appointment']/mat-card/mat-card-actions/button[@id='cancel-appointment-button']"));
         private ReadOnlyCollection<IWebElement> AppointmentsForCanceling  => driver.FindElements(By.XPath("//div[@id='cancel-appointment']/mat-card"));
         private ReadOnlyCollection<IWebElement> OtherAppointments => driver.FindElements(By.XPath("//div[@id='other-appointment']/mat-card"));

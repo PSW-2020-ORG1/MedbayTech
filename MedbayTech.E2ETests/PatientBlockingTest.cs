@@ -18,6 +18,8 @@ namespace MedbayTech.E2ETests
         private AllFedback allFeedbackPage;
         private BlockMaliciousPatients blockMaliciousPatientsPage;
         private Login loginPage;
+        private Home homePage;
+
         private int numberOfMaliciousPatients = 0;
 
         public PatientBlockingTest()
@@ -32,6 +34,10 @@ namespace MedbayTech.E2ETests
             options.AddArguments("--disable-notifications");
 
             driver = new ChromeDriver(options);
+
+            homePage = new Home(driver);
+            homePage.Navigate();
+            Assert.Equal(driver.Url, Home.URI_HASH);
 
             loginPage = new Login(driver);
             loginPage.Navigate();
