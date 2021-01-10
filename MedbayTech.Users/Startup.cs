@@ -68,7 +68,7 @@ namespace MedbayTech.Users
             services.AddTransient<IAuthenticationService, AuthenticationService>();
 
             services.AddScoped<IAppointmentGateway, AppointmentGateway>();
-
+            services.AddScoped<IPatientDocumentsGateway, PatientDocumentsGateway>();
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("QKcOa8xPopVOliV6tpvuWmoKn4MOydSeIzUt4W4r1UlU2De7dTUYMlrgv3rU"));
             services.AddAuthentication(x =>

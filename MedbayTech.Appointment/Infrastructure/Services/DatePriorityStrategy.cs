@@ -62,7 +62,7 @@ namespace Infrastructure.Services
             return availableAppointments;
         }
         public List<Doctor> GetDoctorsBy(int specializationId)
-        {
+        {   
             return _userGateway.GetDoctorsBy(specializationId).ToList();
         }
     }

@@ -19,7 +19,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
         }
         public MedicalRecord CreateMedicalRecord(MedicalRecord medicalRecord)
         {
-            throw new NotImplementedException();
+            return _medicalRecordRepository.Create(medicalRecord);
         }
 
         public MedicalRecord GetMedicalRecordByPatient(string patientId)

@@ -34,7 +34,6 @@ namespace MedbayTech.Users.Controllers
             return Ok(_doctorService.GetDoctorByExaminationRoom(id));
         }
 
-        [Authorize(Roles = "Patient")]
         [HttpGet("specialization/{id}")]
         public IActionResult GetBySpecialization(int id)
         {
