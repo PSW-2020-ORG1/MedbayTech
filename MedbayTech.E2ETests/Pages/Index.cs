@@ -10,9 +10,6 @@ namespace SeleniumEndToEnd.Pages
         private IWebDriver _webDriver { get; }
         public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
         public static string URI = $"http://localhost:{PORT}/#/home";
-        public static string UriTestEnv = "localhost:53843/index.html#/home";
-        public static string UriTestEnvFinal = "localhost:53843/#/home";
-        public static string Stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
 
         public Index(IWebDriver webDriver)
         {

@@ -10,7 +10,7 @@ namespace SeleniumEndToEnd.Pages
     {
         private IWebDriver driver;
         //public const string URI = "http://localhost:4200/#/allFeedback";
-        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "53843";
+        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
 
         public static string URI = $"http://localhost:{PORT}/#/allFeedback";
 

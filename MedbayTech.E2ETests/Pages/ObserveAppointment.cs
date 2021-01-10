@@ -13,7 +13,7 @@ namespace MedbayTech.E2ETests.Pages
     {
         private readonly IWebDriver driver;
         //public const string URI = "http://localhost:4200/#/observeAppointment";
-        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "53843";
+        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
 
         public static string URI = $"http://localhost:{PORT}/#/observeAppointment";
 
