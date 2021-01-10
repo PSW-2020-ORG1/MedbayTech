@@ -118,6 +118,7 @@ namespace MedbayTech.Users
 
             app.UseRouting();
 
+            app.UseCors("AllowAll");
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -158,9 +159,6 @@ namespace MedbayTech.Users
                 {
                     Console.WriteLine("Failed to seed data");
                 }
-                app.UseCors("AllowAll");
-
-            
 
             }
         }

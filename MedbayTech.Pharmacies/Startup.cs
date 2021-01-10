@@ -39,8 +39,18 @@ namespace PharmacyIntegration
             Directory.CreateDirectory("GeneratedUsageReports");
             Directory.CreateDirectory("DrugSpecifications");
             Directory.CreateDirectory("GeneratedPrescription");
-
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .SetIsOriginAllowed(_ => true)
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
             AddRepository(services);
             AddServices(services);
 
@@ -89,13 +99,8 @@ namespace PharmacyIntegration
                 }
             }
 
-            app.UseCors(x => x
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .SetIsOriginAllowed(origin => true)); 
-
-
             app.UseRouting();
+            app.UseCors("AllowAll");
 
             app.UseAuthorization();
 

@@ -27,6 +27,19 @@ namespace MedbayTech.Rooms
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .SetIsOriginAllowed(_ => true)
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
+
             services.AddDbContext<RoomDbContext>();
             services.AddControllers();
 
@@ -94,6 +107,7 @@ namespace MedbayTech.Rooms
 
                 app.UseRouting();
 
+                app.UseCors("AllowAll");
                 app.UseAuthorization();
 
                 app.UseEndpoints(endpoints =>
