@@ -47,7 +47,7 @@ namespace SeleniumEndToEnd
             loginPage.WaitForAdministratorHomePage();
 
             allFeedbackPage = new AllFedback(driver);
-            Assert.Equal(driver.Url, AllFedback.URI);
+            Assert.Equal(driver.Url, AllFedback.URI_local);
             allFeedbackPage.EnsurePageIsDisplayed();
 
             feedbackCount = allFeedbackPage.GetFeedbackCount();
@@ -103,7 +103,7 @@ namespace SeleniumEndToEnd
             loginPage.WaitForAdministratorHomePage();
 
             AllFedback newAllFeedbackPage = new AllFedback(driver);
-            Assert.Equal(driver.Url, AllFedback.URI);
+            Assert.Equal(driver.Url, AllFedback.URI_local);
             newAllFeedbackPage.EnsurePageIsDisplayed();
 
             Assert.Equal(feedbackCount + 1, newAllFeedbackPage.GetFeedbackCount());

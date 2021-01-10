@@ -53,7 +53,7 @@ namespace MedbayTech.E2ETests.Pages
         public void WaitForAdministratorHomePage()
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlToBe(AllFedback.URI));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlToBe(AllFedback.URI_local));
         }
 
         public void WaitForPatientHomePage()

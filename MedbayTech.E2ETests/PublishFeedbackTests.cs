@@ -25,7 +25,7 @@ namespace MedbayTech.E2ETests
             Login();
 
             _allFeedbackPage = new AllFedback(_webDriver);
-            Assert.Equal(_webDriver.Url, AllFedback.URI);
+            Assert.Equal(_webDriver.Url, AllFedback.URI_local);
             Assert.True(_allFeedbackPage.MaliciousPatientsLinkElementDisplayed());
              
         }

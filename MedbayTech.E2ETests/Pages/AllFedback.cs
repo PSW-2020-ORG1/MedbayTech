@@ -11,6 +11,7 @@ namespace SeleniumEndToEnd.Pages
     {
         private IWebDriver driver;
         public const string URI = "https://medbaytech.herokuapp.com/index.html#/allFeedback";
+        public const string URI_local = "http://localhost:4200/#/allFeedback";
 
         private IWebElement CountFeedback => driver.FindElement(By.Name("all_feedback_len"));
         private IWebElement TitleFeedbacks => driver.FindElement(By.Name("feedbacks"));
@@ -70,6 +71,6 @@ namespace SeleniumEndToEnd.Pages
 
         public void ApproveFeedback() => GetApproveButton.Click();
         public void DenyFeedback() => GetDenyButton.Click();
-        public void Navigate() => driver.Navigate().GoToUrl(URI);
+        public void Navigate() => driver.Navigate().GoToUrl(URI_local);
     }
 }

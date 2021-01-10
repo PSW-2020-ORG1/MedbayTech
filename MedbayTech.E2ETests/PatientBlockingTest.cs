@@ -46,7 +46,7 @@ namespace MedbayTech.E2ETests
             loginPage.WaitForAdministratorHomePage();
 
             allFeedbackPage = new AllFedback(driver);
-            Assert.Equal(driver.Url, AllFedback.URI);
+            Assert.Equal(driver.Url, AllFedback.URI_local);
             Assert.True(allFeedbackPage.MaliciousPatientsLinkElementDisplayed());
             allFeedbackPage.ClickMaliciousPatientsLink();
 
