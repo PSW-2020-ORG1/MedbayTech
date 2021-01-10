@@ -65,10 +65,10 @@ namespace PharmacyIntegration
                 string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
 
-                if (stage.Equals("test") && host.Equals("postgres"))
-                {
-                    databaseCreator.CreateTables();
-                }
+                // if (stage.Equals("test") && host.Equals("postgres"))
+                // {
+                //     databaseCreator.CreateTables();
+                // }
 
                 try
                 {
@@ -78,6 +78,7 @@ namespace PharmacyIntegration
                     }
                     else
                         context.Database.Migrate();
+
                 } catch(Exception)
                 {
                     Console.WriteLine("Failed to execute migration");

@@ -22,7 +22,7 @@ services:
       - postgres-data:/var/lib/postgres
 
   apigateway:
-    image: api
+    image: stefan7/apigateways:latest
     container_name: api_container
     restart: on-failure
     networks:
@@ -51,7 +51,7 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   feedback:
-    image: feedback
+    image: stefan7/feedback:latest
     container_name: feedback_container
     restart: on-failure
     networks:
@@ -74,7 +74,7 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   pharmacies:
-    image: pharmacies
+    image: stefan7/pharmacies:latest
     container_name: pharmacies_container
     restart: on-failure
     networks:
@@ -97,7 +97,7 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   medications:
-    image: medications
+    image: stefan7/medication:latest
     container_name: medications_container
     restart: on-failure
     networks:
@@ -118,7 +118,7 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   rooms:
-    image: rooms
+    image: stefan7/rooms:latest
     container_name: rooms_container
     restart: on-failure
     networks:
@@ -141,7 +141,7 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   users:
-    image: users
+    image: stefan7/users:latest
     container_name: users_container
     restart: on-failure
     networks:
@@ -164,7 +164,7 @@ services:
       - postgres-data:/var/lib/postgres:rw
   
   patientdocuments:
-    image: documents
+    image: stefan7/patientdocuments:latest
     container_name: documents_container
     restart: on-failure
     networks:
@@ -187,7 +187,7 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   appointment:
-    image: appointment
+    image: stefan7/appointment:latest
     container_name: appointment_container
     restart: on-failure
     networks:
