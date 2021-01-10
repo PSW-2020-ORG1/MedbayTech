@@ -1,5 +1,4 @@
 
-using MedbayTech.Common.Domain.Entities.Generalities;
 using MedbayTech.Pharmacies.Domain.Entities.Medications;
 using System.Collections.Generic;
 

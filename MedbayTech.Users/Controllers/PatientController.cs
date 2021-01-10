@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using MedbayTech.Users.Application.Common.Interfaces.Service;
 using MedbayTech.Users.Application.DTO;
 using MedbayTech.Users.Application.Mappers;

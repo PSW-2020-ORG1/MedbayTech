@@ -137,7 +137,6 @@ namespace MedbayTech.Appointment.Infrastructure.Persistance
                 CanceledByPatient = true,
                 CancelationDate = new DateTime(2020, 12, 21),
                 PatientId = "2406978890046",
-
             });
             context.Add(new Domain.Entities.Appointment
             {

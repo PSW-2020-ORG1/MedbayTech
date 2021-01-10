@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace MedbayTech.Common.Domain.Entities.Generalities
+namespace MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords
 {
     public class Symptoms
     {

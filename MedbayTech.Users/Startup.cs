@@ -45,7 +45,6 @@ namespace MedbayTech.Users
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
 
-
             services.AddDbContext<UserDbContext>();
 
             services.AddTransient<IUserRepository, UserRepository>();
