@@ -23,7 +23,7 @@ services:
       - postgres-data:/var/lib/postgres
 
   WebIntegrationTests:
-      image: web_tests
+      image: stefan7/test1
       container_name: web_integration_tests
       restart: on-failure
       depends_on:
