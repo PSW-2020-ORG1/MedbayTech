@@ -14,7 +14,7 @@ namespace MedbayTech.WebIntegrationTests.WebApplicationFactory
         public UsersService()
         {
             _factoryUsers = new TestServer(WebHost.CreateDefaultBuilder()
-                .UseStartup<Users.Startup>());
+                .UseStartup<MedbayTech.Users.Startup>());
         }
 
         public HttpClient CreateClient()

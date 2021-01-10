@@ -50,6 +50,7 @@ import { NavigationBarPatientComponent } from './navigation-bar/navigation-bar-p
 import { NavigationBarUserComponent } from './navigation-bar/navigation-bar-user/navigation-bar-user.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     MatSelectModule,
     MatStepperModule,
     ToastrModule.forRoot(),
-    IvyCarouselModule
+    IvyCarouselModule,
+    NgImageSliderModule
   ],
   providers: [
     FeedbackService,

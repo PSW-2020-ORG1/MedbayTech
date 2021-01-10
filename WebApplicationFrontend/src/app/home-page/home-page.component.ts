@@ -7,6 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
+  imageObject: Array<object> = [{
+    thumbImage: 'assets/apoteka1.jpg',
+    alt: 'alt of image',
+  },
+  {
+    thumbImage: 'assets/apoteka2.jpg',
+    alt: 'alt of image',
+  },
+  {
+    thumbImage: 'assets/apoteka3.jpg',
+    alt: 'alt of image',
+  },
+  {
+    thumbImage: 'assets/apoteka4.jpg',
+    alt: 'alt of image',
+  }
+  ];
+
   constructor() { }
 
   ngOnInit(): void {
