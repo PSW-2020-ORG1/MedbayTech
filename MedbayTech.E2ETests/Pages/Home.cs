@@ -12,8 +12,9 @@ namespace MedbayTech.E2ETests.Pages
         //public const string URI = "http://localhost:4200/#/home";
 
         public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
+        public static string STAGE = Environment.GetEnvironmentVariable("STAGE") ?? "";
 
-        public static string URI = $"http://localhost:{PORT}/index.html#/home";
+        public static string URI = $"http://localhost:{PORT}/{STAGE}#/home";
 
         public static string URI_HASH = $"http://localhost:{PORT}/#/home";
 
