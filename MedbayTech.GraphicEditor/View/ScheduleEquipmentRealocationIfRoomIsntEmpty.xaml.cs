@@ -69,7 +69,7 @@ namespace MedbayTech.GraphicEditor.View
             string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentRealocationDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/hospitalequipment/", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:60304/api/hospitalequipment/", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             hospitalEquipment = (JsonConvert.DeserializeObject<HospitalEquipment>(responseBody));
@@ -80,7 +80,7 @@ namespace MedbayTech.GraphicEditor.View
             string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentRealocationDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointmentrealocation/", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8083/api/appointmentrealocation/", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             if(appointmentRealocationDTO.appointmentRealocationSearchOrSchedule != AppointmentRealocationSearchOrSchedule.ScheduleRealocationOrRenovation)

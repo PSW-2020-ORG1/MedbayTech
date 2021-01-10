@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using MedbayTech.Common.Domain.ValueObjects;
 using MedbayTech.Users.Application.DTO;
 using MedbayTech.Users.Domain.Entites;
 using MedbayTech.Users.Domain.ValueObjects;
@@ -35,7 +37,9 @@ namespace MedbayTech.Users.Application.Mappers
                     Floor = patientRegistrationDTO.Floor,
                     Number = patientRegistrationDTO.Number,
                     Street = patientRegistrationDTO.Street
-                }
+
+                },
+                InsurancePolicy = new InsurancePolicy(patientRegistrationDTO.PolicyNumber, patientRegistrationDTO.Company, new Period(patientRegistrationDTO.PolicyStart, patientRegistrationDTO.PolicyEnd))
             };
             return patient;
         }

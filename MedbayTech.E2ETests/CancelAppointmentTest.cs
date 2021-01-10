@@ -66,12 +66,8 @@ namespace MedbayTech.E2ETests
 
             
             observeAppointmentPage = new ObserveAppointment(driver);
-            //OVDE UMRE 
             observeAppointmentPage.EnsurePageIsDisplayed();
-            // if (ObserveAppointment.Stage.Equals("test"))
-                Assert.Equal(driver.Url, ObserveAppointment.URI);
-            // else
-               // Assert.Equal(driver.Url, ObserveAppointment.URI);
+            Assert.Equal(driver.Url, ObserveAppointment.URI);
             Assert.True(observeAppointmentPage.CancelAppointmentButtonDisplayed());
         }
 

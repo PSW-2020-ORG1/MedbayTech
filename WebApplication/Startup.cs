@@ -190,6 +190,7 @@ namespace WebApplication
             services.AddScoped<IDoctorWorkDayService, DoctorWorkDayService>();
             services.AddScoped<IAppointmentService, Backend.Schedules.Service.AppointmentService>();
             services.AddScoped<ISpecializationService, SpecializationService>();
+            
         }
 
         private void AddRepository(IServiceCollection services)

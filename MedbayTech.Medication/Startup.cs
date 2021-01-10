@@ -117,9 +117,8 @@ namespace MedbayTech.Medication
         private static void AddServices(IServiceCollection services)
         {
             services.AddScoped<IMedicationUsageService, MedicationUsageService>();
-            services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>(); ;
+            services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>(); 
             services.AddScoped<IMedicationService, MedicationService>();
-            
         }
     }
 }

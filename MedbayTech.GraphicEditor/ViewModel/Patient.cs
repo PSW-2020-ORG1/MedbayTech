@@ -18,12 +18,19 @@ namespace GraphicEditor.ViewModel
         public string Email { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public string CityOfBirth { get; set; }
+        public int PostalCodeBirth { get; set; }
+        public string StateOfBirth { get; set; }
         public DateTime DateOfCreation { get; set; }
-        public EducationLevel EducationLevel { get; set; }
+        //public EducationLevel EducationLevel { get; set; }
+        public string EducationLevel { get; set; }
         public string Profession { get; set; }
         public string ProfileImage { get; set; }
         public Gender Gender { get; set; }
         public string City { get; set; }
+        public string State { get; set; }
+        public string Street { get; set; }
+        public bool IsGuestAccount { get; set; }
 
 
 

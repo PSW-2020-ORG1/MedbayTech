@@ -2,7 +2,11 @@ export const environment = {
   production: true,
   //baseUrl: "https://medbaytech.herokuapp.com",
   baseUrl: "http://localhost:53843",
+<<<<<<< HEAD
   fedback: 'approvedFeedback',
+=======
+  fedback: 'feedback',
+>>>>>>> develop
   allFeedback: 'allFeedback',
   updateFeedbackStatus: 'updateFeedbackStatus',
   createFeedback : 'createFeedback',
@@ -15,9 +19,14 @@ export const environment = {
   allReports: 'allReports',
   registration : 'registration',
   patientRegistration : 'patientRegistration',
+<<<<<<< HEAD
   authenticate: 'authenticate',
   doctor : 'doctor',
   searchDoctor : 'allDoctors',
+=======
+  doctor : 'doctor',
+  searchDoctor : 'searchDoctor',
+>>>>>>> develop
   medicalRecord : 'medicalRecord',
   prescriptionSimpleSearch : 'prescription',
   reportSimpleSearch : 'report',

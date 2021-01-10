@@ -20,7 +20,6 @@ namespace MedbayTech.Appointment.Controllers
             _surveyService = surveyService;
         }
 
-        [Authorize(Roles = "Patient")]
         [HttpGet("allQuestions")]
         public IActionResult GetAllQuestions()
         {
@@ -29,7 +28,6 @@ namespace MedbayTech.Appointment.Controllers
             return Ok(allQuestionsDTOs);
         }
 
-        [Authorize(Roles = "Patient")]
         [HttpPost("createSurvey")]
         public IActionResult Post(PostSurveyDTO postSurveyDTO)
         {

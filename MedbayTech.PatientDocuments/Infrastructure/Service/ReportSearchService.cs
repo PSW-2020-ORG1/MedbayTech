@@ -176,6 +176,5 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
             }
             return reports;
         }
-
     }
 }

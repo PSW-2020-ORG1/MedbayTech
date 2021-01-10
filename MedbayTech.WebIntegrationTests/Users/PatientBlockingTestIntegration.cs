@@ -9,6 +9,7 @@ using System.Net.Http;
 using WebApplication;
 using Xunit;
 
+
 namespace MedbayTech.WebIntegrationTests.Users
 {
     public class PatientBlockingTestIntegration : IClassFixture<WebApplicationFactory<Startup>>

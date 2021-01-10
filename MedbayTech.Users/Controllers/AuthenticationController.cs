@@ -38,11 +38,6 @@ namespace MedbayTech.Users.Controllers
 
             return Ok(auteAuthenticatedUserDto);
         }
-        [Authorize(Roles = Role.Admin)]
-        [HttpGet("proba")]
-        public IActionResult Get()
-        {
-            return Ok(User.Identity.Name);
-        }
+
     }
 }

@@ -10,6 +10,7 @@ namespace MedbayTech.Appointment.Application.Gateways
     {
         Room GetRoomBy(int roomId);
         List<HospitalEquipment> GetAllHospitalEquipments();
+        List<HospitalEquipment> GetHospitalEquipmentByRoom(int id);
         string GetRoomsDomain();
     }
 }

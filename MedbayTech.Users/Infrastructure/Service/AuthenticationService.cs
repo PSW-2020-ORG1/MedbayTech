@@ -32,7 +32,8 @@ namespace MedbayTech.Users.Infrastructure.Service
             if (user.Role.Equals("Patient"))
             {
                 Patient p = (Patient)user;
-                if (p.Blocked)
+
+                if (p.Blocked || !p.Confirmed)
                 {
                     return null;
                 }

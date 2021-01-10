@@ -7,7 +7,6 @@ namespace SeleniumEndToEnd.Pages
     public class CreateFeedbackLocal
     {
         private IWebDriver _webDriver { get; }
-
         
         public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
 
@@ -26,6 +25,28 @@ namespace SeleniumEndToEnd.Pages
 
         private IWebElement submitButton => _webDriver.FindElement(By.XPath("//button[@value='submit']"));
 
+        public void EnsurePageIsDisplayed()
+        {
+            var wait = new WebDriverWait(_webDriver, new TimeSpan(0, 0, 20));
+            wait.Until(condition =>
+            {
+                try
+                {
+                    return txtFeedback.Displayed &&
+                           radioAllowed.Displayed &&
+                           radioAnonymous.Displayed &&
+                           submitButton.Displayed;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    return false;
+                }
+                catch (NoSuchElementException)
+                {
+                    return false;
+                }
+            });
+        }
 
         public void SelectAllowed() => radioAllowed.Click();
         

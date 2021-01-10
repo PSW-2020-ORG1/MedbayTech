@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore;
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
@@ -9,6 +10,7 @@ using System.Text;
 
 namespace MedbayTech.WebIntegrationTests.WebApplicationFactory.Gateways
 {/*
+
     class UserAppointmentGateway : IUserGateway
     {
         private readonly TestServer _factoryUsers;
@@ -65,4 +67,5 @@ namespace MedbayTech.WebIntegrationTests.WebApplicationFactory.Gateways
             return workDay;
         }
     }*/
+
 }

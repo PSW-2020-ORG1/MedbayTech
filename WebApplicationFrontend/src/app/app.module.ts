@@ -74,7 +74,11 @@ import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
     NavigationBarAdminComponent,
     NavigationBarPatientComponent,
     NavigationBarUserComponent,
+<<<<<<< HEAD
     HomePageComponent,
+=======
+    HomePageComponent
+>>>>>>> develop
   ],
   imports: [
     BrowserModule,

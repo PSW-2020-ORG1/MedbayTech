@@ -45,6 +45,14 @@ namespace MedbayTech.Appointment.Controllers
             {
                 return Ok(_appointmentFilterService.AddRoomToAppointment(appointmentFilterDTO.Appointments));
             }
+            else if (appointmentFilterDTO.AppointmentFilterCriteria == AppointmentFilterCriteria.EmergencyAppointment)
+            {
+                return Ok(_appointmentFilterService.FindEmergencyAppointment(new PriorityParameters() { DoctorId = appointmentFilterDTO.DoctorId, ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval, SpecializationId = appointmentFilterDTO.SpecializationId }, appointmentFilterDTO.HospitalEquipmentId));
+            }
+            else if (appointmentFilterDTO.AppointmentFilterCriteria == AppointmentFilterCriteria.ReschedulingAppointment)
+            {
+                return Ok(_appointmentFilterService.FindAppointmentsForRescheduling(new PriorityParameters() { DoctorId = appointmentFilterDTO.DoctorId, ChosenStartDate = appointmentFilterDTO.StartInterval, ChosenEndDate = appointmentFilterDTO.EndInterval }, appointmentFilterDTO.HospitalEquipmentId));
+            }
             else return Ok();
         }
     }

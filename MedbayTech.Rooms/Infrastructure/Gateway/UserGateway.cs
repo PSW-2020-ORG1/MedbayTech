@@ -65,6 +65,7 @@ namespace MedbayTech.Rooms.Infrastructure.Gateway
             string origin = Environment.GetEnvironmentVariable("URL_USERS") ?? "localhost";
             string port = Environment.GetEnvironmentVariable("PORT_USERS") ?? "8081";
 
+
             return $"http://{origin}:{port}";
         }
     }

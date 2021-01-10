@@ -56,7 +56,7 @@ namespace WebApplication.Controller
                 await mailService.SendMailAsync(request);
                 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

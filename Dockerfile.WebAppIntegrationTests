@@ -8,7 +8,7 @@ COPY MedbayTech.WebIntegrationTests/MedbayTech.WebIntegrationTests.csproj Medbay
 RUN dotnet restore MedbayTech.WebIntegrationTests/MedbayTech.WebIntegrationTests.csproj
 COPY . .
 
-FROM build AS publish
+#FROM build AS publish
 WORKDIR /app/Backend
 ENV PATH $PATH:/root/.dotnet/tools
 RUN dotnet tool install -g dotnet-ef --version 3.1.9

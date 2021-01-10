@@ -10,9 +10,9 @@ namespace MedbayTech.Rooms.Infrastructure.Database.Configurations
         {
 
             builder.ToTable("HospitalEquipment");
-            builder.HasOne(r => r.Room).WithMany().HasForeignKey(r => r.RoomId);
-            builder.HasOne(e => e.EquipmentType).WithMany().HasForeignKey(e => e.EquipmentTypeId);
 
+            builder.HasOne(r => r.Room).WithMany().HasForeignKey(h => h.RoomId);
+            builder.HasOne(e => e.EquipmentType).WithMany().HasForeignKey(h => h.EquipmentTypeId);
         }
 
     }

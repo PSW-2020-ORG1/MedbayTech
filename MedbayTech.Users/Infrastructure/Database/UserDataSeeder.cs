@@ -54,7 +54,10 @@ namespace MedbayTech.Users.Infrastructure.Database
                 ProfileImage = "http://localhost:8081/Resources/Images/1234567891989/among-us-5659730_1280.png",
                 IsGuestAccount = false,
                 ChosenDoctorId = "2406978890047",
-                Role = Role.Patient
+
+                Role = Role.Patient,
+                Confirmed = true
+
             });
             context.SaveChanges();
         }
@@ -208,6 +211,10 @@ namespace MedbayTech.Users.Infrastructure.Database
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 13), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" });
             context.Add(new WorkDay { Date = new DateTime(2021, 12, 28), StartTime = 8, EndTime = 15, DoctorId = "2406978890047" });
 
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 10), StartTime = 1, EndTime = 8, DoctorId = "2406978890047" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 11), StartTime = 1, EndTime = 8, DoctorId = "2406978890047" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 12), StartTime = 1, EndTime = 8, DoctorId = "2406978890047" });
+
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 20), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" });
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 21), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" });
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 22), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" });
@@ -216,17 +223,30 @@ namespace MedbayTech.Users.Infrastructure.Database
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 28), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" });
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 29), StartTime = 8, EndTime = 15, DoctorId = "2407978890045" });
 
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 10), StartTime = 1, EndTime = 8, DoctorId = "2407978890045" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 11), StartTime = 1, EndTime = 8, DoctorId = "2407978890045" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 12), StartTime = 1, EndTime = 8, DoctorId = "2407978890045" });
+
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 6), StartTime = 8, EndTime = 15, DoctorId = "2407978890043" });
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 7), StartTime = 8, EndTime = 15, DoctorId = "2407978890043" });
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 8), StartTime = 8, EndTime = 15, DoctorId = "2407978890043" });
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 9), StartTime = 8, EndTime = 15, DoctorId = "2407978890043" });
             context.Add(new WorkDay { Date = new DateTime(2020, 12, 10), StartTime = 8, EndTime = 15, DoctorId = "2407978890043" });
 
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 10), StartTime = 1, EndTime = 8, DoctorId = "2407978890043" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 11), StartTime = 1, EndTime = 8, DoctorId = "2407978890043" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 12), StartTime = 1, EndTime = 8, DoctorId = "2407978890043" });
+
             context.Add(new WorkDay { Date = new DateTime(2021, 01, 12), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
             context.Add(new WorkDay { Date = new DateTime(2021, 01, 13), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
             context.Add(new WorkDay { Date = new DateTime(2021, 01, 14), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
             context.Add(new WorkDay { Date = new DateTime(2021, 01, 15), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
             context.Add(new WorkDay { Date = new DateTime(2021, 01, 16), StartTime = 8, EndTime = 15, DoctorId = "2407978890041" });
+
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 9), StartTime = 3, EndTime = 23, DoctorId = "2407978890041" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 10), StartTime = 1, EndTime = 8, DoctorId = "2407978890041" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 11), StartTime = 1, EndTime = 8, DoctorId = "2407978890041" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 12), StartTime = 1, EndTime = 8, DoctorId = "2407978890041" });
 
             context.SaveChanges();
         }

@@ -23,7 +23,6 @@ namespace MedbayTech.E2ETests.Pages
 
         public ObserveAppointment(IWebDriver driver)
         {
-
             this.driver = driver;
         }
         public void EnsurePageIsDisplayed()

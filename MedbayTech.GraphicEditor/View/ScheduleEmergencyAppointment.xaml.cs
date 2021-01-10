@@ -70,10 +70,10 @@ namespace MedbayTech.GraphicEditor.View
                 MessageBox.Show("You didn't select patient!");
                 return;
             }
-            MedicalRecord medicalRecord = SearchDataBaseForMedicalRecord(patient.Id);
-            appointment.MedicalRecord.Id = medicalRecord.Id;
+            //MedicalRecord medicalRecord = SearchDataBaseForMedicalRecord(patient.Id);
+            //appointment.MedicalRecord.Id = medicalRecord.Id;
             appointment.PatientId = patient.Id;
-            appointment.Doctor = null;
+            appointment.Doctor = (Doctor)comboBoxDoctor.SelectedItem;
             appointment.Room = null;
             if(listViewPostPoneTime.ItemsSource == null)
             {
@@ -123,7 +123,7 @@ namespace MedbayTech.GraphicEditor.View
         {
             doctors = new List<Doctor>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/doctor/" + "empty" + "/All")
+            var task = httpClient.GetAsync("http://localhost:8081/api/doctor" + "/getAllDoctors")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -139,7 +139,7 @@ namespace MedbayTech.GraphicEditor.View
         {
             patients = new List<Patient>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/patient/" + "empty")
+            var task = httpClient.GetAsync("http://localhost:8081/api/user" + "/getAllPatients")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -155,7 +155,7 @@ namespace MedbayTech.GraphicEditor.View
         {
             hospitalEquipments = new List<EquipmentType>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/equipmenttype/" + "empty")
+            var task = httpClient.GetAsync("http://localhost:60304/api/equipmenttype/" + "empty")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -172,7 +172,7 @@ namespace MedbayTech.GraphicEditor.View
             string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentFilterDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointmentfilter/", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8083/api/appointmentfilter/", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             if(appointmentFilterDTO.appointmentFilterCriteria == AppointmentFilterCriteria.ReschedulingAppointment)
@@ -198,6 +198,7 @@ namespace MedbayTech.GraphicEditor.View
         private MedicalRecord SearchDataBaseForMedicalRecord(string patientId)
         {
             MedicalRecord medicalRecord = new MedicalRecord();
+            /*
             HttpClient httpClient = new HttpClient();
             var task = httpClient.GetAsync("http://localhost:53109/api/medicalrecord/" + patientId)
                 .ContinueWith((taskWithResponse) =>
@@ -207,7 +208,7 @@ namespace MedbayTech.GraphicEditor.View
                     jsonString.Wait();
                     medicalRecord = JsonConvert.DeserializeObject<MedicalRecord>(jsonString.Result);
                 });
-            task.Wait();
+            task.Wait();*/
             return medicalRecord;
         }
 
@@ -216,7 +217,7 @@ namespace MedbayTech.GraphicEditor.View
             string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentFilterDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointment/", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8083/api/appointment/apointmentsBySearchOrSchedule", content);
             response.EnsureSuccessStatusCode();
         }
 
@@ -244,10 +245,10 @@ namespace MedbayTech.GraphicEditor.View
 
         private void ButtonAddNewPatient(object sender, RoutedEventArgs e)
         {
-           // AddPatient addPatient = new AddPatient();
-            //addPatient.ShowDialog();
-            //SearchDataBaseForPatients();
-            //comboBoxPatient.ItemsSource = patients;
+            AddPatient addPatient = new AddPatient();
+            addPatient.ShowDialog();
+            SearchDataBaseForPatients();
+            comboBoxPatient.ItemsSource = patients;
         }
     }
 }

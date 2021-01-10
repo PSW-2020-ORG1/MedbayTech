@@ -21,7 +21,7 @@ namespace MedbayTech.Users.Controllers
             _specializationService = specializationService;
         }
 
-        [Authorize(Roles = "Patient")]
+
         public IActionResult GetAll()
         {
             List<Specialization> specializations = _specializationService.GetAll().ToList();

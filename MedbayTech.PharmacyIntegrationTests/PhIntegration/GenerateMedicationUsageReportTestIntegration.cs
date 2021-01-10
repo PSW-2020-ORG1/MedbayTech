@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
+﻿using MedbayTech.Common.Domain.ValueObjects;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using PharmacyIntegration;
 using Shouldly;
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using Xunit;
-using Backend.Utils;
-using System.Transactions;
-using Model;
 
 namespace MedbayTech.PharmacyIntegrationTests.PhIntegration
 {

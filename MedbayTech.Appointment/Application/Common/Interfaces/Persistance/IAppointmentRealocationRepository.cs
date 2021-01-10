@@ -6,7 +6,8 @@ using System.Collections.Generic;
 
 namespace Application.Common.Interfaces.Persistance
 {
-    public interface IAppointmentRealocationRepository : IRepository<AppointmentRealocation,int>,ICreate<AppointmentRealocation>, IGetBy<AppointmentRealocation, int>, IDelete<AppointmentRealocation>, IGetAll<AppointmentRealocation>, IUpdate<AppointmentRealocation>
+
+    public interface IAppointmentRealocationRepository : IRepository<AppointmentRealocation,int>
     {
         List<AppointmentRealocation> GetBy(int roomId, DateTime date);
     }

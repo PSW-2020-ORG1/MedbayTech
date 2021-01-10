@@ -47,7 +47,7 @@ namespace MedbayTech.GraphicEditor.View
                 return;
             }
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/room/" + textBoxSearch + "/ByRoomLabelorRoomUse")
+            var task = httpClient.GetAsync("http://localhost:60304/api/room/" + textBoxSearch + "/ByRoomLabelorRoomUse")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -64,7 +64,7 @@ namespace MedbayTech.GraphicEditor.View
         {
             hospitalEquipments = new List<EquipmentType>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/equipmenttype/" + "empty")
+            var task = httpClient.GetAsync("http://localhost:60304/api/equipmenttype/" + "empty")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;
@@ -156,7 +156,7 @@ namespace MedbayTech.GraphicEditor.View
             string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentRealocationDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/appointmentrealocation/", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8083/api/appointmentrealocation/", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             if(appointmentRealocationDTO.appointmentRealocationSearchOrSchedule == AppointmentRealocationSearchOrSchedule.CheckIsRoomAvailable)
@@ -171,7 +171,7 @@ namespace MedbayTech.GraphicEditor.View
             string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentRealocationDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost:53109/api/hospitalequipment/", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:60304/api/hospitalequipment/", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             hospitalEquipment = (JsonConvert.DeserializeObject<HospitalEquipment>(responseBody));
@@ -182,7 +182,7 @@ namespace MedbayTech.GraphicEditor.View
             EquipmentType equipmentType = (EquipmentType)comboBoxEquipment.SelectedItem;
             List<Room> rooms = new List<Room>();
             HttpClient httpClient = new HttpClient();
-            var task = httpClient.GetAsync("http://localhost:53109/api/room/" + equipmentType.Id + "/ByEquipment")
+            var task = httpClient.GetAsync("http://localhost:60304/api/room/" + equipmentType.Id + "/ByEquipment")
                 .ContinueWith((taskWithResponse) =>
                 {
                     var response = taskWithResponse.Result;

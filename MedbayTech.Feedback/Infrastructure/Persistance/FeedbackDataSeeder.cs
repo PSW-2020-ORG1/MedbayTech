@@ -40,15 +40,15 @@ namespace MedbayTech.Feedback.Infrastructure.Persistance
                 Anonymous = false,
                 AllowedForPublishing = false
             });
-            context.Add(new Domain.Entities.Feedback
-            {
-                AdditionalNotes = "Odlicno!",
-                Approved = false,
-                Date = new DateTime(),
-                UserId = null,
-                Anonymous = false,
-                AllowedForPublishing = false
-            });
+            // context.Add(new Domain.Entities.Feedback
+            // {
+            //     AdditionalNotes = "Odlicno!",
+            //     Approved = false,
+            //     Date = new DateTime(),
+            //     UserId = null,
+            //     Anonymous = false,
+            //     AllowedForPublishing = false
+            // });
             context.SaveChanges();
         }
 

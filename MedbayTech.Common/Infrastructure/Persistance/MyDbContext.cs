@@ -28,7 +28,7 @@ namespace MedbayTech.Repository.Infrastructure.Persistance
         {
             string server = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
             string port = Environment.GetEnvironmentVariable("DATABASE_PORT") ?? "3306";
-            string database = Environment.GetEnvironmentVariable("DATABASE_SCHEMA") ?? "newdb28";
+            string database = Environment.GetEnvironmentVariable("DATABASE_SCHEMA") ?? "newdb25";
             string user = Environment.GetEnvironmentVariable("DATABASE_USERNAME") ?? "root";
             string password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "root";
 

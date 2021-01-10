@@ -3,7 +3,7 @@ using MedbayTech.Users.Application.Common.Interfaces.Service;
 using MedbayTech.Users.Domain.Entites;
 using MedbayTech.Users.Infrastructure.Service;
 using Microsoft.AspNetCore.Mvc;
-using System;
+
 using System.Collections.Generic;
 
 namespace MedbayTech.Users.Controllers
@@ -26,7 +26,7 @@ namespace MedbayTech.Users.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            Console.WriteLine("here");
+
             return Ok(_userService.GetAll());
         }
 

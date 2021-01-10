@@ -1,8 +1,10 @@
+
 <div class="container">
+    
 <h1 name="feedbacks" class="header">All feedback</h1>
     <h2 name="all_feedback_len" class="container center-card">Currently there are: {{allFeedback.length}} feedback</h2>
     <div>
-                <div [dataSource]="allFeedback" class="row" *ngFor="let feedback of allFeedback" class="container center-card">  
+                <div id="allFeedback" [dataSource]="allFeedback" class="row" *ngFor="let feedback of allFeedback" class="container center-card">  
                     
                     <mat-card>
                         <mat-card-header>
@@ -41,7 +43,8 @@
                         </mat-card-actions>
                     </mat-card>
                 </div>
-                </div>      
+                </div>  
+                <br>    
         
 
     

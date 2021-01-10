@@ -29,7 +29,7 @@ namespace MedbayTech.Users.Controllers
             return Ok(_patientService.GetAll());
         }
 
-        [Authorize(Roles = "Admin")]
+
         [HttpGet("maliciousPatients")]
         public IActionResult GetMaliciousPatients()
         {
@@ -39,7 +39,7 @@ namespace MedbayTech.Users.Controllers
             return Ok(maliciousPatients);
         }
 
-        [Authorize(Roles = "Admin")]
+
         [HttpPost("updatePatientStatus")]
         public IActionResult UpdatePatientStatus(UpdatePatientBlockedStatusDTO dto)
         {

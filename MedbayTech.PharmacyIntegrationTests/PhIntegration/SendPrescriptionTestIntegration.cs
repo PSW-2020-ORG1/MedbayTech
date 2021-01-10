@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 using PharmacyIntegration;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net.Http;
-using Backend.Utils.DTO;
 using Newtonsoft.Json;
 using Shouldly;
 using System.Net;
+using MedbayTech.Pharmacies.Application.DTO;
+using System.Text;
 
 namespace MedbayTech.PharmacyIntegrationTests.PhIntegration
 {

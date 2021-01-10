@@ -3,6 +3,7 @@ using Backend.Reports.Controller;
 using Backend.Reports.Model;
 using Backend.Reports.Repository;
 using Backend.Reports.Service;
+using MedbayTech.Pharmacies.Domain.Entities.Reports;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Moq;
@@ -15,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using Xunit;
+using MedicationUsageReportNotification = MedbayTech.Pharmacies.Domain.Entities.Reports.MedicationUsageReportNotification;
 
 namespace MedbayTech.PharmacyIntegrationTests.PhIntegration
 {

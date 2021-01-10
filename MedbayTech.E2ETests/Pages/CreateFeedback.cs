@@ -72,6 +72,7 @@ namespace SeleniumEndToEnd.Pages
         {
             return submitButton.Displayed;
         }
+        public void Navigate() => _webDriver.Navigate().GoToUrl(URI);
 
         public void WaitForFormSubmit()
         {
@@ -80,5 +81,7 @@ namespace SeleniumEndToEnd.Pages
         }
         public void ResolveAlertDialog()
             => _webDriver.SwitchTo().Alert().Accept();
+
+
     }
 }
