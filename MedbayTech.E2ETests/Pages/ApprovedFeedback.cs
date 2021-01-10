@@ -13,7 +13,7 @@ namespace MedbayTech.E2ETests.Pages
         private IWebDriver _webDriver;
         public const string URI = "http://localhost:4200/#/feedback";
         private ReadOnlyCollection<IWebElement> Rows => _webDriver.FindElements(By.XPath("//div[@id='approvedFeedbackDiv']/mat-card"));
-        private IWebElement Paragraph => _webDriver.FindElement(By.XPath("//p[@id='test']"));
+       
         public ApprovedFeedback(IWebDriver webDriver)
         {
             _webDriver = webDriver;
@@ -40,6 +40,7 @@ namespace MedbayTech.E2ETests.Pages
             });
 
         }
+        
         public int FeedbackCount() => Rows.Count;
         public void Navigate() => _webDriver.Navigate().GoToUrl(URI);
     }
