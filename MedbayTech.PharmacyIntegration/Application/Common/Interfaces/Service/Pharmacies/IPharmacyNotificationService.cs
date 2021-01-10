@@ -1,7 +1,7 @@
-﻿using MedbayTech.Pharmacies.Domain.Entities;
+﻿using MedbayTech.Pharmacies.Domain.Entities.Pharmacies;
 using System.Collections.Generic;
 
-namespace PharmacyIntegration.Service
+namespace MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Pharmacies
 {
     public interface IPharmacyNotificationService
     {

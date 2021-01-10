@@ -57,6 +57,18 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Medications
 
         }
 
+        public Medication(string name, string dosage)
+        {
+            Med = name;
+            Dosage = dosage;
+            Company = "Galenika";
+            RoomId = 87;
+            Quantity = 0;
+            MedicationContent = new List<DosageOfIngredient>();
+            MedicationCategoryId = 1;
+            Status = MedStatus.Validation;
+        }
+
         public Medication UpdateMedicationQuantity(Medication medication)
         {
             Medication updated = new Medication(this);

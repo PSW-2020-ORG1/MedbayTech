@@ -1,7 +1,8 @@
 ﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance;
-using MedbayTech.Pharmacies.Domain.Entities;
+using MedbayTech.Pharmacies.Domain.Entities.Pharmacies;
+using MedbayTech.Pharmacies.Infrastructure.Service.Pharmacies;
 using Moq;
-using PharmacyIntegration.Service;
+
 using Shouldly;
 using System;
 using System.Collections.Generic;

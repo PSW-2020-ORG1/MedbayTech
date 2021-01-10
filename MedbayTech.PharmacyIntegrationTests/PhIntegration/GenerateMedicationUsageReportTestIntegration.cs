@@ -1,7 +1,7 @@
 ﻿using MedbayTech.Common.Domain.ValueObjects;
+using MedbayTech.Pharmacies;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
-using PharmacyIntegration;
 using Shouldly;
 using System;
 using System.Net;

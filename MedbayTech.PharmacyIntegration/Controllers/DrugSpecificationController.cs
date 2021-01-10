@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 
-namespace PharmacyIntegration.Controllers
+namespace MedbayTech.Pharmacies.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

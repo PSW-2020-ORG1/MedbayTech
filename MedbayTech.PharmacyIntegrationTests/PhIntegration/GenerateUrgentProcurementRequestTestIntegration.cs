@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
-using Backend.Pharmacies.Model;
+using MedbayTech.Pharmacies;
+using MedbayTech.Pharmacies.Domain.Entities.Medications;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
-using PharmacyIntegration;
 using Shouldly;
 using Xunit;
 

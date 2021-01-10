@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Net;
-using Backend.Reports.DTO;
 using QRCoder;
 using System.Drawing;
 using System.Drawing.Imaging;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Reports;
 using MedbayTech.Pharmacies.Application.DTO;
 
-namespace PharmacyIntegration.Controllers
+namespace MedbayTech.Pharmacies.Controllers
 {
 
     [Route("api/[controller]")]

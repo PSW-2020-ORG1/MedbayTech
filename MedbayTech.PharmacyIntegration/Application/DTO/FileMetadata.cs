@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Backend.Reports.DTO
+namespace MedbayTech.Pharmacies.Application.DTO
 {
     public class FileMetadata
     {

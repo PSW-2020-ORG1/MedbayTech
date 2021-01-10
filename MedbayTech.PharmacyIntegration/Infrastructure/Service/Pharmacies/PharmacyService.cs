@@ -1,8 +1,9 @@
 ﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance;
-using MedbayTech.Pharmacies.Domain.Entities;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Pharmacies;
+using MedbayTech.Pharmacies.Domain.Entities.Pharmacies;
 using System.Collections.Generic;
 
-namespace PharmacyIntegration.Service
+namespace MedbayTech.Pharmacies.Infrastructure.Service.Pharmacies
 {
     public class PharmacyService : IPharmacyService
     {

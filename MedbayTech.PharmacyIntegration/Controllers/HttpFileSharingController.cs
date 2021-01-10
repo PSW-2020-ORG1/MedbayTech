@@ -1,4 +1,5 @@
-﻿using Backend.Reports.DTO;
+﻿
+using MedbayTech.Pharmacies.Application.DTO;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Mime;
 
-namespace PharmacyIntegration.Controllers
+namespace MedbayTech.Pharmacies.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
