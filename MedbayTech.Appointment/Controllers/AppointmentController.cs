@@ -80,7 +80,7 @@ namespace Controllers
             return Ok(dto);
         }
 
-        [Authorize(Roles = "Patient")]
+        
         [HttpPost("available")]
         public IActionResult GetAvailable(SearchAppointmentsStandardDTO appointmentsDTO)
         {
@@ -89,7 +89,7 @@ namespace Controllers
             return Ok(dto);
         }
 
-        [Authorize(Roles = "Patient")]
+        
         [HttpPost("availableStrategy")]
         public IActionResult GetAvailable2(SearchAppointmentsDTO appoitmentsDTO)
         {
@@ -100,7 +100,7 @@ namespace Controllers
             return Ok(dto);
         }
 
-        [Authorize(Roles = "Patient")]
+        
         [HttpPost("schedule")]
         public IActionResult Schedule(ScheduleAppointmentDTO dto)
         {
