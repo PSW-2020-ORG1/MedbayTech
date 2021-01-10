@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 using PharmacyIntegration.Model;
 using Backend.Reports.Model;
 using Backend.Users.Model;
+using Backend.Pharmacies.Model;
+
 namespace Model
 {
     public class MedbayTechDbContext : DbContext
@@ -68,6 +70,7 @@ namespace Model
         public DbSet<RegisteredUser> RegisteredUsers { get; set; }
         public DbSet<InsurancePolicy> InsurancePolicies { get; set; }
         public DbSet<DoctorWorkDay> DoctorWorkDays { get; set; }
+        public DbSet<UrgentMedicationProcurement> UrgentMedicationProcurements { get; set; }
 
 
         public MedbayTechDbContext(DbContextOptions<MedbayTechDbContext> options) : base(options)  {}

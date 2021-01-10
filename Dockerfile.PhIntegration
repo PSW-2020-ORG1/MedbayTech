@@ -31,6 +31,7 @@ RUN npm install -g @vue/cli
 RUN npm install --save axios vue-axios
 RUN npm run build
 
+
 WORKDIR /app/PharmacyIntegration/bin/Release/netcoreapp3.1/publish
 EXPOSE 50202
 ENTRYPOINT [ "dotnet", "PharmacyIntegration.dll" ]

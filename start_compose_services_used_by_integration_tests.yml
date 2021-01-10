@@ -1,0 +1,11 @@
+arguments: >-
+        -ComposeProjectName '${{ parameters.integrationTests.composeProjectName }}' `
+        -RelativePathToComposeFile './mysql-compose/docker-compose.yml' `
+        -RelativePathToEnvironmentFile './mysql-compose/.env' `
+        -ExtraEnvironmentVariables `
+         @{ `
+           'db_docker_image'='${{ parameters.integrationTests.databaseDockerImage }}'; `
+           'db_name'='${{ parameters.integrationTests.databaseName }}'; `
+           'db_username'='${{ parameters.integrationTests.databaseUsername }}'; `
+           'db_password'='${{ parameters.integrationTests.databasePassword }}'; `
+         }
