@@ -62,14 +62,22 @@ namespace PharmacyIntegration
             using (var context = scope.ServiceProvider.GetService<PharmacyDbContext>())
             {
                 string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
+                string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
+
+                if (stage.Equals("test") && host.Equals("postgres"))
+                {
+                    databaseCreator.CreateTables();
+                }
 
                 try
                 {
-                    if (stage.Equals("test"))
+                    if (!stage.Equals("development") && host.Equals("postgres"))
                     {
-                        context.Database.Migrate();
+                        databaseCreator.CreateTables();
                     }
+                    else
+                        context.Database.Migrate();
                 } catch(Exception)
                 {
                     Console.WriteLine("Failed to execute migration");
