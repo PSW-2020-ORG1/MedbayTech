@@ -4,6 +4,7 @@ using System.Text;
 using MedbayTech.E2ETests.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using SeleniumEndToEnd.Pages;
 using Shouldly;
 using Xunit;
@@ -75,6 +76,10 @@ namespace MedbayTech.E2ETests
 
             _approvedFeedbackPage.Navigate();
             _approvedFeedbackPage.EnsurePageIsDisplayed();
+            var wait = new WebDriverWait(_webDriver, new TimeSpan(0, 0, 20));
+
+            wait.Until(condition => _approvedFeedbackPage.FeedbackCount() > feedbackCount);
+            
 
             int approvedFeedback = _approvedFeedbackPage.FeedbackCount();
             approvedFeedback.ShouldBe(feedbackCount + 1);
@@ -93,6 +98,10 @@ namespace MedbayTech.E2ETests
 
             _approvedFeedbackPage.Navigate();
             _approvedFeedbackPage.EnsurePageIsDisplayed();
+
+            var wait = new WebDriverWait(_webDriver, new TimeSpan(0, 0, 20));
+
+            wait.Until(condition => _approvedFeedbackPage.FeedbackCount() < feedbackCount);
 
             int approvedFeedback = _approvedFeedbackPage.FeedbackCount();
             approvedFeedback.ShouldBe(feedbackCount - 1);
