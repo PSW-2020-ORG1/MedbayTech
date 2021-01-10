@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Backend\Backend.csproj" />
-    <ProjectReference Include="..\MedbayTech.PharmacyIntegration\MedbayTech.Pharmacies.csproj" />
     <ProjectReference Include="..\WebApplication\WebApplication.csproj" />
   </ItemGroup>
 

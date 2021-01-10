@@ -2,10 +2,10 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /app
 
 COPY Backend/Backend.csproj Backend/
-COPY PharmacyIntegration/PharmacyIntegration.csproj PharmacyIntegration/
-COPY PhIntegrationTests/PhIntegrationTests.csproj PhIntegrationTests/
+COPY MedbayTech.Pharmacies/MedbayTech.Pharmacies.csproj MedbayTech.Pharmacies/
+COPY MedbayTech.PharmacyIntegrationTests/MedbayTech.PharmacyIntegrationTests.csproj MedbayTech.PharmacyIntegrationTests/
 
-RUN dotnet restore PhIntegrationTests/PhIntegrationTests.csproj
+RUN dotnet restore MedbayTech.PharmacyIntegrationTests/MedbayTech.PharmacyIntegrationTests.csproj
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y nodejs npm
 RUN npm install npm@latest -g
@@ -25,5 +25,5 @@ RUN dotnet ef migrations add Init
 FROM build AS test
 LABEL test=true
 
-WORKDIR /app/PhIntegrationTests
+WORKDIR /app/MedbayTech.PharmacyIntegrationTests
 CMD ["dotnet", "test"]
