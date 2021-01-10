@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using Backend.Pharmacies.Model;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
