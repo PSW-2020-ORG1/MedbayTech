@@ -74,7 +74,7 @@ namespace WebApplication
 
             AddRepository(services);
             AddServices(services);
-
+            
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddControllers().AddJsonOptions(options =>
             {

@@ -65,17 +65,10 @@ namespace PharmacyIntegration
                 string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
 
-                if (stage.Equals("test") && host.Equals("postgres"))
-                {
-                    databaseCreator.CreateTables();
-                }
-
                 try
                 {
                     if (!stage.Equals("development") && host.Equals("postgres"))
-                    {
                         databaseCreator.CreateTables();
-                    }
                     else
                         context.Database.Migrate();
                 } catch(Exception)

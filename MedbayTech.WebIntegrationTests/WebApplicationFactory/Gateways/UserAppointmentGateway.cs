@@ -1,5 +1,4 @@
-﻿using MedbayTech.Appointment.Application.Gateways;
-using MedbayTech.Appointment.Domain.Entities;
+﻿
 using MedbayTech.Common.Application.DTO;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -11,7 +10,7 @@ using System.Net.Http;
 using System.Text;
 
 namespace MedbayTech.WebIntegrationTests.WebApplicationFactory.Gateways
-{
+{/*
     class UserAppointmentGateway : IUserGateway
     {
         private readonly TestServer _factoryUsers;
@@ -67,5 +66,5 @@ namespace MedbayTech.WebIntegrationTests.WebApplicationFactory.Gateways
 
             return workDay;
         }
-    }
+    }*/
 }

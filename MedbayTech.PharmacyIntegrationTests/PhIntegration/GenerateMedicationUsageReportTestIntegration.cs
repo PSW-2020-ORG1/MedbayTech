@@ -12,7 +12,7 @@ using Backend.Utils;
 using System.Transactions;
 using Model;
 
-namespace IntegrationTests.PhIntegration
+namespace MedbayTech.PharmacyIntegrationTests.PhIntegration
 {
     public class GenerateMedicationUsageReportTestIntegration : IClassFixture<WebApplicationFactory<Startup>>
     {
@@ -25,10 +25,10 @@ namespace IntegrationTests.PhIntegration
         [Fact]
         public async void Post_generate_medication_usage_report()
         {
-        
+
             HttpClient client = _factory.CreateClient();
             var period = CreatePeriod();
-            StringContent content = new StringContent(JsonConvert.SerializeObject(period), System.Text.Encoding.UTF8, "application/json");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(period), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync("/api/MedicationUsageReport", content);
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
         }
@@ -37,7 +37,7 @@ namespace IntegrationTests.PhIntegration
         {
             Period period = new Period
             {
-                StartTime = new DateTime(2020, 8, 15), 
+                StartTime = new DateTime(2020, 8, 15),
                 EndTime = new DateTime(2020, 9, 16),
             };
             return period;

@@ -48,19 +48,29 @@ namespace MedbayTech.E2ETests
             loginPage.WaitForPatientHomePage();
 
             homePage = new Home(driver);
-            Assert.Equal(driver.Url, Home.URI);
+           // if (Home.Stage.Equals("test"))
+                Assert.Equal(driver.Url, Home.UriTestEnvFinal);
+            // else
+               //Assert.Equal(driver.Url, Home.URI);
             Assert.True(homePage.MedicalRecordLinkElementDisplayed());
             homePage.ClickMedicalRecordLink();
 
             medicalRecordPage = new MedicalRecord(driver);
-            Assert.Equal(driver.Url, MedicalRecord.URI);
+            //if (MedicalRecord.Stage.Equals("test"))
+                Assert.Equal(driver.Url, MedicalRecord.URI);
+             // else
+                // Assert.Equal(driver.Url, MedicalRecord.URI);
+
             Assert.True(medicalRecordPage.ObserveAppointmentLinkElementDisplayed());
             medicalRecordPage.ClickObserveAppointmentLink();
 
             
             observeAppointmentPage = new ObserveAppointment(driver);
             observeAppointmentPage.EnsurePageIsDisplayed();
-            Assert.Equal(driver.Url, ObserveAppointment.URI);
+            // if (ObserveAppointment.Stage.Equals("test"))
+                Assert.Equal(driver.Url, ObserveAppointment.URI);
+            // else
+               // Assert.Equal(driver.Url, ObserveAppointment.URI);
             Assert.True(observeAppointmentPage.CancelAppointmentButtonDisplayed());
         }
 

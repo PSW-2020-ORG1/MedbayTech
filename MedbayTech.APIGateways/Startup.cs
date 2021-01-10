@@ -28,6 +28,8 @@ namespace MedbayTech.APIGateways
                             .AllowAnyHeader();
                     });
             });
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,11 +41,9 @@ namespace MedbayTech.APIGateways
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
 
 
-             if (stage.Equals("prod"))
+             if (stage.Equals("development"))
              {
                  app.UseStaticFiles(new StaticFileOptions
                  {

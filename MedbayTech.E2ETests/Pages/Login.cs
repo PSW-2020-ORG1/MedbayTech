@@ -2,15 +2,16 @@
 using OpenQA.Selenium.Support.UI;
 using SeleniumEndToEnd.Pages;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MedbayTech.E2ETests.Pages
 {
     public class Login
     {
         private readonly IWebDriver driver;
-        public const string URI = "http://localhost:4200/#/login";
+        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
+        public static string URI = $"http://localhost:{PORT}/#/login";
+        public static string UriTestEnv = "http://localhost:53843/#/login";
+        public static string Stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
         private IWebElement Username => driver.FindElement(By.Name("username-ff"));
         private IWebElement Password => driver.FindElement(By.Name("password-ff"));
         private IWebElement LoginButton => driver.FindElement(By.Name("button-ff"));
