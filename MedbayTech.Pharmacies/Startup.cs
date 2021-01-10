@@ -71,6 +71,7 @@ namespace PharmacyIntegration
                         databaseCreator.CreateTables();
                     else
                         context.Database.Migrate();
+
                 } catch(Exception)
                 {
                     Console.WriteLine("Failed to execute migration");

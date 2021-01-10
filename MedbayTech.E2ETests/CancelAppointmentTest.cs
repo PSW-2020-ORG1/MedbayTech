@@ -35,6 +35,10 @@ namespace MedbayTech.E2ETests
 
             driver = new ChromeDriver(options);
 
+            homePage = new Home(driver);
+            homePage.Navigate();
+            Assert.Equal(driver.Url, Home.URI_HASH);
+
             loginPage = new Login(driver);
             loginPage.Navigate();
             Assert.Equal(driver.Url, Login.URI);
@@ -48,24 +52,21 @@ namespace MedbayTech.E2ETests
             loginPage.WaitForPatientHomePage();
 
             homePage = new Home(driver);
-           // if (Home.Stage.Equals("test"))
-                Assert.Equal(driver.Url, Home.UriTestEnvFinal);
-            // else
-               //Assert.Equal(driver.Url, Home.URI);
+            homePage.Navigate();
+
+            Assert.Equal(driver.Url, Home.URI_HASH);
             Assert.True(homePage.MedicalRecordLinkElementDisplayed());
             homePage.ClickMedicalRecordLink();
 
             medicalRecordPage = new MedicalRecord(driver);
-            //if (MedicalRecord.Stage.Equals("test"))
-                Assert.Equal(driver.Url, MedicalRecord.URI);
-             // else
-                // Assert.Equal(driver.Url, MedicalRecord.URI);
-
+            //medicalRecordPage.Navigate();
+            Assert.Equal(driver.Url, MedicalRecord.URI);
             Assert.True(medicalRecordPage.ObserveAppointmentLinkElementDisplayed());
             medicalRecordPage.ClickObserveAppointmentLink();
 
             
             observeAppointmentPage = new ObserveAppointment(driver);
+            //OVDE UMRE 
             observeAppointmentPage.EnsurePageIsDisplayed();
             // if (ObserveAppointment.Stage.Equals("test"))
                 Assert.Equal(driver.Url, ObserveAppointment.URI);

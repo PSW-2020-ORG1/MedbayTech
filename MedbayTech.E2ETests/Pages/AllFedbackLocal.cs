@@ -6,18 +6,15 @@ using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumEndToEnd.Pages
 {
-    public class AllFedback
+    public class AllFedbackLocal
     {
         private IWebDriver driver;
-        //public const string URI = "http://localhost:4200/#/allFeedback";
-        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "53843";
-
-        public static string URI = $"http://localhost:{PORT}/#/allFeedback";
+        public const string URI = "http://localhost:4200/#/allFeedback";
 
         private IWebElement CountFeedback => driver.FindElement(By.Name("all_feedback_len"));
         private IWebElement TitleFeedbacks => driver.FindElement(By.Name("feedbacks"));
         private IWebElement BlockPatientsButton => driver.FindElement(By.Name("block-malicious-users"));
-        public AllFedback(IWebDriver webdriver)
+        public AllFedbackLocal(IWebDriver webdriver)
         {
             driver = webdriver;
         }

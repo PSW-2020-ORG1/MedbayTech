@@ -9,11 +9,13 @@ namespace MedbayTech.E2ETests.Pages
     public class Home
     {
         private IWebDriver driver;
-        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
-        public static string URI = $"http://localhost:{PORT}/#/home";
-        public static string UriTestEnv = "http://localhost:53843/index.html#/home";
-        public static string UriTestEnvFinal = "http://localhost:53843/#/home";
-        public static string Stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
+        //public const string URI = "http://localhost:4200/#/home";
+
+        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "53843";
+
+        public static string URI = $"http://localhost:{PORT}/index.html#/home";
+
+        public static string URI_HASH = $"http://localhost:{PORT}/#/home";
 
         private IWebElement MedicalRecord => driver.FindElement(By.Name("medical-record"));
         private IWebElement CreateFeedback => driver.FindElement(By.Name("create-feedback"));

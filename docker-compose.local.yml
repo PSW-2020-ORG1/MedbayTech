@@ -22,7 +22,7 @@ services:
       - postgres-data:/var/lib/postgres
 
   apigateway:
-    image: stefan7/apigateways:latest
+    image: api
     container_name: api_container
     restart: on-failure
     networks:
@@ -30,7 +30,7 @@ services:
     depends_on:
       - postgres
       - feedback
-      - pharmacies
+      #- pharmacies
       - medications
       - users 
       - rooms 
@@ -51,7 +51,7 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   feedback:
-    image: stefan7/feedback:latest
+    image: feedback
     container_name: feedback_container
     restart: on-failure
     networks:
@@ -73,31 +73,31 @@ services:
     volumes:
       - postgres-data:/var/lib/postgres:rw
 
-  pharmacies:
-    image: stefan7/pharmacies:latest
-    container_name: pharmacies_container
-    restart: on-failure
-    networks:
-      - demo
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_USERNAME: "user"
-      DATABASE_PASSWORD: "user"
-      DATABASE_HOST: "postgres"
-      DATABASE_TYPE: "postgres"
-      DATABASE_SCHEMA: "mydb1"
-      STAGE: "test"
-      PORT: "5005"
-      PORT_MEDICATION: "5007"
-      URL_MEDICATION: "users"
-    ports:
-      - "50202:5005"
-    volumes:
-      - postgres-data:/var/lib/postgres:rw
+  # pharmacies:
+  #   image: pharmacies
+  #   container_name: pharmacies_container
+  #   restart: on-failure
+  #   networks:
+  #     - demo
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     DATABASE_USERNAME: "user"
+  #     DATABASE_PASSWORD: "user"
+  #     DATABASE_HOST: "postgres"
+  #     DATABASE_TYPE: "postgres"
+  #     DATABASE_SCHEMA: "mydb1"
+  #     STAGE: "test"
+  #     PORT: "5005"
+  #     PORT_MEDICATION: "5007"
+  #     URL_MEDICATION: "users"
+  #   ports:
+  #     - "50202:5005"
+  #   volumes:
+  #     - postgres-data:/var/lib/postgres:rw
 
   medications:
-    image: stefan7/medication:latest
+    image: medications
     container_name: medications_container
     restart: on-failure
     networks:
@@ -118,7 +118,7 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   rooms:
-    image: stefan7/rooms:latest
+    image: rooms
     container_name: rooms_container
     restart: on-failure
     networks:
@@ -141,7 +141,7 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   users:
-    image: stefan7/users:latest
+    image: users
     container_name: users_container
     restart: on-failure
     networks:
@@ -164,7 +164,7 @@ services:
       - postgres-data:/var/lib/postgres:rw
   
   patientdocuments:
-    image: stefan7/patientdocuments:latest
+    image: documents
     container_name: documents_container
     restart: on-failure
     networks:
@@ -187,7 +187,7 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   appointment:
-    image: stefan7/appointment:latest
+    image: appointment
     container_name: appointment_container
     restart: on-failure
     networks:

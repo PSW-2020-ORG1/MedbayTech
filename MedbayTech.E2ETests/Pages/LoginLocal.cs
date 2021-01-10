@@ -2,23 +2,20 @@
 using OpenQA.Selenium.Support.UI;
 using SeleniumEndToEnd.Pages;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace MedbayTech.E2ETests.Pages
 {
-    public class Login
+    public class LoginLocal
     {
         private readonly IWebDriver driver;
-        //public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
-        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "53843";
-
-        public static string URI = $"http://localhost:{PORT}/#/login";
-
-        //public const string URI = "http://localhost:4200/#/login";
+        public const string URI = "http://localhost:53843/#/login";
         private IWebElement Username => driver.FindElement(By.Name("username-ff"));
         private IWebElement Password => driver.FindElement(By.Name("password-ff"));
         private IWebElement LoginButton => driver.FindElement(By.Name("button-ff"));
 
-        public Login(IWebDriver webDriver)
+        public LoginLocal(IWebDriver webDriver)
         {
             driver = webDriver;
         }
@@ -53,16 +50,10 @@ namespace MedbayTech.E2ETests.Pages
             LoginButton.Click();
         }
 
-        public void WaitForAdministratorHomePage()
+        public void WaitForHomePage()
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlToBe(AllFedback.URI));
-        }
-
-        public void WaitForPatientHomePage()
-        {
-            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlToBe(Home.URI_HASH));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlToBe(HomeLocal.URI_HASH));
         }
 
         public void Navigate() => driver.Navigate().GoToUrl(URI);
