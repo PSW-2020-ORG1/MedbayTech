@@ -21,7 +21,6 @@ namespace MedbayTech.PatientDocuments.Controllers
             _reportSearchService = reportSearchService;
         }
 
-        [Authorize(Roles = "Patient")]
         [HttpPost("advancedSearch")]
         public IActionResult AdvancedSearchPrescriptions(ReportAdvancedDTO dto)
         {
@@ -40,7 +39,6 @@ namespace MedbayTech.PatientDocuments.Controllers
             return Ok(reports);
         }
 
-        [Authorize(Roles = "Patient")]
         [HttpPost]
         public IActionResult GetSearchedReports(ReportSearchDTO dto)
         {

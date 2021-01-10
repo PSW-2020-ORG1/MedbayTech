@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Backend\Backend.csproj" />
+    <ProjectReference Include="..\MedbayTech.Users\MedbayTech.Users.csproj" />
   </ItemGroup>
 
   <ItemGroup>

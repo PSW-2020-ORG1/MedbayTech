@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row" *ngFor="let feedback of approvedFeedback" class="container center-card">
+    <div id="approvedFeedbackDiv" class="row" *ngFor="let feedback of approvedFeedback" class="container center-card">
                     <mat-card>
                         <mat-card-header>
                         <mat-card-title>
@@ -19,11 +19,7 @@
                                 <p class="content-paragraph">{{ feedback.additionalNotes }}</p>
                             </div>
                         </mat-card-content>
-                        
                        
                     </mat-card>
-                <br>
-                    
     </div>
-    
 </div>

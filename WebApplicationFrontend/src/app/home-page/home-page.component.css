@@ -1,3 +1,8 @@
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
 button {
     margin-left: 80vw;
     margin-top: 15px;
@@ -32,3 +37,15 @@ footer {
     color:white;
 }
 
+.carousel {
+    width: 75%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    padding-top: 10px;
+}

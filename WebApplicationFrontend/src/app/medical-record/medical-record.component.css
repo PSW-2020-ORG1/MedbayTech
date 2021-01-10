@@ -1,5 +1,5 @@
 mat-card {
-    margin-left: 9vw;
+    /*margin-left: 9vw;*/
     width: 55vw;
 }
 
@@ -48,4 +48,9 @@ th {
 
 button {
     margin-left: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
 }

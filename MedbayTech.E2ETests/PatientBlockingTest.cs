@@ -5,6 +5,7 @@ using MedbayTech.E2ETests.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.DevTools.V84.Target;
+using OpenQA.Selenium.Support.UI;
 using SeleniumEndToEnd.Pages;
 using Xunit;
 
@@ -17,7 +18,7 @@ namespace MedbayTech.E2ETests
         private AllFedback allFeedbackPage;
         private BlockMaliciousPatients blockMaliciousPatientsPage;
         private Login loginPage;
-        private int patientsForBlockingCount = 0;
+        private int numberOfMaliciousPatients = 0;
 
         public PatientBlockingTest()
         {
@@ -45,13 +46,13 @@ namespace MedbayTech.E2ETests
             loginPage.WaitForAdministratorHomePage();
 
             allFeedbackPage = new AllFedback(driver);
-            Assert.Equal(driver.Url, AllFedback.URI);
+            Assert.Equal(driver.Url, AllFedback.URI_local);
             Assert.True(allFeedbackPage.MaliciousPatientsLinkElementDisplayed());
             allFeedbackPage.ClickMaliciousPatientsLink();
 
             blockMaliciousPatientsPage = new BlockMaliciousPatients(driver);
             blockMaliciousPatientsPage.EnsurePageIsDisplayed();
-            patientsForBlockingCount = blockMaliciousPatientsPage.PatientsForBlockingCount();
+           
             Assert.Equal(driver.Url, BlockMaliciousPatients.URI);
             Assert.True(blockMaliciousPatientsPage.BlockMaliciousPatientButtonDisplayed());
         }
@@ -65,14 +66,10 @@ namespace MedbayTech.E2ETests
         [Fact]
         public void TestSuccessfulBlockingMaliciousPatient()
         {
+            numberOfMaliciousPatients = blockMaliciousPatientsPage.PatientsForBlockingCount();
             blockMaliciousPatientsPage.ClickBlockMaliciousPatientButton();
-            blockMaliciousPatientsPage.WaitForAlertDialog();
-            blockMaliciousPatientsPage.ResolveAlertDialog();
 
-           
-            Assert.Equal(patientsForBlockingCount, blockMaliciousPatientsPage.PatientsForBlockingCount());
-        }
-
-        
+            Assert.Equal(numberOfMaliciousPatients-1, blockMaliciousPatientsPage.PatientsForBlockingCount());
+        }        
     }
 }

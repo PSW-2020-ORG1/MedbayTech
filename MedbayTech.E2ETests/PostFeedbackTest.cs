@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MedbayTech.E2ETests.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.DevTools.V84.Target;
@@ -15,7 +16,8 @@ namespace SeleniumEndToEnd
         private IWebDriver driver;
         private AllFedback allFeedbackPage;
         private CreateFeedback createFeedbackPage;
-        private Index indexPage;
+        private Login loginPage;
+        private Home homePage;
 
         private int feedbackCount = 0;
 
@@ -32,29 +34,46 @@ namespace SeleniumEndToEnd
 
             driver = new ChromeDriver(options);
 
-            indexPage = new Index(driver);
-            indexPage.Navigate();
-            
-            Assert.True(indexPage.AllFeedbackIsDisplayed());
-            Assert.True(indexPage.CreateFeedbackIsDisplayed());
+            loginPage = new Login(driver);
+            loginPage.Navigate();
+            Assert.Equal(driver.Url, Login.URI);
+            Assert.True(loginPage.UsernameElementDisplayed());
+            Assert.True(loginPage.PasswordElementDisplayed());
+            Assert.True(loginPage.SubmitButtonElementDisplayed());
 
+            loginPage.InsertUsername("markic");
+            loginPage.InsertPassword("marko1978");
+            loginPage.SubmitForm();
+            loginPage.WaitForAdministratorHomePage();
 
-            allFeedbackPage = new AllFedback(driver); 
-            indexPage.goToAllFeedback();
-
+            allFeedbackPage = new AllFedback(driver);
+            Assert.Equal(driver.Url, AllFedback.URI_local);
             allFeedbackPage.EnsurePageIsDisplayed();
 
-            feedbackCount = allFeedbackPage.GetFeedbackCount();       // get number of table rows - after create successful sheck if number increased
-            Console.Write(feedbackCount);
+            feedbackCount = allFeedbackPage.GetFeedbackCount();
+
+            loginPage.Navigate();
+            Assert.Equal(driver.Url, Login.URI);
+            Assert.True(loginPage.UsernameElementDisplayed());
+            Assert.True(loginPage.PasswordElementDisplayed());
+            Assert.True(loginPage.SubmitButtonElementDisplayed());
+
+            loginPage.InsertUsername("pera");
+            loginPage.InsertPassword("pera1978");
+            loginPage.SubmitForm();
+            loginPage.WaitForPatientHomePage();
+
+            homePage = new Home(driver);
+            Assert.Equal(driver.Url, Home.URI);
+            Assert.True(homePage.CreateFeedbackLinkElementDisplayed());
+            homePage.ClickCreateFeedbackLink();
 
             createFeedbackPage = new CreateFeedback(driver);
-            indexPage.goToCreateFeedback();
-
-
-            Assert.True(createFeedbackPage.FeedbackTextboxDisplayed());          // check if form input elements are displayed
+            createFeedbackPage.EnsurePageIsDisplayed();
+            Assert.Equal(driver.Url, CreateFeedback.URI);
+            Assert.True(createFeedbackPage.FeedbackTextboxDisplayed());
             Assert.True(createFeedbackPage.RadioButtonAllowedDisplayed());
             Assert.True(createFeedbackPage.RadioButtonAnonymousDisplayed());
-            Assert.True(createFeedbackPage.SubmitButtonDisplayed());
         }
 
         public void Dispose()
@@ -72,17 +91,24 @@ namespace SeleniumEndToEnd
             createFeedbackPage.WaitForFormSubmit();
             createFeedbackPage.ResolveAlertDialog();
 
-            AllFedback newAllFedbackPage = new AllFedback(driver);
-            indexPage.goToAllFeedback();
+            loginPage.Navigate();
+            Assert.Equal(driver.Url, Login.URI);
+            Assert.True(loginPage.UsernameElementDisplayed());
+            Assert.True(loginPage.PasswordElementDisplayed());
+            Assert.True(loginPage.SubmitButtonElementDisplayed());
 
-            newAllFedbackPage.EnsurePageIsDisplayed();                                    // wait for table to populate
-            Assert.True(newAllFedbackPage.TitleDisplayed());
+            loginPage.InsertUsername("markic");
+            loginPage.InsertPassword("marko1978");
+            loginPage.SubmitForm();
+            loginPage.WaitForAdministratorHomePage();
 
-            Assert.Equal(feedbackCount + 1, newAllFedbackPage.GetFeedbackCount());           // check if number of rows increased       
-            Console.Write(newAllFedbackPage.GetFeedbackCount());
+            AllFedback newAllFeedbackPage = new AllFedback(driver);
+            Assert.Equal(driver.Url, AllFedback.URI_local);
+            newAllFeedbackPage.EnsurePageIsDisplayed();
+
+            Assert.Equal(feedbackCount + 1, newAllFeedbackPage.GetFeedbackCount());
 
             Dispose();
         }
     }
 }
-

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { MaliciousPatient } from 'src/app/model/maliciousPatient';
 import { UpdatePatientBlockedStatus } from 'src/app/model/updatePatientBlockedStatus';
 import { PatientService } from 'src/app/service/patient/patient.service';
@@ -15,7 +16,7 @@ export class BlockMaliciousUsersComponent implements OnInit {
   
  
 
-  constructor(private service: PatientService) {
+  constructor(private service: PatientService, private toastr: ToastrService) {
     this.getMaliciousPatients();
     this.maliciousPatients = this.maliciousPatients.map(item => ({
       ...item,
@@ -31,10 +32,10 @@ export class BlockMaliciousUsersComponent implements OnInit {
   updateStatus(patientId) { 
     this.service.updatePatientStatus(new UpdatePatientBlockedStatus(patientId)).subscribe(
       res => {
-        alert(res);
+        this.toastr.success(res);
       },
       error => {
-        alert(error);
+        this.toastr.error(error);
       }
 
     );

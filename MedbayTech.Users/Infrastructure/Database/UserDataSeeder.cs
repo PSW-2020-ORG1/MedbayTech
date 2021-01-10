@@ -54,7 +54,8 @@ namespace MedbayTech.Users.Infrastructure.Database
                 ProfileImage = "http://localhost:8081/Resources/Images/1234567891989/among-us-5659730_1280.png",
                 IsGuestAccount = false,
                 ChosenDoctorId = "2406978890047",
-                Role = Role.Patient
+                Role = Role.Patient,
+                Confirmed = true
             });
             context.SaveChanges();
         }

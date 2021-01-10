@@ -8,7 +8,7 @@ namespace SeleniumEndToEnd.Pages
     public class Index
     {
         private IWebDriver _webDriver { get; }
-        public const string URI = "http://medbaytech.herokuapp.com/index.html";
+        public const string URI = "localhost:4200/#/home";
 
         public Index(IWebDriver webDriver)
         {

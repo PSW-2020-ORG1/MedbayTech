@@ -7,6 +7,7 @@ using MedbayTech.Feedback.Application.DTO;
 using MedbayTech.Feedback.Application.Mapper;
 using MedbayTech.Feedback.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,7 +36,8 @@ namespace MedbayTech.Feedback.Controllers
         /// GET method for all feedback
         /// </summary>
         /// <returns>list of all feedback</returns>
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
+        
         [HttpGet("allFeedback")]
         public IActionResult GetAllFeedback()
         {
@@ -52,7 +54,6 @@ namespace MedbayTech.Feedback.Controllers
         /// <param name="updateFeedbackStatusDTO"></param>
         /// <returns>boolean that shows that feedback status was changed</returns>
         
-        [Authorize(Roles = "Admin")]
         [HttpPost("updateFeedbackStatus")]
         public IActionResult UpdateFeedbackStatus(UpdateFeedbackStatusDTO updateFeedbackStatusDTO)
         {
@@ -67,7 +68,6 @@ namespace MedbayTech.Feedback.Controllers
         /// </summary>
         /// <param name="postFeedbackDTO"></param>
         /// <returns>returns string message which tells whether posting feedback was successful or not</returns>
-        [Authorize(Roles = "Patient")]
         [HttpPost("createFeedback")]
         public IActionResult Post(PostFeedbackDTO postFeedbackDTO)
         {

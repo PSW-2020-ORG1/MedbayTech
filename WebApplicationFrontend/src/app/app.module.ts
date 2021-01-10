@@ -45,11 +45,12 @@ import { AppointmentService } from './service/appointment/appointment.service';
 import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
 import { LoginComponent } from './login/login/login.component';
-import { PatientLoginComponent } from './login/patient-login/patient-login/patient-login.component';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { NavigationBarAdminComponent } from './navigation-bar/navigation-bar-admin/navigation-bar-admin.component';
+import { NavigationBarPatientComponent } from './navigation-bar/navigation-bar-patient/navigation-bar-patient.component';
+import { NavigationBarUserComponent } from './navigation-bar/navigation-bar-user/navigation-bar-user.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
-import { WavesModule, ButtonsModule, IconsModule } from 'angular-bootstrap-md'
+import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
 
 @NgModule({
   declarations: [
@@ -70,8 +71,9 @@ import { WavesModule, ButtonsModule, IconsModule } from 'angular-bootstrap-md'
     SchedulingComponent,
     RecommendationComponent,
     LoginComponent,
-    PatientLoginComponent,
-    NavigationBarComponent,
+    NavigationBarAdminComponent,
+    NavigationBarPatientComponent,
+    NavigationBarUserComponent,
     HomePageComponent
   ],
   imports: [
@@ -111,7 +113,8 @@ import { WavesModule, ButtonsModule, IconsModule } from 'angular-bootstrap-md'
     MatSelectModule,
     MatStepperModule,
     ToastrModule.forRoot(),
-    IvyCarouselModule
+    IvyCarouselModule,
+    NgImageSliderModule
   ],
   providers: [
     FeedbackService,

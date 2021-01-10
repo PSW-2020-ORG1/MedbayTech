@@ -35,6 +35,7 @@ namespace MedbayTech.Feedback
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
@@ -45,7 +46,7 @@ namespace MedbayTech.Feedback
 
             services.AddScoped<IUserGateway, UserGateway>();
 
-
+            
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("QKcOa8xPopVOliV6tpvuWmoKn4MOydSeIzUt4W4r1UlU2De7dTUYMlrgv3rU"));
             services.AddAuthentication(x =>
             {
@@ -75,14 +76,16 @@ namespace MedbayTech.Feedback
                 app.UseDeveloperExceptionPage();
             }
 
-//            app.UseHttpsRedirection();
-
+            //            app.UseHttpsRedirection();
             app.UseRouting();
-
+            app.UseCors(
+                options => options.WithOrigins("http://localhost:53843").AllowAnyMethod()
+            );
             app.UseAuthentication();
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+
 
             string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
             string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";

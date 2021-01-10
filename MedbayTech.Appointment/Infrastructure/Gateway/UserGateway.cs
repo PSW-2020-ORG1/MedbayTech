@@ -5,6 +5,7 @@ using MedbayTech.Common.Application.DTO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 
@@ -31,8 +32,9 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
 
         public List<Doctor> GetDoctorsBy(int specializationId)
         {
-            List<Doctor> doctors = null;
+            List<Doctor> doctors = new List<Doctor>();
             using HttpClient client = new HttpClient();
+
             var task = client.GetAsync(GetUsersDomain() + "/api/doctor/specialization/" + specializationId)
                 .ContinueWith((taskWithResponse) =>
                 {
@@ -42,7 +44,6 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
                     doctors = JsonConvert.DeserializeObject<List<Doctor>>(json.Result);
                 });
             task.Wait();
-
             return doctors;
         }
 
