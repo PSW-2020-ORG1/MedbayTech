@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MedbayTech.Users.Application.Common.Interfaces.Gateways;
 using MedbayTech.Users.Application.Common.Interfaces.Persistance;
 using MedbayTech.Users.Application.Common.Interfaces.Service;
 using MedbayTech.Users.Domain.Entites;
@@ -11,11 +12,12 @@ namespace MedbayTech.Users.Infrastructure.Service
 {
     public class RegistrationService : IRegistrationService
     {
-        IPatientRepository _patientRepository;
+        private readonly IPatientRepository _patientRepository;
 
         public RegistrationService(IPatientRepository patientRepository)
         {
             _patientRepository = patientRepository;
+            
         }
 
         public Patient Register(Patient patient)
@@ -25,6 +27,7 @@ namespace MedbayTech.Users.Infrastructure.Service
                 patient.Role = "Patient";
                 return _patientRepository.Create(patient);
             }
+
 
             return null;
         }

@@ -32,6 +32,8 @@ using WebApplication.ObjectBuilder;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Backend.Utils;
+using MedbayTech.Users.Application.Common.Interfaces.Gateways;
+using MedbayTech.Users.Infrastructure.Gateways;
 using Microsoft.EntityFrameworkCore;
 using IMedicalRecordService = Backend.Records.Service.Interfaces.IMedicalRecordService;
 
@@ -74,7 +76,7 @@ namespace WebApplication
 
             AddRepository(services);
             AddServices(services);
-
+            
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddControllers().AddJsonOptions(options =>
             {
@@ -190,6 +192,7 @@ namespace WebApplication
             services.AddScoped<IDoctorWorkDayService, DoctorWorkDayService>();
             services.AddScoped<IAppointmentService, Backend.Schedules.Service.AppointmentService>();
             services.AddScoped<ISpecializationService, SpecializationService>();
+            
         }
 
         private void AddRepository(IServiceCollection services)

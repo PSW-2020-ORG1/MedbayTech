@@ -25,7 +25,6 @@ namespace Controllers
             
         }
 
-        [Authorize(Roles = "Patient")]
         [HttpGet("cancelableAppointments/{userId}")]
         public IActionResult GetAppointmentsBy(string userId)
         {
@@ -40,7 +39,6 @@ namespace Controllers
             return Ok(_appointmentService.GetAll());
         }
 
-        [Authorize(Roles = "Patient")]
         [HttpGet("allSurveyableAppointments")] 
         public IActionResult GetSurveyableAppointments()
         {
@@ -50,7 +48,6 @@ namespace Controllers
             return Ok(appointmentsDTO);
         }
 
-        [Authorize(Roles = "Patient")]
         [HttpGet("allOtherAppointments")] 
         public IActionResult GetAllOtherAppointments()
         {
@@ -60,7 +57,6 @@ namespace Controllers
             return Ok(appointmentsDTO);
         }
 
-        [Authorize(Roles = "Patient")]
         [HttpGet("allCancelableAppointments")] 
         public IActionResult GetCancelableAppointments()
         {
@@ -70,7 +66,6 @@ namespace Controllers
             return Ok(appointmentsDTO);
         }
 
-        [Authorize(Roles = "Patient")]
         [HttpPost("cancelAppointment")]
         public IActionResult CancelAppointment(CancelAppointmentDTO cancelAppointmentDTO)
         {

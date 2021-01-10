@@ -21,7 +21,6 @@ namespace MedbayTech.PatientDocuments.Controllers
             _medicalRecordService = medicalRecordService;
         }
 
-        [Authorize(Roles = "Patient")]
         [HttpGet]
         public IActionResult GetMedicalRecordByPatient()
         {
@@ -47,6 +46,16 @@ namespace MedbayTech.PatientDocuments.Controllers
         public IActionResult GetMedicalRecordByPatientId(string textBoxSearch)
         {
             return Ok(_medicalRecordService.GetMedicalRecordByPatient(textBoxSearch));
+        }
+
+        [HttpPost("save")]
+        public IActionResult SaveMedicalRecord(MedicalRecord medicalRecord)
+        {
+            MedicalRecord newMedicalRecord = _medicalRecordService.CreateMedicalRecord(medicalRecord);
+            if (newMedicalRecord == null)
+                return BadRequest();
+
+            return Ok();
         }
     }
 }

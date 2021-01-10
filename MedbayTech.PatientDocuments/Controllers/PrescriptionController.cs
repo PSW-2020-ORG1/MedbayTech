@@ -21,7 +21,6 @@ namespace WebApplication.Controller
             _prescriptionSearchService = prescriptionSearchService;
         }
 
-        [Authorize(Roles = "Patient")]
         [HttpPost]
         public IActionResult GetSearchedPrescription(PrescriptionSearchDTO dto)
         {
@@ -40,7 +39,6 @@ namespace WebApplication.Controller
             return Ok(prescriptionDTOs);
         }
 
-        [Authorize(Roles = "Patient")]
         [HttpPost("advancedSearch")]
         public IActionResult AdvancedSearchPrescriptions(PrescriptionAdvancedDTO dto)
         {
