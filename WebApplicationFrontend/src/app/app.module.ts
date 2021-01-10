@@ -1,3 +1,5 @@
+import { ErrorInterceptor } from './interceptor/error.interceptor';
+import { JwtInterceptor } from './interceptor/jwt.interceptor';
 import { PatientRegistrationComponent } from './registration/patient-registration/patient-registration.component';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -42,6 +44,7 @@ import { ObserveAppointmentComponent } from './appointment/observe-appointment/o
 import { AppointmentService } from './service/appointment/appointment.service';
 import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
+import { LoginComponent } from './login/login/login.component';
 import { PatientLoginComponent } from './login/patient-login/patient-login/patient-login.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -66,6 +69,7 @@ import { WavesModule, ButtonsModule, IconsModule } from 'angular-bootstrap-md'
     ObserveAppointmentComponent,
     SchedulingComponent,
     RecommendationComponent,
+    LoginComponent,
     PatientLoginComponent,
     NavigationBarComponent,
     HomePageComponent
@@ -115,7 +119,9 @@ import { WavesModule, ButtonsModule, IconsModule } from 'angular-bootstrap-md'
     MatNativeDateModule,
     SurveyService,
     MedicalRecordService,
-    AppointmentService
+    AppointmentService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

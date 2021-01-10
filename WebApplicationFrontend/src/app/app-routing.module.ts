@@ -1,3 +1,5 @@
+import { Role } from './model/role';
+import { AuthGuard } from './guard/auth.guard';
 import { PatientRegistrationComponent } from './registration/patient-registration/patient-registration.component';
 import { PostFeedbackComponent } from './feedback/post-feedback/post-feedback.component';
 import { ApprovedFeedbackComponent } from './feedback/approvedFeedback/approved-feedback/approved-feedback.component';
@@ -16,6 +18,7 @@ import { BlockMaliciousUsersComponent } from './block-malicious-users/block-mali
 import { ObserveAppointmentComponent } from './appointment/observe-appointment/observe-appointment.component';
 import { SchedulingComponent } from './appointment/scheduling/scheduling.component';
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
+import { LoginComponent } from './login/login/login.component';
 import { PatientLoginComponent } from './login/patient-login/patient-login/patient-login.component';
 import { HomePageComponent } from './home-page/home-page.component';
 
@@ -29,23 +32,33 @@ const routes: Routes = [
   },
   {
     path : 'allFeedback',
-    component : AllFeedbackComponent
+    component : AllFeedbackComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Admin]}
   },
   {
     path : 'prescriptionSearch',
-    component : PrescriptionSearchComponent
+    component : PrescriptionSearchComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Patient]}
   },
   {
     path : 'reportSearch',
-    component : ReportSearchComponent
+    component : ReportSearchComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Patient]}
   },
   {
     path : 'createFeedback',
-    component : PostFeedbackComponent
+    component : PostFeedbackComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Patient]}
   },
   {
     path : 'survey',
-    component : SurveyComponent
+    component : SurveyComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Patient]}
   },
   {
     path : 'patientRegistration',
@@ -53,31 +66,49 @@ const routes: Routes = [
   },
   {
     path : 'medicalRecord',
-    component : MedicalRecordComponent
+    component : MedicalRecordComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Patient]}
   },
   {
     path : 'prescriptionSimpleSearch',
-    component : PrescriptionSimpleSearchComponent
+    component : PrescriptionSimpleSearchComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Patient]}
   },
   {
     path : 'reportSimpleSearch',
-    component : ReportSimpleSearchComponent
+    component : ReportSimpleSearchComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Patient]}
   },
   {
     path : 'blockMaliciousUsers',
-    component : BlockMaliciousUsersComponent
+    component : BlockMaliciousUsersComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Admin]}
   },
   {
     path : 'observeAppointment',
-    component : ObserveAppointmentComponent
+    component : ObserveAppointmentComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Patient]}
   },
   {
     path : 'scheduleAppointment',
-    component : SchedulingComponent
+    component : SchedulingComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Patient]}
   },
   {
     path : 'appointmentRecommendation',
-    component : RecommendationComponent
+    component : RecommendationComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Patient]}
+  },
+  {
+    path : 'login',
+    component : LoginComponent
   },
   {
     path : 'patientLogin',

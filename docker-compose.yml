@@ -1,11 +1,8 @@
 version: "3.8"
 
 volumes:
-  mysql-data: {}
-  web-sql:
   postgres-data: {}
-  test-data: {}
-  test-ph-data: {}
+
   
 networks:
   demo:
@@ -26,7 +23,7 @@ services:
        MYSQL_ROOT_PASSWORD: "root"
      volumes:
        - mysql-data:/var/lib/mysql
-  
+
   postgres:
     image: postgres:latest
     container_name: postgres
@@ -34,12 +31,16 @@ services:
     networks:
       - demo
     environment:
-      POSTGRES_USER: "root"
-      POSTGRES_PASSWORD: "root"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "user"
       POSTGRES_DB: mydb1
     volumes:
       - postgres-data:/var/lib/postgres
 
+
+  ApiGateway:
+    image: api
+    container_name: api_container
   PhIntegrationSql:
     build: 
        context: .
@@ -50,35 +51,129 @@ services:
     networks:
       - demo
     depends_on:
-      - mysql
+      - postgres
     environment:
-      DATABASE_USERNAME: "root"
-      DATABASE_PASSWORD: "root"
-      DATABASE_HOST: "mysql"
-      DATABASE_SCHEMA: "newdb"
-      PORT: 50202
-      STAGE: "test"
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "production"
+      PORT: "5000"
     ports:
-      - "50202:50202"
+      - "53843:5000"
     volumes:
-      - mysql-data:/var/lib/mysql:rw
+      - postgres-data:/var/lib/postgres:rw
 
-  GraphicEditorWebServer:
-    image: stefan7/medbaytechge:latest
-    container_name: graphic_editor
+  Feedback:
+    image: feedback
+    container_name: feedback_container
     restart: on-failure
     networks:
       - demo
     depends_on:
-      - mysql
+      - postgres
     environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
       DATABASE_USERNAME: "root"
       DATABASE_PASSWORD: "root"
       DATABASE_HOST: "mysql"
       DATABASE_SCHEMA: "newdb"
       PORT: 8091
       STAGE: "test"
+      PORT: "8080"
     ports:
+      - "8080:8080"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+  
+  Rooms:
+    image: rooms
+    container_name: rooms_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "60304"
+    ports:
+      - "60304:60304"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+
+  Users:
+    image: users
+    container_name: users_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "8081"
+    ports:
+      - "8081:8081"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+  
+  PatientDocuments:
+    image: documents
+    container_name: documents_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "50577"
+    ports:
+      - "50577:50577"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+
+  Appointment:
+    image: appointment
+    container_name: appointment_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "8083"
+    ports:
+      - "8083:8083"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
       - "8091:8091"
     volumes:
       - mysql-data:/var/lib/mysql:rw

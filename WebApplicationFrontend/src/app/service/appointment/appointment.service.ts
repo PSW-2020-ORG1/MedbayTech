@@ -17,7 +17,7 @@ export class AppointmentService {
   constructor(private http : HttpClient) { }
   
   getSurveyableAppointments() : Observable<GetAppointment[]>{
-    return this.http.get<GetAppointment[]>(`${environment.baseUrl}/${environment.appointments}/${environment.allSurveyableAppointments}`)
+    return this.http.get<GetAppointment[]>(`${environment.baseUrl}/${environment.allSurveyableAppointments}`)
   }
 
   getAllOtherAppointments() : Observable<GetAppointment[]>{
