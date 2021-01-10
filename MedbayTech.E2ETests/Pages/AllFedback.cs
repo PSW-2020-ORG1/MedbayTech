@@ -10,7 +10,7 @@ namespace SeleniumEndToEnd.Pages
     public class AllFedback
     {
         private IWebDriver driver;
-        public const string URI = "http://localhost:4200/#/allFeedback";
+        public const string URI = "https://medbaytech.herokuapp.com/index.html#/allFeedback";
 
         private IWebElement CountFeedback => driver.FindElement(By.Name("all_feedback_len"));
         private IWebElement TitleFeedbacks => driver.FindElement(By.Name("feedbacks"));

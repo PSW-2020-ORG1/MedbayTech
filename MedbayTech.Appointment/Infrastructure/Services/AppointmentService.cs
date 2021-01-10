@@ -109,9 +109,9 @@ namespace Infrastructure.Services
         {
             List<Appointment> appointmentsForDays = GetAvailableByDoctorAndDateRange(parameters);
             List<Appointment> appointments = new List<Appointment>();
-            foreach(Appointment appointment in appointmentsForDays)
+            foreach(Appointment appointment in appointmentsForDays) //22 3:00 
             {
-                if (appointment.Period.StartTime >= parameters.ChosenStartDate && appointment.Period.EndTime <= parameters.ChosenEndDate) appointments.Add(appointment);
+                if (appointment.Period.StartTime >= parameters.ChosenStartDate && appointment.Period.EndTime <= parameters.ChosenEndDate) appointments.Add(appointment);//22:00 22:30
             }
             return appointments;
         }
@@ -244,6 +244,17 @@ namespace Infrastructure.Services
             appointment.Doctor = _userGateway.GetDoctorBy(appointment.DoctorId);
             appointment.Patient = _userGateway.GetPatientBy(appointment.PatientId);
             appointment.Room = _roomGateway.GetRoomBy(appointment.RoomId);
+        }
+
+        public Appointment UpdateSuggestedAppointment(Appointment appointment)
+        {
+            Appointment update_appointment = _appointmentRepository.GetAll().ToList().Find(a => a.Id == appointment.Id);
+            update_appointment.Period.StartTime = appointment.Period.StartTime;
+            update_appointment.Period.EndTime = appointment.Period.EndTime;
+            update_appointment.TypeOfAppointment = appointment.TypeOfAppointment;
+            update_appointment.Urgent = true;
+            update_appointment.DoctorId = appointment.DoctorId;
+            return _appointmentRepository.Update(update_appointment);
         }
 
     }

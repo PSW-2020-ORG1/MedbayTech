@@ -1,8 +1,9 @@
-﻿
-using MedbayTech.Rooms.Application.Common.Service;
+﻿using MedbayTech.Rooms.Application.Common.Service;
+using MedbayTech.Rooms.Application.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GraphicEditorWebService.Controllers
+
+namespace MedbayTech.Rooms.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -27,5 +28,18 @@ namespace GraphicEditorWebService.Controllers
         {
             return Ok(_hospitalEquipmentService.GetAllEquipment());
         }
+
+        [HttpPost]
+        public IActionResult GetByRoomAndEquipmentType(EquipmentRealocationDTO equipmentRealocationDTO)
+        {
+            return Ok(_hospitalEquipmentService.GetHospitalEquipmentByEquipmentTypeAndRoom(equipmentRealocationDTO.RoomId, equipmentRealocationDTO.EquipmentTypeId));
+        }
+
+        [HttpGet("getAllHospitalEquipments/{id}")]
+        public IActionResult GetHospitalEquipmentsByRoom(int id)
+        {
+            return Ok(_hospitalEquipmentService.GetEquipmentByRoomNumber(id));
+        }
+
     }
 }

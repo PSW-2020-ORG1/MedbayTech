@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GraphicEditor.View.Building2
+namespace MedbayTech.GraphicEditor.View.Building2
 {
     /// <summary>
     /// Interaction logic for Building2FirstFloorPlan.xaml
@@ -117,7 +117,7 @@ namespace GraphicEditor.View.Building2
         }
         private void mouseClickArrowDown(object sender, MouseButtonEventArgs e)
         {
-            page.MainFrame.Content = new Building1FloorPlan(page);
+            page.MainFrame.Content = new Building1GroundFloorPlan(page);
             if (page.tabControl.SelectedIndex == 0)
             {
                 page.comboBoxH2.SelectedIndex = 0;

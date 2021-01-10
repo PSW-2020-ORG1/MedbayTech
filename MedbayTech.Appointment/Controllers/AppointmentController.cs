@@ -5,9 +5,9 @@ using Application.Common.Interfaces.Service;
 using Application.DTO;
 using Application.Mappers;
 using MedbayTech.Appointment.Application.DTO;
+using MedbayTech.Appointment.Application.Enums;
 using MedbayTech.Appointment.Application.Validators;
 using MedbayTech.Appointment.Domain.Entities;
-using MedbayTech.Appointment.Infrastructure.Services.AppointmentSearchOrSchedule;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -148,6 +148,10 @@ namespace Controllers
             else if (appointmentFilterDTO.AppointmentSearchOrSchedule == AppointmentSearchOrSchedule.ScheduleAppointment)
             {
                 return Ok(_appointmentService.ScheduleAppointment(appointmentFilterDTO.Appointment));
+            }
+            else if (appointmentFilterDTO.AppointmentSearchOrSchedule == AppointmentSearchOrSchedule.UpdateAppointment)
+            {
+                return Ok(_appointmentService.UpdateSuggestedAppointment(appointmentFilterDTO.Appointment));
             }
             else return Ok();
         }

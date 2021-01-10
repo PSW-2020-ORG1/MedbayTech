@@ -1,18 +1,18 @@
 ﻿using System;
-using GraphicEditor.View.Building1;
-using GraphicEditor.View.Building2;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.IO;
-using GraphicEditor.View;
+using MedbayTech.GraphicEditor.View;
 using System.Net.Http;
 using Newtonsoft.Json;
 using GraphicEditor.ViewModel;
+using MedbayTech.GraphicEditor.View.Building1;
+using MedbayTech.GraphicEditor.View.Building2;
 
-namespace GraphicEditor
+namespace MedbayTech.GraphicEditor
 {
     /// <summary>
     /// Interaction logic for MainPage.xaml
@@ -68,9 +68,9 @@ namespace GraphicEditor
         }
         private void ShowBuilding1GroundFloor(object sender, MouseButtonEventArgs e)
         {
-            MainFrame.Content = new Building1FloorPlan(this);
+            MainFrame.Content = new Building1GroundFloorPlan(this);
             TransitionAnimation();
-            
+
         }
         private void ShowBuilding1FirstFloor(object sender, MouseButtonEventArgs e)
         {
@@ -84,7 +84,7 @@ namespace GraphicEditor
         }
         private void ShowBuilding2GroundFloor(object sender, MouseButtonEventArgs e)
         {
-            MainFrame.Content = new Building2FloorPlan(this);
+            MainFrame.Content = new Building2GroundFloorPlan(this);
             TransitionAnimation();
         }
 
@@ -122,7 +122,7 @@ namespace GraphicEditor
                         MainFrame.Content = new SearchResultsForEquipment(this, textBoxSearch.Text);
                     }
                     else MessageBox.Show("You dont have perrmision to search this!");
-            }
+                }
             }
         }
 
@@ -338,7 +338,7 @@ namespace GraphicEditor
 
         private void buttonAppointmentSearch(object sender, RoutedEventArgs e)
         {
-            if(Restriction == 2)
+            if (Restriction == 2)
             {
                 MainFrame.Content = new SearchAppointment(this);
             }
@@ -384,6 +384,31 @@ namespace GraphicEditor
                 });
             task.Wait();
             return doctor;
+        }
+
+        private void ButtonEquipmentRealocation(object sender, RoutedEventArgs e)
+        {
+            if (Restriction == 0)
+            {
+                ScheduleEquipmentRealocation scheduleEquipmentRealocation = new ScheduleEquipmentRealocation(this);
+                MainFrame.Content = scheduleEquipmentRealocation;
+            }
+            else
+            {
+                MessageBox.Show("You don't have permission to search appointment!");
+            }
+        }
+
+        private void ButtonEmergencyAppointment(object sender, RoutedEventArgs e)
+        {
+            if (Restriction == 2)
+            {
+                MainFrame.Content = new ScheduleEmergencyAppointment(this);
+            }
+            else
+            {
+                MessageBox.Show("You don't have permission to search appointment!");
+            }
         }
     }
 }

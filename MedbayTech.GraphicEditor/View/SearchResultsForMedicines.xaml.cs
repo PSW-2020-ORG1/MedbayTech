@@ -1,7 +1,7 @@
 ﻿
-using GraphicEditor.View.Building1;
-using GraphicEditor.View.Building2;
 using GraphicEditor.ViewModel;
+using MedbayTech.GraphicEditor.View.Building1;
+using MedbayTech.GraphicEditor.View.Building2;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
-namespace GraphicEditor
+namespace MedbayTech.GraphicEditor
 {
     /// <summary>
     /// Interaction logic for SearchResultsForMedicines.xaml
@@ -92,7 +92,7 @@ namespace GraphicEditor
             if (medicationRoom.Department.Floor == 0 && medicationRoom.Department.Hospital.Id == 1)
             {
                 Id = medicationRoom.Id.ToString();
-                page.MainFrame.Content = new Building1FloorPlan(page);
+                page.MainFrame.Content = new Building1GroundFloorPlan(page);
                 page.comboBoxH1.SelectedIndex = 0;
                 page.comboBoxHospital1.SelectedIndex = 0;
 
@@ -120,7 +120,7 @@ namespace GraphicEditor
             if (medicationRoom.Department.Floor == 0 && medicationRoom.Department.Hospital.Id == 2)
             {
                 Id = medicationRoom.Id.ToString();
-                page.MainFrame.Content = new Building2FloorPlan(page);
+                page.MainFrame.Content = new Building2GroundFloorPlan(page);
                 page.comboBoxH2.SelectedIndex = 0;
                 page.comboBoxHospital2.SelectedIndex = 0;
 

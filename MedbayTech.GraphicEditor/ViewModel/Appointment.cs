@@ -1,6 +1,6 @@
 ﻿using GraphicEditor.ViewModel.Enums;
 using MedbayTech.Common.Domain.ValueObjects;
-
+using System;
 
 namespace GraphicEditor.ViewModel
 {
@@ -8,13 +8,17 @@ namespace GraphicEditor.ViewModel
     {
         public int Id { get; set; }
         public virtual Period Period { get; set; }
+        public DateTime CancelationDate { get; set; }
         public TypeOfAppointment TypeOfAppointment { get; set; }
         public string ShortDescription { get; set; }
         public bool Urgent { get; set; }
+        public bool Deleted { get; set; }
+        public bool Finished { get; set; }
         public Room Room { get; set; }
         public MedicalRecord MedicalRecord { get; set; }
         public string DoctorId { get; set; }
         public Doctor Doctor { get; set; }
+        public int RoomId { get; set; }
 
         public string FullName
         {

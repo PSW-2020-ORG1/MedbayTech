@@ -12,6 +12,7 @@ namespace MedbayTech.Appointment.Infrastructure.Services
 {
     public class AppointmentFilterService : IAppointmentFilterService
     {
+        private static int addDays = 5;
         private readonly IAppointmentService _appointmentService;
         private readonly IUserGateway _userGateway;
         private readonly IRoomGateway _roomGateway;
@@ -24,7 +25,7 @@ namespace MedbayTech.Appointment.Infrastructure.Services
             _roomGateway = roomGateway;
         }
 
-        public List<MedbayTech.Appointment.Domain.Entities.Appointment> GetAvailableByDoctorTimeIntervalAndEquipment(PriorityParameters parameters, int hospitalEquipmentId, string priority)
+        public List<Domain.Entities.Appointment> GetAvailableByDoctorTimeIntervalAndEquipment(PriorityParameters parameters, int hospitalEquipmentId, string priority)
         {
             List<MedbayTech.Appointment.Domain.Entities.Appointment> allAppointments;
             if (priority.Equals("doctor"))
@@ -43,9 +44,9 @@ namespace MedbayTech.Appointment.Infrastructure.Services
             return FilterAllApointments(allAppointments, hospitalEquipmentId);
         }
 
-        public List<MedbayTech.Appointment.Domain.Entities.Appointment> AddRoomToAppointment(List<MedbayTech.Appointment.Domain.Entities.Appointment> appointments)
+        public List<Domain.Entities.Appointment> AddRoomToAppointment(List<MedbayTech.Appointment.Domain.Entities.Appointment> appointments)
         {
-            foreach (MedbayTech.Appointment.Domain.Entities.Appointment appointment in appointments)
+            foreach (Domain.Entities.Appointment appointment in appointments)
             {
                 Doctor doctor = _userGateway.GetDoctorBy(appointment.DoctorId);             
                 appointment.RoomId = doctor.ExaminationRoomId;
@@ -54,11 +55,11 @@ namespace MedbayTech.Appointment.Infrastructure.Services
             return appointments;
         }
 
-        private List<MedbayTech.Appointment.Domain.Entities.Appointment> FilterAllApointments(List<MedbayTech.Appointment.Domain.Entities.Appointment> allAppointments, int hospitalEquipmentId)
+        private List<Domain.Entities.Appointment> FilterAllApointments(List<MedbayTech.Appointment.Domain.Entities.Appointment> allAppointments, int hospitalEquipmentId)
         {
-            List<MedbayTech.Appointment.Domain.Entities.Appointment> appointments = new List<MedbayTech.Appointment.Domain.Entities.Appointment>();
+            List<Domain.Entities.Appointment> appointments = new List<MedbayTech.Appointment.Domain.Entities.Appointment>();
             List<HospitalEquipment> hospitalEquipments = _roomGateway.GetAllHospitalEquipments().ToList().Where(h => h.EquipmentTypeId == hospitalEquipmentId).ToList();
-            foreach (MedbayTech.Appointment.Domain.Entities.Appointment appointment in allAppointments)
+            foreach (Domain.Entities.Appointment appointment in allAppointments)
             {
                 foreach (HospitalEquipment hospitalEquipment in hospitalEquipments)
                 {
@@ -68,7 +69,7 @@ namespace MedbayTech.Appointment.Infrastructure.Services
             return appointments;
         }
 
-        public List<MedbayTech.Appointment.Domain.Entities.Appointment> GetAvailableByPriorityTimeInterval(PriorityParameters parameters)
+        public List<Domain.Entities.Appointment> GetAvailableByPriorityTimeInterval(PriorityParameters parameters)
         {
             List<MedbayTech.Appointment.Domain.Entities.Appointment> appointmentsForAllDoctors = new List<MedbayTech.Appointment.Domain.Entities.Appointment>();
             List<Doctor> doctors = _userGateway.GetAllDoctors();
@@ -85,6 +86,90 @@ namespace MedbayTech.Appointment.Infrastructure.Services
             }
             AddRoomToAppointment(appointments);
             return appointments;
+        }
+
+        public List<Domain.Entities.Appointment> FindEmergencyAppointment(PriorityParameters parameters, int equipmentType)
+        {
+            List<Domain.Entities.Appointment> filteredAppointments = new List<Domain.Entities.Appointment>();
+            List<Domain.Entities.Appointment> appointmentsForAllDoctors = GetAvailableByPriorityTimeInterval(parameters);
+            appointmentsForAllDoctors = AddRoomToAppointment(appointmentsForAllDoctors);
+            foreach (Domain.Entities.Appointment appointment in appointmentsForAllDoctors)
+            {
+                if (equipmentType != -1)
+                {
+                    if (appointment.Doctor.SpecializationId == parameters.SpecializationId && IsEquipmentTypePresentInRoom(appointment, equipmentType))
+                    {
+                        appointment.Urgent = true;
+                        filteredAppointments.Add(appointment);
+                    }
+                }
+                else
+                {
+                    if (appointment.Doctor.SpecializationId == parameters.SpecializationId)
+                    {
+                        appointment.Urgent = true;
+                        filteredAppointments.Add(appointment);
+                    }
+                }
+
+            }
+            if (filteredAppointments.Count > 0)
+            {
+                return FindMostRecentAppointment(filteredAppointments);
+            }
+            return new List<Domain.Entities.Appointment>();
+        }
+
+        public Tuple<List<Domain.Entities.Appointment>, List<int>> FindAppointmentsForRescheduling(PriorityParameters parameters, int equipmentType)
+        {
+            Doctor doctor = _userGateway.GetDoctorBy(parameters.DoctorId);
+            List<Domain.Entities.Appointment> potentionalAppointmentsForRescheduling;
+            Dictionary<Domain.Entities.Appointment, int> dictionarytPostPoneTime = new Dictionary<Domain.Entities.Appointment, int>();
+            if (equipmentType == -1)
+            {
+                potentionalAppointmentsForRescheduling = _appointmentService.GetAll().Where(a => a.Period.StartTime >= parameters.ChosenStartDate && a.Period.EndTime <= parameters.ChosenEndDate && a.Urgent == false && a.Doctor.SpecializationId == doctor.SpecializationId).ToList();
+            }
+            else
+            {
+                potentionalAppointmentsForRescheduling = _appointmentService.GetAll().Where(a => a.Period.StartTime >= parameters.ChosenStartDate && a.Period.EndTime <= parameters.ChosenEndDate && a.Urgent == false && a.Doctor.SpecializationId == doctor.SpecializationId).ToList();
+                List<Domain.Entities.Appointment> appointments = new List<Domain.Entities.Appointment>();
+                foreach (Domain.Entities.Appointment appointment in potentionalAppointmentsForRescheduling)
+                {
+                    if (IsEquipmentTypePresentInRoom(appointment, equipmentType)) appointments.Add(appointment);
+                }
+                potentionalAppointmentsForRescheduling = appointments;
+            }
+            foreach (Domain.Entities.Appointment appointment in potentionalAppointmentsForRescheduling)
+            {
+                Domain.Entities.Appointment a = _appointmentService.GetAvailableByDoctorAndTimeInterval(new PriorityParameters() { DoctorId = appointment.DoctorId, ChosenStartDate = parameters.ChosenEndDate, ChosenEndDate = parameters.ChosenEndDate.AddDays(addDays) })[0];
+                int time = (int)(a.Period.StartTime - appointment.Period.EndTime).TotalMinutes;
+                dictionarytPostPoneTime.Add(appointment, time);
+            }
+            List<Domain.Entities.Appointment> keyList = new List<Domain.Entities.Appointment>(dictionarytPostPoneTime.Keys);
+            List<int> valueList = new List<int>(dictionarytPostPoneTime.Values);
+            return Tuple.Create(keyList, valueList);
+        }
+
+        bool IsEquipmentTypePresentInRoom(Domain.Entities.Appointment appointment, int equipmentType)
+        {
+            List<HospitalEquipment> hospitalEquipment = _roomGateway.GetHospitalEquipmentByRoom(appointment.RoomId);
+            if (hospitalEquipment.Where(a => a.EquipmentTypeId == equipmentType).ToList().Count > 0)
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        List<Domain.Entities.Appointment> FindMostRecentAppointment(List<Domain.Entities.Appointment> filteredAppointments)
+        {
+            Domain.Entities.Appointment mostRecentApp = filteredAppointments.ElementAt(0);
+            foreach (Domain.Entities.Appointment appointment in filteredAppointments)
+            {
+                if (appointment.Period.StartTime < mostRecentApp.Period.StartTime) mostRecentApp = appointment;
+            }
+            List<Domain.Entities.Appointment> newList = new List<Domain.Entities.Appointment>();
+            newList.Add(mostRecentApp);
+            return newList;
         }
     }
 }

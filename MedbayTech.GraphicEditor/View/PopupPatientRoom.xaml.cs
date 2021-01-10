@@ -2,7 +2,7 @@
 using System.Windows.Controls.Primitives;
 
 
-namespace GraphicEditor
+namespace MedbayTech.GraphicEditor
 {
     /// <summary>
     /// Interaction logic for PopupPatientRoom.xaml

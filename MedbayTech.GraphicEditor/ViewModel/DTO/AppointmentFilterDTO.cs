@@ -12,6 +12,7 @@ namespace GraphicEditor.ViewModel.DTO
         public DateTime EndInterval { get; set; }
         public string DoctorId { get; set; }
         public int HospitalEquipmentId { get; set; }
+        public int SpecializationId { get; set; }
         public Appointment appointment { get; set; }
         public List<Appointment> appointments { get; set; }
 

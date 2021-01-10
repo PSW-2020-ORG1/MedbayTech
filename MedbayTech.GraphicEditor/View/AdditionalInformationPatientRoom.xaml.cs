@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace GraphicEditor
+namespace MedbayTech.GraphicEditor
 {
     /// <summary>
     /// Interaction logic for AdditionalInformationPatientRoom.xaml
@@ -49,7 +49,7 @@ namespace GraphicEditor
             HttpClient httpClient = new HttpClient();
             var content = new StringContent(jsonRoom,Encoding.UTF8,"application/json");
             //var result = httpClient.PostAsync("http://localhost:53109/api/room/", content);
-            var result = httpClient.PostAsync("http://localhost:6034/api/room/", content);
+            var result = httpClient.PostAsync("http://localhost:60304/api/room/", content);
             result.Wait();
             MessageBox.Show("Saved to database!");
         }

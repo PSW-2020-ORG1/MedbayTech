@@ -7,6 +7,8 @@ import MedicationUsageReport from '../views/MedicationUsageReport.vue'
 import DeanPanel from '../views/DeanPanel.vue'
 import Pharmacies from '../views/Pharmacies.vue'
 import Medication from '../views/Medication.vue'
+import UrgentRequest from '../views/UrgentRequest.vue'
+import UrgentOrder from '../views/UrgentOrder.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +47,16 @@ const routes = [
           path: 'medication',
           name: 'Medication',
           component: Medication,
+        },
+        {
+            path: 'urgentRequest',
+            name: 'UrgentRequest',
+            component: UrgentRequest,
+        },
+        {
+            path: 'urgentOrder',
+            name: 'UrgentOrder',
+            component: UrgentOrder,
         },
       ],
     }

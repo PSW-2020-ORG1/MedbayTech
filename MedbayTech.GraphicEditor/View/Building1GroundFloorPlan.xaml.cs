@@ -1,5 +1,6 @@
-﻿using GraphicEditor.View;
-using GraphicEditor.View.Building1;
+﻿
+using MedbayTech.GraphicEditor.View;
+using MedbayTech.GraphicEditor.View.Building1;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,16 +18,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GraphicEditor
+namespace MedbayTech.GraphicEditor
 {
     /// <summary>
     /// Interaction logic for Building1FloorPlan.xaml
     /// </summary>
-    public partial class Building1FloorPlan : Page
+    public partial class Building1GroundFloorPlan : Page
     {
         private MainPage page;
 
-        public Building1FloorPlan(MainPage mainPage)
+        public Building1GroundFloorPlan(MainPage mainPage)
         {
             InitializeComponent();
             page = mainPage;

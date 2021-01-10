@@ -54,5 +54,10 @@ namespace MedbayTech.Rooms.Infrastructure.Services
 
         public List<HospitalEquipment> GetAllEquipment ( ) => _hospitalEquipmentRepository.GetAll();
 
+        public HospitalEquipment GetHospitalEquipmentByEquipmentTypeAndRoom(int roomId, int equipmentTypeId)
+        {
+            return _hospitalEquipmentRepository.GetAll().ToList().Find(h => h.RoomId == roomId && h.EquipmentTypeId == equipmentTypeId);
+        }
+
     }
 }

@@ -20,6 +20,7 @@ namespace Backend.Medications.Service
         public MedicationService(IMedicationRepository medicationRepository, INotificationService notificationService)
         {
             _notificationService = notificationService;
+            _medicationRepository = medicationRepository;
         }
 
         public List<Medication> GetAllMedicationsByNameOrId(string query)

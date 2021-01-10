@@ -5,6 +5,7 @@
         ByRoom,
         ByDoctorAndTimeInterval,
         ByDoctorPriority,
-        ScheduleAppointment
+        ScheduleAppointment,
+        UpdateAppointment
     }
 }

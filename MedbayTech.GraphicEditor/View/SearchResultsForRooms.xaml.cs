@@ -1,7 +1,5 @@
 
 using Newtonsoft.Json;
-﻿using GraphicEditor.View.Building1;
-using GraphicEditor.View.Building2;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -9,8 +7,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using GraphicEditor.ViewModel;
+using MedbayTech.GraphicEditor.View.Building1;
+using MedbayTech.GraphicEditor.View.Building2;
 
-namespace GraphicEditor
+namespace MedbayTech.GraphicEditor
 {
     /// <summary>
     /// Interaction logic for SearchResultsForRooms.xaml
@@ -80,7 +80,7 @@ namespace GraphicEditor
             if(room.Department.Floor == 0 && room.Department.Hospital.Id == 1)
             {
                 Id = room.Id.ToString();
-                page.MainFrame.Content = new Building1FloorPlan(page);
+                page.MainFrame.Content = new Building1GroundFloorPlan(page);
                 page.comboBoxH1.SelectedIndex = 0;
                 page.comboBoxHospital1.SelectedIndex = 0;
 
@@ -110,7 +110,7 @@ namespace GraphicEditor
             if (room.Department.Floor == 0 && room.Department.Hospital.Id == 2)
             {
                 Id = room.Id.ToString();
-                page.MainFrame.Content = new Building2FloorPlan(page);
+                page.MainFrame.Content = new Building2GroundFloorPlan(page);
                 page.comboBoxH2.SelectedIndex = 0;
                 page.comboBoxHospital2.SelectedIndex = 0;
 

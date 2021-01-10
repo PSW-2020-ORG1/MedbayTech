@@ -6,6 +6,8 @@
         BySpecialistNoPriority,
         BySpecialistDoctorPriority,
         BySpecialistTimePriority,
-        AddRoomToAppointment
+        AddRoomToAppointment,
+        EmergencyAppointment,
+        ReschedulingAppointment
     }
 }

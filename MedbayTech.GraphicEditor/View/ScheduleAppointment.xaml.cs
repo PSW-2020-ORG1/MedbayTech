@@ -8,7 +8,8 @@ using System.Net.Http;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-namespace GraphicEditor.View
+
+namespace MedbayTech.GraphicEditor.View
 {
     /// <summary>
     /// Interaction logic for ScheduleAppointment.xaml

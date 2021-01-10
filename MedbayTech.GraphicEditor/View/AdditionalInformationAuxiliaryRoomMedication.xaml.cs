@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Windows.Controls;
 
 
-namespace GraphicEditor.View
+namespace MedbayTech.GraphicEditor.View
 {
     /// <summary>
     /// Interaction logic for AdditionalInformationAuxiliaryRoomMedication.xaml

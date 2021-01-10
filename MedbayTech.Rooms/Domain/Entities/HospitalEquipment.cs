@@ -18,13 +18,9 @@ namespace MedbayTech.Rooms.Domain
         public int Id { get; set; }
         public int QuantityInRoom { get; set; }
         public int QuantityInStorage { get; set; }
-        [ForeignKey("Room")]
         public int RoomId { get; set; }
-        [NotMapped]
         public virtual Room Room { get; set; }
-        [ForeignKey("EquipmentType")]
         public int EquipmentTypeId { get; set; }
-        [NotMapped]
         public virtual EquipmentType EquipmentType { get; set; }
 
 

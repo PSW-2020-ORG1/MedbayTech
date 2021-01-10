@@ -1,13 +1,10 @@
 
-﻿using GraphicEditor.View.Building1;
-using GraphicEditor.View.Building2;
+using MedbayTech.GraphicEditor.View;
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media.Animation;
 
-namespace GraphicEditor
+namespace MedbayTech.GraphicEditor
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

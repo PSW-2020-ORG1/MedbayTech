@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedbayTech.GraphicEditor.ViewModel.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,8 +11,26 @@ namespace GraphicEditor.ViewModel
         public string Name { get; set; }
         public string Surname { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public string ChosenDoctorId { get; set; }
         public virtual Doctor ChosenDoctor { get; set; }
         public MedicalRecord MedicalRecord { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string CityOfBirth { get; set; }
+        public int PostalCodeBirth { get; set; }
+        public string StateOfBirth { get; set; }
+        public DateTime DateOfCreation { get; set; }
+        //public EducationLevel EducationLevel { get; set; }
+        public string EducationLevel { get; set; }
+        public string Profession { get; set; }
+        public string ProfileImage { get; set; }
+        public Gender Gender { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Street { get; set; }
+        public bool IsGuestAccount { get; set; }
 
 
 

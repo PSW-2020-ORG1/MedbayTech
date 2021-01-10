@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using Xunit;
+using MedicationUsageReportNotification = MedbayTech.Pharmacies.Domain.Entities.Reports.MedicationUsageReportNotification;
 
 namespace IntegrationTests.PhIntegration
 {
