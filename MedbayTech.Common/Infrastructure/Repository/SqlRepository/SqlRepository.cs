@@ -102,8 +102,8 @@ namespace MedbayTech.Repository
         {
             if (ExistsBy(entity.GetId()))
             {
-                dbSet.Attach(entity);
-                context.Entry(entity).State = EntityState.Modified;
+                var entry = GetBy(entity.GetId());
+                context.Entry(entry).CurrentValues.SetValues(entity);
                 context.SaveChanges();
                 return entity;
             }

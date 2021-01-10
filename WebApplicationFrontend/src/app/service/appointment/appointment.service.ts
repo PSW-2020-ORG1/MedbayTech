@@ -17,7 +17,7 @@ export class AppointmentService {
   constructor(private http : HttpClient) { }
   
   getSurveyableAppointments() : Observable<GetAppointment[]>{
-    return this.http.get<GetAppointment[]>(`${environment.baseUrl}/${environment.appointments}/${environment.allSurveyableAppointments}`)
+    return this.http.get<GetAppointment[]>(`${environment.baseUrl}/${environment.allSurveyableAppointments}`)
   }
 
   getAllOtherAppointments() : Observable<GetAppointment[]>{
@@ -28,8 +28,8 @@ export class AppointmentService {
     return this.http.get<GetAppointment[]>(`${environment.baseUrl}/${environment.appointments}/${environment.allCancelableAppointments}`)
   }
 
-  cancelAppointment(data: CancelAppointment) : Observable<CancelAppointment>{
-    return this.http.post<CancelAppointment>(`${environment.baseUrl}/${environment.appointments}/${environment.cancelAppointment}`, data);
+  cancelAppointment(data: CancelAppointment) {
+    return this.http.post(`${environment.baseUrl}/${environment.appointments}/${environment.cancelAppointment}`, data, {responseType : 'text'});
   }   
 
   getAvailableByDateRange(data : AppointmentRecommendation) : Observable<AvailableAppointments[]> {

@@ -3,7 +3,6 @@
 // Created: Friday, May 22, 2020 4:36:48 AM
 // Purpose: Definition of Interface IDiagnosisRepository
 
-using System;
 using MedbayTech.Common.Repository;
 using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
 

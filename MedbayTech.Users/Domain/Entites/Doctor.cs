@@ -4,13 +4,6 @@
  * Purpose: Definition of the Class HealthCorporation.Doctor.Doctor
  ***********************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using MedbayTech.Users.Domain.ValueObjects;
-
 
 namespace MedbayTech.Users.Domain.Entites
 {
@@ -22,7 +15,7 @@ namespace MedbayTech.Users.Domain.Entites
         public int DepartmentId { get;  set; }
         public int ExaminationRoomId { get;  set; }
         public int OperationRoomId { get;  set; }
-        [NotMapped]
+        public int SpecializationId { get; set; }
         public virtual Specialization Specialization { get; set; }
 
 

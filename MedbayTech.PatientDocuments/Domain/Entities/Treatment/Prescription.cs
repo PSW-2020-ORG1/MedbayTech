@@ -23,9 +23,10 @@ namespace MedbayTech.PatientDocuments.Domain.Entities.Treatment
             Date = DateTime.Today;
         }
 
-        public Prescription(DateTime dateOfPrescription, bool reserved, int hourlyIntake, string additionalNotes)
+        public Prescription(DateTime dateOfPrescription, bool reserved, string medication, int hourlyIntake, string additionalNotes)
             : base(dateOfPrescription, additionalNotes, TreatmentType.Prescription)
         {
+            Medication = medication;
             Reserved = reserved;
             if (Reserved)
             {

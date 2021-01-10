@@ -10,7 +10,7 @@ namespace MedbayTech.Appointment.Infrastructure.Database.Configurations
         public void Configure(EntityTypeBuilder<AppointmentEvent> builder)
         {
             builder.ToTable("AppointmentEvents");
-            builder.HasOne(a => a.Appointment).WithMany().HasForeignKey("Appointment", "AppointmentId");
+            builder.HasOne(a => a.Appointment);
         }
     }
 }

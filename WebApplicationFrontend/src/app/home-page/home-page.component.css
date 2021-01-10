@@ -1,0 +1,51 @@
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    margin-left: 80vw;
+    margin-top: 15px;
+}
+
+mat-card {
+    min-width:  30vw;
+    max-width: 30vw;
+    background-color: white;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    background-color: #3F51B5;
+    color:white;
+}
+
+.carousel {
+    width: 75%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    padding-top: 10px;
+}

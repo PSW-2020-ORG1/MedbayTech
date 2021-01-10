@@ -1,6 +1,7 @@
 ﻿using MedbayTech.Feedback.Domain.Events;
 using MedbayTech.Repository.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Reflection;
 
 namespace MedbayTech.Feedback.Infrastructure.Persistance

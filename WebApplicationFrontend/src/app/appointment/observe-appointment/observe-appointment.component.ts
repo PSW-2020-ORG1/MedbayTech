@@ -40,15 +40,24 @@ export class ObserveAppointmentComponent implements OnInit {
         this.allCancelableAppointments = data;
       });
   }
-  cancelAppointment(appointmentId,element){
-    this.appointmentService.cancelAppointment(new CancelAppointment(appointmentId)).subscribe(data =>
-      {
-      this.loadCancelableAppointments();
-      this.loadSurveyableAppointments();
-      this.loadAllOtherAppointments();
-      });
+  cancelAppointment(appointmentId){
+    this.appointmentService.cancelAppointment(new CancelAppointment(appointmentId)).subscribe(
+      res => {
+        this.loadCancelableAppointments();
+        this.loadSurveyableAppointments();
+        this.loadAllOtherAppointments();
+        alert(res);
+      },
+      error => {
+        this.loadCancelableAppointments();
+        this.loadSurveyableAppointments();
+        this.loadAllOtherAppointments();
+        alert(error);
+      }
+      );
     
   }
+  
   saveAppointment(appointment : GetAppointment){
     localStorage.setItem('appointment',JSON.stringify(appointment.id));
   }

@@ -18,7 +18,13 @@ namespace MedbayTech.Rooms.Controllers
         {
             _roomService = roomService;
         }
-        
+        [HttpGet("{id}")]
+
+        public IActionResult GetRoom(int id)
+        {
+            return Ok(_roomService.GetRoomById(id));
+        }
+
         [HttpGet("{textBoxSearch?}/{roomSearch?}")]
         public IActionResult Get(string textBoxSearch, RoomSearch roomSearch)
         {
@@ -36,12 +42,20 @@ namespace MedbayTech.Rooms.Controllers
                 if (Int32.TryParse(textBoxSearch, out int id))
                 {
                     return Ok(_roomService.GetRoomById(id));
-                }
+                }   
                 else return Ok();
+            }
+            else if (roomSearch == RoomSearch.ByEquipment)
+            {
+                return Ok(_roomService.GetAllRoomsByEquipment(Int32.Parse(textBoxSearch)));
             }
             else return Ok();
         }
-
+        [HttpGet]
+        public IActionResult GetAll (int id)
+        {
+            return Ok(_roomService.GetAll());
+        }
         [HttpPost]
         public IActionResult Post(Room room)
         {

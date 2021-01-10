@@ -52,6 +52,20 @@ namespace Backend.Medications.Model
             Status = MedStatus.Validation;
         }
 
+        public Medication(string name, string dosage)
+        {
+            Med = name;
+            Dosage = dosage;
+            Company = "Galenika";
+            RoomId = 87;
+            Quantity = 0;
+            MedicationContent = new List<DosageOfIngredient>();
+            MedicationCategoryId = 1;
+            Allergens = new List<Allergens>();
+            SideEffects = new List<SideEffect>();
+            Status = MedStatus.Validation;
+        }
+
         public Medication(int id)
         {
             Id = id;

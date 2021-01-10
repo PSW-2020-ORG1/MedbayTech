@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:8082",
+      "applicationUrl": "http://localhost:8083",
       "sslPort": 0
     }
   },
@@ -18,7 +18,7 @@
     "MedbayTech.Appointment": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:8082",
+      "applicationUrl": "http://localhost:8083",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

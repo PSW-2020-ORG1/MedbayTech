@@ -7,6 +7,7 @@ using Application.Common.Interfaces.Service;
 using Application.DTO;
 using Castle.Core.Internal;
 using Domain.Enums;
+using MedbayTech.Appointment.Application.Common.Interfaces.Persistance;
 using MedbayTech.Appointment.Application.Gateways;
 using MedbayTech.Appointment.Domain.Entities;
 using MedbayTech.Common.Domain.ValueObjects;
@@ -21,13 +22,16 @@ namespace Infrastructure.Services
 
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly IUserGateway _userGateway;
-
+        private readonly IRoomGateway _roomGateway;
+        private readonly ISurveyRepository _surveyRepository;
         private IPriorityStrategy _priorityStrategy;
 
-        public AppointmentService(IAppointmentRepository appointmentRepository, IUserGateway userGateway)
+        public AppointmentService(IAppointmentRepository appointmentRepository, IUserGateway userGateway, IRoomGateway roomGateway, ISurveyRepository surveyRepository)
         {
             _appointmentRepository = appointmentRepository;
             _userGateway = userGateway;
+            _roomGateway = roomGateway;
+            _surveyRepository = surveyRepository;
         }
 
         public List<Appointment> GetAllOtherAppointments(string id)
@@ -59,19 +63,19 @@ namespace Infrastructure.Services
 
         public List<Appointment> GetSurveyableAppointments(string id)
         {
-             /*List<Survey> surveys = _surveyRepository.GetAll().ToList();
-             List<Appointment> appointments = _appointmentRepository.GetAppointmentsByPatientId(id).ToList();
-             List<Appointment> surveyableAppointments = new List<Appointment>();
-             surveyableAppointments = appointments.Where(p => !surveys.Any(l => p.Id == l.AppointmentId) && p.Finished == true).ToList();
+            List<Survey> surveys = _surveyRepository.GetAll().ToList();
+            List<Appointment> appointments = GetAllForPatient(id);
+            List<Appointment> surveyableAppointments = new List<Appointment>();
+            surveyableAppointments = appointments.Where(p => !surveys.Any(l => p.Id == l.AppointmentId) && p.Finished == true).ToList();
 
-             return surveyableAppointments; */
+            return surveyableAppointments; 
 
-            throw new NotImplementedException();
+            
         } 
 
         public bool UpdateCanceled(int appointmentId)
         {
-            Appointment appointment = _appointmentRepository.GetBy(appointmentId);
+            Appointment appointment = GetAppointment(appointmentId);
             if (appointment == null) {
                 return false;
             }
@@ -105,9 +109,9 @@ namespace Infrastructure.Services
         {
             List<Appointment> appointmentsForDays = GetAvailableByDoctorAndDateRange(parameters);
             List<Appointment> appointments = new List<Appointment>();
-            foreach(Appointment appointment in appointmentsForDays)
+            foreach(Appointment appointment in appointmentsForDays) //22 3:00 
             {
-                if (appointment.Period.StartTime >= parameters.ChosenStartDate && appointment.Period.EndTime <= parameters.ChosenEndDate) appointments.Add(appointment);
+                if (appointment.Period.StartTime >= parameters.ChosenStartDate && appointment.Period.EndTime <= parameters.ChosenEndDate) appointments.Add(appointment);//22:00 22:30
             }
             return appointments;
         }
@@ -147,8 +151,6 @@ namespace Infrastructure.Services
                  _priorityStrategy = new DoctorPriorityStrategy(this);
              else 
                  _priorityStrategy = new DatePriorityStrategy(this, _userGateway); 
-
-            throw new NotImplementedException();
         }
         public List<Appointment> GetAvailableBy(string doctorId, DateTime date)
         {
@@ -210,31 +212,49 @@ namespace Infrastructure.Services
               return appointments; 
         }
 
+        public List<Appointment> GetAppointmentByPatient(string patientId)
+        {
+            return GetAll().Where(a => a.PatientId != null && a.Patient.Equals(patientId)).ToList();
+        }
+
         public List<Appointment> GetAll()
         {
             var appointments = _appointmentRepository.GetAll();
             foreach (Appointment appointment in appointments)
-            {
-                appointment.Doctor = _userGateway.GetDoctorBy(appointment.DoctorId);
-                appointment.Patient = _userGateway.GetPatientBy(appointment.PatientId);
-            }
+                BindProperties(appointment);
             return appointments;
         }
 
-        public List<Appointment> GetAppointmentsBy(string userId)
+        public Appointment GetAppointment(int appointmentId)
         {
-            return GetAll().Where(a => a.PatientId != null && a.Patient.Equals(userId)).ToList();
+            var appointment = _appointmentRepository.GetBy(appointmentId);
+            BindProperties(appointment);
+            return appointment;
         }
-
         public List<Appointment> GetAllForPatient(string id)
         {
             var appointments = _appointmentRepository.GetAppointmentsByPatientId(id);
             foreach (Appointment appointment in appointments)
-            {
-                appointment.Doctor = _userGateway.GetDoctorBy(appointment.DoctorId);
-                appointment.Patient = _userGateway.GetPatientBy(appointment.PatientId);
-            }
+                BindProperties(appointment);
             return appointments;
+        }
+
+        private void BindProperties(Appointment appointment)
+        {
+            appointment.Doctor = _userGateway.GetDoctorBy(appointment.DoctorId);
+            appointment.Patient = _userGateway.GetPatientBy(appointment.PatientId);
+            appointment.Room = _roomGateway.GetRoomBy(appointment.RoomId);
+        }
+
+        public Appointment UpdateSuggestedAppointment(Appointment appointment)
+        {
+            Appointment update_appointment = _appointmentRepository.GetAll().ToList().Find(a => a.Id == appointment.Id);
+            update_appointment.Period.StartTime = appointment.Period.StartTime;
+            update_appointment.Period.EndTime = appointment.Period.EndTime;
+            update_appointment.TypeOfAppointment = appointment.TypeOfAppointment;
+            update_appointment.Urgent = true;
+            update_appointment.DoctorId = appointment.DoctorId;
+            return _appointmentRepository.Update(update_appointment);
         }
 
     }

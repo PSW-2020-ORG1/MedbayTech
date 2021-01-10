@@ -19,10 +19,10 @@ namespace MedbayTech.Rooms.Domain
 
         public int RoomNumber { get;  set; }
         public RoomType RoomType { get; set; }
-        [ForeignKey("Department")]
         public int DepartmentId { get;  set; }
-        [NotMapped]
+        //[NotMapped]
         public virtual Department Department { get; set; }
+        [NotMapped]
         public virtual List<HospitalEquipment> HospitalEquipment { get;  set; }
         public string RoomLabel { get; set; }
         public string RoomUse { get; set; }

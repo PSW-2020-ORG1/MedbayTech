@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using MedbayTech.PatientDocuments.Application.DTO.Prescription;
 using MedbayTech.PatientDocuments.Application.Mapper;
 using MedbayTech.PatientDocuments.Application.Validators.Prescription;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication.Controller
 {
@@ -53,5 +54,12 @@ namespace WebApplication.Controller
 
             return Ok(prescriptions);
         }
+
+        [HttpGet("all")]
+        public IActionResult GetAllForPharmacies()
+        {
+            return Ok(_prescriptionSearchService.GetAllForSending());
+        }
+
     }
 }

@@ -17,6 +17,10 @@
             <p class="content-paragraph">E-mail : <strong>{{ medicalRecord.email }}</strong></p>
             <p class="content-paragraph">Insurance policy provider : <strong>{{ medicalRecord.insurancePolicyCompany }}</strong></p>
             <p class="content-paragraph">Patient condition : <strong>{{medicalRecord.patientCondition }}</strong></p>
+
+            <button mat-raised-button routerLink="/observeAppointment" name="observe-appointment">Apppointments</button>
+            <button mat-raised-button routerLink="/prescriptionSimpleSearch">Search prescriptions</button>
+            <button mat-raised-button routerLink="/reportSimpleSearch">Search reports</button>
         </mat-card-content>
         <mat-card-footer>
             <mat-tab-group>

@@ -12,5 +12,7 @@ namespace MedbayTech.Users.Infrastructure.Persistance
         List<Doctor> GetAllDoctors();
 
         Doctor GetDoctorBy(string id);
+
+        RegisteredUser GetBy(string username, string password);
     }
 }

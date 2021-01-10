@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MedbayTech.Users.Application.Common.Interfaces.Gateways;
 using MedbayTech.Users.Application.Common.Interfaces.Persistance;
 using MedbayTech.Users.Application.Common.Interfaces.Service;
 using MedbayTech.Users.Domain.Entites;
@@ -11,17 +12,19 @@ namespace MedbayTech.Users.Infrastructure.Service
 {
     public class RegistrationService : IRegistrationService
     {
-        IPatientRepository _patientRepository;
+        private readonly IPatientRepository _patientRepository;
 
         public RegistrationService(IPatientRepository patientRepository)
         {
             _patientRepository = patientRepository;
+            
         }
 
         public Patient Register(Patient patient)
         {
             if (!PatientExists(patient.Id, patient.Username))
             {
+                patient.Role = "Patient";
                 return _patientRepository.Create(patient);
             }
 
@@ -35,7 +38,7 @@ namespace MedbayTech.Users.Infrastructure.Service
         }
         public bool ExistsById(string id)
         {
-            return _patientRepository.ExistsById(id);
+            return _patientRepository.ExistsBy(id);
         }
 
         public Patient ExistsByUsername(string username)
@@ -98,7 +101,7 @@ namespace MedbayTech.Users.Infrastructure.Service
 
         public Patient GetUserById(string id)
         {
-            return _patientRepository.GetById(id);
+            return _patientRepository.GetBy(id);
         }
     }
 }

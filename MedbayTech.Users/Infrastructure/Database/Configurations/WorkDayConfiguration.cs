@@ -14,7 +14,7 @@ namespace MedbayTech.Users.Infrastructure.Database.Configurations
         public void Configure(EntityTypeBuilder<WorkDay> builder)
         {
             builder.ToTable("WorkDay");
-            builder.HasOne(e => e.Employee);
+            builder.HasOne(e => e.Doctor);
 
         }
     }

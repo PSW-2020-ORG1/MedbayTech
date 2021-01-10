@@ -1,0 +1,78 @@
+﻿<Page x:Class="MedbayTech.GraphicEditor.View.ScheduleEquipmentRealocation"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MedbayTech.GraphicEditor.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="652" d:DesignWidth="702"
+      Title="ScheduleEquipmentRealocation">
+
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <DockPanel DockPanel.Dock="Left" HorizontalAlignment="Left">
+                <DockPanel Margin="5,5,5,5"/>
+                <DockPanel Margin="0,5,5,5">
+                    <Label DockPanel.Dock="Top" Content="Select equipment:" FontWeight="Bold"/>
+                    <ComboBox DockPanel.Dock="Bottom" Name="comboBoxEquipment" SelectionChanged="ComboBoxEquipmentChanged">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" />
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </DockPanel>
+                <DockPanel Margin="0,5,5,5">
+                    <Label DockPanel.Dock="Top" Content="Select date and time:" FontWeight="Bold"/>
+                    <TextBox DockPanel.Dock="Bottom" Name="textBoxFrom"  Width="140"/>
+                </DockPanel>
+                <DockPanel Margin="0,5,35,5"/>
+            </DockPanel>
+        </DockPanel>
+
+        <DockPanel DockPanel.Dock="Bottom">
+            <Button DockPanel.Dock="Right" Content="Schedule realocation" Width="208" Height="25" Margin="5,5,5,5" FontSize="15" FontWeight="Bold" HorizontalAlignment="Right" Background="SteelBlue" Foreground="White" Click="ButtonScheduleRealocation">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </DockPanel>
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <DockPanel DockPanel.Dock="Right">
+                    <Button DockPanel.Dock="Right" Name="buttonSearch" Margin="0,5,5,5" Content="Search" Height="22" Width="80" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" Background="#006481" Click="ButtonSearch" FontWeight="Bold">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <TextBox Name="textBoxSearch" DockPanel.Dock="Left" Width="150" Margin="5,5,5,5"/>
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Left">
+                    <Label DockPanel.Dock="Left" Content="From:" FontSize="16" FontWeight="Bold"/>
+                    <Label DockPanel.Dock="Right" HorizontalAlignment="Right" Content="To:" FontSize="16" FontWeight="Bold"/>
+                </DockPanel>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Bottom">
+                <DataGrid DockPanel.Dock="Left" Name="dataGridFrom" Width="350" Margin="5,0,5,0" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Room label" Width="175" Binding="{Binding RoomLabel}"/>
+                        <DataGridTextColumn Header="Room use" Width="175" Binding="{Binding RoomUse}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid DockPanel.Dock="Right" Name="dataGridTo" Margin="5,0,5,0" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Room label" Width="175" Binding="{Binding RoomLabel}"/>
+                        <DataGridTextColumn Header="Room use" Width="175" Binding="{Binding RoomUse}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </DockPanel>
+    </DockPanel>
+</Page>

@@ -5,6 +5,7 @@ using MedbayTech.Common.Application.DTO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 
@@ -16,7 +17,7 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
         {
             Doctor doctor = null;
             using HttpClient client = new HttpClient();
-            var task = client.GetAsync(GetUsersDomain() + "/api/user/" + id)
+            var task = client.GetAsync(GetUsersDomain() + "/api/doctor/" + id)
                 .ContinueWith((taskWithResponse) =>
                 {
                     var message = taskWithResponse.Result;
@@ -29,11 +30,12 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
             return doctor;
         }
 
-        public List<Doctor> GetDoctorsBy(string specializationName)
+        public List<Doctor> GetDoctorsBy(int specializationId)
         {
-            List<Doctor> doctors = null;
+            List<Doctor> doctors = new List<Doctor>();
             using HttpClient client = new HttpClient();
-            var task = client.GetAsync(GetUsersDomain() + "/api/doctor/getBySpecialization/" + specializationName)
+
+            var task = client.GetAsync(GetUsersDomain() + "/api/doctor/specialization/" + specializationId)
                 .ContinueWith((taskWithResponse) =>
                 {
                     var message = taskWithResponse.Result;
@@ -42,7 +44,6 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
                     doctors = JsonConvert.DeserializeObject<List<Doctor>>(json.Result);
                 });
             task.Wait();
-
             return doctors;
         }
 
@@ -50,7 +51,7 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
         {
             Patient patient = null;
             using HttpClient client = new HttpClient();
-            var task = client.GetAsync(GetUsersDomain() + "/api/user/" + id)
+            var task = client.GetAsync(GetUsersDomain() + "/api/patient/" + id)
                 .ContinueWith((taskWithResponse) =>
                 {
                     var message = taskWithResponse.Result;
@@ -85,6 +86,23 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
             return workDay;
         }
 
+        public List<Doctor> GetAllDoctors()
+        {
+            List<Doctor> doctors = null;
+            using HttpClient client = new HttpClient();
+            var task = client.GetAsync(GetUsersDomain() + "/api/doctor/getAllDoctors")
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var message = taskWithResponse.Result;
+                    var json = message.Content.ReadAsStringAsync();
+                    json.Wait();
+                    doctors = JsonConvert.DeserializeObject<List<Doctor>>(json.Result);
+                });
+            task.Wait();
+
+            return doctors;
+        }
+
         public string GetUsersDomain()
         {
             string origin = Environment.GetEnvironmentVariable("URL") ?? "localhost";
@@ -93,5 +111,6 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
             return $"http://{origin}:{port}";
         }
 
+       
     }
 }

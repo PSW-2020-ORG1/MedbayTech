@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using MedbayTech.Feedback.Application.DTO;
 using MedbayTech.Feedback.Application.Mapper;
 using MedbayTech.Feedback.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,6 +36,8 @@ namespace MedbayTech.Feedback.Controllers
         /// GET method for all feedback
         /// </summary>
         /// <returns>list of all feedback</returns>
+        //[Authorize(Roles = "Admin")]
+        
         [HttpGet("allFeedback")]
         public IActionResult GetAllFeedback()
         {
@@ -49,9 +53,11 @@ namespace MedbayTech.Feedback.Controllers
         /// </summary>
         /// <param name="updateFeedbackStatusDTO"></param>
         /// <returns>boolean that shows that feedback status was changed</returns>
+        
         [HttpPost("updateFeedbackStatus")]
         public IActionResult UpdateFeedbackStatus(UpdateFeedbackStatusDTO updateFeedbackStatusDTO)
         {
+            
             //bool updatedStatus = feedbackService.UpdateStatus(updateFeedbackStatusDTO.Id, updateFeedbackStatusDTO.Approved);
             bool updatedStatus = _feedbackService.UpdateStatus(updateFeedbackStatusDTO.Id, updateFeedbackStatusDTO.Approved);
             return Ok(updatedStatus);
@@ -70,7 +76,7 @@ namespace MedbayTech.Feedback.Controllers
                 return BadRequest("Failed to post feedback");
             }
 
-
+            postFeedbackDTO.UserId = User.Identity.Name;
             Domain.Entities.Feedback feedbackSuccessfullyCreated = _feedbackService.CreateFeedback(postFeedbackDTO.UserId, postFeedbackDTO.AdditionalNotes, postFeedbackDTO.Anonymous, postFeedbackDTO.AllowedForPublishing);
 
 

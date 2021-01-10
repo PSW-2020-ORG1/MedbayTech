@@ -27,6 +27,7 @@ namespace MedbayTech.Users.Infrastructure.Persistance.Configurations
             builder.Property(ru => ru.Phone).HasColumnName("Phone");
             builder.Property(ru => ru.Profession).HasColumnName("Profession");
             builder.Property(ru => ru.ProfileImage).HasColumnName("ProfileImage");
+            builder.Property(ru => ru.Role).HasColumnName("Role");
 
             builder.OwnsOne(ru => ru.CurrResidence).OwnsOne(ru => ru.City).OwnsOne(ru => ru.State);
             builder.OwnsOne(ru => ru.PlaceOfBirth).OwnsOne(ru => ru.State);

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using MedbayTech.Users.Domain.Entites;
 
 namespace MedbayTech.Users.Application.Common.Interfaces.Service
@@ -11,7 +8,7 @@ namespace MedbayTech.Users.Application.Common.Interfaces.Service
         Doctor GetDoctorByExaminationRoom(int roomId);
         Doctor Update(Doctor doctor);
         List<Doctor> GetAll();
-        List<Doctor> GetDoctorsBy(string specializationName);
+        List<Doctor> GetDoctorBySpecialization(int specializationId);
         Doctor GetDoctorBy(string id);
     }
 }

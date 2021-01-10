@@ -29,7 +29,7 @@ namespace MedbayTech.Users.Domain.Entites
         public string Profession { get; set; }
         public string ProfileImage { get; set; }
         public Gender Gender { get; set; }
-        public UserType UserType { get; set; }
+        public string Role { get; set; }
         [NotMapped]
 
         public virtual City PlaceOfBirth { get; set; }

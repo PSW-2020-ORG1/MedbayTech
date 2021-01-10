@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using MedbayTech.Users.Application.Common.Interfaces.Gateways;
 using MedbayTech.Users.Application.Common.Interfaces.Persistance;
 using MedbayTech.Users.Application.Common.Interfaces.Service;
@@ -22,11 +21,15 @@ namespace MedbayTech.Users.Infrastructure.Service
             _patientRepository = patientRepository;
             _appointmentGateway = appointmentGateway;
         }
-        public IEnumerable<Patient> GetAll()
+        public List<Patient> GetAll()
         {
             return  _patientRepository.GetAll();
         }
 
+        public Patient GetPatientBy(string id)
+        {
+            return _patientRepository.GetBy(id);
+        }
         public List<Patient> GetPatientsThatShouldBeBlocked()
         {
             List<Patient> patients = _patientRepository.GetAll().Where(patient => !patient.Blocked).ToList();
@@ -43,9 +46,9 @@ namespace MedbayTech.Users.Infrastructure.Service
                 }
             }
 
-            return blockablePatients;
-            return new List<Patient>();
+            return blockablePatients;    
         }
+
         private bool CheckIfPatientBlockable(List<Appointment> canceledAppointments)
         {
             if (canceledAppointments.Count < numberOfCancelableAppointments)
@@ -80,7 +83,7 @@ namespace MedbayTech.Users.Infrastructure.Service
         }
         public Patient UpdateStatus(string patientId)
         {
-            Patient patient = _patientRepository.GetById(patientId);
+            Patient patient = _patientRepository.GetBy(patientId);
 
             if (patient != null)
             {

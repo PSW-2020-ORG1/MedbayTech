@@ -10,7 +10,7 @@ namespace MedbayTech.Feedback.Infrastructure.Database.Configurations
         public void Configure(EntityTypeBuilder<FeedbackEvent> builder)
         {
             builder.ToTable("FeedbackEvents");
-            builder.HasOne(f => f.Feedback).WithMany().HasForeignKey("Feedback", "FeedbackId");
+            builder.HasOne(f => f.Feedback);
         }
     }
 }
