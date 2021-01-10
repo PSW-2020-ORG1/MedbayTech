@@ -69,7 +69,7 @@ namespace MedbayTech.APIGateways
             }
 
 
-             if (stage.Equals("development"))
+             if (!stage.Equals("development"))
              {
                  app.UseStaticFiles(new StaticFileOptions
                  {
