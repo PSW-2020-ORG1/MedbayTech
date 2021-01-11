@@ -116,17 +116,11 @@ namespace MedbayTech.PatientDocuments
                 {
                     Console.WriteLine("Failed to execute migration");
                 }
-                try
-                {
+                
                     PatientDocumentsDataSeeder seeder = new PatientDocumentsDataSeeder();
                     if (!seeder.IsAlreadyFull(context))
                         seeder.SeedAllEntities(context);
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Failed to seed data in Patient Documents");
-                }
-
+                
                 app.UseRouting();
 
                 app.UseAuthentication();

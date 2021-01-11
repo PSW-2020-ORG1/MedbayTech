@@ -116,18 +116,12 @@ namespace MedbayTech.Feedback
                 catch (Exception)
                 {
                     Console.WriteLine("Failed to execute migration");
-                }
-                try
-                {
-                    FeedbackDataSeeder seeder = new FeedbackDataSeeder();
+                } 
+                FeedbackDataSeeder seeder = new FeedbackDataSeeder();
                     if (!seeder.IsAlreadyFull(context))
                         seeder.SeedAllEntities(context);
 
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Failed to seed data");
-                }
+                
             }
         }
 
