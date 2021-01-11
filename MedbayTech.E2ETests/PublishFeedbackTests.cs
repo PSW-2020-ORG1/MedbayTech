@@ -28,7 +28,7 @@ namespace MedbayTech.E2ETests
             _allFeedbackPage = new AllFedback(_webDriver);
             Assert.Equal(_webDriver.Url, AllFedback.URI_local);
             Assert.True(_allFeedbackPage.MaliciousPatientsLinkElementDisplayed());
-             
+
         }
 
         public void InitializeDriver()
@@ -66,43 +66,35 @@ namespace MedbayTech.E2ETests
         [Fact]
         public void Approve_feedback()
         {
-            _approvedFeedbackPage.Navigate();
-            _approvedFeedbackPage.EnsurePageIsDisplayed();
-            int feedbackCount = _approvedFeedbackPage.FeedbackCount();
-            
             _allFeedbackPage.Navigate();
             _allFeedbackPage.EnsurePageIsDisplayed();
+            int buttonsDenyBefore = _allFeedbackPage.GetCountDenyButtons;
             _allFeedbackPage.ApproveFeedback();
-
+            _allFeedbackPage.Navigate();
+            _allFeedbackPage.EnsurePageIsDisplayed();
+            int buttonsDenyAfter = _allFeedbackPage.GetCountDenyButtons;
             _approvedFeedbackPage.Navigate();
             _approvedFeedbackPage.EnsurePageIsDisplayed();
-            var wait = new WebDriverWait(_webDriver, new TimeSpan(0, 0, 20));
 
-            wait.Until(condition => _approvedFeedbackPage.FeedbackCount() > feedbackCount);
-            
+            buttonsDenyAfter.ShouldBe(buttonsDenyBefore + 1);
 
-            int approvedFeedback = _approvedFeedbackPage.FeedbackCount();
-            approvedFeedback.ShouldBe(feedbackCount + 1);
+
         }
 
         [Fact]
         public void Deny_feedback()
         {
-            _approvedFeedbackPage.Navigate();
-            _approvedFeedbackPage.EnsurePageIsDisplayed();
-            int feedbackCount = _approvedFeedbackPage.FeedbackCount();
-
             _allFeedbackPage.Navigate();
             _allFeedbackPage.EnsurePageIsDisplayed();
+            int buttonsApproveBefore = _allFeedbackPage.GetCountApproveButtons;
             _allFeedbackPage.DenyFeedback();
-
+            _allFeedbackPage.Navigate();
+            _allFeedbackPage.EnsurePageIsDisplayed();
+            int buttonsApproveAfter = _allFeedbackPage.GetCountApproveButtons;
             _approvedFeedbackPage.Navigate();
             _approvedFeedbackPage.EnsurePageIsDisplayed();
 
-            
-
-            int approvedFeedback = _approvedFeedbackPage.FeedbackCount();
-            approvedFeedback.ShouldBe(feedbackCount - 1);
+            buttonsApproveAfter.ShouldBe(buttonsApproveBefore + 1);
         }
     }
 }
