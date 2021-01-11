@@ -8,9 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
-using PharmacyIntegration.Service;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance;
-using MedbayTech.Pharmacies.Infrastructure.Persistance;
 using MedbayTech.Pharmacies.Infrastructure.Database;
 using MedbayTech.Pharmacies.Infrastructure.Persistance.Reports;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Reports;
@@ -22,8 +20,15 @@ using MedbayTech.Pharmacies.Infrastructure.Service.Medications;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Medications;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Gateways;
 using MedbayTech.Pharmacies.Infrastructure.Gateways;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Pharmacies;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Tenders;
+using MedbayTech.Pharmacies.Infrastructure.Persistance.Tenders;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders;
+using MedbayTech.Pharmacies.Infrastructure.Service.Tenders;
+using MedbayTech.Pharmacies.Infrastructure.Persistance.Pharmacies;
+using MedbayTech.Pharmacies.Infrastructure.Service.Pharmacies;
 
-namespace PharmacyIntegration
+namespace MedbayTech.Pharmacies
 {
     public class Startup
     {
@@ -73,6 +78,7 @@ namespace PharmacyIntegration
             {
                 string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
                 string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";
+
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
 
                 try
@@ -99,8 +105,10 @@ namespace PharmacyIntegration
                 }
             }
 
+
             app.UseRouting();
             app.UseCors("AllowAll");
+
 
             app.UseAuthorization();
 
@@ -135,6 +143,11 @@ namespace PharmacyIntegration
             services.AddTransient<IMedicationRepository, MedicationSqlRepository>(); 
             
             services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
+            services.AddTransient<IUrgentMedicationProcurementRepository, UrgentMedicationProcurementSqlRepository>();
+            services.AddTransient<ITenderRepository, TenderSqlRepositroy>();
+            services.AddTransient<ITenderMedicationRepositroy, TenderMedicationSqlRepositroy>();
+            services.AddTransient<ITenderMedicationOfferRepository, TenderMedicationOfferSqlRepositroy>();
+            services.AddTransient<ITenderOfferRepository, TenderOfferSqlRepositroy>();
         }
 
         private static void AddServices(IServiceCollection services)
@@ -146,6 +159,10 @@ namespace PharmacyIntegration
             services.AddScoped<IMedicationService, MedicationService>();
             services.AddScoped<IPrescriptionSearchService, PrescriptionSearchService>();
             services.AddScoped<IPrescriptionGateway, PrescriptionGateway>();
+            services.AddScoped<IUrgentMedicationProcurementService, UrgentMedicationProcurementService>();
+            services.AddScoped<ITenderService, TenderService>();
+            services.AddScoped<ITenderOfferService, TenderOfferService>();
+
 
         }
 

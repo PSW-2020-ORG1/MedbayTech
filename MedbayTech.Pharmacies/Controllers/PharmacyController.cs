@@ -1,10 +1,11 @@
 ﻿
 using System.Collections.Generic;
-using MedbayTech.Pharmacies.Domain.Entities;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Pharmacies;
+using MedbayTech.Pharmacies.Domain.Entities.Pharmacies;
 using Microsoft.AspNetCore.Mvc;
-using PharmacyIntegration.Service;
 
-namespace PharmacyIntegration.Controllers
+
+namespace MedbayTech.Pharmacies.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

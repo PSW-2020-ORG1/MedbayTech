@@ -9,6 +9,9 @@ import Pharmacies from '../views/Pharmacies.vue'
 import Medication from '../views/Medication.vue'
 import UrgentRequest from '../views/UrgentRequest.vue'
 import UrgentOrder from '../views/UrgentOrder.vue'
+import Tenders from '../views/Tenders.vue'
+import Tender from '../views/Tender.vue'
+import ActiveTender from '../views/ActiveTender.vue'
 
 Vue.use(VueRouter)
 
@@ -57,6 +60,21 @@ const routes = [
             path: 'urgentOrder',
             name: 'UrgentOrder',
             component: UrgentOrder,
+        },
+        {
+          path: 'tenders',
+          name: 'Tenders',
+          component: Tenders,
+        },
+        {
+          path: 'tender/:id',
+          name: 'Tender',
+          component: Tender,
+        },
+        {
+          path: 'activeTender',
+          name: 'ActiveTender',
+          component: ActiveTender,
         },
       ],
     }

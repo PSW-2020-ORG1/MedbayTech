@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 
-namespace PharmacyIntegration
+namespace MedbayTech.Pharmacies
 {
     public static class VueHelper
     {

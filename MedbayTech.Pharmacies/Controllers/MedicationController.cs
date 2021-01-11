@@ -1,45 +1,37 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Medications;
+using MedbayTech.Pharmacies.Application.DTO;
 using MedbayTech.Pharmacies.Domain.Entities.Medications;
 using MedbayTech.Pharmacies.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyIntegration.gRPC;
 
-namespace PharmacyIntegration.Controllers
+namespace MedbayTech.Pharmacies.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class MedicationController : Controller
     {
-        private List<Medication> _inMemoryRepo;
         private readonly IMedicationService _medicationService;
         public MedicationController(IMedicationService medicationService)
         {
             _medicationService = medicationService;
-            _inMemoryRepo = new List<Medication>();
-
-            MedicationCategory category = new MedicationCategory("Drug");
-            Medication aspirin = new Medication("Aspirin 325mg", "Bayer", category);
-            aspirin.Id = 1;
-            Medication cyclopentanoperhydrophenanthrene = new Medication("Cyclopentanoperhydrophenanthrene 5mg", "StrongDrugs Inc.", category);
-            cyclopentanoperhydrophenanthrene.Id = 2;
-            _inMemoryRepo.Add(aspirin);
-            _inMemoryRepo.Add(cyclopentanoperhydrophenanthrene);
         }
 
         [HttpGet("{id?}")]
         public IActionResult Get(int id)
         {
-            Medication medication = _inMemoryRepo.Find(m => m.Id.Equals(id));
+            Medication medication = _medicationService.GetMedication(id);
             if (medication == null)
             {
                 return BadRequest();
             }
             return Ok(medication);
         }
+        
 
         [HttpGet]
-        public IActionResult Get() => Ok(_inMemoryRepo);
+        public IActionResult Get() => Ok(_medicationService.GetAll());
 
 
         [HttpGet("check/{search?}")]
@@ -49,6 +41,16 @@ namespace PharmacyIntegration.Controllers
 
             string response = grpc.CheckForMedication(search).Result;
             return Ok(response);
+        }
+
+        [HttpPost]
+        public IActionResult AddNewMedicion(NewMedicationDTO newMedication)
+        {
+            Medication medication = new Medication(newMedication.MedicationName, newMedication.MedicationDosage);
+            Medication isSuccess = _medicationService.Add(medication);
+            if (isSuccess == null)
+                return BadRequest();
+            return Ok();
         }
 
         [HttpGet("all")]

@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance;
-using MedbayTech.Pharmacies.Domain.Entities;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Pharmacies;
+using MedbayTech.Pharmacies.Domain.Entities.Pharmacies;
 using Newtonsoft.Json;
 
-namespace PharmacyIntegration.Service
+namespace MedbayTech.Pharmacies.Infrastructure.Service.Pharmacies
 {
     public class PharmacyNotificationService : IPharmacyNotificationService
     {

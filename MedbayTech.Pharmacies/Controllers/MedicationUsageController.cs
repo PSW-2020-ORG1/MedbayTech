@@ -6,7 +6,7 @@ using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Reports;
 using MedbayTech.Pharmacies.Domain.Entities.Reports;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PharmacyIntegration.Controllers
+namespace MedbayTech.Pharmacies.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

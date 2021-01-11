@@ -3,7 +3,7 @@ using MedbayTech.Common.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MedbayTech.Pharmacies.Domain.Entities
+namespace MedbayTech.Pharmacies.Domain.Entities.Pharmacies
 {
     public class PharmacyNotification : IIdentifiable<int>
     {

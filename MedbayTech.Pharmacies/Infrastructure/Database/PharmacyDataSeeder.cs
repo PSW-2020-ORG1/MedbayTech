@@ -1,6 +1,7 @@
-﻿using MedbayTech.Pharmacies.Domain.Entities;
+﻿using MedbayTech.Pharmacies.Domain.Entities.Pharmacies;
 using MedbayTech.Pharmacies.Domain.Entities.Medications;
 using MedbayTech.Pharmacies.Domain.Entities.Reports;
+using MedbayTech.Pharmacies.Domain.Entities.Tenders;
 using MedbayTech.Pharmacies.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,11 @@ namespace MedbayTech.Pharmacies.Infrastructure.Database
             SeedMedication(context);
             SeedMedicationUsage(context);
             SeedMedicationUsage(context);
+            SeedUrgentMedicationProcurement(context);
+            SeedTenders(context);
+            SeedTenderMedications(context);
+            SeedTenderOffers(context);
+            SeedTenderMedicationOffers(context);
         }
 
         private void SeedMedicationUsage(PharmacyDbContext context)
@@ -172,9 +178,227 @@ namespace MedbayTech.Pharmacies.Infrastructure.Database
 
             context.SaveChanges();
         }
+
+        private void SeedUrgentMedicationProcurement(PharmacyDbContext context)
+        {
+            context.Add(new UrgentMedicationProcurement
+            {
+                MedicationName = "Brufen",
+                MedicationDosage = "600mg",
+                MedicationQuantity = 5
+            });
+
+            context.SaveChanges();
+        }
+
+
+        private void SeedTenders(PharmacyDbContext context)
+        {
+            context.Add(new Tender
+            {
+                Id = 1,
+                StartDate = new DateTime(2020, 12, 30),
+                EndDate = new DateTime(2021, 5, 1),
+                TenderStatus = true,
+            });
+            context.Add(new Tender
+            {
+                Id = 2,
+                StartDate = new DateTime(2020, 12, 15),
+                EndDate = new DateTime(2021, 6, 1),
+                TenderStatus = true,
+            });
+
+            context.SaveChanges();
+        }
+
+        private void SeedTenderMedications(PharmacyDbContext context)
+        {
+            context.Add(new TenderMedication
+            {
+                Id = 1,
+                MedicationId = 1,
+                TenderID = 1,
+                TenderMedicationQuantity = 100
+            });
+            context.Add(new TenderMedication
+            {
+                Id = 2,
+                MedicationId = 2,
+                TenderID = 1,
+                TenderMedicationQuantity = 500
+            });
+            context.Add(new TenderMedication
+            {
+                Id = 3,
+                MedicationId = 3,
+                TenderID = 1,
+                TenderMedicationQuantity = 300
+            });
+            context.Add(new TenderMedication
+            {
+                Id = 4,
+                MedicationId = 7,
+                TenderID = 1,
+                TenderMedicationQuantity = 50
+            });
+            context.Add(new TenderMedication
+            {
+                Id = 5,
+                MedicationId = 10,
+                TenderID = 2,
+                TenderMedicationQuantity = 100
+            });
+            context.Add(new TenderMedication
+            {
+                Id = 6,
+                MedicationId = 11,
+                TenderID = 2,
+                TenderMedicationQuantity = 150
+            });
+
+            context.SaveChanges();
+        }
+
+        private void SeedTenderOffers(PharmacyDbContext context)
+        {
+            context.Add(new TenderOffer
+            {
+                Id = 1,
+                TenderId = 1,
+                Pharmacy = "Jankovic",
+                PharmacyEMail = "jankovic@gmail.com"
+            });
+            context.Add(new TenderOffer
+            {
+                Id = 2,
+                TenderId = 1,
+                Pharmacy = "Benu",
+                PharmacyEMail = "benu@gmail.com"
+            });
+            context.Add(new TenderOffer
+            {
+                Id = 3,
+                TenderId = 2,
+                Pharmacy = "Jankovic",
+                PharmacyEMail = "jankovic@gmail.com"
+            });
+            context.Add(new TenderOffer
+            {
+                Id = 4,
+                TenderId = 2,
+                Pharmacy = "Liman",
+                PharmacyEMail = "Liman@gmail.com"
+            });
+
+            context.SaveChanges();
+        }
+
+        private void SeedTenderMedicationOffers(PharmacyDbContext context)
+        {
+            context.Add(new TenderMedicationOffer
+            {
+                Id = 1,
+                TenderOfferId = 1,
+                MedicationId = 1,
+                TenderMedicationOfferQuantity = 100,
+                TenderMedicationOfferPriceByPiece = 5f,
+            });
+            context.Add(new TenderMedicationOffer
+            {
+                Id = 2,
+                TenderOfferId = 1,
+                MedicationId = 2,
+                TenderMedicationOfferQuantity = 500,
+                TenderMedicationOfferPriceByPiece = 3.45f,
+            });
+            context.Add(new TenderMedicationOffer
+            {
+                Id = 3,
+                TenderOfferId = 1,
+                MedicationId = 3,
+                TenderMedicationOfferQuantity = 300,
+                TenderMedicationOfferPriceByPiece = 2.8f,
+            });
+            context.Add(new TenderMedicationOffer
+            {
+                Id = 4,
+                TenderOfferId = 1,
+                MedicationId = 7,
+                TenderMedicationOfferQuantity = 50,
+                TenderMedicationOfferPriceByPiece = 4.87f,
+            });
+            context.Add(new TenderMedicationOffer
+            {
+                Id = 5,
+                TenderOfferId = 2,
+                MedicationId = 1,
+                TenderMedicationOfferQuantity = 100,
+                TenderMedicationOfferPriceByPiece = 4.98f,
+            });
+            context.Add(new TenderMedicationOffer
+            {
+                Id = 6,
+                TenderOfferId = 2,
+                MedicationId = 2,
+                TenderMedicationOfferQuantity = 500,
+                TenderMedicationOfferPriceByPiece = 3.5f,
+            });
+            context.Add(new TenderMedicationOffer
+            {
+                Id = 7,
+                TenderOfferId = 2,
+                MedicationId = 3,
+                TenderMedicationOfferQuantity = 300,
+                TenderMedicationOfferPriceByPiece = 3f,
+            });
+            context.Add(new TenderMedicationOffer
+            {
+                Id = 8,
+                TenderOfferId = 2,
+                MedicationId = 7,
+                TenderMedicationOfferQuantity = 50,
+                TenderMedicationOfferPriceByPiece = 3.2f,
+            });
+            context.Add(new TenderMedicationOffer
+            {
+                Id = 9,
+                TenderOfferId = 3,
+                MedicationId = 10,
+                TenderMedicationOfferQuantity = 90,
+                TenderMedicationOfferPriceByPiece = 10f,
+            });
+            context.Add(new TenderMedicationOffer
+            {
+                Id = 10,
+                TenderOfferId = 3,
+                MedicationId = 11,
+                TenderMedicationOfferQuantity = 150,
+                TenderMedicationOfferPriceByPiece = 16.5f,
+            });
+            context.Add(new TenderMedicationOffer
+            {
+                Id = 11,
+                TenderOfferId = 4,
+                MedicationId = 10,
+                TenderMedicationOfferQuantity = 100,
+                TenderMedicationOfferPriceByPiece = 12f,
+            });
+            context.Add(new TenderMedicationOffer
+            {
+                Id = 12,
+                TenderOfferId = 4,
+                MedicationId = 11,
+                TenderMedicationOfferQuantity = 150,
+                TenderMedicationOfferPriceByPiece = 16.11f,
+            });
+
+            context.SaveChanges();
+        }
+        
         public bool IsAlreadyFull(PharmacyDbContext context)
         {
-            return context.Pharmacies.Count() > 0;
+            return context.Tenders.Count() > 0;
         }
     }
 }
