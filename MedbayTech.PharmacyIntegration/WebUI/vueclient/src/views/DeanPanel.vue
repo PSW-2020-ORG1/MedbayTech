@@ -8,6 +8,7 @@
             <li><router-link to="/dean/urgentRequest">Urgent request</router-link></li>
             <li><router-link to="/dean/urgentOrder">Urgent procurement</router-link></li>
             <li><router-link to="/dean/tenders">Tenders</router-link></li>
+            <li><router-link to="/dean/activeTender">Active Tenders</router-link></li>
         </sidebar>
         <div id="main-content">
             <router-view />

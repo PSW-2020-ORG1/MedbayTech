@@ -11,6 +11,7 @@ import UrgentRequest from '../views/UrgentRequest.vue'
 import UrgentOrder from '../views/UrgentOrder.vue'
 import Tenders from '../views/Tenders.vue'
 import Tender from '../views/Tender.vue'
+import ActiveTender from '../views/ActiveTender.vue'
 
 Vue.use(VueRouter)
 
@@ -69,6 +70,11 @@ const routes = [
           path: 'tender/:id',
           name: 'Tender',
           component: Tender,
+        },
+        {
+          path: 'activeTender',
+          name: 'ActiveTender',
+          component: ActiveTender,
         },
       ],
     }
