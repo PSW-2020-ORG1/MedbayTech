@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Medications;
 using MedbayTech.Pharmacies.Domain.Entities.Medications;
 using MedbayTech.Pharmacies.Domain.Enums;

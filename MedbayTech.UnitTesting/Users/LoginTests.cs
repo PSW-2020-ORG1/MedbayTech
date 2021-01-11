@@ -103,8 +103,10 @@ namespace MedbayTech.UnitTesting.Users
                 ChosenDoctorId = "2406978890047",
                 Blocked = false,
                 ShouldBeBlocked = true,
+
                 Role = Role.Patient,
                 Confirmed = true
+
             };
 
             return patient;

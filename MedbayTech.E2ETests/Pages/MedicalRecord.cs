@@ -9,7 +9,10 @@ namespace MedbayTech.E2ETests.Pages
     class MedicalRecord
     {
         private IWebDriver driver;
-        public const string URI = "http://localhost:4200/#/medicalRecord";
+        //public const string URI = "http://localhost:4200/#/medicalRecord";
+        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
+
+        public static string URI = $"http://localhost:{PORT}/#/medicalRecord";
 
         private IWebElement ObserveAppointment => driver.FindElement(By.Name("observe-appointment"));
 

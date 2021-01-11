@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MedbayTech.Users.Domain.Entites;
 
+
 namespace MedbayTech.Users.Application.Common.Interfaces.Persistance
 {
     public interface IDoctorRepository : IRepository<Doctor, string>

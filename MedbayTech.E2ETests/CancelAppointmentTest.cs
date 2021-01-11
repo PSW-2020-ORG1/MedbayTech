@@ -35,6 +35,10 @@ namespace MedbayTech.E2ETests
 
             driver = new ChromeDriver(options);
 
+            homePage = new Home(driver);
+            homePage.Navigate();
+            Assert.Equal(driver.Url, Home.URI_HASH);
+
             loginPage = new Login(driver);
             loginPage.Navigate();
             Assert.Equal(driver.Url, Login.URI);
@@ -48,11 +52,14 @@ namespace MedbayTech.E2ETests
             loginPage.WaitForPatientHomePage();
 
             homePage = new Home(driver);
-            Assert.Equal(driver.Url, Home.URI);
+            homePage.Navigate();
+
+            Assert.Equal(driver.Url, Home.URI_HASH);
             Assert.True(homePage.MedicalRecordLinkElementDisplayed());
             homePage.ClickMedicalRecordLink();
 
             medicalRecordPage = new MedicalRecord(driver);
+            //medicalRecordPage.Navigate();
             Assert.Equal(driver.Url, MedicalRecord.URI);
             Assert.True(medicalRecordPage.ObserveAppointmentLinkElementDisplayed());
             medicalRecordPage.ClickObserveAppointmentLink();

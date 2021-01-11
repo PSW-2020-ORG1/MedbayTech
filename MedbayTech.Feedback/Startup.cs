@@ -35,7 +35,18 @@ namespace MedbayTech.Feedback
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .SetIsOriginAllowed(_ => true)
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
@@ -78,9 +89,7 @@ namespace MedbayTech.Feedback
 
             //            app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseCors(
-                options => options.WithOrigins("http://localhost:53843").AllowAnyMethod()
-            );
+            app.UseCors("AllowAll");
             app.UseAuthentication();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

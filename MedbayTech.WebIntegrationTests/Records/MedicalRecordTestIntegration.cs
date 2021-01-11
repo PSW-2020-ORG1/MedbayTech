@@ -4,9 +4,8 @@ using Shouldly;
 using System.Net.Http;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net;
-using MedbayTech.PatientDocuments;
-using MedbayTech.PatientDocuments.Domain.Entities.Patient;
-
+using WebApplication;
+using Model.Users;
 
 namespace MedbayTech.WebIntegrationTests.Records
 {

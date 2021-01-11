@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -29,7 +29,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Backend\Backend.csproj" />
-    <ProjectReference Include="..\MedbayTech.PharmacyIntegration\MedbayTech.Pharmacies.csproj" />
+    <ProjectReference Include="..\MedbayTech.Pharmacies\MedbayTech.Pharmacies.csproj" />
+
   </ItemGroup>
 
 </Project>

@@ -45,6 +45,21 @@ namespace MedbayTech.Users
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
 
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                            .SetIsOriginAllowed(_ => true)
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
+
+
             services.AddDbContext<UserDbContext>();
 
             services.AddTransient<IUserRepository, UserRepository>();
@@ -66,7 +81,9 @@ namespace MedbayTech.Users
             services.AddTransient<IAuthenticationService, AuthenticationService>();
 
             services.AddScoped<IAppointmentGateway, AppointmentGateway>();
+
             services.AddScoped<IPatientDocumentsGateway, PatientDocumentsGateway>();
+
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("QKcOa8xPopVOliV6tpvuWmoKn4MOydSeIzUt4W4r1UlU2De7dTUYMlrgv3rU"));
             services.AddAuthentication(x =>
@@ -101,6 +118,7 @@ namespace MedbayTech.Users
 
             app.UseRouting();
 
+            app.UseCors("AllowAll");
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -116,6 +134,7 @@ namespace MedbayTech.Users
             using (var context = scope.ServiceProvider.GetService<UserDbContext>())
             {
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
+
 
                 try
                 {
@@ -140,7 +159,9 @@ namespace MedbayTech.Users
                 {
                     Console.WriteLine("Failed to seed data");
                 }
+
             }
         }
     }
 }
+

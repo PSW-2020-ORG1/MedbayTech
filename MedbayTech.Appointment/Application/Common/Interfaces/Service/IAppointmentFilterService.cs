@@ -8,6 +8,7 @@ namespace MedbayTech.Appointment.Application.Common.Interfaces.Service
 {
     public interface IAppointmentFilterService
     {
+
         List<Domain.Entities.Appointment> GetAvailableByDoctorTimeIntervalAndEquipment(PriorityParameters parameters, int hospitalEquipmentId, string priority);
         List<Domain.Entities.Appointment> GetAvailableByPriorityTimeInterval(PriorityParameters parameters);
         List<Domain.Entities.Appointment> AddRoomToAppointment(List<Domain.Entities.Appointment> appointments);

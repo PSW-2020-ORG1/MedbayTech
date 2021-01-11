@@ -7,8 +7,9 @@ using Newtonsoft.Json;
 using Shouldly;
 using System.Net;
 using MedbayTech.Pharmacies.Application.DTO;
+using System.Text;
 
-namespace IntegrationTests.PhIntegration
+namespace MedbayTech.PharmacyIntegrationTests.PhIntegration
 {
     public class SendPrescriptionTestIntegration : IClassFixture<WebApplicationFactory<Startup>>
     {
@@ -23,7 +24,7 @@ namespace IntegrationTests.PhIntegration
             Console.WriteLine("Started prescription testing");
             HttpClient client = _factory.CreateClient();
             var prescription = CreatePrescription();
-            StringContent content = new StringContent(JsonConvert.SerializeObject(prescription), System.Text.Encoding.UTF8, "application/json");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(prescription), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync("/api/Prescription", content);
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
         }
@@ -40,7 +41,7 @@ namespace IntegrationTests.PhIntegration
                 MedicationHourlyIntake = 4,
                 DoctorName = "Pera",
                 DoctorSurname = "Peric",
-                Date = new DateTime(2021,1,1),
+                Date = new DateTime(2021, 1, 1),
             };
             return prescription;
         }

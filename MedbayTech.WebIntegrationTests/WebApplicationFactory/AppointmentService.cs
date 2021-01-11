@@ -1,6 +1,4 @@
-﻿using Application.Common.Interfaces.Persistance;
-using Infrastructure.Database;
-using MedbayTech.Appointment.Application.Gateways;
+﻿
 using MedbayTech.WebIntegrationTests.WebApplicationFactory.Gateways;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +12,7 @@ using System.Text;
 using Xunit;
 
 namespace MedbayTech.WebIntegrationTests.WebApplicationFactory
-{
+{/*
     public class AppointmentService : WebApplicationFactory<Appointment.Startup>
     {
         protected override IWebHostBuilder CreateWebHostBuilder()
@@ -31,5 +29,5 @@ namespace MedbayTech.WebIntegrationTests.WebApplicationFactory
                 services.Add(new ServiceDescriptor(typeof(IUserGateway), new UserAppointmentGateway()));
             });
         }
-    }
+    }*/
 }

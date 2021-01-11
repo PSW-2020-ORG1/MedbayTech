@@ -18,14 +18,6 @@ export const environment = {
   allReports: 'allReports',
   registration : 'registration',
   patientRegistration : 'patientRegistration',
-<<<<<<< HEAD
-  doctor : 'doctor',
-  searchDoctor : 'allDoctors',
-  medicalRecord : 'medicalRecord',
-  prescriptionSimpleSearch : 'api/prescription',
-  reportSimpleSearch : 'api/report',
-  patient: 'api/patient',
-=======
   authenticate: 'authenticate',
   doctor : 'doctor',
   searchDoctor : 'allDoctors',
@@ -33,7 +25,6 @@ export const environment = {
   prescriptionSimpleSearch : 'prescription',
   reportSimpleSearch : 'report',
   patient: 'patient',
->>>>>>> develop
   updatePatientStatus: 'updatePatientStatus',
   maliciousPatients: 'maliciousPatients',
   allSurveyableAppointments : 'allSurveyableAppointments',
