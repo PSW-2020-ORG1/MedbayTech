@@ -38,5 +38,6 @@ namespace MedbayTech.Users.Controllers
 
             return Ok(auteAuthenticatedUserDto);
         }
+
     }
 }

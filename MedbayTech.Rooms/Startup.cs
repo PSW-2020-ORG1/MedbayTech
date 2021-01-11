@@ -27,6 +27,19 @@ namespace MedbayTech.Rooms
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .SetIsOriginAllowed(_ => true)
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
+
             services.AddDbContext<RoomDbContext>();
             services.AddControllers();
 
@@ -76,17 +89,12 @@ namespace MedbayTech.Rooms
                 {
                     Console.WriteLine("Failed to execute migration");
                 }
-                try
-                {
+                
                     RoomDataSeeder seeder = new RoomDataSeeder();
                     if (!seeder.IsAlreadyFull(context))
                         seeder.SeedAllEntities(context);
 
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("RoomDataSeeder has failed!");
-                }
+                
 
 
 
@@ -94,6 +102,7 @@ namespace MedbayTech.Rooms
 
                 app.UseRouting();
 
+                app.UseCors("AllowAll");
                 app.UseAuthorization();
 
                 app.UseEndpoints(endpoints =>

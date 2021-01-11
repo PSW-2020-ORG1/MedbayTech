@@ -1,4 +1,4 @@
-﻿using MedbayTech.Common.Domain.Entities.Generalities;
+﻿
 using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
 using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
 using MedbayTech.PatientDocuments.Domain.Entities.Treatment;

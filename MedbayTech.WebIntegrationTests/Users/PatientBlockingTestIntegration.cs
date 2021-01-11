@@ -1,15 +1,16 @@
 ﻿
+using Backend.Utils.DTO;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using Shouldly;
 using System;
 using System.Net;
 using System.Net.Http;
+using WebApplication;
 using Xunit;
-using MedbayTech.Users;
-using MedbayTech.Users.Application.DTO;
 
-namespace IntegrationTests.Users
+
+namespace MedbayTech.WebIntegrationTests.Users
 {
     public class PatientBlockingTestIntegration : IClassFixture<WebApplicationFactory<Startup>>
     {

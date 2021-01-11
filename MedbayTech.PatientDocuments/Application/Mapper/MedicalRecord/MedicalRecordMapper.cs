@@ -1,4 +1,4 @@
-﻿using MedbayTech.Common.Domain.Entities.Generalities;
+
 using MedbayTech.PatientDocuments.Application.DTO;
 using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
 using System;

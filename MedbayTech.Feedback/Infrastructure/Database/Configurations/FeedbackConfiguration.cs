@@ -12,6 +12,7 @@ namespace MedbayTech.Feedback.Infrastructure.Persistance.Configurations
     {
         public void Configure(EntityTypeBuilder<Domain.Entities.Feedback> builder)
         {
+
             // builder.ToTable("Feedbacks");
             // builder.Property(f => f.Id).HasColumnName("Id");
             // builder.Property(f => f.AdditionalNotes).HasColumnName("AdditionalNotes");
@@ -20,6 +21,7 @@ namespace MedbayTech.Feedback.Infrastructure.Persistance.Configurations
             // builder.Property(f => f.Anonymous).HasColumnName("Anonymous");
             // builder.Property(f => f.Approved).HasColumnName("Approved");
             // builder.Property(f => f.Date).HasColumnName("Date");
+
 
         }
     }

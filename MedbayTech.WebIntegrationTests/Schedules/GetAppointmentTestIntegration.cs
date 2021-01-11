@@ -1,11 +1,11 @@
-﻿using MedbayTech.Appointment;
-using MedbayTech.Appointment.Domain.Entities;
+﻿
 using Microsoft.AspNetCore.Mvc.Testing;
 using Model.Users;
 using Shouldly;
 using System;
 using System.Net;
 using System.Net.Http;
+using WebApplication;
 using Xunit;
 
 namespace MedbayTech.WebIntegrationTests.Schedules

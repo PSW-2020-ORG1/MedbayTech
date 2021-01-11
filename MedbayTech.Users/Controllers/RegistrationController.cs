@@ -6,7 +6,9 @@ using MedbayTech.Users.Application.Common.Interfaces.Service;
 using MedbayTech.Users.Application.DTO;
 using MedbayTech.Users.Application;
 using MedbayTech.Users.Application;
+
 using MedbayTech.Users.Application.Common.Interfaces.Gateways;
+
 using MedbayTech.Users.Domain.Entites;
 using MedbayTech.Users.Domain.ValueObjects;
 using MedbayTech.Users.Infrastructure.Service;
@@ -25,6 +27,7 @@ namespace MedbayTech.Users.Controllers
     {
         private readonly IRegistrationService _registrationService;
         private readonly IMailService _mailService;
+
         private readonly IPatientDocumentsGateway _patientDocumentsGateway;
 
         public RegistrationController(IRegistrationService registrationService, IMailService mailService, IPatientDocumentsGateway patientDocumentsGateway)
@@ -73,6 +76,7 @@ namespace MedbayTech.Users.Controllers
 
             if (registeredPatient == null)
                 return BadRequest("Patient already exists");
+
 
             _patientDocumentsGateway.SaveMedicalRecord(new MedicalRecord
             {

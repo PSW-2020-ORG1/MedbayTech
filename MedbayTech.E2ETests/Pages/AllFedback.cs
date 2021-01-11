@@ -10,12 +10,16 @@ namespace SeleniumEndToEnd.Pages
     public class AllFedback
     {
         private IWebDriver driver;
-        public const string URI = "https://medbaytech.herokuapp.com/index.html#/allFeedback";
-        public const string URI_local = "http://localhost:4200/#/allFeedback";
-
+        //public const string URI_local = "http://localhost:4200/#/allFeedback";
+        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
+        public static string URI_local = $"http://localhost:{PORT}/#/allFeedback";
         private IWebElement CountFeedback => driver.FindElement(By.Name("all_feedback_len"));
         private IWebElement TitleFeedbacks => driver.FindElement(By.Name("feedbacks"));
         private IWebElement BlockPatientsButton => driver.FindElement(By.Name("block-malicious-users"));
+
+        private IReadOnlyCollection<IWebElement> AllowButtons =>
+            driver.FindElements(By.XPath("//div[@id='allFeedback']/mat-card/mat-card-actions/button"));
+
 
         private IReadOnlyCollection<IWebElement> Buttons =>
             driver.FindElements(By.XPath("//div[@id='allFeedback']/mat-card/mat-card-actions/button"));
@@ -45,6 +49,8 @@ namespace SeleniumEndToEnd.Pages
             });
         }
 
+        public int GetCountApproveButtons => Buttons.Count(b => b.Text.Equals("Approve"));
+        public int GetCountDenyButtons => Buttons.Count(b => b.Text.Equals("Deny"));
         public bool MaliciousPatientsLinkElementDisplayed()
         {
             return BlockPatientsButton.Displayed;

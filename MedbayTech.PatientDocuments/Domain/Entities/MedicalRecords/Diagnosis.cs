@@ -9,7 +9,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using MedbayTech.Common.Domain.Entities;
-using MedbayTech.Common.Domain.Entities.Generalities;
 
 namespace MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords
 {
