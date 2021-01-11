@@ -3,21 +3,21 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /app
 
 COPY MedbayTech.Common/MedbayTech.Common.csproj MedbayTech.Common/
-COPY MedbayTech.Medication/MedbayTech.Medication.csproj MedbayTech.Medication/
+COPY MedbayTech.Medications/MedbayTech.Medications.csproj MedbayTech.Medications/
 
-RUN dotnet restore MedbayTech.Medication/MedbayTech.Medication.csproj
+RUN dotnet restore MedbayTech.Medications/MedbayTech.Medications.csproj
 
 COPY . .
 
 FROM build AS publish
-WORKDIR /app/MedbayTech.Medication
+WORKDIR /app/MedbayTech.Medications
 
 ENV PATH $PATH:/root/.dotnet/tools
 RUN dotnet tool install -g dotnet-ef --version 3.1.9
 RUN dotnet ef migrations add Init
 
 WORKDIR /app
-RUN dotnet publish MedbayTech.Medication/MedbayTech.Medication.csproj -c Release -o out
+RUN dotnet publish MedbayTech.Medications/MedbayTech.Medications.csproj -c Release -o out
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS runtime
 
@@ -27,4 +27,4 @@ WORKDIR /app
 COPY --from=publish /app/out .
 EXPOSE 5007
 
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet MedbayTech.Medication.dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet MedbayTech.Medications.dll

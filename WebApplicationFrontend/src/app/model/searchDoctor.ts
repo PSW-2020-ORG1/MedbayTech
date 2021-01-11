@@ -3,10 +3,10 @@ import { ThrowStmt } from '@angular/compiler';
 export class SearchDoctor {
 
     public id : string;
-    public FullName : string
+    public fullName : string
 
     constructor(id : string, fullName : string) {
-        this.FullName = fullName;
+        this.fullName = fullName;
         this.id = id;
     }
 }
