@@ -28,6 +28,7 @@ namespace MedbayTech.Pharmacies.Controllers
             }
             return Ok(medication);
         }
+        
 
         [HttpGet]
         public IActionResult Get() => Ok(_medicationService.GetAll());
