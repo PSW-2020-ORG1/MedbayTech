@@ -95,5 +95,17 @@
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 	</ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="MailService\MailTemplate\" />
+    <Folder Include="Resources\Images\Default\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Images\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MailService\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
 </Project>

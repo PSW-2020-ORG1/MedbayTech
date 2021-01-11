@@ -89,17 +89,12 @@ namespace MedbayTech.Rooms
                 {
                     Console.WriteLine("Failed to execute migration");
                 }
-                try
-                {
+                
                     RoomDataSeeder seeder = new RoomDataSeeder();
                     if (!seeder.IsAlreadyFull(context))
                         seeder.SeedAllEntities(context);
 
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("RoomDataSeeder has failed!");
-                }
+                
 
 
 

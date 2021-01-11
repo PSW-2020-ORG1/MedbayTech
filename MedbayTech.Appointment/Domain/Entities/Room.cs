@@ -1,7 +1,4 @@
-﻿
-
-
-using MedbayTech.Rooms.Domain;
+﻿using MedbayTech.Rooms.Domain;
 
 namespace MedbayTech.Appointment.Domain.Entities
 {
