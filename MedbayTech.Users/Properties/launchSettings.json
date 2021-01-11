@@ -18,11 +18,7 @@
     "MedbayTech.Users": {
       "commandName": "Project",
       "launchBrowser": true,
-<<<<<<< HEAD
       "applicationUrl": "http://localhost:5002",
-=======
-      "applicationUrl": "http://localhost:8081",
->>>>>>> develop
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
