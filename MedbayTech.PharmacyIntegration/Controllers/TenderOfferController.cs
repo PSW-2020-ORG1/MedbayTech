@@ -27,7 +27,7 @@ namespace MedbayTech.Pharmacies.Controllers
         }
 
         [HttpPost("makeOffer")]
-        public IActionResult DeclareWinner(TenderOffer tenderOffer)
+        public IActionResult MakeOffer(TenderOffer tenderOffer)
         {
             bool isTenderOfferSuccessfullyAdded = _tenderOfferService.Add(tenderOffer) != null;
 
