@@ -17,5 +17,9 @@ namespace MedbayTech.Pharmacies.Application.DTO
             this.tenderMedications = tenderMedications;
             TenderDescription = tenderDescription;
         }
+
+        public TenderDTO()
+        {
+        }
     }
 }
