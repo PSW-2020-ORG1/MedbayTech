@@ -62,5 +62,15 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Tenders
         {
             Id = id;
         }
+
+        public override string ToString()
+        {
+            string text = "\tTender: " + Id +
+                "\n\t " + TenderDescription + "." +
+                "\n\t Tender published: " + StartDate.Day + "/" + StartDate.Month + "/" + StartDate.Year + "." +
+                "\n\t Tender ending: " + EndDate.Day + "/" + EndDate.Month + "/" + EndDate.Year + ".";
+
+            return text;
+        }
     }
 }

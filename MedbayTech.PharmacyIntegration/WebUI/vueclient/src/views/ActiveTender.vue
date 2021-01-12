@@ -5,6 +5,14 @@
             <v-card v-if="show" elevation="1">
                 <v-card-title id="active-tenders-content" class="primary secondary--text">
                     Active Tenders
+                    <a href="http://localhost:50202/api/rss">
+                    <v-btn class="deep-orange white--text" dark >
+                        <v-icon left>
+                            mdi-rss
+                        </v-icon>
+                       Get RSS Link
+                   </v-btn>
+                   </a>
                 </v-card-title>
                 <v-card-text id="active-tenders-card">
                     <div id="active-tenders-table">
@@ -151,6 +159,15 @@ export default {
                     console.log(response.data);
                 })
         },
+        rss: function () {
+            this.axios.get("http://localhost:50202/api/rss")
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(response => {
+                    console.log(response.data);
+                })
+        }
         
     },
     mounted() {

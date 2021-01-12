@@ -3,8 +3,8 @@ namespace MedbayTech.Pharmacies.Domain.Enums
 {
     public enum TenderStatus
     {
-        Active,
-        Finished,
-        Pending
+        Active = 0,
+        Finished = 2,
+        Pending = 1
     }
 }
