@@ -1,5 +1,6 @@
 ﻿using MedbayTech.Common.Domain.Entities;
 using MedbayTech.Pharmacies.Application.DTO;
+using MedbayTech.Pharmacies.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,20 +17,21 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Tenders
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public bool TenderStatus { get; set; }
+        public string TenderDescription { get; set; }
+        public TenderStatus TenderStatus { get; set; }
+        public int WinnerTenderOfferId { get; set; }
 
         public virtual List<TenderMedication> TenderMedications { get; set; }
 
-        public Tender(int id, DateTime startDate, DateTime endDate, bool tenderStatus, List<TenderMedication> tenderMedication)
+        public Tender(DateTime startDate, DateTime endDate, TenderStatus tenderStatus, List<TenderMedication> tenderMedication)
         {
-            Id = id;
             StartDate = startDate;
             EndDate = endDate;
             TenderStatus = tenderStatus;
             TenderMedications = tenderMedication;
         } 
         
-        public Tender(int id, DateTime startDate, DateTime endDate, bool tenderStatus)
+        public Tender(int id, DateTime startDate, DateTime endDate, TenderStatus tenderStatus)
         {
             Id = id;
             StartDate = startDate;
@@ -40,11 +42,11 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Tenders
 
         public Tender(TenderDTO tenderDTO)
         {
-            Id = 0;
             StartDate = DateTime.Now;
             EndDate = tenderDTO.EndDate;
-            TenderStatus = true;
+            TenderStatus = TenderStatus.Active;
             TenderMedications = new List<TenderMedication>();
+            TenderDescription = tenderDTO.TenderDescription;
         }
 
         public Tender()

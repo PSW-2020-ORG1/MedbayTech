@@ -137,7 +137,6 @@ namespace MedbayTech.Pharmacies
             services.AddTransient<IUrgentMedicationProcurementRepository, UrgentMedicationProcurementSqlRepository>();
             services.AddTransient<ITenderRepository, TenderSqlRepositroy>();
             services.AddTransient<ITenderMedicationRepositroy, TenderMedicationSqlRepositroy>();
-            services.AddTransient<ITenderMedicationOfferRepository, TenderMedicationOfferSqlRepositroy>();
             services.AddTransient<ITenderOfferRepository, TenderOfferSqlRepositroy>();
         }
 

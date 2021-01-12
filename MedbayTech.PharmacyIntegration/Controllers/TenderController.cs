@@ -40,13 +40,17 @@ namespace MedbayTech.Pharmacies.Controllers
         public IActionResult CreateTender(TenderDTO tender)
         {
             Tender newTender = _tenderService.CreateTender(tender);
-            foreach(TenderMedicationDTO medicationDTO in tender.tenderMedications)
+            int medicationCount = 0;
+            foreach (TenderMedicationDTO medicationDTO in tender.tenderMedications)
             {
                 TenderMedication tenderMedication = _tenderService.CreateMedicationForTender(newTender.Id, medicationDTO);
+                if (tenderMedication != null)
+                    medicationCount++;
             }
-            bool isSuccessfullyAdded = newTender != null;
+            bool isTenderSuccessfullyAdded = newTender != null;
+            bool isMedicationSuccessfullyAdded = medicationCount == tender.tenderMedications.Count();
 
-            if (isSuccessfullyAdded)
+            if (isTenderSuccessfullyAdded && isMedicationSuccessfullyAdded)
                 return Ok();
             else
                 return BadRequest();
@@ -78,6 +82,18 @@ namespace MedbayTech.Pharmacies.Controllers
             }
             return Ok(tenderMedicationDTOs);
 
+        }
+
+        [HttpPost("winner")]
+        public IActionResult DeclareWinner(Tender tender)
+        {
+            
+            bool isTenderSuccessfullyAdded = _tenderService.Update(tender) != null;
+
+            if (isTenderSuccessfullyAdded)
+                return Ok();
+            else
+                return BadRequest();
         }
     }
 }

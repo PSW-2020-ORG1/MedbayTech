@@ -2,7 +2,7 @@
 <template>
     <div id="tenders-main">
         <transition name="bounce">
-            <v-card v-if="show" elevation="1" :loading="loadingPharmacies ? 'accent' : 'null'">
+            <v-card v-if="show" elevation="1" >
                 <v-card-title id="tenders-content" class="primary secondary--text">
                     Tenders
                 </v-card-title>
@@ -19,8 +19,10 @@
                                     <td><router-link :to="{name:'Tender', params: {id: row.item.id}}">Tender:{{row.item.id}}</router-link></td>
                                     <td>{{row.item.startDate.substring(0, 10)}}</td>
                                     <td>{{row.item.endDate.substring(0, 10)}}</td>
-                                    <td v-if="row.item.status === True" style="color:forestgreen">Active</td>
-                                    <td v-else style="color:red">Finished</td>
+                                    <td>{{row.item.tenderDescription}}</td>
+                                    <td v-if="row.item.tenderStatus == 0" style="color:forestgreen">Active</td>
+                                    <td v-else-if="row.item.tenderStatus == 1" style="color:orange">Pending</td>
+                                    <td v-else style="color:black">Finished</td>
                                 </tr>
                             </template>
                         </v-data-table>
@@ -86,7 +88,10 @@
                             </template>
                         </v-data-table>
                     </div>
-                </v-card-text>
+                <v-text-field v-model="tenderDescription"
+                                      label="Description"
+                                      hide-details />
+                
                     <v-dialog
                         ref="dialog"
                         v-model="modal"
@@ -128,6 +133,7 @@
                                 </v-btn>
                         </v-date-picker>
                     </v-dialog>
+                </v-card-text>
                 <v-card-actions>
                     <v-btn id="tenders-btn" :disabled="!(requiredMedications.length != 0) || !validToCreate" elevation="2" @click="createTender" class="deep-orange white--text">
                             Create new Tender
@@ -146,8 +152,9 @@ export default {
              tendersHeaders: [
 				{ text: "Id", value: "id"}, 
 				{ text: "Start date"},
-				{ text: "End date" },
-				{ text: "Status", value: "status" },
+                { text: "End date" },
+                { text: "Description" },
+				{ text: "Status", value: "tenderStatus" },
             ],
             medicationHeaders: [
 				{ text: "Medication name"}, 
@@ -166,6 +173,7 @@ export default {
             ],
             allMedication: [],
             requiredMedications: [],
+            medicationDescription: "",
             medication: "",
             medicationQuantity: "",
             tenders: [],
@@ -235,7 +243,7 @@ export default {
             this.requiredMedications = list;
         },
         createTender: function () {
-            let tender = { endDate: this.date, tenderMedications: this.requiredMedications }
+            let tender = { endDate: this.date, tenderMedications: this.requiredMedications, tenderDescription: this.tenderDescription }
 
             this.axios.post("http://localhost:50202/api/Tender", tender)
                 .then(response => {

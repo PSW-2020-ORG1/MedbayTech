@@ -30,14 +30,12 @@ namespace MedbayTech.Pharmacies.Infrastructure.Service.Tenders
         public TenderMedication CreateMedicationForTender(int tenderId, TenderMedicationDTO medicationDTO)
         {
             TenderMedication tenderMedication = new TenderMedication(medicationDTO, tenderId);
-            tenderMedication.Id = GetNextMedicationId();
             return _tenderMedicationRepositroy.Create(tenderMedication);
         }
 
         public Tender CreateTender(TenderDTO tenderDTO)
         {
             Tender tender = new Tender(tenderDTO);
-            tender.Id = GetNextId();
             return _tenderRepository.Create(tender);
 
         }
@@ -52,40 +50,6 @@ namespace MedbayTech.Pharmacies.Infrastructure.Service.Tenders
             return _tenderMedicationRepositroy.GetMedicationsForTender(tenderId);
         }
 
-        public int GetNextId()
-        {
-           
-            if (GetAll().Count <= 0)
-            {
-                return 1;
-            }
-            int maxInt = 1;
-            foreach (Tender not in GetAll())
-            {
-                if (not.Id >= maxInt)
-                {
-                    maxInt = not.Id;
-                }
-            }
-            return maxInt + 1;
-    }
-
-        public int GetNextMedicationId()
-        {
-            if (_tenderMedicationRepositroy.GetAll().Count <= 0)
-            {
-                return 1;
-            }
-            int maxInt = 1;
-            foreach (TenderMedication not in _tenderMedicationRepositroy.GetAll())
-            {
-                if (not.Id >= maxInt)
-                {
-                    maxInt = not.Id;
-                }
-            }
-            return maxInt + 1;
-        }
 
         public bool Remove(Tender tender)
         {
