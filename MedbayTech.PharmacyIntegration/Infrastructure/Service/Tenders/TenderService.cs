@@ -22,11 +22,6 @@ namespace MedbayTech.Pharmacies.Infrastructure.Service.Tenders
 
         public Tender Add(Tender tender) => _tenderRepository.Create(tender);
 
-        public TenderMedication CreateMedicationForTender(List<TenderMedicationDTO> medicationDTOs)
-        {
-            throw new NotImplementedException();
-        }
-
         public TenderMedication CreateMedicationForTender(int tenderId, TenderMedicationDTO medicationDTO)
         {
             TenderMedication tenderMedication = new TenderMedication(medicationDTO, tenderId);
@@ -53,12 +48,12 @@ namespace MedbayTech.Pharmacies.Infrastructure.Service.Tenders
 
         public bool Remove(Tender tender)
         {
-            throw new NotImplementedException();
+            return _tenderRepository.Delete(tender);
         }
 
         public Tender Update(Tender tender)
         {
-            throw new NotImplementedException();
+            return _tenderRepository.Update(tender);
         }
     }
 }

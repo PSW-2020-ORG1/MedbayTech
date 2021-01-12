@@ -215,7 +215,7 @@ namespace MedbayTech.Pharmacies.Infrastructure.Database
                 StartDate = new DateTime(2020, 12, 1),
                 EndDate = new DateTime(2021, 1, 1),
                 TenderDescription = "Tender for Adderall",
-                TenderStatus = TenderStatus.Pendind,
+                TenderStatus = TenderStatus.Finished,
             });
             context.Add(new Tender
             {
@@ -223,7 +223,7 @@ namespace MedbayTech.Pharmacies.Infrastructure.Database
                 StartDate = new DateTime(2020, 11, 15),
                 EndDate = new DateTime(2021, 1, 2),
                 TenderDescription = "Tender for Andol",
-                TenderStatus = TenderStatus.Finished,
+                TenderStatus = TenderStatus.Pending,
                 WinnerTenderOfferId = 10
             });
 

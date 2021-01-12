@@ -5,6 +5,6 @@ namespace MedbayTech.Pharmacies.Domain.Enums
     {
         Active,
         Finished,
-        Pendind
+        Pending
     }
 }

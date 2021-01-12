@@ -119,9 +119,13 @@ export default {
         },
         declateWinner: function(tenderOfferId){
             this.tender.winnerTenderOfferId = tenderOfferId;
+            this.tender.tenderStatus = 2;
             this.axios.post("http://localhost:50202/api/Tender/winner", this.tender)
                 .then(response => {
                     console.log(response.data);
+                    for (let i = 0; i < this.tender.tenderMedications.length; ++i){
+                        this.updateMedication(this.tender.tenderMedications[i].medicationId, this.tender.tenderMedications[i].tenderMedicationQuantity)
+                    }
                     this.getTender();
                     this.getTenderOffers();
                 })
@@ -129,7 +133,25 @@ export default {
                     console.log(response.data);
                 })
         },
-
+        updateMedication: function (id, qu) {
+            let med = "";
+            this.axios.get("http://localhost:50202/api/Medication/" + id)
+                .then(response => {
+                    med = response.data;
+                    med.quantity = med.quantity + qu;
+                    this.axios.post("http://localhost:50202/api/Medication", med)
+                        .then(response => {
+                            console.log(response.data);
+                        })
+                        .catch(response => {
+                            console.log(response.data);
+                        })
+                })
+                .catch(response => {
+                    console.log(response.data);
+                })
+        },
+    
 
     },
     mounted() {
