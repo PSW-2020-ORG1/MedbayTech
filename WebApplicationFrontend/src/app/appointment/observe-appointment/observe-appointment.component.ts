@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { CancelAppointment } from 'src/app/model/cancelAppointment';
 import { GetAppointment } from 'src/app/model/getAppointment';
+import { ObservePrescriptionComponent, ObservePrescriptionComponentDialog } from 'src/app/prescription/observe-prescription/observe-prescription.component';
 import { AppointmentService } from 'src/app/service/appointment/appointment.service';
 
 @Component({
@@ -14,7 +16,7 @@ export class ObserveAppointmentComponent implements OnInit {
   public allOtherAppointments : GetAppointment[] = new Array();
   public allCancelableAppointments : GetAppointment[] = new Array();
 
-  constructor(private appointmentService : AppointmentService) { }
+  constructor(private appointmentService : AppointmentService, public dialog:ObservePrescriptionComponent) { }
 
   ngOnInit(): void {
     this.loadSurveyableAppointments();

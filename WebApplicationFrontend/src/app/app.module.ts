@@ -11,6 +11,7 @@ import { ToastrModule} from 'ngx-toastr';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button'; 
+import {MatDialogModule} from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatList, MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
@@ -51,6 +52,7 @@ import { NavigationBarUserComponent } from './navigation-bar/navigation-bar-user
 import { HomePageComponent } from './home-page/home-page.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
+import { ObservePrescriptionComponent, ObservePrescriptionComponentDialog } from './prescription/observe-prescription/observe-prescription.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,8 @@ import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
     NavigationBarAdminComponent,
     NavigationBarPatientComponent,
     NavigationBarUserComponent,
-    HomePageComponent
+    HomePageComponent,
+    ObservePrescriptionComponentDialog
   ],
   imports: [
     BrowserModule,
@@ -114,7 +117,8 @@ import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
     MatStepperModule,
     ToastrModule.forRoot(),
     IvyCarouselModule,
-    NgImageSliderModule
+    NgImageSliderModule,
+    MatDialogModule
   ],
   providers: [
     FeedbackService,
@@ -123,6 +127,7 @@ import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
     SurveyService,
     MedicalRecordService,
     AppointmentService,
+    ObservePrescriptionComponent,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
