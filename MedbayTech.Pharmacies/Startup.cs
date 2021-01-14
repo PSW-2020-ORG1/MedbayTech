@@ -87,15 +87,8 @@ namespace MedbayTech.Pharmacies
                         databaseCreator.CreateTables();
                     else
                         context.Database.Migrate();
-<<<<<<< HEAD:MedbayTech.Pharmacies/Startup.cs
-                    }
-                } catch(Exception e)
-=======
-
                 } catch(Exception)
->>>>>>> develop:MedbayTech.PharmacyIntegration/Startup.cs
                 {
-                    Console.WriteLine(e);
                     Console.WriteLine("Failed to execute migration");
                 }
                 try
@@ -152,10 +145,6 @@ namespace MedbayTech.Pharmacies
             services.AddTransient<IUrgentMedicationProcurementRepository, UrgentMedicationProcurementSqlRepository>();
             services.AddTransient<ITenderRepository, TenderSqlRepositroy>();
             services.AddTransient<ITenderMedicationRepositroy, TenderMedicationSqlRepositroy>();
-<<<<<<< HEAD:MedbayTech.Pharmacies/Startup.cs
-=======
-            services.AddTransient<ITenderMedicationOfferRepository, TenderMedicationOfferSqlRepositroy>();
->>>>>>> develop:MedbayTech.PharmacyIntegration/Startup.cs
             services.AddTransient<ITenderOfferRepository, TenderOfferSqlRepositroy>();
         }
 
