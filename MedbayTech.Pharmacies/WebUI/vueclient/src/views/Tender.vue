@@ -78,6 +78,7 @@ export default {
                     console.log(response.data);
                 })
         },
+
         getColor: function(price){
             if(price === this.minPrice)
                 return 'green';
@@ -86,6 +87,7 @@ export default {
             else
                 return 'orange';
         },
+
         getTenderMedication: function () {
             this.axios.get("http://localhost:50202/api/Tender/med/" + this.$route.params.id)
                 .then(response => {
@@ -95,6 +97,7 @@ export default {
                     console.log(response.data);
                 })
         },
+
         getTenderOffers: function () {
             this.axios.get("http://localhost:50202/api/tenderOffer/tender/" + this.$route.params.id)
                 .then(response => {
@@ -105,6 +108,7 @@ export default {
                     console.log(response.data);
                 })
         },
+
         minMaxPrice: function() {
             this.minPrice = this.tenderOffers[0].tenderOfferPrice;
             this.maxPrice = this.tenderOffers[0].tenderOfferPrice;
@@ -117,6 +121,7 @@ export default {
                 }
             }
         },
+
         declateWinner: function(tenderOfferId){
             this.tender.winnerTenderOfferId = tenderOfferId;
             this.tender.tenderStatus = 2;
@@ -133,6 +138,7 @@ export default {
                     console.log(response.data);
                 })
         },
+
         updateMedication: function (id, qu) {
             let med = "";
             this.axios.get("http://localhost:50202/api/Medication/" + id)

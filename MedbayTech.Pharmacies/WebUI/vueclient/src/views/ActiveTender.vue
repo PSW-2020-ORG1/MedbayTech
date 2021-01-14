@@ -134,11 +134,13 @@ export default {
                     console.log(response);
                 });
         },
+
         showOfferForm: function(tender){
             this.tenderDetails = tender;
             this.getMedicationsForTender(tender.id);
             this.show = !this.show;
         },
+
         getMedicationsForTender: function(id){
             this.axios.get("http://localhost:50202/api/Tender/med/" + id)
                 .then(response => {
@@ -148,6 +150,7 @@ export default {
                     console.log(response.data);
                 })
         },
+
         makeOffer: function(){
             let tenderOffer = {id: 0, tenderId : this.tenderDetails.id, pharmacy : this.name, pharmacyEMail: this.email, tenderOfferPrice: this.offer}
             this.axios.post("http://localhost:50202/api/tenderOffer/makeOffer", tenderOffer)
@@ -159,6 +162,7 @@ export default {
                     console.log(response.data);
                 })
         },
+
         rss: function () {
             this.axios.get("http://localhost:50202/api/rss")
                 .then(response => {

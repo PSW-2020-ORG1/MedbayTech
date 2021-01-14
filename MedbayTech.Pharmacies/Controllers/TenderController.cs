@@ -66,8 +66,6 @@ namespace MedbayTech.Pharmacies.Controllers
             {
                 using HttpClient client = new HttpClient();
 
-               // var m = await client.GetAsync("http://localhost:50202/api/Medication/" + tenderMedication.MedicationId);
-
                 var task = client.GetAsync("http://localhost:50202/api/Medication/" + tenderMedication.MedicationId)
                     .ContinueWith((taskWithResponse) =>
                     {
@@ -87,7 +85,6 @@ namespace MedbayTech.Pharmacies.Controllers
         [HttpPost("winner")]
         public IActionResult DeclareWinner(Tender tender)
         {
-            
             bool isTenderSuccessfullyAdded = _tenderService.Update(tender) != null;
 
             if (isTenderSuccessfullyAdded)
