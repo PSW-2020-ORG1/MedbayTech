@@ -36,7 +36,18 @@ namespace MedbayTech.PatientDocuments
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .SetIsOriginAllowed(_ => true)
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
@@ -83,7 +94,7 @@ namespace MedbayTech.PatientDocuments
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("AllowAll");
             string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
             string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";
 
@@ -105,17 +116,11 @@ namespace MedbayTech.PatientDocuments
                 {
                     Console.WriteLine("Failed to execute migration");
                 }
-                try
-                {
+                
                     PatientDocumentsDataSeeder seeder = new PatientDocumentsDataSeeder();
                     if (!seeder.IsAlreadyFull(context))
                         seeder.SeedAllEntities(context);
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Failed to seed data in Patient Documents");
-                }
-
+                
                 app.UseRouting();
 
                 app.UseAuthentication();

@@ -34,13 +34,14 @@ namespace MedbayTech.Feedback.Infrastructure.Services
             List<Domain.Entities.Feedback> approvedFeedback = _feedbackRepository.GetAllApprovedFeedback();
             List<User> users = _userGateway.GetUsers();
             approvedFeedback.ForEach(f => f.RegisteredUser = users.FirstOrDefault(u => f.UserId != null && u.Id.Equals(f.UserId)));
-            return approvedFeedback;
+            return approvedFeedback;    
         }
 
         public bool UpdateStatus(int feedbackId, bool status)
         {
             return _feedbackRepository.UpdateStatus(feedbackId, status);
         }
+
         public Domain.Entities.Feedback CreateFeedback(string userId, string additionalNotes, Boolean anonymous, Boolean allowed)
         {
             Domain.Entities.Feedback feedback = new Domain.Entities.Feedback();

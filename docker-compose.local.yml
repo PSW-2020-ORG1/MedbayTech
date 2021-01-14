@@ -1,0 +1,216 @@
+version: "3.8"
+
+volumes:
+  postgres-data: {} 
+networks:
+  demo:
+    name: demo
+    driver: bridge
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    networks:
+      - demo
+    environment:
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "user"
+      POSTGRES_DB: mydb1
+    volumes:
+      - postgres-data:/var/lib/postgres
+
+  apigateway:
+    image: api
+    container_name: api_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+      - feedback
+      - pharmacies
+      - medications
+      - users 
+      - rooms 
+      - patientdocuments
+      - appointment
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "prod"
+      STAGE_API: "test"
+      PORT: "53843"
+    ports:
+      - "53843:53843"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+
+  feedback:
+    image: feedback
+    container_name: feedback_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "5003"
+      PORT_USERS: "5002"
+      URL_USERS: "users"
+    ports:
+      - "8080:5003"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+
+  pharmacies:
+    image: pharmacies
+    container_name: pharmacies_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "50202"
+      # PORT_MEDICATION: "5007"
+      # URL_MEDICATION: "users"
+      # PORT_USERS: "5002"
+      # URL_USERS: "users"
+      PORT_DOCUMENTS: "5006"
+      URL_DOCUMENTS: "patientdocuments"
+    ports:
+      - "50202:50202"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+
+  medications:
+    image: medications
+    container_name: medications_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "5007"
+    ports:
+      - "56764:5007"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+
+  rooms:
+    image: rooms
+    container_name: rooms_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "5004"
+      PORT_USERS: "5002"
+      URL_USERS: "users"
+    ports:
+      - "60304:5004"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+
+  users:
+    image: users
+    container_name: users_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "5002"
+      PORT_APPOINTMENT: "5008"
+      URL_APPOINTMENT: "appointment"
+    ports:
+      - "8081:5002"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+  
+  patientdocuments:
+    image: documents
+    container_name: documents_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "5006"
+      PORT_USERS: "5002"
+      URL_USERS: "users"
+    ports:
+      - "50577:5006"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+
+  appointment:
+    image: appointment
+    container_name: appointment_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "5008"
+      PORT_ROOMS: "5004"
+      URL_ROOMS: "rooms"
+      PORT_USERS: "5002"
+      URL_USERS: "users"
+    ports:
+      - "8083:5008"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw

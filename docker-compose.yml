@@ -1,29 +1,13 @@
 version: "3.8"
 
 volumes:
-  postgres-data: {}
-
-  
+  postgres-data: {} 
 networks:
   demo:
     name: demo
     driver: bridge
 
 services:
-   mysql:
-     image: mysql:latest
-     container_name: mysql
-     restart: always
-     networks:
-       - demo
-     environment:
-       MYSQL_DATABASE: "newdb"
-       MYSQL_USER: "root"
-       MYSQL_PASSWORD: "root"
-       MYSQL_ROOT_PASSWORD: "root"
-     volumes:
-       - mysql-data:/var/lib/mysql
-
   postgres:
     image: postgres:latest
     container_name: postgres
@@ -37,36 +21,37 @@ services:
     volumes:
       - postgres-data:/var/lib/postgres
 
-
-  ApiGateway:
+  apigateway:
     image: api
     container_name: api_container
-  PhIntegrationSql:
-    build: 
-       context: .
-       dockerfile: Dockerfile.PhIntegration
-    image: phintegrationsql
-    container_name: ph_integration
     restart: on-failure
     networks:
       - demo
     depends_on:
       - postgres
+      - feedback
+     # - pharmacies
+      - medications
+      - users 
+      - rooms 
+      - patientdocuments
+      - appointment
     environment:
       DATABASE_USERNAME: "user"
       DATABASE_PASSWORD: "user"
       DATABASE_HOST: "postgres"
       DATABASE_TYPE: "postgres"
       DATABASE_SCHEMA: "mydb1"
-      STAGE: "production"
-      PORT: "5000"
+      STAGE: "prod"
+      STAGE_API: "test"
+      PORT: "53843"
     ports:
-      - "53843:5000"
+      - "53843:53843"
     volumes:
       - postgres-data:/var/lib/postgres:rw
 
-  Feedback:
-    image: feedback
+  feedback:
+    image: stefan7/feedback:latest
     container_name: feedback_container
     restart: on-failure
     networks:
@@ -79,20 +64,38 @@ services:
       DATABASE_HOST: "postgres"
       DATABASE_TYPE: "postgres"
       DATABASE_SCHEMA: "mydb1"
-      DATABASE_USERNAME: "root"
-      DATABASE_PASSWORD: "root"
-      DATABASE_HOST: "mysql"
-      DATABASE_SCHEMA: "newdb"
-      PORT: 8091
       STAGE: "test"
-      PORT: "8080"
+      PORT: "5003"
+      PORT_USERS: "5002"
+      URL_USERS: "users"
     ports:
-      - "8080:8080"
+      - "8080:5003"
     volumes:
       - postgres-data:/var/lib/postgres:rw
-  
-  Rooms:
-    image: rooms
+
+  medications:
+    image: stefan7/medication:latest
+    container_name: medications_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "5007"
+    ports:
+      - "56764:5007"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+
+  rooms:
+    image: stefan7/rooms:latest
     container_name: rooms_container
     restart: on-failure
     networks:
@@ -106,14 +109,16 @@ services:
       DATABASE_TYPE: "postgres"
       DATABASE_SCHEMA: "mydb1"
       STAGE: "test"
-      PORT: "60304"
+      PORT: "5004"
+      PORT_USERS: "5002"
+      URL_USERS: "users"
     ports:
-      - "60304:60304"
+      - "60304:5004"
     volumes:
       - postgres-data:/var/lib/postgres:rw
 
-  Users:
-    image: users
+  users:
+    image: stefan7/users:latest
     container_name: users_container
     restart: on-failure
     networks:
@@ -127,14 +132,16 @@ services:
       DATABASE_TYPE: "postgres"
       DATABASE_SCHEMA: "mydb1"
       STAGE: "test"
-      PORT: "8081"
+      PORT: "5002"
+      PORT_APPOINTMENT: "5008"
+      URL_APPOINTMENT: "appointment"
     ports:
-      - "8081:8081"
+      - "8081:5002"
     volumes:
       - postgres-data:/var/lib/postgres:rw
   
-  PatientDocuments:
-    image: documents
+  patientdocuments:
+    image: stefan7/patientdocuments:latest
     container_name: documents_container
     restart: on-failure
     networks:
@@ -148,14 +155,16 @@ services:
       DATABASE_TYPE: "postgres"
       DATABASE_SCHEMA: "mydb1"
       STAGE: "test"
-      PORT: "50577"
+      PORT: "5006"
+      PORT_USERS: "5002"
+      URL_USERS: "users"
     ports:
-      - "50577:50577"
+      - "50577:5006"
     volumes:
       - postgres-data:/var/lib/postgres:rw
 
-  Appointment:
-    image: appointment
+  appointment:
+    image: stefan7/appointment:latest
     container_name: appointment_container
     restart: on-failure
     networks:
@@ -169,17 +178,12 @@ services:
       DATABASE_TYPE: "postgres"
       DATABASE_SCHEMA: "mydb1"
       STAGE: "test"
-      PORT: "8083"
+      PORT: "5008"
+      PORT_ROOMS: "5004"
+      URL_ROOMS: "rooms"
+      PORT_USERS: "5002"
+      URL_USERS: "users"
     ports:
-      - "8083:8083"
+      - "8083:5008"
     volumes:
       - postgres-data:/var/lib/postgres:rw
-      - "8091:8091"
-    volumes:
-      - mysql-data:/var/lib/mysql:rw
-
-  UnitTests:
-    image: stefan7/medbaytechunit
-    container_name: unit_tests
-    restart: on-failure
-

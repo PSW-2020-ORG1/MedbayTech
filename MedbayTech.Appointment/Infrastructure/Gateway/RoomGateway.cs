@@ -63,8 +63,8 @@ namespace MedbayTech.Appointment.Infrastructure.Gateway
 
         public string GetRoomsDomain()
         {
-            string origin = Environment.GetEnvironmentVariable("URL") ?? "localhost";
-            string port = Environment.GetEnvironmentVariable("PORT") ?? "60304";
+            string origin = Environment.GetEnvironmentVariable("URL_ROOMS") ?? "localhost";
+            string port = Environment.GetEnvironmentVariable("PORT_ROOMS") ?? "60304";
 
             return $"http://{origin}:{port}";
         }

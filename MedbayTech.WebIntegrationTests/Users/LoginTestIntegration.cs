@@ -3,15 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
-using MedbayTech.Users;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Shouldly;
 using System.Net;
-using MedbayTech.Users.Application.DTO;
+using WebApplication;
 
 namespace MedbayTech.WebIntegrationTests.Users
-{
+{/*
     public class LoginTestIntegration : IClassFixture<WebApplicationFactory<Startup>>
     {
         private readonly WebApplicationFactory<Startup> _factory;
@@ -41,5 +40,5 @@ namespace MedbayTech.WebIntegrationTests.Users
 
             return userDTO;
         }
-    }
+    }*/
 }

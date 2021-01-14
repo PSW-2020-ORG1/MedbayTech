@@ -49,8 +49,8 @@ namespace MedbayTech.Users.Infrastructure.Gateways
 
         public string GetUsersDomain()
         {
-            string origin = Environment.GetEnvironmentVariable("URL") ?? "localhost";
-            string port = Environment.GetEnvironmentVariable("PORT") ?? "8083";
+            string origin = Environment.GetEnvironmentVariable("URL_APPOINTMENT") ?? "localhost";
+            string port = Environment.GetEnvironmentVariable("PORT_APPOINTMENT") ?? "8083";
 
             return $"http://{origin}:{port}";
         }

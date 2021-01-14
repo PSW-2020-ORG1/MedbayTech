@@ -369,7 +369,6 @@ namespace MedbayTech.Pharmacies.Infrastructure.Database
 
             context.SaveChanges();
         }
-
         
         public bool IsAlreadyFull(PharmacyDbContext context)
         {

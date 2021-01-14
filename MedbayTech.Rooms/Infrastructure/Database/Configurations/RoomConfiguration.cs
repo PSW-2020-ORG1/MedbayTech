@@ -13,6 +13,8 @@ namespace MedbayTech.Rooms.Infrastructure.Database.Configurations
         public void Configure(EntityTypeBuilder<Room> builder)
         {
             builder.ToTable("Rooms");
+            //builder.HasMany(h => h.HospitalEquipment);
+
             builder.HasOne(r => r.Department).WithMany().HasForeignKey(r => r.DepartmentId);
         }
     }

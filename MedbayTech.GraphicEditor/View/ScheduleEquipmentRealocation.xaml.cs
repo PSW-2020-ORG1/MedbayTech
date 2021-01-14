@@ -191,7 +191,6 @@ namespace MedbayTech.GraphicEditor.View
                     rooms = JsonConvert.DeserializeObject<List<Room>>(jsonString.Result);
                 });
             task.Wait();
-
             dataGridFrom.ItemsSource = rooms;
         }
 

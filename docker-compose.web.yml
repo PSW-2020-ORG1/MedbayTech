@@ -16,21 +16,21 @@ services:
     networks:
       - demo
     environment:
-      POSTGRES_USER: "root"
-      POSTGRES_PASSWORD: "root"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "user"
       POSTGRES_DB: mydb1
     volumes:
       - postgres-data:/var/lib/postgres
 
   WebIntegrationTests:
       image: stefan7/test1
-      container_name: web_tests
+      container_name: web_integration_tests
       restart: on-failure
       depends_on:
         - postgres
       environment:
-        DATABASE_USERNAME: "root"
-        DATABASE_PASSWORD: "root"
+        DATABASE_USERNAME: "user"
+        DATABASE_PASSWORD: "user"
         DATABASE_HOST: "postgres"
         DATABASE_TYPE: "postgres"
         DATABASE_SCHEMA: "mydb1"

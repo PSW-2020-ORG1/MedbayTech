@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Medications;
 using MedbayTech.Pharmacies.Application.DTO;
 using MedbayTech.Pharmacies.Domain.Entities.Medications;
@@ -28,6 +28,7 @@ namespace MedbayTech.Pharmacies.Controllers
             }
             return Ok(medication);
         }
+        
 
         [HttpGet]
         public IActionResult Get() => Ok(_medicationService.GetAll());

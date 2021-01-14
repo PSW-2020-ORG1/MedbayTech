@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net;
-using MedbayTech.Users;
-using MedbayTech.Appointment.Application.DTO;
-using MedbayTech.Appointment.Domain.Enums;
+using WebApplication;
+using WebApplication.DTO;
+using Model.Users;
 
-namespace MedbayTechUnitTests
+namespace MedbayTech.WebIntegrationTests.Users
 {
     public class SurveyTest : IClassFixture<WebApplicationFactory<Startup>>
     {

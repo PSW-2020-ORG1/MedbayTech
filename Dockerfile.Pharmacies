@@ -1,0 +1,82 @@
+# FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+
+# WORKDIR /app
+
+# COPY MedbayTech.Common/MedbayTech.Common.csproj MedbayTech.Common/
+# COPY MedbayTech.Pharmacies/MedbayTech.Pharmacies.csproj MedbayTech.Pharmacies/
+
+# RUN dotnet restore MedbayTech.Pharmacies/MedbayTech.Pharmacies.csproj
+
+# COPY . .
+
+# FROM build AS publish
+# WORKDIR /app/MedbayTech.Pharmacies
+
+# ENV PATH $PATH:/root/.dotnet/tools
+# RUN dotnet tool install -g dotnet-ef --version 3.1.9
+# RUN dotnet ef migrations add Init
+
+# WORKDIR /app
+# RUN dotnet publish MedbayTech.Pharmacies/MedbayTech.Pharmacies.csproj -c Release -o out
+
+# FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS runtime
+
+# RUN useradd -ms /bin/bash defaultuser
+# WORKDIR /app
+
+# COPY --from=publish /app/out .
+# EXPOSE 5005
+
+# CMD ASPNETCORE_URLS=http://*:$PORT dotnet MedbayTech.Pharmacies.dll
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS build
+
+RUN apk add --update nodejs nodejs-npm
+
+RUN mkdir /src
+WORKDIR /src
+
+COPY MedbayTech.Common/MedbayTech.Common.csproj MedbayTech.Common/
+COPY MedbayTech.Pharmacies/MedbayTech.Pharmacies.csproj MedbayTech.Pharmacies/
+
+RUN dotnet restore MedbayTech.Pharmacies/MedbayTech.Pharmacies.csproj
+
+COPY . ./
+
+RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
+RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-2.32-r0.apk
+RUN apk add glibc-2.32-r0.apk
+
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS buildbuster
+WORKDIR /app
+COPY --from=build /src .
+
+WORKDIR /app/MedbayTech.Pharmacies
+
+ENV PATH $PATH:/root/.dotnet/tools
+RUN dotnet tool install -g dotnet-ef --version 3.1.9
+RUN dotnet ef migrations add Init
+
+WORKDIR /app
+RUN dotnet publish MedbayTech.Pharmacies/MedbayTech.Pharmacies.csproj -c Release
+
+COPY . ./
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine as buildfront
+WORKDIR /app
+COPY --from=buildbuster /app .
+COPY --from=buildbuster /app/MedbayTech.Pharmacies/WebUI/vueclient /app/MedbayTech.Pharmacies/bin/Release/netcoreapp3.1/publish/vueclient
+
+RUN apk add --update nodejs nodejs-npm
+
+WORKDIR /app/MedbayTech.Pharmacies/bin/Release/netcoreapp3.1/publish/vueclient
+RUN npm install
+RUN npm install -g @vue/cli
+RUN npm install --save axios vue-axios
+RUN npm run build
+
+WORKDIR /app/MedbayTech.Pharmacies/bin/Release/netcoreapp3.1/publish
+EXPOSE 5005
+EXPOSE 50202
+ENTRYPOINT [ "dotnet", "MedbayTech.Pharmacies.dll" ]

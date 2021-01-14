@@ -32,8 +32,6 @@ using WebApplication.ObjectBuilder;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Backend.Utils;
-using MedbayTech.Users.Application.Common.Interfaces.Gateways;
-using MedbayTech.Users.Infrastructure.Gateways;
 using Microsoft.EntityFrameworkCore;
 using IMedicalRecordService = Backend.Records.Service.Interfaces.IMedicalRecordService;
 

@@ -6,7 +6,7 @@ using System.Net.Http;
 using Xunit;
 
 namespace MedbayTech.WebIntegrationTests.WebApplicationFactory
-{
+{/*
     class RoomsService 
     {
         private readonly TestServer _server;
@@ -24,5 +24,5 @@ namespace MedbayTech.WebIntegrationTests.WebApplicationFactory
             return _server.CreateClient();
         }
 
-    }
+    }*/
 }

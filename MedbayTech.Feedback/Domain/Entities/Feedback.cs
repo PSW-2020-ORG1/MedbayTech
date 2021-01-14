@@ -19,7 +19,6 @@ namespace MedbayTech.Feedback.Domain.Entities
         public bool Approved { get; set; }
         public bool Anonymous { get; set; }
         public bool AllowedForPublishing { get; set; }
-
         public string UserId { get; set; }
         [NotMapped]
         public virtual User RegisteredUser { get; set; }

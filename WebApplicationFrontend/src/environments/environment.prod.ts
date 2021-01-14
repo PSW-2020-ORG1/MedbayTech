@@ -1,8 +1,7 @@
 export const environment = {
   production: true,
-  //baseUrl: "https://medbaytech.herokuapp.com",
-  baseUrl: "http://localhost:53843",
-  fedback: 'feedback',
+  baseUrl: "https://medbaytech.herokuapp.com",
+  fedback: 'approvedFeedback',
   allFeedback: 'allFeedback',
   updateFeedbackStatus: 'updateFeedbackStatus',
   createFeedback : 'createFeedback',
@@ -15,8 +14,9 @@ export const environment = {
   allReports: 'allReports',
   registration : 'registration',
   patientRegistration : 'patientRegistration',
+  authenticate: 'authenticate',
   doctor : 'doctor',
-  searchDoctor : 'searchDoctor',
+  searchDoctor : 'allDoctors',
   medicalRecord : 'medicalRecord',
   prescriptionSimpleSearch : 'prescription',
   reportSimpleSearch : 'report',
@@ -34,3 +34,12 @@ export const environment = {
   availableStandard : 'available',
   scheduleAppointment : 'schedule'
 };
+
+/*
+ * For easier debugging in development mode, you can import the following file
+ * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+ *
+ * This import should be commented out in production mode because it will have a negative impact
+ * on performance if an error is thrown.
+ */
+// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

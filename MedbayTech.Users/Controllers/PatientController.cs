@@ -29,6 +29,7 @@ namespace MedbayTech.Users.Controllers
             return Ok(_patientService.GetAll());
         }
 
+
         [HttpGet("maliciousPatients")]
         public IActionResult GetMaliciousPatients()
         {
@@ -37,6 +38,7 @@ namespace MedbayTech.Users.Controllers
 
             return Ok(maliciousPatients);
         }
+
 
         [HttpPost("updatePatientStatus")]
         public IActionResult UpdatePatientStatus(UpdatePatientBlockedStatusDTO dto)

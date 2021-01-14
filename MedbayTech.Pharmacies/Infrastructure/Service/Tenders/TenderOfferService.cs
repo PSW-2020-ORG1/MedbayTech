@@ -11,15 +11,28 @@ namespace MedbayTech.Pharmacies.Infrastructure.Service.Tenders
     public class TenderOfferService : ITenderOfferService
     {
         private readonly ITenderOfferRepository _tenderOfferRepository;
+<<<<<<< HEAD
 
         public TenderOfferService(ITenderOfferRepository tenderOfferRepository)
         {
             _tenderOfferRepository = tenderOfferRepository;
+=======
+        private readonly ITenderMedicationOfferRepository _tenderMedicationOfferRepository;
+
+        public TenderOfferService(ITenderOfferRepository tenderOfferRepository, ITenderMedicationOfferRepository tenderMedicationOfferRepository)
+        {
+            _tenderOfferRepository = tenderOfferRepository;
+            _tenderMedicationOfferRepository = tenderMedicationOfferRepository;
+>>>>>>> develop
         }
 
         public TenderOffer Add(TenderOffer tenderOffer)
         {
+<<<<<<< HEAD
            return _tenderOfferRepository.Create(tenderOffer);
+=======
+            throw new NotImplementedException();
+>>>>>>> develop
         }
 
         public List<TenderOffer> GelAllForTender(int tenderId)
@@ -35,6 +48,14 @@ namespace MedbayTech.Pharmacies.Infrastructure.Service.Tenders
             throw new NotImplementedException();
         }
 
+<<<<<<< HEAD
+=======
+        public float GetTotalPrice(int tenderOfferId)
+        {
+            return _tenderMedicationOfferRepository.GetTotalPriceForId(tenderOfferId);
+        }
+
+>>>>>>> develop
         public bool Remove(TenderOffer tenderOffer)
         {
             throw new NotImplementedException();

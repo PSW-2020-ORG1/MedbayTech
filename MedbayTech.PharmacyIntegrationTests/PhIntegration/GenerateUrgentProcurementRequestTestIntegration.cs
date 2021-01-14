@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using Shouldly;
 using Xunit;
 
-namespace PhIntegrationTests.PhIntegration
+namespace MedbayTech.PharmacyIntegrationTests.PhIntegration
 {
     public class GenerateUrgentProcurementRequestTestIntegration : IClassFixture<WebApplicationFactory<Startup>>
     {

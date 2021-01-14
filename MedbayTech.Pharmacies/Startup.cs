@@ -44,8 +44,18 @@ namespace MedbayTech.Pharmacies
             Directory.CreateDirectory("GeneratedUsageReports");
             Directory.CreateDirectory("DrugSpecifications");
             Directory.CreateDirectory("GeneratedPrescription");
-
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .SetIsOriginAllowed(_ => true)
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
             AddRepository(services);
             AddServices(services);
 
@@ -67,15 +77,23 @@ namespace MedbayTech.Pharmacies
             using (var context = scope.ServiceProvider.GetService<PharmacyDbContext>())
             {
                 string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
+                string host = Environment.GetEnvironmentVariable("DATABASE_TYPE") ?? "localhost";
+
                 RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
 
                 try
                 {
-                    if (stage.Equals("test"))
-                    {
+                    if (!stage.Equals("development") && host.Equals("postgres"))
+                        databaseCreator.CreateTables();
+                    else
                         context.Database.Migrate();
+<<<<<<< HEAD:MedbayTech.Pharmacies/Startup.cs
                     }
                 } catch(Exception e)
+=======
+
+                } catch(Exception)
+>>>>>>> develop:MedbayTech.PharmacyIntegration/Startup.cs
                 {
                     Console.WriteLine(e);
                     Console.WriteLine("Failed to execute migration");
@@ -93,13 +111,10 @@ namespace MedbayTech.Pharmacies
                 }
             }
 
-            app.UseCors(x => x
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .SetIsOriginAllowed(origin => true)); 
-
 
             app.UseRouting();
+            app.UseCors("AllowAll");
+
 
             app.UseAuthorization();
 
@@ -137,6 +152,10 @@ namespace MedbayTech.Pharmacies
             services.AddTransient<IUrgentMedicationProcurementRepository, UrgentMedicationProcurementSqlRepository>();
             services.AddTransient<ITenderRepository, TenderSqlRepositroy>();
             services.AddTransient<ITenderMedicationRepositroy, TenderMedicationSqlRepositroy>();
+<<<<<<< HEAD:MedbayTech.Pharmacies/Startup.cs
+=======
+            services.AddTransient<ITenderMedicationOfferRepository, TenderMedicationOfferSqlRepositroy>();
+>>>>>>> develop:MedbayTech.PharmacyIntegration/Startup.cs
             services.AddTransient<ITenderOfferRepository, TenderOfferSqlRepositroy>();
         }
 

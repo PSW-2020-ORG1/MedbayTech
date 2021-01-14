@@ -4,9 +4,11 @@ using MedbayTech.Pharmacies.Infrastructure.Service.Pharmacies;
 using Moq;
 
 using Shouldly;
+
 using System;
 using System.Collections.Generic;
 using System.Text;
+
 using Xunit;
 
 namespace MedbayTech.UnitTesting.Pharmacies

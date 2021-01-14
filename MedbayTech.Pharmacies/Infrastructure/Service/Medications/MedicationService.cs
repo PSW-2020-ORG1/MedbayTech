@@ -6,7 +6,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MedbayTech.Common.Domain.Entities.Generalities;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Medications;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Medications;
 using MedbayTech.Pharmacies.Domain.Entities.Medications;
