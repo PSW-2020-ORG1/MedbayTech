@@ -27,6 +27,8 @@ using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders;
 using MedbayTech.Pharmacies.Infrastructure.Service.Tenders;
 using MedbayTech.Pharmacies.Infrastructure.Persistance.Pharmacies;
 using MedbayTech.Pharmacies.Infrastructure.Service.Pharmacies;
+using MedbayTech.Pharmacies.Infrastructure.Service.Mailing;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Mailing;
 
 namespace MedbayTech.Pharmacies
 {
@@ -65,6 +67,9 @@ namespace MedbayTech.Pharmacies
             services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
 
             services.AddDbContext<PharmacyDbContext>();
+
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.AddTransient<IMailService, MailService>();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

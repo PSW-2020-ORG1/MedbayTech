@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Mailing;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Medications;
 using MedbayTech.Pharmacies.Application.DTO;
 using MedbayTech.Pharmacies.Domain.Entities.Medications;
@@ -13,6 +15,7 @@ namespace MedbayTech.Pharmacies.Controllers
     public class MedicationController : Controller
     {
         private readonly IMedicationService _medicationService;
+
         public MedicationController(IMedicationService medicationService)
         {
             _medicationService = medicationService;
@@ -28,10 +31,13 @@ namespace MedbayTech.Pharmacies.Controllers
             }
             return Ok(medication);
         }
-        
+
 
         [HttpGet]
-        public IActionResult Get() => Ok(_medicationService.GetAll());
+        public IActionResult Get()
+        {
+            return Ok(_medicationService.GetAll());
+        } 
 
 
         [HttpGet("check/{search?}")]

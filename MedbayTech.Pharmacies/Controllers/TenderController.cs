@@ -1,4 +1,5 @@
-﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders;
+﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Mailing;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders;
 using MedbayTech.Pharmacies.Application.DTO;
 using MedbayTech.Pharmacies.Domain.Entities.Medications;
 using MedbayTech.Pharmacies.Domain.Entities.Tenders;
@@ -18,10 +19,12 @@ namespace MedbayTech.Pharmacies.Controllers
     {
 
         private readonly ITenderService _tenderService;
+        private readonly IMailService _mailService;
 
-        public TenderController(ITenderService tenderService)
+        public TenderController(ITenderService tenderService, IMailService mailService)
         {
             _tenderService = tenderService;
+            _mailService = mailService;
         }
 
         [HttpGet]
@@ -39,6 +42,9 @@ namespace MedbayTech.Pharmacies.Controllers
         [HttpPost]
         public IActionResult CreateTender(TenderDTO tender)
         {
+            MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = "jankovicpharmacy@gmail.com", Subject = "Message from Medbay hospital", Body = "New tender opened in MedbayTech!" };
+            SendMail(mailRequest);
+
             Tender newTender = _tenderService.CreateTender(tender);
             int medicationCount = 0;
             foreach (TenderMedicationDTO medicationDTO in tender.tenderMedications)
@@ -91,6 +97,19 @@ namespace MedbayTech.Pharmacies.Controllers
                 return Ok();
             else
                 return BadRequest();
+        }
+
+        public async void SendMail(MailRequestDTO request)
+        {
+            try
+            {
+                await _mailService.SendMailAsync(request);
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

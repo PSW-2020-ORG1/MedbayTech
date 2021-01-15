@@ -118,7 +118,7 @@ namespace MedbayTech.Users.Controllers
             string port = Environment.GetEnvironmentVariable("PORT") ?? "8081";
             return $"http://{domain}:{port}";
         }
-
+        
         public async void SendMail(MailRequestDTO request)
         {
             try
