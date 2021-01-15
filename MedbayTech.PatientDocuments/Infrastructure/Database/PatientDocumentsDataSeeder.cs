@@ -22,9 +22,11 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
             SeedDiagnosis(context);
             SeedFamilyIllnessHistory(context);*/
             //SeedTherapies(context);
-            //SeedMedicalRecords(context);
-            //SeedReports(context);
-            //SeedTreatments(context);
+            SeedSymptoms(context);
+            SeedDiagnosis(context);
+            SeedMedicalRecords(context);
+            SeedReports(context);
+            SeedTreatments(context);
             SeedPrescriptions(context);
             SeedDiagnosis(context);
             SeedSymptoms(context);
