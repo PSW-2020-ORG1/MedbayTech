@@ -20,7 +20,6 @@ namespace MedbayTech.Pharmacies.Infrastructure.Database
         public DbSet<Tender> Tenders { get; set; }
         public DbSet<TenderOffer> TenderOffers { get; set; }
         public DbSet<TenderMedication> TenderMedications { get; set; }
-        public DbSet<TenderMedicationOffer> TenderMedicationOffers { get; set; }
 
         public PharmacyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
         public PharmacyDbContext() { }

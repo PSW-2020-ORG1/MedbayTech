@@ -32,7 +32,6 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Tenders
 
         public TenderMedication(TenderMedicationDTO tenderMedicationDTO, int tenderId)
         {
-            Id = 0;
             MedicationId = tenderMedicationDTO.MedicationId;
             TenderID = tenderId;
             TenderMedicationQuantity = tenderMedicationDTO.MedicationQuantity;

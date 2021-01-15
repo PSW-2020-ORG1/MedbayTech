@@ -18,29 +18,19 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Tenders
 
         public string Pharmacy { get; set; }
         public string PharmacyEMail { get; set; }
-
-        public virtual List<TenderMedicationOffer> TenderMedicationOffers { get; set; }
+        
+        public float TenderOfferPrice { get; set; }
 
         public TenderOffer()
         {
         }
 
-        public TenderOffer(int id, int tnederId, string pharmacy, string pharmacyEMail, List<TenderMedicationOffer> tenderMedicationOffers)
+        public TenderOffer(int tenderId, string pharmacy, string pharmacyEMail, float tenderOfferPrice)
         {
-            Id = id;
-            TenderId = tnederId;
+            TenderId = tenderId;
             Pharmacy = pharmacy;
             PharmacyEMail = pharmacyEMail;
-            TenderMedicationOffers = tenderMedicationOffers;
-        }
-
-        public TenderOffer(int id, int tnederId, string pharmacy, string pharmacyEMail)
-        {
-            Id = id;
-            TenderId = tnederId;
-            Pharmacy = pharmacy;
-            PharmacyEMail = pharmacyEMail;
-            TenderMedicationOffers = new List<TenderMedicationOffer>();
+            TenderOfferPrice = tenderOfferPrice;
         }
 
         public int GetId()
