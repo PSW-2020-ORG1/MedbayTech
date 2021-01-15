@@ -20,6 +20,7 @@ import { SchedulingComponent } from './appointment/scheduling/scheduling.compone
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
 import { LoginComponent } from './login/login/login.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 
@@ -112,6 +113,10 @@ const routes: Routes = [
   {
     path : 'home',
     component : HomePageComponent
+  },
+  {
+    path: '',
+    component: LandingPageComponent
   }
   
 ];
