@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Appointment } from 'src/app/model/appointment';
+import { AppointmentReport } from 'src/app/model/appointmentReport';
 import { CancelAppointment } from 'src/app/model/cancelAppointment';
 import { GetAppointment } from 'src/app/model/getAppointment';
 import { ObservePrescriptionComponent, ObservePrescriptionComponentDialog } from 'src/app/prescription/observe-prescription/observe-prescription.component';
 import { AppointmentService } from 'src/app/service/appointment/appointment.service';
+import { ReportService } from 'src/app/service/report/report.service';
 
 @Component({
   selector: 'app-observe-appointment',
@@ -15,15 +18,21 @@ export class ObserveAppointmentComponent implements OnInit {
   public surveyableAppointments : GetAppointment[] = new Array();
   public allOtherAppointments : GetAppointment[] = new Array();
   public allCancelableAppointments : GetAppointment[] = new Array();
+  public report : AppointmentReport;
 
-  constructor(private appointmentService : AppointmentService, public dialog:ObservePrescriptionComponent) { }
+  constructor(private appointmentService : AppointmentService, public dialog:ObservePrescriptionComponent,private reportService : ReportService) { }
 
   ngOnInit(): void {
     this.loadSurveyableAppointments();
     this.loadAllOtherAppointments();
     this.loadCancelableAppointments();
   }
-
+  test(startTime,doctorId) {
+    this.reportService.getAppointmentReport(new Appointment(startTime,doctorId)).subscribe(data =>
+      {
+        this.report = data;
+      });
+  }
   loadSurveyableAppointments(){
     this.appointmentService.getSurveyableAppointments().subscribe(data =>
       {

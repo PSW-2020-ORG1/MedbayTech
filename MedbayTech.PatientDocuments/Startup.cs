@@ -118,7 +118,7 @@ namespace MedbayTech.PatientDocuments
                 }
                 
                     PatientDocumentsDataSeeder seeder = new PatientDocumentsDataSeeder();
-                    if (!seeder.IsAlreadyFull(context))
+                    //if (!seeder.IsAlreadyFull(context))
                         seeder.SeedAllEntities(context);
                 
                 app.UseRouting();

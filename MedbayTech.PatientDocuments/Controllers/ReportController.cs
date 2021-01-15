@@ -56,5 +56,13 @@ namespace MedbayTech.PatientDocuments.Controllers
             List<ReportDTO> reportDTOs = ReportMapper.ListExaminationSurgeryToReport(reports);
             return Ok(reportDTOs);
         }
+        [HttpPost("appointmentReport")]
+        public IActionResult GetAppointmentReport(AppointmentDTO dto) 
+        {
+            String patientId = User.Identity.Name;
+            Report report = _reportSearchService.GetReportForAppointment(dto.StartTime,dto.DoctorId, patientId);
+            AppointmentReportDTO reportDTO = ReportMapper.ReportToAppointmentReportDTO(report);
+            return Ok(reportDTO);
+        }
     }
 }

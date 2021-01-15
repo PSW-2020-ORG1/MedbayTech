@@ -2,15 +2,23 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { Appointment } from 'src/app/model/appointment';
+import { AppointmentReport } from 'src/app/model/appointmentReport';
+import { ReportService } from 'src/app/service/report/report.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ObservePrescriptionComponent {
 
-  constructor(public dialog: MatDialog) {}
+  public report : AppointmentReport;
+  constructor(public dialog: MatDialog,private reportService : ReportService) {}
 
-  openDialog() {
+  openDialog(startTime,doctorId) {
+    this.reportService.getAppointmentReport(new Appointment(startTime,doctorId)).subscribe(data =>
+      {
+        this.report = data;
+      });
     this.dialog.open(ObservePrescriptionComponentDialog);
   }
 
@@ -22,6 +30,7 @@ export class ObservePrescriptionComponent {
 })
 export class ObservePrescriptionComponentDialog {
 
+  
   generatePdf(data) {
     html2canvas(data, { allowTaint: true }).then(canvas => {
      let HTML_Width = canvas.width;

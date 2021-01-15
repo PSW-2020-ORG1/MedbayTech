@@ -22,10 +22,12 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
             SeedDiagnosis(context);
             SeedFamilyIllnessHistory(context);*/
             //SeedTherapies(context);
-            SeedMedicalRecords(context);
-            SeedReports(context);
-            SeedTreatments(context);
+            //SeedMedicalRecords(context);
+            //SeedReports(context);
+            //SeedTreatments(context);
             SeedPrescriptions(context);
+            SeedDiagnosis(context);
+            SeedSymptoms(context);
             context.SaveChanges();
         }
 
@@ -102,9 +104,9 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
 
         private void SeedSymptoms(PatientDocumentsDbContext context)
         {
-            context.Add(new Symptoms { Name = "Kasalj" });
-            context.Add(new Symptoms { Name = "Temperatura" });
-            context.SaveChanges();
+            context.Add(new Symptoms { Name = "Kasalj", DiagnosisId = 1 });
+            context.Add(new Symptoms { Name = "Temperatura", DiagnosisId = 2 });
+             context.SaveChanges();
         }
 
         private void SeedVaccines(PatientDocumentsDbContext context)
@@ -122,8 +124,8 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
         }
         private void SeedDiagnosis(PatientDocumentsDbContext context)
         {
-            context.Add(new Diagnosis { Name = "Dijagnoza1", Symptoms = new List<Symptoms>() });
-            context.Add(new Diagnosis { Name = "Dijagnoza2", Symptoms = new List<Symptoms>() });
+            context.Add(new Diagnosis { Name = "Dijagnoza1", Symptoms = new List<Symptoms>(), ReportId = 1});
+            context.Add(new Diagnosis { Name = "Dijagnoza2", Symptoms = new List<Symptoms>(), ReportId = 2});
             context.SaveChanges();
         }
     
@@ -199,6 +201,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
         }
         private void SeedReports(PatientDocumentsDbContext context)
             {
+            /*
                 context.Add(new Report
                 {
                     StartTime = new DateTime(2020, 12, 5),
@@ -253,8 +256,45 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                     DoctorId = "2406978890047",
                     MedicalRecordId = 1
                 });
+                context.Add(new Report
+                {
+                    StartTime = new DateTime(2020, 12, 5, 14, 00, 0),
+                    Type = TypeOfAppointment.Surgery,
+                    Treatments = new List<Treatment>(),
+                    Diagnoses = new List<Diagnosis>(),
+                    DoctorId = "2406978890047",
+                    MedicalRecordId = 1
+                });
+                context.Add(new Report
+                {
+                    StartTime = new DateTime(2020, 12, 4, 14, 00, 0),
+                    Type = TypeOfAppointment.Surgery,
+                    Treatments = new List<Treatment>(),
+                    Diagnoses = new List<Diagnosis>(),
+                    DoctorId = "2406978890047",
+                    MedicalRecordId = 1
+                });
+            */
+                context.Add(new Report
+                {
+                    StartTime = new DateTime(2020, 12, 3, 14, 00, 0),
+                    Type = TypeOfAppointment.Surgery,
+                    Treatments = new List<Treatment>(),
+                    Diagnoses = new List<Diagnosis>(),
+                    DoctorId = "2407978890045",
+                    MedicalRecordId = 1
+                });
+                context.Add(new Report
+                {
+                    StartTime = new DateTime(2020, 12, 1, 14, 00, 0),
+                    Type = TypeOfAppointment.Surgery,
+                    Treatments = new List<Treatment>(),
+                    Diagnoses = new List<Diagnosis>(),
+                    DoctorId = "2407978890045",
+                    MedicalRecordId = 1
+                });
 
-                context.SaveChanges();
+            context.SaveChanges();
             }
             private void SeedTreatments(PatientDocumentsDbContext context)
             {

@@ -176,5 +176,10 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
             }
             return reports;
         }
+
+        public Report GetReportForAppointment(DateTime startTime, string doctorId, string patientId) 
+        {
+            return _repository.GetReportForAppointment(startTime,doctorId,patientId);
+        }
     }
 }
