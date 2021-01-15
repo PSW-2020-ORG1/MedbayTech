@@ -51,6 +51,7 @@ import { NavigationBarUserComponent } from './navigation-bar/navigation-bar-user
 import { HomePageComponent } from './home-page/home-page.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
     NavigationBarAdminComponent,
     NavigationBarPatientComponent,
     NavigationBarUserComponent,
-    HomePageComponent
+    HomePageComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
