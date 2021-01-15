@@ -14,7 +14,5 @@ namespace MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders
         List<TenderMedication> GetMedications(int tenderId);
         Tender CreateTender(TenderDTO tenderDTO);
         TenderMedication CreateMedicationForTender(int tenderId, TenderMedicationDTO medicationDTOs);
-        int GetNextId();
-        int GetNextMedicationId();
     }
 }

@@ -1,9 +1,17 @@
 <template>
     <div id="tender-main">
-        <v-card id="tender-table" :loading="loadingMessages ? 'accent' : 'null'">
+        <v-card id="tender-table">
             <v-card-title id="tender-title" class="primary secondary--text">
                 Tender: {{tender.id}}
-                <v-btn icon color=accent elevation="0" @click="getNewMessage"><i class="fa fa-refresh"></i></v-btn>
+                <router-link to="/dean/tenders" v-slot="{href, navigate}">
+						<v-btn :href="href" class="deep-orange white--text" dark @click="navigate">
+                    <v-icon left>
+                        mdi-arrow-left-bold
+                    </v-icon>
+                       Back
+                   </v-btn>
+				</router-link>
+                
             </v-card-title>
             <v-card-text>
                  <v-data-table :items="medications"
@@ -25,15 +33,15 @@
                             <td>{{row.item.pharmacy}}</td>
                             <td>{{row.item.pharmacyEMail}}</td>
                             <td>
-                                <div v-for="offer in totalOffers" :key="offer.id">
-                                    <div v-if="row.item.id == offer.id">
-                                        {{offer.value}}$
-                                    </div>
-                                </div>
-
-                                
+                              <v-chip
+                                    :color="getColor(row.item.tenderOfferPrice)"
+                                    dark
+                                    >
+                                        {{row.item.tenderOfferPrice}}$
+                                </v-chip>
                             </td>
-                            <td ><v-btn class="white green--text" elevation="0" v-on:click="changeMessageStatus(row.item)">Accept</v-btn></td>
+                            <td ><v-btn v-if="row.item.id === tender.winnerTenderOfferId" class="white green--text"  elevation="0" >Winner</v-btn>
+                            <v-btn v-else class="white green--text" :disabled="tender.tenderStatus !== 1" elevation="0" v-on:click="declateWinner(row.item.id)">Accept</v-btn></td>
                         </tr>
                     </template>
                 </v-data-table>
@@ -50,12 +58,13 @@ export default {
 				{ text: "Pharmacy"}, 
 				{ text: "Email"},
 				{ text: "Offer" },
-				{ text: "Accept" },
+				{ text: "Accept", align: 'center' },
             ],
             tender: "",
             medications: [],
             tenderOffers: [],
-            totalOffers: [],
+            minPrice: "",
+            maxPrice: "",
         }
     },
 
@@ -69,11 +78,16 @@ export default {
                     console.log(response.data);
                 })
         },
+
         getColor: function(price){
-            if(price < 150)
+            if(price === this.minPrice)
                 return 'green';
-            return 'red';
+            else if(price === this.maxPrice)
+                return 'red';
+            else
+                return 'orange';
         },
+
         getTenderMedication: function () {
             this.axios.get("http://localhost:50202/api/Tender/med/" + this.$route.params.id)
                 .then(response => {
@@ -83,33 +97,67 @@ export default {
                     console.log(response.data);
                 })
         },
+
         getTenderOffers: function () {
             this.axios.get("http://localhost:50202/api/tenderOffer/tender/" + this.$route.params.id)
                 .then(response => {
                     this.tenderOffers = response.data;
-                    this.getTotalPrice();
+                    this.minMaxPrice();
                 })
                 .catch(response => {
                     console.log(response.data);
                 })
         },
-        getTotalPrice: function () {
-            //this.tenderOffers.forEach(function (element) {
-            for (let index = 0; index < this.tenderOffers.length; ++index) {
-                this.axios.get("http://localhost:50202/api/TenderOffer/total/" + this.tenderOffers[index].id)
-                    .then(response => {
-                        console.log(this.tenderOffers[index].id);
-                        this.totalOffers.push({ id: this.tenderOffers[index].id, value: response.data })
-                    })
-                    .catch(response => {
-                        console.log(response.data);
 
-                    })
+        minMaxPrice: function() {
+            this.minPrice = this.tenderOffers[0].tenderOfferPrice;
+            this.maxPrice = this.tenderOffers[0].tenderOfferPrice;
+            for (let i = 0; i < this.tenderOffers.length; ++i) {
+                if(this.tenderOffers[i].tenderOfferPrice < this.minPrice){
+                    this.minPrice = this.tenderOffers[i].tenderOfferPrice;
+                }
+                if(this.tenderOffers[i].tenderOfferPrice > this.maxPrice){
+                    this.maxPrice = this.tenderOffers[i].tenderOfferPrice;
+                }
             }
-            console.log(this.totalOffers);
-            console.log(this.tenderOffers);
-        }
+        },
 
+        declateWinner: function(tenderOfferId){
+            this.tender.winnerTenderOfferId = tenderOfferId;
+            this.tender.tenderStatus = 2;
+            this.axios.post("http://localhost:50202/api/Tender/winner", this.tender)
+                .then(response => {
+                    console.log(response.data);
+                    for (let i = 0; i < this.tender.tenderMedications.length; ++i){
+                        this.updateMedication(this.tender.tenderMedications[i].medicationId, this.tender.tenderMedications[i].tenderMedicationQuantity)
+                    }
+                    this.getTender();
+                    this.getTenderOffers();
+                })
+                .catch(response => {
+                    console.log(response.data);
+                })
+        },
+
+        updateMedication: function (id, qu) {
+            let med = "";
+            this.axios.get("http://localhost:50202/api/Medication/" + id)
+                .then(response => {
+                    med = response.data;
+                    med.quantity = med.quantity + qu;
+                    this.axios.post("http://localhost:50202/api/Medication", med)
+                        .then(response => {
+                            console.log(response.data);
+                        })
+                        .catch(response => {
+                            console.log(response.data);
+                        })
+                })
+                .catch(response => {
+                    console.log(response.data);
+                })
+        },
+    
 
     },
     mounted() {

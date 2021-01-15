@@ -9,11 +9,17 @@ namespace MedbayTech.Pharmacies.Application.DTO
     {
         public DateTime EndDate { get; set; }
         public List<TenderMedicationDTO> tenderMedications { get; set; }
+        public string TenderDescription { get; set; }
 
-        public TenderDTO(DateTime endDate, List<TenderMedicationDTO> tenderMedications)
+        public TenderDTO(DateTime endDate, List<TenderMedicationDTO> tenderMedications, string tenderDescription)
         {
             EndDate = endDate;
             this.tenderMedications = tenderMedications;
+            TenderDescription = tenderDescription;
+        }
+
+        public TenderDTO()
+        {
         }
     }
 }
