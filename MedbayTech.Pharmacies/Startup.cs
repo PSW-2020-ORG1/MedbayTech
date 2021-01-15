@@ -87,7 +87,6 @@ namespace MedbayTech.Pharmacies
                         databaseCreator.CreateTables();
                     else
                         context.Database.Migrate();
-
                 } catch(Exception)
                 {
                     Console.WriteLine("Failed to execute migration");
@@ -141,12 +140,9 @@ namespace MedbayTech.Pharmacies
             services.AddTransient<IMedicationUsageRepository, MedicationUsageSqlRepository>();
             services.AddTransient<IMedicationUsageReportRepository, MedicationUsageReportSqlRepository>();
             services.AddTransient<IMedicationRepository, MedicationSqlRepository>(); 
-            
-            services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
             services.AddTransient<IUrgentMedicationProcurementRepository, UrgentMedicationProcurementSqlRepository>();
             services.AddTransient<ITenderRepository, TenderSqlRepositroy>();
             services.AddTransient<ITenderMedicationRepositroy, TenderMedicationSqlRepositroy>();
-            services.AddTransient<ITenderMedicationOfferRepository, TenderMedicationOfferSqlRepositroy>();
             services.AddTransient<ITenderOfferRepository, TenderOfferSqlRepositroy>();
         }
 

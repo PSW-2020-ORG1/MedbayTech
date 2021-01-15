@@ -19,8 +19,10 @@
                                     <td><router-link :to="{name:'Tender', params: {id: row.item.id}}">Tender:{{row.item.id}}</router-link></td>
                                     <td>{{row.item.startDate.substring(0, 10)}}</td>
                                     <td>{{row.item.endDate.substring(0, 10)}}</td>
-                                    <td v-if="row.item.status === True" style="color:forestgreen">Active</td>
-                                    <td v-else style="color:red">Finished</td>
+                                    <td>{{row.item.tenderDescription}}</td>
+                                    <td v-if="row.item.tenderStatus == 0" style="color:forestgreen">Active</td>
+                                    <td v-else-if="row.item.tenderStatus == 1" style="color:orange">Pending</td>
+                                    <td v-else style="color:black">Finished</td>
                                 </tr>
                             </template>
                         </v-data-table>
@@ -53,11 +55,9 @@
                                     label="Requared Medication"
                                     :rules="reqMedicationRule">
                             <template slot="selection" slot-scope="data" >
-                                <!-- HTML that describe how select should render selected items -->
                                 {{ data.item.name }} - {{ data.item.dosage }}
                             </template>
                             <template slot="item" slot-scope="data">
-                                <!-- HTML that describe how select should render items when the select is open -->
                                 {{ data.item.name }} - {{ data.item.dosage }}
                             </template>
                         </v-combobox>
@@ -86,7 +86,10 @@
                             </template>
                         </v-data-table>
                     </div>
-                </v-card-text>
+                <v-text-field v-model="tenderDescription"
+                                      label="Description"
+                                      hide-details />
+                
                     <v-dialog
                         ref="dialog"
                         v-model="modal"
@@ -128,6 +131,7 @@
                                 </v-btn>
                         </v-date-picker>
                     </v-dialog>
+                </v-card-text>
                 <v-card-actions>
                     <v-btn id="tenders-btn" :disabled="!(requiredMedications.length != 0) || !validToCreate" elevation="2" @click="createTender" class="deep-orange white--text">
                             Create new Tender
@@ -146,8 +150,9 @@ export default {
              tendersHeaders: [
 				{ text: "Id", value: "id"}, 
 				{ text: "Start date"},
-				{ text: "End date" },
-				{ text: "Status", value: "status" },
+                { text: "End date" },
+                { text: "Description" },
+				{ text: "Status", value: "tenderStatus" },
             ],
             medicationHeaders: [
 				{ text: "Medication name"}, 
@@ -166,6 +171,7 @@ export default {
             ],
             allMedication: [],
             requiredMedications: [],
+            tenderDescription: "",
             medication: "",
             medicationQuantity: "",
             tenders: [],
@@ -190,16 +196,13 @@ export default {
                     console.log(response);
                 });
         },
+
         getAllMedications: function () {
             var medication = []
-
             medication.forEach(element => this.allMedication.push(element.name + " " + element.dosage));
-
             this.axios.get("http://localhost:50202/api/Medication")
                 .then(response => {
                     var medication = response.data;
-                    //medication.forEach(element => this.allMedication.push(element.id + " " + element.med + " " + element.dosage));
-                    
                     for (let index = 0; index < medication.length; ++index) {
                         let d = { id: medication[index].id, name: medication[index].med, dosage: medication[index].dosage };
                         this.allMedication.push(d);
@@ -210,33 +213,28 @@ export default {
                     console.log(response.data);
                 })
         },
+
         add: function () {
-            /*let id = this.med.split(" ")[0];
-            let name = this.med.split(" ")[1];
-            let dosage = this.med.split(" ")[2];*/
             console.log(this.med);
             this.requiredMedications.push({ medicationId: this.med.id, medicationName: this.med.name, medicationDosage: this.med.dosage, medicationQuantity: this.medicationQuantity });
             this.med = "";
             this.medicationQuantity = "";
-              
-
         },
+
         deleteMedication: function (id) {
             var list = []
             console.log(this.requiredMedications);
             for (let index = 0; index < this.requiredMedications.length; ++index) {
                 if (this.requiredMedications[index].id != id) {
-                    
                     list.push({ medicationId: this.requiredMedications[index].id, medicationName: this.requiredMedications[index].name, medicationDosage: this.requiredMedications[index].dosage, medicationQuantity: this.requiredMedications[index].medicationQuantity });
-                }
-               
+                }          
             }
             console.log(list);
             this.requiredMedications = list;
         },
-        createTender: function () {
-            let tender = { endDate: this.date, tenderMedications: this.requiredMedications }
 
+        createTender: function () {
+            let tender = { endDate: this.date, tenderMedications: this.requiredMedications, tenderDescription: this.tenderDescription }
             this.axios.post("http://localhost:50202/api/Tender", tender)
                 .then(response => {
                     this.show = !this.show;

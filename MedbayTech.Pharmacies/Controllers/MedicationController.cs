@@ -43,7 +43,7 @@ namespace MedbayTech.Pharmacies.Controllers
             return Ok(response);
         }
 
-        [HttpPost]
+        [HttpPost("newMed")]
         public IActionResult AddNewMedicion(NewMedicationDTO newMedication)
         {
             Medication medication = new Medication(newMedication.MedicationName, newMedication.MedicationDosage);

@@ -128,7 +128,7 @@ export default {
         },
         addNewMedication: function () {
             let newMed = { medicationName: this.medName, medicationDosage: this.medDosage };
-            this.axios.post("http://localhost:50202/api/Medication/", newMed)
+            this.axios.post("http://localhost:50202/api/Medication/newMed", newMed)
                 .then(response => {
                     console.log(response.data);
                     this.show = true;

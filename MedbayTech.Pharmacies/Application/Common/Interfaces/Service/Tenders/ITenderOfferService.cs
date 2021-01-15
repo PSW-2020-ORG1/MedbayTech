@@ -12,6 +12,5 @@ namespace MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders
         TenderOffer Get(int id);
         List<TenderOffer> GetAll();
         List<TenderOffer> GelAllForTender(int tenderId);
-        float GetTotalPrice(int tenderOfferId);
     }
 }
