@@ -1,5 +1,6 @@
 ﻿using Castle.Core.Internal;
 using MedbayTech.Common.Domain.ValueObjects;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Gateways;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Reports;
 using MedbayTech.Pharmacies.Domain.Entities.Medications;
 using MedbayTech.Pharmacies.Domain.Entities.Reports;
@@ -21,7 +22,7 @@ namespace MedbayTech.UnitTesting.Pharmacies
             MedicationUsageReportService medicationUsageReportService =
                 new MedicationUsageReportService(CreateReportStubRepository(), CreateUsageStubRepository());
 
-            List<MedicationUsageReport> reports = (List<MedicationUsageReport>)medicationUsageReportService.GetForSpecificPeriod(period);
+            List<MedicationUsageReport> reports = medicationUsageReportService.GetForSpecificPeriod(period);
 
             reports.IsNullOrEmpty().ShouldBe(isEmpty);
         }
@@ -60,9 +61,9 @@ namespace MedbayTech.UnitTesting.Pharmacies
             return retVal;
         }
 
-        private static IMedicationUsageRepository CreateUsageStubRepository()
+        private static IMedicationUsageGateway CreateUsageStubRepository()
         {
-            var stubRepository = new Mock<IMedicationUsageRepository>();
+            var stubRepository = new Mock<IMedicationUsageGateway>();
             List<MedicationUsage> usages = new List<MedicationUsage>();
             usages.Add(new MedicationUsage(1, 1, new DateTime(2020, 8, 1), new Medication("Brufen", "Galenika", new MedicationCategory())));
             usages.Add(new MedicationUsage(2, 4, new DateTime(2020, 5, 1), new Medication("Aspirin", "Bayern", new MedicationCategory())));
@@ -73,9 +74,9 @@ namespace MedbayTech.UnitTesting.Pharmacies
             return stubRepository.Object;
         }
 
-        private static IMedicationUsageReportRepository CreateReportStubRepository()
+        private static IMedicationUsageReportGateway CreateReportStubRepository()
         {
-            var stubRepository = new Mock<IMedicationUsageReportRepository>();
+            var stubRepository = new Mock<IMedicationUsageReportGateway>();
             var medicationUsageReports = new List<MedicationUsageReport>();
 
             var medicationUsageReport1 = new MedicationUsageReport(new DateTime(2020, 8, 10), new DateTime(2020, 9, 10));
