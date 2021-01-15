@@ -21,7 +21,7 @@ namespace MedbayTech.Pharmacies.Controllers
         [HttpGet("{id?}")]
         public IActionResult Get(int id)
         {
-            Medication medication = _medicationService.GetMedication(id);
+            Medication medication = _medicationService.GetBy(id);
             if (medication == null)
             {
                 return BadRequest();
@@ -59,7 +59,8 @@ namespace MedbayTech.Pharmacies.Controllers
             return Ok(_medicationService.GetAll());
         }
 
-        [HttpGet("{textBoxSearch?}/{medicationSearch?}")]
+        /* NOTE(Jovan): Moved to MedbayTech.Medication
+         * [HttpGet("{textBoxSearch?}/{medicationSearch?}")]
         public IActionResult Get(string textBoxSearch, MedicationSearch medicationSearch)
         {
             if (medicationSearch == MedicationSearch.ByNameOrId)
@@ -71,7 +72,7 @@ namespace MedbayTech.Pharmacies.Controllers
                 return Ok(_medicationService.GetAllMedicationByRoomId(textBoxSearch));
             }
             else return Ok();
-        }
+        }*/
 
         [HttpPost]
         public IActionResult Post(Medication medication)

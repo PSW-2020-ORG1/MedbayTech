@@ -8,8 +8,6 @@ namespace MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Reports
     {
         MedicationUsageReport GenerateMedicationUsageReport(Period period);
         MedicationUsageReport Add(MedicationUsageReport report);
-        bool Remove(MedicationUsageReport report);
-        MedicationUsageReport Update(MedicationUsageReport report);
         MedicationUsageReport Get(string id);
         List<MedicationUsageReport> GetAll();
     }

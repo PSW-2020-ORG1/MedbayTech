@@ -15,7 +15,7 @@ namespace MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Medication
         Medication CreateMedication(Medication medication);
         Medication UpdateMedication(Medication medication);
         bool DeleteMedication(Medication medication);
-        Medication GetMedication(int id);
+        Medication GetBy(int id);
         List<Medication> GetAllOnValidation();
         List<Medication> GetAll();
         List<Medication> GetAllRejected();

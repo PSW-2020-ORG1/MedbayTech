@@ -101,13 +101,12 @@
                     .then(response => {
                         console.log(response.data);
                         this.medicationUsages = response.data;
+                        this.loadingMedicationUsages = false;
                     })
                     .catch(response => {
                         console.log(response.data);
-                    })
-                    .finally(function() {
                         this.loadingMedicationUsages = false;
-                    })
+                    });
             },
 
             getAllMedications: function () {

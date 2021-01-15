@@ -18,7 +18,6 @@ namespace MedbayTech.Medications.Infrastructure.Database
             SeedMedicationIngredient(context);
             SeedMedication(context);
             SeedMedicationUsage(context);
-            SeedMedicationUsage(context);
             SeedDosageOfIngredient(context);
         }
 

@@ -31,6 +31,7 @@ namespace MedbayTech.Medication
       
         public void ConfigureServices(IServiceCollection services)
         {
+            Directory.CreateDirectory("GeneratedUsageReports");
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",

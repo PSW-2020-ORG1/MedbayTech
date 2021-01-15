@@ -1,4 +1,5 @@
-﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Medications;
+﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Gateways;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Medications;
 using MedbayTech.Pharmacies.Domain.Entities.Medications;
 using MedbayTech.Pharmacies.Domain.Enums;
 using MedbayTech.Pharmacies.Infrastructure.Service.Medications;
@@ -32,9 +33,11 @@ namespace MedbayTech.UnitTesting.Medications
             return retVal;
         }
 
-        public IMedicationRepository CreateRepositoryStub()
+        public IMedicationGateway CreateRepositoryStub()
         {
-            var stubRepository = new Mock<IMedicationRepository>();
+            //var stubRepository = new Mock<IMedicationRepository>();
+            // TODO(Jovan): Use gateway here?
+            var stubRepository = new Mock<IMedicationGateway>();
             var medications = GetMedications().ToList();
             stubRepository.Setup(m => m.GetAll()).Returns(medications);
             return stubRepository.Object;

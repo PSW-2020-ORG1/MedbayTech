@@ -7,7 +7,7 @@ namespace MedbayTech.Medications.Infrastructure.Database.Configurations
     {
         public void Configure(EntityTypeBuilder<Domain.Entities.Medications.Medication> builder)
         {
-            builder.ToTable("Medications");
+            builder.ToTable("Medication");
             builder.HasOne(m => m.MedicationCategory);
         }
     }

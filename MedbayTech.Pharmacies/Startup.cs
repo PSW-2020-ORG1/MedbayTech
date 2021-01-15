@@ -41,7 +41,6 @@ namespace MedbayTech.Pharmacies
 
         public void ConfigureServices(IServiceCollection services)
         {
-            Directory.CreateDirectory("GeneratedUsageReports");
             Directory.CreateDirectory("DrugSpecifications");
             Directory.CreateDirectory("GeneratedPrescription");
             services.AddCors(options =>
@@ -138,11 +137,7 @@ namespace MedbayTech.Pharmacies
         {
             services.AddTransient<IPharmacyRepository, PharmacyRepository>();
             services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationRepository>();
-            services.AddTransient<IMedicationUsageRepository, MedicationUsageSqlRepository>();
-            services.AddTransient<IMedicationUsageReportRepository, MedicationUsageReportSqlRepository>();
-            services.AddTransient<IMedicationRepository, MedicationSqlRepository>(); 
-            
-            services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
+
             services.AddTransient<IUrgentMedicationProcurementRepository, UrgentMedicationProcurementSqlRepository>();
             services.AddTransient<ITenderRepository, TenderSqlRepositroy>();
             services.AddTransient<ITenderMedicationRepositroy, TenderMedicationSqlRepositroy>();
@@ -162,7 +157,9 @@ namespace MedbayTech.Pharmacies
             services.AddScoped<IUrgentMedicationProcurementService, UrgentMedicationProcurementService>();
             services.AddScoped<ITenderService, TenderService>();
             services.AddScoped<ITenderOfferService, TenderOfferService>();
-
+            services.AddScoped<IMedicationGateway, MedicationGateway>();
+            services.AddScoped<IMedicationUsageGateway, MedicationUsageGateway>();
+            services.AddScoped<IMedicationUsageReportGateway, MedicationUsageReportGateway>();
 
         }
 
