@@ -1,15 +1,13 @@
-﻿using MedbayTech.Common.Domain.Entities;
+﻿using MedbayTech.Common.Domain.Common;
+using MedbayTech.Common.Domain.Entities;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedbayTech.Medications.Domain.Entities.Medications
 {
-    public class MedicationCategory : IIdentifiable<int>
+    public class MedicationCategory : ValueObject
     {
-
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         public string CategoryName { get; set; }
         public MedicationCategory() { }
         public MedicationCategory(string categoryName)
@@ -17,9 +15,9 @@ namespace MedbayTech.Medications.Domain.Entities.Medications
             CategoryName = categoryName;
         }
 
-        public int GetId()
+        protected override IEnumerable<object> GetEqualityComponents()
         {
-            return Id;
+            yield return CategoryName;
         }
     }
 }

@@ -4,17 +4,16 @@
  * Purpose: Definition of the Class HealthCorporation.MutualClasses.MedicationContent
  ***********************************************************************/
 
+using MedbayTech.Common.Domain.Common;
 using MedbayTech.Common.Domain.Entities;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedbayTech.Pharmacies.Domain.Entities.Medications
 {
-    public class MedicationIngredient : IIdentifiable<int>
+    public class MedicationIngredient : ValueObject
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         public string Name { get; set; }
 
         public MedicationIngredient() { }
@@ -23,10 +22,9 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Medications
             Name = name;
         }
 
-        public int GetId()
+        protected override IEnumerable<object> GetEqualityComponents()
         {
-            return Id;
+            yield return Name;
         }
-
     }
 }

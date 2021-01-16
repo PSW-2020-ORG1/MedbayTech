@@ -73,7 +73,7 @@ namespace MedbayTech.Pharmacies.Controllers
                         var json = message.Content.ReadAsStringAsync();
                         json.Wait();
                         medication = JsonConvert.DeserializeObject<Medication>(json.Result);
-                        tenderMedicationDTOs.Add(new TenderMedicationDTO(medication.Id, medication.Med, medication.Dosage, tenderMedication.TenderMedicationQuantity));
+                        tenderMedicationDTOs.Add(new TenderMedicationDTO(medication.Id, medication.Name, medication.Dosage, tenderMedication.TenderMedicationQuantity));
                     });
                 task.Wait();
 

@@ -59,7 +59,7 @@ namespace MedbayTech.Pharmacies
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
+            services.AddSpaStaticFiles(options => options.RootPath = "../MedbayTech.PharmacyUI/dist");
 
             services.AddDbContext<PharmacyDbContext>();
         }
@@ -116,7 +116,7 @@ namespace MedbayTech.Pharmacies
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "vueclient";
+                spa.Options.SourcePath = "../MedbayTech.PharmacyUI";
 
                 if (env.IsDevelopment())
                 {
@@ -149,7 +149,7 @@ namespace MedbayTech.Pharmacies
             services.AddScoped<IUrgentMedicationProcurementService, UrgentMedicationProcurementService>();
             services.AddScoped<ITenderService, TenderService>();
             services.AddScoped<ITenderOfferService, TenderOfferService>();
-
+            services.AddScoped<IMedicationUsageReportGateway, MedicationUsageReportGateway>();
         }
 
 
