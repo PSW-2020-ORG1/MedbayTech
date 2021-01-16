@@ -149,7 +149,7 @@ namespace MedbayTech.Pharmacies
             services.AddScoped<IUrgentMedicationProcurementService, UrgentMedicationProcurementService>();
             services.AddScoped<ITenderService, TenderService>();
             services.AddScoped<ITenderOfferService, TenderOfferService>();
-
+            services.AddScoped<IMedicationUsageReportGateway, MedicationUsageReportGateway>();
         }
 
 

@@ -8,7 +8,7 @@ namespace MedbayTech.Medications.Infrastructure.Database.Configurations
     {
         public void Configure(EntityTypeBuilder<DosageOfIngredient> builder)
         {
-            builder.ToTable("DosageOfIngredients");
+            builder.ToTable("dosageofingredients");
             builder.OwnsOne(doi => doi.MedicationIngredient);
         }
     }

@@ -1,4 +1,5 @@
 ﻿
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Reports;
 using MedbayTech.Pharmacies.Application.DTO;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,16 +18,21 @@ namespace MedbayTech.Pharmacies.Controllers
     public class HttpFileSharingController : Controller
     {
 
+        private IMedicationUsageReportService _medicationUsageReportService;
+
+        public HttpFileSharingController(IMedicationUsageReportService medicationUsageReportService)
+        {
+            _medicationUsageReportService = medicationUsageReportService;
+        }
+
         [HttpGet]
         public IActionResult Get()
-        {
-            // TODO(Jovan): Transfer calls to Medication ms
-            return Ok(Directory.GetFiles("GeneratedUsageReports"));
-        }
+            => Ok(_medicationUsageReportService.GetAll());
 
         [HttpGet("{file?}")]
         public IActionResult Get(string file)
         {
+            // TODO(Jovan): Confirm remove
             return Ok();
         }
 
