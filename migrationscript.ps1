@@ -1,4 +1,6 @@
 # NOTE(Jovan): How to use:
+# If not already, install ef tools by running this in powershell:
+#    dotnet tool install --global dotnet-ef
 # Create microservices.txt (view microservicesexample.txt)
 # Run this script and enjoy
 
@@ -11,12 +13,14 @@ while(($current_line = $stream_reader.ReadLine()) -ne $null)
     # NOTE(Jovan): For each location
     # Go in
     # Remove Migrations folder if it exists
-    # Add new migration0
+    # Add new migration0s
     # Update database
     # Exit folder
     
     Push-Location $current_line
-    rm -r -fo Migrations
+    if(Test-Path Migrations) {
+        rm -r -fo Migrations
+    }
     dotnet ef migrations add migration0
     dotnet ef database update
     Pop-Location
