@@ -121,5 +121,14 @@ namespace MedbayTech.Appointment.Infrastructure.Services
             return false;
         }
 
+        public List<AppointmentRealocation> GetAppointmentRealocationsByRoomId(int roomId)
+        {
+            return _appointmentRealocationRepository.GetAll().ToList().Where(a => a.RoomId == roomId && a.IsCanceled == false && a.Finished == false).ToList();
+        }
+
+        public AppointmentRealocation UpdateAppointement(AppointmentRealocation appointmentRealocation)
+        {
+            return _appointmentRealocationRepository.Update(appointmentRealocation);
+        }
     }
 }

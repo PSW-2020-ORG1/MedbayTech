@@ -145,6 +145,7 @@ namespace MedbayTech.GraphicEditor.View
                 Start = dateTime,
                 End = dateTime.AddMinutes(30),
                 Deleted = false,
+                IsCanceled = false,
                 Finished = false,
                 RoomId = roomId,
                 HospitalEquipmentId = hospitalEquipmentId

@@ -28,6 +28,7 @@ namespace MedbayTech.Rooms.Controllers
         [HttpGet("{textBoxSearch?}/{roomSearch?}")]
         public IActionResult Get(string textBoxSearch, RoomSearch roomSearch)
         {
+    
             if(textBoxSearch == null)
             {
                 return Ok();

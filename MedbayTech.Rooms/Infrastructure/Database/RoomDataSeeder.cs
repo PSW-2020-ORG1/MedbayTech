@@ -334,19 +334,19 @@ namespace MedbayTech.Rooms.Infrastructure.Database
 
         private void SeedDepartments(RoomDbContext context)
         {
-            context.Add(new Department { Name = "General", Floor = 0, HospitalId = 1 });
-            context.Add(new Department { Name = "Cardiology", Floor = 0, HospitalId = 1 });
-            context.Add(new Department { Name = "Oncology", Floor = 1, HospitalId = 1 });
-            context.Add(new Department { Name = "Radiology", Floor = 1, HospitalId = 1 });
-            context.Add(new Department { Name = "Neurology", Floor = 2, HospitalId = 1 });
-            context.Add(new Department { Name = "Intensive Care", Floor = 2, HospitalId = 1 });
-            context.Add(new Department { Name = "Emergency", Floor = 0, HospitalId = 2 });
-            context.Add(new Department { Name = "Dialysis", Floor = 0, HospitalId = 2 });
-            context.Add(new Department { Name = "Gastroenterology", Floor = 1, HospitalId = 2 });
-            context.Add(new Department { Name = "Hematology", Floor = 1, HospitalId = 2 });
-            context.Add(new Department { Name = "Rheumatology", Floor = 2, HospitalId = 2 });
-            context.Add(new Department { Name = "Infectous Diseases", Floor = 2, HospitalId = 2 });
-            context.Add(new Department { Name = "Infektivno", Floor = 1, HospitalId = 3 });
+            context.Add(new Department { Name = "General", Floor = 0, HospitalId = 2 });
+            context.Add(new Department { Name = "Cardiology", Floor = 0, HospitalId = 2 });
+            context.Add(new Department { Name = "Oncology", Floor = 1, HospitalId = 2 });
+            context.Add(new Department { Name = "Radiology", Floor = 1, HospitalId = 2 });
+            context.Add(new Department { Name = "Neurology", Floor = 2, HospitalId = 2 });
+            context.Add(new Department { Name = "Intensive Care", Floor = 2, HospitalId = 2 });
+            context.Add(new Department { Name = "Emergency", Floor = 0, HospitalId = 3 });
+            context.Add(new Department { Name = "Dialysis", Floor = 0, HospitalId = 3 });
+            context.Add(new Department { Name = "Gastroenterology", Floor = 1, HospitalId = 3 });
+            context.Add(new Department { Name = "Hematology", Floor = 1, HospitalId = 3 });
+            context.Add(new Department { Name = "Rheumatology", Floor = 2, HospitalId = 3 });
+            context.Add(new Department { Name = "Infectous Diseases", Floor = 2, HospitalId = 3 });
+            context.Add(new Department { Name = "Infektivno", Floor = 1, HospitalId = 1 });
             context.SaveChanges();
         }
 

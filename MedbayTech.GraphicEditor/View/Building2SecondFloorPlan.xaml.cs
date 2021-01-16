@@ -100,6 +100,12 @@ namespace MedbayTech.GraphicEditor.View.Building2
                     rectangle.StrokeThickness = 5;
                     SearchAppointment.Id = "0";
                 }
+                if (rectangle.Uid.Equals(ScheduleEquipmentRealocation.Id))
+                {
+                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#ffdead");
+                    rectangle.StrokeThickness = 5;
+                    ScheduleEquipmentRealocation.Id = "0";
+                }
             }
         }
 

@@ -12,7 +12,8 @@ namespace MedbayTech.GraphicEditor.ViewModel
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public bool Deleted { get; set; }
-        public bool Finished { get; set; }     
+        public bool Finished { get; set; }
+        public bool IsCanceled { get; set; }
         public int RoomId { get; set; }
         public virtual Room Room { get; set; }
         public int HospitalEquipmentId { get; set; }
