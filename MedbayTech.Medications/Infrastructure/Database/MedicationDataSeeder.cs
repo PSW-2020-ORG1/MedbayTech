@@ -15,9 +15,16 @@ namespace MedbayTech.Medications.Infrastructure.Database
         public void SeedAllEntities(MedicationDbContext context)
         {
             SeedMedicationCategory(context);
-            SeedMedicationIngredient(context);
             SeedMedication(context);
             SeedMedicationUsage(context);
+            SeedDosageOfIngredient(context);
+        }
+
+        private void SeedDosageOfIngredient(MedicationDbContext context)
+        {
+            context.Add(new DosageOfIngredient { Amount = 100.0, MedicationIngredient = new MedicationIngredient("Ibruprofen")});
+            context.Add(new DosageOfIngredient { Amount = 120.0, MedicationIngredient = new MedicationIngredient("Cyclopentanoperhydrophenanthrene") });
+            context.SaveChanges();
         }
 
         private void SeedMedicationUsage(MedicationDbContext context)
@@ -38,13 +45,6 @@ namespace MedbayTech.Medications.Infrastructure.Database
             context.Add(new MedicationCategory { CategoryName = "Stimulant" });
             context.Add(new MedicationCategory { CategoryName = "Tranquilizer" });
             context.Add(new MedicationCategory { CategoryName = "Statin" });
-            context.SaveChanges();
-        }
-
-        private void SeedMedicationIngredient(MedicationDbContext context)
-        {
-            context.Add(new MedicationIngredient { Name = "Ibuprofen" });
-            context.Add(new MedicationIngredient { Name = "Paracetamol" });
             context.SaveChanges();
         }
 
