@@ -32,8 +32,13 @@ namespace MedbayTech.Medications.Infrastructure.Database
 
         private void SeedMedicationCategory(MedicationDbContext context)
         {
-            context.Add(new MedicationCategory { CategoryName = "Drug" });
-            context.Add(new MedicationCategory { CategoryName = "Kategorija1" });
+            context.Add(new MedicationCategory { CategoryName = "Analgesic" });
+            context.Add(new MedicationCategory { CategoryName = "Antipyretic" });
+            context.Add(new MedicationCategory { CategoryName = "Antibiotic" });
+            context.Add(new MedicationCategory { CategoryName = "Antiseptic" });
+            context.Add(new MedicationCategory { CategoryName = "Stimulant" });
+            context.Add(new MedicationCategory { CategoryName = "Tranquilizer" });
+            context.Add(new MedicationCategory { CategoryName = "Statin" });
             context.SaveChanges();
         }
 

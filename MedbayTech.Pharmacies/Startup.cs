@@ -10,8 +10,6 @@ using System;
 using System.IO;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance;
 using MedbayTech.Pharmacies.Infrastructure.Database;
-using MedbayTech.Pharmacies.Infrastructure.Persistance.Reports;
-using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Reports;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Medications;
 using MedbayTech.Pharmacies.Infrastructure.Persistance.Medications;
 using MedbayTech.Pharmacies.Infrastructure.Service.Reports;
@@ -146,17 +144,11 @@ namespace MedbayTech.Pharmacies
         {
             services.AddScoped<IPharmacyService, PharmacyService>();
             services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
-            services.AddScoped<IMedicationUsageService, MedicationUsageService>();
-            services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();;
-            services.AddScoped<IMedicationService, MedicationService>();
             services.AddScoped<IPrescriptionSearchService, PrescriptionSearchService>();
             services.AddScoped<IPrescriptionGateway, PrescriptionGateway>();
             services.AddScoped<IUrgentMedicationProcurementService, UrgentMedicationProcurementService>();
             services.AddScoped<ITenderService, TenderService>();
             services.AddScoped<ITenderOfferService, TenderOfferService>();
-            services.AddScoped<IMedicationGateway, MedicationGateway>();
-            services.AddScoped<IMedicationUsageGateway, MedicationUsageGateway>();
-            services.AddScoped<IMedicationUsageReportGateway, MedicationUsageReportGateway>();
 
         }
 
