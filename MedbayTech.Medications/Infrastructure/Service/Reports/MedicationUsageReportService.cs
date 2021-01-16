@@ -45,11 +45,14 @@ namespace MedbayTech.Medications.Infrastructure.Service.Reports
             return Add(report);
         }
 
-        public MedicationUsageReport Add(MedicationUsageReport report) => _medicationUsageReportRepository.Create(report);
+        public MedicationUsageReport Add(MedicationUsageReport report) => 
+            _medicationUsageReportRepository.Create(report);
 
-        public bool Remove(MedicationUsageReport report) => _medicationUsageReportRepository.Delete(report);
+        public bool Remove(MedicationUsageReport report) => 
+            _medicationUsageReportRepository.Delete(report);
 
-        public MedicationUsageReport Update(MedicationUsageReport report) => _medicationUsageReportRepository.Update(report);
+        public MedicationUsageReport Update(MedicationUsageReport report) =>
+            _medicationUsageReportRepository.Update(report);
 
         public List<MedicationUsageReport> GetForSpecificPeriod(Period period) =>
             GetAll().ToList().FindAll(m => DateTime.Compare(m.From.GetValueOrDefault(DateTime.Now), period.StartTime) >= 0
