@@ -20,6 +20,7 @@ namespace MedbayTech.Pharmacies.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            // TODO(Jovan): Transfer calls to Medication ms
             return Ok(Directory.GetFiles("GeneratedUsageReports"));
         }
 

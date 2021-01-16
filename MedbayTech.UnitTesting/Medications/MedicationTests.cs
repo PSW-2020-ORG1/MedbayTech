@@ -44,8 +44,8 @@ namespace MedbayTech.UnitTesting.Medications
 
         private static IEnumerable<MedbayTech.Medications.Domain.Entities.Medications.Medication> GetMedications()
         {
-            var m1 = new MedbayTech.Medications.Domain.Entities.Medications.Medication { Id = 44, Med = "Diazepam", Dosage = "30mg", RoomId = 2102, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1 };
-            var m2 = new MedbayTech.Medications.Domain.Entities.Medications.Medication { Id = 45, Med = "Andol", Dosage = "200mg", RoomId = 2102, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>(), MedicationCategoryId = 1 };
+            var m1 = new MedbayTech.Medications.Domain.Entities.Medications.Medication { Id = 44, Med = "Diazepam", Dosage = "30mg", RoomId = 2102, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>()/*, MedicationCategoryId = 1*/};
+            var m2 = new MedbayTech.Medications.Domain.Entities.Medications.Medication { Id = 45, Med = "Andol", Dosage = "200mg", RoomId = 2102, Status = MedStatus.Validation, Company = "Goodwill", Quantity = 15, MedicationContent = new List<DosageOfIngredient>()/*, MedicationCategoryId = 1*/};
             var m3 = new MedbayTech.Medications.Domain.Entities.Medications.Medication { Id = 46, Med = "Reglan", Dosage = "100mg", RoomId = 2102, Status = MedStatus.Validation, Company = "Famar", Quantity = 15, MedicationContent = new List<DosageOfIngredient>() };
 
             var medications = new List<MedbayTech.Medications.Domain.Entities.Medications.Medication>();

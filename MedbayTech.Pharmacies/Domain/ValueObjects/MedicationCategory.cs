@@ -3,17 +3,16 @@
 // Created: Thursday, April 16, 2020 5:28:21 PM
 // Purpose: Definition of Class MedicationCategory
 
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MedbayTech.Common.Domain.Common;
 using MedbayTech.Common.Domain.Entities;
 
 namespace MedbayTech.Pharmacies.Domain.Entities.Medications
 {
-    public class MedicationCategory : IIdentifiable<int>
+    public class MedicationCategory : ValueObject
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         public string CategoryName { get; set; }
         public MedicationCategory() { }
         public MedicationCategory(string categoryName)
@@ -21,10 +20,9 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Medications
             CategoryName = categoryName;
         }
 
-        public int GetId()
+        protected override IEnumerable<object> GetEqualityComponents()
         {
-            return Id;
+            yield return CategoryName;
         }
-
     }
 }
