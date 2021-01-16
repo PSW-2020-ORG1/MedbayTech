@@ -44,7 +44,7 @@ export default {
             allRequests: [],
             allPharmacies: [],
             pharmacyRule: [
-                v => !!v || "Phamracy is required",
+                v => !!v || "Pharmacy is required",
             ],
             choosenPharmacy: [],
             valid: [],

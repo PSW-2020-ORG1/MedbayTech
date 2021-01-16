@@ -74,6 +74,11 @@ namespace MedbayTech.Medications.Controllers
         [HttpPost]
         public IActionResult Post(Domain.Entities.Medications.Medication medication)
         {
+            // TODO(Jovan): Handle bad requests
+            if(_medicationService.GetMedication(medication.Id) == null)
+            {
+                return Ok(_medicationService.Add(medication));
+            }
             return Ok(_medicationService.UpdateMedication(medication));
         }
     }

@@ -52,5 +52,9 @@
   <ItemGroup>
     <ProjectReference Include="..\MedbayTech.Common\MedbayTech.Common.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Infrastructure\Database\Configurations\" />
+  </ItemGroup>
 
 </Project>
