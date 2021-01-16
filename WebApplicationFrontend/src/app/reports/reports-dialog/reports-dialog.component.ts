@@ -1,33 +1,24 @@
-import { Component, Inject, Injectable, OnInit } from '@angular/core';
-import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Appointment } from 'src/app/model/appointment';
 import { AppointmentReport } from 'src/app/model/appointmentReport';
-import { ReportService } from 'src/app/service/report/report.service';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class ObservePrescriptionComponent {
-
-  constructor(public dialog: MatDialog,private reportService : ReportService) {}
-
-}
 
 @Component({
-  selector: 'app-observe-prescription-dialog',
-  templateUrl: './observe-prescription-dialog.component.html',
+  selector: 'app-reports-dialog',
+  templateUrl: './reports-dialog.component.html',
+  styleUrls: ['./reports-dialog.component.css']
 })
-export class ObservePrescriptionComponentDialog {
+export class ReportsDialogComponent implements OnInit {
 
+  public report : AppointmentReport;
   constructor(
-    public dialogRef: MatDialogRef<ObservePrescriptionComponentDialog>,
+    public dialogRef: MatDialogRef<ReportsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: AppointmentReport) {}
  
     ngOnInit(): void
     {
+      this.report = this.data.reportAppointment;
     }
   generatePdf(data) {
     html2canvas(data, { allowTaint: true }).then(canvas => {
@@ -47,7 +38,7 @@ export class ObservePrescriptionComponentDialog {
        pdf.addPage([PDF_Width, PDF_Height], 'p');
        pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
      }
-      pdf.save("prescriptions.pdf");
+      pdf.save("report.pdf");
    });
  }
 }

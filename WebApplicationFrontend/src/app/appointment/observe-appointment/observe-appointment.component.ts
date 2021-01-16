@@ -5,6 +5,7 @@ import { AppointmentReport } from 'src/app/model/appointmentReport';
 import { CancelAppointment } from 'src/app/model/cancelAppointment';
 import { GetAppointment } from 'src/app/model/getAppointment';
 import { ObservePrescriptionComponent, ObservePrescriptionComponentDialog } from 'src/app/prescription/observe-prescription/observe-prescription.component';
+import { ReportDialogComponent } from 'src/app/reports/reports-dialog/report-dialog/report-dialog.component';
 import { AppointmentService } from 'src/app/service/appointment/appointment.service';
 import { ReportService } from 'src/app/service/report/report.service';
 
@@ -20,18 +21,23 @@ export class ObserveAppointmentComponent implements OnInit {
   public allCancelableAppointments : GetAppointment[] = new Array();
   public report : AppointmentReport;
 
-  constructor(private appointmentService : AppointmentService, public dialog:ObservePrescriptionComponent,private reportService : ReportService) { }
+  constructor(private appointmentService : AppointmentService, public dialog:ObservePrescriptionComponent,public dialogReport: ReportDialogComponent,private reportService : ReportService) { }
 
   ngOnInit(): void {
     this.loadSurveyableAppointments();
     this.loadAllOtherAppointments();
     this.loadCancelableAppointments();
   }
-  test(startTime,doctorId) {
-    this.reportService.getAppointmentReport(new Appointment(startTime,doctorId)).subscribe(data =>
-      {
-        this.report = data;
-      });
+  async test(startTime,doctorId){
+    
+    const data = await this.reportService.getAppointmentReport(new Appointment(startTime,doctorId)).toPromise()
+    this.report = data;
+
+}
+
+  async otherMethod(startTime,doctorId){
+    await this.test(startTime,doctorId);
+    this.dialogReport.openDialog(this.report);
   }
   loadSurveyableAppointments(){
     this.appointmentService.getSurveyableAppointments().subscribe(data =>

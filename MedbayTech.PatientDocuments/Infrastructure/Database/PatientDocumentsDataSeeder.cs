@@ -22,14 +22,12 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
             SeedDiagnosis(context);
             SeedFamilyIllnessHistory(context);*/
             //SeedTherapies(context);
-            SeedSymptoms(context);
-            SeedDiagnosis(context);
             SeedMedicalRecords(context);
             SeedReports(context);
-            SeedTreatments(context);
-            SeedPrescriptions(context);
             SeedDiagnosis(context);
             SeedSymptoms(context);
+            SeedTreatments(context);
+            SeedPrescriptions(context);
             context.SaveChanges();
         }
 
@@ -108,7 +106,17 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
         {
             context.Add(new Symptoms { Name = "Kasalj", DiagnosisId = 1 });
             context.Add(new Symptoms { Name = "Temperatura", DiagnosisId = 2 });
-             context.SaveChanges();
+            context.Add(new Symptoms { Name = "Dijareja", DiagnosisId = 3 });
+            context.Add(new Symptoms { Name = "Migrena", DiagnosisId = 4 });
+            context.Add(new Symptoms { Name = "Bol u grlu", DiagnosisId = 1 });
+            context.Add(new Symptoms { Name = "Bol u predelu stomaka", DiagnosisId = 2 });
+            context.Add(new Symptoms { Name = "Zubobolja", DiagnosisId = 3 });
+            context.Add(new Symptoms { Name = "Bol u predelu pluca", DiagnosisId = 4 });
+            context.Add(new Symptoms { Name = "Umor", DiagnosisId = 1 });
+            context.Add(new Symptoms { Name = "Nesanica", DiagnosisId = 2 });
+            context.Add(new Symptoms { Name = "Bol u ledjima", DiagnosisId = 3 });
+            context.Add(new Symptoms { Name = "Groznica", DiagnosisId = 4 });
+            context.SaveChanges();
         }
 
         private void SeedVaccines(PatientDocumentsDbContext context)
@@ -128,6 +136,8 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
         {
             context.Add(new Diagnosis { Name = "Dijagnoza1", Symptoms = new List<Symptoms>(), ReportId = 1});
             context.Add(new Diagnosis { Name = "Dijagnoza2", Symptoms = new List<Symptoms>(), ReportId = 2});
+            context.Add(new Diagnosis { Name = "Dijagnoza3", Symptoms = new List<Symptoms>(), ReportId = 3 });
+            context.Add(new Diagnosis { Name = "Dijagnoza4", Symptoms = new List<Symptoms>(), ReportId = 4 });
             context.SaveChanges();
         }
     
@@ -258,10 +268,11 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                     DoctorId = "2406978890047",
                     MedicalRecordId = 1
                 });
+            */
                 context.Add(new Report
                 {
                     StartTime = new DateTime(2020, 12, 5, 14, 00, 0),
-                    Type = TypeOfAppointment.Surgery,
+                    Type = TypeOfAppointment.Examination,
                     Treatments = new List<Treatment>(),
                     Diagnoses = new List<Diagnosis>(),
                     DoctorId = "2406978890047",
@@ -270,17 +281,17 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                 context.Add(new Report
                 {
                     StartTime = new DateTime(2020, 12, 4, 14, 00, 0),
-                    Type = TypeOfAppointment.Surgery,
+                    Type = TypeOfAppointment.Examination,
                     Treatments = new List<Treatment>(),
                     Diagnoses = new List<Diagnosis>(),
                     DoctorId = "2406978890047",
                     MedicalRecordId = 1
                 });
-            */
+           
                 context.Add(new Report
                 {
                     StartTime = new DateTime(2020, 12, 3, 14, 00, 0),
-                    Type = TypeOfAppointment.Surgery,
+                    Type = TypeOfAppointment.Examination,
                     Treatments = new List<Treatment>(),
                     Diagnoses = new List<Diagnosis>(),
                     DoctorId = "2407978890045",
@@ -289,7 +300,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
                 context.Add(new Report
                 {
                     StartTime = new DateTime(2020, 12, 1, 14, 00, 0),
-                    Type = TypeOfAppointment.Surgery,
+                    Type = TypeOfAppointment.Examination,
                     Treatments = new List<Treatment>(),
                     Diagnoses = new List<Diagnosis>(),
                     DoctorId = "2407978890045",

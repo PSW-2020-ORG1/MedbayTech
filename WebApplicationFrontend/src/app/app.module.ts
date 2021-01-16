@@ -53,6 +53,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
 import { ObservePrescriptionComponent, ObservePrescriptionComponentDialog } from './prescription/observe-prescription/observe-prescription.component';
+import { ReportsDialogComponent } from './reports/reports-dialog/reports-dialog.component';
+import { ReportDialogComponent } from './reports/reports-dialog/report-dialog/report-dialog.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,8 @@ import { ObservePrescriptionComponent, ObservePrescriptionComponentDialog } from
     NavigationBarPatientComponent,
     NavigationBarUserComponent,
     HomePageComponent,
-    ObservePrescriptionComponentDialog
+    ObservePrescriptionComponentDialog,
+    ReportsDialogComponent
   ],
   imports: [
     BrowserModule,

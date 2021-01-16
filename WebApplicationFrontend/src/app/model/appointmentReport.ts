@@ -6,6 +6,7 @@ export class AppointmentReport {
     public diagnosis : Diagnosis[];
     public doctorName : String;
     public doctorSurname : String;
+  reportAppointment: AppointmentReport;
 
     constructor(startTime : Date, type : String, diagnosis : Diagnosis[],doctorName : String, doctorSurname : String) {
         this.startTime = startTime;
