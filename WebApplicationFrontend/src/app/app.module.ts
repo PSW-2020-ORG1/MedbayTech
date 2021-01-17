@@ -51,6 +51,8 @@ import { NavigationBarUserComponent } from './navigation-bar/navigation-bar-user
 import { HomePageComponent } from './home-page/home-page.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
+import { CountChartComponent } from './charts/count-chart/count-chart/count-chart.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,8 @@ import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
     NavigationBarAdminComponent,
     NavigationBarPatientComponent,
     NavigationBarUserComponent,
-    HomePageComponent
+    HomePageComponent,
+    CountChartComponent
   ],
   imports: [
     BrowserModule,
@@ -114,7 +117,8 @@ import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
     MatStepperModule,
     ToastrModule.forRoot(),
     IvyCarouselModule,
-    NgImageSliderModule
+    NgImageSliderModule,
+    ChartsModule
   ],
   providers: [
     FeedbackService,

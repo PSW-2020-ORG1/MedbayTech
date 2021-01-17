@@ -520,7 +520,6 @@
           "Role": "Patient"
         }
       },
-  
       {
         "DownstreamPathTemplate": "/api/prescription/advancedSearch",
         "DownstreamScheme": "http",
@@ -540,6 +539,90 @@
         },
         "RouteClaimsRequirement": {
           "Role": "Patient"
+        }
+      },
+      {
+        "DownstreamPathTemplate": "/api/event/save",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 8083
+          }
+        ],
+        "UpstreamPathTemplate": "/saveEvent",
+        "UpstreamHttpMethod": [
+          "POST"
+        ],
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        },
+        "RouteClaimsRequirement": {
+          "Role": "Patient"
+        }
+      },
+      {
+        "DownstreamPathTemplate": "/api/event/getCreatedCount",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 8083
+          }
+        ],
+        "UpstreamPathTemplate": "/getCreatedCount",
+        "UpstreamHttpMethod": [
+          "GET"
+        ],
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        },
+        "RouteClaimsRequirement": {
+          "Role": "Admin"
+        }
+      },
+      {
+        "DownstreamPathTemplate": "/api/event/getCountOfQuit",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 8083
+          }
+        ],
+        "UpstreamPathTemplate": "/getCountOfQuit",
+        "UpstreamHttpMethod": [
+          "GET"
+        ],
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        },
+        "RouteClaimsRequirement": {
+          "Role": "Admin"
+        }
+      },
+      {
+        "DownstreamPathTemplate": "/api/event/getCountOfBackStep",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 8083
+          }
+        ],
+        "UpstreamPathTemplate": "/getBackStepCount",
+        "UpstreamHttpMethod": [
+          "GET"
+        ],
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        },
+        "RouteClaimsRequirement": {
+          "Role": "Admin"
         }
       }
     ]

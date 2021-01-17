@@ -5,6 +5,10 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:53843',
+  createdCount : 'getCreatedCount',
+  backStepCount : 'getBackStepCount',
+  quitCount : 'getCountOfQuit',
+  event : 'saveEvent',
   fedback: 'approvedFeedback',
   allFeedback: 'allFeedback',
   updateFeedbackStatus: 'updateFeedbackStatus',

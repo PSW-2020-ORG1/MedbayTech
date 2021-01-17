@@ -1,3 +1,4 @@
+import { CountChartComponent } from './charts/count-chart/count-chart/count-chart.component';
 import { Role } from './model/role';
 import { AuthGuard } from './guard/auth.guard';
 import { PatientRegistrationComponent } from './registration/patient-registration/patient-registration.component';
@@ -112,6 +113,12 @@ const routes: Routes = [
   {
     path : 'home',
     component : HomePageComponent
+  },
+  {
+    path : 'countChart',
+    component : CountChartComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Admin]}
   }
   
 ];
