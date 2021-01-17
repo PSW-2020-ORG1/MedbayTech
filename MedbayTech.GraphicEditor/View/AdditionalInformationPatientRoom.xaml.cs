@@ -87,6 +87,7 @@ namespace MedbayTech.GraphicEditor
         {
             ScheduleRenovation scheduleRenovation = new ScheduleRenovation(room);
             scheduleRenovation.ShowDialog();
+            SearchDataBaseForAppointmentRealocation(room.Id);
         }
 
         private async Task HttpRequestToAppointmentRealocationController(AppointmentRealocationDTO appointmentRealocationDTO)

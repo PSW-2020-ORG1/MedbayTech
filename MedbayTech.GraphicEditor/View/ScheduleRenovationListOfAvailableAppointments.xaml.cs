@@ -93,6 +93,8 @@ namespace MedbayTech.GraphicEditor.View
                 AppointmentRealocationDTO appointmentRealocationDTO = new AppointmentRealocationDTO() { appointmentRealocation = appointmentRealocation, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.ScheduleRealocationOrRenovation };
                 await HttpRequestToAppointmentRealocationController(appointmentRealocationDTO);
             }
+            MessageBox.Show("Renovation is successfuly scheduled!");
+            this.Close();       
         }
 
         private AppointmentRealocation AppointmentRealocationForMaintenance(AppointmentRealocation appointmentRealocation)

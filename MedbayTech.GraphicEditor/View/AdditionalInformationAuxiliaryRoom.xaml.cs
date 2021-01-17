@@ -44,7 +44,7 @@ namespace MedbayTech.GraphicEditor
             }
             else
             {
-                searchDataBaseForMedication(room.Id);
+                SearchDataBaseForMedication(room.Id);
                 frameDataGrid.Content = new AdditionalInformationAuxiliaryRoomMedication(medications);
             }
         }
@@ -80,7 +80,7 @@ namespace MedbayTech.GraphicEditor
             task.Wait();
             return room;
         }
-        private List<Medication> searchDataBaseForMedication(int roomId)
+        private List<Medication> SearchDataBaseForMedication(int roomId)
         {
             medications = new List<Medication>();
             HttpClient httpClient = new HttpClient();
@@ -137,6 +137,7 @@ namespace MedbayTech.GraphicEditor
         {
             ScheduleRenovation scheduleRenovation = new ScheduleRenovation(room);
             scheduleRenovation.ShowDialog();
+            SearchDataBaseForAppointmentRealocation(room.Id);
         }
 
         private async void ButtonCancelAppointmentRealocation(object sender, RoutedEventArgs e)

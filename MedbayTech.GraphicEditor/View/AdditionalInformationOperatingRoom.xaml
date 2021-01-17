@@ -12,7 +12,7 @@
                 <Image Name="imageLogo" Width="60" Margin="5,0,0,0" />
                 <Label Content="Additional information" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="24" Foreground="White" Width="327" Height="40"/>
             </StackPanel>
-            <Button Name="buttonRenovation" Content="Schedule renovation" HorizontalAlignment="Left" Height="30" Width="145" Margin="5,5,5,5" VerticalAlignment="Top" Foreground="Black" Background="White" FontWeight="Bold" FontSize="14">
+            <Button Name="buttonRenovation" Content="Schedule renovation" HorizontalAlignment="Left" Height="30" Width="145" Margin="5,5,5,5" VerticalAlignment="Top" Foreground="Black" Background="White" FontWeight="Bold" FontSize="14" Click="ButtonScheduleRenovation">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>

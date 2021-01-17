@@ -1,6 +1,7 @@
 ﻿using GraphicEditor.ViewModel;
 using GraphicEditor.ViewModel.DTO;
 using GraphicEditor.ViewModel.Enums;
+using MedbayTech.GraphicEditor.View;
 using MedbayTech.GraphicEditor.ViewModel;
 using MedbayTech.GraphicEditor.ViewModel.DTO;
 using MedbayTech.GraphicEditor.ViewModel.Enums;
@@ -152,6 +153,13 @@ namespace MedbayTech.GraphicEditor
             AppointmentFilterDTO appointmentFilterDTO = new AppointmentFilterDTO() { appointment = appointment, appointmentSearchOrSchedule = AppointmentSearchOrSchedule.UpdateAppointment };
             SaveAndUpdateDataBase(appointmentFilterDTO);
             appointments.Remove(appointment);
+        }
+
+        private void ButtonScheduleRenovation(object sender, RoutedEventArgs e)
+        {
+            ScheduleRenovation scheduleRenovation = new ScheduleRenovation(room);
+            scheduleRenovation.ShowDialog();
+            SearchDataBaseForAppointmentRealocation(room.Id);
         }
     }
 }
