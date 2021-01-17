@@ -1,4 +1,5 @@
 <div class="mat-card-cvr">
+    
 <div class = "container">
     <div [dataSource]="allCancelableAppointments" class="row1" id ="cancel-appointment" *ngFor="let appointment of allCancelableAppointments">
         <mat-card class="card">
@@ -30,8 +31,11 @@
                 <p class="content-paragraph">Status : <strong>Finished</strong></p>
                 <p class="content-paragraph">Room : <strong>{{appointment.roomType}}-{{appointment.roomNumber}}</strong></p>
             </mat-card-content>
+
             <mat-card-actions>
-                    <button mat-raised-button color="accent" class="button1" (click)="saveAppointment(appointment)" routerLink="/survey" target="_blank" >Survey</button>
+                <button mat-raised-button color="primary" class="button2" (click)="otherMethod(appointment.start,appointment.doctorId)" >Report</button>
+                <button mat-raised-button color="primary" class="button2" (click)="openPrescriptionDialog(appointment.start,appointment.doctorId)"  >Prescriptions</button>
+                <button mat-raised-button color="accent" class="button1" (click)="saveAppointment(appointment)" routerLink="/survey" target="_blank" >Survey</button>
             </mat-card-actions>
         </mat-card>
     </div>
@@ -49,7 +53,10 @@
                 <p class="content-paragraph" *ngIf="!appointment.finished && !appointment.canceledByPatient">Status : <strong>Upcoming</strong></p>
                 <p class="content-paragraph" *ngIf="appointment.canceledByPatient ">Status : <strong>Canceled</strong></p>
                 <p class="content-paragraph">Room : <strong>{{appointment.roomType}}-{{appointment.roomNumber}}</strong></p>
-            </mat-card-content>         
+            </mat-card-content> 
+            <mat-card-actions>
+                <button mat-raised-button color="primary" *ngIf="appointment.finished && !appointment.canceledByPatient" class="button2" (click)="dialog.openDialog()" >Prescriptions</button>
+            </mat-card-actions>        
         </mat-card>
     </div>
     

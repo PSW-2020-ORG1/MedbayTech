@@ -19,5 +19,10 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Persistance
         {
             return GetAll().Where(prescription => prescription.IsPatient(idPatient)).ToList();
         }
+
+        public List<Prescription> GetPrescriptionsForReport(int id)
+        {
+            return GetAll().Where(pr => pr.ReportId == id).ToList();
+        }
     }
 }

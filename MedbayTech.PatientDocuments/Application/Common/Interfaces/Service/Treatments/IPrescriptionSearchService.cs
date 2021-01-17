@@ -18,5 +18,6 @@ namespace MedbayTech.PatientDocuments.Application.Common.Interfaces.Service.Trea
         List<PrescriptionForSendingDTO> GetAllForSending();
         List<Prescription> GetAll();
         List<Prescription> GetAllFor(string id);
+        List<Prescription> GetPrescriptionsBy(string doctorId, string patientId, DateTime startDate);
     }
 }
