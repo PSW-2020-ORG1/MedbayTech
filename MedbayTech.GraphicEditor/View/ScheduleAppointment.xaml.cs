@@ -26,10 +26,10 @@ namespace MedbayTech.GraphicEditor.View
             this.page = page;
             this.searchAppointment = searchAppointment;
             this.appointment = appointment;
-            searchDataBaseForPatients();
+            SearchDataBaseForPatients();
         }
 
-        private List<Patient> searchDataBaseForPatients()
+        private List<Patient> SearchDataBaseForPatients()
         {
             patients = new List<Patient>();
             HttpClient httpClient = new HttpClient();
@@ -47,7 +47,7 @@ namespace MedbayTech.GraphicEditor.View
             return patients;
         }
 
-        private MedicalRecord searchDataBaseForMedicalRecord(string patientId)
+        private MedicalRecord SearchDataBaseForMedicalRecord(string patientId)
         {
             MedicalRecord medicalRecord = new MedicalRecord();
             HttpClient httpClient = new HttpClient();

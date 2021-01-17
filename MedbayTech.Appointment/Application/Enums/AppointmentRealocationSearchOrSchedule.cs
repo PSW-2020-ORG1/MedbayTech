@@ -10,6 +10,7 @@ namespace MedbayTech.Appointment.Application.Enums
         CheckIsRoomAvailable,
         ScheduleRealocationOrRenovation,
         AlternativeAppointments,
-        UpdateRealocation
+        UpdateRealocation,
+        ByTwoRooms
     }
 }

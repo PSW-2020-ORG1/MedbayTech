@@ -142,6 +142,7 @@ namespace MedbayTech.GraphicEditor.View
         {
             return new AppointmentRealocation()
             {
+                AppointmentRealocationType = AppointmentRealocationType.Realocation,
                 Start = dateTime,
                 End = dateTime.AddMinutes(30),
                 Deleted = false,

@@ -130,5 +130,24 @@ namespace MedbayTech.Appointment.Infrastructure.Services
         {
             return _appointmentRealocationRepository.Update(appointmentRealocation);
         }
+
+        public List<AppointmentRealocation> GetAvailableAppointmentRealocationsForTwoRoms(int roomOneId, int roomTwoId, DateTime start, DateTime end)
+        {
+            List<AppointmentRealocation> appointmentRealocationsForRoomOne = GetAllAvailableAppointmentByRoomAndDateTime(roomOneId, start, end);
+            List<AppointmentRealocation> appointmentRealocationsForRoomTwo = GetAllAvailableAppointmentByRoomAndDateTime(roomTwoId, start, end);
+            List<AppointmentRealocation> appointmentRealocations = new List<AppointmentRealocation>();
+            foreach (AppointmentRealocation roomOne in appointmentRealocationsForRoomOne)
+            {
+                foreach(AppointmentRealocation roomTwo in appointmentRealocationsForRoomTwo)
+                {
+                    if(roomOne.Start == roomTwo.Start)
+                    {
+                        appointmentRealocations.Add(roomOne);
+                        break;
+                    }
+                }
+            }
+            return appointmentRealocations;
+        }
     }
 }

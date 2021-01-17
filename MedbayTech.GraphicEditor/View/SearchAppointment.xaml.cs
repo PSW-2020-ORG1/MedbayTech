@@ -30,13 +30,13 @@ namespace MedbayTech.GraphicEditor.View
         {
             InitializeComponent();
             this.page = page;
-            searchDataBaseForDoctor();
+            SearchDataBaseForDoctor();
             comboBoxDoctor.ItemsSource = doctors;
             SearchDatabaseForEquipmentType();
             comboBoxEquipment.ItemsSource = hospitalEquipments;
         }
 
-        private List<Doctor> searchDataBaseForDoctor()
+        private List<Doctor> SearchDataBaseForDoctor()
         {
             doctors = new List<Doctor>();
             HttpClient httpClient = new HttpClient();

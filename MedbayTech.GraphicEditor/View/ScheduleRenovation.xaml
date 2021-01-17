@@ -12,7 +12,7 @@
                 <DockPanel DockPanel.Dock="Left" HorizontalAlignment="Left">
                     <DockPanel Margin="5,5,5,5">
                         <Label DockPanel.Dock="Top" Content="Select renovation type:" FontWeight="Bold"/>
-                        <ComboBox DockPanel.Dock="Bottom" Name="comboBoxDoctor" SelectionChanged="ComboBoxDoctor_SelectionChanged">
+                        <ComboBox DockPanel.Dock="Bottom" Name="comboBoxRenovationType" SelectionChanged="ComboBoxDoctor_SelectionChanged">
                             <ComboBoxItem Content="Maintenance room"/>
                             <ComboBoxItem Content="Merging rooms"/>
                             <ComboBoxItem Content="Separating room"/>
@@ -36,7 +36,7 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button x:Name="buttonScheduleRenovation" DockPanel.Dock="Right" Content="Schedule renovation" Width="208" Height="25" Margin="5,5,5,5" FontSize="15" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Background="SteelBlue" Foreground="White">
+                <Button x:Name="buttonScheduleRenovation" DockPanel.Dock="Right" Content="Schedule renovation" Width="208" Height="25" Margin="5,5,5,5" FontSize="15" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Background="SteelBlue" Foreground="White" Click="ButtonScheduleRenovation">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -53,13 +53,11 @@
                     <DockPanel x:Name="dockPanelMerging" DockPanel.Dock="Left" Width="400" Margin="0,0,30,0">
                         <Label DockPanel.Dock="Top" Content="Enter information and select room you want to merge with:" FontWeight="Bold" Margin="5,0,5,0"/>
                         <DockPanel DockPanel.Dock="Bottom">
-                            <DataGrid DockPanel.Dock="Bottom" Name="dataGridAppointment" Margin="5,0,5,0" Height="140" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True">
+                            <DataGrid DockPanel.Dock="Bottom" Name="dataGridRoom" Margin="5,0,5,0" Height="140" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Appointment type" Width="149" Binding="{Binding TypeOfAppointment}"/>
-                                    <DataGridTextColumn Header="Doctor" Width="149" Binding="{Binding FullName}"/>
-                                    <DataGridTextColumn Header="Room" Width="149" Binding="{Binding Room.RoomLabel}"/>
-                                    <DataGridTextColumn Header="Beginning date" Width="149" Binding="{Binding Period.StartTime}"/>
-                                    <DataGridTextColumn Header="End date" Width="149" Binding="{Binding Period.EndTime}"/>
+                                    <DataGridTextColumn Header="Room ID" Width="149" Binding="{Binding Id}"/>
+                                    <DataGridTextColumn Header="Room Label" Width="149" Binding="{Binding RoomLabel}"/>
+                                    <DataGridTextColumn Header="Room Use" Width="149" Binding="{Binding RoomUse}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </DockPanel>
@@ -75,7 +73,7 @@
                         </DockPanel>
                         <DockPanel DockPanel.Dock="Right" HorizontalAlignment="Right">
                             <Label DockPanel.Dock="Top" Content="Enter new room use:"/>
-                            <TextBox DockPanel.Dock="Bottom" Height="20" Width="200" Margin="5,0,5,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="textBoxRoomUse" DockPanel.Dock="Bottom" Height="20" Width="200" Margin="5,0,5,0" VerticalAlignment="Top"/>
                         </DockPanel>
                     </DockPanel>
                     <DockPanel x:Name="dockPanelSeparating" DockPanel.Dock="Right">
