@@ -13,14 +13,13 @@ namespace MedbayTech.Pharmacies.Infrastructure.Database
 
         public DbSet<Pharmacy> Pharmacies { get; set; }
         public DbSet<PharmacyNotification> PharmacyNotifications { get; set; }
-        public DbSet<MedicationUsage> MedicationUsages { get; set; }
-        public DbSet<MedicationUsageReport> MedicationUsageReports { get; set; }
-        public DbSet<Medication> Medications { get; set; }
+        /*public DbSet<MedicationUsage> MedicationUsages { get; set; }*/
+        /*public DbSet<MedicationUsageReport> MedicationUsageReports { get; set; }*/
+        /*public DbSet<Medication> Medications { get; set; }*/
         public DbSet<UrgentMedicationProcurement> UrgentMedicationProcurements { get; set; }
         public DbSet<Tender> Tenders { get; set; }
         public DbSet<TenderOffer> TenderOffers { get; set; }
         public DbSet<TenderMedication> TenderMedications { get; set; }
-        public DbSet<TenderMedicationOffer> TenderMedicationOffers { get; set; }
 
         public PharmacyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
         public PharmacyDbContext() { }

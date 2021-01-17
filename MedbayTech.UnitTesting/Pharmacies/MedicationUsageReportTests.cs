@@ -1,9 +1,9 @@
 ﻿using Castle.Core.Internal;
 using MedbayTech.Common.Domain.ValueObjects;
-using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Reports;
-using MedbayTech.Pharmacies.Domain.Entities.Medications;
-using MedbayTech.Pharmacies.Domain.Entities.Reports;
-using MedbayTech.Pharmacies.Infrastructure.Service.Reports;
+using MedbayTech.Medications.Application.Common.Interfaces.Peristance.Reports;
+using MedbayTech.Medications.Domain.Entities.Medications;
+using MedbayTech.Medications.Domain.Entities.Reports;
+using MedbayTech.Medications.Infrastructure.Service.Reports;
 using Moq;
 using Shouldly;
 using System;
@@ -21,7 +21,7 @@ namespace MedbayTech.UnitTesting.Pharmacies
             MedicationUsageReportService medicationUsageReportService =
                 new MedicationUsageReportService(CreateReportStubRepository(), CreateUsageStubRepository());
 
-            List<MedicationUsageReport> reports = (List<MedicationUsageReport>)medicationUsageReportService.GetForSpecificPeriod(period);
+            List<MedicationUsageReport> reports = medicationUsageReportService.GetForSpecificPeriod(period);
 
             reports.IsNullOrEmpty().ShouldBe(isEmpty);
         }
@@ -64,10 +64,11 @@ namespace MedbayTech.UnitTesting.Pharmacies
         {
             var stubRepository = new Mock<IMedicationUsageRepository>();
             List<MedicationUsage> usages = new List<MedicationUsage>();
-            usages.Add(new MedicationUsage(1, 1, new DateTime(2020, 8, 1), new Medication("Brufen", "Galenika", new MedicationCategory())));
-            usages.Add(new MedicationUsage(2, 4, new DateTime(2020, 5, 1), new Medication("Aspirin", "Bayern", new MedicationCategory())));
-            usages.Add(new MedicationUsage(3, 12, new DateTime(2020, 9, 1), new Medication("Bensedin", "Galenika", new MedicationCategory())));
-            usages.Add(new MedicationUsage(4, 1, new DateTime(2020, 1, 1), new Medication("Xanax", "Bayern", new MedicationCategory())));
+            // TODO(Jovan): Potential sanity loss
+            usages.Add(new MedicationUsage(1, 1, new DateTime(2020, 8, 1), 1));
+            usages.Add(new MedicationUsage(2, 4, new DateTime(2020, 5, 1), 2));
+            usages.Add(new MedicationUsage(3, 12, new DateTime(2020, 9, 1), 3));
+            usages.Add(new MedicationUsage(4, 1, new DateTime(2020, 1, 1), 4));
 
             stubRepository.Setup(s => s.GetAll()).Returns(usages);
             return stubRepository.Object;
@@ -79,19 +80,19 @@ namespace MedbayTech.UnitTesting.Pharmacies
             var medicationUsageReports = new List<MedicationUsageReport>();
 
             var medicationUsageReport1 = new MedicationUsageReport(new DateTime(2020, 8, 10), new DateTime(2020, 9, 10));
-            medicationUsageReport1.MedicationUsages.Add(new MedicationUsage(1, 1, new DateTime(2020, 8, 11), new Medication("Brufen", "Galenika", new MedicationCategory())));
-            medicationUsageReport1.MedicationUsages.Add(new MedicationUsage(2, 1, new DateTime(2020, 8, 15), new Medication("Aspirin", "Bayern", new MedicationCategory())));
-            medicationUsageReport1.MedicationUsages.Add(new MedicationUsage(3, 1, new DateTime(2020, 8, 20), new Medication("Bromazepam", "Hemofarm", new MedicationCategory())));
+            medicationUsageReport1.MedicationUsages.Add(new MedicationUsage(1, 1, new DateTime(2020, 8, 11), 1));
+            medicationUsageReport1.MedicationUsages.Add(new MedicationUsage(2, 1, new DateTime(2020, 8, 15), 2));
+            medicationUsageReport1.MedicationUsages.Add(new MedicationUsage(3, 1, new DateTime(2020, 8, 20), 3));
 
             var medicationUsageReport2 = new MedicationUsageReport(new DateTime(2020, 7, 11), new DateTime(2020, 8, 5));
-            medicationUsageReport2.MedicationUsages.Add(new MedicationUsage(4, 5, new DateTime(2020, 7, 13), new Medication("Bensedin", "Galenika", new MedicationCategory())));
-            medicationUsageReport2.MedicationUsages.Add(new MedicationUsage(5, 5, new DateTime(2020, 8, 2), new Medication("Xanax", "Bayern", new MedicationCategory())));
+            medicationUsageReport2.MedicationUsages.Add(new MedicationUsage(4, 5, new DateTime(2020, 7, 13), 4));
+            medicationUsageReport2.MedicationUsages.Add(new MedicationUsage(5, 5, new DateTime(2020, 8, 2), 5));
 
             var medicationUsageReport3 = new MedicationUsageReport(new DateTime(2020, 1, 25), new DateTime(2020, 2, 12));
-            medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(6, 3, new DateTime(2020, 1, 25), new Medication("Tylol hot", "Richter Gedeon", new MedicationCategory())));
-            medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(7, 3, new DateTime(2020, 2, 11), new Medication("Panadol", "Bayern", new MedicationCategory())));
-            medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(8, 3, new DateTime(2020, 1, 26), new Medication("Paracetamol", "Hemofarm", new MedicationCategory())));
-            medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(9, 3, new DateTime(2020, 2, 1), new Medication("Pressing", "Hemofarm", new MedicationCategory())));
+            medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(6, 3, new DateTime(2020, 1, 25), 6));
+            medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(7, 3, new DateTime(2020, 2, 11), 7));
+            medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(8, 3, new DateTime(2020, 1, 26), 8));
+            medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(9, 3, new DateTime(2020, 2, 1), 9));
 
             var medicationUsageReport4 = new MedicationUsageReport(new DateTime(2020, 3, 9), new DateTime(2020, 4, 30));
 

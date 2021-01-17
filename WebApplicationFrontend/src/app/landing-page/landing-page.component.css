@@ -1,0 +1,55 @@
+mat-card {
+    min-width:  30vw;
+    max-width: 30vw;
+    background-color: white;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    background-color: #3F51B5;
+    color:white;
+    bottom: 0;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+p {
+    padding-top: 10px;
+}
+
+.welcome {
+    width: 91.2vw;
+    margin-left: 0.5vw;
+}
+
+.login {
+    width: 15vw;
+}
+
+.register {
+    width: 17vw;
+}
+
+button {
+    width: 10vw;
+}

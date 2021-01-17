@@ -11,7 +11,6 @@ namespace MedbayTech.Medications.Application.Common.Interfaces.Service.Medicatio
         Domain.Entities.Medications.Medication RejectMedication(Domain.Entities.Medications.Medication medication);
         List<Domain.Entities.Medications.Medication> GetAllMedicationByRoomId(string textSearchBox);
         Domain.Entities.Medications.Medication ApproveMedication(Domain.Entities.Medications.Medication medication);
-        Domain.Entities.Medications.Medication CreateMedication(Domain.Entities.Medications.Medication medication);
         Domain.Entities.Medications.Medication UpdateMedication(Domain.Entities.Medications.Medication medication);
         bool DeleteMedication(Domain.Entities.Medications.Medication medication);
         Domain.Entities.Medications.Medication GetMedication(int id);

@@ -21,14 +21,6 @@ namespace MedbayTech.Medications.Infrastructure.Service.Medications
             if (int.TryParse(query, out int id))
                 return _medicationRepository.GetAll().Where(med => med.Id == id).ToList();
             return _medicationRepository.GetAll().Where(med => med.Med.ToLower().Contains(query.ToLower())).ToList();
-
-        }
-
-        public Domain.Entities.Medications.Medication UpdateMedicationDataBase(Domain.Entities.Medications.Medication medication)
-        {
-            var medicationToUpdate = _medicationRepository.GetBy(medication.Id);
-            _medicationRepository.Update(medicationToUpdate.UpdateMedicationQuantity(medication));
-            return medication;
         }
 
         public List<Domain.Entities.Medications.Medication> GetAllMedicationByRoomId(string query)
@@ -40,29 +32,23 @@ namespace MedbayTech.Medications.Infrastructure.Service.Medications
 
         public Domain.Entities.Medications.Medication RejectMedication(Domain.Entities.Medications.Medication medication)
         {
+            // TODO(Jovan): Shouldn't status be .Rejected?
             medication.Status = MedStatus.Approved;
             return _medicationRepository.Update(medication);
         }
 
         public Domain.Entities.Medications.Medication ApproveMedication(Domain.Entities.Medications.Medication medication)
         {
+            // TODO(Jovan): Shouldn't status be .Approved?
             medication.Status = MedStatus.Rejected;
             return _medicationRepository.Update(medication);
         }
 
-        public Domain.Entities.Medications.Medication CreateMedication(Domain.Entities.Medications.Medication medication)
-        {
-            Domain.Entities.Medications.Medication fullMedication = medication;
-            _medicationRepository.Create(medication);
-
-            return medication;
-        }
         public Domain.Entities.Medications.Medication UpdateMedication(Domain.Entities.Medications.Medication medication)
         {
             var medicationToUpdate = _medicationRepository.GetBy(medication.Id);
             return _medicationRepository.Update(medicationToUpdate.UpdateMedicationQuantity(medication));
         }
-
 
         public bool DeleteMedication(Domain.Entities.Medications.Medication medication) =>
             _medicationRepository.Delete(medication);
@@ -96,7 +82,7 @@ namespace MedbayTech.Medications.Infrastructure.Service.Medications
             return _medicationRepository.Update(medication);
         }
 
-        // NOTE(Jovan): For PHIntegration testing purposes
-        public Domain.Entities.Medications.Medication Add(Domain.Entities.Medications.Medication medication) => _medicationRepository.Create(medication);
+        public Domain.Entities.Medications.Medication Add(Domain.Entities.Medications.Medication medication) =>
+            _medicationRepository.Create(medication);
     }
 }

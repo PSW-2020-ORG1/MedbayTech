@@ -10,8 +10,6 @@ using System;
 using System.IO;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance;
 using MedbayTech.Pharmacies.Infrastructure.Database;
-using MedbayTech.Pharmacies.Infrastructure.Persistance.Reports;
-using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Reports;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Medications;
 using MedbayTech.Pharmacies.Infrastructure.Persistance.Medications;
 using MedbayTech.Pharmacies.Infrastructure.Service.Reports;
@@ -41,7 +39,6 @@ namespace MedbayTech.Pharmacies
 
         public void ConfigureServices(IServiceCollection services)
         {
-            Directory.CreateDirectory("GeneratedUsageReports");
             Directory.CreateDirectory("DrugSpecifications");
             Directory.CreateDirectory("GeneratedPrescription");
             services.AddCors(options =>
@@ -62,7 +59,7 @@ namespace MedbayTech.Pharmacies
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            services.AddSpaStaticFiles(options => options.RootPath = "vueclient/dist");
+            services.AddSpaStaticFiles(options => options.RootPath = "../MedbayTech.PharmacyUI/dist");
 
             services.AddDbContext<PharmacyDbContext>();
         }
@@ -87,7 +84,6 @@ namespace MedbayTech.Pharmacies
                         databaseCreator.CreateTables();
                     else
                         context.Database.Migrate();
-
                 } catch(Exception)
                 {
                     Console.WriteLine("Failed to execute migration");
@@ -120,7 +116,7 @@ namespace MedbayTech.Pharmacies
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "vueclient";
+                spa.Options.SourcePath = "../MedbayTech.PharmacyUI";
 
                 if (env.IsDevelopment())
                 {
@@ -138,15 +134,9 @@ namespace MedbayTech.Pharmacies
         {
             services.AddTransient<IPharmacyRepository, PharmacyRepository>();
             services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationRepository>();
-            services.AddTransient<IMedicationUsageRepository, MedicationUsageSqlRepository>();
-            services.AddTransient<IMedicationUsageReportRepository, MedicationUsageReportSqlRepository>();
-            services.AddTransient<IMedicationRepository, MedicationSqlRepository>(); 
-            
-            services.AddTransient<IMedicationRepository, MedicationSqlRepository>();
             services.AddTransient<IUrgentMedicationProcurementRepository, UrgentMedicationProcurementSqlRepository>();
             services.AddTransient<ITenderRepository, TenderSqlRepositroy>();
             services.AddTransient<ITenderMedicationRepositroy, TenderMedicationSqlRepositroy>();
-            services.AddTransient<ITenderMedicationOfferRepository, TenderMedicationOfferSqlRepositroy>();
             services.AddTransient<ITenderOfferRepository, TenderOfferSqlRepositroy>();
         }
 
@@ -154,16 +144,12 @@ namespace MedbayTech.Pharmacies
         {
             services.AddScoped<IPharmacyService, PharmacyService>();
             services.AddScoped<IPharmacyNotificationService, PharmacyNotificationService>();
-            services.AddScoped<IMedicationUsageService, MedicationUsageService>();
-            services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();;
-            services.AddScoped<IMedicationService, MedicationService>();
             services.AddScoped<IPrescriptionSearchService, PrescriptionSearchService>();
             services.AddScoped<IPrescriptionGateway, PrescriptionGateway>();
             services.AddScoped<IUrgentMedicationProcurementService, UrgentMedicationProcurementService>();
             services.AddScoped<ITenderService, TenderService>();
             services.AddScoped<ITenderOfferService, TenderOfferService>();
-
-
+            services.AddScoped<IMedicationUsageReportGateway, MedicationUsageReportGateway>();
         }
 
 

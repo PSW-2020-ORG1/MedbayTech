@@ -55,6 +55,7 @@ import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
 import { ObservePrescriptionComponent, ObservePrescriptionComponentDialog } from './prescription/observe-prescription/observe-prescription.component';
 import { ReportsDialogComponent } from './reports/reports-dialog/reports-dialog.component';
 import { ReportDialogComponent } from './reports/reports-dialog/report-dialog/report-dialog.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { ReportDialogComponent } from './reports/reports-dialog/report-dialog/re
     NavigationBarUserComponent,
     HomePageComponent,
     ObservePrescriptionComponentDialog,
-    ReportsDialogComponent
+    ReportsDialogComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,

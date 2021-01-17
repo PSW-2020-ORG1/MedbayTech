@@ -12,7 +12,7 @@ namespace MedbayTech.Pharmacies.Infrastructure.Persistance.Medications
     public class UrgentMedicationProcurementSqlRepository : SqlRepository<UrgentMedicationProcurement, int>, IUrgentMedicationProcurementRepository 
     {
         
-        public UrgentMedicationProcurementSqlRepository(PharmacyDbContext context):base(context)
+        public UrgentMedicationProcurementSqlRepository(PharmacyDbContext context) : base(context)
         {
         }
     }

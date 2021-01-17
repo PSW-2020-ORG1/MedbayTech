@@ -18,18 +18,15 @@ namespace MedbayTech.Medications.Domain.Entities.Reports
             }
         }
         public DateTime? Date { get; set; }
-        [ForeignKey("Medication")]
         public int MedicationId { get; set; }
-        public virtual Medications.Medication Medication { get; set; }
 
         public MedicationUsage() { }
 
-        public MedicationUsage(int id, int usage, DateTime date, Medications.Medication medication)
+        public MedicationUsage(int id, int usage, DateTime date, int medicationId)
         {
             Id = id;
             Usage = usage;
-            Medication = medication;
-            MedicationId = Medication.Id;
+            MedicationId = medicationId;
             Date = date;
         }
 

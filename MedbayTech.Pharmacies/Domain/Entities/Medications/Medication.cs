@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MedbayTech.Common.Domain.Entities;
-using MedbayTech.Pharmacies.Domain.Entities.Rooms;
 using MedbayTech.Pharmacies.Domain.Enums;
 
 namespace MedbayTech.Pharmacies.Domain.Entities.Medications
@@ -18,14 +17,11 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Medications
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string Med { get; set; }
+        public string Name { get; set; }
         public MedStatus Status { get; set; }
         public string Company { get; set; }
         public int Quantity { get; set; }
         public string Dosage { get; set; }
-        public int RoomId { get; set; }
-        [NotMapped]
-        public Room Room { get; set; }
         public virtual List<DosageOfIngredient> MedicationContent { get; set; }
         public int MedicationCategoryId { get; set; }
         public virtual MedicationCategory MedicationCategory { get; set; }
@@ -33,24 +29,21 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Medications
 
         public Medication(string name, string company, MedicationCategory category)
         {
-            Med = name;
+            Name = name;
             Company = company;
             MedicationContent = new List<DosageOfIngredient>();
             MedicationCategory = category;
-            MedicationCategoryId = category.Id;
             Status = MedStatus.Validation;
         }
 
         public Medication(Medication medication)
         {
             Id = medication.Id;
-            Med = medication.Med;
+            Name = medication.Name;
             Status = medication.Status;
             Company = medication.Company;
             Quantity = medication.Quantity;
             Dosage = medication.Dosage;
-            Room = medication.Room;
-            RoomId = medication.RoomId;
             MedicationContent = medication.MedicationContent;
             MedicationCategoryId = medication.MedicationCategoryId;
             MedicationCategory = medication.MedicationCategory;
@@ -59,10 +52,9 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Medications
 
         public Medication(string name, string dosage)
         {
-            Med = name;
+            Name = name;
             Dosage = dosage;
             Company = "Galenika";
-            RoomId = 87;
             Quantity = 0;
             MedicationContent = new List<DosageOfIngredient>();
             MedicationCategoryId = 1;
@@ -73,7 +65,7 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Medications
         {
             Medication updated = new Medication(this);
             updated.Quantity = medication.Quantity;
-            updated.Med = medication.Med;
+            updated.Name = medication.Name;
             return updated;
         }
 
@@ -95,12 +87,11 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Medications
         public void UpdateMedication(Medication medication)
         {
             Id = medication.Id;
-            Med = medication.Med;
+            Name = medication.Name;
             Status = medication.Status;
             Company = medication.Company;
             Quantity = medication.Quantity;
             Dosage = medication.Dosage;
-            Room = medication.Room;
             MedicationContent = medication.MedicationContent;
             MedicationCategoryId = medication.MedicationCategoryId;
             MedicationCategory = medication.MedicationCategory;
