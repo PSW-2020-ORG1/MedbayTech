@@ -11,7 +11,7 @@
                     <v-form id="urg-request-create" v-model="valid">
                         <v-combobox v-model="requiredMedication"
                                     :items="allMedication"
-                                    label="Requared Medication"
+                                    label="Required Medication"
                                     :rules="reqMedicationRule">
                             <template v-slot:append-outer>
                                 <v-btn id="urg-request-btn"
@@ -77,7 +77,7 @@ export default {
             allMedication: [],
             valid: false,
             quantityRule: [
-                v => !!v || "Quntity is required",
+                v => !!v || "Quantity is required",
             ],
             medNameRule: [
                 v => !!v || "Name is required",
@@ -104,7 +104,8 @@ export default {
 
             medication.forEach(element => this.allMedication.push(element.name + " " + element.dosage));
 
-           this.axios.get("http://localhost:50202/api/Medication")
+            // TODO(Jovan): Use envvar?
+            this.axios.get("http://localhost:56764/api/medication/all")
                .then(response => {
                    var medication = response.data;
                    medication.forEach(element => this.allMedication.push(element.med + " " + element.dosage));
@@ -127,8 +128,9 @@ export default {
                 });
         },
         addNewMedication: function () {
-            let newMed = { medicationName: this.medName, medicationDosage: this.medDosage };
-            this.axios.post("http://localhost:50202/api/Medication/newMed", newMed)
+            // TODO(Jovan): Add choice for med category
+            let newMed = { med: this.medName, dosage: this.medDosage, medicationCategoryId: 1 };
+            this.axios.post("http://localhost:56764/api/medication", newMed)
                 .then(response => {
                     console.log(response.data);
                     this.show = true;

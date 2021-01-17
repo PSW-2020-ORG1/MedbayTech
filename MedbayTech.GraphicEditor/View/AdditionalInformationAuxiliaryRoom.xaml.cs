@@ -26,6 +26,7 @@ namespace MedbayTech.GraphicEditor
     {
         private Room room;
         private List<Medication> medications;
+        private List<HospitalEquipment> hospitalEquipments;
         private ObservableCollection<AppointmentRealocation> appointmentRealocations;
         public AdditionalInformationAuxiliaryRoom(int roomId)
         {
@@ -40,7 +41,8 @@ namespace MedbayTech.GraphicEditor
             this.dataGridAppointmentRealocation.ItemsSource = appointmentRealocations;
             if (room.RoomType == RoomType.AuxiliaryRoom)
             {
-                frameDataGrid.Content = new AdditionalInformationAuxiliaryRoomEquipment(room.HospitalEquipment);
+                hospitalEquipments = SearchDataBaseForHospitalEquipment(roomId);
+                frameDataGrid.Content = new AdditionalInformationAuxiliaryRoomEquipment(hospitalEquipments);
             }
             else
             {
@@ -64,6 +66,23 @@ namespace MedbayTech.GraphicEditor
             task.Wait();
             return appointmentRealocations;
         }
+        private List<HospitalEquipment> SearchDataBaseForHospitalEquipment(int roomId)
+        {
+            List<HospitalEquipment> hospitalEquipments = new List<HospitalEquipment>();
+            HttpClient httpClient = new HttpClient();
+            // var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/ByRoomId")
+            var task = httpClient.GetAsync("http://localhost:60304/api/hospitalequipment/getAllHospitalEquipments/" + roomId)
+               .ContinueWith((taskWithResponse) =>
+               {
+                   var response = taskWithResponse.Result;
+                   var jsonString = response.Content.ReadAsStringAsync();
+                   jsonString.Wait();
+                   hospitalEquipments = new List<HospitalEquipment>(JsonConvert.DeserializeObject<List<HospitalEquipment>>(jsonString.Result));
+               });
+            task.Wait();
+            return hospitalEquipments;
+        }
+
         private Room SearchDataBase(int roomId)
         {
             room = new Room();

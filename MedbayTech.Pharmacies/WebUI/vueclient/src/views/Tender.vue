@@ -141,11 +141,12 @@ export default {
 
         updateMedication: function (id, qu) {
             let med = "";
-            this.axios.get("http://localhost:50202/api/Medication/" + id)
+            // TODO(Jovan): Use envvar?
+            this.axios.get("http://localhost:56764/api/medication/" + id)
                 .then(response => {
                     med = response.data;
                     med.quantity = med.quantity + qu;
-                    this.axios.post("http://localhost:50202/api/Medication", med)
+                    this.axios.post("http://localhost:56764/api/medication", med)
                         .then(response => {
                             console.log(response.data);
                         })

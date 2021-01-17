@@ -52,6 +52,7 @@ namespace MedbayTech.Medications.Infrastructure.Service.Medications
 
         public Domain.Entities.Medications.Medication CreateMedication(Domain.Entities.Medications.Medication medication)
         {
+            // TODO(Jovan): Handle bad request?
             Domain.Entities.Medications.Medication fullMedication = medication;
             _medicationRepository.Create(medication);
 

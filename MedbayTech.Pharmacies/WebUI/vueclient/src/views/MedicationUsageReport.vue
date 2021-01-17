@@ -75,14 +75,14 @@
 
         methods: {
             generateReport: function () {
-                // NOTE(Jovan): Sanity check
                 this.loadingUsageReports = true;
                 if (!this.dateRange[0] || !this.dateRange[1]) return;
                 let period = {
                     startTime: this.dateRange[0],
                     endTime: this.dateRange[1],
                 };
-                this.axios.post("http://localhost:50202/api/MedicationUsageReport", period)
+                // TODO(Jovan): Use envvar?
+                this.axios.post("http://localhost:56764/api/medicationusagereport", period)
                     .then(response => {
                         this.reports.push(response.data);
                         console.log(response.data);
@@ -97,21 +97,23 @@
 
             getAllMedicationUsages: function () {
                 this.loadingMedicationUsages = true;
-                this.axios.get("http://localhost:50202/api/MedicationUsage")
+                // TODO(Jovan): Use envvar?
+                this.axios.get("http://localhost:56764/api/medicationusage")
                     .then(response => {
                         console.log(response.data);
                         this.medicationUsages = response.data;
+                        this.loadingMedicationUsages = false;
                     })
                     .catch(response => {
                         console.log(response.data);
-                    })
-                    .finally(function() {
                         this.loadingMedicationUsages = false;
-                    })
+                    });
             },
 
             getAllMedications: function () {
-                this.axios.get("http://localhost:50202/api/Medication")
+                //this.axios.get("http://localhost:50202/api/Medication")
+                // TODO(Jovan): Use envvar?
+                this.axios.get("http://localhost:56764/api/medication/all")
                     .then(response => {
                         console.log(response.data)
                         this.medications = response.data;

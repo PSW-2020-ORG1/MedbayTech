@@ -200,7 +200,8 @@ export default {
         getAllMedications: function () {
             var medication = []
             medication.forEach(element => this.allMedication.push(element.name + " " + element.dosage));
-            this.axios.get("http://localhost:50202/api/Medication")
+            // TODO(Jovan): Use envvar?
+            this.axios.get("http://localhost:56764/api/Medication")
                 .then(response => {
                     var medication = response.data;
                     for (let index = 0; index < medication.length; ++index) {

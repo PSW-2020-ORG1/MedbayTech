@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using GraphicEditor.ViewModel;
 using MedbayTech.GraphicEditor.View.Building1;
 using MedbayTech.GraphicEditor.View.Building2;
+using MedbayTech.Rooms.Domain;
 
 namespace MedbayTech.GraphicEditor
 {
@@ -369,7 +370,7 @@ namespace MedbayTech.GraphicEditor
             task.Wait();
             return room;
         }
-        public Doctor searchDataBaseForDoctor(int roomId)
+        public Doctor SearchDataBaseForDoctor(int roomId)
         {
             Doctor doctor = new Doctor();
             HttpClient httpClient = new HttpClient();
@@ -409,6 +410,54 @@ namespace MedbayTech.GraphicEditor
             {
                 MessageBox.Show("You don't have permission to search appointment!");
             }
+        }
+
+        private void ButtonMostViewedObject(object sender, RoutedEventArgs e)
+        {
+            Room room = SearchDataBaseForMostViewedRoom();
+            if(room.RoomType == RoomType.AuxiliaryRoom || room.RoomType == RoomType.StorageRoom)
+            {
+                AdditionalInformationAuxiliaryRoom additionalInformationAuxiliaryRoom = new AdditionalInformationAuxiliaryRoom(room.Id);
+                additionalInformationAuxiliaryRoom.ShowDialog();
+            }
+            else if(room.RoomType == RoomType.ExaminationRoom)
+            {
+                AdditionalInformationExaminationRoom additionalInformationExaminationRoom = new AdditionalInformationExaminationRoom(room.Id);
+                additionalInformationExaminationRoom.ShowDialog();
+            }
+            else if(room.RoomType == RoomType.OperationRoom)
+            {
+                AdditionalInformationOperatingRoom additionalInformationOperatingRoom = new AdditionalInformationOperatingRoom(room.Id);
+                additionalInformationOperatingRoom.ShowDialog();
+            }
+            else if(room.RoomType == RoomType.PatientRoom)
+            {
+                AdditionalInformationPatientRoom additionalInformationPatientRoom = new AdditionalInformationPatientRoom(room.Id);
+                additionalInformationPatientRoom.ShowDialog();
+            }
+        }
+
+        private void ButtonMostViewedInventory(object sender, RoutedEventArgs e)
+        {
+            Room room = SearchDataBaseForMostViewedRoom();
+            MostViewedInventory mostViewedInventory = new MostViewedInventory(room);
+            mostViewedInventory.ShowDialog();
+        }
+
+        public Room SearchDataBaseForMostViewedRoom()
+        {
+            Room room = new Room();
+            HttpClient httpClient = new HttpClient();
+            var task = httpClient.GetAsync("http://localhost:60304/api/roomevent/getMostEntered")
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    room = JsonConvert.DeserializeObject<Room>(jsonString.Result);
+                });
+            task.Wait();
+            return room;
         }
     }
 }
