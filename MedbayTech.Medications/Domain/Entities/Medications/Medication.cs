@@ -19,7 +19,7 @@ namespace MedbayTech.Medications.Domain.Entities.Medications
         public int RoomId { get; set; }
         
         public virtual List<DosageOfIngredient> MedicationContent { get; set; }
-        public int MedicationCategoryId { get; set; }
+        [NotMapped]
         public virtual MedicationCategory MedicationCategory { get; set; }
         public Medication() { }
 
@@ -29,7 +29,6 @@ namespace MedbayTech.Medications.Domain.Entities.Medications
             Company = company;
             MedicationContent = new List<DosageOfIngredient>();
             MedicationCategory = category;
-            MedicationCategoryId = category.Id;
             Status = MedStatus.Validation;
         }
 
@@ -43,7 +42,6 @@ namespace MedbayTech.Medications.Domain.Entities.Medications
             Dosage = medication.Dosage;
             RoomId = medication.RoomId;
             MedicationContent = medication.MedicationContent;
-            MedicationCategoryId = medication.MedicationCategoryId;
             MedicationCategory = medication.MedicationCategory;
 
         }
@@ -80,7 +78,6 @@ namespace MedbayTech.Medications.Domain.Entities.Medications
             Quantity = medication.Quantity;
             Dosage = medication.Dosage;
             MedicationContent = medication.MedicationContent;
-            MedicationCategoryId = medication.MedicationCategoryId;
             MedicationCategory = medication.MedicationCategory;
         }
     }

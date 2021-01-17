@@ -43,7 +43,7 @@ namespace MedbayTech.Pharmacies.Controllers
         public IActionResult CreateTender(TenderDTO tender)
         {
             MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = "jankovicpharmacy@gmail.com", Subject = "Message from Medbay hospital", Body = "New tender opened in MedbayTech!" };
-            SendMail(mailRequest);
+            _mailService.SendMailAsync(mailRequest).Wait();
 
             Tender newTender = _tenderService.CreateTender(tender);
             int medicationCount = 0;
@@ -79,7 +79,7 @@ namespace MedbayTech.Pharmacies.Controllers
                         var json = message.Content.ReadAsStringAsync();
                         json.Wait();
                         medication = JsonConvert.DeserializeObject<Medication>(json.Result);
-                        tenderMedicationDTOs.Add(new TenderMedicationDTO(medication.Id, medication.Med, medication.Dosage, tenderMedication.TenderMedicationQuantity));
+                        tenderMedicationDTOs.Add(new TenderMedicationDTO(medication.Id, medication.Name, medication.Dosage, tenderMedication.TenderMedicationQuantity));
                     });
                 task.Wait();
 
@@ -97,19 +97,6 @@ namespace MedbayTech.Pharmacies.Controllers
                 return Ok();
             else
                 return BadRequest();
-        }
-
-        public async void SendMail(MailRequestDTO request)
-        {
-            try
-            {
-                await _mailService.SendMailAsync(request);
-
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
         }
     }
 }

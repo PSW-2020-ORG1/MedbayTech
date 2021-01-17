@@ -75,46 +75,50 @@
 
         methods: {
             generateReport: function () {
-                // NOTE(Jovan): Sanity check
-                this.loadingUsageReports = true;
                 if (!this.dateRange[0] || !this.dateRange[1]) return;
                 let period = {
                     startTime: this.dateRange[0],
                     endTime: this.dateRange[1],
                 };
-                this.axios.post("http://localhost:50202/api/MedicationUsageReport", period)
+                // TODO(Jovan): Use envvar?
+                this.axios.post("http://localhost:56764/api/medicationusagereport", period)
                     .then(response => {
-                        this.reports.push(response.data);
+                        this.getAllReports();
                         console.log(response.data);
                     })
                     .catch(response => {
                         console.log(response.data);
-                    })
-                    .finally(function() {
-                        this.loadingUsageReports = false;
                     });
             },
 
             getAllMedicationUsages: function () {
                 this.loadingMedicationUsages = true;
-                this.axios.get("http://localhost:50202/api/MedicationUsage")
+                // TODO(Jovan): Use envvar?
+                this.axios.get("http://localhost:56764/api/medicationusage")
                     .then(response => {
                         console.log(response.data);
                         this.medicationUsages = response.data;
+                        this.getAllMedications();
+                        this.loadingMedicationUsages = false;
                     })
                     .catch(response => {
                         console.log(response.data);
-                    })
-                    .finally(function() {
                         this.loadingMedicationUsages = false;
-                    })
+                    });
             },
 
             getAllMedications: function () {
-                this.axios.get("http://localhost:50202/api/Medication")
+                //this.axios.get("http://localhost:50202/api/Medication")
+                // TODO(Jovan): Use envvar?
+                this.axios.get("http://localhost:56764/api/medication/all")
                     .then(response => {
                         console.log(response.data)
                         this.medications = response.data;
+                        this.medicationUsages.forEach(mu => {
+                            console.log(mu);
+                            let med = this.medications.find(m => m.id == mu.medicationId);
+                            mu.medication = med;
+                        });
                     })
                     .catch(response => {
                         console.log(response.data);
@@ -129,13 +133,22 @@
                     });
 
                 });
+            },
 
+            getAllReports: function() {
+                this.loadingUsageReports = true;
+                this.axios.get("http://localhost:56764/api/medicationusagereport")
+                    .then(response => {
+                        console.log(response);
+                        this.reports = response.data;
+                        this.loadingUsageReports = false;
+                    })
             },
         },
 
         mounted() {
             this.getAllMedicationUsages();
-            this.getAllMedications();
+            this.getAllReports();
         },
     }
 </script>
