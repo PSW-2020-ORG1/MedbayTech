@@ -37,7 +37,8 @@ export const environment = {
   availableStrategy : 'availableStrategy',
   availableStandard : 'available',
   scheduleAppointment : 'schedule',
-  appointmentReport : 'appointmentReport'
+  appointmentReport : 'appointmentReport',
+  appointmentPrescription : 'appointmentPrescription'
 };
 
 /*

@@ -34,7 +34,7 @@
 
             <mat-card-actions>
                 <button mat-raised-button color="primary" class="button2" (click)="otherMethod(appointment.start,appointment.doctorId)" >Report</button>
-                <button mat-raised-button color="primary" class="button2"  >Prescriptions</button>
+                <button mat-raised-button color="primary" class="button2" (click)="openPrescriptionDialog(appointment.start,appointment.doctorId)"  >Prescriptions</button>
                 <button mat-raised-button color="accent" class="button1" (click)="saveAppointment(appointment)" routerLink="/survey" target="_blank" >Survey</button>
             </mat-card-actions>
         </mat-card>

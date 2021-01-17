@@ -543,25 +543,46 @@
             }
         },
         {
-            "DownstreamPathTemplate": "/api/report/appointmentReport",
-            "DownstreamScheme": "http",
-            "DownstreamHostAndPorts": [
-                {
-                    "Host": "localhost",
-                    "Port": 50577
-                }
-            ],
-            "UpstreamPathTemplate": "/appointmentReport",
-            "UpstreamHttpMethod": [
-                "POST"
-            ],
-            "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": []
-            },
-            "RouteClaimsRequirement": {
-                "Role": "Patient"
+          "DownstreamPathTemplate": "/api/report/appointmentReport",
+          "DownstreamScheme": "http",
+          "DownstreamHostAndPorts": [
+            {
+              "Host": "localhost",
+              "Port": 50577
             }
+          ],
+          "UpstreamPathTemplate": "/appointmentReport",
+          "UpstreamHttpMethod": [
+            "POST"
+          ],
+          "AuthenticationOptions": {
+            "AuthenticationProviderKey": "Bearer",
+            "AllowedScopes": []
+          },
+          "RouteClaimsRequirement": {
+            "Role": "Patient"
+          }
+        },
+        {
+          "DownstreamPathTemplate": "/api/prescription/appointmentPrescription",
+          "DownstreamScheme": "http",
+          "DownstreamHostAndPorts": [
+            {
+              "Host": "localhost",
+              "Port": 50577
+            }
+          ],
+          "UpstreamPathTemplate": "/appointmentPrescription",
+          "UpstreamHttpMethod": [
+            "POST"
+          ],
+          "AuthenticationOptions": {
+            "AuthenticationProviderKey": "Bearer",
+            "AllowedScopes": []
+          },
+          "RouteClaimsRequirement": {
+            "Role": "Patient"
+          }
         }
     ]
   }

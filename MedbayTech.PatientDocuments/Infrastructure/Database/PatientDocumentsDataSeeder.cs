@@ -156,18 +156,18 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
             });
             context.Add(new Prescription
             {
-                ReportId = 1,
+                ReportId = 2,
                 Date = new DateTime(2020, 12, 5),
                 Reserved = true,
                 StartDate = new DateTime(2020, 11, 28),
                 EndDate = new DateTime(2020, 12, 1),
                 HourlyIntake = 6,
                 MedicationId = 1,
-                Medication = "Brufen"
+                Medication = "Amoksicilin"
             });
             context.Add(new Prescription
             {
-                ReportId = 1,
+                ReportId = 3,
                 Date = new DateTime(2020, 12, 12),
                 Reserved = true,
                 StartDate = new DateTime(2020, 11, 27),
@@ -178,7 +178,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
             });
             context.Add(new Prescription
             {
-                ReportId = 1,
+                ReportId = 4,
                 Date = new DateTime(2020, 12, 10),
                 Reserved = true,
                 StartDate = new DateTime(2020, 11, 28),
@@ -200,14 +200,14 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Database
             });
             context.Add(new Prescription
             {
-                ReportId = 1,
+                ReportId = 2,
                 Date = new DateTime(2020, 12, 7),
                 Reserved = true,
                 StartDate = new DateTime(2020, 11, 28),
                 EndDate = new DateTime(2020, 12, 1),
                 HourlyIntake = 4,
                 MedicationId = 1,
-                Medication = "Brufen"
+                Medication = "Andol"
             });
             context.SaveChanges();
         }
