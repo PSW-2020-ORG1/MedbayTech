@@ -24,12 +24,14 @@ namespace MedbayTech.GraphicEditor
     /// </summary>
     public partial class AdditionalInformationOperatingRoom : Window
     {
+        private MainPage page;
         private Room room;
         private ObservableCollection<Appointment> appointments;
         private ObservableCollection<AppointmentRealocation> appointmentRealocations;
-        public AdditionalInformationOperatingRoom(int roomId)
+        public AdditionalInformationOperatingRoom(int roomId, MainPage page)
         {
             InitializeComponent();
+            page = this.page;
             string path = Directory.GetCurrentDirectory();
             string new_path = path.Replace('\\', '/');
             string logo = new_path + "/Icons/WhiteLogo.png";
@@ -157,9 +159,16 @@ namespace MedbayTech.GraphicEditor
 
         private void ButtonScheduleRenovation(object sender, RoutedEventArgs e)
         {
-            ScheduleRenovation scheduleRenovation = new ScheduleRenovation(room);
-            scheduleRenovation.ShowDialog();
-            SearchDataBaseForAppointmentRealocation(room.Id);
+            if (page.getRestriction() == 0)
+            {
+                ScheduleRenovation scheduleRenovation = new ScheduleRenovation(room);
+                scheduleRenovation.ShowDialog();
+                dataGridAppointmentRealocation.ItemsSource = SearchDataBaseForAppointmentRealocation(room.Id);
+            }
+            else
+            {
+                MessageBox.Show("You don't have permission for scheduling appointments for renovation!");
+            }
         }
     }
 }

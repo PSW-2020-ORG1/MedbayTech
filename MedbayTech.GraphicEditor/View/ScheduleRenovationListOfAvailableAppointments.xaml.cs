@@ -11,6 +11,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace MedbayTech.GraphicEditor.View
 {
@@ -38,7 +45,7 @@ namespace MedbayTech.GraphicEditor.View
             if (scheduleRenovation.comboBoxRenovationType.SelectedIndex == 1)
             {
                 Room room = (Room)scheduleRenovation.dataGridRoom.SelectedItem;
-                appointmentRealocationDTO = new AppointmentRealocationDTO() {FromRoomId = scheduleRenovation.room.Id, ToRoomId=room.Id, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.ByTwoRooms, StartInterval = beginningTime, EndInterval = endTime };
+                appointmentRealocationDTO = new AppointmentRealocationDTO() { FromRoomId = scheduleRenovation.room.Id, ToRoomId = room.Id, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.AlternativeAppointments, StartInterval = beginningTime, EndInterval = endTime };
             }
             else appointmentRealocationDTO = new AppointmentRealocationDTO() { RoomId = scheduleRenovation.room.Id, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.ByRoomAndDateTime, StartInterval = beginningTime, EndInterval = endTime };
 
@@ -70,7 +77,7 @@ namespace MedbayTech.GraphicEditor.View
         private async void ButtonSchedule(object sender, RoutedEventArgs e)
         {
             AppointmentRealocation appointmentRealocation = (AppointmentRealocation)dataGridAppointment.SelectedItem;
-            if(appointmentRealocation == null)
+            if (appointmentRealocation == null)
             {
                 MessageBox.Show("You didn't select any appointment for renovation!");
                 return;
@@ -86,6 +93,9 @@ namespace MedbayTech.GraphicEditor.View
                 appointmentRealocation = AppointmentRealocationForMerging(appointmentRealocation);
                 AppointmentRealocationDTO appointmentRealocationDTO = new AppointmentRealocationDTO() { appointmentRealocation = appointmentRealocation, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.ScheduleRealocationOrRenovation };
                 await HttpRequestToAppointmentRealocationController(appointmentRealocationDTO);
+                Room room = (Room)scheduleRenovation.dataGridRoom.SelectedItem;
+                appointmentRealocationDTO.appointmentRealocation.RoomId = room.Id;
+                await HttpRequestToAppointmentRealocationController(appointmentRealocationDTO);
             }
             else
             {
@@ -94,7 +104,7 @@ namespace MedbayTech.GraphicEditor.View
                 await HttpRequestToAppointmentRealocationController(appointmentRealocationDTO);
             }
             MessageBox.Show("Renovation is successfuly scheduled!");
-            this.Close();       
+            this.Close();
         }
 
         private AppointmentRealocation AppointmentRealocationForMaintenance(AppointmentRealocation appointmentRealocation)
@@ -144,7 +154,12 @@ namespace MedbayTech.GraphicEditor.View
             HttpResponseMessage response = await client.PostAsync("http://localhost:8083/api/appointmentrealocation/", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
-            if(appointmentRealocationDTO.appointmentRealocationSearchOrSchedule == AppointmentRealocationSearchOrSchedule.ByRoomAndDateTime)
+            if (appointmentRealocationDTO.appointmentRealocationSearchOrSchedule == AppointmentRealocationSearchOrSchedule.ByRoomAndDateTime)
+            {
+                appointmentRealocations = new List<AppointmentRealocation>(JsonConvert.DeserializeObject<List<AppointmentRealocation>>(responseBody));
+                dataGridAppointment.ItemsSource = appointmentRealocations;
+            }
+            else if (appointmentRealocationDTO.appointmentRealocationSearchOrSchedule == AppointmentRealocationSearchOrSchedule.ByTwoRooms)
             {
                 appointmentRealocations = new List<AppointmentRealocation>(JsonConvert.DeserializeObject<List<AppointmentRealocation>>(responseBody));
                 dataGridAppointment.ItemsSource = appointmentRealocations;

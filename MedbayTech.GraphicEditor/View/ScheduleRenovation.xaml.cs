@@ -1,7 +1,9 @@
 ﻿using GraphicEditor.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Net.Http;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +22,7 @@ namespace MedbayTech.GraphicEditor.View
     public partial class ScheduleRenovation : Window
     {
         public Room room;
+
         public ScheduleRenovation(Room room)
         {
             InitializeComponent();
@@ -30,6 +33,24 @@ namespace MedbayTech.GraphicEditor.View
             dockPanelMerging.IsEnabled = false;
             dockPanelSeparating.IsEnabled = false;
             buttonScheduleRenovation.IsEnabled = false;
+            SearchForNeighbourRooms();
+        }
+
+        private List<Room> SearchForNeighbourRooms()
+        {
+            List<Room> rooms = new List<Room>();
+            HttpClient httpClient = new HttpClient();
+            var task = httpClient.GetAsync("http://localhost:60304/api/room/" + room.Id + "/ByRoomNumber")
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    rooms = JsonConvert.DeserializeObject<List<Room>>(jsonString.Result);
+                });
+            task.Wait();
+            dataGridRoom.ItemsSource = rooms;
+            return rooms;
         }
 
         private void ButtonClose(object sender, RoutedEventArgs e)

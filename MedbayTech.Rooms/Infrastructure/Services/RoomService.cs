@@ -158,5 +158,50 @@ namespace MedbayTech.Rooms.Infrastructure.Services
             }
             return rooms;
         }
+
+        public List<Room> GetNeighbouringRoom(int roomId)
+        {
+            List<Room> rooms = new List<Room>();
+            Room room = _roomRepository.GetBy(roomId);
+            List<Room> roomsRight = GetRoomByNumber(room.RoomNumber + 1);
+            List<Room> roomsLeft = GetRoomByNumber(room.RoomNumber - 1);
+            if(roomsRight != null)
+            {
+                foreach(Room roomTo in roomsRight)
+                {
+                    if (CompareTwoRooms(room, roomTo))
+                    {
+                        rooms.Add(roomTo);
+                        break;
+                    }
+                }
+                
+            }
+            if(roomsLeft != null)
+            {
+                foreach (Room roomTo in roomsLeft)
+                {
+                    if (CompareTwoRooms(room, roomTo))
+                    {
+                        rooms.Add(roomTo);
+                        break;
+                    }
+                }
+            }
+            return rooms;
+        }
+
+        private List<Room> GetRoomByNumber(int roomNumber)
+        {
+            return _roomRepository.GetAll().ToList().Where(r => r.RoomNumber == roomNumber).ToList();
+        }
+
+        private bool CompareTwoRooms(Room room1, Room room2)
+        {
+            if (room1.DepartmentId != room2.DepartmentId) return false;
+            if (room1.Department.HospitalId != room2.Department.HospitalId) return false;
+            if (room1.Department.Floor != room2.Department.Floor) return false;
+            return true;
+        }
     }
 }

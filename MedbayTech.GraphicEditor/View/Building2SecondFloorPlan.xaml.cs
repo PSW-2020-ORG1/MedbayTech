@@ -245,7 +245,7 @@ namespace MedbayTech.GraphicEditor.View.Building2
 
             if (page.getRestriction() != 1)
             {
-                AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom(roomId);
+                AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom(roomId, page);
                 additionalInformation.ShowDialog();
             }
         }
@@ -265,7 +265,7 @@ namespace MedbayTech.GraphicEditor.View.Building2
 
             if (page.getRestriction() != 1)
             {
-                AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom(roomId);
+                AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom(roomId, page);
                 additionalInformation.ShowDialog();
             }
         }
@@ -285,7 +285,7 @@ namespace MedbayTech.GraphicEditor.View.Building2
 
             if (page.getRestriction() != 1)
             {
-                AdditionalInformationExaminationRoom additionalInformation = new AdditionalInformationExaminationRoom(roomId);
+                AdditionalInformationExaminationRoom additionalInformation = new AdditionalInformationExaminationRoom(roomId, page);
                 additionalInformation.ShowDialog();
             }
         }
@@ -305,7 +305,7 @@ namespace MedbayTech.GraphicEditor.View.Building2
 
             if (page.getRestriction() != 1)
             {
-                AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom(roomId);
+                AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom(roomId, page);
                 additionalInformation.ShowDialog();
             }
         }

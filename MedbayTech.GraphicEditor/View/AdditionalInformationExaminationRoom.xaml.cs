@@ -23,18 +23,20 @@ namespace MedbayTech.GraphicEditor
     /// </summary>
     public partial class AdditionalInformationExaminationRoom : Window
     {
+        private MainPage page;
         private Room room;
         private Doctor doctor;
         private ObservableCollection<Appointment> appointments;
         private ObservableCollection<AppointmentRealocation> appointmentRealocations; 
-        public AdditionalInformationExaminationRoom(int roomId)
+        public AdditionalInformationExaminationRoom(int roomId, MainPage page)
         {
             InitializeComponent();
+            this.page = page;
             string path = Directory.GetCurrentDirectory();
             string new_path = path.Replace('\\', '/');
             string logo = new_path + "/Icons/WhiteLogo.png";
             imageLogo.Source = new BitmapImage(new Uri(@logo, UriKind.Absolute));
-            room = searchDataBaseForRoom(roomId);
+            room = SearchDataBaseForRoom(roomId);
             doctor = SearchDataBaseForDoctor(roomId);
             appointments = new ObservableCollection<Appointment>(SearchDataBaseForAppointments(roomId.ToString()));
             appointmentRealocations = new ObservableCollection<AppointmentRealocation>(SearchDataBaseForAppointmentRealocation(roomId));
@@ -63,7 +65,7 @@ namespace MedbayTech.GraphicEditor
             return appointmentRealocations;
         }
 
-        private Room searchDataBaseForRoom(int roomId)
+        private Room SearchDataBaseForRoom(int roomId)
         {
             room = new Room();
             HttpClient httpClient = new HttpClient();
@@ -139,9 +141,16 @@ namespace MedbayTech.GraphicEditor
 
         private void ButtonScheduleRenovation(object sender, RoutedEventArgs e)
         {
-            ScheduleRenovation scheduleRenovation = new ScheduleRenovation(room);
-            scheduleRenovation.ShowDialog();
-            SearchDataBaseForAppointmentRealocation(room.Id);
+            if (page.getRestriction() == 0)
+            {
+                ScheduleRenovation scheduleRenovation = new ScheduleRenovation(room);
+                scheduleRenovation.ShowDialog();
+                dataGridAppointmentsRealocation.ItemsSource = SearchDataBaseForAppointmentRealocation(room.Id);
+            }
+            else
+            {
+                MessageBox.Show("You don't have permission for scheduling appointments for renovation!");
+            }
         }
 
         private async Task HttpRequestToAppointmentRealocationController(AppointmentRealocationDTO appointmentRealocationDTO)
