@@ -14,6 +14,12 @@
                             <v-card-title><strong>Medication:</strong> </v-card-title>
                             <v-card-title>-{{prescription.medicationName}} {{prescription.medicationDosage}}</v-card-title>
                             <v-card-title>-Hourly Intake: {{prescription.medicationHourlyIntake}}</v-card-title>
+                            <v-combobox v-model="pharmacy[index]"
+                                    :items="availablePharamacies[index]"
+                                    :rules="pharmacyRule"
+                                    label="Pharmacies with the medication.">
+                                    
+                            </v-combobox>
                             <p v-if="status.prescriptionIndex !== index || status.message === '' " style="color:white">.</p>
                             <p v-else-if="status.message === 'We have the desired medication!'" style="color:forestgreen">{{status.message}}</p>
                             <p v-else style="color:red">{{status.message}}</p>
@@ -21,13 +27,14 @@
                         <v-card-actions>
                             <v-btn text
                                     class="white accent--text"
-                                   @click="checkForMedication(prescription.medicationName, index)">
-                                Ask pharmacy
+                                    @click="getPharmacies(prescription.medicationName, index)">
+                                Ask pharmacies
                             </v-btn>
                             <v-spacer></v-spacer>
                             <v-btn text
                                     class="white accent--text"
-                                   @click="sendPrescription(prescription)">
+                                   @click="sendPrescription(prescription)"
+                                   :disabled="!pharmacy[index]">
                                 Send to pharmacy
                             </v-btn>
                         </v-card-actions>
@@ -51,40 +58,105 @@
 export default {
     data() {
         return {
+            pharmacyRule: [
+                v => !!v || "First ask the pharmacies or chose one.",
+            ],
             reveal: false,
             status: {prescriptionIndex: "", message: ""},
             prescriptions: [],
             showModal: false,
             qrLink: {},  //require("../../../GeneratedPrescription/qrcode.png"),
             qrLinkPath: "",
+            pharmacy: [],
+            availablePharamacies: [],
+            pharmacies: [],
+            comboEnabled: [],
+            allPharamacies: [],
             
         }
     },
 
     methods: {
-        checkForMedication: function (medication, index) {
-            // This is for gRPC
-            //this.axios.get("http://localhost:50202/api/Medication/check/" + medication)
-            this.axios.get("http://schnabel.herokuapp.com/pswapi/drugs/name/" + medication)
+        getPharmacies: function(medication, index){
+            this.axios.get("http://localhost:50202/api/Pharmacy/available/" + medication)
                 .then(response => {
-                    this.status.prescriptionIndex = index;
-                    this.status.message = response.data;
-                    
-
-                    console.log(this.status.message);
+                    this.availablePharamacies[index] = response.data;
+                    console.log(this.availablePharamacies);
                 })
                 .catch(response => {
                     console.log(response.data);
                 })
-            
+        },
+        askPharamcies: function(medication, index){
+            this.axios.get("http://localhost:50202/api/Pharmacy")
+                .then(response => {
+                    this.allPharamacies = response.data;
+                    console.log(response.data);
+                    for (let i = 0; i < this.allPharamacies.length; ++i) {
+                        this.checkForMedication(medication, index, i)
+                    }
+                    this.comboEnabled[index] = false;
+                    if(this.pharmacy.length != 0)
+                    {
+                        this.availablePharamacies.push(this.pharmacies);
+                    }
+                    this.pharmacies = [];
+                    console.log("apoteke");
+                    console.log(this.availablePharamacies);
+                    
+
+                })
+                .catch(response => {
+                    console.log(response.data);
+                })
+        },
+        checkForMedication: function (medication, index, i) {
+            // This is for gRPC
+            let p = "";
+            this.axios.get("http://localhost:50202/api/Pharmacy/check" + medication)
+                .then(response => {
+                    console.log("GRPC");
+                    if(response.data === 'We have the desired medication!'){
+                        p = this.allPharamacies[i].id;
+                        console.log("ima");
+                        console.log(p);
+                    }
+                    console.log(response.data);
+                })
+                .catch(response => {
+                    console.log("Http");
+                    console.log(response.data);
+                    this.axios.get(this.allPharamacies[i].apiEndpoint + "/" + medication)
+                    .then(response => {
+                        if(response.data === 'We have the desired medication!'){
+                            p = this.allPharamacies[i].id;
+                            console.log("ima");
+                            console.log(p);
+                        }
+                        console.log(response.data);
+                    })
+                    .catch(response => {
+                        console.log(response.data);
+                    })
+                })
+            if(p !== ""){
+                this.pharmacies.push(p); 
+            }
+            console.log(i);
+            console.log(p);
+            console.log("apoteke" + i);
+            console.log(this.availablePharamacies);
+           
             
         },
         getAllPerscriptions: function () {
             this.axios.get("http://localhost:50202/api/Prescription")
                 .then(response => {
                     this.prescriptions = response.data;
-                    for (var i = 0; i < this.prescriptions.lenght; i++) {
-                        status.push("");
+                    for (var i = 0; i < this.prescriptions.length; i++) {
+                        this.comboEnabled[i] = true;
+                        this.availablePharamacies[i] = [];
+                        this.pharmacy[i] = "";
                     }
                 })
                 .catch(response => {

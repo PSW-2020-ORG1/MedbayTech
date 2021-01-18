@@ -66,7 +66,7 @@ namespace MedbayTech.Pharmacies.Controllers
             {
                 using HttpClient client = new HttpClient();
 
-                var task = client.GetAsync("http://localhost:50202/api/Medication/" + tenderMedication.MedicationId)
+                var task = client.GetAsync("http://localhost:56764/api/Medication/" + tenderMedication.MedicationId)
                     .ContinueWith((taskWithResponse) =>
                     {
                         var message = taskWithResponse.Result;
