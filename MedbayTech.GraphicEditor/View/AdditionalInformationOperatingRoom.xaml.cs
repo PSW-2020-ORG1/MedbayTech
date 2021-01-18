@@ -163,7 +163,8 @@ namespace MedbayTech.GraphicEditor
             {
                 ScheduleRenovation scheduleRenovation = new ScheduleRenovation(room);
                 scheduleRenovation.ShowDialog();
-                dataGridAppointmentRealocation.ItemsSource = SearchDataBaseForAppointmentRealocation(room.Id);
+                appointmentRealocations = new ObservableCollection<AppointmentRealocation>(SearchDataBaseForAppointmentRealocation(room.Id));
+                dataGridAppointmentRealocation.ItemsSource = appointmentRealocations;
             }
             else
             {

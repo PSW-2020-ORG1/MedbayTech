@@ -138,14 +138,8 @@ namespace MedbayTech.Appointment.Infrastructure.Services
             List<AppointmentRealocation> appointmentRealocations = new List<AppointmentRealocation>();
             foreach (AppointmentRealocation roomOne in appointmentRealocationsForRoomOne)
             {
-                foreach(AppointmentRealocation roomTwo in appointmentRealocationsForRoomTwo)
-                {
-                    if(roomOne.Start == roomTwo.Start)
-                    {
-                        appointmentRealocations.Add(roomOne);
-                        break;
-                    }
-                }
+                var roomTwo = appointmentRealocationsForRoomTwo.FirstOrDefault(r => r.Start == roomOne.Start);
+                if (roomTwo != null) appointmentRealocations.Add(roomTwo);
             }
             return appointmentRealocations;
         }

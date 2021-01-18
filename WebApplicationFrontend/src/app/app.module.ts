@@ -52,12 +52,9 @@ import { NavigationBarUserComponent } from './navigation-bar/navigation-bar-user
 import { HomePageComponent } from './home-page/home-page.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
-<<<<<<< HEAD
-=======
 import { ObservePrescriptionComponent, ObservePrescriptionComponentDialog } from './prescription/observe-prescription/observe-prescription.component';
 import { ReportsDialogComponent } from './reports/reports-dialog/reports-dialog.component';
 import { ReportDialogComponent } from './reports/reports-dialog/report-dialog/report-dialog.component';
->>>>>>> develop
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
@@ -83,11 +80,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     NavigationBarPatientComponent,
     NavigationBarUserComponent,
     HomePageComponent,
-<<<<<<< HEAD
-=======
     ObservePrescriptionComponentDialog,
     ReportsDialogComponent,
->>>>>>> develop
     LandingPageComponent
   ],
   imports: [

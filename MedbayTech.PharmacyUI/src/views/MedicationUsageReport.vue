@@ -75,10 +75,6 @@
 
         methods: {
             generateReport: function () {
-<<<<<<< HEAD:MedbayTech.Pharmacies/WebUI/vueclient/src/views/MedicationUsageReport.vue
-                this.loadingUsageReports = true;
-=======
->>>>>>> develop:MedbayTech.PharmacyUI/src/views/MedicationUsageReport.vue
                 if (!this.dateRange[0] || !this.dateRange[1]) return;
                 let period = {
                     startTime: this.dateRange[0],
@@ -102,10 +98,6 @@
                     .then(response => {
                         console.log(response.data);
                         this.medicationUsages = response.data;
-<<<<<<< HEAD:MedbayTech.Pharmacies/WebUI/vueclient/src/views/MedicationUsageReport.vue
-=======
-                        this.getAllMedications();
->>>>>>> develop:MedbayTech.PharmacyUI/src/views/MedicationUsageReport.vue
                         this.loadingMedicationUsages = false;
                     })
                     .catch(response => {

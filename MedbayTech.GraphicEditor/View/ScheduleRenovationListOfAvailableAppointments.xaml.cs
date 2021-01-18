@@ -45,7 +45,7 @@ namespace MedbayTech.GraphicEditor.View
             if (scheduleRenovation.comboBoxRenovationType.SelectedIndex == 1)
             {
                 Room room = (Room)scheduleRenovation.dataGridRoom.SelectedItem;
-                appointmentRealocationDTO = new AppointmentRealocationDTO() { FromRoomId = scheduleRenovation.room.Id, ToRoomId = room.Id, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.AlternativeAppointments, StartInterval = beginningTime, EndInterval = endTime };
+                appointmentRealocationDTO = new AppointmentRealocationDTO() { FromRoomId = scheduleRenovation.room.Id, ToRoomId = room.Id, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.ByTwoRooms, StartInterval = beginningTime, EndInterval = endTime };
             }
             else appointmentRealocationDTO = new AppointmentRealocationDTO() { RoomId = scheduleRenovation.room.Id, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.ByRoomAndDateTime, StartInterval = beginningTime, EndInterval = endTime };
 

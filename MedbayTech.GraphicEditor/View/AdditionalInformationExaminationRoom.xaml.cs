@@ -145,7 +145,8 @@ namespace MedbayTech.GraphicEditor
             {
                 ScheduleRenovation scheduleRenovation = new ScheduleRenovation(room);
                 scheduleRenovation.ShowDialog();
-                dataGridAppointmentsRealocation.ItemsSource = SearchDataBaseForAppointmentRealocation(room.Id);
+                appointmentRealocations = new ObservableCollection<AppointmentRealocation>(SearchDataBaseForAppointmentRealocation(room.Id));
+                dataGridAppointmentsRealocation.ItemsSource = appointmentRealocations;
             }
             else
             {
