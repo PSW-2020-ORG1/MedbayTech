@@ -121,7 +121,7 @@ namespace MedbayTech.UnitTesting.Users
                 Start = new DateTime(2020, 12, 5, 14, 00, 0),
                 End = new DateTime(2020, 12, 5, 14, 30, 0),
                 CanceledByPatient = true,
-                CancelationDate = new DateTime(2020, 12, 19),
+                CancelationDate = new DateTime(2021, 1, 14),
                 PatientId = "2406978890046"
             };
 
@@ -130,7 +130,7 @@ namespace MedbayTech.UnitTesting.Users
                 Start = new DateTime(2020, 12, 5, 14, 00, 0),
                 End = new DateTime(2020, 12, 5, 14, 30, 0),
                 CanceledByPatient = true,
-                CancelationDate = new DateTime(2020, 12, 20),
+                CancelationDate = new DateTime(2021, 1, 15),
                 PatientId = "2406978890046"
             };
 
@@ -139,7 +139,7 @@ namespace MedbayTech.UnitTesting.Users
                 Start = new DateTime(2020, 12, 5, 14, 00, 0),
                 End = new DateTime(2020, 12, 5, 14, 30, 0),
                 CanceledByPatient = true,
-                CancelationDate = new DateTime(2020, 12, 21),
+                CancelationDate = new DateTime(2021, 1, 16),
                 PatientId = "2406978890046"
             };
 
@@ -148,7 +148,7 @@ namespace MedbayTech.UnitTesting.Users
                 Start = new DateTime(2020, 12, 5, 14, 00, 0),
                 End = new DateTime(2020, 12, 5, 14, 30, 0),
                 CanceledByPatient = true,
-                CancelationDate = new DateTime(2020, 12, 22),
+                CancelationDate = new DateTime(2021, 1, 17),
                 PatientId = "2406978890046"
             };
 

@@ -27,6 +27,7 @@
     "jspdf": "^2.2.0",
     "ng-image-slider": "^2.6.4",
     "ngx-toastr": "^13.1.0",
+    "pdfmake": "^0.1.70",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "toastr": "^2.1.4",
