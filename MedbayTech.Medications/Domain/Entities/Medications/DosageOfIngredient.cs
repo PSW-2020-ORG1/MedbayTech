@@ -11,8 +11,8 @@ namespace MedbayTech.Medications.Domain.Entities.Medications
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public double Amount { get; set; }
-        [ForeignKey("MedicationIngredient")]
-        public int MedicationIngredientId { get; set; }
+
+        [NotMapped]
         public virtual MedicationIngredient MedicationIngredient { get; set; }
         public DosageOfIngredient() { }
         public DosageOfIngredient(MedicationIngredient ingredient, double amount)

@@ -66,7 +66,7 @@ namespace Infrastructure.Services
             List<Survey> surveys = _surveyRepository.GetAll().ToList();
             List<Appointment> appointments = GetAllForPatient(id);
             List<Appointment> surveyableAppointments = new List<Appointment>();
-            surveyableAppointments = appointments.Where(p => !surveys.Any(l => p.Id == l.AppointmentId) && p.Finished == true).ToList();
+            surveyableAppointments = appointments.Where(p => !surveys.Any(l => p.Id == l.AppointmentId) && p.Finished && !p.CanceledByPatient).ToList();
 
             return surveyableAppointments; 
 

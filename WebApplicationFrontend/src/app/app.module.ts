@@ -11,6 +11,7 @@ import { ToastrModule} from 'ngx-toastr';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button'; 
+import {MatDialogModule} from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatList, MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
@@ -51,6 +52,12 @@ import { NavigationBarUserComponent } from './navigation-bar/navigation-bar-user
 import { HomePageComponent } from './home-page/home-page.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
+<<<<<<< HEAD
+=======
+import { ObservePrescriptionComponent, ObservePrescriptionComponentDialog } from './prescription/observe-prescription/observe-prescription.component';
+import { ReportsDialogComponent } from './reports/reports-dialog/reports-dialog.component';
+import { ReportDialogComponent } from './reports/reports-dialog/report-dialog/report-dialog.component';
+>>>>>>> develop
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
@@ -76,6 +83,11 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     NavigationBarPatientComponent,
     NavigationBarUserComponent,
     HomePageComponent,
+<<<<<<< HEAD
+=======
+    ObservePrescriptionComponentDialog,
+    ReportsDialogComponent,
+>>>>>>> develop
     LandingPageComponent
   ],
   imports: [
@@ -116,7 +128,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     MatStepperModule,
     ToastrModule.forRoot(),
     IvyCarouselModule,
-    NgImageSliderModule
+    NgImageSliderModule,
+    MatDialogModule
   ],
   providers: [
     FeedbackService,
@@ -125,6 +138,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     SurveyService,
     MedicalRecordService,
     AppointmentService,
+    ObservePrescriptionComponent,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],

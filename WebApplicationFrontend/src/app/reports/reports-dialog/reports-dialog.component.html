@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>REPORT</h1>
+<div mat-dialog-content #contentToConvert>
+    <h2>{{report.type}}</h2>
+    <span>Doctor : <strong>{{report.doctorName}} {{report.doctorSurname}}</strong></span> <br>
+    <span>Date : <strong>{{report.startTime | date: 'dd/MM/yyyy'}}</strong></span> <br>
+    <span>Diagnosis:</span>
+    <span *ngFor="let diagnosis of report.diagnosis">
+        <span><strong>{{ diagnosis.name }}</strong></span>
+    </span>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>Close</button>
+  <button mat-raised-button (click)="generatePdf(contentToConvert)">Convert to PDF</button>
+</div>

@@ -39,3 +39,6 @@ node_modules/
 
 #Backend
 Migrations/
+
+# Migration script
+microservices.txt

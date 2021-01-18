@@ -11,9 +11,6 @@ namespace MedbayTech.Medications.Controllers
     [ApiController]
     public class MedicationUsageController : Controller
     {
-        private List<Domain.Entities.Medications.Medication> _inMemoryRepo;
-        private readonly IMedicationService _medicationService;
-
         private IMedicationUsageService _medicationUsageService;
 
         public MedicationUsageController(IMedicationUsageService medicationUsageService)
