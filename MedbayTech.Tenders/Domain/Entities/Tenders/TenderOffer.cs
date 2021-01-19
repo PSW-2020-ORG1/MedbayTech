@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace MedbayTech.Pharmacies.Domain.Entities.Tenders
+namespace MedbayTech.Tenders.Domain.Entities.Tenders
 {
     public class TenderOffer : IIdentifiable<int>
     {

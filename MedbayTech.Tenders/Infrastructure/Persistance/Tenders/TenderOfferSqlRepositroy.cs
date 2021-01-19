@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Tenders;
-using MedbayTech.Pharmacies.Domain.Entities.Tenders;
-using MedbayTech.Pharmacies.Infrastructure.Database;
 using MedbayTech.Repository;
+using MedbayTech.Tenders.Application.Common.Interfaces.Persistance.Tenders;
+using MedbayTech.Tenders.Domain.Entities.Tenders;
+using MedbayTech.Tenders.Infrastructure.Database;
 
-namespace MedbayTech.Pharmacies.Infrastructure.Persistance.Tenders
+namespace MedbayTech.Tenders.Infrastructure.Persistance.Tenders
 {
     public class TenderOfferSqlRepositroy : SqlRepository<TenderOffer, int>, ITenderOfferRepository   
     {
-        public TenderOfferSqlRepositroy(PharmacyDbContext context) : base(context) { }
+        public TenderOfferSqlRepositroy(TenderDbContext context) : base(context) { }
 
         public List<TenderOffer> GelAllForTenderId(int tenderId)
         {

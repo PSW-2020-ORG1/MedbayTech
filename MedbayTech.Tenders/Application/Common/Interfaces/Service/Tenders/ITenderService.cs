@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using MedbayTech.Pharmacies.Application.DTO;
-using MedbayTech.Pharmacies.Domain.Entities.Tenders;
+using MedbayTech.Tenders.Domain.Entities.Tenders;
 
-namespace MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders
+namespace MedbayTech.Tenders.Application.Common.Interfaces.Service.Tenders
 {
     public interface ITenderService
     {

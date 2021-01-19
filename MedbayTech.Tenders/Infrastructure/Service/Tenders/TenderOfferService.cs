@@ -1,12 +1,10 @@
-﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Tenders;
-using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders;
-using MedbayTech.Pharmacies.Domain.Entities.Tenders;
+﻿using MedbayTech.Tenders.Application.Common.Interfaces.Persistance.Tenders;
+using MedbayTech.Tenders.Application.Common.Interfaces.Service.Tenders;
+using MedbayTech.Tenders.Domain.Entities.Tenders;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace MedbayTech.Pharmacies.Infrastructure.Service.Tenders
+namespace MedbayTech.Tenders.Infrastructure.Service.Tenders
 {
     public class TenderOfferService : ITenderOfferService
     {

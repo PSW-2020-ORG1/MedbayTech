@@ -1,7 +1,6 @@
-﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders;
-using MedbayTech.Pharmacies.Application.DTO;
-using MedbayTech.Pharmacies.Domain.Entities.Medications;
-using MedbayTech.Pharmacies.Domain.Entities.Tenders;
+﻿using MedbayTech.Pharmacies.Application.DTO;
+using MedbayTech.Tenders.Application.Common.Interfaces.Service.Tenders;
+using MedbayTech.Tenders.Domain.Entities.Tenders;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -10,7 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace MedbayTech.Pharmacies.Controllers
+namespace MedbayTech.Tenders.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -56,7 +55,8 @@ namespace MedbayTech.Pharmacies.Controllers
                 return BadRequest();
         }
 
-        [HttpGet("med/{id?}")]
+        // TODO(Jovan): Implement ???
+        /*[HttpGet("med/{id?}")]
         public IActionResult GetMedications(int id)
         {
             Medication medication;
@@ -80,7 +80,7 @@ namespace MedbayTech.Pharmacies.Controllers
             }
             return Ok(tenderMedicationDTOs);
 
-        }
+        }*/
 
         [HttpPost("winner")]
         public IActionResult DeclareWinner(Tender tender)
