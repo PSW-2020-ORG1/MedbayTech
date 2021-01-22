@@ -3,12 +3,14 @@
     <h2>{{report.type}}</h2>
     <span>Doctor : <strong>{{report.doctorName}} {{report.doctorSurname}}</strong></span> <br>
     <span>Date : <strong>{{report.startTime | date: 'dd/MM/yyyy'}}</strong></span> <br>
-    <span>Diagnosis:</span>
-    <span *ngFor="let diagnosis of report.diagnosis">
-        <span><strong>{{ diagnosis.name }}</strong></span>
-    </span>
+    <div *ngFor="let d of report.diagnosis">
+      <span>{{ d.name }}:</span>
+      <div *ngFor="let s of d.symptoms;let i = index" >
+        <div style="margin-left: 10px;">Symptom {{i+1}}: <strong>{{s}}</strong></div>
+      </div>
+  </div>
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button mat-dialog-close>Close</button>
-  <button mat-raised-button (click)="generatePdf(contentToConvert)">Convert to PDF</button>
+  <button mat-raised-button (click)="openPDF()">Convert to PDF</button>
 </div>
