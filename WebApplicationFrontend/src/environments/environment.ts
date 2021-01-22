@@ -8,6 +8,7 @@ export const environment = {
   createdCount : 'getCreatedCount',
   backStepCount : 'getBackStepCount',
   quitCount : 'getCountOfQuit',
+  succeedQuitRatio : 'getPercentSuccessfulAndQuit',
   event : 'saveEvent',
   fedback: 'approvedFeedback',
   allFeedback: 'allFeedback',

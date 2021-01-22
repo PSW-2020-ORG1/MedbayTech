@@ -21,4 +21,8 @@ export class EventStatisticService {
   getQuitCount() : Observable<number> {
     return this.http.get<number>(`${environment.baseUrl}/${environment.quitCount}`);
   }
+
+  getSucceedQuitRatio() : Observable<number[]> {
+    return this.http.get<number[]>(`${environment.baseUrl}/${environment.succeedQuitRatio}`);
+  }
 }

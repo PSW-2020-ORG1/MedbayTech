@@ -1,0 +1,8 @@
+.chart {
+    width: 65vw;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}

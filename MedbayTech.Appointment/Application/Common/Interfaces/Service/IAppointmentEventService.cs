@@ -8,10 +8,11 @@ namespace MedbayTech.Appointment.Application.Common.Interfaces.Service
 {
     public interface IAppointmentEventService
     {
-        AppointmentEvent CreateEvent(AppointmentEvent appointmentEvent); 
+        AppointmentEvent CreateEvent(AppointmentEvent appointmentEvent);
         int GetCreatedAppointments();
         double GetAverageSchedulingTime();
         int GetCountOfBackStep();
         int GetCountOfQuit();
+        List<double> GetPercentSuccessfullAndQuit();
     }
 }

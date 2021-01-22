@@ -49,6 +49,24 @@ namespace MedbayTech.Appointment.Infrastructure.Services.EventService
             return 0;
         }
 
+        public List<double> GetPercentSuccessfullAndQuit()
+        {
+            List<AppointmentEvent> allSuccessfull = _appointmentEventRepository.GetAllBy(AppointmentEventType.Created);
+            List<AppointmentEvent> allQuit = _appointmentEventRepository.GetAllBy(AppointmentEventType.Quit);
+
+            int allAppointments = allSuccessfull.Count + allQuit.Count;
+
+            List<double> result = new List<double>();
+
+            double successfullPercent = (double)allSuccessfull.Count / (double)allAppointments * 100;
+            double quitPercent = (double)allQuit.Count / (double)allAppointments * 100;
+
+            result.Add(successfullPercent);
+            result.Add(quitPercent);
+
+            return result;
+        }
+
         public int GetCountOfBackStep()
         {
             return _appointmentEventRepository.GetCountOfBackStep();

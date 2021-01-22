@@ -21,6 +21,7 @@ import { SchedulingComponent } from './appointment/scheduling/scheduling.compone
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
 import { LoginComponent } from './login/login/login.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { EventStatisticComponent } from './event-statistic-page/event-statistic/event-statistic.component';
 
 
 
@@ -115,11 +116,17 @@ const routes: Routes = [
     component : HomePageComponent
   },
   {
+    path : 'eventStatistic',
+    component : EventStatisticComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Admin]}
+  },
+  /*{
     path : 'countChart',
     component : CountChartComponent,
     canActivate : [AuthGuard],
     data : {roles : [Role.Admin]}
-  }
+  }*/
   
 ];
 

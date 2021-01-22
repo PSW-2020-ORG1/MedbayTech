@@ -1,7 +1,7 @@
 import { AppointmentEventType } from './../../model/event/appointmentEventType';
 import { start } from 'repl';
 import { EventService } from './../../service/event/event.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -20,7 +20,8 @@ import { OnDestroy } from '@angular/core';
 @Component({
   selector: 'app-scheduling',
   templateUrl: './scheduling.component.html',
-  styleUrls: ['./scheduling.component.css']
+  styleUrls: ['./scheduling.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SchedulingComponent implements OnInit, OnDestroy {
 
@@ -52,7 +53,6 @@ export class SchedulingComponent implements OnInit, OnDestroy {
    }
   ngOnDestroy(): void {
     this.createQuitEvent();
-    this.postEvent();
   }
 
   ngOnInit(): void {

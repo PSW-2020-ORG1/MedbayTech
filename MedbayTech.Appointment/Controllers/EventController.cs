@@ -53,5 +53,11 @@ namespace MedbayTech.Appointment.Controllers
         {
             return Ok(_appointmentEventService.GetCountOfQuit());
         }
+
+        [HttpGet("getPercentSuccessfulAndQuit")]
+        public IActionResult GetPercentSuccessfullAndQuit()
+        {
+            return Ok(_appointmentEventService.GetPercentSuccessfullAndQuit());
+        }
     }
 }

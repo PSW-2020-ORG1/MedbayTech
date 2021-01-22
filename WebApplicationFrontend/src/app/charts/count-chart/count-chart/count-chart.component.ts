@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { style } from '@angular/animations';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { EventStatisticService } from 'src/app/service/event-statistics/event-statistic.service';
@@ -6,14 +7,19 @@ import { EventStatisticService } from 'src/app/service/event-statistics/event-st
 @Component({
   selector: 'app-count-chart',
   templateUrl: './count-chart.component.html',
-  styleUrls: ['./count-chart.component.css']
+  styleUrls: ['./count-chart.component.css'],
 })
 export class CountChartComponent implements OnInit {
   
+
   constructor(private eventStatisticService : EventStatisticService) { }
 
   chartData : number[] = [];
   ngOnInit(): void {
+    this.getData();
+  }
+
+  getData() {
     this.getCreatedCount();
   }
 
@@ -47,7 +53,8 @@ export class CountChartComponent implements OnInit {
       }
     }] },
     animation : {
-      easing : 'easeInOutCirc'
+      easing : 'linear',
+      duration : 1500
     },
     plugins: {
       datalabels: {
@@ -56,7 +63,7 @@ export class CountChartComponent implements OnInit {
       }
     }
   };
-  public barChartLabels: Label[] = ['Number of scheduled', 'Number of back steps', 'Count of quit'];
+  public barChartLabels: Label[] = ['Number of scheduled', 'Number of back steps', 'Number of quit'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = false;
 

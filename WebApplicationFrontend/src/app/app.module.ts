@@ -53,6 +53,8 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
 import { CountChartComponent } from './charts/count-chart/count-chart/count-chart.component';
 import { ChartsModule } from 'ng2-charts';
+import { EventStatisticComponent } from './event-statistic-page/event-statistic/event-statistic.component';
+import { SucceedQuitRatioChartComponent } from './charts/succeed-quit-ratio-chart/succeed-quit-ratio-chart/succeed-quit-ratio-chart.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,9 @@ import { ChartsModule } from 'ng2-charts';
     NavigationBarPatientComponent,
     NavigationBarUserComponent,
     HomePageComponent,
-    CountChartComponent
+    CountChartComponent,
+    EventStatisticComponent,
+    SucceedQuitRatioChartComponent
   ],
   imports: [
     BrowserModule,
