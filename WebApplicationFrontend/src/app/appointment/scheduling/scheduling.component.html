@@ -86,7 +86,7 @@
         <ng-container matColumnDef="#">
             <th mat-header-cell *matHeaderCellDef> # </th>
             <td mat-cell *matCellDef="let element"> 
-                <button mat-raised-button color="primary" id="button" (click)="createCreatedEvent()" (click)="schedule(element)" (click)="stepper.reset()">Schedule</button>
+                <button mat-raised-button color="primary" id="button" (click)="createCreatedEvent()" (click)="schedule(element)" (click)="stepper.reset()" (click)="restart()">Schedule</button>
             </td>
             </ng-container>
     

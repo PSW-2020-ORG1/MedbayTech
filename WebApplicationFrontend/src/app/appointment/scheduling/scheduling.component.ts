@@ -131,6 +131,10 @@ export class SchedulingComponent implements OnInit, OnDestroy {
     );
   }
 
+  restart() {
+    this.availableAppointments = new Array();
+  }
+
   makeid() : string {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
