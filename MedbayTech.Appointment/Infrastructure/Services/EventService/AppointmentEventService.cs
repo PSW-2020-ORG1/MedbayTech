@@ -67,6 +67,17 @@ namespace MedbayTech.Appointment.Infrastructure.Services.EventService
             return result;
         }
 
+        public double GetAverageNumberOfStepsForSuccessful()
+        {
+            int createdAppointments = _appointmentEventRepository.GetAllBy(AppointmentEventType.Created).Count();
+            int numberOfSteps = _appointmentEventRepository.GetCountOfStepsForSuccessful();
+
+            if(createdAppointments != 0)
+                return numberOfSteps / createdAppointments;
+
+            return 0;
+        }
+
         public int GetCountOfBackStep()
         {
             return _appointmentEventRepository.GetCountOfBackStep();
@@ -75,6 +86,11 @@ namespace MedbayTech.Appointment.Infrastructure.Services.EventService
         public int GetCountOfQuit()
         {
             return _appointmentEventRepository.GetAll().Count(ae => ae.Type == AppointmentEventType.Quit);
+        }
+
+        public int GetCountOfStepsForSuccessful()
+        {
+            return _appointmentEventRepository.GetCountOfStepsForSuccessful();
         }
     }
 }
