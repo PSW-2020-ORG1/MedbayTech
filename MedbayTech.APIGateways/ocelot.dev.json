@@ -626,25 +626,46 @@
       }
     },
     {
-      "DownstreamPathTemplate": "/api/event/getPercentSuccessfulAndQuit",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 8083
+        "DownstreamPathTemplate": "/api/event/getPercentSuccessfulAndQuit",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+            {
+                "Host": "localhost",
+                "Port": 8083
+            }
+        ],
+        "UpstreamPathTemplate": "/getPercentSuccessfulAndQuit",
+        "UpstreamHttpMethod": [
+            "GET"
+        ],
+        "AuthenticationOptions": {
+            "AuthenticationProviderKey": "Bearer",
+            "AllowedScopes": []
+        },
+        "RouteClaimsRequirement": {
+            "Role": "Admin"
         }
-      ],
-      "UpstreamPathTemplate": "/getPercentSuccessfulAndQuit",
-      "UpstreamHttpMethod": [
-        "GET"
-      ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "RouteClaimsRequirement": {
-        "Role": "Admin"
-      }
+    },
+    {
+        "DownstreamPathTemplate": "/api/event/getAverageNumberOfStepsForSuccessful",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+            {
+                "Host": "localhost",
+                "Port": 8083
+            }
+        ],
+        "UpstreamPathTemplate": "/getAverageNumberOfStepsForSuccessful",
+        "UpstreamHttpMethod": [
+            "GET"
+        ],
+        "AuthenticationOptions": {
+            "AuthenticationProviderKey": "Bearer",
+            "AllowedScopes": []
+        },
+        "RouteClaimsRequirement": {
+            "Role": "Admin"
+        }
     }
   ]
 }

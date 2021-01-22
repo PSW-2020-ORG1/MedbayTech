@@ -41,7 +41,8 @@ export const environment = {
   appointments : 'appointment',
   availableStrategy : 'availableStrategy',
   availableStandard : 'available',
-  scheduleAppointment : 'schedule'
+  scheduleAppointment : 'schedule',
+  averageNumberOfStepsForSuccessful: 'getAverageNumberOfStepsForSuccessful'
 };
 
 /*

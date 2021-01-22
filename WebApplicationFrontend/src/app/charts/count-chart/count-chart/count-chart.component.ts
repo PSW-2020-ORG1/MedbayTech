@@ -40,6 +40,13 @@ export class CountChartComponent implements OnInit {
   getQuitCount() {
     this.eventStatisticService.getQuitCount().subscribe(data => {
       this.chartData.push(data);
+      this.getAverageNumberOfStepsForSuccessful();
+    })
+  }
+
+  getAverageNumberOfStepsForSuccessful() {
+    this.eventStatisticService.getAverageNumberOfStepsForSuccessful().subscribe(data => {
+      this.chartData.push(data);
     })
   }
 
@@ -63,7 +70,7 @@ export class CountChartComponent implements OnInit {
       }
     }
   };
-  public barChartLabels: Label[] = ['Number of scheduled', 'Number of back steps', 'Number of quit'];
+  public barChartLabels: Label[] = ['Number of scheduled', 'Number of back steps', 'Number of quit', 'Average number of steps for successful'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = false;
 

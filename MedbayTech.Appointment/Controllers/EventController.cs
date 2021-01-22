@@ -59,5 +59,11 @@ namespace MedbayTech.Appointment.Controllers
         {
             return Ok(_appointmentEventService.GetPercentSuccessfullAndQuit());
         }
+
+        [HttpGet("getAverageNumberOfStepsForSuccessful")]
+        public IActionResult GetAverageNumberOfStepsForSuccessful()
+        {
+            return Ok(_appointmentEventService.GetAverageNumberOfStepsForSuccessful());
+        }
     }
 }

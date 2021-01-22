@@ -34,15 +34,15 @@ namespace MedbayTech.Appointment.Infrastructure.Persistance
                 ae.Type == AppointmentEventType.FromSelectSpecializationToStarted);
         }
 
-        public int GetCountOfStepsForSuccessful()
+        public int GetAllStepsBy(string eventIdentificator)
         {
-            return GetAllBy(AppointmentEventType.Created).Count(ae =>
-            ae.Type == AppointmentEventType.FromStartedToSelectSpecialization ||
-            ae.Type == AppointmentEventType.FromSelectSpecializationToStarted ||
-            ae.Type == AppointmentEventType.FromSelectSpecializationToSelectDoctor ||
-            ae.Type == AppointmentEventType.FromSelectDoctorToSelectSpecialization ||
-            ae.Type == AppointmentEventType.FromSelectDoctorToSelectAppointment ||
-            ae.Type == AppointmentEventType.FromSelectAppointmentToSelectDoctor);
+            return GetAll().Where(ae => ae.EventIdentificator.Equals(eventIdentificator)).Count(ae =>
+                ae.Type == AppointmentEventType.FromStartedToSelectSpecialization ||
+                ae.Type == AppointmentEventType.FromSelectSpecializationToStarted ||
+                ae.Type == AppointmentEventType.FromSelectSpecializationToSelectDoctor ||
+                ae.Type == AppointmentEventType.FromSelectDoctorToSelectSpecialization ||
+                ae.Type == AppointmentEventType.FromSelectDoctorToSelectAppointment ||
+                ae.Type == AppointmentEventType.FromSelectAppointmentToSelectDoctor);
         }
     }
 }

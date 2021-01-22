@@ -14,6 +14,6 @@ namespace MedbayTech.Appointment.Application.Common.Interfaces.Persistance
         List<AppointmentEvent> GetAllBy(AppointmentEventType type);
         AppointmentEvent GetBy(AppointmentEventType type, string eventIdentificator);
         int GetCountOfBackStep();
-        int GetCountOfStepsForSuccessful();
+        int GetAllStepsBy(string eventIdentificator);
     }
 }

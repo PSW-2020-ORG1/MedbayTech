@@ -13,7 +13,7 @@ namespace MedbayTech.Appointment.Application.Common.Interfaces.Service
         double GetAverageSchedulingTime();
         int GetCountOfBackStep();
         int GetCountOfQuit();
-        int GetCountOfStepsForSuccessful();
+        double GetAverageNumberOfStepsForSuccessful();
         List<double> GetPercentSuccessfullAndQuit();
     }
 }

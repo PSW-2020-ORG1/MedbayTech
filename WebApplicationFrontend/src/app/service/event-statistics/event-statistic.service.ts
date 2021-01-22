@@ -25,4 +25,8 @@ export class EventStatisticService {
   getSucceedQuitRatio() : Observable<number[]> {
     return this.http.get<number[]>(`${environment.baseUrl}/${environment.succeedQuitRatio}`);
   }
+
+  getAverageNumberOfStepsForSuccessful() : Observable<number> {
+    return this.http.get<number>(`${environment.baseUrl}/${environment.averageNumberOfStepsForSuccessful}`);
+  }
 }
