@@ -1,0 +1,16 @@
+<div #contentToConvert>
+<h1 mat-dialog-title>PRESCRIPTIONS</h1>
+<div mat-dialog-content>
+  <div *ngFor="let prescription of prescriptions;let i = index">
+    <div *ngIf="prescriptions.length>=2">Prescription {{i+1}}:</div>
+    <div style="margin-left: 10px;">Medication: <strong>{{prescription.medication}}</strong></div>
+    <div style="margin-left: 10px;">Take every: <strong>{{prescription.hourlyIntake}}</strong> hours</div>
+    <div style="margin-left: 10px;">Take medication from: <strong>{{prescription.validFrom | date:'mediumDate' }}</strong></div>
+    <div style="margin-left: 10px;">Take medication to: <strong>{{prescription.validTo | date:'mediumDate' }}</strong></div><br>
+  </div>
+</div>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>Close</button>
+  <button mat-raised-button (click)="openPDF()">Convert to PDF</button>
+</div>

@@ -2,6 +2,7 @@
 using MedbayTech.Common.Domain.Entities;
 using MedbayTech.Pharmacies.Domain.Entities.Medications;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
@@ -9,6 +10,8 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Reports
 {
     public class MedicationUsage : IIdentifiable<int>
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         private int _usage;
         public int Usage

@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PharmacyIntegration.Service;
 using RabbitMQ.Client;
-using MedbayTech.Pharmacies.Domain.Entities;
-using MedbayTech.Pharmacies.Infrastructure.Database;
+using MedbayTech.Pharmacies.Domain.Entities.Pharmacies;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Pharmacies;
 
-namespace PharmacyIntegration.Controllers
+namespace MedbayTech.Pharmacies.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

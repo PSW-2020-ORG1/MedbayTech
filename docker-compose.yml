@@ -22,7 +22,7 @@ services:
       - postgres-data:/var/lib/postgres
 
   apigateway:
-    image: stefan7/apigateways:latest
+    image: api
     container_name: api_container
     restart: on-failure
     networks:
@@ -30,7 +30,7 @@ services:
     depends_on:
       - postgres
       - feedback
-      - pharmacies
+     # - pharmacies
       - medications
       - users 
       - rooms 
@@ -70,29 +70,6 @@ services:
       URL_USERS: "users"
     ports:
       - "8080:5003"
-    volumes:
-      - postgres-data:/var/lib/postgres:rw
-
-  pharmacies:
-    image: stefan7/pharmacies:latest
-    container_name: pharmacies_container
-    restart: on-failure
-    networks:
-      - demo
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_USERNAME: "user"
-      DATABASE_PASSWORD: "user"
-      DATABASE_HOST: "postgres"
-      DATABASE_TYPE: "postgres"
-      DATABASE_SCHEMA: "mydb1"
-      STAGE: "test"
-      PORT: "5005"
-      PORT_MEDICATION: "5007"
-      URL_MEDICATION: "users"
-    ports:
-      - "50202:5005"
     volumes:
       - postgres-data:/var/lib/postgres:rw
 

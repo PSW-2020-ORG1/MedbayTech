@@ -1,7 +1,9 @@
 ﻿using MedbayTech.PatientDocuments.Application.Common.Interfaces.Gateways;
+using MedbayTech.PatientDocuments.Application.Common.Interfaces.Persistance.Examinations;
 using MedbayTech.PatientDocuments.Application.Common.Interfaces.Persistance.Treatments;
 using MedbayTech.PatientDocuments.Application.Common.Interfaces.Service.Treatments;
 using MedbayTech.PatientDocuments.Application.DTO.Prescription;
+using MedbayTech.PatientDocuments.Domain.Entities.Examinations;
 using MedbayTech.PatientDocuments.Domain.Entities.Treatment;
 using System;
 using System.Collections.Generic;
@@ -11,12 +13,20 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
 {
     public class PrescriptionSearchService : IPrescriptionSearchService
     {
-        private readonly IPrescriptionRepository _repository;
+        private readonly IPrescriptionRepository _prescriptionRepository;
+        private readonly IReportRepository _reportRepository;
         private readonly IUserGateway _userGateway;
 
         public PrescriptionSearchService(IPrescriptionRepository repository, IUserGateway userGateway)
         {
-            _repository = repository;
+            _prescriptionRepository = repository;
+            _userGateway = userGateway;
+        }
+
+        public PrescriptionSearchService(IPrescriptionRepository repository, IReportRepository reportRepository, IUserGateway userGateway)
+        {
+            _prescriptionRepository = repository;
+            _reportRepository = reportRepository;
             _userGateway = userGateway;
         }
 
@@ -156,7 +166,7 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
 
         public List<Prescription> GetAllFor(string patientId)
         {
-            var prescriptions = _repository.GetPrescriptionsFor(patientId).ToList();
+            var prescriptions = _prescriptionRepository.GetPrescriptionsFor(patientId).ToList();
             foreach (Prescription prescription in prescriptions)
             {
                 prescription.Report.MedicalRecord.Patient = _userGateway.GetPatientBy(prescription.Report.MedicalRecord.PatientId);
@@ -167,13 +177,19 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
         }
         public List<Prescription> GetAll()
         {
-            var prescriptions = _repository.GetAll().ToList();
+            var prescriptions = _prescriptionRepository.GetAll().ToList();
             foreach (Prescription prescription in prescriptions)
             {
                 prescription.Report.MedicalRecord.Patient = _userGateway.GetPatientBy(prescription.Report.MedicalRecord.PatientId);
                 prescription.Report.Doctor = _userGateway.GetDoctorBy(prescription.Report.DoctorId);
             }
             return prescriptions;
+        }
+
+        public List<Prescription> GetPrescriptionsBy(string doctorId, string patientId, DateTime startDate)
+        {
+            Report report = _reportRepository.GetReportForAppointment(startDate, doctorId, patientId);
+            return _prescriptionRepository.GetPrescriptionsForReport(report.Id);
         }
     }
 }

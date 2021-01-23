@@ -18,5 +18,6 @@ namespace Backend.Examinations.Service.Interfaces
         List<Report> AdvancedSearchDate(string date, List<Report> reports);
         List<Report> GetAll();
         List<Report> GetReportsFor(string id);
+        Report GetReportForAppointment(DateTime startTime, string doctorId, string patientId);
     }
 }

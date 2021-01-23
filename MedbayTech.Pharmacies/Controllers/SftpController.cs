@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Renci.SshNet;
 
-namespace PharmacyIntegration.Controllers
+namespace MedbayTech.Pharmacies.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

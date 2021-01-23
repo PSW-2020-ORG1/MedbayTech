@@ -8,9 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "Backend\Backend.csproj", "{93C92C42-324A-47C2-A593-778053E59F17}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Pharmacies", "MedbayTech.Pharmacies\MedbayTech.Pharmacies.csproj", "{26BDF43A-2396-41AF-A220-DC7AB197F158}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Pharmacies", "MedbayTech.PharmacyIntegration\MedbayTech.Pharmacies.csproj", "{B5111A58-9EBF-43DF-89D7-B7052379286C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Pharmacies", "MedbayTech.Pharmacies\MedbayTech.Pharmacies.csproj", "{B5111A58-9EBF-43DF-89D7-B7052379286C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphicEditorWebService", "GraphicEditorWebService\GraphicEditorWebService.csproj", "{0A906169-3229-46B7-A714-FA087A3594AF}"
 EndProject
@@ -58,10 +56,6 @@ Global
 		{93C92C42-324A-47C2-A593-778053E59F17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93C92C42-324A-47C2-A593-778053E59F17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93C92C42-324A-47C2-A593-778053E59F17}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26BDF43A-2396-41AF-A220-DC7AB197F158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26BDF43A-2396-41AF-A220-DC7AB197F158}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26BDF43A-2396-41AF-A220-DC7AB197F158}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26BDF43A-2396-41AF-A220-DC7AB197F158}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B5111A58-9EBF-43DF-89D7-B7052379286C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B5111A58-9EBF-43DF-89D7-B7052379286C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5111A58-9EBF-43DF-89D7-B7052379286C}.Release|Any CPU.ActiveCfg = Release|Any CPU
