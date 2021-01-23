@@ -42,7 +42,9 @@ export const environment = {
   averageSchedulingTime: 'averageSchedulingTime',
   getAverageTimeFromStartedToSpecialization: 'getAverageTimeFromStartedToSpecialization',
   getAverageTimeFromSpecializationToDoctor: 'getAverageTimeFromSpecializationToDoctor',
-  getAverageTimeFromDoctorToSelectAppointment: 'getAverageTimeFromDoctorToSelectAppointment'
+  getAverageTimeFromDoctorToSelectAppointment: 'getAverageTimeFromDoctorToSelectAppointment',
+  appointmentReport : 'appointmentReport',
+  appointmentPrescription : 'appointmentPrescription'
 };
 
 /*

@@ -390,6 +390,36 @@
     },
 
     {
+      "DownstreamPathTemplate": "/api/prescription/appointmentPrescription",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "patientdocuments",
+          "Port": 5006
+        }
+      ],
+      "UpstreamPathTemplate": "/appointmentPrescription",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/report/appointmentReport",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "patientdocuments",
+          "Port": 5006
+        }
+      ],
+      "UpstreamPathTemplate": "/appointmentReport",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+
+    {
       "DownstreamPathTemplate": "/api/event/getAverageSchedulingTime",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -444,6 +474,96 @@
         }
       ],
       "UpstreamPathTemplate": "/getAverageTimeFromDoctorToSelectAppointment",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/event/getAverageNumberOfStepsForSuccessful",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "appointment",
+          "Port": 5008
+        }
+      ],
+      "UpstreamPathTemplate": "/getAverageNumberOfStepsForSuccessful",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/event/save",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "appointment",
+          "Port": 5008
+        }
+      ],
+      "UpstreamPathTemplate": "/saveEvent",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/event/getCreatedCount",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "appointment",
+          "Port": 5008
+        }
+      ],
+      "UpstreamPathTemplate": "/getCreatedCount",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/event/getCountOfQuit",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "appointment",
+          "Port": 5008
+        }
+      ],
+      "UpstreamPathTemplate": "/getCountOfQuit",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/event/getCountOfBackStep",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "appointment",
+          "Port": 5008
+        }
+      ],
+      "UpstreamPathTemplate": "/getBackStepCount",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/event/getPercentSuccessfulAndQuit",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "appointment",
+          "Port": 5008
+        }
+      ],
+      "UpstreamPathTemplate": "/getPercentSuccessfulAndQuit",
       "UpstreamHttpMethod": [
         "GET"
       ]
