@@ -520,7 +520,6 @@
         "Role": "Patient"
       }
     },
-
     {
         "DownstreamPathTemplate": "/api/prescription/advancedSearch",
         "DownstreamScheme": "http",
@@ -546,10 +545,10 @@
         "DownstreamPathTemplate": "/api/event/getAverageNumberOfStepsForSuccessful",
         "DownstreamScheme": "http",
         "DownstreamHostAndPorts": [
-            {
-                "Host": "localhost",
-                "Port": 8083
-            }
+          {
+            "Host": "medbaytech-appointment.herokuapp.com",
+            "Port": 80
+          }
         ],
         "UpstreamPathTemplate": "/getAverageNumberOfStepsForSuccessful",
         "UpstreamHttpMethod": [
@@ -562,6 +561,90 @@
         "RouteClaimsRequirement": {
             "Role": "Admin"
         }
+    },
+    {
+      "DownstreamPathTemplate": "/api/event/getAverageSchedulingTime",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "medbaytech-appointment.herokuapp.com",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/averageSchedulingTime",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/event/getAverageTimeFromStartedToSpecialization",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "medbaytech-appointment.herokuapp.com",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/getAverageTimeFromStartedToSpecialization",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/event/getAverageTimeFromSpecializationToDoctor",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "medbaytech-appointment.herokuapp.com",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/getAverageTimeFromSpecializationToDoctor",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/event/getAverageTimeFromDoctorToSelectAppointment",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "medbaytech-appointment.herokuapp.com",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/getAverageTimeFromDoctorToSelectAppointment",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
     }
   ]
 }

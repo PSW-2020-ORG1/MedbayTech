@@ -1,6 +1,10 @@
 export const environment = {
   production: true,
   baseUrl: "https://medbaytech.herokuapp.com",
+  createdCount : 'getCreatedCount',
+  backStepCount : 'getBackStepCount',
+  quitCount : 'getCountOfQuit',
+  succeedQuitRatio : 'getPercentSuccessfulAndQuit',
   event : 'saveEvent',
   fedback: 'approvedFeedback',
   allFeedback: 'allFeedback',
@@ -34,7 +38,11 @@ export const environment = {
   availableStrategy : 'availableStrategy',
   availableStandard : 'available',
   scheduleAppointment : 'schedule',
-  averageNumberOfStepsForSuccessful: 'getAverageNumberOfStepsForSuccessful'
+  averageNumberOfStepsForSuccessful: 'getAverageNumberOfStepsForSuccessful',
+  averageSchedulingTime: 'averageSchedulingTime',
+  getAverageTimeFromStartedToSpecialization: 'getAverageTimeFromStartedToSpecialization',
+  getAverageTimeFromSpecializationToDoctor: 'getAverageTimeFromSpecializationToDoctor',
+  getAverageTimeFromDoctorToSelectAppointment: 'getAverageTimeFromDoctorToSelectAppointment'
 };
 
 /*

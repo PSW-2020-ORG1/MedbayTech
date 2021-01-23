@@ -5,12 +5,14 @@
 
             </app-count-chart>
         </mat-tab>
-        <mat-tab label="Second" (click)="gtePieData()"> 
+        <mat-tab label="Success quit ratio chart" (click)="gtePieData()"> 
             <span (click)="gtePieData()"></span>
             <app-succeed-quit-ratio-chart>
                 
             </app-succeed-quit-ratio-chart>    
         </mat-tab>
-        <mat-tab label="Third"> Content 3 </mat-tab>
+        <mat-tab label="Average scheduling time chart"> 
+            <app-average-time-chart></app-average-time-chart>
+        </mat-tab>
     </mat-tab-group>
 </div>

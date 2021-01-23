@@ -387,6 +387,66 @@
       "UpstreamHttpMethod": [
         "POST"
       ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/event/getAverageSchedulingTime",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "appointment",
+          "Port": 5008
+        }
+      ],
+      "UpstreamPathTemplate": "/averageSchedulingTime",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/event/getAverageTimeFromStartedToSpecialization",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "appointment",
+          "Port": 5008
+        }
+      ],
+      "UpstreamPathTemplate": "/getAverageTimeFromStartedToSpecialization",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/event/getAverageTimeFromSpecializationToDoctor",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "appointment",
+          "Port": 5008
+        }
+      ],
+      "UpstreamPathTemplate": "/getAverageTimeFromSpecializationToDoctor",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/event/getAverageTimeFromDoctorToSelectAppointment",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "appointment",
+          "Port": 5008
+        }
+      ],
+      "UpstreamPathTemplate": "/getAverageTimeFromDoctorToSelectAppointment",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     }
   ]
 }

@@ -42,6 +42,24 @@ namespace MedbayTech.Appointment.Controllers
             return Ok(_appointmentEventService.GetAverageSchedulingTime());
         }
 
+        [HttpGet("getAverageTimeFromStartedToSpecialization")]
+        public IActionResult GetAverageTimeFromStartedToSpecialization()
+        {
+            return Ok(_appointmentEventService.GetAverageTimeFromStartedToSelectSpecialization());
+        }
+
+        [HttpGet("getAverageTimeFromSpecializationToDoctor")]
+        public IActionResult GetAverageTimeFromSpecializationToDoctor()
+        {
+            return Ok(_appointmentEventService.GetAverageTimeFromSelectSpecializationToSelectDoctor());
+        }
+
+        [HttpGet("getAverageTimeFromDoctorToSelectAppointment")]
+        public IActionResult GetAverageTimeFromDoctorToSelectAppointment()
+        {
+            return Ok(_appointmentEventService.GetAverageTimeFromDoctorToSelectAppointment());
+        }
+
         [HttpGet("getCountOfBackStep")]
         public IActionResult GetCountOfBackStep()
         {

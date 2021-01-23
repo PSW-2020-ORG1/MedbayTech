@@ -55,6 +55,7 @@ import { CountChartComponent } from './charts/count-chart/count-chart/count-char
 import { ChartsModule } from 'ng2-charts';
 import { EventStatisticComponent } from './event-statistic-page/event-statistic/event-statistic.component';
 import { SucceedQuitRatioChartComponent } from './charts/succeed-quit-ratio-chart/succeed-quit-ratio-chart/succeed-quit-ratio-chart.component';
+import { AverageTimeChartComponent } from './charts/average-time-chart/average-time-chart/average-time-chart.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { SucceedQuitRatioChartComponent } from './charts/succeed-quit-ratio-char
     HomePageComponent,
     CountChartComponent,
     EventStatisticComponent,
-    SucceedQuitRatioChartComponent
+    SucceedQuitRatioChartComponent,
+    AverageTimeChartComponent
   ],
   imports: [
     BrowserModule,

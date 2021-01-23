@@ -15,5 +15,8 @@ namespace MedbayTech.Appointment.Application.Common.Interfaces.Service
         int GetCountOfQuit();
         double GetAverageNumberOfStepsForSuccessful();
         List<double> GetPercentSuccessfullAndQuit();
+        double GetAverageTimeFromStartedToSelectSpecialization();
+        double GetAverageTimeFromSelectSpecializationToSelectDoctor();
+        double GetAverageTimeFromDoctorToSelectAppointment();
     }
 }

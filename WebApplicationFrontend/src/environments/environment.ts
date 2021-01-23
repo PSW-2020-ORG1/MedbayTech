@@ -42,7 +42,11 @@ export const environment = {
   availableStrategy : 'availableStrategy',
   availableStandard : 'available',
   scheduleAppointment : 'schedule',
-  averageNumberOfStepsForSuccessful: 'getAverageNumberOfStepsForSuccessful'
+  averageNumberOfStepsForSuccessful: 'getAverageNumberOfStepsForSuccessful',
+  averageSchedulingTime: 'averageSchedulingTime',
+  getAverageTimeFromStartedToSpecialization: 'getAverageTimeFromStartedToSpecialization',
+  getAverageTimeFromSpecializationToDoctor: 'getAverageTimeFromSpecializationToDoctor',
+  getAverageTimeFromDoctorToSelectAppointment: 'getAverageTimeFromDoctorToSelectAppointment'
 };
 
 /*

@@ -29,4 +29,19 @@ export class EventStatisticService {
   getAverageNumberOfStepsForSuccessful() : Observable<number> {
     return this.http.get<number>(`${environment.baseUrl}/${environment.averageNumberOfStepsForSuccessful}`);
   }
+  getAverageSchedulingTime() : Observable<number> {
+    return this.http.get<number>(`${environment.baseUrl}/${environment.averageSchedulingTime}`);
+  }
+
+  getAverageTimeFromStartedToSpecialization() : Observable<number> {
+    return this.http.get<number>(`${environment.baseUrl}/${environment.getAverageTimeFromStartedToSpecialization}`);
+  }
+
+  getAverageTimeFromSpecializationToDoctor() : Observable<number> {
+    return this.http.get<number>(`${environment.baseUrl}/${environment.getAverageTimeFromSpecializationToDoctor}`);
+  }
+
+  getAverageTimeFromDoctorToAppointment() : Observable<number> {
+    return this.http.get<number>(`${environment.baseUrl}/${environment.getAverageTimeFromDoctorToSelectAppointment}`);
+  }
 }

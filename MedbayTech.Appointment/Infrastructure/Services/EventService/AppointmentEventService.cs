@@ -31,13 +31,72 @@ namespace MedbayTech.Appointment.Infrastructure.Services.EventService
         public double GetAverageSchedulingTime()
         {
             List<AppointmentEvent> createdAppointments = _appointmentEventRepository.GetAllBy(AppointmentEventType.Created);
-            List<AppointmentEvent> startedAppointments = new List<AppointmentEvent>();
 
             double sum = 0;
             foreach (AppointmentEvent createdAppointmenttIt in createdAppointments)
             {
                 AppointmentEvent startedAppointmentEvent =
                     _appointmentEventRepository.GetBy(AppointmentEventType.Started,
+                        createdAppointmenttIt.EventIdentificator);
+
+                sum += (createdAppointmenttIt.Timestamp - startedAppointmentEvent.Timestamp).TotalSeconds;
+            }
+
+            if (createdAppointments.Count != 0)
+                return sum / createdAppointments.Count;
+
+            return 0;
+        }
+
+        public double GetAverageTimeFromStartedToSelectSpecialization()
+        {
+            List<AppointmentEvent> createdAppointments = _appointmentEventRepository.GetAllBy(AppointmentEventType.FromStartedToSelectSpecialization);
+
+            double sum = 0;
+            foreach (AppointmentEvent createdAppointmenttIt in createdAppointments)
+            {
+                AppointmentEvent startedAppointmentEvent =
+                    _appointmentEventRepository.GetBy(AppointmentEventType.Started,
+                        createdAppointmenttIt.EventIdentificator);
+
+                sum += (createdAppointmenttIt.Timestamp - startedAppointmentEvent.Timestamp).TotalSeconds;
+            }
+
+            if (createdAppointments.Count != 0)
+                return sum / createdAppointments.Count;
+
+            return 0;
+        }
+
+        public double GetAverageTimeFromSelectSpecializationToSelectDoctor()
+        {
+            List<AppointmentEvent> createdAppointments = _appointmentEventRepository.GetAllBy(AppointmentEventType.FromSelectSpecializationToSelectDoctor);
+
+            double sum = 0;
+            foreach (AppointmentEvent createdAppointmenttIt in createdAppointments)
+            {
+                AppointmentEvent startedAppointmentEvent =
+                    _appointmentEventRepository.GetBy(AppointmentEventType.FromStartedToSelectSpecialization,
+                        createdAppointmenttIt.EventIdentificator);
+
+                sum += (createdAppointmenttIt.Timestamp - startedAppointmentEvent.Timestamp).TotalSeconds;
+            }
+
+            if (createdAppointments.Count != 0)
+                return sum / createdAppointments.Count;
+
+            return 0;
+        }
+
+        public double GetAverageTimeFromDoctorToSelectAppointment()
+        {
+            List<AppointmentEvent> createdAppointments = _appointmentEventRepository.GetAllBy(AppointmentEventType.FromSelectDoctorToSelectAppointment);
+
+            double sum = 0;
+            foreach (AppointmentEvent createdAppointmenttIt in createdAppointments)
+            {
+                AppointmentEvent startedAppointmentEvent =
+                    _appointmentEventRepository.GetBy(AppointmentEventType.FromSelectSpecializationToSelectDoctor,
                         createdAppointmenttIt.EventIdentificator);
 
                 sum += (createdAppointmenttIt.Timestamp - startedAppointmentEvent.Timestamp).TotalSeconds;
