@@ -129,8 +129,8 @@ namespace MedbayTech.Appointment.Infrastructure.Services.EventService
         public double GetAverageNumberOfStepsForSuccessful()
         {
             List<AppointmentEvent> createdAppointments = _appointmentEventRepository.GetAllBy(AppointmentEventType.Created);
-            int steps = 0;
-            int numberOfAppointments = createdAppointments.Count();
+            double steps = 0;
+            double numberOfAppointments = createdAppointments.Count();
 
             foreach (AppointmentEvent createdAppointmentIt in createdAppointments)
             {
