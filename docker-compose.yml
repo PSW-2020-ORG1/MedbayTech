@@ -30,7 +30,7 @@ services:
     depends_on:
       - postgres
       - feedback
-     # - pharmacies
+      - pharmacies
       - medications
       - users 
       - rooms 
@@ -70,6 +70,32 @@ services:
       URL_USERS: "users"
     ports:
       - "8080:5003"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+
+
+  pharmacies:
+    image: pharmacy
+    container_name: pharmacy_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "50202"
+      URL_MEDICATION: "medications"
+      PORT_MEDICATION: "5007"
+      URL_DOCUMENTS: "patientdocuments"
+      PORT_DOCUMENTS: "5006"
+    ports:
+      - "50202:50202"
     volumes:
       - postgres-data:/var/lib/postgres:rw
 

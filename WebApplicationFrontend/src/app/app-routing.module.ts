@@ -20,6 +20,7 @@ import { SchedulingComponent } from './appointment/scheduling/scheduling.compone
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
 import { LoginComponent } from './login/login/login.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { ObservePrescriptionComponent } from './prescription/observe-prescription/observe-prescription.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
@@ -113,6 +114,12 @@ const routes: Routes = [
   {
     path : 'home',
     component : HomePageComponent
+  },
+  {
+    path : 'prescriptionDialog',
+    component : ObservePrescriptionComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Patient]}
   },
   {
     path: '',

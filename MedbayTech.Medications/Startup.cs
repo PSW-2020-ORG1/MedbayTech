@@ -18,7 +18,7 @@ using MedbayTech.Medications.Infrastructure.Service.Medications;
 using MedbayTech.Medications.Infrastructure.Service.Reports;
 using MedbayTech.Medications.Infrastructure.Database;
 
-namespace MedbayTech.Medication
+namespace MedbayTech.Medications
 {
     public class Startup
     {
@@ -28,9 +28,10 @@ namespace MedbayTech.Medication
         }
 
         public IConfiguration Configuration { get; }
-      
+
         public void ConfigureServices(IServiceCollection services)
         {
+            Directory.CreateDirectory("GeneratedUsageReports");
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
@@ -48,7 +49,7 @@ namespace MedbayTech.Medication
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            
+
 
             services.AddDbContext<MedicationDbContext>();
         }
@@ -106,7 +107,7 @@ namespace MedbayTech.Medication
                 endpoints.MapControllers();
             });
 
-            
+
 
             if (!env.IsDevelopment())
             {
@@ -125,7 +126,7 @@ namespace MedbayTech.Medication
         private static void AddServices(IServiceCollection services)
         {
             services.AddScoped<IMedicationUsageService, MedicationUsageService>();
-            services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>(); 
+            services.AddScoped<IMedicationUsageReportService, MedicationUsageReportService>();
             services.AddScoped<IMedicationService, MedicationService>();
         }
     }

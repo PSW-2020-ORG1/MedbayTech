@@ -1,4 +1,5 @@
 ﻿
+using MedbayTech.Medications.Application.Common.Interfaces.Peristance.Medications;
 using MedbayTech.Medications.Application.Common.Interfaces.Service.Medications;
 using MedbayTech.Medications.Domain.Entities.Medications;
 using MedbayTech.Medications.Domain.Enums;
@@ -11,26 +12,16 @@ namespace MedbayTech.Medications.Controllers
     [ApiController]
     public class MedicationController : Controller
     {
-        private List<Domain.Entities.Medications.Medication> _inMemoryRepo;
         private readonly IMedicationService _medicationService;
         public MedicationController(IMedicationService medicationService)
         {
             _medicationService = medicationService;
-            _inMemoryRepo = new List<Domain.Entities.Medications.Medication>();
-
-            MedicationCategory category = new MedicationCategory("Drug");
-            Domain.Entities.Medications.Medication aspirin = new Domain.Entities.Medications.Medication("Aspirin 325mg", "Bayer", category);
-            aspirin.Id = 1;
-            Domain.Entities.Medications.Medication cyclopentanoperhydrophenanthrene = new Domain.Entities.Medications.Medication("Cyclopentanoperhydrophenanthrene 5mg", "StrongDrugs Inc.", category);
-            cyclopentanoperhydrophenanthrene.Id = 2;
-            _inMemoryRepo.Add(aspirin);
-            _inMemoryRepo.Add(cyclopentanoperhydrophenanthrene);
         }
 
         [HttpGet("{id?}")]
         public IActionResult Get(int id)
         {
-            Domain.Entities.Medications.Medication medication = _inMemoryRepo.Find(m => m.Id.Equals(id));
+            Domain.Entities.Medications.Medication medication = _medicationService.GetAll().Find(m => m.Id.Equals(id));
             if (medication == null)
             {
                 return BadRequest();
@@ -39,13 +30,13 @@ namespace MedbayTech.Medications.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get() => Ok(_inMemoryRepo);
+        public IActionResult Get() => Ok(_medicationService.GetAll());
 
 
         [HttpGet("check/{search?}")]
         public IActionResult Get(string search)
         {
-
+            // TODO(Jovan): Add environment dependant support
             //string response = grpc.CheckForMedication(search).Result;
             //return Ok(response);
             return Ok();
@@ -68,12 +59,17 @@ namespace MedbayTech.Medications.Controllers
             {
                 return Ok(_medicationService.GetAllMedicationByRoomId(textBoxSearch));
             }
-            else return Ok();
+            else return Ok(); // TODO(Jovan): Should return OK?
         }
 
         [HttpPost]
         public IActionResult Post(Domain.Entities.Medications.Medication medication)
         {
+            // TODO(Jovan): Handle bad requests
+            if(_medicationService.GetMedication(medication.Id) == null)
+            {
+                return Ok(_medicationService.Add(medication));
+            }
             return Ok(_medicationService.UpdateMedication(medication));
         }
     }

@@ -7,6 +7,7 @@ using MedbayTech.PatientDocuments.Application.DTO.Prescription;
 using MedbayTech.PatientDocuments.Application.Mapper;
 using MedbayTech.PatientDocuments.Application.Validators.Prescription;
 using Microsoft.AspNetCore.Authorization;
+using MedbayTech.PatientDocuments.Application.DTO.Report;
 
 namespace WebApplication.Controller
 {
@@ -59,6 +60,15 @@ namespace WebApplication.Controller
         public IActionResult GetAllForPharmacies()
         {
             return Ok(_prescriptionSearchService.GetAllForSending());
+        }
+
+        [HttpPost("appointmentPrescription")]
+        public IActionResult GetAppointmentReport(AppointmentDTO dto)
+        {
+            String patientId = User.Identity.Name;
+            List<Prescription> prescriptions = _prescriptionSearchService.GetPrescriptionsBy(dto.DoctorId, patientId, dto.StartTime);
+            List<AppointmentPrescriptionDTO> prescriptionDTOs = PrescriptionMapper.ListPrescriptionToAppointmentPrescriptionDTO(prescriptions);
+            return Ok(prescriptionDTOs);
         }
 
     }

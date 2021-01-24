@@ -4,6 +4,7 @@ using MedbayTech.PatientDocuments.Domain.Entities.MedicalRecords;
 using MedbayTech.PatientDocuments.Domain.Entities.Treatment;
 using MedbayTech.PatientDocuments.Infrastructure.Database;
 using MedbayTech.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,5 +18,8 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Persistance
             return GetAll().Where(report => report.IsPatient(idPatient)).ToList();
         }
 
+        public Report GetReportForAppointment(DateTime startTime, string doctorId, string patientId)
+            => GetAll().FirstOrDefault(a => a.StartTime.Equals(startTime) && a.DoctorId.Equals(doctorId) && a.MedicalRecord.PatientId.Equals(patientId));
+        
     }
 }
