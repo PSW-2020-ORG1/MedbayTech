@@ -32,7 +32,7 @@ namespace MedbayTech.Pharmacies.Infrastructure.Database
         private void SeedPharmacies(PharmacyDbContext context)
         {
             context.Add(new Pharmacy { Id = "Jankovic", APIKey = "ID1APIKEYAAAA", APIEndpoint = "jankovic.rs", Email = "jankovicpharmacy@gmail.com", RecieveNotificationFrom = true });
-            context.Add(new Pharmacy { Id = "Liman", APIKey = "ID2APIKEYAAAA", APIEndpoint = "liman.li", Email = "jankovicpharmacy@gmail.com", RecieveNotificationFrom = true });
+            context.Add(new Pharmacy { Id = "Liman", APIKey = "ID2APIKEYAAAA", APIEndpoint = "liman.li", Email = "pharmacyliman@gmail.com", RecieveNotificationFrom = true });
             context.SaveChanges();
         }
 

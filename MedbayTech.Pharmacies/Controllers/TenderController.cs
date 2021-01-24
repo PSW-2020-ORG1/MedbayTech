@@ -1,7 +1,9 @@
 ﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Mailing;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Pharmacies;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders;
 using MedbayTech.Pharmacies.Application.DTO;
 using MedbayTech.Pharmacies.Domain.Entities.Medications;
+using MedbayTech.Pharmacies.Domain.Entities.Pharmacies;
 using MedbayTech.Pharmacies.Domain.Entities.Tenders;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -20,11 +22,13 @@ namespace MedbayTech.Pharmacies.Controllers
 
         private readonly ITenderService _tenderService;
         private readonly IMailService _mailService;
+        private readonly IPharmacyService _pharmacyService;
 
-        public TenderController(ITenderService tenderService, IMailService mailService)
+        public TenderController(ITenderService tenderService, IMailService mailService, IPharmacyService pharmacyService)
         {
             _tenderService = tenderService;
             _mailService = mailService;
+            _pharmacyService = pharmacyService;
         }
 
         [HttpGet]
@@ -42,8 +46,6 @@ namespace MedbayTech.Pharmacies.Controllers
         [HttpPost]
         public IActionResult CreateTender(TenderDTO tender)
         {
-            MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = "jankovicpharmacy@gmail.com", Subject = "Message from Medbay hospital", Body = "New tender opened in MedbayTech!" };
-            _mailService.SendMailAsync(mailRequest).Wait();
 
             Tender newTender = _tenderService.CreateTender(tender);
             int medicationCount = 0;
@@ -57,7 +59,10 @@ namespace MedbayTech.Pharmacies.Controllers
             bool isMedicationSuccessfullyAdded = medicationCount == tender.tenderMedications.Count();
 
             if (isTenderSuccessfullyAdded && isMedicationSuccessfullyAdded)
+            {
+                SendMail();
                 return Ok();
+            }
             else
                 return BadRequest();
         }
@@ -97,6 +102,15 @@ namespace MedbayTech.Pharmacies.Controllers
                 return Ok();
             else
                 return BadRequest();
+        }
+
+        private void SendMail()
+        {
+            foreach (Pharmacy pharmacy in _pharmacyService.GetAll())
+            {
+                MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = pharmacy.Email, Subject = "Message from Medbay hospital", Body = "New tender opened in MedbayTech hospital!" };
+                _mailService.SendMailAsync(mailRequest).Wait();
+            }
         }
     }
 }
