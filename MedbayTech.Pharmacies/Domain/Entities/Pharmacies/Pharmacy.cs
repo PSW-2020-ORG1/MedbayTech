@@ -14,13 +14,15 @@ namespace MedbayTech.Pharmacies.Domain.Entities.Pharmacies
         public string APIKey { get; set; }
         public string APIEndpoint { get; set; }
         public bool RecieveNotificationFrom { get; set; }
+        public string Email { get; set; }
 
         public Pharmacy() { }
-        public Pharmacy(string Id, string APIKey, string APIEndpoint, bool RecieveNotificationFrom = false)
+        public Pharmacy(string Id, string APIKey, string APIEndpoint, string Email, bool RecieveNotificationFrom = false)
         {
             this.Id = Id;
             this.APIKey = APIKey;
             this.APIEndpoint = APIEndpoint;
+            this.Email = Email;
             this.RecieveNotificationFrom = RecieveNotificationFrom;
         }
 

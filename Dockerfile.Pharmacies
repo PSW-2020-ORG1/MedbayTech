@@ -66,11 +66,11 @@ COPY . ./
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine as buildfront
 WORKDIR /app
 COPY --from=buildbuster /app .
-COPY --from=buildbuster /app/MedbayTech.Pharmacies/WebUI/vueclient /app/MedbayTech.Pharmacies/bin/Release/netcoreapp3.1/publish/vueclient
+COPY --from=buildbuster /app/MedbayTech.PharmacyUI /app/MedbayTech.PharmacyUI
 
 RUN apk add --update nodejs nodejs-npm
 
-WORKDIR /app/MedbayTech.Pharmacies/bin/Release/netcoreapp3.1/publish/vueclient
+WORKDIR /app/MedbayTech.PharmacyUI
 RUN npm install
 RUN npm install -g @vue/cli
 RUN npm install --save axios vue-axios
