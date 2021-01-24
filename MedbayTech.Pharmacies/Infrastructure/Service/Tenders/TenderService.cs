@@ -12,12 +12,12 @@ namespace MedbayTech.Pharmacies.Infrastructure.Service.Tenders
     public class TenderService : ITenderService
     {
         private readonly ITenderRepository _tenderRepository;
-        private readonly ITenderMedicationRepositroy _tenderMedicationRepositroy;
+        private readonly ITenderMedicationRepository _tenderMedicationRepository;
 
-        public TenderService(ITenderRepository tenderRepository, ITenderMedicationRepositroy tenderMedicationRepositroy)
+        public TenderService(ITenderRepository tenderRepository, ITenderMedicationRepository tenderMedicationRepository)
         {
             _tenderRepository = tenderRepository;
-            _tenderMedicationRepositroy = tenderMedicationRepositroy;
+            _tenderMedicationRepository = tenderMedicationRepository;
         }
 
         public Tender Add(Tender tender) => _tenderRepository.Create(tender);
@@ -25,7 +25,7 @@ namespace MedbayTech.Pharmacies.Infrastructure.Service.Tenders
         public TenderMedication CreateMedicationForTender(int tenderId, TenderMedicationDTO medicationDTO)
         {
             TenderMedication tenderMedication = new TenderMedication(medicationDTO, tenderId);
-            return _tenderMedicationRepositroy.Create(tenderMedication);
+            return _tenderMedicationRepository.Create(tenderMedication);
         }
 
         public Tender CreateTender(TenderDTO tenderDTO)
@@ -42,7 +42,7 @@ namespace MedbayTech.Pharmacies.Infrastructure.Service.Tenders
 
         public List<TenderMedication> GetMedications(int tenderId)
         {
-            return _tenderMedicationRepositroy.GetMedicationsForTender(tenderId);
+            return _tenderMedicationRepository.GetMedicationsForTender(tenderId);
         }
 
 
