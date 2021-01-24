@@ -8,7 +8,7 @@ COPY WebApplicationFrontend/package.json .
 RUN npm install
 RUN npm install -g @angular/cli@7.3.9
 
-RUN ng build --prod --base-href=/ 
+RUN ng build --base-href=/ --configuration=test
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /app
@@ -20,9 +20,7 @@ COPY . .
 
 FROM build AS publish
 WORKDIR /app
-ENV API_URL $API_URL
 COPY --from=builder app/dist/WebApplicationFrontend/ MedbayTech.APIGateways/wwwroot/dist/
-CMD sh -c envsubst < MedbayTech.APIGateways/wwwroot/dist/assets/env.template.js > MedbayTech.APIGateways/wwwroot/dist/assets/env.js && exec nginx -g 'daemon off;'
 RUN dotnet publish MedbayTech.APIGateways/MedbayTech.APIGateways.csproj -c Release -o out
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS runtime
@@ -30,5 +28,5 @@ RUN useradd -ms /bin/bash defaultuser
 WORKDIR /app
 COPY --from=publish /app/out .
 EXPOSE 5000
-
+ENV API_URL $API_URL
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet MedbayTech.APIGateways.dll
