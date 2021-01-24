@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MedbayTech.Common.Domain.Entities;
 
 namespace MedbayTech.Common.Domain.Events
 {

@@ -1,4 +1,6 @@
-﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders;
+﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Mailing;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders;
+using MedbayTech.Pharmacies.Application.DTO;
 using MedbayTech.Pharmacies.Domain.Entities.Tenders;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,10 +16,12 @@ namespace MedbayTech.Pharmacies.Controllers
     public class TenderOfferController : Controller
     {
         private readonly ITenderOfferService _tenderOfferService;
+        private readonly IMailService _mailService;
 
-        public TenderOfferController(ITenderOfferService tenderOfferService)
+        public TenderOfferController(ITenderOfferService tenderOfferService, IMailService mailService)
         {
             _tenderOfferService = tenderOfferService;
+            _mailService = mailService;
         }
 
         [HttpGet("tender/{id?}")]
@@ -32,9 +36,18 @@ namespace MedbayTech.Pharmacies.Controllers
             bool isTenderOfferSuccessfullyAdded = _tenderOfferService.Add(tenderOffer) != null;
 
             if (isTenderOfferSuccessfullyAdded)
+            {
+                SendMail(tenderOffer.PharmacyEMail);
                 return Ok();
+            }
             else
                 return BadRequest();
+        }
+
+        private void SendMail(String email)
+        {
+            MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = email, Subject = "Message from Medbay hospital", Body = "Made an offer from MedbayTech hospital!" };
+            _mailService.SendMailAsync(mailRequest).Wait();
         }
 
     }

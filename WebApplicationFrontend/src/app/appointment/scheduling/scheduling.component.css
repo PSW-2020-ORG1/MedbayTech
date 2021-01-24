@@ -14,3 +14,7 @@ table {
     justify-content: center;
     margin-top: 10px;
 }
+
+.mat-horizontal-stepper-header { 
+    pointer-events: none !important; 
+}
