@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AppointmentEventType } from './../../model/event/appointmentEventType';
+import { start } from 'repl';
+import { EventService } from './../../service/event/event.service';
+import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AppointmentScheduling } from 'src/app/model/appointmentScheduling';
 import { AvailableAppointments } from 'src/app/model/availableAppointments';
@@ -11,13 +14,16 @@ import { SpecializationId } from 'src/app/model/specializationId';
 import { AppointmentService } from 'src/app/service/appointment/appointment.service';
 import { DoctorServiceService } from 'src/app/service/doctor/doctor-service.service';
 import { SpecializationService } from 'src/app/service/specialization/specialization.service';
+import { AppointmentEvent } from 'src/app/model/event/appointmentEvent';
+import { OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-scheduling',
   templateUrl: './scheduling.component.html',
-  styleUrls: ['./scheduling.component.css']
+  styleUrls: ['./scheduling.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
-export class SchedulingComponent implements OnInit {
+export class SchedulingComponent implements OnInit, OnDestroy {
 
   dateFormGroup : FormGroup;
   specializationFormGroup : FormGroup;
@@ -25,6 +31,7 @@ export class SchedulingComponent implements OnInit {
   doctor : string;
   specializationId: SpecializationId;
   isOptional = false;
+  isEditable = true;
 
   availableAppointments : AvailableAppointments[] = new Array();
   scheduleAppointment : ScheduleAppointment;
@@ -33,9 +40,20 @@ export class SchedulingComponent implements OnInit {
   searchDoctors : SearchDoctor[] = new Array();
   specializations : Specialization[] = new Array();
 
+  appointmentEvent : AppointmentEvent;
+
+  route : string;
+
+  sessionId : string;
+
   displayedColumns : string[] = ['position', 'Date', 'Time', '#'];
 
-  constructor(private doctorService : DoctorServiceService, private appointmentService : AppointmentService, private specializationService : SpecializationService, private toastr : ToastrService) { }
+  constructor(private doctorService : DoctorServiceService, private appointmentService : AppointmentService, private specializationService : SpecializationService, private toastr : ToastrService, private eventService : EventService, private router : Router) {
+    
+   }
+  ngOnDestroy(): void {
+    this.createQuitEvent();
+  }
 
   ngOnInit(): void {
     this.dateFormGroup = new FormGroup({
@@ -49,7 +67,11 @@ export class SchedulingComponent implements OnInit {
     this.doctorFormGroup = new FormGroup({
       'chosenDoctor': new FormControl(null, Validators.required)
     })
+    this.route = this.router.url;
     this.getSpecializations();
+    this.sessionId = this.makeid();
+    this.createStartEvent();  
+    
   }
 
   getSearchDoctors() {
@@ -108,5 +130,64 @@ export class SchedulingComponent implements OnInit {
       }
     );
   }
+
+  restart() {
+    this.availableAppointments = new Array();
+  }
+
+  makeid() : string {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  
+    for (var i = 0; i < possible.length; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+  
+    return text;
+  }
+
+  showSessionId() {
+    console.log(this.sessionId);
+  }
+
+  createQuitEvent() {
+    this.appointmentEvent = new AppointmentEvent(AppointmentEventType.Quit, this.sessionId);
+    this.postEvent();
+  }
+  createStartEvent(){
+    this.appointmentEvent = new AppointmentEvent(AppointmentEventType.Started, this.sessionId);
+    this.postEvent();
+  }
+  createFromStartedToSelectSpecializationEvent() {
+    this.appointmentEvent = new AppointmentEvent(AppointmentEventType.FromStartedToSelectSpecialization, this.sessionId);
+    this.postEvent()
+  }
+  createFromSelectSpecializationToStarted() {
+    this.appointmentEvent = new AppointmentEvent(AppointmentEventType.FromSelectSpecializationToStarted, this.sessionId);
+    this.postEvent();
+  }
+  createFromSelectSpecializationToSelectDoctor() {
+    this.appointmentEvent = new AppointmentEvent(AppointmentEventType.FromSelectSpecializationToSelectDoctor, this.sessionId);
+    this.postEvent();
+  }
+  createFromSelectDoctorToSelectSpecialization() {
+    this.appointmentEvent = new AppointmentEvent(AppointmentEventType.FromSelectDoctorToSelectSpecialization, this.sessionId);
+    this.postEvent();
+  }
+  createFromSelectDoctorToSelectAppointment() {
+    this.appointmentEvent = new AppointmentEvent(AppointmentEventType.FromSelectDoctorToSelectAppointment, this.sessionId);
+    this.postEvent();
+  }
+  createFromSelectAppointmentToSelectDoctor() {
+    this.appointmentEvent = new AppointmentEvent(AppointmentEventType.FromSelectAppointmentToSelectDoctor, this.sessionId);
+    this.postEvent();
+  }
+  createCreatedEvent() {
+    this.appointmentEvent = new AppointmentEvent(AppointmentEventType.Created, this.sessionId);
+    this.postEvent();
+  }
+  postEvent() {
+    this.eventService.postEvent(this.appointmentEvent).subscribe();
+  }
+
 
 }

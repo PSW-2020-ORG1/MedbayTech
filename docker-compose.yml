@@ -75,7 +75,7 @@ services:
 
 
   pharmacies:
-    image: pharmacy
+    image: stefan7/pharmacies:latest
     container_name: pharmacy_container
     restart: on-failure
     networks:
