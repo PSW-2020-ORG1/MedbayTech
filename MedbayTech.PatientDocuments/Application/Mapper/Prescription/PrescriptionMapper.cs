@@ -24,5 +24,22 @@ namespace MedbayTech.PatientDocuments.Application.Mapper
 
             return prescriptionDTOs;
         }
+
+        public static List<AppointmentPrescriptionDTO> ListPrescriptionToAppointmentPrescriptionDTO(List<Prescription> prescriptions)
+        {
+            List<AppointmentPrescriptionDTO> prescriptionDTOs = new List<AppointmentPrescriptionDTO>();
+
+            foreach (Prescription p in prescriptions)
+            {
+                String name = p.Medication;
+                int hourlyIntake = p.HourlyIntake;
+                DateTime from = p.StartDate;
+                DateTime to = p.EndDate;
+
+                prescriptionDTOs.Add(new AppointmentPrescriptionDTO(name, hourlyIntake, from, to));
+            }
+
+            return prescriptionDTOs;
+        }
     }
 }

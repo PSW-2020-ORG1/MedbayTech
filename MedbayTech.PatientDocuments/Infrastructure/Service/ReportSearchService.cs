@@ -176,5 +176,18 @@ namespace MedbayTech.PatientDocuments.Infrastructure.Service
             }
             return reports;
         }
+
+        public Report GetReportForAppointment(DateTime startTime, string doctorId, string patientId) 
+        {
+            
+            var reports =  _repository.GetReportForAppointment(startTime,doctorId,patientId);
+            if (reports != null)
+            {
+                reports.MedicalRecord.Patient = _userGateway.GetPatientBy(reports.MedicalRecord.PatientId);
+                reports.Doctor = _userGateway.GetDoctorBy(reports.DoctorId);
+            }
+
+            return reports;
+        }
     }
 }

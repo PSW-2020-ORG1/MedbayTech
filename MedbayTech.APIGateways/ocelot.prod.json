@@ -541,6 +541,48 @@
       "RouteClaimsRequirement": {
         "Role": "Patient"
       }
+    },
+    {
+      "DownstreamPathTemplate": "/api/report/appointmentReport",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "medbaytech-patientdocuments.herokuapp.com",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/appointmentReport",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/prescription/appointmentPrescription",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "medbaytech-patientdocuments.herokuapp.com",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/appointmentPrescription",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
     }
   ]
 }
