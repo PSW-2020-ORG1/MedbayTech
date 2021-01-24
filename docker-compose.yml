@@ -22,7 +22,7 @@ services:
       - postgres-data:/var/lib/postgres
 
   apigateway:
-    image: apitest
+    image: stefan7/apigatewaytest:latest
     container_name: api_container
     restart: on-failure
     networks:
