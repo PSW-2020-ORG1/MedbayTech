@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using Xunit;
-using MedbayTech.Medication;
+using MedbayTech.Medications;
 
 namespace MedbayTech.PharmacyIntegrationTests.PhIntegration
 {
