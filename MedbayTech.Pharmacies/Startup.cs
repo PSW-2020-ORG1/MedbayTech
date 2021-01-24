@@ -141,7 +141,7 @@ namespace MedbayTech.Pharmacies
             services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationRepository>();
             services.AddTransient<IUrgentMedicationProcurementRepository, UrgentMedicationProcurementSqlRepository>();
             services.AddTransient<ITenderRepository, TenderSqlRepositroy>();
-            services.AddTransient<ITenderMedicationRepositroy, TenderMedicationSqlRepositroy>();
+            services.AddTransient<ITenderMedicationRepository, TenderMedicationSqlRepositroy>();
             services.AddTransient<ITenderOfferRepository, TenderOfferSqlRepositroy>();
         }
 
@@ -155,6 +155,7 @@ namespace MedbayTech.Pharmacies
             services.AddScoped<ITenderService, TenderService>();
             services.AddScoped<ITenderOfferService, TenderOfferService>();
             services.AddScoped<IMedicationUsageReportGateway, MedicationUsageReportGateway>();
+            services.AddScoped<IMedicationGateway, MedicationGateway>();
         }
 
 

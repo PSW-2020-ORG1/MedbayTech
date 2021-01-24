@@ -9,7 +9,7 @@ using MedbayTech.Repository;
 
 namespace MedbayTech.Pharmacies.Infrastructure.Persistance.Tenders
 {
-    public class TenderMedicationSqlRepositroy : SqlRepository<TenderMedication, int>, ITenderMedicationRepositroy
+    public class TenderMedicationSqlRepositroy : SqlRepository<TenderMedication, int>, ITenderMedicationRepository
     {
         public TenderMedicationSqlRepositroy(PharmacyDbContext context) : base(context) { }
 

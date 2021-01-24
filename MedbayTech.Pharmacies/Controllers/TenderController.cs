@@ -1,4 +1,5 @@
-﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Mailing;
+﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Gateways;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Mailing;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Pharmacies;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders;
 using MedbayTech.Pharmacies.Application.DTO;
@@ -23,12 +24,14 @@ namespace MedbayTech.Pharmacies.Controllers
         private readonly ITenderService _tenderService;
         private readonly IMailService _mailService;
         private readonly IPharmacyService _pharmacyService;
+        private readonly IMedicationGateway _medicationGateway;
 
-        public TenderController(ITenderService tenderService, IMailService mailService, IPharmacyService pharmacyService)
+        public TenderController(ITenderService tenderService, IMailService mailService, IPharmacyService pharmacyService, IMedicationGateway medicationGateway)
         {
             _tenderService = tenderService;
             _mailService = mailService;
             _pharmacyService = pharmacyService;
+            _medicationGateway = medicationGateway;
         }
 
         [HttpGet]
@@ -73,21 +76,14 @@ namespace MedbayTech.Pharmacies.Controllers
             Medication medication;
             List<TenderMedicationDTO> tenderMedicationDTOs = new List<TenderMedicationDTO>();
             List<TenderMedication> tenderMedications = _tenderService.GetMedications(id);
+            // TODO(Jovan): Avoid for http calls?
             foreach (TenderMedication tenderMedication in tenderMedications)
             {
-                using HttpClient client = new HttpClient();
-
-                var task = client.GetAsync("http://localhost:50202/api/Medication/" + tenderMedication.MedicationId)
-                    .ContinueWith((taskWithResponse) =>
-                    {
-                        var message = taskWithResponse.Result;
-                        var json = message.Content.ReadAsStringAsync();
-                        json.Wait();
-                        medication = JsonConvert.DeserializeObject<Medication>(json.Result);
-                        tenderMedicationDTOs.Add(new TenderMedicationDTO(medication.Id, medication.Name, medication.Dosage, tenderMedication.TenderMedicationQuantity));
-                    });
-                task.Wait();
-
+                medication = _medicationGateway.Get(tenderMedication.MedicationId);
+                if (medication != null)
+                {
+                    tenderMedicationDTOs.Add(new TenderMedicationDTO(medication.Id, medication.Name, medication.Dosage, tenderMedication.TenderMedicationQuantity));
+                }
             }
             return Ok(tenderMedicationDTOs);
 
