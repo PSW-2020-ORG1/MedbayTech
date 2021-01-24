@@ -85,7 +85,7 @@ namespace MedbayTech.APIGateways
 
             });
             app.UseCors("AllowAll");
-            app.UseOcelot();
+            app.UseOcelot().Wait();
             app.UseAuthentication();
         }
     }

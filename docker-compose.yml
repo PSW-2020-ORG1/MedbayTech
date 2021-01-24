@@ -22,7 +22,7 @@ services:
       - postgres-data:/var/lib/postgres
 
   apigateway:
-    image: stefan7/apigateways:latest
+    image: apitest
     container_name: api_container
     restart: on-failure
     networks:
@@ -37,6 +37,8 @@ services:
       - patientdocuments
       - appointment
     environment:
+      API_URL: "http://localhost:53843"
+      DEBUG: "true"
       DATABASE_USERNAME: "user"
       DATABASE_PASSWORD: "user"
       DATABASE_HOST: "postgres"
@@ -75,7 +77,7 @@ services:
 
 
   pharmacies:
-    image: pharmacy
+    image: stefan7/pharmacies:latest
     container_name: pharmacy_container
     restart: on-failure
     networks:

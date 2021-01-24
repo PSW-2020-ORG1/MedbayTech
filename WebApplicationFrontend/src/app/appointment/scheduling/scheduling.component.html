@@ -1,6 +1,8 @@
+<br><br>
+
 <div class="container">
     <mat-horizontal-stepper linear #stepper>
-        <mat-step [stepControl]="dateFormGroup">
+        <mat-step [stepControl]="dateFormGroup" [editable]="isEditable">
             <ng-template matStepLabel>Select date</ng-template>
             <form [formGroup]="dateFormGroup">
                 <mat-form-field>
@@ -10,11 +12,11 @@
                     <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
                 <div>
-                    <button mat-button matStepperNext>Next</button>
+                    <button mat-button matStepperNext (click)="createFromStartedToSelectSpecializationEvent()">Next</button>
                 </div>
             </form>
         </mat-step>
-        <mat-step [stepControl]="specializationFormGroup" [optional]="isOptional">
+        <mat-step [stepControl]="specializationFormGroup" [editable]="isEditable">
             <ng-template matStepLabel>Select specialization</ng-template>
             <form [formGroup]="specializationFormGroup">
                 <mat-form-field>
@@ -27,11 +29,12 @@
                     </mat-select>
                 </mat-form-field>
                 <div>
-                    <button mat-button matStepperNext>Next</button>
+                    <button mat-button matStepperPrevious (click)="createFromSelectSpecializationToStarted()">Back</button>
+                    <button mat-button matStepperNext (click)="createFromSelectSpecializationToSelectDoctor()">Next</button>
                 </div>
             </form>
         </mat-step>
-        <mat-step [stepControl]="doctorFormGroup" [optional]="isOptional">
+        <mat-step [stepControl]="doctorFormGroup" [editable]="isEditable">
             <ng-template matStepLabel>Select doctor</ng-template>
             <form [formGroup]="doctorFormGroup">
                 <div class="container">
@@ -47,11 +50,13 @@
                 </div>
             </form>
             <div>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-button matStepperPrevious (click)="createFromSelectDoctorToSelectSpecialization()">Back</button>
+                <button mat-button matStepperNext (click)="createFromSelectDoctorToSelectAppointment()">Next</button>
             </div>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Select appointment</ng-template>
+            <button mat-button matStepperPrevious (click)="createFromSelectAppointmentToSelectDoctor()">Back</button>
             <button mat-raised-button color="primary" style="margin-top: 30px;" (click)="submit()">Submit</button>
         </mat-step>
     </mat-horizontal-stepper>
@@ -81,7 +86,7 @@
         <ng-container matColumnDef="#">
             <th mat-header-cell *matHeaderCellDef> # </th>
             <td mat-cell *matCellDef="let element"> 
-                <button mat-raised-button color="primary" id="button" (click)="schedule(element)">Schedule</button>
+                <button mat-raised-button color="primary" id="button" (click)="createCreatedEvent()" (click)="schedule(element)" (click)="stepper.reset()" (click)="restart()">Schedule</button>
             </td>
             </ng-container>
     

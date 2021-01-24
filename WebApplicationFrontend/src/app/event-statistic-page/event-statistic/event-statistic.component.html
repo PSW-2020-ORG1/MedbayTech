@@ -1,0 +1,18 @@
+<div class="container">
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Count chart"> 
+            <app-count-chart style="padding-top: 200px;">
+
+            </app-count-chart>
+        </mat-tab>
+        <mat-tab label="Success quit ratio chart" (click)="gtePieData()"> 
+            <span (click)="gtePieData()"></span>
+            <app-succeed-quit-ratio-chart>
+                
+            </app-succeed-quit-ratio-chart>    
+        </mat-tab>
+        <mat-tab label="Average scheduling time chart"> 
+            <app-average-time-chart></app-average-time-chart>
+        </mat-tab>
+    </mat-tab-group>
+</div>

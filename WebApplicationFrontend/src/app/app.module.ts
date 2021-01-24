@@ -52,6 +52,11 @@ import { NavigationBarUserComponent } from './navigation-bar/navigation-bar-user
 import { HomePageComponent } from './home-page/home-page.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
+import { CountChartComponent } from './charts/count-chart/count-chart/count-chart.component';
+import { ChartsModule } from 'ng2-charts';
+import { EventStatisticComponent } from './event-statistic-page/event-statistic/event-statistic.component';
+import { SucceedQuitRatioChartComponent } from './charts/succeed-quit-ratio-chart/succeed-quit-ratio-chart/succeed-quit-ratio-chart.component';
+import { AverageTimeChartComponent } from './charts/average-time-chart/average-time-chart/average-time-chart.component';
 import { ObservePrescriptionComponent, ObservePrescriptionComponentDialog } from './prescription/observe-prescription/observe-prescription.component';
 import { ReportsDialogComponent } from './reports/reports-dialog/reports-dialog.component';
 import { ReportDialogComponent } from './reports/reports-dialog/report-dialog/report-dialog.component';
@@ -80,6 +85,10 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     NavigationBarPatientComponent,
     NavigationBarUserComponent,
     HomePageComponent,
+    CountChartComponent,
+    EventStatisticComponent,
+    SucceedQuitRatioChartComponent,
+    AverageTimeChartComponent,
     ObservePrescriptionComponentDialog,
     ReportsDialogComponent,
     LandingPageComponent
@@ -123,6 +132,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     ToastrModule.forRoot(),
     IvyCarouselModule,
     NgImageSliderModule,
+    ChartsModule,
     MatDialogModule
   ],
   providers: [

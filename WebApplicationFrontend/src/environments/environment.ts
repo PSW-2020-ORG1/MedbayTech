@@ -5,6 +5,11 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:53843',
+  createdCount : 'getCreatedCount',
+  backStepCount : 'getBackStepCount',
+  quitCount : 'getCountOfQuit',
+  succeedQuitRatio : 'getPercentSuccessfulAndQuit',
+  event : 'saveEvent',
   fedback: 'approvedFeedback',
   allFeedback: 'allFeedback',
   updateFeedbackStatus: 'updateFeedbackStatus',
@@ -37,6 +42,11 @@ export const environment = {
   availableStrategy : 'availableStrategy',
   availableStandard : 'available',
   scheduleAppointment : 'schedule',
+  averageNumberOfStepsForSuccessful: 'getAverageNumberOfStepsForSuccessful',
+  averageSchedulingTime: 'averageSchedulingTime',
+  getAverageTimeFromStartedToSpecialization: 'getAverageTimeFromStartedToSpecialization',
+  getAverageTimeFromSpecializationToDoctor: 'getAverageTimeFromSpecializationToDoctor',
+  getAverageTimeFromDoctorToSelectAppointment: 'getAverageTimeFromDoctorToSelectAppointment',
   appointmentReport : 'appointmentReport',
   appointmentPrescription : 'appointmentPrescription'
 };

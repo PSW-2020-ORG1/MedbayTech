@@ -25,6 +25,7 @@ namespace MedbayTech.APIGateways
                     webBuilder.UseStartup<Startup>();
                     webBuilder.ConfigureAppConfiguration(config =>
                      config.AddJsonFile($"ocelot.{stage}.json"));
+
                 });
         }
     }

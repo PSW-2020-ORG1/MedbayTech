@@ -1,7 +1,11 @@
 export const environment = {
   production: true,
-  baseUrl: window["env"]["apiUrl"] || "default",
-  debug: window["env"]["debug"] || false,
+  baseUrl: "http://medbaytech.herkouapp.com",
+  createdCount : 'getCreatedCount',
+  backStepCount : 'getBackStepCount',
+  quitCount : 'getCountOfQuit',
+  succeedQuitRatio : 'getPercentSuccessfulAndQuit',
+  event : 'saveEvent',
   fedback: 'approvedFeedback',
   allFeedback: 'allFeedback',
   updateFeedbackStatus: 'updateFeedbackStatus',
@@ -33,7 +37,14 @@ export const environment = {
   appointments : 'appointment',
   availableStrategy : 'availableStrategy',
   availableStandard : 'available',
-  scheduleAppointment : 'schedule'
+  scheduleAppointment : 'schedule',
+  averageNumberOfStepsForSuccessful: 'getAverageNumberOfStepsForSuccessful',
+  averageSchedulingTime: 'averageSchedulingTime',
+  getAverageTimeFromStartedToSpecialization: 'getAverageTimeFromStartedToSpecialization',
+  getAverageTimeFromSpecializationToDoctor: 'getAverageTimeFromSpecializationToDoctor',
+  getAverageTimeFromDoctorToSelectAppointment: 'getAverageTimeFromDoctorToSelectAppointment',
+  appointmentReport : 'appointmentReport',
+  appointmentPrescription : 'appointmentPrescription'
 };
 
 /*
