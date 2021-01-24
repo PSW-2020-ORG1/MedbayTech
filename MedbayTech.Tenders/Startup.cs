@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using MedbayTech.Tenders.Application.Common.Interfaces.Gateways;
 using MedbayTech.Tenders.Application.Common.Interfaces.Persistance.Tenders;
+using MedbayTech.Tenders.Application.Common.Interfaces.Service.Mailing;
 using MedbayTech.Tenders.Application.Common.Interfaces.Service.Tenders;
 using MedbayTech.Tenders.Infrastructure.Database;
 using MedbayTech.Tenders.Infrastructure.Gateways;
 using MedbayTech.Tenders.Infrastructure.Persistance.Tenders;
+using MedbayTech.Tenders.Infrastructure.Service.Mailing;
 using MedbayTech.Tenders.Infrastructure.Service.Tenders;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -122,7 +124,7 @@ namespace MedbayTech.Tenders
         private static void AddRepository(IServiceCollection services)
         {
             services.AddTransient<ITenderRepository, TenderSqlRepositroy>();
-            services.AddTransient<ITenderMedicationRepositroy, TenderMedicationSqlRepositroy>();
+            services.AddTransient<ITenderMedicationRepository, TenderMedicationSqlRepositroy>();
             services.AddTransient<ITenderOfferRepository, TenderOfferSqlRepositroy>();
         }
 
@@ -131,6 +133,8 @@ namespace MedbayTech.Tenders
             services.AddScoped<ITenderService, TenderService>();
             services.AddScoped<ITenderOfferService, TenderOfferService>();
             services.AddScoped<IPharmacyGateway, PharmacyGateway>();
+            services.AddScoped<IMedicationGateway, MedicationGateway>();
+            services.AddScoped<IMailService, MailService>();
         }
     }
 }

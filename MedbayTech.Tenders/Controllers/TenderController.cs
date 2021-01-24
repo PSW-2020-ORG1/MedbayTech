@@ -1,13 +1,13 @@
-﻿using MedbayTech.Pharmacies.Application.DTO;
+using MedbayTech.Tenders.Application.Common.Interfaces.Gateways;
+using MedbayTech.Tenders.Application.Common.Interfaces.Service.Mailing;
 using MedbayTech.Tenders.Application.Common.Interfaces.Service.Tenders;
+using MedbayTech.Tenders.Application.DTO;
+using MedbayTech.Tenders.Domain.Entities.Medications;
+using MedbayTech.Tenders.Domain.Entities.Pharmacies;
 using MedbayTech.Tenders.Domain.Entities.Tenders;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace MedbayTech.Tenders.Controllers
 {
@@ -17,10 +17,14 @@ namespace MedbayTech.Tenders.Controllers
     {
 
         private readonly ITenderService _tenderService;
+        private readonly IMailService _mailService;
+        private readonly IPharmacyGateway _pharmacyGateway;
 
-        public TenderController(ITenderService tenderService)
+        public TenderController(ITenderService tenderService, IMailService mailService, IPharmacyGateway pharmacyGateway)
         {
             _tenderService = tenderService;
+            _mailService = mailService;
+            _pharmacyGateway = pharmacyGateway;
         }
 
         [HttpGet]
@@ -38,6 +42,7 @@ namespace MedbayTech.Tenders.Controllers
         [HttpPost]
         public IActionResult CreateTender(TenderDTO tender)
         {
+
             Tender newTender = _tenderService.CreateTender(tender);
             int medicationCount = 0;
             foreach (TenderMedicationDTO medicationDTO in tender.tenderMedications)
@@ -50,37 +55,19 @@ namespace MedbayTech.Tenders.Controllers
             bool isMedicationSuccessfullyAdded = medicationCount == tender.tenderMedications.Count();
 
             if (isTenderSuccessfullyAdded && isMedicationSuccessfullyAdded)
+            {
+                SendMail();
                 return Ok();
+            }
             else
                 return BadRequest();
         }
-
-        // TODO(Jovan): Implement ???
-        /*[HttpGet("med/{id?}")]
+        
+        [HttpGet("med/{id?}")]
         public IActionResult GetMedications(int id)
         {
-            Medication medication;
-            List<TenderMedicationDTO> tenderMedicationDTOs = new List<TenderMedicationDTO>();
-            List<TenderMedication> tenderMedications = _tenderService.GetMedications(id);
-            foreach (TenderMedication tenderMedication in tenderMedications)
-            {
-                using HttpClient client = new HttpClient();
-
-                var task = client.GetAsync("http://localhost:50202/api/Medication/" + tenderMedication.MedicationId)
-                    .ContinueWith((taskWithResponse) =>
-                    {
-                        var message = taskWithResponse.Result;
-                        var json = message.Content.ReadAsStringAsync();
-                        json.Wait();
-                        medication = JsonConvert.DeserializeObject<Medication>(json.Result);
-                        tenderMedicationDTOs.Add(new TenderMedicationDTO(medication.Id, medication.Name, medication.Dosage, tenderMedication.TenderMedicationQuantity));
-                    });
-                task.Wait();
-
-            }
-            return Ok(tenderMedicationDTOs);
-
-        }*/
+            return Ok(_tenderService.GetMedications(id));
+        }
 
         [HttpPost("winner")]
         public IActionResult DeclareWinner(Tender tender)
@@ -91,6 +78,15 @@ namespace MedbayTech.Tenders.Controllers
                 return Ok();
             else
                 return BadRequest();
+        }
+
+        private void SendMail()
+        {
+            foreach (Pharmacy pharmacy in _pharmacyGateway.GetAll())
+            {
+                MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = pharmacy.Email, Subject = "Message from Medbay hospital", Body = "New tender opened in MedbayTech hospital!" };
+                _mailService.SendMailAsync(mailRequest).Wait();
+            }
         }
     }
 }

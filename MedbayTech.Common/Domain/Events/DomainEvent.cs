@@ -1,10 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MedbayTech.Common.Domain.Entities;
 
 namespace MedbayTech.Common.Domain.Events
 {
-    public class DomainEvent
+    public class DomainEvent : IIdentifiable<int>
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,6 +21,11 @@ namespace MedbayTech.Common.Domain.Events
         {
             Id = id;
             Timestamp = timestamp;
+        }
+
+        public int GetId()
+        {
+            return Id;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace MedbayTech.Pharmacies.Domain.Enums
+namespace MedbayTech.Tenders.Domain.Enums
 {
     public enum TenderStatus
     {

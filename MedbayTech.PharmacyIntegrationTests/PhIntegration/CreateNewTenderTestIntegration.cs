@@ -5,9 +5,9 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Shouldly;
 using System.Net;
-using MedbayTech.Pharmacies.Application.DTO;
-using MedbayTech.Pharmacies;
 using System.Collections.Generic;
+using MedbayTech.Tenders.Application.DTO;
+using MedbayTech.Tenders;
 
 namespace IntegrationTests.PhIntegration
 {
@@ -21,6 +21,7 @@ namespace IntegrationTests.PhIntegration
         [Fact]
         public async void Create_new_tender()
         {
+            // TODO(Jovan): How to start pharmacies server?
             Console.WriteLine("Started tender creating");
             HttpClient client = _factory.CreateClient();
             var tender = CreateTenderDTO();

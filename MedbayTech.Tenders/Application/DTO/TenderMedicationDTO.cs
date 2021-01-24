@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MedbayTech.Pharmacies.Application.DTO
+namespace MedbayTech.Tenders.Application.DTO
 {
     public class TenderMedicationDTO
     {

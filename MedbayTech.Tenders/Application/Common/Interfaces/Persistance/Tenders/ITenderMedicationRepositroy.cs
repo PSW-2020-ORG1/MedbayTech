@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace MedbayTech.Tenders.Application.Common.Interfaces.Persistance.Tenders
 {
-    public interface ITenderMedicationRepositroy : IRepository<TenderMedication, int>
+    public interface ITenderMedicationRepository : IRepository<TenderMedication, int>
     {
         List<TenderMedication> GetMedicationsForTender(int TenderId);
     }

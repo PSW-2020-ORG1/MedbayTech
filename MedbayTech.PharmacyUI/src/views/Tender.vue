@@ -70,7 +70,7 @@ export default {
 
     methods: {
         getTender: function(){
-           this.axios.get("http://localhost:50202/api/Tender/" + this.$route.params.id)
+           this.axios.get("http://localhost:49835/api/Tender/" + this.$route.params.id)
                 .then(response => {
                     this.tender = response.data;
                 })
@@ -89,7 +89,7 @@ export default {
         },
 
         getTenderMedication: function () {
-            this.axios.get("http://localhost:50202/api/Tender/med/" + this.$route.params.id)
+            this.axios.get("http://localhost:49835/api/Tender/med/" + this.$route.params.id)
                 .then(response => {
                     this.medications = response.data;
                 })
@@ -99,7 +99,7 @@ export default {
         },
 
         getTenderOffers: function () {
-            this.axios.get("http://localhost:50202/api/tenderOffer/tender/" + this.$route.params.id)
+            this.axios.get("http://localhost:49835/api/tenderOffer/tender/" + this.$route.params.id)
                 .then(response => {
                     this.tenderOffers = response.data;
                     this.minMaxPrice();
@@ -125,7 +125,7 @@ export default {
         declateWinner: function(tenderOfferId){
             this.tender.winnerTenderOfferId = tenderOfferId;
             this.tender.tenderStatus = 2;
-            this.axios.post("http://localhost:50202/api/Tender/winner", this.tender)
+            this.axios.post("http://localhost:49835/api/Tender/winner", this.tender)
                 .then(response => {
                     console.log(response.data);
                     for (let i = 0; i < this.tender.tenderMedications.length; ++i){

@@ -5,7 +5,7 @@
             <v-card v-if="show" elevation="1">
                 <v-card-title id="active-tenders-content" class="primary secondary--text">
                     Active Tenders
-                    <a href="http://localhost:50202/api/rss">
+                    <a href="http://localhost:49835/api/rss">
                     <v-btn class="deep-orange white--text" dark >
                         <v-icon left>
                             mdi-rss
@@ -120,7 +120,7 @@ export default {
     methods: {
         getAllActiveTenders: function(){
             let t = [];
-            this.axios.get("http://localhost:50202/api/Tender/")
+            this.axios.get("http://localhost:49835/api/Tender/")
                 .then(response => {
                     t = response.data;
                     for (let i = 0; i < t.length; ++i) {
@@ -142,7 +142,7 @@ export default {
         },
 
         getMedicationsForTender: function(id){
-            this.axios.get("http://localhost:50202/api/Tender/med/" + id)
+            this.axios.get("http://localhost:49835/api/Tender/med/" + id)
                 .then(response => {
                     this.medications = response.data;
                 })
@@ -153,7 +153,7 @@ export default {
 
         makeOffer: function(){
             let tenderOffer = {id: 0, tenderId : this.tenderDetails.id, pharmacy : this.name, pharmacyEMail: this.email, tenderOfferPrice: this.offer}
-            this.axios.post("http://localhost:50202/api/tenderOffer/makeOffer", tenderOffer)
+            this.axios.post("http://localhost:49835/api/tenderOffer/makeOffer", tenderOffer)
                 .then(response => {
                     console.log(response.data);
                     this.show = !this.show;
@@ -164,7 +164,7 @@ export default {
         },
 
         rss: function () {
-            this.axios.get("http://localhost:50202/api/rss")
+            this.axios.get("http://localhost:49835/api/rss")
                 .then(response => {
                     console.log(response.data);
                 })

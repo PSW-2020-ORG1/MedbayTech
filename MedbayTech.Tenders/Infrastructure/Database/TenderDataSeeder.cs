@@ -1,5 +1,5 @@
-﻿using MedbayTech.Pharmacies.Domain.Enums;
-using MedbayTech.Tenders.Domain.Entities.Tenders;
+﻿using MedbayTech.Tenders.Domain.Entities.Tenders;
+using MedbayTech.Tenders.Domain.Enums;
 using System;
 using System.Linq;
 

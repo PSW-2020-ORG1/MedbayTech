@@ -1,11 +1,10 @@
 ﻿using MedbayTech.Common.Domain.Entities;
-using MedbayTech.Pharmacies.Application.DTO;
-using MedbayTech.Pharmacies.Domain.Enums;
+using MedbayTech.Tenders.Application.DTO;
+using MedbayTech.Tenders.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace MedbayTech.Tenders.Domain.Entities.Tenders
 {

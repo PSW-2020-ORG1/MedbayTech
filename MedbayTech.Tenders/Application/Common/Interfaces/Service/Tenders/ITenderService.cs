@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using MedbayTech.Pharmacies.Application.DTO;
+using MedbayTech.Tenders.Application.DTO;
 using MedbayTech.Tenders.Domain.Entities.Tenders;
 
 namespace MedbayTech.Tenders.Application.Common.Interfaces.Service.Tenders

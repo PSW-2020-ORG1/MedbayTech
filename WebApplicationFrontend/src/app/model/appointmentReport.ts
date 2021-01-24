@@ -2,13 +2,13 @@ import { Diagnosis } from "./diagnosis";
 
 export class AppointmentReport {
     public startTime : Date;
-    public type : String;
+    public type : string;
     public diagnosis : Diagnosis[];
-    public doctorName : String;
-    public doctorSurname : String;
+    public doctorName : string;
+    public doctorSurname : string;
   reportAppointment: AppointmentReport;
 
-    constructor(startTime : Date, type : String, diagnosis : Diagnosis[],doctorName : String, doctorSurname : String) {
+    constructor(startTime : Date, type : string, diagnosis : Diagnosis[],doctorName : string, doctorSurname : string) {
         this.startTime = startTime;
         this.type = type;
         this.diagnosis = diagnosis;

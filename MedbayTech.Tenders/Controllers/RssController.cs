@@ -1,16 +1,14 @@
-﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders;
-using MedbayTech.Pharmacies.Domain.Entities.Tenders;
+﻿using MedbayTech.Tenders.Application.Common.Interfaces.Service.Tenders;
+using MedbayTech.Tenders.Domain.Entities.Tenders;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
-namespace MedbayTech.Pharmacies.Controllers
+namespace MedbayTech.Tenders.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -7,8 +7,15 @@ namespace MedbayTech.Appointment.Domain.Events
 {
     public enum AppointmentEventType
     {
-        CREATED,
-        CANCELED,
-        DONE
+        Started,
+        Created,
+        Quit,
+        FromStartedToSelectSpecialization,
+        FromSelectSpecializationToStarted,
+        FromSelectSpecializationToSelectDoctor,
+        FromSelectDoctorToSelectSpecialization,
+        FromSelectDoctorToSelectAppointment,
+        FromSelectAppointmentToSelectDoctor
+
     }
 }

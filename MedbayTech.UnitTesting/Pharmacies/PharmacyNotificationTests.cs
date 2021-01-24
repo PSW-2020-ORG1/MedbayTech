@@ -44,11 +44,11 @@ namespace MedbayTech.UnitTesting.Pharmacies
         {
             var stubRepository = new Mock<IPharmacyRepository>();
             List<Pharmacy> pharmacies = new List<Pharmacy>();
-            pharmacies.Add(new Pharmacy("Jankovic", "jankovic123", "jankovic.rs", true));
-            pharmacies.Add(new Pharmacy("Benu", "benu123", "benu.rs", false));
-            pharmacies.Add(new Pharmacy("Zegin", "zegin123", "zegin.rs", true));
-            pharmacies.Add(new Pharmacy("Dan", "dan123", "dan.rs", false));
-            pharmacies.Add(new Pharmacy("DM", "dm123", "dm.rs", true));
+            pharmacies.Add(new Pharmacy("Jankovic", "jankovic123", "jankovic.rs", "jan@gmail.com", true));
+            pharmacies.Add(new Pharmacy("Benu", "benu123", "benu.rs", "benu@gmail.com", false));
+            pharmacies.Add(new Pharmacy("Zegin", "zegin123", "zegin.rs", "zegin@gmail.com", true));
+            pharmacies.Add(new Pharmacy("Dan", "dan123", "dan.rs", "dan@gmail.com", false));
+            pharmacies.Add(new Pharmacy("DM", "dm123", "dm.rs", "dm@gmail.com", true));
 
             stubRepository.Setup(s => s.GetAll()).Returns(pharmacies);
 
