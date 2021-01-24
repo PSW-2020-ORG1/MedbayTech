@@ -28,4 +28,5 @@ RUN useradd -ms /bin/bash defaultuser
 WORKDIR /app
 COPY --from=publish /app/out .
 EXPOSE 5000
+CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet MedbayTech.APIGateways.dll

@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
-  baseUrl: "https://medbaytech.herokuapp.com",
+  baseUrl: window["env"]["apiUrl"] || "default",
+  debug: window["env"]["debug"] || false,
   fedback: 'approvedFeedback',
   allFeedback: 'allFeedback',
   updateFeedbackStatus: 'updateFeedbackStatus',
