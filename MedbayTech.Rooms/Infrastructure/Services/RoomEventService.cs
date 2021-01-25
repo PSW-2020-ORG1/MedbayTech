@@ -32,7 +32,7 @@ namespace MedbayTech.Rooms.Infrastructure.Services
                     mostEnteredRooms.Add(re);
                 }
             }
-
+            if (mostEnteredRooms.Count == 0) return null;
             int mostEnteredRoomId = mostEnteredRooms.GroupBy(x => x.RoomId)
             .Select(group => new { RoomEventID = group.Key, Count = group.Count() })
             .OrderByDescending(x => x.Count).First().RoomEventID;

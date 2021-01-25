@@ -11,13 +11,6 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MedbayTech.GraphicEditor.View
 {
@@ -27,7 +20,7 @@ namespace MedbayTech.GraphicEditor.View
     public partial class ScheduleRenovationListOfAvailableAppointments : Window
     {
         private ScheduleRenovation scheduleRenovation;
-        private List<AppointmentRealocation> appointmentRealocations;
+        private List<AppointmentRenovation> appointmentRealocations;
 
         public ScheduleRenovationListOfAvailableAppointments(ScheduleRenovation scheduleRenovation)
         {
@@ -76,7 +69,7 @@ namespace MedbayTech.GraphicEditor.View
 
         private async void ButtonSchedule(object sender, RoutedEventArgs e)
         {
-            AppointmentRealocation appointmentRealocation = (AppointmentRealocation)dataGridAppointment.SelectedItem;
+            AppointmentRenovation appointmentRealocation = (AppointmentRenovation)dataGridAppointment.SelectedItem;
             if (appointmentRealocation == null)
             {
                 MessageBox.Show("You didn't select any appointment for renovation!");
@@ -85,29 +78,29 @@ namespace MedbayTech.GraphicEditor.View
             if (scheduleRenovation.comboBoxRenovationType.SelectedIndex == 0)
             {
                 appointmentRealocation = AppointmentRealocationForMaintenance(appointmentRealocation);
-                AppointmentRealocationDTO appointmentRealocationDTO = new AppointmentRealocationDTO() { appointmentRealocation = appointmentRealocation, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.ScheduleRealocationOrRenovation };
+                AppointmentRealocationDTO appointmentRealocationDTO = new AppointmentRealocationDTO() { appointmentRenovation = appointmentRealocation, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.ScheduleRealocationOrRenovation };
                 await HttpRequestToAppointmentRealocationController(appointmentRealocationDTO);
             }
             else if (scheduleRenovation.comboBoxRenovationType.SelectedIndex == 1)
             {
                 appointmentRealocation = AppointmentRealocationForMerging(appointmentRealocation);
-                AppointmentRealocationDTO appointmentRealocationDTO = new AppointmentRealocationDTO() { appointmentRealocation = appointmentRealocation, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.ScheduleRealocationOrRenovation };
+                AppointmentRealocationDTO appointmentRealocationDTO = new AppointmentRealocationDTO() { appointmentRenovation = appointmentRealocation, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.ScheduleRealocationOrRenovation };
                 await HttpRequestToAppointmentRealocationController(appointmentRealocationDTO);
                 Room room = (Room)scheduleRenovation.dataGridRoom.SelectedItem;
-                appointmentRealocationDTO.appointmentRealocation.RoomId = room.Id;
+                appointmentRealocationDTO.appointmentRenovation.RoomId = room.Id;
                 await HttpRequestToAppointmentRealocationController(appointmentRealocationDTO);
             }
             else
             {
                 appointmentRealocation = AppointmentRealocationForSeparating(appointmentRealocation);
-                AppointmentRealocationDTO appointmentRealocationDTO = new AppointmentRealocationDTO() { appointmentRealocation = appointmentRealocation, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.ScheduleRealocationOrRenovation };
+                AppointmentRealocationDTO appointmentRealocationDTO = new AppointmentRealocationDTO() { appointmentRenovation = appointmentRealocation, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.ScheduleRealocationOrRenovation };
                 await HttpRequestToAppointmentRealocationController(appointmentRealocationDTO);
             }
             MessageBox.Show("Renovation is successfuly scheduled!");
             this.Close();
         }
 
-        private AppointmentRealocation AppointmentRealocationForMaintenance(AppointmentRealocation appointmentRealocation)
+        private AppointmentRenovation AppointmentRealocationForMaintenance(AppointmentRenovation appointmentRealocation)
         {
             appointmentRealocation.AppointmentRealocationType = AppointmentRealocationType.RenovationMaintenance;
             appointmentRealocation.Description = scheduleRenovation.textBoxDescription.Text.Trim();
@@ -120,7 +113,7 @@ namespace MedbayTech.GraphicEditor.View
             return appointmentRealocation;
         }
 
-        private AppointmentRealocation AppointmentRealocationForMerging(AppointmentRealocation appointmentRealocation)
+        private AppointmentRenovation AppointmentRealocationForMerging(AppointmentRenovation appointmentRealocation)
         {
             appointmentRealocation.AppointmentRealocationType = AppointmentRealocationType.RenovationMerging;
             appointmentRealocation.Description = scheduleRenovation.textBoxDescription.Text.Trim();
@@ -133,7 +126,7 @@ namespace MedbayTech.GraphicEditor.View
             return appointmentRealocation;
         }
 
-        private AppointmentRealocation AppointmentRealocationForSeparating(AppointmentRealocation appointmentRealocation)
+        private AppointmentRenovation AppointmentRealocationForSeparating(AppointmentRenovation appointmentRealocation)
         {
             appointmentRealocation.AppointmentRealocationType = AppointmentRealocationType.RenovationSeparating;
             appointmentRealocation.Description = scheduleRenovation.textBoxDescription.Text.Trim();
@@ -151,17 +144,17 @@ namespace MedbayTech.GraphicEditor.View
             string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentRealocationDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost:8083/api/appointmentrealocation/", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8083/api/appointmentrenovation/", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             if (appointmentRealocationDTO.appointmentRealocationSearchOrSchedule == AppointmentRealocationSearchOrSchedule.ByRoomAndDateTime)
             {
-                appointmentRealocations = new List<AppointmentRealocation>(JsonConvert.DeserializeObject<List<AppointmentRealocation>>(responseBody));
+                appointmentRealocations = new List<AppointmentRenovation>(JsonConvert.DeserializeObject<List<AppointmentRenovation>>(responseBody));
                 dataGridAppointment.ItemsSource = appointmentRealocations;
             }
             else if (appointmentRealocationDTO.appointmentRealocationSearchOrSchedule == AppointmentRealocationSearchOrSchedule.ByTwoRooms)
             {
-                appointmentRealocations = new List<AppointmentRealocation>(JsonConvert.DeserializeObject<List<AppointmentRealocation>>(responseBody));
+                appointmentRealocations = new List<AppointmentRenovation>(JsonConvert.DeserializeObject<List<AppointmentRenovation>>(responseBody));
                 dataGridAppointment.ItemsSource = appointmentRealocations;
             }
         }

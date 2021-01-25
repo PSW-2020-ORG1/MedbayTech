@@ -14,6 +14,5 @@ namespace MedbayTech.Appointment.Application.Common.Interfaces.Service
         List<AppointmentRealocation> GetAlternativeAvailableAppointments(int fromRoomId, int toRoomId, DateTime dateTime, int hospitalEquipmentId);
         List<AppointmentRealocation> GetAppointmentRealocationsByRoomId(int roomId);
         AppointmentRealocation UpdateAppointement(AppointmentRealocation appointmentRealocation);
-        List<AppointmentRealocation> GetAvailableAppointmentRealocationsForTwoRoms(int roomOneId, int roomTwoId, DateTime start, DateTime end);
     }
 }

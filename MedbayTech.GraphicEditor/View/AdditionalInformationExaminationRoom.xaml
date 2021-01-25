@@ -55,8 +55,8 @@
             </DataGrid>
             <DataGrid Name="dataGridAppointmentsRealocation" AutoGenerateColumns="False" HorizontalAlignment="Right" VerticalAlignment="Top" Width="231" Height="181" Margin="0,154,10,0" RenderTransformOrigin="1.059,-0.838" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn  Header="Star" Width="115" Binding="{Binding Start }" />
-                    <DataGridTextColumn Header="End" Width="115" Binding="{Binding End}"/>
+                    <DataGridTextColumn  Header="Star" Width="115" Binding="{Binding Period.StartTime }" />
+                    <DataGridTextColumn Header="End" Width="115" Binding="{Binding Period.EndTime}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Button x:Name="buttonCancelRealocation" Content="Cancel realocation" Foreground="White" Background="#006481" Width="200" FontSize="20" Margin="309,340,10,31" Click="ButtonCancelRealocation">

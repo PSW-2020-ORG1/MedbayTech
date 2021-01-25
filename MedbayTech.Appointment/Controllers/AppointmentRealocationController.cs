@@ -46,10 +46,6 @@ namespace MedbayTech.Appointment.Controllers
             {
                 return Ok(_appointmentRealocationService.UpdateAppointement(appointmentRealocationDTO.appointmentRealocation));
             }
-            else if(appointmentRealocationDTO.appointmentRealocationSearchOrSchedule == AppointmentRealocationSearchOrSchedule.ByTwoRooms)
-            {
-                return Ok(_appointmentRealocationService.GetAvailableAppointmentRealocationsForTwoRoms(appointmentRealocationDTO.FromRoomId, appointmentRealocationDTO.ToRoomId, appointmentRealocationDTO.StartInterval, appointmentRealocationDTO.EndInterval));
-            }
             else return Ok();
         }
     }

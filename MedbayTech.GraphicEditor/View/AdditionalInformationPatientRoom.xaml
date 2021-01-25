@@ -68,8 +68,8 @@
                         </Button>
                         <DataGrid Name="dataGridAppointmentRealocation" DockPanel.Dock="Top" Margin="5,5,5,5" IsReadOnly="True">
                             <DataGrid.Columns>
-                                <DataGridTextColumn  Header="Star" Width="272" Binding="{Binding Start }" />
-                                <DataGridTextColumn Header="End" Width="272" Binding="{Binding End}"/>
+                                <DataGridTextColumn  Header="Star" Width="272" Binding="{Binding Period.StartTime }" />
+                                <DataGridTextColumn Header="End" Width="272" Binding="{Binding Period.EndTime}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </DockPanel>

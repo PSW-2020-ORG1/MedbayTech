@@ -14,7 +14,7 @@ namespace Infrastructure.Database
 
         public List<AppointmentRealocation> GetBy(int roomId, DateTime date)
         {
-            return GetAll().ToList().Where(a => a.RoomId == roomId && a.Start.Date.CompareTo(date.Date) == 0).ToList();
+            return GetAll().ToList().Where(a => a.RoomId == roomId && a.Period.StartTime.Date.CompareTo(date.Date) == 0).ToList();
         }
     }
 }

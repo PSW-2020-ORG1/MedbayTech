@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces.Persistance;
 using Castle.Core.Internal;
 using Domain.Enums;
+using MedbayTech.Appointment.Application.Common.Interfaces.Persistance;
 using MedbayTech.Appointment.Application.Gateways;
 using MedbayTech.Appointment.Domain.Entities;
 using MedbayTech.Appointment.Domain.Enums;
@@ -38,17 +39,32 @@ namespace MedbayTech.UnitTesting.EquipmentRealocation
         [Fact]
         public void GetAvailableAppointmentRealocationsForTwoRomsFail()
         {
-            AppointmentRealocationService appointmentRealocationService = new AppointmentRealocationService(CreateStubRepositoryAppointmentRealocation(), CreateStubRepositoryAppointment());
-            var gotAppointments = appointmentRealocationService.GetAvailableAppointmentRealocationsForTwoRoms(1003, 1119, new DateTime(1999, 10, 3, 0, 0, 0), new DateTime(1999,10,4,0,0,0));
+            AppointmentRenovationService appointmentRealocationService = new AppointmentRenovationService(CreateStubRepositoryAppointmentRenovation(), CreateStubRepositoryAppointment());
+            var gotAppointments = appointmentRealocationService.GetAvailableAppointmentRenovationsForTwoRoms(1003, 1119, new DateTime(1999, 10, 3, 0, 0, 0), new DateTime(1999,10,4,0,0,0));
             gotAppointments.IsNullOrEmpty();
         }
 
         [Fact]
         public void GetAvailableAppointmentRealocationsForTwoRomsSuccess()
         {
-            AppointmentRealocationService appointmentRealocationService = new AppointmentRealocationService(CreateStubRepositoryAppointmentRealocation(), CreateStubRepositoryAppointment());
-            var gotAppointments = appointmentRealocationService.GetAvailableAppointmentRealocationsForTwoRoms(1003, 1119, DateTime.Now, DateTime.Now.AddHours(5));
+            AppointmentRenovationService appointmentRealocationService = new AppointmentRenovationService(CreateStubRepositoryAppointmentRenovation(), CreateStubRepositoryAppointment());
+            var gotAppointments = appointmentRealocationService.GetAvailableAppointmentRenovationsForTwoRoms(1003, 1119, DateTime.Now, DateTime.Now.AddHours(5));
             gotAppointments.ShouldNotBeEmpty();
+        }
+
+        public static IAppointmentRenovationRepository CreateStubRepositoryAppointmentRenovation()
+        {
+            var stubRepository = new Mock<IAppointmentRenovationRepository>();
+            var appointments = CreateLisfOfAppointmentRenovations();
+            var appointment = CreateAppointmentRenovation();
+
+            stubRepository.Setup(x => x.GetAll()).Returns(appointments);
+            stubRepository.Setup(x => x.Create(It.IsAny<AppointmentRenovation>())).Returns(appointment);
+            stubRepository.Setup(x => x.GetBy(It.IsAny<int>(), It.IsAny<DateTime>())).Returns(
+                (int id, DateTime date) =>
+                    appointments.Where(a => a.Id == id && a.Period.StartTime.Date.CompareTo(date.Date) == 0).ToList());
+
+            return stubRepository.Object;
         }
 
         public static IAppointmentRealocationRepository CreateStubRepositoryAppointmentRealocation()
@@ -61,7 +77,7 @@ namespace MedbayTech.UnitTesting.EquipmentRealocation
             stubRepository.Setup(x => x.Create(It.IsAny<AppointmentRealocation>())).Returns(appointment);
             stubRepository.Setup(x => x.GetBy(It.IsAny<int>(), It.IsAny<DateTime>())).Returns(
                 (int id, DateTime date) =>
-                    appointments.Where(a => a.Id == id && a.Start.Date.CompareTo(date.Date) == 0).ToList());
+                    appointments.Where(a => a.Id == id && a.Period.StartTime.Date.CompareTo(date.Date) == 0).ToList());
 
             return stubRepository.Object;
         }
@@ -87,6 +103,32 @@ namespace MedbayTech.UnitTesting.EquipmentRealocation
             var equipment = GetListOfEquipment().ToList();
             stubRepository.Setup(m => m.GetAllHospitalEquipments()).Returns(equipment);
             return (IHospitalEquipmentRepository)stubRepository.Object;
+        }
+
+        public static List<Appointment.Domain.Entities.AppointmentRenovation> CreateLisfOfAppointmentRenovations()
+        {
+            List<Appointment.Domain.Entities.AppointmentRenovation> appointments = new List<Appointment.Domain.Entities.AppointmentRenovation>();
+            Appointment.Domain.Entities.AppointmentRenovation app1 = new Appointment.Domain.Entities.AppointmentRenovation
+            {
+                Id = 4,
+                Period = new Period() { StartTime = new DateTime(2020, 12, 5, 8, 0, 0), EndTime = new DateTime(2020, 12, 5, 8, 30, 0) },
+                IsCanceled = false,
+                Deleted = false,
+                Finished = true,
+                RoomId = 1003
+            };
+            Appointment.Domain.Entities.AppointmentRenovation app2 = new Appointment.Domain.Entities.AppointmentRenovation
+            {
+                Id = 6,
+                Period = new Period() { StartTime = new DateTime(2021, 12, 5, 8, 0, 0), EndTime = new DateTime(2021, 12, 5, 8, 30, 0) },
+                IsCanceled = false,
+                Deleted = false,
+                Finished = true,
+                RoomId = 1003
+            };
+            appointments.Add(app1);
+            appointments.Add(app2);
+            return appointments;
         }
 
         public static List<Appointment.Domain.Entities.Appointment> CreateLisfOfAppointments()
@@ -144,8 +186,7 @@ namespace MedbayTech.UnitTesting.EquipmentRealocation
             AppointmentRealocation app1 = new AppointmentRealocation
             {
                 Id = 4,
-                Start = new DateTime(2020, 12, 5, 8, 0, 0),
-                End = new DateTime(2020, 12, 5, 8, 30, 0),
+                Period = new Period() { StartTime = new DateTime(2020, 12, 5, 8, 0, 0), EndTime = new DateTime(2020, 12, 5, 8, 30, 0) },
                 Deleted = false,
                 Finished = true,
                 RoomId = 1003,
@@ -154,8 +195,7 @@ namespace MedbayTech.UnitTesting.EquipmentRealocation
             AppointmentRealocation app2 = new AppointmentRealocation
             {
                 Id = 6,
-                Start = new DateTime(2020, 12, 5, 8, 0, 0),
-                End = new DateTime(2020, 12, 5, 8, 30, 0),
+                Period = new Period() { StartTime = new DateTime(2020, 12, 5, 8, 0, 0), EndTime = new DateTime(2020, 12, 5, 8, 30, 0) },
                 Deleted = false,
                 Finished = true,
                 RoomId = 1003,
@@ -168,13 +208,25 @@ namespace MedbayTech.UnitTesting.EquipmentRealocation
             return appointments;
         }
 
+        public static AppointmentRenovation CreateAppointmentRenovation()
+        {
+            AppointmentRenovation app = new AppointmentRenovation
+            {
+                Id = 4,
+                Period = new Period() { StartTime = new DateTime(2020, 12, 5, 8, 0, 0), EndTime = new DateTime(2020, 12, 5, 8, 30, 0) },
+                Deleted = false,
+                Finished = true,
+                RoomId = 1003,
+            };
+            return app;
+        }
+
         public static AppointmentRealocation CreateAppointmentRealocation()
         {
             AppointmentRealocation app = new AppointmentRealocation
             {
                 Id = 4,
-                Start = new DateTime(2020, 12, 5, 8, 0, 0),
-                End = new DateTime(2020, 12, 5, 8, 30, 0),
+                Period = new Period() { StartTime = new DateTime(2020, 12, 5, 8, 0, 0), EndTime = new DateTime(2020, 12, 5, 8, 30, 0) },
                 Deleted = false,
                 Finished = true,
                 RoomId = 1003,

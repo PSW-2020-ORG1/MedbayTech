@@ -432,7 +432,12 @@ namespace MedbayTech.GraphicEditor
                 return;
             }
             Room room = SearchDataBaseForMostViewedRoom();
-            if(room.RoomType == RoomType.AuxiliaryRoom || room.RoomType == RoomType.StorageRoom)
+            if (room == null)
+            {
+                MessageBox.Show("Open some room idiot!");
+                return;
+            }
+            if (room.RoomType == RoomType.AuxiliaryRoom || room.RoomType == RoomType.StorageRoom)
             {
                 AdditionalInformationAuxiliaryRoom additionalInformationAuxiliaryRoom = new AdditionalInformationAuxiliaryRoom(room.Id, this);
                 additionalInformationAuxiliaryRoom.ShowDialog();
@@ -459,6 +464,11 @@ namespace MedbayTech.GraphicEditor
             if(Restriction == 0 || Restriction == 2)
             {
                 Room room = SearchDataBaseForMostViewedRoom();
+                if (room == null)
+                {
+                    MessageBox.Show("Open some room idiot!");
+                    return;
+                }
                 MostViewedInventory mostViewedInventory = new MostViewedInventory(room);
                 mostViewedInventory.ShowDialog();
             }

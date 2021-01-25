@@ -27,7 +27,7 @@ namespace MedbayTech.GraphicEditor
         private MainPage page;
         private Room room;
         private ObservableCollection<Appointment> appointments;
-        private ObservableCollection<AppointmentRealocation> appointmentRealocations;
+        private ObservableCollection<AppointmentForRoomManipulation> appointmentRealocations;
         public AdditionalInformationOperatingRoom(int roomId, MainPage page)
         {
             InitializeComponent();
@@ -40,22 +40,22 @@ namespace MedbayTech.GraphicEditor
             this.DataContext = room;
             appointments = new ObservableCollection<Appointment>(SearchDataBaseForAppointments(roomId.ToString()));
             this.dataGridAppointments.ItemsSource = appointments;
-            appointmentRealocations = new ObservableCollection<AppointmentRealocation>(SearchDataBaseForAppointmentRealocation(roomId));
+            appointmentRealocations = new ObservableCollection<AppointmentForRoomManipulation>(SearchDataBaseForAppointmentRealocation(roomId));
             this.dataGridAppointmentRealocation.ItemsSource = appointmentRealocations;
             
         }
-        private List<AppointmentRealocation> SearchDataBaseForAppointmentRealocation(int roomId)
+        private List<AppointmentForRoomManipulation> SearchDataBaseForAppointmentRealocation(int roomId)
         {
-            List<AppointmentRealocation> appointmentRealocations = new List<AppointmentRealocation>();
+            List<AppointmentForRoomManipulation> appointmentRealocations = new List<AppointmentForRoomManipulation>();
             HttpClient httpClient = new HttpClient();
             // var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/ByRoomId")
-            var task = httpClient.GetAsync("http://localhost:8083/api/appointmentrealocation/" + roomId)
+            var task = httpClient.GetAsync("http://localhost:8083/api/appointmentforroommanipulation/" + roomId)
                .ContinueWith((taskWithResponse) =>
                {
                    var response = taskWithResponse.Result;
                    var jsonString = response.Content.ReadAsStringAsync();
                    jsonString.Wait();
-                   appointmentRealocations = new List<AppointmentRealocation>(JsonConvert.DeserializeObject<List<AppointmentRealocation>>(jsonString.Result));
+                   appointmentRealocations = new List<AppointmentForRoomManipulation>(JsonConvert.DeserializeObject<List<AppointmentForRoomManipulation>>(jsonString.Result));
                });
             task.Wait();
             return appointmentRealocations;
@@ -115,21 +115,21 @@ namespace MedbayTech.GraphicEditor
             string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentRealocationDTO);
             HttpClient client = new HttpClient();
             var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost:8083/api/appointmentrealocation/", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8083/api/appointmentforroommanipulation/", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
         }
 
         private async void ButtonCancelRealocation(object sender, RoutedEventArgs e)
         {
-            AppointmentRealocation appointmentRealocation = (AppointmentRealocation)dataGridAppointmentRealocation.SelectedItem;
+            AppointmentForRoomManipulation appointmentRealocation = (AppointmentForRoomManipulation)dataGridAppointmentRealocation.SelectedItem;
             if (appointmentRealocation == null)
             {
                 MessageBox.Show("You didn't select any realocation appointment!");
                 return;
             }
             appointmentRealocation.IsCanceled = true;
-            AppointmentRealocationDTO appointmentRealocationDTO = new AppointmentRealocationDTO() { appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.UpdateRealocation, appointmentRealocation = appointmentRealocation };
+            AppointmentRealocationDTO appointmentRealocationDTO = new AppointmentRealocationDTO() { appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.UpdateRealocation, appointmentForRoomManipulation = appointmentRealocation };
             await HttpRequestToAppointmentRealocationController(appointmentRealocationDTO);
             appointmentRealocations.Remove(appointmentRealocation);
         }
@@ -163,7 +163,7 @@ namespace MedbayTech.GraphicEditor
             {
                 ScheduleRenovation scheduleRenovation = new ScheduleRenovation(room);
                 scheduleRenovation.ShowDialog();
-                appointmentRealocations = new ObservableCollection<AppointmentRealocation>(SearchDataBaseForAppointmentRealocation(room.Id));
+                appointmentRealocations = new ObservableCollection<AppointmentForRoomManipulation>(SearchDataBaseForAppointmentRealocation(room.Id));
                 dataGridAppointmentRealocation.ItemsSource = appointmentRealocations;
             }
             else

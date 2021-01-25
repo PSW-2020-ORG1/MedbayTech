@@ -1,5 +1,6 @@
 ﻿
 using GraphicEditor.ViewModel;
+using MedbayTech.Common.Domain.ValueObjects;
 using MedbayTech.GraphicEditor.View.Building1;
 using MedbayTech.GraphicEditor.View.Building2;
 using MedbayTech.GraphicEditor.ViewModel;
@@ -142,9 +143,7 @@ namespace MedbayTech.GraphicEditor.View
         {
             return new AppointmentRealocation()
             {
-                AppointmentRealocationType = AppointmentRealocationType.Realocation,
-                Start = dateTime,
-                End = dateTime.AddMinutes(30),
+                Period = new Period() { StartTime = dateTime, EndTime = dateTime.AddMinutes(30)},
                 Deleted = false,
                 IsCanceled = false,
                 Finished = false,
@@ -203,7 +202,7 @@ namespace MedbayTech.GraphicEditor.View
 
         public void CheckHospital(Room appointmentRoom)
         {
-            if (appointmentRoom.Department.Hospital.Id == 1)
+            if (appointmentRoom.Department.Hospital.Id == 2)
             {
                 CheckFloorForFirstHospital(appointmentRoom);
             }
