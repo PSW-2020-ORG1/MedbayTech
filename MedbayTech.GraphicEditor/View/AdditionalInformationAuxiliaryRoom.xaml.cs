@@ -1,13 +1,18 @@
 ﻿
 using GraphicEditor.ViewModel;
 using MedbayTech.GraphicEditor.View;
+using MedbayTech.GraphicEditor.ViewModel;
+using MedbayTech.GraphicEditor.ViewModel.DTO;
+using MedbayTech.GraphicEditor.ViewModel.Enums;
 using MedbayTech.Rooms.Domain;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
@@ -19,28 +24,68 @@ namespace MedbayTech.GraphicEditor
     /// </summary>
     public partial class AdditionalInformationAuxiliaryRoom : Window
     {
+        private MainPage page;
         private Room room;
         private List<Medication> medications;
-        public AdditionalInformationAuxiliaryRoom(int roomId)
+        private List<HospitalEquipment> hospitalEquipments;
+        private ObservableCollection<AppointmentForRoomManipulation> appointmentRealocations;
+        public AdditionalInformationAuxiliaryRoom(int roomId, MainPage page)
         {
             InitializeComponent();
+            this.page = page;
             string path = Directory.GetCurrentDirectory();
             string new_path = path.Replace('\\', '/');
             string logo = new_path + "/Icons/WhiteLogo.png";
             imageLogo.Source = new BitmapImage(new Uri(@logo, UriKind.Absolute));
-            searchDataBase(roomId);
+            SearchDataBase(roomId);
             this.DataContext = room;
+            appointmentRealocations = new ObservableCollection<AppointmentForRoomManipulation>(SearchDataBaseForAppointmentRealocation(roomId));
+            this.dataGridAppointmentRealocation.ItemsSource = appointmentRealocations;
             if (room.RoomType == RoomType.AuxiliaryRoom)
             {
-                frameDataGrid.Content = new AdditionalInformationAuxiliaryRoomEquipment(room.HospitalEquipment);
+                hospitalEquipments = SearchDataBaseForHospitalEquipment(roomId);
+                frameDataGrid.Content = new AdditionalInformationAuxiliaryRoomEquipment(hospitalEquipments);
             }
             else
             {
-                searchDataBaseForMedication(room.Id);
+                SearchDataBaseForMedication(room.Id);
                 frameDataGrid.Content = new AdditionalInformationAuxiliaryRoomMedication(medications);
             }
         }
-        private Room searchDataBase(int roomId)
+        private List<AppointmentForRoomManipulation> SearchDataBaseForAppointmentRealocation(int roomId)
+        {
+            List<AppointmentForRoomManipulation> appointmentRealocations = new List<AppointmentForRoomManipulation>();
+            HttpClient httpClient = new HttpClient();
+            // var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/ByRoomId")
+            var task = httpClient.GetAsync("http://localhost:8083/api/appointmentforroommanipulation/" + roomId)
+               .ContinueWith((taskWithResponse) =>
+               {
+                   var response = taskWithResponse.Result;
+                   var jsonString = response.Content.ReadAsStringAsync();
+                   jsonString.Wait();
+                   appointmentRealocations = new List<AppointmentForRoomManipulation>(JsonConvert.DeserializeObject<List<AppointmentForRoomManipulation>>(jsonString.Result));
+               });
+            task.Wait();
+            return appointmentRealocations;
+        }
+        private List<HospitalEquipment> SearchDataBaseForHospitalEquipment(int roomId)
+        {
+            List<HospitalEquipment> hospitalEquipments = new List<HospitalEquipment>();
+            HttpClient httpClient = new HttpClient();
+            // var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/ByRoomId")
+            var task = httpClient.GetAsync("http://localhost:60304/api/hospitalequipment/getAllHospitalEquipments/" + roomId)
+               .ContinueWith((taskWithResponse) =>
+               {
+                   var response = taskWithResponse.Result;
+                   var jsonString = response.Content.ReadAsStringAsync();
+                   jsonString.Wait();
+                   hospitalEquipments = new List<HospitalEquipment>(JsonConvert.DeserializeObject<List<HospitalEquipment>>(jsonString.Result));
+               });
+            task.Wait();
+            return hospitalEquipments;
+        }
+
+        private Room SearchDataBase(int roomId)
         {
             room = new Room();
             HttpClient httpClient = new HttpClient();
@@ -56,7 +101,7 @@ namespace MedbayTech.GraphicEditor
             task.Wait();
             return room;
         }
-        private List<Medication> searchDataBaseForMedication(int roomId)
+        private List<Medication> SearchDataBaseForMedication(int roomId)
         {
             medications = new List<Medication>();
             HttpClient httpClient = new HttpClient();
@@ -71,6 +116,17 @@ namespace MedbayTech.GraphicEditor
             task.Wait();
             return medications;
         }
+
+        private async Task HttpRequestToAppointmentRealocationController(AppointmentRealocationDTO appointmentRealocationDTO)
+        {
+            string jsonSearchAppointmentsDTO = JsonConvert.SerializeObject(appointmentRealocationDTO);
+            HttpClient client = new HttpClient();
+            var content = new StringContent(jsonSearchAppointmentsDTO, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8083/api/appointmentforroommanipulation/", content);
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+        }
+
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             string jsonRoom = JsonConvert.SerializeObject(room);
@@ -92,9 +148,39 @@ namespace MedbayTech.GraphicEditor
             }
             MessageBox.Show("Saved to database!");
         }
+
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void ButtonScheduleRenovation(object sender, RoutedEventArgs e)
+        {
+            if(page.getRestriction() == 0)
+            {
+                ScheduleRenovation scheduleRenovation = new ScheduleRenovation(room);
+                scheduleRenovation.ShowDialog();
+                appointmentRealocations = new ObservableCollection<AppointmentForRoomManipulation>(SearchDataBaseForAppointmentRealocation(room.Id));
+                dataGridAppointmentRealocation.ItemsSource = appointmentRealocations;
+            }
+            else
+            {
+                MessageBox.Show("You don't have permission for scheduling appointments for renovation!");
+            }
+        }
+
+        private async void ButtonCancelAppointmentRealocation(object sender, RoutedEventArgs e)
+        {
+            AppointmentForRoomManipulation appointmentRealocation = (AppointmentForRoomManipulation)dataGridAppointmentRealocation.SelectedItem;
+            if(appointmentRealocation == null)
+            {
+                MessageBox.Show("You didn't select any realocation appointment!");
+                return;
+            }
+            appointmentRealocation.IsCanceled = true;
+            AppointmentRealocationDTO appointmentRealocationDTO = new AppointmentRealocationDTO() { appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.UpdateRealocation, appointmentForRoomManipulation = appointmentRealocation };
+            await HttpRequestToAppointmentRealocationController(appointmentRealocationDTO);
+            appointmentRealocations.Remove(appointmentRealocation);
         }
     }
 }
