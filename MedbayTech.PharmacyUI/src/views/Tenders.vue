@@ -236,7 +236,7 @@ export default {
 
         createTender: function () {
             let tender = { endDate: this.date, tenderMedications: this.requiredMedications, tenderDescription: this.tenderDescription }
-            this.axios.post("http://localhost:49835/api/Tender", tender, {headers: { crossDomain: true }})
+            this.axios.post("http://localhost:49835/api/Tender", tender)
                 .then(response => {
                     this.show = !this.show;
                     this.getAllTenders();

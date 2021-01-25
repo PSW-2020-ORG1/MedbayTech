@@ -69,6 +69,7 @@ namespace MedbayTech.Tenders
             }
 
             app.UseRouting();
+            app.UseCors("AllowAll");
 
             app.UseEndpoints(endpoints =>
             {
@@ -109,7 +110,6 @@ namespace MedbayTech.Tenders
                     Console.WriteLine("Failed to seed data");
                 }
             }
-            app.UseCors("AllowAll");
 
             app.UseEndpoints(endpoints =>
             {
