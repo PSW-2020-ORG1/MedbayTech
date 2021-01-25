@@ -54,7 +54,10 @@ namespace MedbayTech.Tenders
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddSpaStaticFiles(options => options.RootPath = "../MedbayTech.PharmacyUI/dist");
             services.AddDbContext<TenderDbContext>();
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.AddTransient<IMailService, MailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -114,6 +117,17 @@ namespace MedbayTech.Tenders
             });
 
 
+            app.UseSpaStaticFiles();
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "../MedbayTech.PharmacyUI";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:8082");
+                }
+            });
+
             if (!env.IsDevelopment())
             {
                 app.UseHttpsRedirection();
@@ -134,7 +148,6 @@ namespace MedbayTech.Tenders
             services.AddScoped<ITenderOfferService, TenderOfferService>();
             services.AddScoped<IPharmacyGateway, PharmacyGateway>();
             services.AddScoped<IMedicationGateway, MedicationGateway>();
-            services.AddScoped<IMailService, MailService>();
         }
     }
 }

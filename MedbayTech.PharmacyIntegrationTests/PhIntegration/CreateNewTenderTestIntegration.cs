@@ -8,20 +8,20 @@ using System.Net;
 using System.Collections.Generic;
 using MedbayTech.Tenders.Application.DTO;
 using MedbayTech.Tenders;
+using MedbayTech.PharmacyIntegrationTests.PhIntegration.WebApplicationFactory;
 
 namespace IntegrationTests.PhIntegration
 {
-    public class CreateNewTenderTestIntegration : IClassFixture<WebApplicationFactory<Startup>>
+    public class CreateNewTenderTestIntegration : IClassFixture<TenderFactory>
     {
         private readonly WebApplicationFactory<Startup> _factory;
-        public CreateNewTenderTestIntegration(WebApplicationFactory<Startup> factory)
+        public CreateNewTenderTestIntegration(TenderFactory factory)
         {
             _factory = factory;
         }
         [Fact]
         public async void Create_new_tender()
         {
-            // TODO(Jovan): How to start pharmacies server?
             Console.WriteLine("Started tender creating");
             HttpClient client = _factory.CreateClient();
             var tender = CreateTenderDTO();
