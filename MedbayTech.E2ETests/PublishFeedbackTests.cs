@@ -26,7 +26,7 @@ namespace MedbayTech.E2ETests
             Login();
 
             _allFeedbackPage = new AllFedback(_webDriver);
-            Assert.Equal(_webDriver.Url, AllFedback.URI_local);
+            Assert.Equal(_webDriver.Url, AllFedback.URI_Local);
             Assert.True(_allFeedbackPage.MaliciousPatientsLinkElementDisplayed());
 
         }
@@ -52,7 +52,7 @@ namespace MedbayTech.E2ETests
         private void Login()
         {
             _loginPage.Navigate();
-            Assert.Equal(_webDriver.Url, Pages.Login.URI);
+            Assert.Equal(_webDriver.Url, Pages.Login.URI_Local);
             Assert.True(_loginPage.UsernameElementDisplayed());
             Assert.True(_loginPage.PasswordElementDisplayed());
             Assert.True(_loginPage.SubmitButtonElementDisplayed());

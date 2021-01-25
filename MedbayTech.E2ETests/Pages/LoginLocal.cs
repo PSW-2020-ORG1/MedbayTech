@@ -10,7 +10,7 @@ namespace MedbayTech.E2ETests.Pages
     public class LoginLocal
     {
         private readonly IWebDriver driver;
-        public const string URI = "http://localhost:53843/#/login";
+        public const string URI = "http://localhost:53843/index.html#/login";
         private IWebElement Username => driver.FindElement(By.Name("username-ff"));
         private IWebElement Password => driver.FindElement(By.Name("password-ff"));
         private IWebElement LoginButton => driver.FindElement(By.Name("button-ff"));

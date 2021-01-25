@@ -8,8 +8,13 @@ namespace SeleniumEndToEnd.Pages
     public class Index
     {
         private IWebDriver _webDriver { get; }
+
+        public static string STAGE = Environment.GetEnvironmentVariable("STAGE") ?? "";
+
         public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
-        public static string URI = $"http://localhost:{PORT}/#/home";
+
+        public static string URI = $"http://localhost:{PORT}/{STAGE}#/home";
+        public static string URI_Local = $"http://localhost:{PORT}/#/home";
 
         public Index(IWebDriver webDriver)
         {
