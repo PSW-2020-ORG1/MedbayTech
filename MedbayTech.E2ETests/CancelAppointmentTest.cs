@@ -37,11 +37,11 @@ namespace MedbayTech.E2ETests
 
             homePage = new Home(driver);
             homePage.Navigate();
-            Assert.Equal(driver.Url, Home.URI_HASH);
+            Assert.Equal(driver.Url, Home.URI_Local);
 
             loginPage = new Login(driver);
             loginPage.Navigate();
-            Assert.Equal(driver.Url, Login.URI);
+            Assert.Equal(driver.Url, Login.URI_Local);
             Assert.True(loginPage.UsernameElementDisplayed());
             Assert.True(loginPage.PasswordElementDisplayed());
             Assert.True(loginPage.SubmitButtonElementDisplayed());
@@ -54,20 +54,20 @@ namespace MedbayTech.E2ETests
             homePage = new Home(driver);
             homePage.Navigate();
 
-            Assert.Equal(driver.Url, Home.URI_HASH);
+            Assert.Equal(driver.Url, Home.URI_Local);
             Assert.True(homePage.MedicalRecordLinkElementDisplayed());
             homePage.ClickMedicalRecordLink();
 
             medicalRecordPage = new MedicalRecord(driver);
             //medicalRecordPage.Navigate();
-            Assert.Equal(driver.Url, MedicalRecord.URI);
+            Assert.Equal(driver.Url, MedicalRecord.URI_Local);
             Assert.True(medicalRecordPage.ObserveAppointmentLinkElementDisplayed());
             medicalRecordPage.ClickObserveAppointmentLink();
 
             
             observeAppointmentPage = new ObserveAppointment(driver);
             observeAppointmentPage.EnsurePageIsDisplayed();
-            Assert.Equal(driver.Url, ObserveAppointment.URI);
+            Assert.Equal(driver.Url, ObserveAppointment.URI_Local);
             Assert.True(observeAppointmentPage.CancelAppointmentButtonDisplayed());
         }
 

@@ -28,8 +28,8 @@
         </DockPanel>
         <DataGrid Name="dataGridAppointments" Margin="5,5,5,0" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Start time" Width="346" Binding="{Binding Start}"/>
-                <DataGridTextColumn Header="End time" Width="346" Binding="{Binding End}"/>
+                <DataGridTextColumn Header="Start time" Width="346" Binding="{Binding Period.StartTime}"/>
+                <DataGridTextColumn Header="End time" Width="346" Binding="{Binding Period.EndTime}"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

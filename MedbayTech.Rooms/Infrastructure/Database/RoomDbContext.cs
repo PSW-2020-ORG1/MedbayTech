@@ -1,5 +1,6 @@
 ﻿using MedbayTech.Repository.Infrastructure.Persistance;
 using MedbayTech.Rooms.Domain;
+using MedbayTech.Rooms.Domain.Events;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -9,6 +10,7 @@ namespace MedbayTech.Rooms.Infrastructure.Database
     {
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<RoomEvent> RoomEvents { get; set; }
         public DbSet<EquipmentType> EquipmentTypes { get; set; }
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<HospitalEquipment> HospitalEquipments { get; set; }

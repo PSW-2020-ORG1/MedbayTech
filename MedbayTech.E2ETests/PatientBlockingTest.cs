@@ -37,11 +37,11 @@ namespace MedbayTech.E2ETests
 
             homePage = new Home(driver);
             homePage.Navigate();
-            Assert.Equal(driver.Url, Home.URI_HASH);
+            Assert.Equal(driver.Url, Home.URI_Local);
 
             loginPage = new Login(driver);
             loginPage.Navigate();
-            Assert.Equal(driver.Url, Login.URI);
+            Assert.Equal(driver.Url, Login.URI_Local);
             Assert.True(loginPage.UsernameElementDisplayed());
             Assert.True(loginPage.PasswordElementDisplayed());
             Assert.True(loginPage.SubmitButtonElementDisplayed());
@@ -52,14 +52,14 @@ namespace MedbayTech.E2ETests
             loginPage.WaitForAdministratorHomePage();
 
             allFeedbackPage = new AllFedback(driver);
-            Assert.Equal(driver.Url, AllFedback.URI_local);
+            Assert.Equal(driver.Url, AllFedback.URI_Local);
             Assert.True(allFeedbackPage.MaliciousPatientsLinkElementDisplayed());
             allFeedbackPage.ClickMaliciousPatientsLink();
 
             blockMaliciousPatientsPage = new BlockMaliciousPatients(driver);
             blockMaliciousPatientsPage.EnsurePageIsDisplayed();
            
-            Assert.Equal(driver.Url, BlockMaliciousPatients.URI);
+            Assert.Equal(driver.Url, BlockMaliciousPatients.URI_Local);
             Assert.True(blockMaliciousPatientsPage.BlockMaliciousPatientButtonDisplayed());
         }
 

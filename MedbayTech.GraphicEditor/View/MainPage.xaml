@@ -11,13 +11,23 @@
 
         <DockPanel DockPanel.Dock="Top" Height="68" VerticalAlignment="Top" Background="#006481" Grid.ColumnSpan="2">
             <Image DockPanel.Dock="Left" Name="imageLogo" Width="60" Margin="5,0,0,0" />
-            <Button DockPanel.Dock="Right" x:Name="buttonEmergencyAppointment" Content="Emergency appointment" Margin="5,5,5,5" Background="White" Width="180" FontWeight="Bold" FontSize="14" Click="ButtonEmergencyAppointment">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
+            <DockPanel DockPanel.Dock="Right">
+                <Button DockPanel.Dock="Right" Content="Exit" HorizontalAlignment="Left" Width="60" Height="58" Margin="5,5,5,5" Background="Tomato" Foreground="White" VerticalAlignment="Top" FontWeight="Bold" Click="buttonExit" FontSize="18">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button DockPanel.Dock="Left" x:Name="buttonEmergencyAppointment" Content="Emergency appointment" Margin="5,5,5,5" Background="White" Width="180" FontWeight="Bold" FontSize="14" Click="ButtonEmergencyAppointment">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </DockPanel>
+            
             <Label Content="Hospital map" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="50" Foreground="White"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Left" Background="SteelBlue">
@@ -48,28 +58,38 @@
 
             <DockPanel DockPanel.Dock="Bottom">
                 <DockPanel DockPanel.Dock="Bottom">
-                    <Button DockPanel.Dock="Top" Content="Equipment realocation" HorizontalAlignment="Right" Width="140" Height="30" Margin="5,5,5,5" Background="White" FontWeight="Bold" Click="ButtonEquipmentRealocation">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                    <Button DockPanel.Dock="Left" Content="Exit" HorizontalAlignment="Left" Width="120" Height="30" Margin="5,5,5,5" Background="White" FontWeight="Bold" Click="buttonExit">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                    <Button DockPanel.Dock="Right" Content="Appointment search" HorizontalAlignment="Right" Width="140" Height="30" Margin="5,5,5,5" Background="White" FontWeight="Bold" Click="buttonAppointmentSearch">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-
+                    <DockPanel DockPanel.Dock="Top">
+                        <Button DockPanel.Dock="Right" Content="Equipment realocation" HorizontalAlignment="Right" Width="140" Height="30" Margin="5,5,5,5" Background="White" FontWeight="Bold" Click="ButtonEquipmentRealocation">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button DockPanel.Dock="Left" Content="Appointment search" HorizontalAlignment="Left" Width="140" Height="30" Margin="5,5,5,5" Background="White" FontWeight="Bold" Click="buttonAppointmentSearch">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Bottom">
+                        <Button DockPanel.Dock="Right" Content="Most viewed inventory" HorizontalAlignment="Right" Width="140" Height="30" Margin="5,5,5,5" Background="White" FontWeight="Bold" Click="ButtonMostViewedInventory">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button DockPanel.Dock="Left" Content="Most viewed object" HorizontalAlignment="Left" Width="140" Height="30" Margin="5,5,5,5" Background="White" FontWeight="Bold" Click="ButtonMostViewedObject">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </DockPanel>
                 </DockPanel>
                 <local:Legend DockPanel.Dock="Top" x:Name="legenda"  VerticalAlignment="Center" HorizontalAlignment="Center"   Visibility="Visible" Width="250"></local:Legend>
             </DockPanel>

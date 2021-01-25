@@ -16,5 +16,7 @@ namespace MedbayTech.GraphicEditor.ViewModel.DTO
         public int EquipmentTypeId { get; set; }
         public int HospitalEquipmentId { get; set; }
         public AppointmentRealocation appointmentRealocation { get; set; }
+        public AppointmentRenovation appointmentRenovation { get; set; }
+        public AppointmentForRoomManipulation appointmentForRoomManipulation { get; set; }
     }
 }

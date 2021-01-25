@@ -14,6 +14,11 @@ namespace MedbayTech.Pharmacies.Infrastructure.Database
         {
             SeedPharmacies(context);
             SeedPharmacyNotification(context);
+            // TODO(Jovan): Remove once MedbayTech.Medication is fully finished
+            /*SeedMedicationCategory(context);
+            SeedMedicationIngredient(context);
+            SeedMedication(context);
+            SeedMedicationUsage(context);*/
             SeedUrgentMedicationProcurement(context);
         }
         private void SeedPharmacyNotification(PharmacyDbContext context)

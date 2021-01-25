@@ -40,6 +40,5 @@ namespace MedbayTech.Rooms.Controllers
         {
             return Ok(_hospitalEquipmentService.GetEquipmentByRoomNumber(id));
         }
-
     }
 }

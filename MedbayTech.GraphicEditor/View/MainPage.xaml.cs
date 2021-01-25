@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using GraphicEditor.ViewModel;
 using MedbayTech.GraphicEditor.View.Building1;
 using MedbayTech.GraphicEditor.View.Building2;
+using MedbayTech.Rooms.Domain;
 
 namespace MedbayTech.GraphicEditor
 {
@@ -369,11 +370,10 @@ namespace MedbayTech.GraphicEditor
             task.Wait();
             return room;
         }
-        public Doctor searchDataBaseForDoctor(int roomId)
+        public Doctor SearchDataBaseForDoctor(int roomId)
         {
-            Doctor doctor = new Doctor();
+            Doctor doctor = null;
             HttpClient httpClient = new HttpClient();
-            //var task = httpClient.GetAsync("http://localhost:53109/api/doctor/" + roomId + "/ByExaminationRoom")
             var task = httpClient.GetAsync("http://localhost:8081/api/doctor/" + roomId + "/ByExaminationRoom")
                 .ContinueWith((taskWithResponse) =>
                 {
@@ -383,6 +383,19 @@ namespace MedbayTech.GraphicEditor
                     doctor = JsonConvert.DeserializeObject<Doctor>(jsonString.Result);
                 });
             task.Wait();
+            Room room = new Room();
+            HttpClient httpClient1 = new HttpClient();
+            var task1 = httpClient.GetAsync("http://localhost:60304/api/room/" + roomId + "/ByRoomId")
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    room = JsonConvert.DeserializeObject<Room>(jsonString.Result);
+                });
+            task1.Wait();
+            if(doctor == null) doctor = new Doctor() { ExaminationRoom = room };
+            doctor.ExaminationRoom = room;
             return doctor;
         }
 
@@ -409,6 +422,76 @@ namespace MedbayTech.GraphicEditor
             {
                 MessageBox.Show("You don't have permission to search appointment!");
             }
+        }
+
+        private void ButtonMostViewedObject(object sender, RoutedEventArgs e)
+        {
+            if(Restriction == 1)
+            {
+                MessageBox.Show("You don't have permission to open this!");
+                return;
+            }
+            Room room = SearchDataBaseForMostViewedRoom();
+            if (room == null)
+            {
+                MessageBox.Show("Open some room idiot!");
+                return;
+            }
+            if (room.RoomType == RoomType.AuxiliaryRoom || room.RoomType == RoomType.StorageRoom)
+            {
+                AdditionalInformationAuxiliaryRoom additionalInformationAuxiliaryRoom = new AdditionalInformationAuxiliaryRoom(room.Id, this);
+                additionalInformationAuxiliaryRoom.ShowDialog();
+            }
+            else if(room.RoomType == RoomType.ExaminationRoom)
+            {
+                AdditionalInformationExaminationRoom additionalInformationExaminationRoom = new AdditionalInformationExaminationRoom(room.Id, this);
+                additionalInformationExaminationRoom.ShowDialog();
+            }
+            else if(room.RoomType == RoomType.OperationRoom)
+            {
+                AdditionalInformationOperatingRoom additionalInformationOperatingRoom = new AdditionalInformationOperatingRoom(room.Id, this);
+                additionalInformationOperatingRoom.ShowDialog();
+            }
+            else if(room.RoomType == RoomType.PatientRoom)
+            {
+                AdditionalInformationPatientRoom additionalInformationPatientRoom = new AdditionalInformationPatientRoom(room.Id, this);
+                additionalInformationPatientRoom.ShowDialog();
+            }
+        }
+
+        private void ButtonMostViewedInventory(object sender, RoutedEventArgs e)
+        {
+            if(Restriction == 0 || Restriction == 2)
+            {
+                Room room = SearchDataBaseForMostViewedRoom();
+                if (room == null)
+                {
+                    MessageBox.Show("Open some room idiot!");
+                    return;
+                }
+                MostViewedInventory mostViewedInventory = new MostViewedInventory(room);
+                mostViewedInventory.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("You don't have permission to open this!");
+            }
+        }
+
+        public Room SearchDataBaseForMostViewedRoom()
+        {
+            Room room = new Room();
+            HttpClient httpClient = new HttpClient();
+            var task = httpClient.GetAsync("http://localhost:60304/api/roomevent/getMostEntered")
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    room = JsonConvert.DeserializeObject<Room>(jsonString.Result);
+                });
+            task.Wait();
+            return room;
         }
     }
 }

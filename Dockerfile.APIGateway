@@ -20,7 +20,9 @@ COPY . .
 
 FROM build AS publish
 WORKDIR /app
+ENV API_URL $API_URL
 COPY --from=builder app/dist/WebApplicationFrontend/ MedbayTech.APIGateways/wwwroot/dist/
+CMD sh -c envsubst < MedbayTech.APIGateways/wwwroot/dist/assets/env.template.js > MedbayTech.APIGateways/wwwroot/dist/assets/env.js && exec nginx -g 'daemon off;'
 RUN dotnet publish MedbayTech.APIGateways/MedbayTech.APIGateways.csproj -c Release -o out
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS runtime
@@ -28,4 +30,5 @@ RUN useradd -ms /bin/bash defaultuser
 WORKDIR /app
 COPY --from=publish /app/out .
 EXPOSE 5000
+
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet MedbayTech.APIGateways.dll

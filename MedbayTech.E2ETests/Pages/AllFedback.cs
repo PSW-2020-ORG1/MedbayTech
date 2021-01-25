@@ -11,8 +11,14 @@ namespace SeleniumEndToEnd.Pages
     {
         private IWebDriver driver;
         //public const string URI_local = "http://localhost:4200/#/allFeedback";
+//        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
+
         public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
-        public static string URI_local = $"http://localhost:{PORT}/#/allFeedback";
+        public static string STAGE = Environment.GetEnvironmentVariable("STAGE") ?? "";
+
+        public static string URI = $"http://localhost:{PORT}/{STAGE}#/allFeedback";
+        public static string URI_Local = $"http://localhost:{PORT}/#/allFeedback";
+
         private IWebElement CountFeedback => driver.FindElement(By.Name("all_feedback_len"));
         private IWebElement TitleFeedbacks => driver.FindElement(By.Name("feedbacks"));
         private IWebElement BlockPatientsButton => driver.FindElement(By.Name("block-malicious-users"));
@@ -77,6 +83,6 @@ namespace SeleniumEndToEnd.Pages
 
         public void ApproveFeedback() => GetApproveButton.Click();
         public void DenyFeedback() => GetDenyButton.Click();
-        public void Navigate() => driver.Navigate().GoToUrl(URI_local);
+        public void Navigate() => driver.Navigate().GoToUrl(URI);
     }
 }

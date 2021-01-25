@@ -14,6 +14,7 @@ namespace GraphicEditor.ViewModel
         public bool Urgent { get; set; }
         public bool Deleted { get; set; }
         public bool Finished { get; set; }
+        public bool CanceledByPatient { get; set; }
         public Room Room { get; set; }
         public MedicalRecord MedicalRecord { get; set; }
         public string DoctorId { get; set; }
