@@ -9,7 +9,7 @@
       Title="SearchResultsForRooms">
 
     <Grid>
-        <Button Name="btnShowOnMap" Margin="246,588,246,24" Content="Shown on map" FontWeight="Bold" Background="SteelBlue" Foreground="White" FontSize="22" Click="buttonShowOnMap">
+        <Button Name="btnShowOnMap" Margin="246,588,246,24" Content="Shown on map" FontWeight="Bold" Background="SteelBlue" Foreground="White" FontSize="22" Click="ButtonShowOnMap">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"/>

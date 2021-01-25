@@ -22,5 +22,6 @@ namespace MedbayTech.Rooms.Application.Common.Service
         Room UpdateDepartment(Department department, Room room);
         List<Room> GetAll();
         List<Room> GetAllRoomsByEquipment(int equipmentId);
+        List<Room> GetNeighbouringRoom(int roomId);
     }
 }

@@ -1,8 +1,8 @@
-﻿
-using MedbayTech.Appointment.Application.Common.Interfaces.Service;
+﻿using MedbayTech.Appointment.Application.Common.Interfaces.Service;
 using MedbayTech.Appointment.Application.DTO;
 using MedbayTech.Appointment.Application.Enums;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace MedbayTech.Appointment.Controllers
 {
@@ -15,6 +15,12 @@ namespace MedbayTech.Appointment.Controllers
         public AppointmentRealocationController(IAppointmentRealocationService appointmentRealocationService)
         {
             _appointmentRealocationService = appointmentRealocationService;
+        }
+
+        [HttpGet("{roomId?}")]
+        public IActionResult Get(string roomId)
+        {
+            return Ok(_appointmentRealocationService.GetAppointmentRealocationsByRoomId(Int32.Parse(roomId)));
         }
 
         [HttpPost]
@@ -35,6 +41,10 @@ namespace MedbayTech.Appointment.Controllers
             else if (appointmentRealocationDTO.appointmentRealocationSearchOrSchedule == AppointmentRealocationSearchOrSchedule.AlternativeAppointments)
             {
                 return Ok(_appointmentRealocationService.GetAlternativeAvailableAppointments(appointmentRealocationDTO.FromRoomId, appointmentRealocationDTO.ToRoomId, appointmentRealocationDTO.StartInterval, appointmentRealocationDTO.HospitalEquipmentId));
+            }
+            else if(appointmentRealocationDTO.appointmentRealocationSearchOrSchedule == AppointmentRealocationSearchOrSchedule.UpdateRealocation)
+            {
+                return Ok(_appointmentRealocationService.UpdateAppointement(appointmentRealocationDTO.appointmentRealocation));
             }
             else return Ok();
         }

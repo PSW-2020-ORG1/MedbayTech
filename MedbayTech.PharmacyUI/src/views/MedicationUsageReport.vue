@@ -98,7 +98,6 @@
                     .then(response => {
                         console.log(response.data);
                         this.medicationUsages = response.data;
-                        this.getAllMedications();
                         this.loadingMedicationUsages = false;
                     })
                     .catch(response => {

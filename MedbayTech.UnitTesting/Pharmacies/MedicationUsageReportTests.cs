@@ -93,7 +93,6 @@ namespace MedbayTech.UnitTesting.Pharmacies
             medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(7, 3, new DateTime(2020, 2, 11), 7));
             medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(8, 3, new DateTime(2020, 1, 26), 8));
             medicationUsageReport3.MedicationUsages.Add(new MedicationUsage(9, 3, new DateTime(2020, 2, 1), 9));
-
             var medicationUsageReport4 = new MedicationUsageReport(new DateTime(2020, 3, 9), new DateTime(2020, 4, 30));
 
             medicationUsageReports.Add(medicationUsageReport1);

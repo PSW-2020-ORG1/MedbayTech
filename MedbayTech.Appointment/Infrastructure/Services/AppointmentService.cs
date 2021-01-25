@@ -117,7 +117,8 @@ namespace Infrastructure.Services
         }
         public List<Appointment> GetApppointmentsScheduledForSpecificRoom(int roomId)
         {
-            return _appointmentRepository.GetAll().ToList().Where(a => a.RoomId == roomId).ToList();
+            List<Appointment> appointments = _appointmentRepository.GetAll().ToList().Where(a => a.RoomId == roomId && a.CanceledByPatient == false).ToList();
+            return AddDoctors(appointments);
         }
 
         public List<Appointment> GetAvailableByDoctorAndDateRange(PriorityParameters parameters)
@@ -248,13 +249,7 @@ namespace Infrastructure.Services
 
         public Appointment UpdateSuggestedAppointment(Appointment appointment)
         {
-            Appointment update_appointment = _appointmentRepository.GetAll().ToList().Find(a => a.Id == appointment.Id);
-            update_appointment.Period.StartTime = appointment.Period.StartTime;
-            update_appointment.Period.EndTime = appointment.Period.EndTime;
-            update_appointment.TypeOfAppointment = appointment.TypeOfAppointment;
-            update_appointment.Urgent = true;
-            update_appointment.DoctorId = appointment.DoctorId;
-            return _appointmentRepository.Update(update_appointment);
+            return _appointmentRepository.Update(appointment);
         }
 
     }

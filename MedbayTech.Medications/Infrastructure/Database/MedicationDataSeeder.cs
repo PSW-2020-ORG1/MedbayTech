@@ -35,6 +35,25 @@ namespace MedbayTech.Medications.Infrastructure.Database
             context.SaveChanges();
         }
 
+        private void SeedMedicationCategory(MedicationDbContext context)
+        {
+            context.Add(new MedicationCategory { CategoryName = "Analgesic" });
+            context.Add(new MedicationCategory { CategoryName = "Antipyretic" });
+            context.Add(new MedicationCategory { CategoryName = "Antibiotic" });
+            context.Add(new MedicationCategory { CategoryName = "Antiseptic" });
+            context.Add(new MedicationCategory { CategoryName = "Stimulant" });
+            context.Add(new MedicationCategory { CategoryName = "Tranquilizer" });
+            context.Add(new MedicationCategory { CategoryName = "Statin" });
+            context.SaveChanges();
+        }
+
+        private void SeedMedicationIngredient(MedicationDbContext context)
+        {
+            context.Add(new MedicationIngredient { Name = "Ibuprofen" });
+            context.Add(new MedicationIngredient { Name = "Paracetamol" });
+            context.SaveChanges();
+        }
+
         private void SeedMedication(MedicationDbContext context)
         {
             context.Add(new Domain.Entities.Medications.Medication { Med = "Brufen", Dosage = "400mg", RoomId = 87, Status = MedStatus.Approved, Company = "Famar", Quantity = 10, MedicationContent = new List<DosageOfIngredient>(), MedicationCategory = new MedicationCategory("Analgesic"), /*, MedicationCategoryId = 1*/ });

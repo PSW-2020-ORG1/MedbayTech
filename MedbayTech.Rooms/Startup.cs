@@ -59,6 +59,8 @@ namespace MedbayTech.Rooms
             services.AddTransient<IRoomRepository, RoomRepository>();
             services.AddScoped<IRoomService, RoomService>();
 
+            services.AddTransient<IRoomEventRepository, RoomEventRepository>();
+            services.AddScoped<IRoomEventService, RoomEventService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

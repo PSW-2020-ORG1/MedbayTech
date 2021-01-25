@@ -1,10 +1,13 @@
 ﻿
 using MedbayTech.GraphicEditor.View;
 using MedbayTech.GraphicEditor.View.Building1;
+using MedbayTech.GraphicEditor.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -101,11 +104,26 @@ namespace MedbayTech.GraphicEditor
                     rectangle.StrokeThickness = 5;
                     SearchAppointment.Id = "0";
                 }
+                if (rectangle.Uid.Equals(ScheduleEquipmentRealocation.Id))
+                {
+                    rectangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString("#ffdead");
+                    rectangle.StrokeThickness = 5;
+                    ScheduleEquipmentRealocation.Id = "0";
+                }
             }
         }
 
         private void mouseClickArrowUp(object sender, RoutedEventArgs e)
         {
+
+            RoomEvent roomEvent = new RoomEvent();
+            roomEvent.RoomId = -1;
+            string jsonRoom = JsonConvert.SerializeObject(roomEvent);
+            HttpClient httpClient = new HttpClient();
+            var content = new StringContent(jsonRoom, Encoding.UTF8, "application/json");
+            var result = httpClient.PostAsync("http://localhost:60304/api/roomEvent/", content);
+            result.Wait();
+
             page.MainFrame.Content = new Building1FirstFloorPlan(page);
             if (page.tabControl.SelectedIndex == 0)
             {
@@ -148,7 +166,7 @@ namespace MedbayTech.GraphicEditor
             if(page.getRestriction() != 1)
             {
                 PopupExaminationRoom.Placement = PlacementMode.MousePoint;
-                PopupExaminationRoom.DataContext = page.searchDataBaseForDoctor(roomId);
+                PopupExaminationRoom.DataContext = page.SearchDataBaseForDoctor(roomId);
                 PopupExaminationRoom.IsOpen = true;
             }
             else
@@ -217,9 +235,18 @@ namespace MedbayTech.GraphicEditor
         {
             System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
             int roomId = Int32.Parse(r.Uid);
+
+            RoomEvent roomEvent = new RoomEvent();
+            roomEvent.RoomId = roomId;
+            string jsonRoom = JsonConvert.SerializeObject(roomEvent);
+            HttpClient httpClient = new HttpClient();
+            var content = new StringContent(jsonRoom, Encoding.UTF8, "application/json");
+            var result = httpClient.PostAsync("http://localhost:60304/api/roomEvent/", content);
+            result.Wait();
+
             if (page.getRestriction() != 1)
             {
-                AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom(roomId);
+                AdditionalInformationPatientRoom additionalInformation = new AdditionalInformationPatientRoom(roomId, page);
                 additionalInformation.ShowDialog();
             }
         }
@@ -228,9 +255,18 @@ namespace MedbayTech.GraphicEditor
         {
             System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
             int roomId = Int32.Parse(r.Uid);
+
+            RoomEvent roomEvent = new RoomEvent();
+            roomEvent.RoomId = roomId;
+            string jsonRoom = JsonConvert.SerializeObject(roomEvent);
+            HttpClient httpClient = new HttpClient();
+            var content = new StringContent(jsonRoom, Encoding.UTF8, "application/json");
+            var result = httpClient.PostAsync("http://localhost:60304/api/roomEvent/", content);
+            result.Wait();
+
             if (page.getRestriction() != 1)
             {
-                AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom(roomId);
+                AdditionalInformationOperatingRoom additionalInformation = new AdditionalInformationOperatingRoom(roomId, page);
                 additionalInformation.ShowDialog();
             }
         }
@@ -239,9 +275,19 @@ namespace MedbayTech.GraphicEditor
         {
             System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
             int roomId = Int32.Parse(r.Uid);
+
+            RoomEvent roomEvent = new RoomEvent();
+            roomEvent.RoomId = roomId;
+            string jsonRoom = JsonConvert.SerializeObject(roomEvent);
+            HttpClient httpClient = new HttpClient();
+            var content = new StringContent(jsonRoom, Encoding.UTF8, "application/json");
+            var result = httpClient.PostAsync("http://localhost:60304/api/roomEvent/", content);
+            result.Wait();
+
+
             if (page.getRestriction() != 1)
             {
-                AdditionalInformationExaminationRoom additionalInformation = new AdditionalInformationExaminationRoom(roomId);
+                AdditionalInformationExaminationRoom additionalInformation = new AdditionalInformationExaminationRoom(roomId, page);
                 additionalInformation.ShowDialog();
             }
         }
@@ -250,9 +296,18 @@ namespace MedbayTech.GraphicEditor
         {
             System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)sender;
             int roomId = Int32.Parse(r.Uid);
+
+            RoomEvent roomEvent = new RoomEvent();
+            roomEvent.RoomId = roomId;
+            string jsonRoom = JsonConvert.SerializeObject(roomEvent);
+            HttpClient httpClient = new HttpClient();
+            var content = new StringContent(jsonRoom, Encoding.UTF8, "application/json");
+            var result = httpClient.PostAsync("http://localhost:60304/api/roomEvent/", content);
+            result.Wait();
+
             if (page.getRestriction() != 1)
             {
-                AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom(roomId);
+                AdditionalInformationAuxiliaryRoom additionalInformation = new AdditionalInformationAuxiliaryRoom(roomId, page);
                 additionalInformation.ShowDialog();
             }
         }
