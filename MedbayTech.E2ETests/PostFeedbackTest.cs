@@ -36,7 +36,7 @@ namespace SeleniumEndToEnd
 
             loginPage = new Login(driver);
             loginPage.Navigate();
-            Assert.Equal(driver.Url, Login.URI);
+            Assert.Equal(driver.Url, Login.URI_Local);
             Assert.True(loginPage.UsernameElementDisplayed());
             Assert.True(loginPage.PasswordElementDisplayed());
             Assert.True(loginPage.SubmitButtonElementDisplayed());
@@ -47,13 +47,13 @@ namespace SeleniumEndToEnd
             loginPage.WaitForAdministratorHomePage();
 
             allFeedbackPage = new AllFedback(driver);
-            Assert.Equal(driver.Url, AllFedback.URI_local);
+            Assert.Equal(driver.Url, AllFedback.URI_Local);
             allFeedbackPage.EnsurePageIsDisplayed();
 
             feedbackCount = allFeedbackPage.GetFeedbackCount();
 
             loginPage.Navigate();
-            Assert.Equal(driver.Url, Login.URI);
+            Assert.Equal(driver.Url, Login.URI_Local);
             Assert.True(loginPage.UsernameElementDisplayed());
             Assert.True(loginPage.PasswordElementDisplayed());
             Assert.True(loginPage.SubmitButtonElementDisplayed());
@@ -64,13 +64,13 @@ namespace SeleniumEndToEnd
             loginPage.WaitForPatientHomePage();
 
             homePage = new Home(driver);
-            Assert.Equal(driver.Url, Home.URI);
+            Assert.Equal(driver.Url, Home.URI_Local);
             Assert.True(homePage.CreateFeedbackLinkElementDisplayed());
             homePage.ClickCreateFeedbackLink();
 
             createFeedbackPage = new CreateFeedback(driver);
             createFeedbackPage.EnsurePageIsDisplayed();
-            Assert.Equal(driver.Url, CreateFeedback.URI);
+            Assert.Equal(driver.Url, CreateFeedback.URI_Local);
             Assert.True(createFeedbackPage.FeedbackTextboxDisplayed());
             Assert.True(createFeedbackPage.RadioButtonAllowedDisplayed());
             Assert.True(createFeedbackPage.RadioButtonAnonymousDisplayed());
@@ -92,7 +92,7 @@ namespace SeleniumEndToEnd
             createFeedbackPage.ResolveAlertDialog();
 
             loginPage.Navigate();
-            Assert.Equal(driver.Url, Login.URI);
+            Assert.Equal(driver.Url, Login.URI_Local);
             Assert.True(loginPage.UsernameElementDisplayed());
             Assert.True(loginPage.PasswordElementDisplayed());
             Assert.True(loginPage.SubmitButtonElementDisplayed());
@@ -103,7 +103,7 @@ namespace SeleniumEndToEnd
             loginPage.WaitForAdministratorHomePage();
 
             AllFedback newAllFeedbackPage = new AllFedback(driver);
-            Assert.Equal(driver.Url, AllFedback.URI_local);
+            Assert.Equal(driver.Url, AllFedback.URI_Local);
             newAllFeedbackPage.EnsurePageIsDisplayed();
 
             Assert.Equal(feedbackCount + 1, newAllFeedbackPage.GetFeedbackCount());

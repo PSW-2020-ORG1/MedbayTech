@@ -12,8 +12,10 @@ namespace MedbayTech.E2ETests.Pages
         private readonly IWebDriver driver;
         //public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
         public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
+        public static string STAGE = Environment.GetEnvironmentVariable("STAGE") ?? "";
 
-        public static string URI = $"http://localhost:{PORT}/#/login";
+        public static string URI = $"http://localhost:{PORT}/{STAGE}#/login";
+        public static string URI_Local = $"http://localhost:{PORT}/#/login";
 
         //public const string URI = "http://localhost:4200/#/login";
         private IWebElement Username => driver.FindElement(By.Name("username-ff"));
@@ -58,14 +60,14 @@ namespace MedbayTech.E2ETests.Pages
         public void WaitForAdministratorHomePage()
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlToBe(AllFedback.URI_local));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlToBe(AllFedback.URI_Local));
         }
         public void Navigate() => driver.Navigate().GoToUrl(URI);
 
         public void WaitForPatientHomePage()
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlToBe(Home.URI_HASH));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlToBe(Home.URI_Local));
         }
     
     }

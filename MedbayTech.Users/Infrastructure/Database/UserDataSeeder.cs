@@ -107,6 +107,31 @@ namespace MedbayTech.Users.Infrastructure.Database
                 Confirmed = true
 
             });
+            context.Add(new Patient
+            {
+                Id = "2406978890026",
+                DateOfBirth = new DateTime(1978, 6, 24),
+                DateOfCreation = new DateTime(),
+                CurrResidence = new Address("Jablanicka", 2, 2, 1, new City("Novi Sad", new State("Srbija"))),
+                EducationLevel = EducationLevel.bachelor,
+                InsurancePolicy = new InsurancePolicy("12345678", "Markovic", new Period(new DateTime(2020, 6, 29), new DateTime(2021, 2, 2))),
+                Email = "daca@gmail.com",
+                Gender = Gender.MALE,
+                Name = "Dejvid",
+                Surname = "Dejvidovic",
+                Username = "dejvid",
+                Password = "dejvid1978",
+                Phone = "065/123-4554",
+                Profession = "vodoinstalater",
+                ProfileImage = "http://localhost:8081/Resources/Images/1234567891989/among-us-5659730_1280.png",
+                IsGuestAccount = false,
+                ShouldBeBlocked = true,
+                ChosenDoctorId = "2406978890047",
+
+                Role = Role.Patient,
+                Confirmed = true
+
+            }) ;
             context.SaveChanges();
         }
 

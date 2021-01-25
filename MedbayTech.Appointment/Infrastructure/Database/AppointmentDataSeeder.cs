@@ -180,6 +180,21 @@ namespace MedbayTech.Appointment.Infrastructure.Persistance
                 PatientId = "2406978890046",
 
             });
+            context.Add(new Domain.Entities.Appointment
+            {
+                Period = new Period(new DateTime(2021, 02, 07, 13, 30, 0), new DateTime(2021, 02, 07, 14, 0, 0)),
+                TypeOfAppointment = TypeOfAppointment.Examination,
+                ShortDescription = "standard appointment",
+                Urgent = true,
+                Deleted = false,
+                Finished = false,
+                RoomId = 1,
+                DoctorId = "2406978890047",
+                CanceledByPatient = false,
+                PatientId = "2406978890046",
+
+            });
+
             context.SaveChanges();
         }
 

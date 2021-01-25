@@ -12,10 +12,11 @@ namespace MedbayTech.E2ETests.Pages
     {
         private IWebDriver _webDriver;
 
+        public static string STAGE = Environment.GetEnvironmentVariable("STAGE") ?? "";
         public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
+        public static string URI = $"http://localhost:{PORT}/{STAGE}#/feedback";
+        public static string URI_Local = $"http://localhost:{PORT}/#/feedback";
 
-        public static string URI = $"http://localhost:{PORT}/#/feedback";
-        public const string URI_local = "http://localhost:4200/#/feedback";
 
 
         private ReadOnlyCollection<IWebElement> Rows => _webDriver.FindElements(By.XPath("//div[@id='approvedFeedbackDiv']/mat-card"));

@@ -37,7 +37,7 @@ namespace SeleniumEndToEnd
             loginPage = new LoginLocal(driver);
             loginPage.Navigate();
 
-            Assert.Equal(driver.Url, LoginLocal.URI);
+            Assert.Equal(driver.Url, LoginLocal.URI_Local);
             Assert.True(loginPage.UsernameElementDisplayed());
             Assert.True(loginPage.PasswordElementDisplayed());
             Assert.True(loginPage.SubmitButtonElementDisplayed());
