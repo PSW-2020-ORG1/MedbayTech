@@ -37,7 +37,7 @@ namespace MedbayTech.E2ETests
 
             homePage = new Home(driver);
             homePage.Navigate();
-            Assert.Equal(driver.Url, Home.URI_Local);
+            Assert.Equal(driver.Url, Home.URI);
 
             loginPage = new Login(driver);
             loginPage.Navigate();
