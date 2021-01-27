@@ -146,6 +146,7 @@ namespace MedbayTech.Tenders
         {
             services.AddScoped<ITenderService, TenderService>();
             services.AddScoped<ITenderOfferService, TenderOfferService>();
+            services.AddScoped<IRssService, RssService>();
             services.AddScoped<IPharmacyGateway, PharmacyGateway>();
             services.AddScoped<IMedicationGateway, MedicationGateway>();
         }
