@@ -118,10 +118,11 @@ export default {
         createRequest: function () {
             let name = this.requiredMedication.split(" ")[0];
             let dosage = this.requiredMedication.split(" ")[1];
-            let urgentProcurement = { med: name, dosage: dosage, medicationQuantity: this.medicationQuantity };
+            let urgentProcurement = { medicationName: name, medicationDosage: dosage, medicationQuantity: this.medicationQuantity };
             this.axios.post("http://localhost:50202/api/Procurement/", urgentProcurement)
                 .then(response => {
                     console.log(response.data);
+                    this.$router.push("/dean/urgentOrder");
                 })
                 .catch(response => {
                     console.log(response);

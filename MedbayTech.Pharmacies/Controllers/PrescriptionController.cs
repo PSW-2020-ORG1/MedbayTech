@@ -9,6 +9,9 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Reports;
 using MedbayTech.Pharmacies.Application.DTO;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace MedbayTech.Pharmacies.Controllers
 {
@@ -33,6 +36,53 @@ namespace MedbayTech.Pharmacies.Controllers
         [HttpPost]
         public IActionResult SendPrescription(PrescriptionForSendingDTO prescription)
         {
+            if (prescription.Pharmacy == null)
+                return BadRequest();
+
+            string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
+            if (prescription.Pharmacy.ToLower().Contains("local") && stage.Contains("development"))
+            {
+                return SendPrescriptionSFTP(prescription);
+            }
+            else
+            {
+                return SendPrescriptionHTTP(prescription);
+            }
+                
+        }
+
+        private IActionResult SendPrescriptionSFTP(PrescriptionForSendingDTO prescription)
+        {
+            string fileName = prescriptionSearchService.GeneratePrescription(prescription);
+            try
+            {
+
+
+                using HttpClient client = new HttpClient();
+
+                string response = "";
+                StringContent content = new StringContent(JsonConvert.SerializeObject(fileName), Encoding.UTF8, "application/json");
+                var task = client.GetAsync("http://localhost:50202/api/Sftp/prescription/"+prescription.FileName())
+                    .ContinueWith((taskWithResponse) =>
+                    {
+                        var message = taskWithResponse.Result;
+                        var json = message.Content.ReadAsStringAsync();
+                        json.Wait();
+                        response = json.Result;
+                    });
+                task.Wait();
+
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+
+        private IActionResult SendPrescriptionHTTP(PrescriptionForSendingDTO prescription)
+        {
             string fileName = prescriptionSearchService.GeneratePrescription(prescription);
             GenerateQRCode(prescription);
             WebClient webClient = new WebClient();
@@ -44,7 +94,6 @@ namespace MedbayTech.Pharmacies.Controllers
             byte[] responseArray = webClient.UploadFile(fileInfo.URL, fileInfo.Filename);
             string ur = webClient.Encoding.GetString(responseArray).ToString();
             return Ok(webClient.Encoding.GetString(responseArray));
-
         }
 
         [HttpGet("qrcode")]

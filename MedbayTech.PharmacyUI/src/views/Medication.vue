@@ -33,7 +33,7 @@
                             <v-spacer></v-spacer>
                             <v-btn text
                                     class="white accent--text"
-                                   @click="sendPrescription(prescription)"
+                                   @click="sendPrescription(prescription, index)"
                                    :disabled="!pharmacy[index]">
                                 Send to pharmacy
                             </v-btn>
@@ -87,7 +87,7 @@ export default {
                     console.log(response.data);
                 })
         },
-        askPharamcies: function(medication, index){
+        /*askPharamcies: function(medication, index){
             this.axios.get("http://localhost:50202/api/Pharmacy")
                 .then(response => {
                     this.allPharamacies = response.data;
@@ -148,7 +148,7 @@ export default {
             console.log(this.availablePharamacies);
            
             
-        },
+        },*/
         getAllPerscriptions: function () {
             this.axios.get("http://localhost:50202/api/Prescription")
                 .then(response => {
@@ -178,7 +178,8 @@ export default {
                     console.log(response.data);
                 })
         },
-        sendPrescription: function (prescription) {
+        sendPrescription: function (prescription, index) {
+            prescription.pharmacy = this.pharmacy[index];
             this.axios.post("http://localhost:50202/api/Prescription/", prescription)
                 .then(response => {
                     //This is for sftp

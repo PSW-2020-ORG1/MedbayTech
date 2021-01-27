@@ -35,5 +35,17 @@ namespace MedbayTech.Pharmacies.gRPC
 
             return response.Response;
         }
+
+        public async Task<string> Urgent(Pharmacy pharmacy, string medicationName)
+        {
+
+            var channel = new Channel(pharmacy.APIEndpoint, ChannelCredentials.Insecure);
+
+            var client = new CheckForMedication.CheckForMedicationClient(channel);
+
+            MessageResponseProto response = await client.urgentAsync(new MessageProto() { Message = medicationName });
+
+            return response.Response;
+        }
     }
 }
