@@ -9,6 +9,7 @@ namespace MedbayTech.PatientDocuments.Application.Common.Interfaces.Persistance.
     {
         List<Prescription> GetPrescriptionsFor(string idPatient);
         List<Prescription> GetPrescriptions();
+        List<Prescription> GetPrescriptionsForReport(int id);
 
     }
 }

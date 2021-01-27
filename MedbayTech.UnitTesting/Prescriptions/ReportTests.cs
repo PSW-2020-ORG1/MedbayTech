@@ -43,6 +43,26 @@ namespace MedbayTech.UnitTesting.Prescriptions
 
             reports.ShouldNotBeEmpty();
         }
+        [Fact]
+        public void Get_report_for_appointment()
+        {
+            var stubRepository = CreateStubRepository();
+            var userGateway = CreateUserGateway();
+            ReportSearchService service = new ReportSearchService(stubRepository, userGateway);
+            Report report = service.GetReportForAppointment(new DateTime(2020, 12, 3), "2406978890047", "2406978890046");
+
+            report.ShouldNotBeNull();
+        }
+        [Fact]
+        public void Doesnt_get_report_for_appointment()
+        {
+            var stubRepository = CreateStubRepository();
+            var userGateway = CreateUserGateway();
+            ReportSearchService service = new ReportSearchService(stubRepository, userGateway);
+            Report report = service.GetReportForAppointment(new DateTime(2020, 12, 3), "2406978890547", "2406978890046");
+
+            report.ShouldBeNull();
+        }
 
         public static IUserGateway CreateUserGateway()
         {
@@ -74,7 +94,9 @@ namespace MedbayTech.UnitTesting.Prescriptions
             List<Report> reports = CreateExaminationSurgeryList();
 
             stubRepository.Setup(r => r.GetReportFor("2406978890046")).Returns(reports);
-
+            stubRepository.Setup(r => r.GetReportForAppointment(It.IsAny<DateTime>(), It.IsAny<String>(), It.IsAny<String>())).Returns(
+                (DateTime start, string doctorId, string patientId) =>
+                    reports.FirstOrDefault(x => x.StartTime.Equals(start) && x.DoctorId.Equals(doctorId) && x.MedicalRecord.PatientId.Equals(patientId)));
             return stubRepository.Object;
         }
 

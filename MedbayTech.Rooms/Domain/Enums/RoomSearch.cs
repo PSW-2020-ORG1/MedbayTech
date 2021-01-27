@@ -6,6 +6,7 @@ namespace MedbayTech.Rooms.Domain.Enum
     {
         ByRoomLabelorRoomUse,
         ByRoomId,
-        ByEquipment
+        ByEquipment,
+        ByRoomNumber
     }
 }

@@ -1,547 +1,798 @@
 {
-    "Routes": [
-  
-      {
-        "DownstreamPathTemplate": "/api/feedback",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8080
-          }
-        ],
-        "UpstreamPathTemplate": "/approvedFeedback",
-        "UpstreamHttpMethod": [
-          "GET"
-        ]
-      },
-      {
-        "DownstreamPathTemplate": "/api/feedback/allFeedback",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8080
-          }
-        ],
-        "UpstreamPathTemplate": "/allFeedback",
-        "UpstreamHttpMethod": [
-          "GET"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Admin"
+  "Routes": [
+
+    {
+      "DownstreamPathTemplate": "/api/feedback",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8080
         }
-      },
-      {
-        "DownstreamPathTemplate": "/api/feedback/updateFeedbackStatus",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8080
-          }
-        ],
-        "UpstreamPathTemplate": "/updateFeedbackStatus",
-        "UpstreamHttpMethod": [
-          "POST",
-          "OPTIONS"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Admin"
+      ],
+      "UpstreamPathTemplate": "/approvedFeedback",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/feedback/allFeedback",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8080
         }
+      ],
+      "UpstreamPathTemplate": "/allFeedback",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
       },
-      {
-        "DownstreamPathTemplate": "/api/feedback/createFeedback",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8080
-          }
-        ],
-        "UpstreamPathTemplate": "/createFeedback",
-        "UpstreamHttpMethod": [
-          "POST",
-          "OPTIONS"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/patient/maliciousPatients",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8081
-          }
-        ],
-        "UpstreamPathTemplate": "/maliciousPatients",
-        "UpstreamHttpMethod": [
-          "GET"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Admin"
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/patient/updatePatientStatus",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8081
-          }
-        ],
-        "UpstreamPathTemplate": "/updatePatientStatus",
-        "UpstreamHttpMethod": [
-          "POST"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Admin"
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/medicalRecord",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 50577
-          }
-        ],
-        "UpstreamPathTemplate": "/medicalRecord",
-        "UpstreamHttpMethod": [
-          "GET"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/appointment/cancelableAppointments/{everything}",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8083
-          }
-        ],
-        "UpstreamPathTemplate": "/appointment/cancelableAppointments/{everything}",
-        "UpstreamHttpMethod": [
-          "GET"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/appointment/allSurveyableAppointments",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8083
-          }
-        ],
-        "UpstreamPathTemplate": "/appointment/allSurveyableAppointments",
-        "UpstreamHttpMethod": [
-          "GET"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/appointment/allOtherAppointments",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8083
-          }
-        ],
-        "UpstreamPathTemplate": "/appointment/allOtherAppointments",
-        "UpstreamHttpMethod": [
-          "GET"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/appointment/allCancelableAppointments",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8083
-          }
-        ],
-        "UpstreamPathTemplate": "/appointment/allCancelableAppointments",
-        "UpstreamHttpMethod": [
-          "GET"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/appointment/cancelAppointment",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8083
-          }
-        ],
-        "UpstreamPathTemplate": "/appointment/cancelAppointment",
-        "UpstreamHttpMethod": [
-          "POST"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/appointment/available",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8083
-          }
-        ],
-        "UpstreamPathTemplate": "/appointment/available",
-        "UpstreamHttpMethod": [
-          "POST"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/appointment/availableStrategy",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8083
-          }
-        ],
-        "UpstreamPathTemplate": "/appointment/availableStrategy",
-        "UpstreamHttpMethod": [
-          "POST"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/appointment/schedule",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8083
-          }
-        ],
-        "UpstreamPathTemplate": "/appointment/schedule",
-        "UpstreamHttpMethod": [
-          "POST"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-  
-      {
-        "DownstreamPathTemplate": "/api/doctor/specialization/{everything}",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8081
-          }
-        ],
-        "UpstreamPathTemplate": "/doctor/specialization/{everything}",
-        "UpstreamHttpMethod": [
-          "GET"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/registration/patientRegistration",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8081
-          }
-        ],
-        "UpstreamPathTemplate": "/patientRegistration",
-        "UpstreamHttpMethod": [
-          "POST"
-        ]
-      },
-      {
-        "DownstreamPathTemplate": "/api/authentication/authenticate",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8081
-          }
-        ],
-        "UpstreamPathTemplate": "/authenticate",
-        "UpstreamHttpMethod": [
-          "POST"
-        ]
-      },
-      {
-        "DownstreamPathTemplate": "/api/doctor/searchDoctor",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8081
-          }
-        ],
-        "UpstreamPathTemplate": "/allDoctors",
-        "UpstreamHttpMethod": [
-          "GET"
-        ]
-      },
-      {
-        "DownstreamPathTemplate": "/api/appointment/allSurveyableAppointments",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8083
-          }
-        ],
-        "UpstreamPathTemplate": "/allSurveyableAppointments",
-        "UpstreamHttpMethod": [
-          "GET"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-  
-      {
-        "DownstreamPathTemplate": "/api/survey/allQuestions",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8083
-          }
-        ],
-        "UpstreamPathTemplate": "/survey/allQuestions",
-        "UpstreamHttpMethod": [
-          "GET"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/survey/createSurvey",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8083
-          }
-        ],
-        "UpstreamPathTemplate": "/survey/createSurvey",
-        "UpstreamHttpMethod": [
-          "POST"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-  
-      {
-        "DownstreamPathTemplate": "/api/specialization",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8081
-          }
-        ],
-        "UpstreamPathTemplate": "/specialization",
-        "UpstreamHttpMethod": [
-          "GET"
-        ]
-      },
-  
-      {
-        "DownstreamPathTemplate": "/api/report/advancedSearch",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 50577
-          }
-        ],
-        "UpstreamPathTemplate": "/report/advancedSearch",
-        "UpstreamHttpMethod": [
-          "POST"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-  
-      {
-        "DownstreamPathTemplate": "/api/report",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 50577
-          }
-        ],
-        "UpstreamPathTemplate": "/report",
-        "UpstreamHttpMethod": [
-          "POST"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-  
-      {
-        "DownstreamPathTemplate": "/api/prescription",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 50577
-          }
-        ],
-        "UpstreamPathTemplate": "/prescription",
-        "UpstreamHttpMethod": [
-          "POST"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
-      },
-  
-      {
-        "DownstreamPathTemplate": "/api/prescription/advancedSearch",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 50577
-          }
-        ],
-        "UpstreamPathTemplate": "/prescription/advancedSearch",
-        "UpstreamHttpMethod": [
-          "POST"
-        ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        },
-        "RouteClaimsRequirement": {
-          "Role": "Patient"
-        }
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
       }
+    },
+    {
+      "DownstreamPathTemplate": "/api/feedback/updateFeedbackStatus",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/updateFeedbackStatus",
+      "UpstreamHttpMethod": [
+        "POST",
+        "OPTIONS"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/feedback/createFeedback",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/createFeedback",
+      "UpstreamHttpMethod": [
+        "POST",
+        "OPTIONS"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/patient/maliciousPatients",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/maliciousPatients",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/patient/updatePatientStatus",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/updatePatientStatus",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/medicalRecord",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50577
+        }
+      ],
+      "UpstreamPathTemplate": "/medicalRecord",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/appointment/cancelableAppointments/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/appointment/cancelableAppointments/{everything}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/appointment/allSurveyableAppointments",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/appointment/allSurveyableAppointments",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/appointment/allOtherAppointments",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/appointment/allOtherAppointments",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/appointment/allCancelableAppointments",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/appointment/allCancelableAppointments",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/appointment/cancelAppointment",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/appointment/cancelAppointment",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/appointment/available",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/appointment/available",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/appointment/availableStrategy",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/appointment/availableStrategy",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/appointment/schedule",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/appointment/schedule",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/doctor/specialization/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/doctor/specialization/{everything}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/registration/patientRegistration",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/patientRegistration",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/authentication/authenticate",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/authenticate",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/doctor/searchDoctor",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/allDoctors",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/appointment/allSurveyableAppointments",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/allSurveyableAppointments",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/survey/allQuestions",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/survey/allQuestions",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/survey/createSurvey",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/survey/createSurvey",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/specialization",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/specialization",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/report/advancedSearch",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50577
+        }
+      ],
+      "UpstreamPathTemplate": "/report/advancedSearch",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/report",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50577
+        }
+      ],
+      "UpstreamPathTemplate": "/report",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/prescription",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50577
+        }
+      ],
+      "UpstreamPathTemplate": "/prescription",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/prescription/advancedSearch",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50577
+        }
+      ],
+      "UpstreamPathTemplate": "/prescription/advancedSearch",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/event/save",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/saveEvent",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/event/getCreatedCount",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/getCreatedCount",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/event/getCountOfQuit",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/getCountOfQuit",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/event/getCountOfBackStep",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/getBackStepCount",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+        "DownstreamPathTemplate": "/api/event/getPercentSuccessfulAndQuit",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+            {
+                "Host": "localhost",
+                "Port": 8083
+            }
+        ],
+        "UpstreamPathTemplate": "/getPercentSuccessfulAndQuit",
+        "UpstreamHttpMethod": [
+            "GET"
+        ],
+        "AuthenticationOptions": {
+            "AuthenticationProviderKey": "Bearer",
+            "AllowedScopes": []
+        },
+        "RouteClaimsRequirement": {
+            "Role": "Admin"
+        }
+    },
+    {
+        "DownstreamPathTemplate": "/api/event/getAverageNumberOfStepsForSuccessful",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+            {
+                "Host": "localhost",
+                "Port": 8083
+            }
+        ],
+        "UpstreamPathTemplate": "/getAverageNumberOfStepsForSuccessful",
+        "UpstreamHttpMethod": [
+            "GET"
+        ],
+        "AuthenticationOptions": {
+            "AuthenticationProviderKey": "Bearer",
+            "AllowedScopes": []
+        },
+        "RouteClaimsRequirement": {
+            "Role": "Admin"
+        }
+    },
+    {
+      "DownstreamPathTemplate": "/api/event/getAverageSchedulingTime",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/averageSchedulingTime",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/event/getAverageTimeFromStartedToSpecialization",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/getAverageTimeFromStartedToSpecialization",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/event/getAverageTimeFromSpecializationToDoctor",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/getAverageTimeFromSpecializationToDoctor",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/event/getAverageTimeFromDoctorToSelectAppointment",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/getAverageTimeFromDoctorToSelectAppointment",
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/report/appointmentReport",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50577
+        }
+      ],
+      "UpstreamPathTemplate": "/appointmentReport",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/prescription/appointmentPrescription",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50577
+        }
+      ],
+      "UpstreamPathTemplate": "/appointmentPrescription",
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Patient"
+      }
+    }
     ]
   }
   

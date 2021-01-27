@@ -12,6 +12,8 @@ using MedbayTech.Pharmacies.Application.DTO;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Text;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Mailing;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Pharmacies;
 
 namespace MedbayTech.Pharmacies.Controllers
 {
@@ -21,10 +23,14 @@ namespace MedbayTech.Pharmacies.Controllers
     public class PrescriptionController : Controller
     {
         private readonly IPrescriptionSearchService prescriptionSearchService;
+        private readonly IMailService mailService;
+        private readonly IPharmacyService pharmacyService;
 
-        public PrescriptionController(IPrescriptionSearchService prescriptionSearchService)
+        public PrescriptionController(IPrescriptionSearchService prescriptionSearchService, IMailService mailService, IPharmacyService pharmacyService)
         {
             this.prescriptionSearchService = prescriptionSearchService;
+            this.mailService = mailService;
+            this.pharmacyService = pharmacyService;
         }
 
         [HttpGet]
@@ -90,6 +96,8 @@ namespace MedbayTech.Pharmacies.Controllers
             fileInfo.Filename = fileName;
             fileInfo.URL = "http://schnabel.herokuapp.com/pswupload";
 
+            SendMail();
+
             Console.WriteLine("Trying to send response...");
             byte[] responseArray = webClient.UploadFile(fileInfo.URL, fileInfo.Filename);
             string ur = webClient.Encoding.GetString(responseArray).ToString();
@@ -120,6 +128,12 @@ namespace MedbayTech.Pharmacies.Controllers
                 qrCodeImage.Save("GeneratedPrescription" + Path.DirectorySeparatorChar + prescription.FileName() + "qrcode.png", ImageFormat.Png);
             }
             Console.WriteLine("Generated QR code");
+        }
+
+        private void SendMail()
+        {
+            MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = "jankovicpharmacy@gmail.com", Subject = "Message from Medbay hospital", Body = "New prescription from MedbayTech hospital!" };
+            mailService.SendMailAsync(mailRequest).Wait();
         }
 
     }

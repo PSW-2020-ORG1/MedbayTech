@@ -49,7 +49,14 @@ namespace MedbayTech.Rooms.Controllers
             {
                 return Ok(_roomService.GetAllRoomsByEquipment(Int32.Parse(textBoxSearch)));
             }
-            else return Ok();
+            else if(roomSearch == RoomSearch.ByRoomNumber)
+            {
+                return Ok(_roomService.GetNeighbouringRoom(Int32.Parse(textBoxSearch)));
+            }
+            else
+            {
+                return Ok();
+            }
         }
         [HttpGet]
         public IActionResult GetAll (int id)

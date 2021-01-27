@@ -1,3 +1,4 @@
+import { CountChartComponent } from './charts/count-chart/count-chart/count-chart.component';
 import { Role } from './model/role';
 import { AuthGuard } from './guard/auth.guard';
 import { PatientRegistrationComponent } from './registration/patient-registration/patient-registration.component';
@@ -20,6 +21,8 @@ import { SchedulingComponent } from './appointment/scheduling/scheduling.compone
 import { RecommendationComponent } from './appointment/recommendation/recommendation.component';
 import { LoginComponent } from './login/login/login.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { EventStatisticComponent } from './event-statistic-page/event-statistic/event-statistic.component';
+import { ObservePrescriptionComponent } from './prescription/observe-prescription/observe-prescription.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
@@ -113,6 +116,24 @@ const routes: Routes = [
   {
     path : 'home',
     component : HomePageComponent
+  },
+  {
+    path : 'eventStatistic',
+    component : EventStatisticComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Admin]}
+  },
+  /*{
+    path : 'countChart',
+    component : CountChartComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Admin]}
+  }*/
+  {
+    path : 'prescriptionDialog',
+    component : ObservePrescriptionComponent,
+    canActivate : [AuthGuard],
+    data : {roles : [Role.Patient]}
   },
   {
     path: '',

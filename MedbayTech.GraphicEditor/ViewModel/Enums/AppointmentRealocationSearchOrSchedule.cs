@@ -9,6 +9,8 @@ namespace MedbayTech.GraphicEditor.ViewModel.Enums
         ByRoomAndDateTime,
         CheckIsRoomAvailable,
         ScheduleRealocationOrRenovation,
-        AlternativeAppointments
+        AlternativeAppointments,
+        UpdateRealocation,
+        ByTwoRooms
     }
 }

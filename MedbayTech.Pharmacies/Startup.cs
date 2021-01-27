@@ -25,6 +25,8 @@ using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders;
 using MedbayTech.Pharmacies.Infrastructure.Service.Tenders;
 using MedbayTech.Pharmacies.Infrastructure.Persistance.Pharmacies;
 using MedbayTech.Pharmacies.Infrastructure.Service.Pharmacies;
+using MedbayTech.Pharmacies.Infrastructure.Service.Mailing;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Mailing;
 
 namespace MedbayTech.Pharmacies
 {
@@ -62,6 +64,9 @@ namespace MedbayTech.Pharmacies
             services.AddSpaStaticFiles(options => options.RootPath = "../MedbayTech.PharmacyUI/dist");
 
             services.AddDbContext<PharmacyDbContext>();
+
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.AddTransient<IMailService, MailService>();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -136,7 +141,7 @@ namespace MedbayTech.Pharmacies
             services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationRepository>();
             services.AddTransient<IUrgentMedicationProcurementRepository, UrgentMedicationProcurementSqlRepository>();
             services.AddTransient<ITenderRepository, TenderSqlRepositroy>();
-            services.AddTransient<ITenderMedicationRepositroy, TenderMedicationSqlRepositroy>();
+            services.AddTransient<ITenderMedicationRepository, TenderMedicationSqlRepositroy>();
             services.AddTransient<ITenderOfferRepository, TenderOfferSqlRepositroy>();
         }
 
@@ -150,6 +155,7 @@ namespace MedbayTech.Pharmacies
             services.AddScoped<ITenderService, TenderService>();
             services.AddScoped<ITenderOfferService, TenderOfferService>();
             services.AddScoped<IMedicationUsageReportGateway, MedicationUsageReportGateway>();
+            services.AddScoped<IMedicationGateway, MedicationGateway>();
         }
 
 

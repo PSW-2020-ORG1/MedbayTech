@@ -7,9 +7,11 @@ namespace SeleniumEndToEnd.Pages
     public class CreateFeedback
     {
         private IWebDriver _webDriver { get; }
+        public static string STAGE = Environment.GetEnvironmentVariable("STAGE") ?? "";
         public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
-        public static string URI = $"http://localhost:{PORT}/#/createFeedback";
-        public static string UriTestEnv = $"http://localhost:{PORT}/#/createFeedback";
+
+        public static string URI = $"http://localhost:{PORT}/{STAGE}#/createFeedback";
+        public static string URI_Local = $"http://localhost:{PORT}/#/createFeedback";
 
         public CreateFeedback(IWebDriver webDriver)
         {

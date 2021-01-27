@@ -1,8 +1,10 @@
-﻿using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Medications;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Medications;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Pharmacies;
 using MedbayTech.Pharmacies.Domain.Entities.Medications;
 using MedbayTech.Pharmacies.Domain.Entities.Pharmacies;
 using MedbayTech.Pharmacies.gRPC;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Mailing;
+using MedbayTech.Pharmacies.Application.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -19,12 +21,14 @@ namespace MedbayTech.Pharmacies.Contrllers
     public class ProcurementController : Controller
     {
         private readonly IUrgentMedicationProcurementService _service;
-        private readonly IPharmacyService _pharmacySerivice;
+        private readonly IMailService _mailService;
+        private readonly IPharmacyService _pharmacyService;
 
-        public ProcurementController(IUrgentMedicationProcurementService service, IPharmacyService pharmacyService)
+        public ProcurementController(IUrgentMedicationProcurementService service, IMailService mailService, IPharmacyService pharmacyService)
         {
             _service = service;
-            _pharmacySerivice = pharmacyService;
+            _mailService = mailService;
+            _pharmacyService = pharmacyService;
         }
 
         [HttpGet]
@@ -39,7 +43,10 @@ namespace MedbayTech.Pharmacies.Contrllers
             bool isSuccessfullyAdded = _service.Add(procurement) != null;
 
             if (isSuccessfullyAdded)
+            {
+                SendMail();
                 return Ok();
+            }
             else
                 return BadRequest();
         }
@@ -88,5 +95,14 @@ namespace MedbayTech.Pharmacies.Contrllers
             GrpcClient grpc = new GrpcClient();
             return Ok(grpc.Urgent(p, pr.MedicationName).Result);
         }
+        private void SendMail()
+        {
+            foreach (Pharmacy pharmacy in _pharmacyService.GetAll())
+            {
+                MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = pharmacy.Email, Subject = "Message from Medbay hospital", Body = "New urgent procurement in MedbayTech hospital!" };
+                _mailService.SendMailAsync(mailRequest).Wait();
+            }
+        }
+
     }
 }

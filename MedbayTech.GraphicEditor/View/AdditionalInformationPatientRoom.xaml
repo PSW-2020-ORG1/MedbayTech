@@ -5,12 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedbayTech.GraphicEditor"
         mc:Ignorable="d"
-        Title="AdditionalInformationPatientRoom" Height="350" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" BorderBrush="Black" WindowStyle="None">
+        Title="AdditionalInformationPatientRoom" Height="490" Width="555" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" BorderBrush="Black" WindowStyle="None">
     <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="40" VerticalAlignment="Top" Background="#006481">
-            <Image Name="imageLogo" Width="60" Margin="5,0,0,0" />
-            <Label Content="Additiondal information" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="25" Foreground="White" Width="327" Height="40"/>
-        </StackPanel>
+        <DockPanel DockPanel.Dock="Top" Background="#006481">
+            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Height="40" VerticalAlignment="Top">
+                <Image Name="imageLogo" Width="60" Margin="5,0,0,0" />
+                <Label Content="Additional information" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Georgia" FontWeight="UltraBold" FontSize="24" Foreground="White" Width="327" Height="40"/>
+            </StackPanel>
+            <Button Name="buttonRenovation" Content="Schedule renovation" HorizontalAlignment="Left" Height="30" Width="145" Margin="5,5,5,5" VerticalAlignment="Top" Foreground="Black" Background="White" FontWeight="Bold" FontSize="14" Click="ButtonScheduleRenovation">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </DockPanel>
         <DockPanel DockPanel.Dock="Bottom">
             <Button DockPanel.Dock="Left" x:Name="buttonSave" Content="Save" HorizontalAlignment="Left" Height="30" Margin="5,5,5,5" VerticalAlignment="Top" Width="130" Foreground="White" Background="#2B78E4" Click="Save_Click" FontSize="20">
                 <Button.Resources>
@@ -27,19 +36,45 @@
                 </Button.Resources>
             </Button>
         </DockPanel>
-        <Grid>
-            <Label Content="Floor" HorizontalAlignment="Left" Margin="98,61,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-            <Label Content="Ward" HorizontalAlignment="Left" Margin="96,93,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-            <Label Content="Room label" HorizontalAlignment="Left" Margin="75,121,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-            <Label Content="Bed capacity" HorizontalAlignment="Left" Margin="70,153,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-            <Label Content="Occupied beds" HorizontalAlignment="Left" Margin="62,183,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-            <Label Content="Available beds" HorizontalAlignment="Left" Margin="64,215,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Height="32"/>
-            <TextBox HorizontalAlignment="Left" Height="24" Margin="210,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Text="{Binding Department.Floor, Mode=TwoWay}" />
-            <TextBox HorizontalAlignment="Left" Height="24" Margin="210,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Text="{Binding Department.Name, Mode=TwoWay}"/>
-            <TextBox HorizontalAlignment="Left" Height="22" Margin="210,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Text="{Binding RoomLabel, Mode=TwoWay}"/>
-            <TextBox HorizontalAlignment="Left" Height="22" Margin="210,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Text="{Binding BedsCapacity, Mode=TwoWay}"/>
-            <TextBox Name ="textBoxOccupiedBeds"  HorizontalAlignment="Left" Height="24" Margin="210,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" IsReadOnly="True"/>
-            <TextBox HorizontalAlignment="Left" Height="24" Margin="210,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Text="{Binding BedsFree, Mode=TwoWay}" IsReadOnly="True"/>
-        </Grid>
+        <DockPanel>
+            <DockPanel>
+                <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
+                    <StackPanel DockPanel.Dock="Left" >
+                        <Label Content="Floor:" FontSize="16" FontWeight="SemiBold" Margin="5,5,5,5" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Content="Ward:" FontSize="16" FontWeight="SemiBold" Margin="5,0,5,5" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Content="Room label:" FontSize="16" FontWeight="SemiBold" Margin="5,0,5,5" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Content="Bed capacity:"  FontSize="16" FontWeight="SemiBold" Margin="5,0,5,5" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Content="Occupied beds:" FontSize="16" FontWeight="SemiBold" Margin="5,0,5,5" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Content="Available beds:" FontSize="16" FontWeight="SemiBold" Margin="5,0,5,5" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Right">
+                        <TextBox Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Margin="5,5,5,5" Text="{Binding Department.Floor, Mode=TwoWay}" />
+                        <TextBox Height="30" TextWrapping="Wrap" VerticalAlignment="Center" Width="150" Margin="5,0,5,5" Text="{Binding Department.Name, Mode=TwoWay}" HorizontalAlignment="Center"/>
+                        <TextBox Height="30" TextWrapping="Wrap" VerticalAlignment="Center" Width="150" Margin="5,0,5,5" Text="{Binding RoomLabel, Mode=TwoWay}" HorizontalAlignment="Center"/>
+                        <TextBox Height="30" TextWrapping="Wrap" VerticalAlignment="Center" Width="150" Margin="5,0,5,5" Text="{Binding BedsCapacity, Mode=TwoWay}" HorizontalAlignment="Center"/>
+                        <TextBox Height="30" TextWrapping="Wrap" VerticalAlignment="Center" Width="150" Margin="5,0,5,5" Name ="textBoxOccupiedBeds" IsReadOnly="True" HorizontalAlignment="Center"/>
+                        <TextBox Height="30" TextWrapping="Wrap" VerticalAlignment="Center" Width="150" Margin="5,0,5,5" Text="{Binding BedsFree, Mode=TwoWay}" IsReadOnly="True" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Bottom">
+                    <DockPanel DockPanel.Dock="Left"/>
+                    <DockPanel DockPanel.Dock="Right">
+                        <Button DockPanel.Dock="Bottom" x:Name="buttonCancelRealocation" Content="Cancel realocation" Margin="5,0,5,5" Foreground="White" Background="#006481" FontSize="20" Width="180" Click="ButtonCancelRealocation">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <DataGrid Name="dataGridAppointmentRealocation" DockPanel.Dock="Top" Margin="5,5,5,5" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn  Header="Star" Width="272" Binding="{Binding Period.StartTime }" />
+                                <DataGridTextColumn Header="End" Width="272" Binding="{Binding Period.EndTime}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                </DockPanel>
+            </DockPanel>
+        </DockPanel>
     </DockPanel>
 </Window>

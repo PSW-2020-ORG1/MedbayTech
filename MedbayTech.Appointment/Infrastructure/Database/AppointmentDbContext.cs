@@ -12,8 +12,7 @@ namespace Infrastructure.Database
         public DbSet<AppointmentEvent> AppointmentEvents { get; set; }
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<SurveyQuestion> SurveyQuestions { get; set; }
-
-        public DbSet<AppointmentRealocation> AppointmentRealocations { get; set; }
+        public DbSet<AppointmentForRoomManipulation> AppointmentForRoomManipulations { get; set; }
         public AppointmentDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
         public AppointmentDbContext() { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

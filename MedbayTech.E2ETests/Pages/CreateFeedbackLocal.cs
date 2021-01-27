@@ -8,9 +8,9 @@ namespace SeleniumEndToEnd.Pages
     {
         private IWebDriver _webDriver { get; }
         
-        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "4200";
+        public static string PORT = Environment.GetEnvironmentVariable("PORT") ?? "53843";
 
-        public static string URI = $"http://localhost:{PORT}/#/createFeedback";
+        public static string URI = $"http://localhost:{PORT}/index.html#/createFeedback";
 
         public CreateFeedbackLocal(IWebDriver webDriver)
         {

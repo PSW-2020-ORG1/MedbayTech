@@ -22,7 +22,7 @@ services:
       - postgres-data:/var/lib/postgres
 
   apigateway:
-    image: api
+    image: stefan7/apigatewaytest:latest
     container_name: api_container
     restart: on-failure
     networks:
@@ -30,13 +30,15 @@ services:
     depends_on:
       - postgres
       - feedback
-     # - pharmacies
+      - pharmacies
       - medications
       - users 
       - rooms 
       - patientdocuments
       - appointment
     environment:
+      API_URL: "http://localhost:53843"
+      DEBUG: "true"
       DATABASE_USERNAME: "user"
       DATABASE_PASSWORD: "user"
       DATABASE_HOST: "postgres"
@@ -70,6 +72,32 @@ services:
       URL_USERS: "users"
     ports:
       - "8080:5003"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+
+
+  pharmacies:
+    image: stefan7/pharmacies:latest
+    container_name: pharmacy_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "50202"
+      URL_MEDICATION: "medications"
+      PORT_MEDICATION: "5007"
+      URL_DOCUMENTS: "patientdocuments"
+      PORT_DOCUMENTS: "5006"
+    ports:
+      - "8084:50202"
     volumes:
       - postgres-data:/var/lib/postgres:rw
 
@@ -159,7 +187,7 @@ services:
       PORT_USERS: "5002"
       URL_USERS: "users"
     ports:
-      - "50577:5006"
+      - "8088:5006"
     volumes:
       - postgres-data:/var/lib/postgres:rw
 

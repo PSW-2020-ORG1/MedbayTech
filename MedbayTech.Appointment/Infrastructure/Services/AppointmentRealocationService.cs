@@ -1,7 +1,9 @@
 ﻿
 using Application.Common.Interfaces.Persistance;
+using MedbayTech.Appointment.Application.Common.Interfaces.Persistance;
 using MedbayTech.Appointment.Application.Common.Interfaces.Service;
 using MedbayTech.Appointment.Domain.Entities;
+using MedbayTech.Common.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +27,7 @@ namespace MedbayTech.Appointment.Infrastructure.Services
 
         public bool CheckIsRoomAvailableInSelectedTime(int roomId, DateTime chosenDateTime)
         {
-            AppointmentRealocation appointmentRealocation = _appointmentRealocationRepository.GetAll().ToList().Find(a => a.RoomId == roomId && a.Start == chosenDateTime);
+            AppointmentRealocation appointmentRealocation = _appointmentRealocationRepository.GetAll().ToList().Find(a => a.RoomId == roomId && a.Period.StartTime == chosenDateTime);
             if (appointmentRealocation == null) return true && !AppointmentIsScheduledAlready(roomId, chosenDateTime);
             else return false;
         }
@@ -50,7 +52,7 @@ namespace MedbayTech.Appointment.Infrastructure.Services
             List<AppointmentRealocation> available = new List<AppointmentRealocation>(allAppointments);
             foreach (AppointmentRealocation appointmentIt in allAppointments)
             {
-                AppointmentRealocation appointment = occupied.FirstOrDefault(a => a.isOccupied(appointmentIt.Start, appointmentIt.End));
+                AppointmentRealocation appointment = occupied.FirstOrDefault(a => a.isOccupied(appointmentIt.Period));
                 if (appointment != null) available.Remove(appointmentIt);
             }
             return available;
@@ -79,8 +81,7 @@ namespace MedbayTech.Appointment.Infrastructure.Services
                     AppointmentRealocation appointment = new AppointmentRealocation
                     {
                         RoomId = roomId,
-                        Start = start,
-                        End = start.AddMinutes(appointmentDuration)
+                        Period = new Period() { StartTime = start, EndTime = start.AddMinutes(appointmentDuration) }
                     };
                     appointments.Add(appointment);
                 }            
@@ -113,7 +114,7 @@ namespace MedbayTech.Appointment.Infrastructure.Services
         {
             foreach (AppointmentRealocation appointmentTo in appointmentRealocationsToRoom)
             {
-                if(appointment.Start == appointmentTo.Start)
+                if(appointment.Period.StartTime == appointmentTo.Period.StartTime)
                 {
                     return true;
                 }
@@ -121,5 +122,14 @@ namespace MedbayTech.Appointment.Infrastructure.Services
             return false;
         }
 
+        public List<AppointmentRealocation> GetAppointmentRealocationsByRoomId(int roomId)
+        {
+            return _appointmentRealocationRepository.GetAll().ToList().Where(a => a.RoomId == roomId && a.IsCanceled == false && a.Finished == false).ToList();
+        }
+
+        public AppointmentRealocation UpdateAppointement(AppointmentRealocation appointmentRealocation)
+        {
+            return _appointmentRealocationRepository.Update(appointmentRealocation);
+        }
     }
 }
