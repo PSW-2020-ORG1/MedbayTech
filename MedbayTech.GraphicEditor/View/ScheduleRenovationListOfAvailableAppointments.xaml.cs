@@ -86,8 +86,7 @@ namespace MedbayTech.GraphicEditor.View
                 appointmentRealocation = AppointmentRealocationForMerging(appointmentRealocation);
                 AppointmentRealocationDTO appointmentRealocationDTO = new AppointmentRealocationDTO() { appointmentRenovation = appointmentRealocation, appointmentRealocationSearchOrSchedule = AppointmentRealocationSearchOrSchedule.ScheduleRealocationOrRenovation };
                 await HttpRequestToAppointmentRealocationController(appointmentRealocationDTO);
-                Room room = (Room)scheduleRenovation.dataGridRoom.SelectedItem;
-                appointmentRealocationDTO.appointmentRenovation.RoomId = room.Id;
+                appointmentRealocationDTO.appointmentRenovation.RoomId = scheduleRenovation.room.Id;
                 await HttpRequestToAppointmentRealocationController(appointmentRealocationDTO);
             }
             else

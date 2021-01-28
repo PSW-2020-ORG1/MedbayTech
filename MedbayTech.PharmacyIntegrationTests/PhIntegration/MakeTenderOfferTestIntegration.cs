@@ -5,10 +5,8 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Shouldly;
 using System.Net;
-using MedbayTech.Pharmacies.Application.DTO;
-using MedbayTech.Pharmacies;
-using System.Collections.Generic;
-using MedbayTech.Pharmacies.Domain.Entities.Tenders;
+using MedbayTech.Tenders.Domain.Entities.Tenders;
+using MedbayTech.Tenders;
 
 namespace IntegrationTests.PhIntegration
 {
