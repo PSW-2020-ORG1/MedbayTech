@@ -187,7 +187,7 @@ export default {
     },
     methods: {
         getAllTenders: function(){
-            this.axios.get("http://localhost:50202/api/Tender")
+            this.axios.get("http://localhost:49835/api/Tender")
                 .then(response => {
                     this.tenders = response.data;
                     console.log(response.data);
@@ -236,7 +236,7 @@ export default {
 
         createTender: function () {
             let tender = { endDate: this.date, tenderMedications: this.requiredMedications, tenderDescription: this.tenderDescription }
-            this.axios.post("http://localhost:50202/api/Tender", tender)
+            this.axios.post("http://localhost:49835/api/Tender", tender)
                 .then(response => {
                     this.show = !this.show;
                     this.getAllTenders();
