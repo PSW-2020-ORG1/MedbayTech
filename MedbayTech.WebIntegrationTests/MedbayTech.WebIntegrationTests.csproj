@@ -29,7 +29,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Backend\Backend.csproj" />
+    <ProjectReference Include="..\MedbayTech.Appointment\MedbayTech.Appointment.csproj" />
     <ProjectReference Include="..\MedbayTech.PatientDocuments\MedbayTech.PatientDocuments.csproj" />
+    <ProjectReference Include="..\MedbayTech.Users\MedbayTech.Users.csproj" />
     <ProjectReference Include="..\WebApplication\WebApplication.csproj" />
   </ItemGroup>
 

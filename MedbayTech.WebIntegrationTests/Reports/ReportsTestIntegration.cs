@@ -6,26 +6,33 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using MedbayTech.PatientDocuments;
+using MedbayTech.WebIntegrationTests.WebApplicationFactory;
 using Xunit;
 
 namespace MedbayTech.WebIntegrationTests.Reports
 {
-    public class ReportsTestIntegration : IClassFixture<WebApplicationFactory<Startup>>
+    public class ReportsTestIntegration : IClassFixture<MedicalRecordService>, IClassFixture<LoginService>
     {
-        private readonly WebApplicationFactory<Startup> _factory;
+        private readonly MedicalRecordService _factoryMedicalRecordService;
+        private readonly LoginService _factoryLoginService;
 
 
-        public ReportsTestIntegration(WebApplicationFactory<Startup> factory)
+        public ReportsTestIntegration(MedicalRecordService factoryMedicalRecordService, LoginService factoryLoginService)
         {
-            _factory = factory;
+            _factoryMedicalRecordService = factoryMedicalRecordService;
+            _factoryLoginService = factoryLoginService;
         }
 
         [Fact]
         public async System.Threading.Tasks.Task Get_Report_For_Appointment_IntegrationAsync()
         {
-            HttpClient client = _factory.CreateClient();
+            HttpClient client = _factoryMedicalRecordService.CreateClient();
+            string token = _factoryLoginService.Login("pera", "pera1978");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
             var appointment = Appointment();
             StringContent content = new StringContent(JsonConvert.SerializeObject(appointment), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync("/api/report/appointmentReport", content);
@@ -37,8 +44,8 @@ namespace MedbayTech.WebIntegrationTests.Reports
         {
             AppointmentDTO appointmentDTO = new AppointmentDTO
             {
-                StartTime = new DateTime(2020, 12, 1, 14, 00, 0),
-                DoctorId = "2407978890045"
+                StartTime = new DateTime(2020, 12, 4, 14, 00, 0),
+                DoctorId = "2406978890047"
             };
             return appointmentDTO;
         }

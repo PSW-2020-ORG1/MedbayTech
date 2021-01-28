@@ -3,23 +3,30 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using System.Net.Http;
+using MedbayTech.Appointment.Application.Gateways;
+using MedbayTech.Users.Application.Common.Interfaces.Gateways;
+using MedbayTech.WebIntegrationTests.WebApplicationFactory.Gateways;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace MedbayTech.WebIntegrationTests.WebApplicationFactory
-{/*
-    class UsersService 
+{
+    public class UsersService : WebApplicationFactory<MedbayTech.Users.Startup>
     {
         private readonly TestServer _factoryUsers;
-
-        public UsersService()
+        protected override IWebHostBuilder CreateWebHostBuilder()
         {
-            _factoryUsers = new TestServer(WebHost.CreateDefaultBuilder()
-                .UseStartup<MedbayTech.Users.Startup>());
+            return WebHost.CreateDefaultBuilder()
+                .UseStartup<MedbayTech.Users.Startup>()
+                .UseEnvironment("Testing");
         }
 
-        public HttpClient CreateClient()
+        protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            return _factoryUsers.CreateClient();
+            builder.ConfigureTestServices(services =>
+            {
+                services.Add(new ServiceDescriptor(typeof(IAppointmentGateway), new AppointmentUserGateway()));
+            });
         }
-    }*/
+    }
 }
