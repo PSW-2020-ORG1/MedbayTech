@@ -67,7 +67,7 @@ namespace MedbayTech.Pharmacies.Contrllers
 
         private IActionResult SendProcurementHTTP(int pro, string phar)
         {
-            Pharmacy pharmacy = _pharmacySerivice.Get(phar);
+            Pharmacy pharmacy = _pharmacyService.Get(phar);
             string endpoint = pharmacy.APIEndpoint;
             endpoint = endpoint.Substring(0, endpoint.Length - 5) + "urgent";
             string response = "";
@@ -90,7 +90,7 @@ namespace MedbayTech.Pharmacies.Contrllers
 
         private IActionResult SendProcurementGRPC(int pro, string phar)
         {
-            Pharmacy p = _pharmacySerivice.Get(phar);
+            Pharmacy p = _pharmacyService.Get(phar);
             UrgentMedicationProcurement pr = _service.Get(pro);
             GrpcClient grpc = new GrpcClient();
             return Ok(grpc.Urgent(p, pr.MedicationName).Result);

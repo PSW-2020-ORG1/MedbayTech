@@ -66,71 +66,74 @@ namespace MedbayTech.Pharmacies.Controllers
             return BadRequest();
         }
 
-        //[HttpGet("check/{search?}")]
-        //public IActionResult GetGrpc(string search)
-        //{
-        //    GrpcClient grpc = new GrpcClient();
-        //    string hello = grpc.Echo(pharmacy).Result;
-
-        //    // TODO(Jovan): Add environment dependant support
-        //    if (hello.ToLower().Equals("hello!"))
-        //    {
-        //        string response = grpc.CheckForMedication(search, pharmacy).Result;
-        //        return Ok(response);
-        //    }
-        //    return NotFound();
-        //    //string response = grpc.CheckForMedication(search).Result;
-        //    //return Ok(response);
-        //    //return Ok();
-        //}
 
         [HttpGet("available/{search?}")]
         public IEnumerable<string> GetAvailable(string search)
         {
-            List<Pharmacy> pharmacies = _pharmacyService.GetAll();
             List<string> retPharmacies = new List<string>();
-            GrpcClient grpc = new GrpcClient();
-            foreach (Pharmacy pharmacy in pharmacies)
+            foreach (Pharmacy pharmacy in _pharmacyService.GetAll())
             {
-                try
+                string stage = Environment.GetEnvironmentVariable("STAGE") ?? "development";
+                if (pharmacy.APIEndpoint.Contains("local") && stage.Contains("development"))
                 {
-                    string hello = grpc.Echo(pharmacy).Result;
-
-                    if (hello.ToLower().Equals("hello!"))
-                    {
-                        string response = grpc.CheckForMedication(search, pharmacy).Result;
-                        if(response.Equals("We have the desired medication!"))
-                        {
-                            retPharmacies.Add(pharmacy.Id);
-                        }
-                    }
+                    if (CheckPharmacyGRPC(pharmacy, search) != null)
+                        retPharmacies.Add(pharmacy.Id);
                 }
-                catch(Exception)
+                else
                 {
-                    try
-                    {
-                        using HttpClient client = new HttpClient();
-
-                        var task = client.GetAsync(pharmacy.APIEndpoint + "/" + search)
-                            .ContinueWith((taskWithResponse) =>
-                            {
-                                var message = taskWithResponse.Result;
-                                var json = message.Content.ReadAsStringAsync();
-                                json.Wait();
-                                string response = json.Result;
-                                if (response.Equals("We have the desired medication!"))
-                                {
-                                    retPharmacies.Add(pharmacy.Id);
-                                }
-                            });
-                        task.Wait();
-                    }
-                    catch(Exception)
-                    {
-                    }
+                    if (CheckPharmacyHTTP(pharmacy, search) != null)
+                        retPharmacies.Add(pharmacy.Id);
                 }
             }
             return retPharmacies;
+        }
+
+        private Pharmacy CheckPharmacyGRPC(Pharmacy pharmacy, string search)
+        {
+            try
+            {
+                GrpcClient grpc = new GrpcClient();
+                string hello = grpc.Echo(pharmacy).Result;
+                if (hello.ToLower().Equals("hello!"))
+                {
+                    string response = grpc.CheckForMedication(search, pharmacy).Result;
+                    if (response.Equals("We have the desired medication!"))
+                    {
+                        return pharmacy;
+                    }
+                }
+                return null;
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+        }
+
+        private Pharmacy CheckPharmacyHTTP(Pharmacy pharmacy, string search)
+        {
+            var task = AskPharamcyHttp(pharmacy, search);
+            task.Wait();
+            if (task.Result == "We have the desired medication!")
+                return pharmacy;
+            else
+                return null;
+        }
+
+        private async System.Threading.Tasks.Task<string> AskPharamcyHttp(Pharmacy pharmacy, string search)
+        {
+            HttpClient client = new HttpClient();
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(pharmacy.APIEndpoint + "/" + search);
+                response.EnsureSuccessStatusCode();
+                string rersponseBody = await response.Content.ReadAsStringAsync();
+                return rersponseBody;
+            }
+            catch(Exception)
+            {
+                return null;
+            }
         }
 
 
