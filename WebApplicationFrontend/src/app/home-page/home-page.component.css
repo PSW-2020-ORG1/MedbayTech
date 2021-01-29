@@ -49,3 +49,18 @@ footer {
 p {
     padding-top: 10px;
 }
+
+.example-header-image1 {
+    background-image: url("../../assets/cyan.png");
+    background-size: cover;
+}
+
+.example-header-image2 {
+    background-image: url("../../assets/orange.png");
+    background-size: cover;
+}
+
+.example-header-image3 {
+    background-image: url("../../assets/yellow.png");
+    background-size: cover;
+}
