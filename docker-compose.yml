@@ -97,7 +97,7 @@ services:
       URL_DOCUMENTS: "patientdocuments"
       PORT_DOCUMENTS: "5006"
     ports:
-      - "8084:50202"
+      - "50202:50202"
     volumes:
       - postgres-data:/var/lib/postgres:rw
 
