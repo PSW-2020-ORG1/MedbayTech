@@ -278,10 +278,8 @@ namespace MedbayTech.Users.Infrastructure.Database
 
         private void SeedDoctorsWorkDay(UserDbContext context)
         {
-            DateTime dt = DateTime.Now;
-
-            context.Add(new WorkDay { Date = dt, StartTime = 16, EndTime = 23, DoctorId = "2406978890047" });
-            context.Add(new WorkDay { Date = dt.AddDays(1), StartTime = 16, EndTime = 23, DoctorId = "2406978890047" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 29), StartTime = 16, EndTime = 23, DoctorId = "2406978890047" });
+            context.Add(new WorkDay { Date = new DateTime(2021, 01, 30), StartTime = 16, EndTime = 23, DoctorId = "2406978890047" });
             context.Add(new WorkDay { Date = new DateTime(2021, 01, 31), StartTime = 16, EndTime = 23, DoctorId = "2406978890047" });
             context.Add(new WorkDay { Date = new DateTime(2021, 02, 01), StartTime = 16, EndTime = 23, DoctorId = "2406978890047" });
             context.Add(new WorkDay { Date = new DateTime(2021, 02, 02), StartTime = 16, EndTime = 23, DoctorId = "2406978890047" });
