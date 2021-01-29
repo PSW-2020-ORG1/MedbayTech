@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using MedbayTech.WebIntegrationTests.WebApplicationFactory;
 using WebApplication;
 using Model.Users;
+using MedbayTech.PatientDocuments.Domain.Entities.Patient;
 
 namespace MedbayTech.WebIntegrationTests.Records
 {

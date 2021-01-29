@@ -1,12 +1,12 @@
 ﻿
-using Backend.Utils.DTO;
-
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using Shouldly;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using Application.DTO;
+using MedbayTech.Appointment;
 using WebApplication;
 using Xunit;
 

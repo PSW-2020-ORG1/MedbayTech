@@ -5,6 +5,8 @@ using Shouldly;
 using System;
 using System.Net;
 using System.Net.Http;
+using MedbayTech.Appointment;
+using MedbayTech.Appointment.Domain.Entities;
 using WebApplication;
 using Xunit;
 

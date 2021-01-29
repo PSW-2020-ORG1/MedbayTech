@@ -1,0 +1,29 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+
+WORKDIR /app
+
+COPY MedbayTech.Common/MedbayTech.Common.csproj MedbayTech.Common/
+COPY MedbayTech.Tenders/MedbayTech.Tenders.csproj MedbayTech.Tenders/
+
+RUN dotnet restore MedbayTech.Tenders/MedbayTech.Tenders.csproj
+
+COPY . .
+
+FROM build AS publish
+WORKDIR /app/MedbayTech.Tenders
+
+ENV PATH $PATH:/root/.dotnet/tools
+RUN dotnet tool install -g dotnet-ef --version 3.1.9
+RUN dotnet ef migrations add Init
+
+WORKDIR /app
+RUN dotnet publish MedbayTech.Tenders/MedbayTech.Tenders.csproj -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS runtime
+
+RUN useradd -ms /bin/bash defaultuser
+WORKDIR /app
+
+COPY --from=publish /app/out .
+EXPOSE 5006
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet MedbayTech.Tenders.dll

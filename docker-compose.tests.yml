@@ -1,13 +1,14 @@
 version: "3.8"
 
 volumes:
-  postgres-data: {} 
+  postgres-data: {}
+
 networks:
   demo:
     name: demo
     driver: bridge
 
-services:
+services: 
   postgres:
     image: postgres:latest
     container_name: postgres
@@ -21,37 +22,61 @@ services:
     volumes:
       - postgres-data:/var/lib/postgres
 
-  apigateway:
-    image: stefan7/apigatewaytest:latest
-    container_name: api_container
-    restart: on-failure
-    networks:
-      - demo
-    depends_on:
-      - postgres
-      - feedback
-      - pharmacies
-      - medications
-      - users 
-      - rooms 
-      - patientdocuments
-      - appointment
-    environment:
-      API_URL: "http://localhost:53843"
-      DEBUG: "true"
-      DATABASE_USERNAME: "user"
-      DATABASE_PASSWORD: "user"
-      DATABASE_HOST: "postgres"
-      DATABASE_TYPE: "postgres"
-      DATABASE_SCHEMA: "mydb1"
-      STAGE: "prod"
-      STAGE_API: "test"
-      PORT: "53843"
-    ports:
-      - "53843:53843"
-    volumes:
+  WebIntegrationTests:
+      image: stefan7/test1
+      container_name: web_integration_tests
+      restart: on-failure
+      depends_on:
+        - postgres
+      environment:
+        DATABASE_USERNAME: "user"
+        DATABASE_PASSWORD: "user"
+        DATABASE_HOST: "postgres"
+        DATABASE_TYPE: "postgres"
+        DATABASE_SCHEMA: "mydb1"
+        STAGE: "test"
+        URL_MEDICATION: "medications"
+        PORT_MEDICATION: "5007"
+        URL_DOCUMENTS: "patientdocuments"
+        PORT_DOCUMENTS: "5006"
+        PORT_USERS: "5002"
+        URL_USERS: "users"
+        PORT_APPOINTMENT: "5008"
+        URL_APPOINTMENT: "appointment"
+        PORT_ROOMS: "5004"
+        URL_ROOMS: "rooms"
+      expose: 
+        - "81"
+      networks: 
+        - demo
+      volumes:
       - postgres-data:/var/lib/postgres:rw
 
+  PhIntegrationTests:
+      image: stefan7/test2
+      container_name: ph_integration_tests
+      restart: on-failure
+      depends_on:
+        - postgres
+      environment:
+        DATABASE_USERNAME: "user"
+        DATABASE_PASSWORD: "user"
+        DATABASE_HOST: "postgres"
+        DATABASE_TYPE: "postgres"
+        DATABASE_SCHEMA: "mydb1"
+        STAGE: "test"
+        URL_MEDICATION: "medications"
+        PORT_MEDICATION: "5007"
+        URL_DOCUMENTS: "patientdocuments"
+        PORT_DOCUMENTS: "5006"
+        URL_PHARMACIES: "pharmacies"
+        PORT_PHARMACIES: "50202"
+      expose: 
+        - "80"
+      networks: 
+        - demo
+      volumes:
+      - postgres-data:/var/lib/postgres:rw
   feedback:
     image: stefan7/feedback:latest
     container_name: feedback_container
@@ -75,7 +100,7 @@ services:
     volumes:
       - postgres-data:/var/lib/postgres:rw
 
-
+  
   pharmacies:
     image: stefan7/pharmacies:latest
     container_name: pharmacy_container
@@ -98,6 +123,32 @@ services:
       PORT_DOCUMENTS: "5006"
     ports:
       - "8084:50202"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+  tenders:
+    image: stefan7/tenders
+    container_name: tenders_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "5000"
+      URL_MEDICATION: "medications"
+      PORT_MEDICATION: "5007"
+      URL_DOCUMENTS: "patientdocuments"
+      PORT_DOCUMENTS: "5006"
+      URL_PHARMACIES: "pharmacies"
+      PORT_PHARMACIES: "50202"
+    ports:
+      - "49835:5000"
     volumes:
       - postgres-data:/var/lib/postgres:rw
 
@@ -215,31 +266,3 @@ services:
       - "8083:5008"
     volumes:
       - postgres-data:/var/lib/postgres:rw
-
-  tenders:
-    image: stefan7/tenders
-    container_name: tenders_container
-    restart: on-failure
-    networks:
-      - demo
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_USERNAME: "user"
-      DATABASE_PASSWORD: "user"
-      DATABASE_HOST: "postgres"
-      DATABASE_TYPE: "postgres"
-      DATABASE_SCHEMA: "mydb1"
-      STAGE: "test"
-      PORT: "5000"
-      URL_MEDICATION: "medications"
-      PORT_MEDICATION: "5007"
-      URL_DOCUMENTS: "patientdocuments"
-      PORT_DOCUMENTS: "5006"
-      URL_PHARMACIES: "pharmacies"
-      PORT_PHARMACIES: "50202"
-    ports:
-      - "49835:5000"
-    volumes:
-      - postgres-data:/var/lib/postgres:rw
-
