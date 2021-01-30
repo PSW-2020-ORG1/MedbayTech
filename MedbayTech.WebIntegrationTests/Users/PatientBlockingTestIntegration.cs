@@ -29,6 +29,7 @@ namespace MedbayTech.WebIntegrationTests.Users
         [Fact]
         public async System.Threading.Tasks.Task Block_malicious_patients_IntegrationAsync()
         {
+            Console.Write("Started Block_malicious_patients_IntegrationAsync");
             HttpClient client = _factoryUserService.CreateClient();
             string token = _factoryLogin.Login("markic", "marko1978");
 
@@ -38,6 +39,7 @@ namespace MedbayTech.WebIntegrationTests.Users
             StringContent content = new StringContent(JsonConvert.SerializeObject(id), System.Text.Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync("/api/patient/updatePatientStatus", content);
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
+            Console.Write("Finished Block_malicious_patients_IntegrationAsync");
         }
 
         private static UpdatePatientBlockedStatusDTO PatientId()

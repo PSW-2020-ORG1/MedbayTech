@@ -26,6 +26,7 @@ namespace MedbayTech.WebIntegrationTests.Schedules
         [Fact]
         public async System.Threading.Tasks.Task ScheduleAppointmentAsync()
         {
+            Console.WriteLine("Started Appointment Schedule test");
             HttpClient clientAppointment = _factoryAppointment.CreateClient();
             string token = _factoryLogin.Login("pera", "pera1978");
             
@@ -36,6 +37,7 @@ namespace MedbayTech.WebIntegrationTests.Schedules
             HttpResponseMessage response = await clientAppointment.PostAsync("api/appointment/schedule", content);
 
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
+            Console.WriteLine("Finished Appointment Schedule test");
 
         }
 

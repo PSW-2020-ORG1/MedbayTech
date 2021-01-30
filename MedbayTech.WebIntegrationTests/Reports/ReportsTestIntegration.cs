@@ -29,6 +29,7 @@ namespace MedbayTech.WebIntegrationTests.Reports
         [Fact]
         public async System.Threading.Tasks.Task Get_Report_For_Appointment_IntegrationAsync()
         {
+            Console.Write("Started Get_Report_For_Appointment_IntegrationAsync");
             HttpClient client = _factoryMedicalRecordService.CreateClient();
             string token = _factoryLoginService.Login("pera", "pera1978");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -37,6 +38,7 @@ namespace MedbayTech.WebIntegrationTests.Reports
             StringContent content = new StringContent(JsonConvert.SerializeObject(appointment), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync("/api/report/appointmentReport", content);
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
+            Console.Write("Finished Get_Report_For_Appointment_IntegrationAsync");
 
         }
 

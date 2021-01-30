@@ -47,6 +47,7 @@ namespace MedbayTech.WebIntegrationTests.Schedules
         [Fact]
         public async System.Threading.Tasks.Task Find_patients_cancelable_appointments_IntegrationAsync()
         {
+            Console.Write("Started Find_patients_cancelable_appointments_IntegrationAsync");
             HttpClient client = _factory.CreateClient();
 
             var patient = CreatePatient();
@@ -54,6 +55,7 @@ namespace MedbayTech.WebIntegrationTests.Schedules
             HttpResponseMessage response = await client.GetAsync("api/appointment/allCancelableAppointments");
 
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
+            Console.Write("Finished Find_patients_cancelable_appointments_IntegrationAsync");
         }
 
         private static Patient CreatePatient()

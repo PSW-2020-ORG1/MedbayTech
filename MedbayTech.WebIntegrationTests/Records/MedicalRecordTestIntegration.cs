@@ -25,6 +25,7 @@ namespace MedbayTech.WebIntegrationTests.Records
         [Fact]
         public async System.Threading.Tasks.Task Find_patients_medical_record_IntegrationAsync()
         {
+            Console.Write("Started Find_patients_medical_record_IntegrationAsync");
             HttpClient client = _factoryMedicalRecordService.CreateClient();
             string token = _factoryLoginService.Login("pera", "pera1978");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -33,6 +34,7 @@ namespace MedbayTech.WebIntegrationTests.Records
             HttpResponseMessage response = await client.GetAsync("api/medicalRecord");
 
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
+            Console.Write("Finished Find_patients_medical_record_IntegrationAsync");
         }
 
         private static Patient CreatePatient()
