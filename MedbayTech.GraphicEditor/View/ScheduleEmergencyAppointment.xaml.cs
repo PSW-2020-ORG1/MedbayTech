@@ -86,12 +86,13 @@ namespace MedbayTech.GraphicEditor.View
                 Appointment appointmentForRescheduling = CreateNewAppointment(appointment, (double)listViewPostPoneTime.SelectedItem);
                 AppointmentFilterDTO appointmentFilterDTO = new AppointmentFilterDTO() { appointmentSearchOrSchedule = AppointmentSearchOrSchedule.ScheduleAppointment, appointment = appointmentForRescheduling };
                 SaveAndUpdateDataBase(appointmentFilterDTO);
+                appointment.Urgent = true;
                 appointmentFilterDTO.appointment = appointment;
                 appointmentFilterDTO.appointmentSearchOrSchedule = AppointmentSearchOrSchedule.UpdateAppointment;
                 SaveAndUpdateDataBase(appointmentFilterDTO);
                 MessageBox.Show("Appointment is moved and emergency appointment is scheduled!");
             }
-            
+            listViewPostPoneTime.ItemsSource = null;
             dataGridAppointment.ItemsSource = null;
         }
 
@@ -102,6 +103,7 @@ namespace MedbayTech.GraphicEditor.View
             {
                 //Start = appointment.Start.AddMinutes(time - 30),
                 //End = appointment.End.AddMinutes(time),
+                Period = new Period() { },
                 CancelationDate = appointment.CancelationDate,
                 TypeOfAppointment = appointment.TypeOfAppointment,
                 ShortDescription = appointment.ShortDescription,
@@ -111,11 +113,11 @@ namespace MedbayTech.GraphicEditor.View
                 RoomId = appointment.RoomId,
                 MedicalRecord = appointment.MedicalRecord,
                 DoctorId = appointment.DoctorId,
+                Doctor = appointment.Doctor,
                 PatientId = appointment.PatientId
             };
             newAppointment.Period.StartTime = appointment.Period.StartTime.AddMinutes(time - 30);
             newAppointment.Period.EndTime = appointment.Period.EndTime.AddMinutes(time);
-            MessageBox.Show("Start: " + newAppointment.Period.StartTime.ToString() + " End: " + newAppointment.Period.EndTime.ToString());
             return newAppointment;
         }
 
