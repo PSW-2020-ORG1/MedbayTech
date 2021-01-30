@@ -22,9 +22,11 @@ services:
     volumes:
       - postgres-data:/var/lib/postgres
 
-  WebIntegrationTests:
-      image: stefan7/test1
-      container_name: web_integration_tests
+  webintegrationtests:
+      build:
+        context: .
+        dockerfile: Dockerfile.WebAppIntegrationTests
+      container_name: webintegrationtests
       restart: on-failure
       depends_on:
         - postgres
@@ -52,33 +54,38 @@ services:
       volumes:
       - postgres-data:/var/lib/postgres:rw
 
-#  PhIntegrationTests:
-#      image: stefan7/test2
-#      container_name: ph_integration_tests
-#      restart: on-failure
-#      depends_on:
-#        - postgres
-#      environment:
-#        DATABASE_USERNAME: "user"
-#        DATABASE_PASSWORD: "user"
-#        DATABASE_HOST: "postgres"
-#        DATABASE_TYPE: "postgres"
-#        DATABASE_SCHEMA: "mydb1"
-#        STAGE: "test"
-#        URL_MEDICATION: "medications"
-#        PORT_MEDICATION: "5007"
-#        URL_DOCUMENTS: "patientdocuments"
-#        PORT_DOCUMENTS: "5006"
-#        URL_PHARMACIES: "pharmacies"
-#        PORT_PHARMACIES: "50202"
-#      expose: 
-#        - "80"
-#      networks: 
-#        - demo
-#      volumes:
-#      - postgres-data:/var/lib/postgres:rw
+  phintegrationtests:
+    build:
+      context: .
+      dockerfile: Dockerfile.PhIntegrationTests
+    container_name: ph_integration_tests
+    restart: on-failure
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      URL_MEDICATION: "medications"
+      PORT_MEDICATION: "5007"
+      URL_DOCUMENTS: "patientdocuments"
+      PORT_DOCUMENTS: "5006"
+      URL_PHARMACIES: "pharmacies"
+      PORT_PHARMACIES: "50202"
+    expose: 
+       - "80"
+    networks: 
+      - demo
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
+  
   feedback:
-    image: stefan7/feedback:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.Feedback
     container_name: feedback_container
     restart: on-failure
     networks:
@@ -102,7 +109,9 @@ services:
 
   
   pharmacies:
-    image: stefan7/pharmacies:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.Pharmacies
     container_name: pharmacy_container
     restart: on-failure
     networks:
@@ -126,7 +135,9 @@ services:
     volumes:
       - postgres-data:/var/lib/postgres:rw
   tenders:
-    image: stefan7/tenders
+    build:
+      context: .
+      dockerfile: Dockerfile.Tenders
     container_name: tenders_container
     restart: on-failure
     networks:
@@ -153,7 +164,9 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   medications:
-    image: stefan7/medication:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.Medications
     container_name: medications_container
     restart: on-failure
     networks:
@@ -174,7 +187,9 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   rooms:
-    image: stefan7/rooms:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.Rooms
     container_name: rooms_container
     restart: on-failure
     networks:
@@ -197,7 +212,9 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   users:
-    image: stefan7/users:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.Users
     container_name: users_container
     restart: on-failure
     networks:
@@ -220,7 +237,9 @@ services:
       - postgres-data:/var/lib/postgres:rw
   
   patientdocuments:
-    image: stefan7/patientdocuments:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.PatientDocuments
     container_name: documents_container
     restart: on-failure
     networks:
@@ -243,7 +262,9 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   appointment:
-    image: stefan7/appointment:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.Appointment
     container_name: appointment_container
     restart: on-failure
     networks:

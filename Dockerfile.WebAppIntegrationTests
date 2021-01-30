@@ -2,6 +2,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /app
 
 COPY MedbayTech.Users/MedbayTech.Users.csproj MedbayTech.Users/
+COPY MedbayTech.Common/MedbayTech.Common.csproj MedbayTech.Common/
 COPY MedbayTech.Appointment/MedbayTech.Appointment.csproj MedbayTech.Appointment/
 COPY MedbayTech.PatientDocuments/MedbayTech.PatientDocuments.csproj MedbayTech.PatientDocuments/
 COPY MedbayTech.Rooms/MedbayTech.Rooms.csproj MedbayTech.Rooms/
