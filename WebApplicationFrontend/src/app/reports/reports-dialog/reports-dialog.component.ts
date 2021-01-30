@@ -1,8 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 import { AppointmentReport } from 'src/app/model/appointmentReport';
 import pdfMake from "pdfmake/build/pdfmake";
 

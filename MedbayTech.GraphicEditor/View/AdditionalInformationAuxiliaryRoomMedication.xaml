@@ -5,14 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MedbayTech.GraphicEditor.View"
       mc:Ignorable="d" 
-      d:DesignHeight="175" d:DesignWidth="370"
+      d:DesignHeight="214" d:DesignWidth="274"
       Title="AdditionalInformationAuxiliaryRoomMedication">
 
     <Grid>
-        <DataGrid Name="dataGridMedication" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" Width="370" Height="175" RenderTransformOrigin="1.059,-0.838">
+        <DataGrid Name="dataGridMedication" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn  Header="Medication name" Width="185" Binding="{Binding Med}" />
-                <DataGridTextColumn Header="Quantity" Width="185" Binding="{Binding Quantity}"/>
+                <DataGridTextColumn  Header="Medication name" Width="137" Binding="{Binding Med}" />
+                <DataGridTextColumn Header="Quantity" Width="137" Binding="{Binding Quantity}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

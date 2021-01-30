@@ -44,6 +44,15 @@ namespace MedbayTech.Medications.Infrastructure.Service.Medications
             return _medicationRepository.Update(medication);
         }
 
+        public Domain.Entities.Medications.Medication CreateMedication(Domain.Entities.Medications.Medication medication)
+        {
+            // TODO(Jovan): Handle bad request?
+            Domain.Entities.Medications.Medication fullMedication = medication;
+            _medicationRepository.Create(medication);
+
+            return medication;
+        }
+
         public Domain.Entities.Medications.Medication UpdateMedication(Domain.Entities.Medications.Medication medication)
         {
             var medicationToUpdate = _medicationRepository.GetBy(medication.Id);

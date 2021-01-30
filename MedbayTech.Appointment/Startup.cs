@@ -20,6 +20,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using MedbayTech.Appointment.Infrastructure.Services.EventService;
 
 namespace MedbayTech.Appointment
 {
@@ -56,8 +57,9 @@ namespace MedbayTech.Appointment
             services.AddTransient<ISurveyRepository, SurveyRepository>();
             services.AddTransient<ISurveyQuestionRepository, SurveyQuestionRepository>();
             services.AddTransient<IAppointmentRealocationRepository, AppointmentRealocationRepository>();
-
-
+            services.AddTransient<IAppointmentRenovationRepository, AppointmentRenovationRepository>();
+            services.AddTransient<IAppointmentEventRepository, AppointmentEventRepository>();
+            services.AddTransient<IAppointmentForRoomManipulationRepository, AppointmentForRoomManipulationRepository>();
 
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<ISurveyService, SurveyService>();
@@ -65,6 +67,9 @@ namespace MedbayTech.Appointment
             services.AddScoped<IUserGateway, UserGateway>();
             services.AddScoped<IAppointmentFilterService, AppointmentFilterService>();
             services.AddScoped<IAppointmentRealocationService, AppointmentRealocationService>();
+            services.AddScoped<IAppointmentRenovationService, AppointmentRenovationService>();
+            services.AddScoped<IAppointmentEventService, AppointmentEventService>();
+            services.AddScoped<IAppointmentForRoomManipulationService, AppointmentForRoomManipulationService>();
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("QKcOa8xPopVOliV6tpvuWmoKn4MOydSeIzUt4W4r1UlU2De7dTUYMlrgv3rU"));
             services.AddAuthentication(x =>

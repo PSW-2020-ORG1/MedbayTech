@@ -12,5 +12,7 @@ namespace MedbayTech.Appointment.Application.Common.Interfaces.Service
         bool CheckIsRoomAvailableInSelectedTime(int roomId, DateTime chosenDateTime);
         AppointmentRealocation ScheduleAppointmentRealocation(AppointmentRealocation appointmentRealocation);
         List<AppointmentRealocation> GetAlternativeAvailableAppointments(int fromRoomId, int toRoomId, DateTime dateTime, int hospitalEquipmentId);
+        List<AppointmentRealocation> GetAppointmentRealocationsByRoomId(int roomId);
+        AppointmentRealocation UpdateAppointement(AppointmentRealocation appointmentRealocation);
     }
 }

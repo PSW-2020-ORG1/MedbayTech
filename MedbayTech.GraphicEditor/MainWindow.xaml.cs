@@ -11,7 +11,7 @@ namespace MedbayTech.GraphicEditor
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(/*String userType*/)
         {
             //String userType = "administrator";
             //String userType = "patient";

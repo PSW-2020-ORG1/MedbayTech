@@ -28,6 +28,20 @@ namespace MedbayTech.GraphicEditor
             page = mainPage;
             searchDataBase(textBoxSearch);
         }
+
+        private void TransitionAnimation()
+        {
+            Storyboard storyboard = new Storyboard();
+            DoubleAnimation doubleAnimation = new DoubleAnimation();
+            doubleAnimation.From = 0;
+            doubleAnimation.To = 1;
+            doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
+            storyboard.Children.Add(doubleAnimation);
+            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
+            Storyboard.SetTargetName(doubleAnimation, page.MainFrame.Name);
+            storyboard.Begin(page);
+        }
+
         private void searchDataBase(string textBoxSearch)
         {
             List<HospitalEquipment> hospitalEquipment = new List<HospitalEquipment>();
@@ -53,93 +67,78 @@ namespace MedbayTech.GraphicEditor
             if (hospitalEquipment.Count == 0) MessageBox.Show("No results found!");
         }
         public static string Id;
-        private void buttonShownOnMap(object sender, RoutedEventArgs e)
+        private void ButtonShowOnMap(object sender, RoutedEventArgs e)
         {
-
-            HospitalEquipment equipment = (HospitalEquipment)dataGridEquipment.SelectedItem;
-
-            if (equipment == null)
+            HospitalEquipment hospitalEquipment = (HospitalEquipment)dataGridEquipment.SelectedItem;
+            if (hospitalEquipment == null)
             {
-                MessageBox.Show("Nothing is selected!");
+                MessageBox.Show("Anything selected!");
                 return;
             }
+            CheckHospital(hospitalEquipment.Room);
+        }
 
-            Room equipmentRoom = equipment.Room;
-
-            if (equipmentRoom.Department.Floor == 0 && equipmentRoom.Department.Hospital.Id == 1)
+        public void CheckHospital(Room equipmentRoom)
+        {
+            if (equipmentRoom.Department.Hospital.Id == 2)
             {
-                Id = equipmentRoom.Id.ToString();
-                page.MainFrame.Content = new Building1GroundFloorPlan(page);
-                page.comboBoxH1.SelectedIndex = 0;
-                page.comboBoxHospital1.SelectedIndex = 0;
-
-                page.SetActiveUserControl(page.legenda);
-                TransitionAnimation();
+                CheckFloorForFirstHospital(equipmentRoom);
             }
-            else if (equipmentRoom.Department.Floor == 1 && equipmentRoom.Department.Hospital.Id == 1)
+            else
             {
-                Id = equipmentRoom.Id.ToString();
-                page.MainFrame.Content = new Building1FirstFloorPlan(page);
-                page.comboBoxH1.SelectedIndex = 1;
-                page.comboBoxHospital1.SelectedIndex = 1;
-
-                page.SetActiveUserControl(page.legenda);
-                TransitionAnimation();
-            }
-            else if (equipmentRoom.Department.Floor == 2 && equipmentRoom.Department.Hospital.Id == 1)
-            {
-                Id = equipmentRoom.Id.ToString();
-                page.MainFrame.Content = new Building1SecondFloorPlan(page);
-                page.comboBoxH1.SelectedIndex = 2;
-                page.comboBoxHospital1.SelectedIndex = 2;
-
-                page.SetActiveUserControl(page.legenda);
-                TransitionAnimation();
-            }
-            if (equipmentRoom.Department.Floor == 0 && equipmentRoom.Department.Hospital.Id == 2)
-            {
-                Id = equipmentRoom.Id.ToString();
-                page.MainFrame.Content = new Building2GroundFloorPlan(page);
-                page.comboBoxH2.SelectedIndex = 0;
-                page.comboBoxHospital2.SelectedIndex = 0;
-
-                page.SetActiveUserControl(page.legenda);
-                TransitionAnimation();
-            }
-            else if (equipmentRoom.Department.Floor == 1 && equipmentRoom.Department.Hospital.Id == 2)
-            {
-                Id = equipmentRoom.Id.ToString();
-                page.MainFrame.Content = new Building2FirstFloorPlan(page);
-                page.comboBoxH2.SelectedIndex = 1;
-                page.comboBoxHospital2.SelectedIndex = 1;
-
-                page.SetActiveUserControl(page.legenda);
-                TransitionAnimation();
-            }
-            else if (equipmentRoom.Department.Floor == 2 && equipmentRoom.Department.Hospital.Id == 2)
-            {
-                Id = equipmentRoom.Id.ToString();
-                page.MainFrame.Content = new Building2SecondFloorPlan(page);
-                page.comboBoxH2.SelectedIndex = 2;
-                page.comboBoxHospital2.SelectedIndex = 2;
-
-                page.SetActiveUserControl(page.legenda);
-                TransitionAnimation();
+                CheckFloorForSecondHospital(equipmentRoom);
             }
         }
 
-        private void TransitionAnimation()
+        private void CheckFloorForFirstHospital(Room equipmentRoom)
         {
-            //   throw new NotImplementedException();
-            Storyboard storyboard = new Storyboard();
-            DoubleAnimation doubleAnimation = new DoubleAnimation();
-            doubleAnimation.From = 0;
-            doubleAnimation.To = 1;
-            doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
-            storyboard.Children.Add(doubleAnimation);
-            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
-            Storyboard.SetTargetName(doubleAnimation, page.MainFrame.Name);
-            storyboard.Begin(page);
+            if (equipmentRoom.Department.Floor == 0)
+            {
+                page.MainFrame.Content = new Building1GroundFloorPlan(page);
+            }
+            else if (equipmentRoom.Department.Floor == 1)
+            {
+                page.MainFrame.Content = new Building1FirstFloorPlan(page);
+            }
+            else
+            {
+                page.MainFrame.Content = new Building1SecondFloorPlan(page);
+            }
+            SelectComboBoxesForFirstHospital(equipmentRoom);
+
+        }
+
+        private void CheckFloorForSecondHospital(Room equipmentRoom)
+        {
+            if (equipmentRoom.Department.Floor == 0)
+            {
+                page.MainFrame.Content = new Building2GroundFloorPlan(page);
+            }
+            else if (equipmentRoom.Department.Floor == 1)
+            {
+                page.MainFrame.Content = new Building2FirstFloorPlan(page);
+            }
+            else
+            {
+                page.MainFrame.Content = new Building2SecondFloorPlan(page);
+            }
+            SelectComboBoxesForSecondHospital(equipmentRoom);
+        }
+        private void SelectComboBoxesForFirstHospital(Room equipmentRoom)
+        {
+            Id = equipmentRoom.Id.ToString();
+            page.comboBoxH1.SelectedIndex = equipmentRoom.Department.Floor;
+            page.comboBoxHospital1.SelectedIndex = equipmentRoom.Department.Floor;
+            page.SetActiveUserControl(page.legenda);
+            TransitionAnimation();
+        }
+        private void SelectComboBoxesForSecondHospital(Room equipmentRoom)
+        {
+            Id = equipmentRoom.Id.ToString();
+            page.comboBoxH2.SelectedIndex = equipmentRoom.Department.Floor;
+            page.comboBoxHospital2.SelectedIndex = equipmentRoom.Department.Floor;
+            page.SetActiveUserControl(page.legenda);
+            TransitionAnimation();
         }
     }
 }

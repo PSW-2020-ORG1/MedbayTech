@@ -19,10 +19,6 @@ using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Medications;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Gateways;
 using MedbayTech.Pharmacies.Infrastructure.Gateways;
 using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Pharmacies;
-using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance.Tenders;
-using MedbayTech.Pharmacies.Infrastructure.Persistance.Tenders;
-using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Tenders;
-using MedbayTech.Pharmacies.Infrastructure.Service.Tenders;
 using MedbayTech.Pharmacies.Infrastructure.Persistance.Pharmacies;
 using MedbayTech.Pharmacies.Infrastructure.Service.Pharmacies;
 using MedbayTech.Pharmacies.Infrastructure.Service.Mailing;
@@ -61,6 +57,8 @@ namespace MedbayTech.Pharmacies
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            // TODO(Jovan): Remove these SPA settings?
             services.AddSpaStaticFiles(options => options.RootPath = "../MedbayTech.PharmacyUI/dist");
 
             services.AddDbContext<PharmacyDbContext>();
@@ -117,7 +115,7 @@ namespace MedbayTech.Pharmacies
             {
                 endpoints.MapControllers();
             });
-
+            // TODO(Jovan): Remove these SPA settings?
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
             {
@@ -140,9 +138,6 @@ namespace MedbayTech.Pharmacies
             services.AddTransient<IPharmacyRepository, PharmacyRepository>();
             services.AddTransient<IPharmacyNotificationRepository, PharmacyNotificationRepository>();
             services.AddTransient<IUrgentMedicationProcurementRepository, UrgentMedicationProcurementSqlRepository>();
-            services.AddTransient<ITenderRepository, TenderSqlRepositroy>();
-            services.AddTransient<ITenderMedicationRepository, TenderMedicationSqlRepositroy>();
-            services.AddTransient<ITenderOfferRepository, TenderOfferSqlRepositroy>();
         }
 
         private static void AddServices(IServiceCollection services)
@@ -152,10 +147,7 @@ namespace MedbayTech.Pharmacies
             services.AddScoped<IPrescriptionSearchService, PrescriptionSearchService>();
             services.AddScoped<IPrescriptionGateway, PrescriptionGateway>();
             services.AddScoped<IUrgentMedicationProcurementService, UrgentMedicationProcurementService>();
-            services.AddScoped<ITenderService, TenderService>();
-            services.AddScoped<ITenderOfferService, TenderOfferService>();
             services.AddScoped<IMedicationUsageReportGateway, MedicationUsageReportGateway>();
-            services.AddScoped<IMedicationGateway, MedicationGateway>();
         }
 
 

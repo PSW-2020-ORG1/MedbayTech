@@ -79,76 +79,78 @@ namespace MedbayTech.GraphicEditor
             if(medications.Count == 0) MessageBox.Show("No results found!");
         }
         public static string Id;
-        private void buttonShowOnMap(object sender, RoutedEventArgs e)
+
+        private void ButtonShowOnMap(object sender, RoutedEventArgs e)
         {
             Medication medication = (Medication)dataGridMedicate.SelectedItem;
             if (medication == null)
             {
-                MessageBox.Show("Nothing is selected!");
+                MessageBox.Show("Anything selected!");
                 return;
             }
-            Room medicationRoom = medication.Room;
+            CheckHospital(medication.Room);
+        }
 
-            if (medicationRoom.Department.Floor == 0 && medicationRoom.Department.Hospital.Id == 1)
+        public void CheckHospital(Room medicationRoom)
+        {
+            if (medicationRoom.Department.Hospital.Id == 2)
             {
-                Id = medicationRoom.Id.ToString();
+                CheckFloorForFirstHospital(medicationRoom);
+            }
+            else
+            {
+                CheckFloorForSecondHospital(medicationRoom);
+            }
+        }
+
+        private void CheckFloorForFirstHospital(Room medicationRoom)
+        {
+            if (medicationRoom.Department.Floor == 0)
+            {
                 page.MainFrame.Content = new Building1GroundFloorPlan(page);
-                page.comboBoxH1.SelectedIndex = 0;
-                page.comboBoxHospital1.SelectedIndex = 0;
-
-                page.SetActiveUserControl(page.legenda);
-                TransitionAnimation();
             }
-            else if (medicationRoom.Department.Floor == 1 && medicationRoom.Department.Hospital.Id == 1)
+            else if (medicationRoom.Department.Floor == 1)
             {
-                Id = medicationRoom.Id.ToString();
                 page.MainFrame.Content = new Building1FirstFloorPlan(page);
-                page.comboBoxH1.SelectedIndex = 1;
-                page.comboBoxHospital1.SelectedIndex = 1;
-
-                page.SetActiveUserControl(page.legenda);
-                TransitionAnimation();
             }
-            else if (medicationRoom.Department.Floor == 2 && medicationRoom.Department.Hospital.Id == 1)
+            else
             {
-                Id = medicationRoom.Id.ToString();
                 page.MainFrame.Content = new Building1SecondFloorPlan(page);
-                page.comboBoxH1.SelectedIndex = 2;
-                page.SetActiveUserControl(page.legenda);
-                TransitionAnimation();
             }
-            if (medicationRoom.Department.Floor == 0 && medicationRoom.Department.Hospital.Id == 2)
+            SelectComboBoxesForFirstHospital(medicationRoom);
+        }
+
+        private void CheckFloorForSecondHospital(Room medicationRoom)
+        {
+            if (medicationRoom.Department.Floor == 0)
             {
-                Id = medicationRoom.Id.ToString();
                 page.MainFrame.Content = new Building2GroundFloorPlan(page);
-                page.comboBoxH2.SelectedIndex = 0;
-                page.comboBoxHospital2.SelectedIndex = 0;
-
-                page.SetActiveUserControl(page.legenda);
-                TransitionAnimation();
             }
-            else if (medicationRoom.Department.Floor == 1 && medicationRoom.Department.Hospital.Id == 2)
+            else if (medicationRoom.Department.Floor == 1)
             {
-                Id = medicationRoom.Id.ToString();
                 page.MainFrame.Content = new Building2FirstFloorPlan(page);
-                page.comboBoxH2.SelectedIndex = 1;
-                page.comboBoxHospital2.SelectedIndex = 1;
-
-                page.SetActiveUserControl(page.legenda);
-                TransitionAnimation();
             }
-            else if (medicationRoom.Department.Floor == 2 && medicationRoom.Department.Hospital.Id == 2)
+            else
             {
-                Id = medicationRoom.Id.ToString();
                 page.MainFrame.Content = new Building2SecondFloorPlan(page);
-                page.comboBoxH2.SelectedIndex = 2;
-                page.comboBoxHospital2.SelectedIndex = 2;
-
-                page.SetActiveUserControl(page.legenda);
-                TransitionAnimation();
             }
-
-
+            SelectComboBoxesForSecondHospital(medicationRoom);
+        }
+        private void SelectComboBoxesForFirstHospital(Room medicationRoom)
+        {
+            Id = medicationRoom.Id.ToString();
+            page.comboBoxH1.SelectedIndex = medicationRoom.Department.Floor;
+            page.comboBoxHospital1.SelectedIndex = medicationRoom.Department.Floor;
+            page.SetActiveUserControl(page.legenda);
+            TransitionAnimation();
+        }
+        private void SelectComboBoxesForSecondHospital(Room medicationRoom)
+        {
+            Id = medicationRoom.Id.ToString();
+            page.comboBoxH2.SelectedIndex = medicationRoom.Department.Floor;
+            page.comboBoxHospital2.SelectedIndex = medicationRoom.Department.Floor;
+            page.SetActiveUserControl(page.legenda);
+            TransitionAnimation();
         }
     }
 }
