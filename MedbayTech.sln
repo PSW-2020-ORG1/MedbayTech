@@ -4,13 +4,7 @@ VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.GraphicEditor", "MedbayTech.GraphicEditor\MedbayTech.GraphicEditor.csproj", "{C24D880D-C07D-4FAA-B68A-24C2EF5595BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplication\WebApplication.csproj", "{3894E9E7-4951-4BFC-9B71-5ADBD7EE30AF}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "Backend\Backend.csproj", "{93C92C42-324A-47C2-A593-778053E59F17}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Pharmacies", "MedbayTech.Pharmacies\MedbayTech.Pharmacies.csproj", "{B5111A58-9EBF-43DF-89D7-B7052379286C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphicEditorWebService", "GraphicEditorWebService\GraphicEditorWebService.csproj", "{0A906169-3229-46B7-A714-FA087A3594AF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.RabbitMQService", "MedbayTech.RabbitMQService\MedbayTech.RabbitMQService.csproj", "{978AA648-87EC-4B17-8777-C0D6074AAFC6}"
 EndProject
@@ -38,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.PharmacyIntegrat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Medications", "MedbayTech.Medications\MedbayTech.Medications.csproj", "{64CFE2E5-3107-499A-8DC5-22C06485F520}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedbayTech.Tenders", "MedbayTech.Tenders\MedbayTech.Tenders.csproj", "{AA393F6D-7CB1-449D-A312-52F1BFD89EB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedbayTech.Tenders", "MedbayTech.Tenders\MedbayTech.Tenders.csproj", "{AA393F6D-7CB1-449D-A312-52F1BFD89EB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,22 +44,10 @@ Global
 		{C24D880D-C07D-4FAA-B68A-24C2EF5595BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C24D880D-C07D-4FAA-B68A-24C2EF5595BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C24D880D-C07D-4FAA-B68A-24C2EF5595BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3894E9E7-4951-4BFC-9B71-5ADBD7EE30AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3894E9E7-4951-4BFC-9B71-5ADBD7EE30AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3894E9E7-4951-4BFC-9B71-5ADBD7EE30AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3894E9E7-4951-4BFC-9B71-5ADBD7EE30AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93C92C42-324A-47C2-A593-778053E59F17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93C92C42-324A-47C2-A593-778053E59F17}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93C92C42-324A-47C2-A593-778053E59F17}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93C92C42-324A-47C2-A593-778053E59F17}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B5111A58-9EBF-43DF-89D7-B7052379286C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B5111A58-9EBF-43DF-89D7-B7052379286C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5111A58-9EBF-43DF-89D7-B7052379286C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5111A58-9EBF-43DF-89D7-B7052379286C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A906169-3229-46B7-A714-FA087A3594AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A906169-3229-46B7-A714-FA087A3594AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A906169-3229-46B7-A714-FA087A3594AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A906169-3229-46B7-A714-FA087A3594AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{978AA648-87EC-4B17-8777-C0D6074AAFC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{978AA648-87EC-4B17-8777-C0D6074AAFC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{978AA648-87EC-4B17-8777-C0D6074AAFC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
