@@ -92,7 +92,7 @@ services:
       DATABASE_TYPE: "postgres"
       DATABASE_SCHEMA: "mydb1"
       STAGE: "test"
-      PORT: "5003")
+      PORT: "5003"
       PORT_USERS: "5002"
       URL_USERS: "users"
     ports:
