@@ -9,8 +9,8 @@ using Infrastructure.Services;
 using MedbayTech.Appointment.Application.Common.Interfaces.Persistance;
 using MedbayTech.Appointment.Application.Gateways;
 using MedbayTech.Appointment.Domain.Entities;
+using MedbayTech.Common.Domain.Entities;
 using MedbayTech.Common.Domain.ValueObjects;
-using MedbayTech.Rooms.Domain;
 using Moq;
 using Shouldly;
 using Xunit;
@@ -477,7 +477,7 @@ namespace MedbayTech.UnitTesting.Schedules
             Room room1 = new Room
             {
                 Id = 1,
-                Department = new Department(),
+                Department = new MedbayTech.Rooms.Domain.Department(),
                 RoomLabel = "",
                 RoomType = RoomType.ExaminationRoom
             };
