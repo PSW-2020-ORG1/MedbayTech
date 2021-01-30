@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  baseUrl: "http://medbaytech.herkouapp.com",
+  baseUrl: "https://medbaytech.herkouapp.com",
   createdCount : 'getCreatedCount',
   backStepCount : 'getBackStepCount',
   quitCount : 'getCountOfQuit',
