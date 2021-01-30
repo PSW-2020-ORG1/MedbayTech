@@ -1,18 +1,16 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /app
 
-COPY Backend/Backend.csproj Backend/
-COPY WebApplication/WebApplication.csproj WebApplication/
+COPY MedbayTech.Users/MedbayTech.Users.csproj MedbayTech.Users/
+COPY MedbayTech.Common/MedbayTech.Common.csproj MedbayTech.Common/
+COPY MedbayTech.Appointment/MedbayTech.Appointment.csproj MedbayTech.Appointment/
+COPY MedbayTech.PatientDocuments/MedbayTech.PatientDocuments.csproj MedbayTech.PatientDocuments/
+COPY MedbayTech.Rooms/MedbayTech.Rooms.csproj MedbayTech.Rooms/
 COPY MedbayTech.WebIntegrationTests/MedbayTech.WebIntegrationTests.csproj MedbayTech.WebIntegrationTests/
 
 RUN dotnet restore MedbayTech.WebIntegrationTests/MedbayTech.WebIntegrationTests.csproj
 COPY . .
 
-#FROM build AS publish
-WORKDIR /app/Backend
-ENV PATH $PATH:/root/.dotnet/tools
-RUN dotnet tool install -g dotnet-ef --version 3.1.9
-RUN dotnet ef migrations add Init
 
 FROM build AS test
 LABEL test=true

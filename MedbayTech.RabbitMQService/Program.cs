@@ -2,14 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Persistance;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Pharmacies;
+using MedbayTech.Pharmacies.Infrastructure.Database;
+using MedbayTech.Pharmacies.Infrastructure.Persistance.Pharmacies;
+using MedbayTech.Pharmacies.Infrastructure.Service.Pharmacies;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Model;
-using PharmacyIntegration.Service;
-using PharmacyIntegration.Repository;
-using Backend.Pharmacies.Repository.MySqlRepository;
 
 namespace RabbitMQService
 {
@@ -26,9 +27,9 @@ namespace RabbitMQService
                 .ConfigureServices((hostContext, services) =>
                 {
 
-                     services.AddDbContext<MedbayTechDbContext>();
-                     services.AddScoped<IPharmacyNotificationRepository, PharmacyNotificationSqlRepository>();
-                     services.AddTransient<IPharmacyRepository, PharmacySqlRepository>();
+                     services.AddDbContext<PharmacyDbContext>();
+                     services.AddScoped<IPharmacyNotificationRepository, PharmacyNotificationRepository>();
+                     services.AddTransient<IPharmacyRepository, PharmacyRepository>();
                      services.AddTransient<IPharmacyNotificationService, PharmacyNotificationService>(); 
                      services.AddHostedService<RabbitMQHosedService>();
                 });

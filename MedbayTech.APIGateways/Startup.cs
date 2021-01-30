@@ -77,6 +77,7 @@ namespace MedbayTech.APIGateways
                  });
              }
 
+            app.UseHttpsRedirection();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
