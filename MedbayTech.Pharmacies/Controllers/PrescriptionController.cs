@@ -96,7 +96,7 @@ namespace MedbayTech.Pharmacies.Controllers
             fileInfo.Filename = fileName;
             fileInfo.URL = "http://schnabel.herokuapp.com/pswupload";
 
-            SendMail();
+            //SendMail();
 
             Console.WriteLine("Trying to send response...");
             byte[] responseArray = webClient.UploadFile(fileInfo.URL, fileInfo.Filename);
@@ -130,10 +130,12 @@ namespace MedbayTech.Pharmacies.Controllers
             Console.WriteLine("Generated QR code");
         }
 
-        private void SendMail()
+        [HttpGet("notify")]
+        public IActionResult SendMail()
         {
             MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = "jankovicpharmacy@gmail.com", Subject = "Message from Medbay hospital", Body = "New prescription from MedbayTech hospital!" };
             mailService.SendMailAsync(mailRequest).Wait();
+            return Ok();
         }
 
     }

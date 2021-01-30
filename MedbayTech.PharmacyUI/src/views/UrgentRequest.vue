@@ -123,6 +123,7 @@ export default {
                 .then(response => {
                     console.log(response.data);
                     this.$toast.success("Urgent request successfully created!");
+                    this.notify();
                     this.$router.push("/dean/urgentOrder");
                 })
                 .catch(response => {
@@ -144,6 +145,17 @@ export default {
                     this.$toast.error("Adding new medication failed!");
                     console.log(response);
                 });
+        },
+
+        notify: function() {
+            this.axios.get("http://localhost:56764/api/Procurement/notify")
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(response => {
+                    console.log(response.data);
+                })
+
         }
 
     },

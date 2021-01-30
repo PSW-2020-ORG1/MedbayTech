@@ -242,10 +242,22 @@ export default {
                     this.getAllTenders();
                     console.log(response.data);
                     this.$toast.success("New tender successfully created!");
+                    this.notify();
                 })
                 .catch(response => {
                     console.log(response.data);
                 })
+        },
+
+        notify: function() {
+            this.axios.get("http://localhost:56764/api/Tender/notify")
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(response => {
+                    console.log(response.data);
+                })
+
         }
         
     },

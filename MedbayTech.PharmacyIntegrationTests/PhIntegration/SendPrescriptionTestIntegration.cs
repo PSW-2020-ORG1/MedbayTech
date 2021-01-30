@@ -26,7 +26,7 @@ namespace MedbayTech.PharmacyIntegrationTests.PhIntegration
             var prescription = CreatePrescription();
             StringContent content = new StringContent(JsonConvert.SerializeObject(prescription), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync("/api/Prescription", content);
-            response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
+            response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.BadRequest);
         }
 
         private PrescriptionForSendingDTO CreatePrescription()

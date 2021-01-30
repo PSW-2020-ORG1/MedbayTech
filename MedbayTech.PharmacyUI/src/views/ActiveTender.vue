@@ -158,6 +158,7 @@ export default {
                     console.log(response.data);
                     this.show = !this.show;
                     this.$toast.success("Offer successfully made!");
+                    this.notify(tenderOffer.pharmacyEMail);
                 })
                 .catch(response => {
                     console.log(response.data);
@@ -172,6 +173,17 @@ export default {
                 .catch(response => {
                     console.log(response.data);
                 })
+        },
+
+        notify: function(mail) {
+            this.axios.get("http://localhost:56764/api/tenderOffer/notify/" + mail)
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(response => {
+                    console.log(response.data);
+                })
+
         }
         
     },

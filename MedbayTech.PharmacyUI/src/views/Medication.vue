@@ -120,18 +120,26 @@ export default {
             prescription.pharmacy = this.pharmacy[index];
             this.axios.post("http://localhost:50202/api/Prescription/", prescription)
                 .then(response => {
-                    //This is for sftp
-                    /*this.axios.get("http://localhost:50202/api/Sftp")
-                        .then(response => {
-                            console.log(response.data);
-                        })*/
+                    
                     console.log(response.data);
 
                     this.showModal = false;
+                    this.notify();
                 })
                 .catch(response => {
                     console.log(response);
                 });
+        },
+
+        notify: function() {
+            this.axios.get("http://localhost:56764/api/Prescription/notify")
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(response => {
+                    console.log(response.data);
+                })
+
         }
     },
     mounted() {

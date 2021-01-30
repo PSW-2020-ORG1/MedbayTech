@@ -59,49 +59,49 @@ namespace MedbayTech.Tenders.Infrastructure.Database
             context.Add(new TenderMedication
             {
                 MedicationId = 1,
-                TenderID = 4,
+                TenderID = 1,
                 TenderMedicationQuantity = 100
             });
             context.Add(new TenderMedication
             {
                 MedicationId = 2,
-                TenderID = 4,
+                TenderID = 1,
                 TenderMedicationQuantity = 500
             });
             context.Add(new TenderMedication
             {
                 MedicationId = 3,
-                TenderID = 4,
+                TenderID = 1,
                 TenderMedicationQuantity = 300
             });
             context.Add(new TenderMedication
             {
                 MedicationId = 7,
-                TenderID = 4,
+                TenderID = 1,
                 TenderMedicationQuantity = 50
             });
             context.Add(new TenderMedication
             {
                 MedicationId = 10,
-                TenderID = 3,
+                TenderID = 2,
                 TenderMedicationQuantity = 100
             });
             context.Add(new TenderMedication
             {
                 MedicationId = 11,
-                TenderID = 3,
+                TenderID = 2,
                 TenderMedicationQuantity = 150
             });
             context.Add(new TenderMedication
             {
                 MedicationId = 48,
-                TenderID = 2,
+                TenderID = 3,
                 TenderMedicationQuantity = 169
             });
             context.Add(new TenderMedication
             {
                 MedicationId = 36,
-                TenderID = 1,
+                TenderID = 4,
                 TenderMedicationQuantity = 210
             });
 

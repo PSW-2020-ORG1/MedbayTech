@@ -44,7 +44,7 @@ namespace MedbayTech.Pharmacies.Contrllers
 
             if (isSuccessfullyAdded)
             {
-                SendMail();
+                //SendMail();
                 return Ok();
             }
             else
@@ -95,13 +95,16 @@ namespace MedbayTech.Pharmacies.Contrllers
             GrpcClient grpc = new GrpcClient();
             return Ok(grpc.Urgent(p, pr.MedicationName).Result);
         }
-        private void SendMail()
+
+        [HttpGet("notify")]
+        public IActionResult SendMail()
         {
             foreach (Pharmacy pharmacy in _pharmacyService.GetAll())
             {
                 MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = pharmacy.Email, Subject = "Message from Medbay hospital", Body = "New urgent procurement in MedbayTech hospital!" };
-                //_mailService.SendMailAsync(mailRequest).Wait();
+                _mailService.SendMailAsync(mailRequest).Wait();
             }
+            return Ok();
         }
 
     }
