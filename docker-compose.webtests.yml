@@ -54,33 +54,33 @@ services:
       volumes:
       - postgres-data:/var/lib/postgres:rw
 
-  phintegrationtests:
-    build:
-      context: .
-      dockerfile: Dockerfile.PhIntegrationTests
-    container_name: ph_integration_tests
-    restart: on-failure
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_USERNAME: "user"
-      DATABASE_PASSWORD: "user"
-      DATABASE_HOST: "postgres"
-      DATABASE_TYPE: "postgres"
-      DATABASE_SCHEMA: "mydb1"
-      STAGE: "test"
-      URL_MEDICATION: "medications"
-      PORT_MEDICATION: "5007"
-      URL_DOCUMENTS: "patientdocuments"
-      PORT_DOCUMENTS: "5006"
-      URL_PHARMACIES: "pharmacies"
-      PORT_PHARMACIES: "50202"
-    expose: 
-       - "80"
-    networks: 
-      - demo
-    volumes:
-      - postgres-data:/var/lib/postgres:rw
+  # phintegrationtests:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.PhIntegrationTests
+  #   container_name: ph_integration_tests
+  #   restart: on-failure
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     DATABASE_USERNAME: "user"
+  #     DATABASE_PASSWORD: "user"
+  #     DATABASE_HOST: "postgres"
+  #     DATABASE_TYPE: "postgres"
+  #     DATABASE_SCHEMA: "mydb1"
+  #     STAGE: "test"
+  #     URL_MEDICATION: "medications"
+  #     PORT_MEDICATION: "5007"
+  #     URL_DOCUMENTS: "patientdocuments"
+  #     PORT_DOCUMENTS: "5006"
+  #     URL_PHARMACIES: "pharmacies"
+  #     PORT_PHARMACIES: "50202"
+  #   expose: 
+  #      - "80"
+  #   networks: 
+  #     - demo
+  #   volumes:
+  #     - postgres-data:/var/lib/postgres:rw
   
   feedback:
     build:
@@ -108,83 +108,83 @@ services:
       - postgres-data:/var/lib/postgres:rw
 
   
-  pharmacies:
-    build:
-      context: .
-      dockerfile: Dockerfile.Pharmacies
-    container_name: pharmacy_container
-    restart: on-failure
-    networks:
-      - demo
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_USERNAME: "user"
-      DATABASE_PASSWORD: "user"
-      DATABASE_HOST: "postgres"
-      DATABASE_TYPE: "postgres"
-      DATABASE_SCHEMA: "mydb1"
-      STAGE: "test"
-      PORT: "50202"
-      URL_MEDICATION: "medications"
-      PORT_MEDICATION: "5007"
-      URL_DOCUMENTS: "patientdocuments"
-      PORT_DOCUMENTS: "5006"
-    ports:
-      - "50202:50202"
-    volumes:
-      - postgres-data:/var/lib/postgres:rw
-  tenders:
-    build:
-      context: .
-      dockerfile: Dockerfile.Tenders
-    container_name: tenders_container
-    restart: on-failure
-    networks:
-      - demo
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_USERNAME: "user"
-      DATABASE_PASSWORD: "user"
-      DATABASE_HOST: "postgres"
-      DATABASE_TYPE: "postgres"
-      DATABASE_SCHEMA: "mydb1"
-      STAGE: "test"
-      PORT: "5000"
-      URL_MEDICATION: "medications"
-      PORT_MEDICATION: "5007"
-      URL_DOCUMENTS: "patientdocuments"
-      PORT_DOCUMENTS: "5006"
-      URL_PHARMACIES: "pharmacies"
-      PORT_PHARMACIES: "50202"
-    ports:
-      - "49835:5000"
-    volumes:
-      - postgres-data:/var/lib/postgres:rw
+  # pharmacies:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.Pharmacies
+  #   container_name: pharmacy_container
+  #   restart: on-failure
+  #   networks:
+  #     - demo
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     DATABASE_USERNAME: "user"
+  #     DATABASE_PASSWORD: "user"
+  #     DATABASE_HOST: "postgres"
+  #     DATABASE_TYPE: "postgres"
+  #     DATABASE_SCHEMA: "mydb1"
+  #     STAGE: "test"
+  #     PORT: "50202"
+  #     URL_MEDICATION: "medications"
+  #     PORT_MEDICATION: "5007"
+  #     URL_DOCUMENTS: "patientdocuments"
+  #     PORT_DOCUMENTS: "5006"
+  #   ports:
+  #     - "50202:50202"
+  #   volumes:
+  #     - postgres-data:/var/lib/postgres:rw
+  # tenders:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.Tenders
+  #   container_name: tenders_container
+  #   restart: on-failure
+  #   networks:
+  #     - demo
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     DATABASE_USERNAME: "user"
+  #     DATABASE_PASSWORD: "user"
+  #     DATABASE_HOST: "postgres"
+  #     DATABASE_TYPE: "postgres"
+  #     DATABASE_SCHEMA: "mydb1"
+  #     STAGE: "test"
+  #     PORT: "5000"
+  #     URL_MEDICATION: "medications"
+  #     PORT_MEDICATION: "5007"
+  #     URL_DOCUMENTS: "patientdocuments"
+  #     PORT_DOCUMENTS: "5006"
+  #     URL_PHARMACIES: "pharmacies"
+  #     PORT_PHARMACIES: "50202"
+  #   ports:
+  #     - "49835:5000"
+  #   volumes:
+  #     - postgres-data:/var/lib/postgres:rw
 
-  medications:
-    build:
-      context: .
-      dockerfile: Dockerfile.Medications
-    container_name: medications_container
-    restart: on-failure
-    networks:
-      - demo
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_USERNAME: "user"
-      DATABASE_PASSWORD: "user"
-      DATABASE_HOST: "postgres"
-      DATABASE_TYPE: "postgres"
-      DATABASE_SCHEMA: "mydb1"
-      STAGE: "test"
-      PORT: "5007"
-    ports:
-      - "56764:5007"
-    volumes:
-      - postgres-data:/var/lib/postgres:rw
+  # medications:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.Medications
+  #   container_name: medications_container
+  #   restart: on-failure
+  #   networks:
+  #     - demo
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     DATABASE_USERNAME: "user"
+  #     DATABASE_PASSWORD: "user"
+  #     DATABASE_HOST: "postgres"
+  #     DATABASE_TYPE: "postgres"
+  #     DATABASE_SCHEMA: "mydb1"
+  #     STAGE: "test"
+  #     PORT: "5007"
+  #   ports:
+  #     - "56764:5007"
+  #   volumes:
+  #     - postgres-data:/var/lib/postgres:rw
 
   rooms:
     build:
