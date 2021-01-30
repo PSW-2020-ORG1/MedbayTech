@@ -1,0 +1,5 @@
+MedbayTech.Pharmacies
+MedbayTech.Medications
+MedbayTech.PatientDocuments
+MedbayTech.Users
+MedbayTech.Tenders

@@ -1,0 +1,36 @@
+.survey{
+    border: 5px outset grey;
+    text-align: center;
+    width: 75%;
+}
+mat-card{
+    
+    justify-content: center;
+}
+.example-radio-group{
+    text-align: center;
+   
+}
+
+#questions{
+    font-size: 20px;
+}
+
+#grade{
+    padding-right: 10px;
+}
+
+#Doctor{
+    font-size: 25px;
+
+}
+
+.title-color {
+    background-color: #3F51B5;
+    color: white;
+}
+
+#button {
+    margin-top: 15px;
+}
+

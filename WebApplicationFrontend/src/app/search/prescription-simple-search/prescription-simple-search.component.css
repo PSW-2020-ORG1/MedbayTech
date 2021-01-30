@@ -1,0 +1,28 @@
+.fix-margins{
+    margin-left: 10px;
+}
+
+table {
+    margin-left: 14.5vw;
+    margin-top: 15px;
+    width: 45%;
+    border-bottom: 1px solid black;
+}
+
+th {
+    font-weight: bold;
+    font-size: small;
+    background-color: #3F51B5;
+    color: white;
+}
+
+:host ::ng-deep .mat-sort-header-container { 
+    display: flex;  
+    justify-content: center; 
+}
+
+th.mat-header-cell, td.mat-cell { 
+    text-align: left; 
+    font-size: 15px;
+    margin-left: 10px;
+}

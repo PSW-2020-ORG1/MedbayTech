@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "RabbitMQService": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

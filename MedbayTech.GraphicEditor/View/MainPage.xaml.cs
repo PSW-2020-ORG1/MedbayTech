@@ -1,0 +1,497 @@
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
+using System.IO;
+using MedbayTech.GraphicEditor.View;
+using System.Net.Http;
+using Newtonsoft.Json;
+using GraphicEditor.ViewModel;
+using MedbayTech.GraphicEditor.View.Building1;
+using MedbayTech.GraphicEditor.View.Building2;
+using MedbayTech.Rooms.Domain;
+
+namespace MedbayTech.GraphicEditor
+{
+    /// <summary>
+    /// Interaction logic for MainPage.xaml
+    /// </summary>
+    public partial class MainPage : Page
+    {
+        private Boolean dontRefreshMap;
+        private static int Restriction;
+        private MainWindow mainWindow;
+
+        public MainPage(String user, MainWindow mainWindow)
+        {
+            InitializeComponent();
+            this.mainWindow = mainWindow;
+            MainFrame.Content = new HospitalMap(this);
+            setRestrictionType(user);
+            string path = Directory.GetCurrentDirectory();
+            string new_path = path.Replace('\\', '/');
+            string logo = new_path + "/Icons/WhiteLogo.png";
+            imageLogo.Source = new BitmapImage(new Uri(@logo, UriKind.Absolute));
+        }
+
+        private void setRestrictionType(String user)
+        {
+            if (user.Equals("administrator")) Restriction = 0;
+            else if (user.Equals("patient")) Restriction = 1;
+            else if (user.Equals("secretary")) Restriction = 2;
+            else if (user.Equals("doctor")) Restriction = 3;
+        }
+
+        public int getRestriction()
+        {
+            return Restriction;
+        }
+
+        private void TransitionAnimation()
+        {
+            Storyboard storyboard = new Storyboard();
+            DoubleAnimation doubleAnimation = new DoubleAnimation();
+            doubleAnimation.From = 0;
+            doubleAnimation.To = 1;
+            doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
+            storyboard.Children.Add(doubleAnimation);
+            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.OpacityProperty));
+            Storyboard.SetTargetName(doubleAnimation, MainFrame.Name);
+            storyboard.Begin(this);
+        }
+
+        private void ShowHospitalMap(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Content = new HospitalMap(this);
+            TransitionAnimation();
+        }
+        private void ShowBuilding1GroundFloor(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Content = new Building1GroundFloorPlan(this);
+            TransitionAnimation();
+
+        }
+        private void ShowBuilding1FirstFloor(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Content = new Building1FirstFloorPlan(this);
+            TransitionAnimation();
+        }
+        private void ShowBuilding1SecondFloor(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Content = new Building1SecondFloorPlan(this);
+            TransitionAnimation();
+        }
+        private void ShowBuilding2GroundFloor(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Content = new Building2GroundFloorPlan(this);
+            TransitionAnimation();
+        }
+
+        private void ShowBuilding2FirstFloor(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Content = new Building2FirstFloorPlan(this);
+            TransitionAnimation();
+        }
+        private void ShowBuilding2SecondFloor(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Content = new Building2SecondFloorPlan(this);
+            TransitionAnimation();
+        }
+
+        private void EnterKey(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                if ((bool)Rooms.IsChecked)
+                {
+                    MainFrame.Content = new SearchResultsForRooms(this, textBoxSearch.Text);
+                }
+                else if ((bool)Medicines.IsChecked)
+                {
+                    if (Restriction != 1)
+                    {
+                        MainFrame.Content = new SearchResultsForMedicines(this, textBoxSearch.Text);
+                    }
+                    else MessageBox.Show("You dont have perrmision to search this!");
+                }
+                else if ((bool)Equipment.IsChecked)
+                {
+                    if (Restriction != 1)
+                    {
+                        MainFrame.Content = new SearchResultsForEquipment(this, textBoxSearch.Text);
+                    }
+                    else MessageBox.Show("You dont have perrmision to search this!");
+                }
+            }
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dontRefreshMap)
+            {
+                dontRefreshMap = false;
+                return;
+            }
+            if (H1 == null || H2 == null || MAP == null)
+            {
+                return;
+            }
+            if (MAP.IsSelected)
+            {
+                comboBoxH1.SelectedItem = null;
+                comboBoxH2.SelectedItem = null;
+                ShowHospitalMap(null, null);
+                DisableActiveUserControl(legenda);
+            }
+            else if (H1.IsSelected)
+            {
+                ShowBuilding1GroundFloor(null, null);
+                comboBoxHospital1.SelectedIndex = 0;
+                SetActiveUserControl(legenda);
+            }
+            else if (H2.IsSelected)
+            {
+                ShowBuilding2GroundFloor(null, null);
+                comboBoxHospital2.SelectedIndex = 0;
+                SetActiveUserControl(legenda);
+            }
+        }
+
+        public void SetActiveUserControl(UserControl control)
+        {
+            legenda.Visibility = Visibility.Visible;
+        }
+
+        public void DisableActiveUserControl(UserControl control)
+        {
+            legenda.Visibility = Visibility.Collapsed;
+
+        }
+        private void comboBoxH1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dontRefreshMap) return;
+            dontRefreshMap = true;
+            comboBoxH2.SelectedItem = null;
+            if (comboBoxH1.SelectedIndex == 0)
+            {
+                dontRefreshMap = true;
+                ShowBuilding1GroundFloor(null, null);
+                SetActiveUserControl(legenda);
+            }
+            else if (comboBoxH1.SelectedIndex == 1)
+            {
+                dontRefreshMap = true;
+                ShowBuilding1FirstFloor(null, null);
+                SetActiveUserControl(legenda);
+            }
+            else if (comboBoxH1.SelectedIndex == 2)
+            {
+                dontRefreshMap = true;
+                ShowBuilding1SecondFloor(null, null);
+                SetActiveUserControl(legenda);
+            }
+        }
+
+        private void comboBoxHospital1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dontRefreshMap = true;
+            if (comboBoxHospital1.SelectedIndex == 0)
+            {
+                ShowBuilding1GroundFloor(null, null);
+                SetActiveUserControl(legenda);
+            }
+            else if (comboBoxHospital1.SelectedIndex == 1)
+            {
+                ShowBuilding1FirstFloor(null, null);
+                SetActiveUserControl(legenda);
+            }
+            else if (comboBoxHospital1.SelectedIndex == 2)
+            {
+                ShowBuilding1SecondFloor(null, null);
+                SetActiveUserControl(legenda);
+            }
+        }
+
+        private void comboBoxH2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dontRefreshMap) return;
+            dontRefreshMap = true;
+            comboBoxH1.SelectedItem = null;
+            if (comboBoxH2.SelectedIndex == 0)
+            {
+                dontRefreshMap = true;
+                ShowBuilding2GroundFloor(null, null);
+                SetActiveUserControl(legenda);
+            }
+            else if (comboBoxH2.SelectedIndex == 1)
+            {
+                dontRefreshMap = true;
+                ShowBuilding2FirstFloor(null, null);
+                SetActiveUserControl(legenda);
+            }
+            else if (comboBoxH2.SelectedIndex == 2)
+            {
+                dontRefreshMap = true;
+                ShowBuilding2SecondFloor(null, null);
+                SetActiveUserControl(legenda);
+            }
+        }
+        private void comboBoxHospital2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dontRefreshMap = true;
+            if (comboBoxHospital2.SelectedIndex == 0)
+            {
+                ShowBuilding2GroundFloor(null, null);
+            }
+            else if (comboBoxHospital2.SelectedIndex == 1)
+            {
+                ShowBuilding2FirstFloor(null, null);
+            }
+            else if (comboBoxHospital2.SelectedIndex == 2)
+            {
+                ShowBuilding2SecondFloor(null, null);
+            }
+        }
+
+        private void ComboBoxWardsMap_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dontRefreshMap = true;
+            if (comboBoxWardsMap.SelectedIndex == 0 || comboBoxWardsMap.SelectedIndex == 1)
+            {
+                comboBoxH2.SelectedItem = null;
+                ShowBuilding1GroundFloor(null, null);
+                comboBoxH1.SelectedIndex = 0;
+            }
+            else if (comboBoxWardsMap.SelectedIndex == 2 || comboBoxWardsMap.SelectedIndex == 3)
+            {
+                comboBoxH2.SelectedItem = null;
+                ShowBuilding1FirstFloor(null, null);
+                comboBoxH1.SelectedIndex = 1;
+            }
+            else if (comboBoxWardsMap.SelectedIndex == 4 || comboBoxWardsMap.SelectedIndex == 5)
+            {
+                comboBoxH2.SelectedItem = null;
+                ShowBuilding1SecondFloor(null, null);
+                comboBoxH1.SelectedIndex = 2;
+            }
+            else if (comboBoxWardsMap.SelectedIndex == 6 || comboBoxWardsMap.SelectedIndex == 7)
+            {
+                comboBoxH1.SelectedItem = null;
+                ShowBuilding2GroundFloor(null, null);
+                comboBoxH2.SelectedIndex = 0;
+            }
+            else if (comboBoxWardsMap.SelectedIndex == 8 || comboBoxWardsMap.SelectedIndex == 9)
+            {
+                comboBoxH1.SelectedItem = null;
+                ShowBuilding2FirstFloor(null, null);
+                comboBoxH2.SelectedIndex = 1;
+            }
+            else if (comboBoxWardsMap.SelectedIndex == 10 || comboBoxWardsMap.SelectedIndex == 11)
+            {
+                comboBoxH1.SelectedItem = null;
+                ShowBuilding2SecondFloor(null, null);
+                comboBoxH2.SelectedIndex = 2;
+            }
+            dontRefreshMap = true;
+        }
+        private void ComboBoxWardsHospital1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dontRefreshMap = true;
+            if (comboBoxWardsHospital1.SelectedIndex == 0 || comboBoxWardsHospital1.SelectedIndex == 1)
+            {
+                ShowBuilding1GroundFloor(null, null);
+                comboBoxHospital1.SelectedIndex = 0;
+            }
+            else if (comboBoxWardsHospital1.SelectedIndex == 2 || comboBoxWardsHospital1.SelectedIndex == 3)
+            {
+                ShowBuilding1FirstFloor(null, null);
+                comboBoxHospital1.SelectedIndex = 1;
+            }
+            else if (comboBoxWardsHospital1.SelectedIndex == 4 || comboBoxWardsHospital1.SelectedIndex == 5)
+            {
+                ShowBuilding1SecondFloor(null, null);
+                comboBoxHospital1.SelectedIndex = 2;
+            }
+            dontRefreshMap = true;
+        }
+        private void ComboBoxWardsHospital2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dontRefreshMap = true;
+            if (comboBoxWardsHospital2.SelectedIndex == 0 || comboBoxWardsHospital2.SelectedIndex == 1)
+            {
+                ShowBuilding2GroundFloor(null, null);
+                comboBoxHospital2.SelectedIndex = 0;
+            }
+            else if (comboBoxWardsHospital2.SelectedIndex == 2 || comboBoxWardsHospital2.SelectedIndex == 3)
+            {
+                ShowBuilding2FirstFloor(null, null);
+                comboBoxHospital2.SelectedIndex = 1;
+            }
+            else if (comboBoxWardsHospital2.SelectedIndex == 4 || comboBoxWardsHospital2.SelectedIndex == 5)
+            {
+                ShowBuilding2SecondFloor(null, null);
+                comboBoxHospital2.SelectedIndex = 2;
+            }
+            dontRefreshMap = true;
+        }
+
+        private void buttonAppointmentSearch(object sender, RoutedEventArgs e)
+        {
+            if (Restriction == 2)
+            {
+                MainFrame.Content = new SearchAppointment(this);
+            }
+            else
+            {
+                MessageBox.Show("You don't have permission to search appointment!");
+            }
+        }
+
+        private void buttonExit(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Close();
+        }
+
+        public Room SearchDataBaseForRoom(int roomId)
+        {
+            Room room = new Room();
+            HttpClient httpClient = new HttpClient();
+            // var task = httpClient.GetAsync("http://localhost:53109/api/room/" + roomId + "/ByRoomId")
+            var task = httpClient.GetAsync("http://localhost:60304/api/room/" + roomId + "/ByRoomId")
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    room = JsonConvert.DeserializeObject<Room>(jsonString.Result);
+                });
+            task.Wait();
+            return room;
+        }
+        public Doctor SearchDataBaseForDoctor(int roomId)
+        {
+            Doctor doctor = null;
+            HttpClient httpClient = new HttpClient();
+            var task = httpClient.GetAsync("http://localhost:8081/api/doctor/" + roomId + "/ByExaminationRoom")
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    doctor = JsonConvert.DeserializeObject<Doctor>(jsonString.Result);
+                });
+            task.Wait();
+            Room room = new Room();
+            HttpClient httpClient1 = new HttpClient();
+            var task1 = httpClient.GetAsync("http://localhost:60304/api/room/" + roomId + "/ByRoomId")
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    room = JsonConvert.DeserializeObject<Room>(jsonString.Result);
+                });
+            task1.Wait();
+            if(doctor == null) doctor = new Doctor() { ExaminationRoom = room };
+            doctor.ExaminationRoom = room;
+            return doctor;
+        }
+
+        private void ButtonEquipmentRealocation(object sender, RoutedEventArgs e)
+        {
+            if (Restriction == 0)
+            {
+                ScheduleEquipmentRealocation scheduleEquipmentRealocation = new ScheduleEquipmentRealocation(this);
+                MainFrame.Content = scheduleEquipmentRealocation;
+            }
+            else
+            {
+                MessageBox.Show("You don't have permission to search appointment!");
+            }
+        }
+
+        private void ButtonEmergencyAppointment(object sender, RoutedEventArgs e)
+        {
+            if (Restriction == 2)
+            {
+                MainFrame.Content = new ScheduleEmergencyAppointment(this);
+            }
+            else
+            {
+                MessageBox.Show("You don't have permission to search appointment!");
+            }
+        }
+
+        private void ButtonMostViewedObject(object sender, RoutedEventArgs e)
+        {
+            if(Restriction == 1)
+            {
+                MessageBox.Show("You don't have permission to open this!");
+                return;
+            }
+            Room room = SearchDataBaseForMostViewedRoom();
+            if (room == null)
+            {
+                MessageBox.Show("Open some room idiot!");
+                return;
+            }
+            if (room.RoomType == RoomType.AuxiliaryRoom || room.RoomType == RoomType.StorageRoom)
+            {
+                AdditionalInformationAuxiliaryRoom additionalInformationAuxiliaryRoom = new AdditionalInformationAuxiliaryRoom(room.Id, this);
+                additionalInformationAuxiliaryRoom.ShowDialog();
+            }
+            else if(room.RoomType == RoomType.ExaminationRoom)
+            {
+                AdditionalInformationExaminationRoom additionalInformationExaminationRoom = new AdditionalInformationExaminationRoom(room.Id, this);
+                additionalInformationExaminationRoom.ShowDialog();
+            }
+            else if(room.RoomType == RoomType.OperationRoom)
+            {
+                AdditionalInformationOperatingRoom additionalInformationOperatingRoom = new AdditionalInformationOperatingRoom(room.Id, this);
+                additionalInformationOperatingRoom.ShowDialog();
+            }
+            else if(room.RoomType == RoomType.PatientRoom)
+            {
+                AdditionalInformationPatientRoom additionalInformationPatientRoom = new AdditionalInformationPatientRoom(room.Id, this);
+                additionalInformationPatientRoom.ShowDialog();
+            }
+        }
+
+        private void ButtonMostViewedInventory(object sender, RoutedEventArgs e)
+        {
+            if(Restriction == 0 || Restriction == 2)
+            {
+                Room room = SearchDataBaseForMostViewedRoom();
+                if (room == null)
+                {
+                    MessageBox.Show("Open some room idiot!");
+                    return;
+                }
+                MostViewedInventory mostViewedInventory = new MostViewedInventory(room);
+                mostViewedInventory.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("You don't have permission to open this!");
+            }
+        }
+
+        public Room SearchDataBaseForMostViewedRoom()
+        {
+            Room room = new Room();
+            HttpClient httpClient = new HttpClient();
+            var task = httpClient.GetAsync("http://localhost:60304/api/roomevent/getMostEntered")
+                .ContinueWith((taskWithResponse) =>
+                {
+                    var response = taskWithResponse.Result;
+                    var jsonString = response.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    room = JsonConvert.DeserializeObject<Room>(jsonString.Result);
+                });
+            task.Wait();
+            return room;
+        }
+    }
+}

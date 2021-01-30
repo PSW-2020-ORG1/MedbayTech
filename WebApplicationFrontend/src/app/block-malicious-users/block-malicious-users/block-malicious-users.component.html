@@ -1,0 +1,25 @@
+<br><br>
+
+<div style="margin-bottom: 50px;text-align: center;">
+    <h1>Block malicious users</h1>
+</div>
+
+<div class="container">
+    <table class="table"> 
+        <th> Id </th>
+        <th> Username </th>
+        <th> Name </th>
+        <th> Surname </th>
+        <th> # </th>
+        <tr *ngFor="let patient of maliciousPatients;let i=index" [class.data-selected]="patient.isSelected">
+            
+            <td *ngIf="!patient.clicked"> {{patient.id}} </td>
+            <td *ngIf="!patient.clicked"> {{patient.username}} </td>
+            <td *ngIf="!patient.clicked"> {{patient.name}} </td>
+            <td *ngIf="!patient.clicked"> {{patient.surname}} </td>
+            <td *ngIf="!patient.clicked" class="block-button-td"> <button class="block-button" (click)="patient.clicked = true;updateStatus(patient.id)" mat-raised-button color="warn">Block</button> </td>
+            
+        </tr>
+       
+    </table>
+</div>

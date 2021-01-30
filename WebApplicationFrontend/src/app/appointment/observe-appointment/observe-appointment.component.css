@@ -1,0 +1,30 @@
+
+mat-card {
+    margin-left: 15vw;
+    width: 30vw;
+}
+
+
+mat-card-header {
+    background-color: #3F51B5;
+    color: white;
+    justify-content: center;
+}
+
+mat-card-content {
+    margin-top: 10px;
+    margin-left: 1.5vw;
+}
+
+mat-card-title {
+    align-items: center;
+}
+mat-card-actions{
+    text-align: right;
+}
+
+
+.card {
+    margin-bottom: 10px;
+
+}

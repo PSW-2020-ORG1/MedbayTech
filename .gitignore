@@ -30,3 +30,15 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+
+# Pharmacy Integration
+GeneratedPrescription/
+GeneratedUsageReports/
+DrugSpecifications/
+node_modules/
+
+#Backend
+Migrations/
+
+# Migration script
+microservices.txt

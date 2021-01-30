@@ -1,0 +1,52 @@
+<br><br>
+<div class="container">
+    
+<h1 name="feedbacks" class="header">All feedback</h1>
+    <h2 name="all_feedback_len" class="container center-card">Currently there are: {{allFeedback.length}} feedback</h2>
+    <div>
+                <div id="allFeedback" [dataSource]="allFeedback" class="row" *ngFor="let feedback of allFeedback" class="container center-card">  
+                    
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>
+                                <p class="title-paragraph" *ngIf="feedback.anonymous">Anonymous</p>
+                                <p class="title-paragraph" *ngIf="!feedback.anonymous"> {{ feedback.name}} {{feedback.surname}}</p>
+                               
+                            </mat-card-title>
+                           
+                            <mat-card-subtitle>
+                                <p class="subtitle-paragraph">{{ feedback.date | date: 'dd/MM/yyyy'}}</p>
+                            </mat-card-subtitle>
+                        </mat-card-header> 
+
+                        
+                        <mat-card-content>
+                            <p class="content-paragraph">{{ feedback.additionalNotes }}</p>
+                        </mat-card-content>
+                        <mat-divider></mat-divider>
+                        <mat-card-content>
+                            <p class="content-paragraph" *ngIf="feedback.allowedForPublishing">Publishing: Allowed</p>
+                            <p class="content-paragraph" *ngIf="!feedback.allowedForPublishing">Publishing: Not Allowed</p>
+                        </mat-card-content>
+                        <mat-divider></mat-divider>
+                        <mat-card-content>
+                            <p class="content-paragraph" *ngIf="feedback.approved">Status: Approved</p>
+                            <p class="content-paragraph" *ngIf="!feedback.approved">Status: Not Approved</p>
+                            
+                        </mat-card-content>
+                        <mat-divider></mat-divider>   
+                       <mat-card-actions *ngIf="feedback.allowedForPublishing">
+                           
+                            <button mat-raised-button color="accent" id="button" (click)="updateStatus(feedback.id,!feedback.approved, $event.target)" *ngIf="!feedback.approved">Approve</button>
+                            <button mat-raised-button color="accent" id="button" (click)="updateStatus(feedback.id,!feedback.approved, $event.target)" *ngIf="feedback.approved">Deny</button>
+                            
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+                </div>  
+                <br>    
+        
+
+    
+</div>
+

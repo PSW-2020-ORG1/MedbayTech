@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Extensions.Hosting.WindowsServices</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Extensions.Hosting.WindowsServices.WindowsServiceHelpers">
+            <summary>
+            Helper methods for Windows Services.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Hosting.WindowsServices.WindowsServiceHelpers.IsWindowsService">
+            <summary>
+            Check if the current process is hosted as a Windows Service. 
+            </summary>
+            <returns><c>True</c> if the current process is hosted as a Windows Service, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions">
+            <summary>
+            Extension methods for setting up WindowsServiceLifetime.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            Sets the host lifetime to WindowsServiceLifetime, sets the Content Root,
+            and enables logging to the event log with the application name as the default source name.
+            </summary>
+            <remarks>
+            This is context aware and will only activate if it detects the process is running
+            as a Windows Service.
+            </remarks>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> to operate on.</param>
+            <returns>The same instance of the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> for chaining.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService(Microsoft.Extensions.Hosting.IHostBuilder,System.Action{Microsoft.Extensions.Hosting.WindowsServiceLifetimeOptions})">
+            <summary>
+            Sets the host lifetime to WindowsServiceLifetime, sets the Content Root,
+            and enables logging to the event log with the application name as the default source name.
+            </summary>
+            <remarks>
+            This is context aware and will only activate if it detects the process is running
+            as a Windows Service.
+            </remarks>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> to operate on.</param>
+            <param name="configure"></param>
+            <returns>The same instance of the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> for chaining.</returns>
+        </member>
+        <member name="P:Microsoft.Extensions.Hosting.WindowsServiceLifetimeOptions.ServiceName">
+            <summary>
+            The name used to identify the service to the system.
+            </summary>
+        </member>
+    </members>
+</doc>

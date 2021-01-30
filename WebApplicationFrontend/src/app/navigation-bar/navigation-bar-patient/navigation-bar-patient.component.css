@@ -1,0 +1,30 @@
+.navbar-brand {
+    font-size: 2.5vw;
+    color: white;
+    padding-top: 18px;
+}
+
+a.naslov:hover    {
+    text-decoration: none !important;
+    color: white;
+}
+
+
+.navbar-nav > li    {
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+
+.navbar-nav > li > a {
+    color:white;
+    font-size: large;
+}
+
+.navbar-nav > li > a:hover {
+    color: #d9d9d9;
+    font-size: large;
+}
+
+.nav-link{
+    font-size: 1vw;
+}

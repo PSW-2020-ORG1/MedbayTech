@@ -1,0 +1,13 @@
+
+<div>
+    <header>
+        <ng-container *ngIf="isAdmin(); else second"><app-navigation-bar-admin></app-navigation-bar-admin></ng-container>
+        <ng-template #second>
+            <ng-container *ngIf="isPatient();else third"><app-navigation-bar-patient></app-navigation-bar-patient></ng-container>
+        </ng-template>
+        <ng-template #third><app-navigation-bar-user></app-navigation-bar-user></ng-template>
+    </header>
+</div>
+<br><br><br>
+    <router-outlet></router-outlet>
+<br><br>

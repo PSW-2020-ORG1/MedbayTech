@@ -1,0 +1,36 @@
+﻿<Page x:Class="MedbayTech.GraphicEditor.View.ScheduleEquipmentRealocationIfRoomIsntEmpty"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MedbayTech.GraphicEditor.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="652" d:DesignWidth="702"
+      Title="ScheduleEquipmentRealocationIfRoomIsntEmpty">
+
+    <DockPanel>
+        <Label DockPanel.Dock="Top" Content="Please, select one appointment for realocation of your choice:" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20"/>
+        <DockPanel DockPanel.Dock="Bottom">
+            <Button DockPanel.Dock="Right" Content="Schedule appointment" Width="150" Height="28" Margin="5,5,5,5" HorizontalAlignment="Right" FontWeight="Bold" Click="ButtonScheduleAppointment">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button DockPanel.Dock="Left" Content="Cancel" Width="150" Height="28" Margin="5,5,5,5" HorizontalAlignment="Right" FontWeight="Bold" Click="ButtonClose">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </DockPanel>
+        <DataGrid Name="dataGridAppointments" Margin="5,5,5,0" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Start time" Width="346" Binding="{Binding Period.StartTime}"/>
+                <DataGridTextColumn Header="End time" Width="346" Binding="{Binding Period.EndTime}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Page>

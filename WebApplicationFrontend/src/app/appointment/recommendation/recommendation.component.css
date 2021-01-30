@@ -1,0 +1,11 @@
+table {
+    width: 55vw;
+}
+
+#tableContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5vw;
+    padding-bottom: 5vw;
+}
