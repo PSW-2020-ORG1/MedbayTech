@@ -100,7 +100,7 @@ namespace MedbayTech.Pharmacies.Contrllers
             foreach (Pharmacy pharmacy in _pharmacyService.GetAll())
             {
                 MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = pharmacy.Email, Subject = "Message from Medbay hospital", Body = "New urgent procurement in MedbayTech hospital!" };
-                _mailService.SendMailAsync(mailRequest).Wait();
+                //_mailService.SendMailAsync(mailRequest).Wait();
             }
         }
 

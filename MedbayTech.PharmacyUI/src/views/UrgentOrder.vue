@@ -83,8 +83,10 @@ export default {
                     this.status.message = response.data;
                     this.status.index = index;
                     console.log(response.data);
+                    this.$toast.success("Urgent order Successfully delivered");
                 })
                 .catch(response => {
+                    this.$toast.error("Urgent order delivery failed!");
                     console.log(response);
                 });
         },

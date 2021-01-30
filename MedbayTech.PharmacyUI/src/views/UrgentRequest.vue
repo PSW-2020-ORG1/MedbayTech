@@ -122,9 +122,11 @@ export default {
             this.axios.post("http://localhost:50202/api/Procurement/", urgentProcurement)
                 .then(response => {
                     console.log(response.data);
+                    this.$toast.success("Urgent request successfully created!");
                     this.$router.push("/dean/urgentOrder");
                 })
                 .catch(response => {
+                    this.$toast.error("Urgent request creation failed!");
                     console.log(response);
                 });
         },
@@ -136,9 +138,10 @@ export default {
                     console.log(response.data);
                     this.show = true;
                     this.getAllMedications();
+                    this.$toast.success("New medication successfully added!");
                 })
                 .catch(response => {
-                    
+                    this.$toast.error("Adding new medication failed!");
                     console.log(response);
                 });
         }

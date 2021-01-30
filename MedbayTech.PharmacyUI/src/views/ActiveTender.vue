@@ -157,6 +157,7 @@ export default {
                 .then(response => {
                     console.log(response.data);
                     this.show = !this.show;
+                    this.$toast.success("Offer successfully made!");
                 })
                 .catch(response => {
                     console.log(response.data);

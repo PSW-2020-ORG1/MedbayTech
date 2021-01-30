@@ -7,8 +7,12 @@ import router from './router'
 import MainNavigation from './components/MainNavigation'
 import FloatingLabel from './components/FloatingLabel'
 import Sidebar from './components/Sidebar'
+import VueToast from 'vue-toast-notification'
+import 'vue-toast-notification/dist/theme-sugar.css'
+
 
 Vue.use(VueAxios, axios)
+Vue.use(VueToast)
 Vue.config.productionTip = false
 Vue.component('main-navigation', MainNavigation)
 Vue.component('floating-label', FloatingLabel)

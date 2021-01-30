@@ -87,68 +87,6 @@ export default {
                     console.log(response.data);
                 })
         },
-        /*askPharamcies: function(medication, index){
-            this.axios.get("http://localhost:50202/api/Pharmacy")
-                .then(response => {
-                    this.allPharamacies = response.data;
-                    console.log(response.data);
-                    for (let i = 0; i < this.allPharamacies.length; ++i) {
-                        this.checkForMedication(medication, index, i)
-                    }
-                    this.comboEnabled[index] = false;
-                    if(this.pharmacy.length != 0)
-                    {
-                        this.availablePharamacies.push(this.pharmacies);
-                    }
-                    this.pharmacies = [];
-                    console.log("apoteke");
-                    console.log(this.availablePharamacies);
-                    
-
-                })
-                .catch(response => {
-                    console.log(response.data);
-                })
-        },
-        checkForMedication: function (medication, index, i) {
-            // This is for gRPC
-            let p = "";
-            this.axios.get("http://localhost:50202/api/Pharmacy/check" + medication)
-                .then(response => {
-                    console.log("GRPC");
-                    if(response.data === 'We have the desired medication!'){
-                        p = this.allPharamacies[i].id;
-                        console.log("ima");
-                        console.log(p);
-                    }
-                    console.log(response.data);
-                })
-                .catch(response => {
-                    console.log("Http");
-                    console.log(response.data);
-                    this.axios.get(this.allPharamacies[i].apiEndpoint + "/" + medication)
-                    .then(response => {
-                        if(response.data === 'We have the desired medication!'){
-                            p = this.allPharamacies[i].id;
-                            console.log("ima");
-                            console.log(p);
-                        }
-                        console.log(response.data);
-                    })
-                    .catch(response => {
-                        console.log(response.data);
-                    })
-                })
-            if(p !== ""){
-                this.pharmacies.push(p); 
-            }
-            console.log(i);
-            console.log(p);
-            console.log("apoteke" + i);
-            console.log(this.availablePharamacies);
-           
-            
-        },*/
         getAllPerscriptions: function () {
             this.axios.get("http://localhost:50202/api/Prescription")
                 .then(response => {

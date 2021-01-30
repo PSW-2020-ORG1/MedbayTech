@@ -48,7 +48,7 @@ namespace MedbayTech.Tenders.Infrastructure.Database
                 EndDate = new DateTime(2021, 1, 2),
                 TenderDescription = "Tender for Andol",
                 TenderStatus = TenderStatus.Finished,
-                WinnerTenderOfferId = 10
+                WinnerTenderOfferId = 7,
             });
 
             context.SaveChanges();

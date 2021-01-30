@@ -85,7 +85,7 @@ namespace MedbayTech.Tenders.Controllers
             foreach (Pharmacy pharmacy in _pharmacyGateway.GetAll())
             {
                 MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = pharmacy.Email, Subject = "Message from Medbay hospital", Body = "New tender opened in MedbayTech hospital!" };
-                _mailService.SendMailAsync(mailRequest).Wait();
+                //_mailService.SendMailAsync(mailRequest).Wait();
             }
         }
     }

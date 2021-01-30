@@ -17,7 +17,7 @@ namespace MedbayTech.Tenders.Domain.Entities.Medications
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Med { get; set; }
         public MedStatus Status { get; set; }
         public string Company { get; set; }
         public int Quantity { get; set; }
@@ -29,7 +29,7 @@ namespace MedbayTech.Tenders.Domain.Entities.Medications
 
         public Medication(string name, string company, MedicationCategory category)
         {
-            Name = name;
+            Med = name;
             Company = company;
             MedicationContent = new List<DosageOfIngredient>();
             MedicationCategory = category;
@@ -39,7 +39,7 @@ namespace MedbayTech.Tenders.Domain.Entities.Medications
         public Medication(Medication medication)
         {
             Id = medication.Id;
-            Name = medication.Name;
+            Med = medication.Med;
             Status = medication.Status;
             Company = medication.Company;
             Quantity = medication.Quantity;
@@ -52,7 +52,7 @@ namespace MedbayTech.Tenders.Domain.Entities.Medications
 
         public Medication(string name, string dosage)
         {
-            Name = name;
+            Med = name;
             Dosage = dosage;
             Company = "Galenika";
             Quantity = 0;
@@ -65,7 +65,7 @@ namespace MedbayTech.Tenders.Domain.Entities.Medications
         {
             Medication updated = new Medication(this);
             updated.Quantity = medication.Quantity;
-            updated.Name = medication.Name;
+            updated.Med = medication.Med;
             return updated;
         }
 
@@ -87,7 +87,7 @@ namespace MedbayTech.Tenders.Domain.Entities.Medications
         public void UpdateMedication(Medication medication)
         {
             Id = medication.Id;
-            Name = medication.Name;
+            Med = medication.Med;
             Status = medication.Status;
             Company = medication.Company;
             Quantity = medication.Quantity;

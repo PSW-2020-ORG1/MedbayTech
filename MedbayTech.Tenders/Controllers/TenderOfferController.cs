@@ -43,7 +43,7 @@ namespace MedbayTech.Tenders.Controllers
         private void SendMail(string email)
         {
             MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = email, Subject = "Message from Medbay hospital", Body = "Made an offer from MedbayTech hospital!" };
-            _mailService.SendMailAsync(mailRequest).Wait();
+            //_mailService.SendMailAsync(mailRequest).Wait();
         }
 
     }

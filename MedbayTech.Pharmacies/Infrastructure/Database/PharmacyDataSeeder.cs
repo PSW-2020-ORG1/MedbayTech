@@ -32,8 +32,8 @@ namespace MedbayTech.Pharmacies.Infrastructure.Database
         {
             context.Add(new Pharmacy { Id = "Jankovic", APIKey = "ID1APIKEYAAAA", APIEndpoint = "jankovic.rs", Email = "jankovicpharmacy@gmail.com", RecieveNotificationFrom = true });
             context.Add(new Pharmacy { Id = "Liman", APIKey = "ID2APIKEYAAAA", APIEndpoint = "liman.li", Email = "pharmacyliman@gmail.com", RecieveNotificationFrom = true });
-            context.Add(new Pharmacy { Id = "SchanelRemote", APIEndpoint = "http://schnabel.herokuapp.com/pswapi/drugs/name/", Email = "schnabel@gmail.com", RecieveNotificationFrom = true });
-            context.Add(new Pharmacy { Id = "SchanelLocal", APIEndpoint = "http://loclahost:6565", Email = "schnabel@gmail.com", RecieveNotificationFrom = true });
+            context.Add(new Pharmacy { Id = "SchanelRemote", APIKey = "ID3APIKEYAAAA", APIEndpoint = "http://schnabel.herokuapp.com/pswapi/drugs/name/", Email = "schnabel@gmail.com", RecieveNotificationFrom = true });
+            context.Add(new Pharmacy { Id = "SchanelLocal", APIKey = "ID4APIKEYAAAA", APIEndpoint = "http://localhost:6565", Email = "schnabel@gmail.com", RecieveNotificationFrom = true });
             context.SaveChanges();
         }
 

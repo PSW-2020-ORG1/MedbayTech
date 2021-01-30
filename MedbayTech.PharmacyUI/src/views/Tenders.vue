@@ -241,6 +241,7 @@ export default {
                     this.show = !this.show;
                     this.getAllTenders();
                     console.log(response.data);
+                    this.$toast.success("New tender successfully created!");
                 })
                 .catch(response => {
                     console.log(response.data);
