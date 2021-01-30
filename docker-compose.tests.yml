@@ -92,7 +92,7 @@ services:
       DATABASE_TYPE: "postgres"
       DATABASE_SCHEMA: "mydb1"
       STAGE: "test"
-      PORT: "5003"
+      PORT: "5003")
       PORT_USERS: "5002"
       URL_USERS: "users"
     ports:
@@ -122,7 +122,7 @@ services:
       URL_DOCUMENTS: "patientdocuments"
       PORT_DOCUMENTS: "5006"
     ports:
-      - "8084:50202"
+      - "50202:50202"
     volumes:
       - postgres-data:/var/lib/postgres:rw
   tenders:
