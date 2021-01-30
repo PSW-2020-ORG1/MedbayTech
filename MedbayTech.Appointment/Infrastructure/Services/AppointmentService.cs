@@ -200,7 +200,7 @@ namespace Infrastructure.Services
               int endTime = doctorWorkDays.EndTime;
               DateTime appointmentStart = new DateTime(date.Year, date.Month, date.Day, startTime, 0, 0);
 
-              for (int i = 0; i < endTime - 1; i++)
+              for (int i = 0; i < (endTime - startTime)*2; i++)
               {
                   Appointment appointment = new Appointment
                   {
