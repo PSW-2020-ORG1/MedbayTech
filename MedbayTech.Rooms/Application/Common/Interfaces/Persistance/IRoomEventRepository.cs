@@ -4,6 +4,6 @@ namespace MedbayTech.Rooms.Application.Common.Interfaces.Persistance
 {
     public interface IRoomEventRepository : IRepository<RoomEvent, int>
     {
-        //RoomEvent GetMostEnteredRoom(int roomId);
+       
     }
 }
