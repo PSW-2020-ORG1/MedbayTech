@@ -6,7 +6,7 @@
 
 
 # NOTE(Jovan): Read locations from microservices.txt
-$stream_reader = New-Object System.IO.StreamReader{microservices.txt}
+$stream_reader = New-Object System.IO.StreamReader{C:\MedbayTech\microservices.txt}
 $line_number = 1
 while(($current_line = $stream_reader.ReadLine()) -ne $null)
 {

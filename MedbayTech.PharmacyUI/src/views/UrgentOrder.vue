@@ -26,7 +26,7 @@
                            id="urgent-order-btn"
                            class="white accent--text"
                            @click="sendRequest(index)"
-                           :disabled="!valid[index]">
+                           :disabled="!choosenPharmacy[index]">
                         Send request
                     </v-btn>
                 </v-card-actions>
@@ -59,58 +59,40 @@ export default {
                 .then(response => {
                     this.allRequests = response.data;
                     for (var i = 0; i < this.allRequests.length; i++) {
-                        this.choosenPharmacy.push("");
-                        this.checkForMedication(this.allRequests[i].medicationName);
+                        this.choosenPharmacy[i] = "";
+                        this.getPharmacies(this.allRequests[i].medicationName, i);
                     }
                 })
                 .catch(response => {
                     console.log(response);
                 })
         },
-        getAllPharmacies: function () {
-            this.axios.get("http://localhost:50202/api/pharmacy")
+        getPharmacies: function(medication, index){
+            this.axios.get("http://localhost:50202/api/Pharmacy/available/" + medication)
                 .then(response => {
-                    this.allPharmacies = response.data;
-                    this.allPharmacies.push({ id: "Schnabel", apiKey: "1234254", apiEndpoint: "http://schnabel.herokuapp.com/pswapi/drugs/name/", RecieveNotificationFrom: true });
-                    for (var i = 0; i < this.allPharmacies.length; i++) {
-                        this.valid.push("");
-                    }
-                })
-                .catch(response => {
-                    console.log(response);
-                })
-        },
-        checkForMedication: function (medication) {
-            this.axios.get("http://schnabel.herokuapp.com/pswapi/drugs/name/" + medication)
-                .then(response => {
-                    var pharmacies = [];
-                    if (response.data === 'We have the desired medication!') {
-                        pharmacies.push("Schnabel");
-                    }
-                    console.log(medication);
-                    console.log(response.data);
-                    this.avaliablePharmacies.push(pharmacies);
+                    this.avaliablePharmacies[index] = response.data;
+                    console.log(this.avaliablePharmacies);
                 })
                 .catch(response => {
                     console.log(response.data);
                 })
         },
         sendRequest: function (index) {
-            this.axios.post("http://schnabel.herokuapp.com/pswapi/drugs/urgent", this.allRequests[index])
+            this.axios.get("http://localhost:50202/api/Procurement/send/"+this.allRequests[index].id+"/"+this.choosenPharmacy[index])
                 .then(response => {
                     this.status.message = response.data;
                     this.status.index = index;
-
                     console.log(response.data);
+                    this.$toast.success("Urgent order Successfully delivered");
                 })
                 .catch(response => {
+                    this.$toast.error("Urgent order delivery failed!");
                     console.log(response);
                 });
         },
     },
         mounted() {
             this.getAllRequests();
-            this.getAllPharmacies();
     }
 }
 </script>
