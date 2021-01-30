@@ -1,43 +1,45 @@
 ﻿
-using Backend.Utils.DTO;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using Shouldly;
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using MedbayTech.Users.Application.DTO;
+using MedbayTech.Users.Infrastructure.Service;
+using MedbayTech.WebIntegrationTests.WebApplicationFactory;
 using WebApplication;
 using Xunit;
 
 
 namespace MedbayTech.WebIntegrationTests.Users
 {
-    public class PatientBlockingTestIntegration : IClassFixture<WebApplicationFactory<Startup>>
+    public class PatientBlockingTestIntegration : IClassFixture<UsersService>, IClassFixture<LoginService>
     {
-        private readonly WebApplicationFactory<Startup> _factory;
+        private readonly UsersService _factoryUserService;
+        private readonly LoginService _factoryLogin;
 
-        public PatientBlockingTestIntegration(WebApplicationFactory<Startup> factory)
+        public PatientBlockingTestIntegration(UsersService factoryUserService, LoginService factoryLogin)
         {
-            _factory = factory;
-        }
-
-        [Fact]
-        public async System.Threading.Tasks.Task Get_all_blockable_patients_IntegrationAsync()
-        {
-            HttpClient client = _factory.CreateClient();
-
-            HttpResponseMessage response = await client.GetAsync("/api/patient/maliciousPatients");
-            response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
+            _factoryUserService = factoryUserService;
+            _factoryLogin = factoryLogin;
         }
 
         [Fact]
         public async System.Threading.Tasks.Task Block_malicious_patients_IntegrationAsync()
         {
-            HttpClient client = _factory.CreateClient();
+            Console.Write("Started Block_malicious_patients_IntegrationAsync");
+            HttpClient client = _factoryUserService.CreateClient();
+            string token = _factoryLogin.Login("markic", "marko1978");
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
             var id = PatientId();
             StringContent content = new StringContent(JsonConvert.SerializeObject(id), System.Text.Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync("/api/patient/updatePatientStatus", content);
             response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.OK);
+            Console.Write("Finished Block_malicious_patients_IntegrationAsync");
         }
 
         private static UpdatePatientBlockedStatusDTO PatientId()

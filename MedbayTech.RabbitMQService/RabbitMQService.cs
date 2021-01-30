@@ -10,9 +10,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using PharmacyIntegration.Model;
-using PharmacyIntegration.Service;
 using System.IO;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Pharmacies;
 
 namespace RabbitMQService
 {

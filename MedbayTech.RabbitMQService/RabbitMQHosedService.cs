@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using MedbayTech.Pharmacies.Application.Common.Interfaces.Service.Pharmacies;
+using MedbayTech.Pharmacies.Infrastructure.Database;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using Model;
-using PharmacyIntegration.Service;
 
 namespace RabbitMQService
 {
@@ -29,7 +29,7 @@ namespace RabbitMQService
         {
             using (var scope = scopeFactory.CreateScope())
             {
-                var MySQLContext = scope.ServiceProvider.GetRequiredService<MedbayTechDbContext>();
+                var MySQLContext = scope.ServiceProvider.GetRequiredService<PharmacyDbContext>();
                 _notificationService = scope.ServiceProvider.GetRequiredService<IPharmacyNotificationService>();
 
                 var factory = new ConnectionFactory
