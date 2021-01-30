@@ -82,30 +82,30 @@ services:
     volumes:
       - postgres-data:/var/lib/postgres:rw
   
-  # feedback:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.Feedback
-  #   container_name: feedback_container
-  #   restart: on-failure
-  #   networks:
-  #     - demo
-  #   depends_on:
-  #     - postgres
-  #   environment:
-  #     DATABASE_USERNAME: "user"
-  #     DATABASE_PASSWORD: "user"
-  #     DATABASE_HOST: "postgres"
-  #     DATABASE_TYPE: "postgres"
-  #     DATABASE_SCHEMA: "mydb1"
-  #     STAGE: "test"
-  #     PORT: "5003"
-  #     PORT_USERS: "5002"
-  #     URL_USERS: "users"
-  #   ports:
-  #     - "8080:5003"
-  #   volumes:
-  #     - postgres-data:/var/lib/postgres:rw
+  feedback:
+    build:
+      context: .
+      dockerfile: Dockerfile.Feedback
+    container_name: feedback_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "5003"
+      PORT_USERS: "5002"
+      URL_USERS: "users"
+    ports:
+      - "8080:5003"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
 
   
   pharmacies:
@@ -186,30 +186,30 @@ services:
     volumes:
       - postgres-data:/var/lib/postgres:rw
 
-  # rooms:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.Rooms
-  #   container_name: rooms_container
-  #   restart: on-failure
-  #   networks:
-  #     - demo
-  #   depends_on:
-  #     - postgres
-  #   environment:
-  #     DATABASE_USERNAME: "user"
-  #     DATABASE_PASSWORD: "user"
-  #     DATABASE_HOST: "postgres"
-  #     DATABASE_TYPE: "postgres"
-  #     DATABASE_SCHEMA: "mydb1"
-  #     STAGE: "test"
-  #     PORT: "5004"
-  #     PORT_USERS: "5002"
-  #     URL_USERS: "users"
-  #   ports:
-  #     - "60304:5004"
-  #   volumes:
-  #     - postgres-data:/var/lib/postgres:rw
+  rooms:
+    build:
+      context: .
+      dockerfile: Dockerfile.Rooms
+    container_name: rooms_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "5004"
+      PORT_USERS: "5002"
+      URL_USERS: "users"
+    ports:
+      - "60304:5004"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
 
   users:
     build:
@@ -261,29 +261,29 @@ services:
     volumes:
       - postgres-data:/var/lib/postgres:rw
 
-  # appointment:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.Appointment
-  #   container_name: appointment_container
-  #   restart: on-failure
-  #   networks:
-  #     - demo
-  #   depends_on:
-  #     - postgres
-  #   environment:
-  #     DATABASE_USERNAME: "user"
-  #     DATABASE_PASSWORD: "user"
-  #     DATABASE_HOST: "postgres"
-  #     DATABASE_TYPE: "postgres"
-  #     DATABASE_SCHEMA: "mydb1"
-  #     STAGE: "test"
-  #     PORT: "5008"
-  #     PORT_ROOMS: "5004"
-  #     URL_ROOMS: "rooms"
-  #     PORT_USERS: "5002"
-  #     URL_USERS: "users"
-  #   ports:
-  #     - "8083:5008"
-  #   volumes:
-  #     - postgres-data:/var/lib/postgres:rw
+  appointment:
+    build:
+      context: .
+      dockerfile: Dockerfile.Appointment
+    container_name: appointment_container
+    restart: on-failure
+    networks:
+      - demo
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_USERNAME: "user"
+      DATABASE_PASSWORD: "user"
+      DATABASE_HOST: "postgres"
+      DATABASE_TYPE: "postgres"
+      DATABASE_SCHEMA: "mydb1"
+      STAGE: "test"
+      PORT: "5008"
+      PORT_ROOMS: "5004"
+      URL_ROOMS: "rooms"
+      PORT_USERS: "5002"
+      URL_USERS: "users"
+    ports:
+      - "8083:5008"
+    volumes:
+      - postgres-data:/var/lib/postgres:rw
