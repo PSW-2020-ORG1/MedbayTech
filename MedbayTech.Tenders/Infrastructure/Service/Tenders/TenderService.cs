@@ -43,7 +43,7 @@ namespace MedbayTech.Tenders.Infrastructure.Service.Tenders
 
         public List<Tender> GetAll() => _tenderRepository.GetAll();
 
-        public List<TenderMedication> GetMedications(int tenderId)
+        public List<TenderMedicationDTO> GetMedications(int tenderId)
         {
             Medication medication;
             List<TenderMedicationDTO> tenderMedicationDTOs = new List<TenderMedicationDTO>();
@@ -55,10 +55,10 @@ namespace MedbayTech.Tenders.Infrastructure.Service.Tenders
                 medication = allMedications.Find(m => m.Id.Equals(tenderMedication.MedicationId));
                 if (medication != null)
                 {
-                    tenderMedicationDTOs.Add(new TenderMedicationDTO(medication.Id, medication.Name, medication.Dosage, tenderMedication.TenderMedicationQuantity));
+                    tenderMedicationDTOs.Add(new TenderMedicationDTO(medication.Id, medication.Med, medication.Dosage, tenderMedication.TenderMedicationQuantity));
                 }
             }
-            return tenderMedications;
+            return tenderMedicationDTOs;
         }
 
 

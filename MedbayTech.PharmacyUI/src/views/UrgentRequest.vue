@@ -118,12 +118,16 @@ export default {
         createRequest: function () {
             let name = this.requiredMedication.split(" ")[0];
             let dosage = this.requiredMedication.split(" ")[1];
-            let urgentProcurement = { med: name, dosage: dosage, medicationQuantity: this.medicationQuantity };
+            let urgentProcurement = { medicationName: name, medicationDosage: dosage, medicationQuantity: this.medicationQuantity };
             this.axios.post("http://localhost:50202/api/Procurement/", urgentProcurement)
                 .then(response => {
                     console.log(response.data);
+                    this.$toast.success("Urgent request successfully created!");
+                    this.notify();
+                    this.$router.push("/dean/urgentOrder");
                 })
                 .catch(response => {
+                    this.$toast.error("Urgent request creation failed!");
                     console.log(response);
                 });
         },
@@ -135,11 +139,23 @@ export default {
                     console.log(response.data);
                     this.show = true;
                     this.getAllMedications();
+                    this.$toast.success("New medication successfully added!");
                 })
                 .catch(response => {
-                    
+                    this.$toast.error("Adding new medication failed!");
                     console.log(response);
                 });
+        },
+
+        notify: function() {
+            this.axios.get("http://localhost:56764/api/Procurement/notify")
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(response => {
+                    console.log(response.data);
+                })
+
         }
 
     },
