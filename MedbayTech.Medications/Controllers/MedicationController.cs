@@ -33,15 +33,6 @@ namespace MedbayTech.Medications.Controllers
         public IActionResult Get() => Ok(_medicationService.GetAll());
 
 
-        [HttpGet("check/{search?}")]
-        public IActionResult Get(string search)
-        {
-            // TODO(Jovan): Add environment dependant support
-            //string response = grpc.CheckForMedication(search).Result;
-            //return Ok(response);
-            return Ok();
-        }
-
         [HttpGet("all")]
         public IActionResult GetAll()
         {

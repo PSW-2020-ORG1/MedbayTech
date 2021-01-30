@@ -41,7 +41,7 @@
                                 </v-chip>
                             </td>
                             <td ><v-btn v-if="row.item.id === tender.winnerTenderOfferId" class="white green--text"  elevation="0" >Winner</v-btn>
-                            <v-btn v-else class="white green--text" :disabled="tender.tenderStatus !== 1" elevation="0" v-on:click="declateWinner(row.item.id)">Accept</v-btn></td>
+                            <v-btn v-else class="white green--text" :disabled="tender.tenderStatus !== 1" elevation="0" v-on:click="declareWinner(row.item.id)">Accept</v-btn></td>
                         </tr>
                     </template>
                 </v-data-table>
@@ -73,6 +73,9 @@ export default {
            this.axios.get("http://localhost:49835/api/Tender/" + this.$route.params.id)
                 .then(response => {
                     this.tender = response.data;
+                    if(this.tender.tenderStatus == 1){
+                        this.$toast.info("Dont forget to declare winner!");
+                    }
                 })
                 .catch(response => {
                     console.log(response.data);
@@ -122,7 +125,7 @@ export default {
             }
         },
 
-        declateWinner: function(tenderOfferId){
+        declareWinner: function(tenderOfferId){
             this.tender.winnerTenderOfferId = tenderOfferId;
             this.tender.tenderStatus = 2;
             this.axios.post("http://localhost:49835/api/Tender/winner", this.tender)
@@ -133,6 +136,7 @@ export default {
                     }
                     this.getTender();
                     this.getTenderOffers();
+                    this.$toast.success("Winner successfully declared!");
                 })
                 .catch(response => {
                     console.log(response.data);
@@ -165,6 +169,7 @@ export default {
         this.getTender();
         this.getTenderMedication();
         this.getTenderOffers();
+
     },
 }
 </script>

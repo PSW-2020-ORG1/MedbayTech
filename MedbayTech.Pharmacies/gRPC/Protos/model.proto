@@ -13,5 +13,7 @@ message MessageResponseProto {
 }
 
 service CheckForMedication {
-  rpc check (MessageProto) returns (MessageResponseProto);
+	rpc check (MessageProto) returns (MessageResponseProto);
+	rpc echo (MessageProto) returns (MessageResponseProto);
+	rpc urgent (MessageProto) returns (MessageResponseProto);
 }

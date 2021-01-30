@@ -33,17 +33,19 @@ namespace MedbayTech.Tenders.Controllers
 
             if (isTenderOfferSuccessfullyAdded)
             {
-                SendMail(tenderOffer.PharmacyEMail);
+                //SendMail(tenderOffer.PharmacyEMail);
                 return Ok();
             }
             else
                 return BadRequest();
         }
 
-        private void SendMail(string email)
+        [HttpGet("notfy/{email?}")]
+        public IActionResult SendMail(string email)
         {
             MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = email, Subject = "Message from Medbay hospital", Body = "Made an offer from MedbayTech hospital!" };
             _mailService.SendMailAsync(mailRequest).Wait();
+            return Ok();
         }
 
     }

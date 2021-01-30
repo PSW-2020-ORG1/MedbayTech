@@ -56,7 +56,7 @@ namespace MedbayTech.Tenders.Controllers
 
             if (isTenderSuccessfullyAdded && isMedicationSuccessfullyAdded)
             {
-                SendMail();
+                //SendMail();
                 return Ok();
             }
             else
@@ -80,13 +80,15 @@ namespace MedbayTech.Tenders.Controllers
                 return BadRequest();
         }
 
-        private void SendMail()
+        [HttpGet("notify")]
+        public IActionResult SendMail()
         {
             foreach (Pharmacy pharmacy in _pharmacyGateway.GetAll())
             {
                 MailRequestDTO mailRequest = new MailRequestDTO { ToEmail = pharmacy.Email, Subject = "Message from Medbay hospital", Body = "New tender opened in MedbayTech hospital!" };
                 _mailService.SendMailAsync(mailRequest).Wait();
             }
+            return Ok();
         }
     }
 }

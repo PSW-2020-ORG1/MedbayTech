@@ -14,6 +14,7 @@ namespace MedbayTech.Pharmacies.Application.DTO
         public string DoctorName { get; set; }
         public string DoctorSurname { get; set; }
         public DateTime Date { get; set; }
+        public string Pharmacy { get; set; }
 
         public PrescriptionForSendingDTO()
         { }
