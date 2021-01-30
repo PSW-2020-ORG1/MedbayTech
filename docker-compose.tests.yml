@@ -52,31 +52,31 @@ services:
       volumes:
       - postgres-data:/var/lib/postgres:rw
 
-  PhIntegrationTests:
-      image: stefan7/test2
-      container_name: ph_integration_tests
-      restart: on-failure
-      depends_on:
-        - postgres
-      environment:
-        DATABASE_USERNAME: "user"
-        DATABASE_PASSWORD: "user"
-        DATABASE_HOST: "postgres"
-        DATABASE_TYPE: "postgres"
-        DATABASE_SCHEMA: "mydb1"
-        STAGE: "test"
-        URL_MEDICATION: "medications"
-        PORT_MEDICATION: "5007"
-        URL_DOCUMENTS: "patientdocuments"
-        PORT_DOCUMENTS: "5006"
-        URL_PHARMACIES: "pharmacies"
-        PORT_PHARMACIES: "50202"
-      expose: 
-        - "80"
-      networks: 
-        - demo
-      volumes:
-      - postgres-data:/var/lib/postgres:rw
+#  PhIntegrationTests:
+#      image: stefan7/test2
+#      container_name: ph_integration_tests
+#      restart: on-failure
+#      depends_on:
+#        - postgres
+#      environment:
+#        DATABASE_USERNAME: "user"
+#        DATABASE_PASSWORD: "user"
+#        DATABASE_HOST: "postgres"
+#        DATABASE_TYPE: "postgres"
+#        DATABASE_SCHEMA: "mydb1"
+#        STAGE: "test"
+#        URL_MEDICATION: "medications"
+#        PORT_MEDICATION: "5007"
+#        URL_DOCUMENTS: "patientdocuments"
+#        PORT_DOCUMENTS: "5006"
+#        URL_PHARMACIES: "pharmacies"
+#        PORT_PHARMACIES: "50202"
+#      expose: 
+#        - "80"
+#      networks: 
+#        - demo
+#      volumes:
+#      - postgres-data:/var/lib/postgres:rw
   feedback:
     image: stefan7/feedback:latest
     container_name: feedback_container
