@@ -54,11 +54,11 @@ services:
   #     volumes:
   #     - postgres-data:/var/lib/postgres:rw
 
-  phintegrationtests:
+  pharmacyintegrationtests:
     build:
       context: .
       dockerfile: Dockerfile.PhIntegrationTests
-    container_name: ph_integration_tests
+    container_name: pharmacy_integration_tests
     restart: on-failure
     depends_on:
       - postgres
