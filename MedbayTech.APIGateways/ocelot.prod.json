@@ -3,7 +3,7 @@
 
     {
       "DownstreamPathTemplate": "/api/feedback",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-feedback.herokuapp.com",
@@ -17,7 +17,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/feedback/allFeedback",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-feedback.herokuapp.com",
@@ -38,7 +38,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/feedback/updateFeedbackStatus",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-feedback.herokuapp.com",
@@ -60,7 +60,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/feedback/createFeedback",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-feedback.herokuapp.com",
@@ -82,7 +82,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/patient/maliciousPatients",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-users.herokuapp.com",
@@ -103,7 +103,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/patient/updatePatientStatus",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-users.herokuapp.com",
@@ -124,7 +124,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/medicalRecord",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-patientdocuments.herokuapp.com",
@@ -145,7 +145,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/appointment/cancelableAppointments/{everything}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -166,7 +166,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/appointment/allSurveyableAppointments",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -187,7 +187,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/appointment/allOtherAppointments",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -208,7 +208,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/appointment/allCancelableAppointments",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -229,7 +229,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/appointment/cancelAppointment",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -250,7 +250,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/appointment/available",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -271,7 +271,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/appointment/availableStrategy",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -292,7 +292,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/appointment/schedule",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -314,7 +314,7 @@
 
     {
       "DownstreamPathTemplate": "/api/doctor/specialization/{everything}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-users.herokuapp.com",
@@ -335,7 +335,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/registration/patientRegistration",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-users.herokuapp.com",
@@ -349,7 +349,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/authentication/authenticate",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-users.herokuapp.com",
@@ -363,7 +363,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/doctor/searchDoctor",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-users.herokuapp.com",
@@ -377,7 +377,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/appointment/allSurveyableAppointments",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -399,7 +399,7 @@
 
     {
       "DownstreamPathTemplate": "/api/survey/allQuestions",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -420,7 +420,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/survey/createSurvey",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -442,7 +442,7 @@
 
     {
       "DownstreamPathTemplate": "/api/specialization",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-users.herokuapp.com",
@@ -457,7 +457,7 @@
 
     {
       "DownstreamPathTemplate": "/api/report/advancedSearch",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-patientdocuments.herokuapp.com",
@@ -479,7 +479,7 @@
 
     {
       "DownstreamPathTemplate": "/api/report",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-patientdocuments.herokuapp.com",
@@ -501,7 +501,7 @@
 
     {
       "DownstreamPathTemplate": "/api/prescription",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-patientdocuments.herokuapp.com",
@@ -522,7 +522,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/prescription/advancedSearch",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-patientdocuments.herokuapp.com",
@@ -543,7 +543,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/event/getAverageNumberOfStepsForSuccessful",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -564,7 +564,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/event/getAverageSchedulingTime",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -585,7 +585,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/event/getAverageTimeFromStartedToSpecialization",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -606,7 +606,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/event/getAverageTimeFromSpecializationToDoctor",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -627,7 +627,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/event/getAverageTimeFromDoctorToSelectAppointment",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -648,7 +648,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/report/appointmentReport",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-patientdocuments.herokuapp.com",
@@ -669,7 +669,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/prescription/appointmentPrescription",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-patientdocuments.herokuapp.com",
@@ -690,7 +690,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/event/save",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -711,7 +711,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/event/getCreatedCount",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -732,7 +732,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/event/getCountOfQuit",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -753,7 +753,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/event/getCountOfBackStep",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
@@ -774,7 +774,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/event/getPercentSuccessfulAndQuit",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "medbaytech-appointment.herokuapp.com",
