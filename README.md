@@ -1,28 +1,50 @@
 # MedbayTech
-Software Design class project
+A complete hospital management system made as a class project  
+for Software Design  
+<p align="center">
+    <img src="imgs/amongusscan.png" />
+</p> 
 
-##  Start our projects:
-####  Graphic Editor:
-<li>Copy folders Icons and MapData to bin/Debug/netcoreapp3.1</li>
-<li>Add new migration and update database if needed</li>
-<li>Start new instance of GraphicEditorWebService from Visual Studio</li>
-<li>Then start new instance of GraphicEditor</li>
+## Usage
+To start a project, run the required microservices
 
-####  Web Application:
-<li>Add new migration and update database if needed</li>
-<li>Start new instance of WebApplication from Visual Studio</li>
-<li>Go to project WebApplicationFrontend and in your command line type</li>
-
-```sh
-npm install 
+### Pharmacy Integration
+- MedbayTech.Tenders
+- MedbayTech.Medications
+- MedbayTech.Pharmacies
+- MedbayTech.PatientDocuments
+- MedbayTech.Users  
+**Frontend**  
+``` bash
+    # From MedbayTech.PharmacyUI/ run:
+    npm install -g @vue/cli
+    npm install --save axios vue-axios
+    npm install
+    npm run serve
 ```
-```sh
-ng serve --o
+### Patient Web app
+- MedbayTech.APIGateways
+- MedbayTech.Appointment
+- MedbayTech.Feedback
+- MedbayTech.PatientDocuments
+- MedbayTech.Pharmacies
+- MedbayTech.Rooms
+- MedbayTech.Users  
+**Frontend**  
+``` bash
+    # From WebApplicationFrontend/ run:
+    npm install
+    ng serve --o
 ```
 
-####  Pharmacy Integration:
-<li>Add new migration and update database if needed</li>
-<li>Start new instance of PharmacyIntegration from Visual Studio</li>
+### Graphic Editor
+- MedbayTech.Appointment
+- MedbayTech.Rooms
+- MedbayTech.Medications
+- MedbayTech.Users  
+**Frontend**  
+From MedbayTech.GraphicEditor copy Icons/ and View/ folder to bin/netcoreapp3.1/  
+and then run the WPF app
 
 
 ## MedbayTech team
