@@ -43,7 +43,7 @@ To start a project, run the required microservices
 - MedbayTech.Medications
 - MedbayTech.Users  
 **Frontend**  
-From MedbayTech.GraphicEditor copy Icons/ and View/ folder to bin/netcoreapp3.1/  
+From MedbayTech.GraphicEditor copy Icons/ and MapData/ folder to bin/netcoreapp3.1/  
 and then run the WPF app
 
 
