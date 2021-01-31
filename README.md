@@ -47,6 +47,30 @@ From MedbayTech.GraphicEditor copy Icons/ and View/ folder to bin/netcoreapp3.1/
 and then run the WPF app
 
 
+##  Start our projects:
+####  Graphic Editor:
+<li>Copy folders Icons and MapData to bin/Debug/netcoreapp3.1</li>
+<li>Add new migration and update database if needed</li>
+<li>Start new instance of GraphicEditorWebService from Visual Studio</li>
+<li>Then start new instance of GraphicEditor</li>
+
+####  Web Application:
+<li>Add new migration and update database if needed</li>
+<li>Start new instance of WebApplication from Visual Studio</li>
+<li>Go to project WebApplicationFrontend and in your command line type</li>
+
+```sh
+npm install 
+```
+```sh
+ng serve --o
+```
+
+####  Pharmacy Integration:
+<li>Add new migration and update database if needed</li>
+<li>Start new instance of PharmacyIntegration from Visual Studio</li>
+
+
 ## MedbayTech team
 |         *DevOps*        | *Hospital editor*  | *Pharmacy integration* | *Web app*      |
 |:-----------------------:|--------------------|------------------------|----------------|
